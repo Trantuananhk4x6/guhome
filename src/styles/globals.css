@@ -1,0 +1,190 @@
+@import 'tailwindcss';
+
+/*
+ * AN ATELIER — design tokens.
+ * Runtime values are CSS custom properties so the Admin theme editor can
+ * override them per-request (see ThemeProvider -> inline <style>).
+ * Tailwind utilities below map onto those variables, never onto raw hex.
+ */
+
+@theme {
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+  --color-surface-alt: var(--c-surface-alt);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-line: var(--c-line);
+  --color-espresso: var(--c-espresso);
+  --color-accent: var(--c-accent);
+  --color-accent-soft: var(--c-accent-soft);
+
+  --font-display: var(--f-display), 'Cormorant Garamond', ui-serif, Georgia, serif;
+  --font-body: var(--f-body), 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --tracking-label: 0.18em;
+  --tracking-display: -0.02em;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --spacing-gutter: clamp(1.25rem, 4vw, 4.5rem);
+  --spacing-section: clamp(6rem, 14vh, 12rem);
+
+  --breakpoint-xs: 30rem;
+  --breakpoint-3xl: 110rem;
+}
+
+:root {
+  /* Palette — limestone / oat / ink with a bronze-clay accent. */
+  --c-canvas: #f4f1ea;
+  --c-surface: #eae5da;
+  --c-surface-alt: #dcd5c7;
+  --c-ink: #1c1b18;
+  --c-muted: #78736a;
+  --c-line: #d7d0c2;
+  --c-espresso: #131210;
+  --c-accent: #a07753;
+  --c-accent-soft: #c7a57c;
+
+  --f-display: 'Cormorant Garamond';
+  --f-body: 'Inter';
+
+  --display-scale: 1;
+  --body-scale: 1;
+
+  /* Motion — overridden by MotionConfig / prefers-reduced-motion. */
+  --motion-intensity: 1;
+  --motion-duration: 1s;
+
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: calc(1rem * var(--body-scale));
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Lenis owns scrolling; these are its required base styles. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: var(--tracking-display);
+    line-height: 0.95;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-canvas);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .u-gutter {
+    padding-inline: var(--spacing-gutter);
+  }
+
+  .u-label {
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .u-display {
+    font-family: var(--font-display);
+    font-size: calc(clamp(2.75rem, 8vw, 9rem) * var(--display-scale));
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+  }
+
+  .u-display-sm {
+    font-family: var(--font-display);
+    font-size: calc(clamp(1.75rem, 4vw, 3.5rem) * var(--display-scale));
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .u-body-lg {
+    font-size: calc(clamp(1rem, 1.15vw, 1.1875rem) * var(--body-scale));
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  .u-rule {
+    height: 1px;
+    background-color: var(--color-line);
+  }
+
+  /* Applied by animation utilities before GSAP takes over, so nothing flashes
+     unstyled when JS is still loading. */
+  [data-reveal]:not([data-reveal-ready]) {
+    opacity: 0;
+  }
+
+  [data-split-line] {
+    display: block;
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-intensity: 0;
+    --motion-duration: 0.01s;
+  }
+
+  [data-reveal]:not([data-reveal-ready]) {
+    opacity: 1;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

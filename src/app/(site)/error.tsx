@@ -1,0 +1,54 @@
+'use client'
+
+import { useEffect } from 'react'
+
+import { Button } from '@/components/ui/Button'
+import { Label } from '@/components/ui/Label'
+import { Rule } from '@/components/ui/Rule'
+
+export default function SiteError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
+  useEffect(() => {
+    console.error('[site] render error', error)
+  }, [error])
+
+  return (
+    <section className="u-gutter flex min-h-[72vh] items-center py-[calc(var(--spacing-section)*0.75)]">
+      <div className="mx-auto w-full max-w-[100rem]">
+        <Label rule index="—" tone="accent">
+          Sự cố
+        </Label>
+
+        <h1 className="u-display mt-10 max-w-[14ch] text-ink">Có gì đó vừa gãy giữa chừng.</h1>
+
+        <Rule className="mt-14 max-w-[28rem]" />
+
+        <p className="u-body-lg mt-8 max-w-[46ch]">
+          Trang chưa dựng xong được. Bạn thử tải lại một lần — nếu vẫn vậy, viết cho chúng tôi một
+          dòng và studio sẽ xử lý.
+        </p>
+
+        <div className="mt-14 flex flex-wrap items-center gap-8">
+          <Button type="button" onClick={reset} withArrow>
+            Thử lại
+          </Button>
+          <Button href="/" variant="underline">
+            Về trang chủ
+          </Button>
+          <Button href="/contact" variant="underline">
+            Báo cho studio
+          </Button>
+        </div>
+
+        {error.digest ? (
+          <p className="u-label mt-16 text-muted/70">Mã sự cố · {error.digest}</p>
+        ) : null}
+      </div>
+    </section>
+  )
+}

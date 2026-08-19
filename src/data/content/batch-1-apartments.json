@@ -1,0 +1,1042 @@
+{
+  "batch": "apartments",
+  "projects": [
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN HỘ 3 NGỦ ( GỖ ÓC CHÓ 0/CĂN SỐ 2",
+      "slug": "not-tram-ca-cao",
+      "title": "Nốt Trầm Ca Cao",
+      "subtitle": "Căn hộ 3 phòng ngủ · Quận 7",
+      "summary": "Một mảng laminate màu ca cao chạy suốt chiều cao phòng khách, cắt bằng dải gương đồng bóng để nhân đôi ánh sáng ban ngày. Sofa nỉ kem xếp múi, hai gối nhung đỏ, mặt bàn đá trắng đặt trên khối gỗ đen. Sàn gỗ sồi ấm giữ cho tổng thể trầm mà không nặng.",
+      "description": [
+        "Chủ nhà là một cặp vợ chồng trẻ vừa nhận bàn giao căn ba phòng ngủ, mong muốn một nơi đủ tối để nghỉ ngơi sau ngày dài nhưng không được u ám. Chúng tôi bỏ hẳn ý tưởng tường trắng mặc định và chọn một tông nâu ca cao duy nhất cho toàn bộ mảng tường phòng khách, coi nó như phông nền của mọi thứ khác.",
+        "Bức tường được chia thành ba tấm lớn với đường ron mảnh, một khe hắt sáng chạy dọc mép trái. Cạnh đó là dải gương đồng bóng cao chạm trần, phản chiếu hành lang và các điểm đèn âm trần khiến chiều sâu căn hộ như dài thêm một bước chân.",
+        "Bảng vật liệu chỉ có bốn thứ: laminate màu ca cao, nỉ kem, đá trắng vân mảnh và gỗ sồi tự nhiên. Sofa xếp múi đặt thấp, mặt bàn đá trắng trên khối gỗ nhuộm đen, một chậu travertine ở góc. Hai gối nhung đỏ là điểm màu duy nhất, đủ để cả mảng nâu không rơi vào đơn điệu.",
+        "Ánh sáng ban ngày đi qua rèm voan mỏng, trải đều lên mặt phẳng nâu và làm lộ độ nhám rất nhẹ của bề mặt. Buổi tối, hệ đèn được chia thành ba lớp riêng để căn phòng có thể chuyển từ sáng sinh hoạt sang chỉ còn một vệt hắt ấm dọc chân tường."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Quận 7, TP.HCM",
+      "area": "104 m²",
+      "year": 2023,
+      "client": "Gia đình anh T.",
+      "duration": "4 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói"
+      ],
+      "featured": false,
+      "order": 1,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ ba phòng ngủ Quận 7 với mảng tường ca cao chạy suốt chiều cao, gương đồng, sofa nỉ kem và sàn gỗ sồi ấm."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN HỘ 3 NGỦ ( GỖ ÓC CHÓ 0/PHÒNG KHÁCH",
+      "slug": "anh-kim-van-da",
+      "title": "Ánh Kim Vân Đá",
+      "subtitle": "Phòng khách gỗ óc chó · Quận 7",
+      "summary": "Bức tường vân đá màu khói được đóng khung bằng lam gỗ óc chó, ở giữa là chiếc đồng hồ tia mặt trời mạ vàng. Sofa da nâu đặt trên bệ gỗ liền khối, bàn trà mặt kính đen, thảm da bò và một chùm đèn giọt pha lê thả thấp xuống sàn đá kem.",
+      "description": [
+        "Gia chủ sưu tầm đồ gỗ và muốn phòng khách trở thành nơi trưng bày chính của căn hộ. Thay vì kê thêm tủ, chúng tôi dồn toàn bộ trọng lượng thị giác vào một bức tường duy nhất và để phần còn lại của phòng gần như trống.",
+        "Mảng tường trung tâm dùng tấm đá vân mây màu khói ánh vàng, hai bên là hệ lam gỗ óc chó đứng đóng vai trò khung tranh. Chiếc đồng hồ tia mạ vàng đặt đúng tâm, vừa là vật trang trí vừa là điểm hội tụ của mọi đường nhìn khi bước vào từ sảnh.",
+        "Bệ ngồi được làm liền khối bằng gỗ óc chó, nâng sofa da nâu lên khỏi sàn đá kem như một sập gỗ hiện đại. Bàn trà mặt kính đen trên chân gỗ dày, thảm da bò trải chéo, tất cả giữ đúng một họ chất liệu: gỗ sẫm, da, kính và kim loại vàng nhạt.",
+        "Chùm đèn giọt pha lê thả dài xuống gần mặt bàn, tán sáng lên trần phẳng và làm mảng đá phía sau ánh lên từng lớp vân. Rèm voan trắng phủ toàn bộ mặt kính, biến ánh nắng phương Nam thành một lớp sáng khuếch tán mềm cho căn phòng."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Quận 7, TP.HCM",
+      "area": "118 m²",
+      "year": 2022,
+      "client": null,
+      "duration": "5 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế đồ nội thất",
+        "Tư vấn ánh sáng"
+      ],
+      "featured": false,
+      "order": 2,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Phòng khách gỗ óc chó với tường vân đá khói, đồng hồ tia mạ vàng, sofa da nâu trên bệ gỗ liền khối và đèn giọt pha lê."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN HỘ 3 NGỦ ( GỖ ÓC CHÓ 0/PHÒNG NGỦ",
+      "slug": "duong-dong-thau",
+      "title": "Đường Đồng Thau",
+      "subtitle": "Phòng ngủ chính · Căn hộ gỗ óc chó",
+      "summary": "Đầu giường là mảng vải dệt màu bạc kem chia ô, cài các thanh đồng thau mảnh chạy ngang. Hai trụ gỗ óc chó ôm hai bên, tủ áo phủ vải kem có đường chỉ đồng vòng quanh phòng. Bệ giường gỗ đặc, sàn lát gạch xương cá trắng, ánh đèn bàn dịu.",
+      "description": [
+        "Phòng ngủ chính nằm ở góc căn hộ, chỉ có một ô cửa nên chúng tôi chọn cách làm sáng bằng vật liệu thay vì thêm đèn. Toàn bộ tường được phủ vải dệt màu bạc kem có ánh nhũ rất nhẹ, bắt sáng khác nhau tuỳ giờ trong ngày.",
+        "Mảng đầu giường chia thành các ô chữ nhật lệch nhau, mỗi ô viền bằng thanh đồng thau mỏng. Kết cấu này lặp lại ở tủ áo hai bên dưới dạng một đường chỉ đồng chạy ngang, khiến căn phòng nhỏ có một nhịp ngang liên tục và trông rộng hơn thực tế.",
+        "Gỗ óc chó xuất hiện đúng ba chỗ: hai trụ đứng ôm mảng đầu giường, bệ giường đặc và mép tủ. Sự tiết chế này giữ cho tông ấm của gỗ không lấn át màu bạc kem của vải, đồng thời neo cả căn phòng xuống sàn gạch xương cá trắng.",
+        "Chăn xám ghi, gối trần bọc nhung màu đất nung, hai đèn bàn chao trắng đối xứng. Ban đêm chỉ cần bật đèn bàn là mảng vải sau lưng sáng lên thành một tấm phông mờ, còn các thanh đồng vẽ lại đường viền của giường trong bóng tối."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Quận 7, TP.HCM",
+      "area": "24 m²",
+      "year": 2022,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế đồ nội thất"
+      ],
+      "featured": false,
+      "order": 3,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Phòng ngủ gỗ óc chó với mảng đầu giường vải bạc kem chia ô, chỉ đồng thau chạy ngang và sàn gạch xương cá trắng."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 10 ( CHUNG CƯ LUMIER CÔ NGA )/PHÒNG KHÁCH",
+      "slug": "nang-mat-ong",
+      "title": "Nắng Mật Ong",
+      "subtitle": "Phòng khách · Lumière Riverside",
+      "summary": "Tấm đá vân mây xám ánh vàng cao chạm trần, hai bên là lam gỗ sẫm, giữa là đồng hồ tia kim loại. Sofa da màu mật ong nằm dài dưới chân tường, bàn trà đá đen bóng, đèn vòng mạ hồng kim treo trên bàn ăn mặt đá tròn chân sọc.",
+      "description": [
+        "Căn hộ nhìn ra sông, mặt kính chạy gần trọn chiều dài phòng khách nên ánh sáng luôn dư. Bài toán không phải lấy sáng mà là tìm một sắc màu đủ ấm để cân lại thứ ánh sáng trắng gắt của buổi trưa hắt từ mặt nước lên.",
+        "Câu trả lời là màu mật ong. Bộ sofa da ba khối đặt thấp, không tay vịn, chạy sát mảng tường đá vân mây ánh vàng. Hai dải lam gỗ sẫm dựng đứng ở hai mép tấm đá, đóng khung nó lại và giấu đi đường nối giữa tường và cửa phòng.",
+        "Khu ăn nằm ngay cạnh, dùng bàn tròn mặt đá trắng trên chân trụ sọc dọc, ghế bọc nỉ màu kem. Một chiếc đèn vòng mạ hồng kim treo lệch tâm, đủ lớn để tách khu ăn khỏi khu ngồi mà không cần bất kỳ vách ngăn nào.",
+        "Sàn gỗ ghép xương cá màu mật chạy liên tục từ sảnh vào trong. Rèm hai lớp — voan trắng và vải dệt màu đồng — cho phép chủ nhà chọn mức sáng theo giờ, và khi kéo hết, cả căn phòng chuyển thành một hộp ánh sáng màu hổ phách."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Lumière Riverside, An Phú, TP. Thủ Đức, TP.HCM",
+      "area": "96 m²",
+      "year": 2023,
+      "client": "Cô N.",
+      "duration": "4 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Tư vấn ánh sáng"
+      ],
+      "featured": false,
+      "order": 4,
+      "coverIndex": 0,
+      "sceneMode": "IMAGE",
+      "seoDescription": "Phòng khách Lumière Riverside với tường đá vân mây ánh vàng, sofa da mật ong, đèn vòng hồng kim và sàn gỗ xương cá."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 10 ( CHUNG CƯ LUMIER CÔ NGA )/PHÒNG NGỦ",
+      "slug": "hinh-hoc-anh-vang",
+      "title": "Hình Học Ánh Vàng",
+      "subtitle": "Phòng ngủ · Lumière Riverside",
+      "summary": "Đầu giường ghép từ các tấm bê tông mài màu ghi, viền chỉ vàng chia thành nhịp so le. Hai bên là vách sơn kem khảm hình chevron mảnh, ba đèn thả lục giác rọi xuống. Bệ giường gỗ sồi sáng, tủ gương khói, rèm cầu vồng lọc nắng thành từng dải.",
+      "description": [
+        "Phòng ngủ hướng Tây, chiều nào cũng đón một mảng nắng gắt. Chúng tôi giữ nguyên hướng nhìn ra thành phố nhưng thay hệ rèm bằng rèm cầu vồng, để nắng bị cắt thành những dải ngang đều nhau trước khi rơi vào phòng.",
+        "Mảng đầu giường được xử lý như một bức phù điêu: các tấm phẳng phủ bê tông mài màu ghi, xếp so le, giữa các tấm là chỉ đồng mạ vàng mảnh. Nhịp so le này cố ý không đối xứng để mắt còn việc để làm khi nhìn lâu.",
+        "Hai bên đầu giường là vách sơn kem khảm hoạ tiết chevron bằng chỉ vàng, lặp lại trên cánh tủ áo mặt gương khói phía đối diện. Nhờ vậy phòng có hai lớp phản chiếu — một mờ, một trong — và cảm giác rộng hơn diện tích thật.",
+        "Bệ giường bằng gỗ sồi sáng đặt trực tiếp lên thảm dệt trắng, đầu giường bọc da kem. Ba đèn thả khung lục giác mạ vàng buông xuống ở ba cao độ khác nhau, đủ để chiếu sách buổi tối mà không cần thêm đèn tường."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Lumière Riverside, An Phú, TP. Thủ Đức, TP.HCM",
+      "area": "22 m²",
+      "year": 2023,
+      "client": "Cô N.",
+      "duration": "3 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế đồ nội thất"
+      ],
+      "featured": false,
+      "order": 5,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Phòng ngủ Lumière với đầu giường bê tông mài viền chỉ vàng, vách chevron, đèn thả lục giác và rèm cầu vồng lọc nắng."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 11 ( CHUNG CƯ MIZUKI )",
+      "slug": "binh-phong-go",
+      "title": "Bình Phong Gỗ",
+      "subtitle": "Căn hộ 2 phòng ngủ · Mizuki Park",
+      "summary": "Một tấm bình phong gỗ chạm hoa văn tròn ngăn bếp với khu ăn mà vẫn cho ánh sáng đi qua. Bàn ăn mặt đá trắng chân trụ sọc, ghế nỉ xám, sofa nâu nhạt tựa vào mảng đá trắng có đĩa đồng tia. Sàn gỗ màu hạt dẻ, ban công đầy cây.",
+      "description": [
+        "Căn hai phòng ngủ ở Mizuki Park có mặt bằng ống, bếp nằm ngay lối vào và nhìn thẳng vào phòng khách. Gia chủ muốn che bếp nhưng không muốn mất ánh sáng tự nhiên vốn chỉ đến từ một mặt ban công duy nhất.",
+        "Giải pháp là một tấm bình phong gỗ chạm hoa văn vòng tròn lồng nhau, đặt vuông góc với tường bếp. Nó chắn tầm nhìn trực diện vào chậu rửa, nhưng ánh sáng và không khí vẫn xuyên qua các lỗ rỗng, và bóng hoa văn in lên sàn gỗ vào buổi chiều.",
+        "Khu ăn dùng bàn mặt đá trắng bo góc trên chân trụ sọc dọc, sáu ghế bọc nỉ xám chân đen. Phòng khách phía trong giữ một mảng đá trắng vân xám làm phông, gắn một đĩa đồng tia nhỏ thay cho tranh treo.",
+        "Sàn gỗ màu hạt dẻ chạy suốt căn hộ, làm nền ấm cho hệ trần giật cấp sơn trắng và dải đèn hắt viền quanh. Ban công được trồng dày cây xanh, nên từ bàn ăn nhìn ra luôn có một lớp lá trước khi tới thành phố."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Mizuki Park, Bình Hưng, Bình Chánh, TP.HCM",
+      "area": "72 m²",
+      "year": 2022,
+      "client": null,
+      "duration": "4 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói"
+      ],
+      "featured": false,
+      "order": 6,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ hai phòng ngủ Mizuki Park với bình phong gỗ chạm ngăn bếp, bàn đá trắng chân trụ sọc và sàn gỗ hạt dẻ."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 12 ( CHUNG CƯ WET )",
+      "slug": "gio-nom",
+      "title": "Gió Nồm",
+      "subtitle": "Căn hộ 2 phòng ngủ · TP. Thủ Đức",
+      "summary": "Hai tấm chạm gỗ hoa văn chữ triện dựng ở hai đầu phòng, quạt trần cánh lá cọ quay chậm dưới trần trắng. Bàn ăn mặt đá, ghế mây đan thủ công, mảng gương cắt hình thoi phản chiếu ánh sáng ban công. Sàn gỗ màu tro nhạt, đèn tường hình mây.",
+      "description": [
+        "Chủ nhà lớn lên trong một căn nhà ống có giếng trời và cửa lá sách, muốn giữ lại cảm giác gió lùa ấy trong một căn hộ hiện đại. Chúng tôi lấy ba yếu tố cũ — chạm gỗ, mây đan và quạt trần — rồi đặt chúng vào một khung nền hoàn toàn phẳng và sáng.",
+        "Hai tấm chạm gỗ hoa văn chữ triện được dựng ở hai đầu không gian chung: một tấm che tủ kỹ thuật cạnh bếp, một tấm làm nền cho vách ti vi. Chúng lặp lại cùng một mô-đun nên dù ở hai đầu phòng vẫn đọc ra là một cặp.",
+        "Bảng vật liệu rất nhẹ: gỗ tần bì màu tro, sơn hiệu ứng trắng xước, mặt đá trắng cho bàn ăn và mây đan cho lưng ghế. Mảng gương cắt hình thoi ở khu bếp làm nhiệm vụ kỹ thuật là nhân đôi ánh sáng ban công vào chỗ sâu nhất của căn hộ.",
+        "Quạt trần cánh lá cọ thay cho một chùm đèn trang trí, quay chậm suốt ngày. Đèn tường hình đám mây trong phòng bé và hai chao đèn sứ trắng trên bàn ăn giữ cho toàn bộ ánh sáng nhân tạo ở nhiệt độ ấm, gần với ánh chiều."
+      ],
+      "categorySlug": "can-ho",
+      "location": "TP. Thủ Đức, TP.HCM",
+      "area": "68 m²",
+      "year": 2021,
+      "client": null,
+      "duration": "4 tháng",
+      "style": "Indochine",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế đồ nội thất",
+        "Thi công trọn gói"
+      ],
+      "featured": false,
+      "order": 7,
+      "coverIndex": 1,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ hai phòng ngủ mang hơi thở Đông Dương: chạm gỗ chữ triện, ghế mây đan, quạt trần lá cọ và sàn gỗ màu tro."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 13 TECCO/CONCEPT 1",
+      "slug": "suong-xam",
+      "title": "Sương Xám",
+      "subtitle": "Phương án 1 · Tecco Town",
+      "summary": "Phòng khách chọn bảng màu xám khói: rèm vải dày màu chì, tủ ti vi phủ sơn trắng mờ, sofa vải kem kết hợp ghế da bò nhạt. Bàn tròn mặt trắng, hai bức tranh nét sóng treo lệch. Sàn gỗ sáng và trần phẳng giúp căn hộ nhỏ giữ được độ tĩnh.",
+      "description": [
+        "Đây là phương án đầu trong hai đề xuất cho cùng một mặt bằng hai phòng ngủ. Gia đình trẻ, đi làm cả ngày, chỉ thực sự dùng phòng khách vào buổi tối — nên phương án này được đẩy về phía mát và tĩnh.",
+        "Toàn bộ tường giữ trắng, chỉ có rèm vải dày màu chì làm mảng đậm duy nhất. Hệ tủ ti vi phủ sơn trắng mờ chạy dài sát tường, không tay nắm, để phần thị giác nhường hết cho bộ ngồi ở giữa phòng.",
+        "Sofa vải kem đặt cùng một ghế đơn da bò nhạt và bàn tròn mặt trắng chân mảnh. Cặp tranh nét sóng treo lệch trục cố ý, phá thế đối xứng của mảng tường phía sau và tạo một chuyển động ngang rất nhẹ.",
+        "Sàn gỗ màu sáng chạy hết căn hộ, trần để phẳng và chỉ dùng đèn âm cùng một dải hắt sau rèm. Khi trời tối, dải hắt này biến rèm thành nguồn sáng chính, cả phòng chìm về đúng sắc xám khói của tên gọi."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Tecco Town, Bình Tân, TP.HCM",
+      "area": "64 m²",
+      "year": 2024,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Art direction"
+      ],
+      "featured": false,
+      "order": 8,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Phương án nội thất căn hộ Tecco Town theo bảng màu xám khói: rèm chì, tủ sơn trắng mờ, sofa kem và ghế da bò nhạt."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 13 TECCO/CONCEPT 2",
+      "slug": "song-cat",
+      "title": "Sóng Cát",
+      "subtitle": "Phương án 2 · Tecco Town",
+      "summary": "Cùng mặt bằng nhưng đổi sang tông ấm: giấy dán tường vân sóng màu cát, vách ti vi ốp gỗ sồi, sofa kem đi cùng ghế da nâu đỏ. Rèm vải be, một bức tranh nét mảnh màu cam đất. Ánh sáng chiều đọng lại trên bề mặt vân sóng như cát ẩm.",
+      "description": [
+        "Phương án thứ hai cho cùng căn hộ giữ nguyên cách bố trí nhưng đổi toàn bộ nhiệt độ màu. Gia chủ muốn xem hai đề xuất cạnh nhau trước khi quyết định, nên chúng tôi cố ý để hai phương án khác nhau ở vật liệu chứ không ở công năng.",
+        "Mảng tường sau sofa dùng giấy dán vân sóng màu cát, bề mặt có độ nổi nhẹ nên đổ bóng theo giờ. Vách ti vi ốp gỗ sồi màu mật, kết hợp với hệ tủ sơn trắng ở dưới để khối gỗ không đè xuống mặt sàn.",
+        "Bộ ngồi gồm sofa vải kem và một ghế đơn da nâu đỏ. Đây là điểm khác biệt rõ nhất so với phương án một: chỉ cần thay một chiếc ghế, cả căn phòng chuyển từ mát sang ấm mà không phải sửa gì khác.",
+        "Rèm vải be dày phủ kín ô cửa, tranh nét mảnh màu cam đất treo trên vách gỗ. Chiều muộn, nắng xiên qua rèm và đọng lại trên bề mặt vân sóng, làm mảng tường trông giống một bãi cát vừa rút nước."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Tecco Town, Bình Tân, TP.HCM",
+      "area": "64 m²",
+      "year": 2024,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Japandi",
+      "services": [
+        "Thiết kế nội thất",
+        "Art direction"
+      ],
+      "featured": false,
+      "order": 9,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Phương án nội thất căn hộ Tecco Town tông ấm: giấy dán vân sóng màu cát, vách gỗ sồi, sofa kem và ghế da nâu đỏ."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 14 TECCO 1 NGỦ",
+      "slug": "to-am-vua-du",
+      "title": "Tổ Ấm Vừa Đủ",
+      "subtitle": "Căn hộ 1 phòng ngủ · Tecco Town",
+      "summary": "Một căn một phòng ngủ được sắp lại quanh trục cửa sổ: tủ áo sơn trắng có mảng gỗ rãnh, đầu giường nhung kem chia khối, bệ giường gỗ sồi. Bếp chữ I mặt đá sáng, rèm nhôm cắt nắng thành dải. Mọi thứ chỉ đủ dùng, không thừa một cánh tủ nào.",
+      "description": [
+        "Căn hộ một phòng ngủ chưa tới sáu mươi mét vuông, người ở là một bạn trẻ mới đi làm. Yêu cầu duy nhất là đủ chỗ cất đồ mà phòng không được có cảm giác chật, nên toàn bộ thiết kế xoay quanh việc giấu đồ vào tường.",
+        "Hệ tủ áo sơn trắng chạy hết một cạnh phòng ngủ, cánh phẳng không tay nắm, chèn giữa là một mảng gỗ sồi xẻ rãnh dọc để mặt tủ dài không bị đơn điệu. Chiều sâu tủ được tính vừa đúng một móc treo, đổi lại lối đi cạnh giường rộng thêm hai gang tay.",
+        "Đầu giường bọc nhung kem chia thành các khối ngang mềm, bệ giường bằng gỗ sồi thấp. Bảng màu chỉ có ba tông: trắng, kem và gỗ sáng — cách rẻ nhất và bền nhất để một phòng nhỏ trông rộng.",
+        "Bếp chữ I mặt đá sáng nằm sát lối vào, phía trên là kệ mở duy nhất. Rèm nhôm lá ngang cắt nắng thành từng dải mảnh, vừa che tầm nhìn từ toà đối diện vừa cho phép điều chỉnh lượng sáng theo từng giờ trong ngày."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Tecco Town, Bình Tân, TP.HCM",
+      "area": "52 m²",
+      "year": 2024,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói"
+      ],
+      "featured": false,
+      "order": 10,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ một phòng ngủ 52 m² tại Tecco Town: tủ áo sơn trắng xen gỗ rãnh, đầu giường nhung kem và bếp chữ I mặt đá."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 15 ( CHUNG CƯ CITI ALTO )",
+      "slug": "trang-nga",
+      "title": "Trắng Ngà",
+      "subtitle": "Căn hộ 2 phòng ngủ · Citi Alto",
+      "summary": "Cả căn hộ dùng một sắc trắng ngà: tường sơn hiệu ứng nhám, sofa mô-đun vải kem, bàn ăn mặt đá trắng trên chân trụ sọc. Một quả cầu đèn đồng, một tấm poster xe cổ và dòng chữ nổi trên tường là ba điểm dừng duy nhất cho mắt.",
+      "description": [
+        "Chủ nhà là người chơi xe, sống một mình, và mô tả yêu cầu bằng đúng một câu: không muốn nhìn thấy màu nào cả. Chúng tôi nhận lời với điều kiện được làm việc bằng độ nhám thay vì bằng màu sắc.",
+        "Toàn bộ tường phủ sơn hiệu ứng nhám tay, bề mặt có vệt bay rất nhẹ nên bắt sáng khác nhau theo hướng. Trần phẳng, sàn lát đá màu ngà khổ lớn, hệ tủ âm tường cùng tông và không tay nắm để các mặt phẳng chạy liên tục.",
+        "Đồ đạc chỉ gồm sofa mô-đun vải kem, bàn ăn mặt đá trắng trên chân trụ sọc dọc và bốn ghế bọc nỉ. Chân bàn sọc là chi tiết duy nhất có nhịp, đủ để mảng trắng lớn không rơi vào cảm giác trống.",
+        "Ba điểm nhấn được đặt rất tiết chế: một quả cầu đèn đồng thả trên bàn ăn, tấm poster xe cổ treo ở đầu hồi và một dòng chữ nổi mảnh trên vách đá. Ngoài ra, nắng là thứ trang trí còn lại — nó vẽ lên tường mỗi ngày một hình khác."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Citi Alto, Cát Lái, TP. Thủ Đức, TP.HCM",
+      "area": "76 m²",
+      "year": 2024,
+      "client": "Anh K.",
+      "duration": "4 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Art direction"
+      ],
+      "featured": false,
+      "order": 11,
+      "coverIndex": 0,
+      "sceneMode": "IMAGE",
+      "seoDescription": "Căn hộ Citi Alto trong một sắc trắng ngà duy nhất: sơn hiệu ứng nhám, sofa mô-đun kem và bàn đá chân trụ sọc."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 16 ( CHUNG CƯ AKARI )",
+      "slug": "kham-go-soi",
+      "title": "Khám Gỗ Sồi",
+      "subtitle": "Căn hộ 2 phòng ngủ · Akari City",
+      "summary": "Bàn thờ được đưa vào một hốc vòm gỗ sồi có đèn hắt, đứng liền mạch với vách ti vi cùng chất liệu. Sofa da kem xếp múi, bàn trà chân gỗ uốn, rèm vải màu cát và quạt trần trắng. Sàn gỗ bản rộng giữ toàn bộ căn hộ trong một sắc ấm.",
+      "description": [
+        "Gia đình ba thế hệ chuyển từ nhà phố lên chung cư, mang theo bộ đồ thờ bằng gỗ chạm. Câu hỏi khó nhất của dự án là đặt bàn thờ ở đâu để vừa trang nghiêm vừa không biến phòng khách thành hai không gian rời rạc.",
+        "Chúng tôi làm một mảng gỗ sồi chạy suốt cạnh dài của phòng, trong đó khoét một hốc vòm cao đúng tầm nhìn. Bàn thờ, các bức chạm cũ và bộ đài sen được đặt vào hốc này, có đèn hắt ẩm trong mép vòm nên luôn sáng dịu kể cả ban ngày.",
+        "Vách ti vi nằm ngay cạnh, cùng một loại gỗ và cùng cao độ, chỉ khác ở phần ốp lam đứng phía dưới. Nhờ vậy khu thờ không bị tách ra như một món đồ thêm vào mà đọc được như một phần của kiến trúc căn hộ.",
+        "Phần còn lại giữ nhẹ: sofa da kem xếp múi, bàn trà mặt trắng trên chân gỗ uốn cong, rèm vải màu cát hai lớp. Sàn gỗ bản rộng và quạt trần trắng hoàn tất một căn hộ mà mọi chất liệu đều nằm trong họ ấm."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Akari City, Bình Tân, TP.HCM",
+      "area": "88 m²",
+      "year": 2025,
+      "client": "Gia đình chị H.",
+      "duration": "5 tháng",
+      "style": "Japandi",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Thiết kế đồ nội thất"
+      ],
+      "featured": false,
+      "order": 12,
+      "coverIndex": 0,
+      "sceneMode": "IMAGE",
+      "seoDescription": "Căn hộ Akari City với hốc thờ vòm gỗ sồi có đèn hắt liền mạch cùng vách ti vi, sofa da kem và sàn gỗ bản rộng."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 4 ( CHỊ KIỀU ANH )",
+      "slug": "kinh-gon-song",
+      "title": "Kính Gợn Sóng",
+      "subtitle": "Căn hộ 2 phòng ngủ · Quận 7",
+      "summary": "Vách kính gợn sóng khung thép đen tách phòng làm việc khỏi khu ăn mà vẫn cho ánh sáng đi qua. Mảng tường ô vuông bọc nỉ xám viền chỉ đồng, bàn ăn mặt đá trắng, ghế da bò và một bức tranh pop màu vàng. Sàn gỗ óc chó, đèn ray đen.",
+      "description": [
+        "Gia chủ làm nghề sáng tạo, phần lớn thời gian ngồi máy tính tại nhà. Yêu cầu là một góc làm việc tách biệt về âm thanh nhưng không được cắt mất ánh sáng của khu ăn — vốn là chỗ sáng nhất căn hộ.",
+        "Chúng tôi dùng vách kính gợn sóng khung thép đen chạy hết chiều cao phòng. Kính làm mờ hình nhưng giữ nguyên ánh sáng, nên từ bàn ăn nhìn sang chỉ thấy chuyển động và bóng người, còn nắng vẫn đi thẳng vào giữa nhà.",
+        "Mảng tường sau bàn ăn được chia thành lưới ô vuông, mỗi ô bọc nỉ xám và viền bằng chỉ đồng mảnh. Hệ lưới này vừa tiêu âm cho khu làm việc bên kia vách, vừa cho phép treo tranh ở bất kỳ ô nào mà không cần khoan lại.",
+        "Bàn ăn mặt đá trắng chân thép đen, ghế bọc da bò, một sofa đôi cùng tông đặt sát tường đá. Sàn gỗ óc chó và hệ đèn ray đen trên trần giữ cho toàn bộ không gian có cảm giác của một phòng tranh nhỏ hơn là một phòng ăn."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Quận 7, TP.HCM",
+      "area": "82 m²",
+      "year": 2023,
+      "client": "Chị K.A.",
+      "duration": "4 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Art direction"
+      ],
+      "featured": false,
+      "order": 13,
+      "coverIndex": 0,
+      "sceneMode": "IMAGE",
+      "seoDescription": "Căn hộ Quận 7 với vách kính gợn sóng khung thép đen, tường lưới nỉ xám viền chỉ đồng và sàn gỗ óc chó."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 5 ( CHỊ LINH MIZUKI )",
+      "slug": "xanh-com",
+      "title": "Xanh Cốm",
+      "subtitle": "Căn hộ 3 phòng ngủ · Mizuki Park",
+      "summary": "Tường sơn xanh cốm với phào chỉ trắng mảnh, sofa cong bọc nhung cùng tông, bàn trà terrazzo chân sọc. Rèm voan và rèm lá ngang trắng, một cây cọ lớn ở góc, sàn gỗ màu nâu đỏ. Tranh trừu tượng pastel là nơi duy nhất có màu ấm.",
+      "description": [
+        "Chủ nhà làm trong ngành thời trang, muốn một căn hộ không giống bất kỳ căn nào cùng toà. Chúng tôi đề xuất bỏ hẳn tường trắng và chọn một màu duy nhất cho cả không gian chung: xanh cốm nhạt, pha xám để không bị ngọt.",
+        "Mảng tường được chia bằng phào chỉ trắng mảnh thành các khung chữ nhật cao. Chi tiết cổ điển này giữ cho màu xanh có cấu trúc, đồng thời tạo tỉ lệ đứng khiến trần căn hộ trông cao hơn thực tế khoảng một gang tay.",
+        "Đồ đạc đều bo tròn: sofa cong bọc nhung cùng tông tường, bàn trà mặt terrazzo trên ba chân sọc sơn xanh, thảm tròn dệt vân sóng. Không có góc vuông nào trong khu ngồi, nên mắt trượt liên tục thay vì dừng lại.",
+        "Sàn gỗ màu nâu đỏ được giữ nguyên từ bàn giao, tạo tương phản ấm với màu tường lạnh. Một cây cọ lớn đặt cạnh cửa sổ, rèm lá ngang trắng cắt nắng, và bức tranh trừu tượng pastel treo giữa tường là điểm màu ấm duy nhất được phép xuất hiện."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Mizuki Park, Bình Hưng, Bình Chánh, TP.HCM",
+      "area": "94 m²",
+      "year": 2022,
+      "client": "Chị L.",
+      "duration": "4 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế đồ nội thất",
+        "Art direction"
+      ],
+      "featured": false,
+      "order": 14,
+      "coverIndex": 8,
+      "sceneMode": "IMAGE",
+      "seoDescription": "Căn hộ Mizuki Park sơn xanh cốm với phào chỉ trắng, sofa cong bọc nhung, bàn terrazzo và sàn gỗ nâu đỏ."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 6 ( CHUNG CƯ LUMIER )",
+      "slug": "vom-lua",
+      "title": "Vòm Lụa",
+      "subtitle": "Phòng ngủ chính · Lumière Boulevard",
+      "summary": "Một vòm cuốn ốp nhung xếp múi làm đầu giường, viền bằng nẹp gỗ bo tròn, phía sau là mảng sơn hiệu ứng rãnh dọc. Tủ áo gỗ óc chó mặt gương khói, hai đèn thả thuỷ tinh, sàn gỗ xương cá sáng và rèm voan phủ kín mặt kính.",
+      "description": [
+        "Phòng ngủ chính nằm ở đầu hồi căn hộ, có hai mặt thoáng nhưng trần lại thấp hơn phần còn lại vì phải chạy ống kỹ thuật. Thay vì cố nới rộng theo phương ngang như phản xạ thông thường, toàn bộ ý đồ thiết kế ở đây là kéo mắt người nhìn lên cao, bằng đúng một hình: một vòm cuốn duy nhất đặt sau giường.",
+        "Đầu giường là một vòm cuốn ốp nhung xếp múi dọc, viền bằng nẹp gỗ bo tròn màu kem. Phía sau vòm, tường phủ sơn hiệu ứng rãnh dọc chạy tới trần, khiến hình vòm nổi lên như được đặt trước một tấm màn.",
+        "Đối diện là tủ áo gỗ óc chó với cánh gương khói, phản chiếu mờ cả mảng vòm và làm phòng có chiều sâu kép. Hai đèn thả bóng thuỷ tinh nhỏ buông sát mặt tủ đầu giường, thay cho đèn ngủ để bàn.",
+        "Sàn gỗ xương cá màu sáng, thảm dệt trắng nổi vân hình học, chăn ga toàn tông kem và ghi. Rèm voan phủ kín mặt kính nên ánh sáng vào phòng luôn ở dạng khuếch tán, đúng thứ ánh sáng làm cho nhung xếp múi đẹp nhất."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Lumière Boulevard, TP. Thủ Đức, TP.HCM",
+      "area": "26 m²",
+      "year": 2023,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế đồ nội thất"
+      ],
+      "featured": false,
+      "order": 15,
+      "coverIndex": 7,
+      "sceneMode": "NONE",
+      "seoDescription": "Phòng ngủ chính Lumière với đầu giường vòm nhung xếp múi, tường sơn rãnh dọc, tủ gương khói và sàn gỗ xương cá."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 7 ( CHUNG CƯ LUMIER CHỊ CHÂU )",
+      "slug": "mua-sum-vay",
+      "title": "Mùa Sum Vầy",
+      "subtitle": "Căn hộ 2 phòng ngủ · Lumière Boulevard",
+      "summary": "Vách lam gỗ sồi chạy suốt phòng khách, sofa nhung kem, bàn trà mặt đá trắng khung đen và thảm hoạ tiết vòng tròn. Bếp đá đen vân vàng với ba đèn thả đồng, ghế ăn màu cam đất. Sàn gỗ xương cá sáng, sảnh ốp đá vân mây.",
+      "description": [
+        "Căn hộ được hoàn thiện ngay trước mùa lễ cuối năm, và gia chủ đề nghị chúng tôi tính luôn chỗ đặt cây thông. Yêu cầu nghe nhỏ nhưng lại định hình cả phương án: phòng khách phải có một góc trống đủ rộng, dùng được quanh năm.",
+        "Chúng tôi dồn toàn bộ tủ kệ về một cạnh, phủ mặt bằng lam gỗ sồi đứng chạy suốt chiều dài. Cạnh đối diện để trống hoàn toàn, chỉ có sofa nhung kem và bàn trà mặt đá trắng khung thép đen, thảm hoạ tiết vòng tròn mảnh.",
+        "Bếp nằm nối tiếp khu ăn, chuyển tông hẳn sang đá đen vân vàng cho cả mặt bàn lẫn tường ốp. Ba chiếc đèn thả thuỷ tinh màu đồng treo trên bàn ăn, ghế bọc màu cam đất — hai chi tiết ấm duy nhất trong một khu bếp gần như đơn sắc.",
+        "Sảnh vào ốp đá vân mây và một mảng gỗ nguyên tấm, phân biệt rõ với sàn gỗ xương cá bên trong. Ranh giới vật liệu ấy thay cho bậc tam cấp, nhắc người bước vào rằng mình vừa đi từ hành lang chung vào một chỗ riêng."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Lumière Boulevard, TP. Thủ Đức, TP.HCM",
+      "area": "84 m²",
+      "year": 2024,
+      "client": "Chị C.",
+      "duration": "4 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói"
+      ],
+      "featured": false,
+      "order": 16,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ Lumière với vách lam gỗ sồi, sofa nhung kem, bếp đá đen vân vàng, đèn thả đồng và sàn gỗ xương cá."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 8 ( CHUNG CƯ LUMIER CHỊ NGA )",
+      "slug": "nep-song-trang",
+      "title": "Nếp Sóng Trắng",
+      "subtitle": "Căn hộ 2 phòng ngủ · Lumière Boulevard",
+      "summary": "Mảng tường sơn rãnh dọc màu trắng đứng cạnh khối tủ phủ laminate đen bóng, tạo một cặp sáng tối rõ rệt. Sofa da màu cognac, bàn trà mặt đá trắng trên bệ đá đen, ghế nhung đỏ mận. Sàn gỗ xương cá và toàn bộ mặt kính nhìn ra thành phố.",
+      "description": [
+        "Căn hộ nằm ở tầng cao, một mặt kính chạy dài nhìn thẳng sang toà đối diện. Ánh sáng vào rất mạnh vào buổi sáng, nên nhiệm vụ đầu tiên là tạo ra những bề mặt biết hấp thụ và những bề mặt biết phản chiếu.",
+        "Cặp vật liệu chính được đặt cạnh nhau có chủ ý: một mảng sơn hiệu ứng rãnh dọc màu trắng để bắt sáng thành các đường bóng đổ, và một khối tủ phủ laminate đen bóng để hắt lại toàn bộ khung cảnh cửa sổ như một tấm gương tối.",
+        "Sofa da màu cognac đặt đúng ranh giới giữa hai mảng ấy, là điểm ấm duy nhất trong phần trắng đen. Một ghế đơn bọc nhung đỏ mận ở khu ăn nhắc lại sắc ấm đó, đủ để hai khu vực đọc được là một.",
+        "Bàn trà mặt đá trắng trên bệ đá đen, thảm dệt xám nhạt, sàn gỗ xương cá màu mật. Rèm voan trắng buông sát kính làm mềm đường chân trời phía sau, để thành phố trở thành một phông nền mờ chứ không cạnh tranh với nội thất."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Lumière Boulevard, TP. Thủ Đức, TP.HCM",
+      "area": "80 m²",
+      "year": 2023,
+      "client": null,
+      "duration": "4 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Tư vấn ánh sáng"
+      ],
+      "featured": false,
+      "order": 17,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ Lumière với tường sơn rãnh dọc trắng, khối tủ đen bóng, sofa da cognac và sàn gỗ xương cá tầng cao."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 8 ( CHUNG CƯ LUMIER CHỊ NGA )/PHÒNG NGỦ",
+      "slug": "tram-nhung",
+      "title": "Trám Nhung",
+      "subtitle": "Phòng ngủ · Lumière Boulevard",
+      "summary": "Đầu giường bọc nhung xám chia thành hoạ tiết trám lớn, các đường ron mạ đồng chạy theo cạnh hình. Bên trái là tủ gỗ óc chó với hộc trưng bày ốp đá vân nâu có đèn hắt. Giường da kem, rèm cầu vồng, sàn gỗ xương cá màu sáng.",
+      "description": [
+        "Phòng ngủ này thuộc cùng căn hộ với khu sinh hoạt chung sáng và trắng ở phía ngoài, nhưng gia chủ muốn nó tối và kín hơn hẳn. Yêu cầu được nói rất gọn trong buổi làm việc đầu tiên: đây là chỗ để ngủ, không phải chỗ để tiếp khách, nên đừng cố làm nó rộng ra bằng gương hay bằng màu sáng.",
+        "Toàn bộ mảng đầu giường được bọc nhung xám và chia thành hoạ tiết trám lớn, mỗi cạnh viền bằng ron mạ đồng. Hoạ tiết đủ to để không rơi vào cảm giác chần bông kiểu khách sạn, và đủ mảnh để không lấn át chiếc giường phía trước.",
+        "Bên trái đầu giường là một khối tủ gỗ óc chó, trong đó khoét các hộc trưng bày ốp đá vân nâu có đèn hắt viền. Khối tủ này đồng thời làm nhiệm vụ che góc chết của mặt bằng và biến nó thành chỗ đẹp nhất phòng.",
+        "Giường bọc da kem bo tròn, chăn ga toàn tông ghi bạc, thảm dệt trắng. Rèm cầu vồng màu cát cắt ánh sáng thành các dải ngang, in lên tường và lên mặt nhung một nhịp sọc thay đổi suốt buổi sáng."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Lumière Boulevard, TP. Thủ Đức, TP.HCM",
+      "area": "23 m²",
+      "year": 2023,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế đồ nội thất"
+      ],
+      "featured": false,
+      "order": 18,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Phòng ngủ Lumière với đầu giường nhung xám hoạ tiết trám viền ron đồng, tủ gỗ óc chó và hộc trưng bày ốp đá."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 9 ( CHUNG CƯ LUMIER CHỊ HUYỀN/PHÒNG KHÁCH_",
+      "slug": "da-trang-chi-vang",
+      "title": "Đá Trắng Chỉ Vàng",
+      "subtitle": "Phòng khách · Lumière Boulevard",
+      "summary": "Tường ốp đá trắng vân nâu chia thành các tấm đứng, xen kẽ chỉ mạ vàng và một dải lam đồng ở mép. Sofa da màu đất nung, bàn trà mặt đá trên khung đồng đan hoa văn, đèn chùm trụ pha lê. Sàn gỗ xương cá sáng, rèm dệt màu đồng.",
+      "description": [
+        "Gia chủ chuyển từ một căn nhà tân cổ điển sang chung cư và không muốn mất hẳn cảm giác sang trọng quen thuộc. Chúng tôi giữ lại tinh thần đó nhưng lược hết phào chỉ, chỉ dùng vật liệu và tỉ lệ để nói.",
+        "Bức tường sau sofa ốp đá trắng vân nâu, cắt thành các tấm đứng cao và chèn giữa là chỉ mạ vàng bản hẹp. Ở mép phải, một dải lam đồng đặt so le làm nhiệm vụ chuyển tiếp sang hành lang, thay cho một khung cửa.",
+        "Sofa da màu đất nung dài, không tay vịn ở một đầu, đặt hơi lệch khỏi trục tường. Bàn trà mặt đá trắng trên khung đồng đan hoa văn lục giác — chi tiết duy nhất mang tính trang trí thuần tuý trong cả phòng khách.",
+        "Đèn chùm trụ pha lê thả giữa phòng, tán sáng lên trần và làm các chỉ vàng trên tường ánh lên rất khẽ. Rèm dệt màu đồng phía sau lớp voan trắng giữ cho nhiệt độ màu buổi tối luôn ấm hơn ban ngày một bậc."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Lumière Boulevard, TP. Thủ Đức, TP.HCM",
+      "area": "90 m²",
+      "year": 2022,
+      "client": "Chị H.",
+      "duration": "4 tháng",
+      "style": "Tân cổ điển",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Tư vấn ánh sáng"
+      ],
+      "featured": false,
+      "order": 19,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Phòng khách Lumière ốp đá trắng vân nâu xen chỉ mạ vàng, sofa da đất nung, bàn khung đồng và đèn chùm pha lê."
+    },
+    {
+      "sourceDir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 9 ( CHUNG CƯ LUMIER CHỊ HUYỀN/PHÒNG NGỦ",
+      "slug": "guong-tron-buoi-sang",
+      "title": "Gương Tròn Buổi Sáng",
+      "subtitle": "Phòng ngủ · Lumière Boulevard",
+      "summary": "Một bàn làm việc gỗ sồi treo tường bo góc chạy dọc dưới cửa kính, phía trên là gương tròn treo dây da và tủ nhỏ sơn trắng. Khối tủ áo gỗ óc chó mặt gương trà đứng ngay cạnh, phản chiếu giường và mảng rèm vải màu đồng.",
+      "description": [
+        "Phòng ngủ dài và hẹp, cửa kính nằm ở đầu hồi. Thay vì kê bàn trang điểm rời, chúng tôi làm một mặt bàn gỗ sồi treo tường bo góc chạy dọc theo mảng tường sáng nhất — vừa là bàn làm việc ban ngày, vừa là bàn trang điểm buổi sáng.",
+        "Phía trên bàn là chiếc gương tròn treo bằng dây da và một tủ nhỏ sơn trắng có hộc mở để sách. Ba vật này được đặt lệch nhau theo chiều cao, tạo một bố cục nhỏ mà mắt phải đi qua trước khi tới cửa sổ.",
+        "Chắn giữa khu ngủ và lối vào là khối tủ áo gỗ óc chó với cánh mặt gương trà. Mặt gương phản chiếu giường, tranh và mảng rèm, khiến chiều ngang chật của phòng được bù lại bằng một chiều sâu ảo.",
+        "Rèm vải màu đồng đi cùng lớp voan trắng dày, luôn giữ cho ánh sáng vào phòng ở dạng mềm. Sàn gỗ xương cá, thảm dệt trắng dưới chân giường và một chiếc đôn nỉ nhỏ hoàn tất phần đồ rời — không thêm gì nữa."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Lumière Boulevard, TP. Thủ Đức, TP.HCM",
+      "area": "21 m²",
+      "year": 2022,
+      "client": "Chị H.",
+      "duration": "3 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế đồ nội thất"
+      ],
+      "featured": false,
+      "order": 20,
+      "coverIndex": 13,
+      "sceneMode": "NONE",
+      "seoDescription": "Phòng ngủ Lumière với bàn gỗ sồi treo tường, gương tròn dây da và tủ áo gỗ óc chó mặt gương trà."
+    },
+    {
+      "sourceDir": "CHUNG CƯ MỸ GIA - Q7 - PHÚ MỸ HƯNG/ẢNH THIẾT KẾ 3D",
+      "slug": "may-trang-tang-cao",
+      "title": "Mây Trắng Tầng Cao",
+      "subtitle": "Căn hộ 3 phòng ngủ · Phú Mỹ Hưng",
+      "summary": "Không gian chung mở hết chiều dài mặt kính, sàn đá khổ lớn màu ngà và hệ tủ vòm rãnh dọc sơn kem. Ghế mô-đun nhung màu cát xếp thành cụm quanh bàn gỗ uốn, bàn ăn mặt đá trên chân trụ sọc. Rèm vải màu cà phê sữa lọc nắng trưa.",
+      "description": [
+        "Căn ba phòng ngủ ở Phú Mỹ Hưng có mặt kính chạy gần trọn cạnh dài, nhìn ra một dải cao ốc phía Nam. Gia chủ muốn giữ nguyên cảm giác rộng ấy, nên toàn bộ phương án được xây quanh nguyên tắc không dựng thêm vách nào.",
+        "Bếp, bàn ăn và khu ngồi nằm trên cùng một trục, phân định bằng vật liệu chứ không bằng tường. Hệ tủ bếp cao kịch trần dùng cánh vòm xẻ rãnh dọc sơn kem, mềm và có nhịp, đủ để cả một mảng lớn không đọc thành khối hộp.",
+        "Khu ngồi dùng ghế mô-đun bọc nhung màu cát, xếp thành cụm rời thay vì một bộ sofa dài, nên có thể xoay theo cách gia đình dùng phòng từng buổi. Bàn trà gỗ uốn, một đèn giấy hình đĩa thả thấp và thảm dệt vân đá làm nền.",
+        "Sàn lát đá khổ lớn màu ngà chạy liền từ sảnh tới ban công, phản chiếu rất nhẹ. Rèm vải màu cà phê sữa hai lớp lọc nắng trưa thành một thứ ánh sáng đục và ấm, khiến toàn bộ bảng màu kem trong nhà không bao giờ trắng gắt."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Chung cư Mỹ Gia, Phú Mỹ Hưng, Quận 7, TP.HCM",
+      "area": "118 m²",
+      "year": 2025,
+      "client": "Gia đình anh D.",
+      "duration": "6 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Tư vấn ánh sáng",
+        "Art direction"
+      ],
+      "featured": true,
+      "order": 21,
+      "coverIndex": 0,
+      "sceneMode": "DEPTH_2_5D",
+      "seoDescription": "Căn hộ ba phòng ngủ Phú Mỹ Hưng: mặt kính chạy dài, tủ vòm rãnh dọc sơn kem, ghế mô-đun nhung màu cát, sàn đá ngà."
+    },
+    {
+      "sourceDir": "CÔNG TRÌNH CHÚ PHÚC MASTERI Q9/ẢNH THIẾT KẾ 3D",
+      "slug": "mot-not-do",
+      "title": "Một Nốt Đỏ",
+      "subtitle": "Căn hộ 2 phòng ngủ · Masteri Quận 9",
+      "summary": "Một phòng khách gần như trắng hoàn toàn: tường phẳng, sofa mô-đun vải kem, bàn trà mặt đá trắng trên bệ gỗ nhuộm đen. Hai gối nhung đỏ và một bức tranh in đen trắng là toàn bộ phần trang trí. Sàn gỗ sồi sáng, rèm voan phủ kín.",
+      "description": [
+        "Chủ nhà đã sống nhiều năm trong một căn hộ chật và nhiều đồ, lần này chỉ yêu cầu đúng một điều: ít nhất có thể. Chúng tôi coi đó là giới hạn thiết kế và đếm từng món trước khi đưa vào phương án.",
+        "Phòng khách cuối cùng chỉ còn bốn thứ: một sofa mô-đun vải kem, một bàn trà mặt đá trắng trên bệ gỗ nhuộm đen, một cây xanh trong chậu travertine và một bức tranh in đen trắng. Tường để phẳng, không phào, không kệ.",
+        "Vì đồ ít nên tỉ lệ phải chính xác. Bức tranh được treo cao hơn thông thường để cân với trần, sofa đặt cách tường một khoảng nhỏ để mảng tường trắng còn thở, và bàn trà dài gần bằng hai phần ba sofa.",
+        "Hai chiếc gối nhung đỏ là nốt màu duy nhất trong toàn bộ căn hộ, đặt ở hai đầu sofa như hai dấu nhấn của một câu văn dài. Rèm voan trắng phủ kín mặt kính, biến ánh sáng phương Nam thành một lớp nền đều và sạch."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Masteri Centre Point, TP. Thủ Đức, TP.HCM",
+      "area": "74 m²",
+      "year": 2024,
+      "client": "Chú P.",
+      "duration": "4 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói"
+      ],
+      "featured": false,
+      "order": 22,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ Masteri tối giản gần như toàn trắng: sofa mô-đun kem, bàn đá trắng trên bệ gỗ đen và hai gối nhung đỏ."
+    },
+    {
+      "sourceDir": "DUPLEX/CĂN HIỆN ĐẠI 1 ( ANH THỌ )",
+      "slug": "thong-tang-dat-nung",
+      "title": "Thông Tầng Đất Nung",
+      "subtitle": "Căn hộ duplex · Quận 7",
+      "summary": "Khoảng thông tầng cao gần sáu mét, hai vòng đèn tròn mạ đồng thả lệch nhau trong không trung. Hốc vòm màu đất nung ôm lấy ti vi và tủ sơn bóng cùng tông. Sofa cong nhung kem, gối đỏ mận, rèm vải dệt và sàn đá khổ lớn màu ngà.",
+      "description": [
+        "Căn duplex có một khoảng thông tầng gần sáu mét ngay sau mặt kính — tài sản lớn nhất của mặt bằng và cũng là chỗ dễ bị bỏ phí nhất. Toàn bộ phương án được viết để khoảng trống ấy có việc phải làm.",
+        "Chúng tôi treo hai vòng đèn tròn mạ đồng ở hai cao độ lệch nhau, cùng một thanh sáng ngang, tạo thành một cụm ba vật thể lơ lửng giữa khoảng không. Đứng ở tầng một nhìn lên hay từ hành lang tầng hai nhìn xuống, bố cục đều đọc được.",
+        "Trên tường, một hốc vòm sơn màu đất nung được khoét sâu để đặt ti vi và tủ thấp sơn bóng cùng tông. Hình vòm cao và hẹp cố ý nhắc lại tỉ lệ của khoảng thông tầng, khiến hai yếu tố ở hai cao độ vẫn thuộc cùng một câu chuyện.",
+        "Phần còn lại giữ mềm và nhạt để không tranh chấp: sofa cong bọc nhung kem, gối nhung đỏ mận, bàn trà mặt kính khung đồng, thảm tròn. Sàn đá khổ lớn màu ngà và rèm vải dệt xám phủ kín chiều cao hoàn tất phông nền."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Quận 7, TP.HCM",
+      "area": "142 m²",
+      "year": 2023,
+      "client": "Anh T.",
+      "duration": "6 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế kiến trúc",
+        "Thi công trọn gói",
+        "Tư vấn ánh sáng"
+      ],
+      "featured": false,
+      "order": 23,
+      "coverIndex": 0,
+      "sceneMode": "PROCEDURAL_3D",
+      "seoDescription": "Căn hộ duplex Quận 7 với thông tầng gần sáu mét, đèn vòng đồng thả lệch, hốc vòm đất nung và sofa cong nhung kem."
+    },
+    {
+      "sourceDir": "DUPLEX/CĂN HIỆN ĐẠI 1 ( ANH THỌ )/TẦNG 2",
+      "slug": "bac-them-tuoi-tho",
+      "title": "Bậc Thềm Tuổi Thơ",
+      "subtitle": "Tầng hai căn hộ duplex · Quận 7",
+      "summary": "Phòng của hai anh em được nâng lên một bệ xanh rêu hai bậc, hai giường đặt song song sau vách có ô vòm. Đầu giường vỏ sò màu đất nung, hai bàn học cùng tông, ghế bọc nỉ xanh. Tranh nét mảnh và tấm treo đồ đục lỗ trên tường trắng.",
+      "description": [
+        "Tầng hai của căn duplex dành cho hai đứa trẻ cách nhau ba tuổi. Bố mẹ muốn chúng ngủ chung phòng thêm vài năm nữa nhưng mỗi đứa vẫn phải có phần của riêng mình — một yêu cầu về ranh giới hơn là về diện tích.",
+        "Chúng tôi nâng khu ngủ lên một bệ sơn xanh rêu hai bậc, tách hẳn khỏi khu học phía dưới. Bước lên hai bậc là đổi vùng: bỏ giày, hạ giọng, chuẩn bị ngủ. Ranh giới được làm bằng cao độ chứ không bằng cửa.",
+        "Giữa hai giường là một vách mỏng có khoét ô vòm, đủ để hai đứa nói chuyện nhưng không nhìn thẳng vào nhau khi nằm. Đầu giường tạo hình vỏ sò bọc nỉ màu đất nung, lặp lại ở hai bên như một cặp.",
+        "Hai bàn học đặt đối xứng ở mép bệ, mặt sơn màu đất nung, ghế bọc nỉ xanh rêu bo tròn. Tường trắng chỉ có một bức tranh nét mảnh vẽ cầu thủ và một tấm treo đồ đục lỗ — chỗ để bọn trẻ tự dán thêm mọi thứ theo thời gian."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Quận 7, TP.HCM",
+      "area": "34 m²",
+      "year": 2023,
+      "client": "Anh T.",
+      "duration": "6 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế đồ nội thất",
+        "Thi công trọn gói"
+      ],
+      "featured": false,
+      "order": 24,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Phòng hai anh em trong căn duplex Quận 7: bệ ngủ xanh rêu hai bậc, đầu giường vỏ sò đất nung và bàn học đối xứng."
+    },
+    {
+      "sourceDir": "HOME STAY NHẸ NHÀNG/CHUNG CƯ",
+      "slug": "soi-dan-nang",
+      "title": "Sợi Đan Nắng",
+      "subtitle": "Căn hộ cho thuê ngắn ngày · Bình Thạnh",
+      "summary": "Tường trát vữa thô màu vôi, một mảng vòm sơn màu đất nung treo các đĩa cói đan. Sofa vải nâu nhạt, bàn gỗ thông mộc, thảm dệt hoa văn đen trắng có tua rua. Kệ hộp gỗ, chậu treo macramé và sàn gỗ màu nâu đỏ.",
+      "description": [
+        "Chủ đầu tư khai thác căn hộ theo ngày và muốn khách chụp ảnh ngay khi bước vào. Nhưng thay vì làm một bối cảnh chỉ để lên hình, chúng tôi chọn hướng ngược lại: dùng vật liệu thật, thô, và để ánh sáng làm phần còn lại.",
+        "Tường được trát vữa thô màu vôi, giữ nguyên vệt bay. Một mảng vòm sơn màu đất nung ở khu ăn cắt ngang bề mặt ấy, trên đó treo ba chiếc đĩa cói đan tay với hoa văn khác nhau — phần trang trí duy nhất trong phòng.",
+        "Đồ đạc chọn theo nguyên tắc chịu được sử dụng liên tục: sofa vải nâu nhạt bọc rời để giặt, bàn gỗ thông mộc không sơn phủ, ghế ăn nhựa đúc trắng. Thảm dệt hoa văn đen trắng có tua rua trải chồng lên nhau ở khu ngồi.",
+        "Kệ hộp gỗ gắn tường thay tủ, một chậu cây treo macramé cạnh cửa. Sàn gỗ màu nâu đỏ ấm và rèm vải màu cát dày làm nền, để nắng sáng qua ban công là thứ thay đổi nhiều nhất trong căn hộ suốt cả ngày."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Bình Thạnh, TP.HCM",
+      "area": "58 m²",
+      "year": 2021,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Wabi-sabi",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Art direction"
+      ],
+      "featured": false,
+      "order": 25,
+      "coverIndex": 8,
+      "sceneMode": "IMAGE",
+      "seoDescription": "Căn hộ cho thuê ngắn ngày ở Bình Thạnh: tường vữa thô màu vôi, vòm đất nung, đĩa cói đan và thảm dệt tua rua."
+    },
+    {
+      "sourceDir": "HOME STAY NHẸ NHÀNG/CĂN 2 NGỦ MẪU",
+      "slug": "soi-nhat",
+      "title": "Sồi Nhạt",
+      "subtitle": "Căn hộ mẫu 2 phòng ngủ · Quận 4",
+      "summary": "Vách ti vi ốp đá trắng vân mảnh nối liền hệ kệ gỗ sồi nhạt có đèn hắt, đối diện là mảng sơn rãnh dọc màu kem. Sofa vải be góc L, bàn trà khối đá xám, thảm dệt hoa văn chevron. Sàn gỗ sồi sáng, rèm hai lớp màu cát.",
+      "description": [
+        "Đây là căn hộ mẫu cho một dự án cho thuê dài hạn, nên phương án phải chịu được nhiều gu khác nhau. Chúng tôi chọn cách an toàn nhất mà không nhạt: giữ một bảng vật liệu hẹp và đẩy toàn bộ khác biệt vào ánh sáng.",
+        "Vách ti vi ốp đá trắng vân mảnh chạy hết chiều cao, nối liền sang một hệ kệ gỗ sồi nhạt có đèn hắt trong từng ngăn. Hai vật liệu gặp nhau ở một đường thẳng đứng duy nhất, không nẹp, không chỉ chuyển tiếp.",
+        "Đối diện là mảng sơn hiệu ứng rãnh dọc màu kem, cùng tông với rèm nhưng khác độ nhám. Sự lệch rất nhỏ này giữ cho hai mảng tường đối diện nhau không bị đọc thành một, và cho phòng có chiều.",
+        "Sofa vải be góc L, bàn trà là một khối đá xám vuông đặt trực tiếp lên thảm dệt hoa văn chevron. Sàn gỗ sồi sáng chạy liên tục, rèm hai lớp màu cát — tất cả cùng nằm trong khoảng ba tông màu kề nhau."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Quận 4, TP.HCM",
+      "area": "66 m²",
+      "year": 2022,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Japandi",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói"
+      ],
+      "featured": false,
+      "order": 26,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ mẫu hai phòng ngủ Quận 4: vách đá trắng nối kệ gỗ sồi nhạt, tường sơn rãnh dọc kem và sofa vải be."
+    },
+    {
+      "sourceDir": "HOME STAY NHẸ NHÀNG/CĂN HỘ 1 NGỦ",
+      "slug": "cam-mo",
+      "title": "Cam Mơ",
+      "subtitle": "Căn hộ 1 phòng ngủ · Quận 4",
+      "summary": "Một mảng tường sơn màu mơ chín bo vòm ở góc, ôm lấy khu ngồi nhỏ. Sofa vải kem chần ô, hai bàn đôi mặt đá trắng khung đen, thảm dệt hoa văn chevron. Rèm nhôm lá ngang, tranh trừu tượng cam đất và sàn gạch màu ngà.",
+      "description": [
+        "Căn một phòng ngủ rộng hơn bốn mươi mét vuông, chỉ có một ô cửa lớn ở khu khách và một ô cửa phụ phía bếp. Bài toán rất quen với loại căn hộ này: làm sao để một không gian nhỏ có tính cách riêng mà không cần thêm bất kỳ món đồ nào, bởi mỗi món đưa vào đều lấy đi một phần lối đi.",
+        "Chúng tôi sơn một mảng tường màu mơ chín, kéo nó vòng qua góc phòng và bo vòm ở đầu trên. Mảng màu này ôm lấy khu ngồi như một hốc tường, tự phân định khu khách khỏi khu ăn mà không cần vách hay bậc.",
+        "Đồ đạc giữ nhẹ và nhỏ: sofa vải kem chần ô, hai chiếc bàn đôi mặt đá trắng khung thép đen có thể tách ra khi cần chỗ, thảm dệt hoa văn chevron. Ti vi treo thẳng lên mảng màu, dưới là một kệ mỏng gắn tường.",
+        "Rèm nhôm lá ngang trên ô cửa phụ cắt nắng sáng thành các dải mảnh, còn cửa lớn dùng rèm vải màu cát hai lớp. Sàn gạch màu ngà khổ lớn phản chiếu nhẹ, giữ cho căn hộ nhỏ luôn sáng hơn diện tích thật của nó."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Quận 4, TP.HCM",
+      "area": "44 m²",
+      "year": 2021,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Cải tạo"
+      ],
+      "featured": false,
+      "order": 27,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ một phòng ngủ 44 m² với mảng tường màu mơ chín bo vòm ôm khu ngồi, sofa kem chần ô và bàn đôi mặt đá."
+    },
+    {
+      "sourceDir": "HOME STAY NHẸ NHÀNG/CĂN HỘ 2 NGỦ",
+      "slug": "sac-cat",
+      "title": "Sắc Cát",
+      "subtitle": "Căn hộ 2 phòng ngủ · Quận 4",
+      "summary": "Vách ti vi phủ vữa mịn màu cát, tủ gỗ sồi nhạt có tay nắm dây da, sofa vải camel dài. Bàn trà mặt đá trắng chân gỗ mảnh, thảm dệt hoa văn Berber. Hai bức tranh khối màu đất treo cạnh nhau, rèm vải be và sàn gỗ màu tro.",
+      "description": [
+        "Căn hộ hai phòng ngủ dành cho một cặp vợ chồng vừa cưới, ngân sách vừa phải và mong muốn được nói rất rõ ngay từ đầu: nhà phải ấm, phải có cảm giác đã ở, và tuyệt đối không được giống một phòng khách sạn dù đẹp đến đâu. Toàn bộ phương án sau đó chỉ là cách trả lời câu ấy bằng vật liệu.",
+        "Chúng tôi bắt đầu từ bề mặt. Vách ti vi phủ vữa mịn màu cát, quét tay nên có vệt, chạm vào thấy nhám. Đó là mảng duy nhất trong nhà không phẳng bóng, và cũng là thứ khiến căn hộ có cảm giác được làm bằng tay.",
+        "Hệ tủ dưới ti vi làm bằng gỗ sồi nhạt, chân cao, tay nắm bằng dây da khâu chỉ. Một ngăn hở sơn xanh cổ vịt ở đầu tủ là chi tiết vui duy nhất, chỉ thấy khi đứng đúng góc.",
+        "Sofa vải camel dài đặt dọc tường trắng, phía trên treo hai bức tranh khối màu đất. Bàn trà mặt đá trắng chân gỗ mảnh, thảm dệt hoa văn Berber, rèm vải be hai lớp và sàn gỗ màu tro khép lại một bảng màu hoàn toàn trung tính."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Quận 4, TP.HCM",
+      "area": "62 m²",
+      "year": 2022,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Japandi",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói"
+      ],
+      "featured": false,
+      "order": 28,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ hai phòng ngủ với vách vữa mịn màu cát, tủ gỗ sồi tay nắm dây da, sofa camel và thảm Berber."
+    },
+    {
+      "sourceDir": "HOME STAY NHẸ NHÀNG/CĂN HỘ 5",
+      "slug": "keo-bac-ha",
+      "title": "Kẹo Bạc Hà",
+      "subtitle": "Căn hộ studio · Quận 4",
+      "summary": "Hệ tủ sơn xanh bạc hà với ba hốc vòm có đèn hắt, bày tượng nhựa và bình gốm. Quầy bar mặt terrazzo màu hồng đào, ghế cao bọc nỉ hồng, đèn thả dải kim loại uốn. Sofa bọc nỉ hồng phấn, thảm vẽ sóng pastel, sàn gạch màu ngà.",
+      "description": [
+        "Một căn studio nhỏ được cải tạo để vừa ở vừa quay hình. Chủ nhà làm nghề sáng tạo nội dung, cần một hậu cảnh vui mắt nhưng không được rối, và phải đổi được cảnh chỉ bằng cách xoay máy.",
+        "Trục chính là hệ tủ cao kịch trần sơn xanh bạc hà, trong đó khoét ba hốc vòm có đèn hắt viền. Hốc giữa cao hơn hai hốc bên, dùng bày tượng nhựa và tranh nhỏ; hai hốc bên để bình gốm và cây. Đây là bức phông đầu tiên.",
+        "Phông thứ hai là quầy bar mặt terrazzo màu hồng đào, thân sơn cùng tông, đặt vuông góc với hệ tủ. Ghế cao bọc nỉ hồng và một cụm đèn thả bằng dải kim loại uốn treo phía trên hoàn tất một góc hoàn toàn khác về màu.",
+        "Khu ngồi dùng sofa nỉ hồng phấn bo tròn, bàn trà terrazzo chân trụ và thảm vẽ sóng pastel. Sàn gạch màu ngà, rèm vải kem — hai thứ trung tính duy nhất, giữ cho bảng màu ngọt không tràn ra khỏi tầm kiểm soát."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Quận 4, TP.HCM",
+      "area": "48 m²",
+      "year": 2021,
+      "client": null,
+      "duration": "3 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Cải tạo",
+        "Art direction"
+      ],
+      "featured": false,
+      "order": 29,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ studio pastel với tủ xanh bạc hà ba hốc vòm đèn hắt, quầy bar terrazzo hồng đào và sofa nỉ hồng phấn."
+    },
+    {
+      "sourceDir": "MASTERI CENPONT Q9 ( ANH THI )/ẢNH THIẾT KẾ 3D",
+      "slug": "nhip-vang-thanh",
+      "title": "Nhịp Vàng Thanh",
+      "subtitle": "Căn hộ 2 phòng ngủ · Masteri Centre Point",
+      "summary": "Hệ kệ khung đồng mảnh với mặt kính hun khói chạy dọc lối vào, cạnh đó là vách gỗ xẻ rãnh và các kệ treo bo tròn. Ghế dài bọc da kem đóng đinh tán, bàn ăn mặt trắng chân đồng, thảm hoa văn mắt lưới và sàn gỗ sáng.",
+      "description": [
+        "Căn hộ hai phòng ngủ có khu sinh hoạt chung khá hẹp, chỉ đủ đặt một bàn ăn và một chỗ ngồi. Gia chủ theo đạo và muốn giữ vị trí treo tượng ở nơi trang trọng nhất, đó là điểm khởi đầu của bố cục.",
+        "Chúng tôi dựng một hệ kệ khung đồng mảnh với mặt kính hun khói ngay lối vào, vừa che tầm nhìn thẳng vào bàn ăn, vừa là chỗ bày đồ. Cạnh đó, vách gỗ xẻ rãnh dọc chạy lên trần, nơi đặt tượng ở cao độ cao nhất của mảng.",
+        "Ghế dài bọc da kem có hàng đinh tán ở viền được đặt sát tường thay cho sofa, tiết kiệm gần một mét chiều sâu. Bàn ăn mặt trắng bo góc trên chân đồng chữ thập kê ngay trước ghế, dùng chung cho cả ăn và tiếp khách.",
+        "Bảng màu giữ trong ba tông kem, be và đồng, điểm bằng gối nhung đỏ và một bình hồng. Thảm hoa văn mắt lưới, sàn gỗ sáng và rèm hai lớp màu cát — mọi thứ đều nhạt để hệ khung đồng mảnh nổi lên như những nét vẽ."
+      ],
+      "categorySlug": "can-ho",
+      "location": "Masteri Centre Point, TP. Thủ Đức, TP.HCM",
+      "area": "70 m²",
+      "year": 2023,
+      "client": "Anh T.",
+      "duration": "4 tháng",
+      "style": "Tân cổ điển",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Thiết kế đồ nội thất"
+      ],
+      "featured": false,
+      "order": 30,
+      "coverIndex": 0,
+      "sceneMode": "NONE",
+      "seoDescription": "Căn hộ Masteri Centre Point với kệ khung đồng mặt kính hun khói, vách gỗ xẻ rãnh và ghế dài da kem đinh tán."
+    },
+    {
+      "sourceDir": "MILIMALIST/CĂN HỘ 3 PN",
+      "slug": "buc-tuong-soi",
+      "title": "Bức Tường Sồi",
+      "subtitle": "Căn hộ 3 phòng ngủ · TP. Thủ Đức",
+      "summary": "Một mảng gỗ sồi chạy suốt chiều cao và chiều dài phòng khách, giấu toàn bộ tủ và cửa phòng. Sofa mô-đun nhung màu tro đặt sát chân tường, bàn tròn gỗ, thảm len dệt thô. Sàn gỗ ghép hình xương cá và rèm vải màu cát.",
+      "description": [
+        "Gia chủ đưa cho chúng tôi một bản tham chiếu duy nhất: một bức ảnh phòng trống có nắng. Thứ họ muốn không phải là đồ đạc mà là cảm giác — ít vật thể, nhiều bề mặt, và ánh sáng được nhìn thấy rõ.",
+        "Cả phòng khách được xử lý bằng một động tác: ốp gỗ sồi toàn bộ mảng tường dài, từ sàn lên trần. Bên trong mảng gỗ ấy là tủ kho, tủ áo khoác và hai cánh cửa phòng ngủ — tất cả phẳng, không tay nắm, không đường ron thừa.",
+        "Đường ron ngang duy nhất được đặt ở cao độ ngang vai, chia mảng gỗ thành hai phần theo tỉ lệ lệch. Nó là chi tiết kỹ thuật cần thiết cho việc ghép ván, nhưng cũng là thứ duy nhất giữ cho bức tường lớn không đọc thành một tấm phẳng vô hồn.",
+        "Đồ rời chỉ có ba món: sofa mô-đun bọc nhung màu tro, một bàn tròn gỗ có khay xoay và thảm len dệt thô. Sàn gỗ ghép xương cá màu mật, rèm vải màu cát dày — buổi sáng nắng đi ngang qua mặt gỗ và làm lộ hết vân của nó."
+      ],
+      "categorySlug": "can-ho",
+      "location": "TP. Thủ Đức, TP.HCM",
+      "area": "96 m²",
+      "year": 2025,
+      "client": null,
+      "duration": "5 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Thiết kế đồ nội thất"
+      ],
+      "featured": true,
+      "order": 31,
+      "coverIndex": 0,
+      "sceneMode": "DEPTH_2_5D",
+      "seoDescription": "Căn hộ ba phòng ngủ tối giản với bức tường gỗ sồi chạy suốt phòng khách, sofa mô-đun nhung tro và sàn xương cá."
+    },
+    {
+      "sourceDir": "THE GOLBAL CITY ( CHÚ PHÚC )/ẢNH THI CÔNG PHẦN THÔ",
+      "slug": "nhat-ky-phan-tho",
+      "title": "Nhật Ký Phần Thô",
+      "subtitle": "Ghi chép thi công · The Global City",
+      "summary": "Mặt đứng khối nhà với lam gỗ đứng và mảng gạch bông gió màu cát, bên trong là những căn phòng vừa xong phần thô: tường bả phẳng, sàn đá vân trắng vừa lát, hộp kỹ thuật điều hoà đã đặt sẵn chờ trần thạch cao.",
+      "description": [
+        "Không phải công trình nào cũng nên chỉ được kể bằng ảnh hoàn thiện. Bộ ảnh này ghi lại giai đoạn phần thô của một căn tại The Global City, thời điểm mọi quyết định về cao độ, đường ống và vị trí đèn đang được chốt tại chỗ.",
+        "Mặt đứng dùng lam gỗ đứng xen với mảng gạch bông gió màu cát, một ngôn ngữ chắn nắng quen thuộc của phương Nam. Lớp vỏ này lọc nắng chiều trước khi nó chạm vào kính, và cũng quyết định lượng sáng mà nội thất bên trong sẽ nhận được.",
+        "Bên trong, tường đã bả phẳng và sơn lót, sàn đá vân trắng khổ lớn vừa lát xong còn nguyên vệt keo. Hộp kỹ thuật điều hoà âm trần được đặt sẵn, các hộp điện chờ đúng cao độ đã thống nhất với bản vẽ nội thất.",
+        "Chúng tôi giữ lại những bức ảnh này vì chúng cho thấy phần khó nhất của nghề: thứ tự công việc. Một đường ron sàn lệch hai phân ở giai đoạn này sẽ trở thành một cánh tủ không khép được ở giai đoạn sau."
+      ],
+      "categorySlug": "can-ho",
+      "location": "The Global City, An Phú, TP. Thủ Đức, TP.HCM",
+      "area": "210 m²",
+      "year": 2024,
+      "client": "Chú P.",
+      "duration": "7 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thi công trọn gói",
+        "Thiết kế kiến trúc"
+      ],
+      "featured": false,
+      "order": 32,
+      "coverIndex": 25,
+      "sceneMode": "NONE",
+      "seoDescription": "Ghi chép thi công phần thô tại The Global City: mặt đứng lam gỗ và gạch bông gió, sàn đá vừa lát, hộp kỹ thuật chờ trần."
+    },
+    {
+      "sourceDir": "THE GOLBAL CITY ( CHÚ PHÚC )/ẢNH THIẾT KẾ 3D",
+      "slug": "bong-go-sam",
+      "title": "Bóng Gỗ Sẫm",
+      "subtitle": "Căn hộ 3 phòng ngủ · The Global City",
+      "summary": "Tường ốp gỗ sẫm màu khói dựng thành các khối cao, tủ rượu mặt kính có đèn dọc, một tượng người bằng đồng đứng cạnh rèm lá. Sofa góc bọc nỉ màu tro, gối đỏ, bàn trà đá đen. Đèn chùm lá bạch quả pha lê thả trên sàn đá bóng.",
+      "description": [
+        "Gia chủ tiếp khách tại nhà thường xuyên và muốn phòng khách có không khí của một phòng chờ khách sạn hơn là một phòng sinh hoạt gia đình. Đây là dự án hiếm hoi chúng tôi được phép đi hẳn về phía tối.",
+        "Toàn bộ tường được ốp gỗ sẫm màu khói, chia thành các khối đứng cao thấp khác nhau để bề mặt không đọc thành một tấm liền. Chen giữa là hai mảng sơn màu cát, đủ để mắt có chỗ nghỉ khi nhìn dọc theo tường.",
+        "Ở đầu phòng, tủ rượu mặt kính với các thanh đèn dọc trở thành nguồn sáng chính của khu vực. Cạnh cửa sổ, một tượng người bằng đồng đứng trên bệ đá trắng, đối trọng với khối tủ tối ở phía đối diện.",
+        "Sofa góc bọc nỉ màu tro, gối nhung đỏ, bàn trà mặt đá đen ghép đôi, thảm dệt vân da. Đèn chùm lá bạch quả pha lê thả xuống giữa phòng, và sàn đá bóng phản chiếu toàn bộ cụm đèn ấy như một mặt nước tối."
+      ],
+      "categorySlug": "can-ho",
+      "location": "The Global City, An Phú, TP. Thủ Đức, TP.HCM",
+      "area": "128 m²",
+      "year": 2024,
+      "client": "Chú P.",
+      "duration": "6 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Tư vấn ánh sáng",
+        "Art direction"
+      ],
+      "featured": true,
+      "order": 33,
+      "coverIndex": 1,
+      "sceneMode": "DEPTH_2_5D",
+      "seoDescription": "Căn hộ The Global City tông sẫm: tường ốp gỗ khói, tủ rượu mặt kính đèn dọc, đèn chùm lá bạch quả và sàn đá bóng."
+    },
+    {
+      "sourceDir": "THE OPERA METROPOLE ( ANH VŨ )/ẢNH HOÀN THIỆN THỰC TẾ",
+      "slug": "ben-kia-song",
+      "title": "Bên Kia Sông",
+      "subtitle": "Căn hộ hoàn thiện · Metropole Thủ Thiêm",
+      "summary": "Ảnh thực tế sau bàn giao: mặt kính hai hướng ôm khúc sông Sài Gòn và cầu dây văng, sofa da kem cùng ghế dài, hai bàn tròn mặt đá chân trụ sọc và ghế da nâu đỏ. Đèn chùm pha lê ánh vàng, sàn đá bóng phản chiếu ánh nước.",
+      "description": [
+        "Căn hộ nằm ở tầng thấp của một toà bên Thủ Thiêm, hai mặt kính mở ra khúc sông Sài Gòn và cây cầu dây văng. Chủ nhà nói ngay từ buổi gặp đầu: đừng để nội thất che mất mặt nước.",
+        "Vì thế toàn bộ đồ đạc trong khu khách được giữ thấp hơn tầm mắt khi ngồi. Sofa da kem không có lưng cao, ghế dài đặt sát kính, hai bàn tròn mặt đá trên chân trụ sọc thấp — không món nào cắt ngang đường chân trời.",
+        "Bảng vật liệu lấy từ chính khung cảnh ngoài kia: da màu kem và caramel cho những thứ chạm vào người, đá trắng bóng cho mặt sàn phản chiếu ánh nước, và kim loại mạ vàng nhạt cho các chi tiết mảnh.",
+        "Chiếc đèn chùm pha lê ánh vàng là điểm duy nhất được phép đậm, treo lệch về phía trong để không lọt vào khung nhìn ra sông. Rèm hai lớp cho phép chủ nhà chọn: kéo voan để làm mềm nắng trưa, hoặc mở hết vào chiều muộn."
+      ],
+      "categorySlug": "can-ho",
+      "location": "The Opera Residence, Metropole Thủ Thiêm, TP. Thủ Đức, TP.HCM",
+      "area": "134 m²",
+      "year": 2024,
+      "client": "Anh V.",
+      "duration": "6 tháng",
+      "style": "Luxury đương đại",
+      "services": [
+        "Thiết kế nội thất",
+        "Thi công trọn gói",
+        "Tư vấn ánh sáng"
+      ],
+      "featured": true,
+      "order": 34,
+      "coverIndex": 0,
+      "sceneMode": "DEPTH_2_5D",
+      "seoDescription": "Ảnh thực tế căn hộ Metropole Thủ Thiêm nhìn ra sông Sài Gòn: sofa da kem, bàn đá chân trụ sọc, đèn chùm pha lê."
+    },
+    {
+      "sourceDir": "THE OPERA METROPOLE ( ANH VŨ )/ẢNH THIẾT KẾ 3D",
+      "slug": "lua-trang",
+      "title": "Lửa Trắng",
+      "subtitle": "Căn hộ 3 phòng ngủ · Metropole Thủ Thiêm",
+      "summary": "Một dải lửa sinh học chạy ngang tủ ti vi ốp gỗ xẻ rãnh, phía trên là tường trắng phẳng. Sofa vải kem góc L, ghế đơn da bò, hai bàn trà mặt đá travertine chồng lớp. Thảm dệt xanh chàm, phù điêu gốm màu đất và đèn trụ pha lê.",
+      "description": [
+        "Phương án thiết kế cho căn ba phòng ngủ cùng toà, dành cho một gia đình trẻ. Yêu cầu là giữ tường trắng và sàn xám như bàn giao, chỉ can thiệp bằng đồ đạc và một chi tiết kiến trúc duy nhất.",
+        "Chi tiết ấy là dải lửa sinh học chạy ngang thân tủ ti vi. Tủ ốp gỗ xẻ rãnh dọc màu cà phê sữa, mặt trước khoét một khe dài đặt đường lửa — nguồn sáng ấm duy nhất ở cao độ thấp, đối lập với ánh sáng trắng từ mặt kính.",
+        "Khu ngồi dùng sofa vải kem góc L đặt lệch khỏi trục tường, một ghế đơn da bò dáng cong ở phía cửa sổ. Hai bàn trà mặt đá travertine chồng lớp ở hai cao độ, thay cho một mặt bàn lớn duy nhất.",
+        "Màu được đưa vào bằng đúng hai vật: tấm phù điêu gốm màu đất nung treo dọc trên tường trắng và thảm dệt xanh chàm dưới chân. Đèn trụ pha lê tròn thả giữa phòng, sàn đá xám phản chiếu mờ toàn bộ cụm đồ đạc."
+      ],
+      "categorySlug": "can-ho",
+      "location": "The Opera Residence, Metropole Thủ Thiêm, TP. Thủ Đức, TP.HCM",
+      "area": "126 m²",
+      "year": 2023,
+      "client": "Anh V.",
+      "duration": "5 tháng",
+      "style": "Hiện đại tối giản",
+      "services": [
+        "Thiết kế nội thất",
+        "Thiết kế đồ nội thất",
+        "Tư vấn ánh sáng"
+      ],
+      "featured": false,
+      "order": 35,
+      "coverIndex": 0,
+      "sceneMode": "PROCEDURAL_3D",
+      "seoDescription": "Căn hộ Metropole Thủ Thiêm với dải lửa sinh học trên tủ gỗ xẻ rãnh, sofa kem góc L và bàn travertine chồng lớp."
+    }
+  ]
+}

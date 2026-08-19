@@ -1,0 +1,494 @@
+[
+ {
+  "agent": "detail-01",
+  "images": 125,
+  "folders": [
+   {
+    "dir": "WABI SABI/DUPLEX/ANH KHOA",
+    "count": 40
+   },
+   {
+    "dir": "JAPANNES/CHUNG CƯ/CHUNG CƯ 2 ( 2 NGỦ )",
+    "count": 22
+   },
+   {
+    "dir": "MASTERI CENPONT Q9 ( ANH THI )/ẢNH THIẾT KẾ 3D",
+    "count": 17
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 10 ( CHUNG CƯ LUMIER CÔ NGA )/PHÒNG KHÁCH",
+    "count": 13
+   },
+   {
+    "dir": "WABI SABI/CĂN HỘ 2 NGỦ",
+    "count": 12
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ GÁI/PHÒNG SỐ 6",
+    "count": 10
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ GÁI/PHÒNG SỐ 5",
+    "count": 5
+   },
+   {
+    "dir": "SHOP + CỬA HÀNG + SPA/SPA/SPA SỐ 3 ÍDOCHINE",
+    "count": 4
+   },
+   {
+    "dir": "SUDIO/SUDIO VÁY CƯỚI/TẦNG 5",
+    "count": 2
+   }
+  ]
+ },
+ {
+  "agent": "detail-02",
+  "images": 124,
+  "folders": [
+   {
+    "dir": "JAPANNES/NHÀ PHỐ KINH DOAN SPA",
+    "count": 37
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN HỘ 3 NGỦ ( GỖ ÓC CHÓ 0/CĂN SỐ 2",
+    "count": 22
+   },
+   {
+    "dir": "THE OPERA METROPOLE ( ANH VŨ )/ẢNH HOÀN THIỆN THỰC TẾ",
+    "count": 18
+   },
+   {
+    "dir": "PHÒNG TRÀ/PHÒNG SỐ 1",
+    "count": 14
+   },
+   {
+    "dir": "SHOP + CỬA HÀNG + SPA/MỸ PHẨM/SHOP 2",
+    "count": 12
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ GÁI/PHÒNG SỐ 4",
+    "count": 10
+   },
+   {
+    "dir": "PHÒNG TRÀ/PHÒNG TRÀ SỐ 4",
+    "count": 6
+   },
+   {
+    "dir": "SUDIO/SUDIO VÁY CƯỚI/TẦNG 1",
+    "count": 4
+   },
+   {
+    "dir": "HOME STAY NHẸ NHÀNG/CĂN HỘ 5",
+    "count": 1
+   }
+  ]
+ },
+ {
+  "agent": "detail-03",
+  "images": 124,
+  "folders": [
+   {
+    "dir": "SHOP + CỬA HÀNG + SPA/SPA/SPA SỐ 2 JAPAN",
+    "count": 37
+   },
+   {
+    "dir": "DUPLEX/CĂN HIỆN ĐẠI 1 ( ANH THỌ )/TẦNG 2",
+    "count": 22
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 8 ( CHUNG CƯ LUMIER CHỊ NGA )",
+    "count": 17
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 2",
+    "count": 14
+   },
+   {
+    "dir": "NHÀ PHỐ TÂN CỔ ĐIỂN + PHÒNG TRÀ/PHÒNG KHÁCH",
+    "count": 12
+   },
+   {
+    "dir": "HOME STAY NHẸ NHÀNG/CĂN HỘ 1 NGỦ",
+    "count": 10
+   },
+   {
+    "dir": "PHÒNG LIVE TREAM/PHÒNG 1/PHÒNG 2",
+    "count": 9
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ GÁI/PHÒNG 3",
+    "count": 2
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 12",
+    "count": 1
+   }
+  ]
+ },
+ {
+  "agent": "detail-04",
+  "images": 124,
+  "folders": [
+   {
+    "dir": "CHUNG CƯ MỸ GIA - Q7 - PHÚ MỸ HƯNG/ẢNH THIẾT KẾ 3D",
+    "count": 35
+   },
+   {
+    "dir": "JAPANNES/NHÀ PHỐ/NHÀ PHỐ 1",
+    "count": 23
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 8",
+    "count": 18
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 4 ( ÓC CHÓ )/PHÒNG KHÁCH",
+    "count": 14
+   },
+   {
+    "dir": "PHÒNG BẾP/BẾP 1",
+    "count": 12
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 6/PHÒNG KHÁCH BẾP",
+    "count": 10
+   },
+   {
+    "dir": "SHOP + CỬA HÀNG + SPA/RƯỢU/TẦNG TRỆT",
+    "count": 9
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ GÁI/PHÒNG SỐ 7",
+    "count": 2
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 5",
+    "count": 1
+   }
+  ]
+ },
+ {
+  "agent": "detail-05",
+  "images": 124,
+  "folders": [
+   {
+    "dir": "THE GOLBAL CITY ( CHÚ PHÚC )/ẢNH THIẾT KẾ 3D",
+    "count": 34
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 6 ( CHUNG CƯ LUMIER )",
+    "count": 23
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 7/PHÒNG NGỦ",
+    "count": 18
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 9 ( CHUNG CƯ LUMIER CHỊ HUYỀN/PHÒNG NGỦ",
+    "count": 14
+   },
+   {
+    "dir": "SHOP + CỬA HÀNG + SPA/RƯỢU/TẦNG 1",
+    "count": 13
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ GÁI/PHÒNG 1",
+    "count": 10
+   },
+   {
+    "dir": "PHÒNG TRÀ/PHÒNG SỐ 3",
+    "count": 8
+   },
+   {
+    "dir": "PHÒNG THỜ/PHÒNG THỜ 4",
+    "count": 3
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 9",
+    "count": 1
+   }
+  ]
+ },
+ {
+  "agent": "detail-06",
+  "images": 124,
+  "folders": [
+   {
+    "dir": "MILIMALIST/CĂN HỘ 3 PN",
+    "count": 31
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN HỘ 3 NGỦ ( GỖ ÓC CHÓ 0/PHÒNG KHÁCH",
+    "count": 23
+   },
+   {
+    "dir": "LUXURY/CHUNG CƯ/CHỊ QUỲNH ANH",
+    "count": 21
+   },
+   {
+    "dir": "JAPANNES/CHUNG CƯ/CHUNG CƯ 1 ( 2 NGỦ )",
+    "count": 14
+   },
+   {
+    "dir": "JAPANNES/NHÀ PHỐ/NHÀ PHỐ 2",
+    "count": 12
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 12 ( CHUNG CƯ WET )",
+    "count": 11
+   },
+   {
+    "dir": "RESORT/RESORT ĐÀ NÃNG TẦNG 25",
+    "count": 8
+   },
+   {
+    "dir": "RESORT/RESORT ĐỒ ÁN",
+    "count": 3
+   },
+   {
+    "dir": "PHÒNG LIVE TREAM/PHÒNG 1/PHÒNG 1",
+    "count": 1
+   }
+  ]
+ },
+ {
+  "agent": "detail-07",
+  "images": 124,
+  "folders": [
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 13 TECCO/CONCEPT 1",
+    "count": 30
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 1/MẶT TIỀN",
+    "count": 25
+   },
+   {
+    "dir": "CÔNG TRÌNH CHÚ PHÚC MASTERI Q9/ẢNH THIẾT KẾ 3D",
+    "count": 18
+   },
+   {
+    "dir": "VĂN PHÒNG/VĂN PHÒNG 1",
+    "count": 16
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 13",
+    "count": 12
+   },
+   {
+    "dir": "NHÀ PHỐ TÂN CỔ ĐIỂN + PHÒNG TRÀ/NHÀ PHỐ 2",
+    "count": 11
+   },
+   {
+    "dir": "RESORT/SẢNH RESORT ĐÀ NẴNG",
+    "count": 7
+   },
+   {
+    "dir": "SUDIO/SUDIO VÁY CƯỚI/TẦNG 3",
+    "count": 4
+   },
+   {
+    "dir": "SUDIO/SUDIO VÁY CƯỚI/TẦNG 4",
+    "count": 1
+   }
+  ]
+ },
+ {
+  "agent": "detail-08",
+  "images": 124,
+  "folders": [
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 13 TECCO/CONCEPT 2",
+    "count": 30
+   },
+   {
+    "dir": "DUPLEX/CĂN HIỆN ĐẠI 1 ( ANH THỌ )",
+    "count": 24
+   },
+   {
+    "dir": "HOME STAY NHẸ NHÀNG/CHUNG CƯ",
+    "count": 20
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 7 ( CHUNG CƯ LUMIER CHỊ CHÂU )",
+    "count": 15
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 4 ( ÓC CHÓ )/PHÒNG NGỦ",
+    "count": 12
+   },
+   {
+    "dir": "PHÒNG BẾP/BẾP 2",
+    "count": 11
+   },
+   {
+    "dir": "SHOP + CỬA HÀNG + SPA/RƯỢU/MẶT TIỀN",
+    "count": 7
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ GÁI/PHÒNG SỐ 8",
+    "count": 3
+   },
+   {
+    "dir": "PHÒNG THỜ/PHÒNG THỜ SỐ 5",
+    "count": 2
+   }
+  ]
+ },
+ {
+  "agent": "detail-09",
+  "images": 123,
+  "folders": [
+   {
+    "dir": "THE OPERA METROPOLE ( ANH VŨ )/ẢNH THIẾT KẾ 3D",
+    "count": 30
+   },
+   {
+    "dir": "SHOP + CỬA HÀNG + SPA/MỸ PHẨM/SHOP 1",
+    "count": 24
+   },
+   {
+    "dir": "NHÀ HÀNG/QUÁN BÚN RIÊU",
+    "count": 20
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 11 ( CHUNG CƯ MIZUKI )",
+    "count": 14
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 9 ( CHUNG CƯ LUMIER CHỊ HUYỀN/PHÒNG KHÁCH_",
+    "count": 13
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ TRAI/PHÒNG 1",
+    "count": 11
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ GÁI/PHÒNG SỐ 9",
+    "count": 6
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ TRAI/PHÒNG 2",
+    "count": 5
+   }
+  ]
+ },
+ {
+  "agent": "detail-10",
+  "images": 124,
+  "folders": [
+   {
+    "dir": "THE GOLBAL CITY ( CHÚ PHÚC )/ẢNH THI CÔNG PHẦN THÔ",
+    "count": 29
+   },
+   {
+    "dir": "LUXURY/NHÀ PHỐ/NHÀ PHỐ 1",
+    "count": 25
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN HỘ 3 NGỦ ( GỖ ÓC CHÓ 0/PHÒNG NGỦ",
+    "count": 19
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 10 ( CHUNG CƯ LUMIER CÔ NGA )/PHÒNG NGỦ",
+    "count": 15
+   },
+   {
+    "dir": "LUXURY/NHÀ PHỐ/NHÀ PHỐ 2",
+    "count": 13
+   },
+   {
+    "dir": "PHÒNG THỜ/PHÒNG THỜ 1",
+    "count": 11
+   },
+   {
+    "dir": "PHÒNG TRÀ/PHÒNG SỐ 2",
+    "count": 6
+   },
+   {
+    "dir": "PHÒNG CÁC BÉ/BÉ GÁI/PHÒNG 2",
+    "count": 4
+   },
+   {
+    "dir": "SHOP + CỬA HÀNG + SPA/CỬA HÀNG MÁY TÍNH/CỬA HÀNG 1",
+    "count": 2
+   }
+  ]
+ },
+ {
+  "agent": "detail-11",
+  "images": 123,
+  "folders": [
+   {
+    "dir": "NHÀ HÀNG/NHÀ HÀNG AMAI SHUSHI Q7",
+    "count": 28
+   },
+   {
+    "dir": "JAPANNES/CHUNG CƯ/CHUNG CƯ 3 ( 2 NGỦ JAPAN )",
+    "count": 27
+   },
+   {
+    "dir": "HOME STAY NHẸ NHÀNG/CĂN HỘ 2 NGỦ",
+    "count": 18
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 5 ( CHỊ LINH MIZUKI )",
+    "count": 15
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 6/PHÒNG NGỦ",
+    "count": 13
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 8 ( CHUNG CƯ LUMIER CHỊ NGA )/PHÒNG NGỦ",
+    "count": 10
+   },
+   {
+    "dir": "SHOP + CỬA HÀNG + SPA/SPA",
+    "count": 10
+   },
+   {
+    "dir": "PHÒNG THỜ/PHÒNG THỜ 3",
+    "count": 2
+   }
+  ]
+ },
+ {
+  "agent": "detail-12",
+  "images": 123,
+  "folders": [
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 15 ( CHUNG CƯ CITI ALTO )",
+    "count": 27
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 16 ( CHUNG CƯ AKARI )",
+    "count": 27
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 4 ( CHỊ KIỀU ANH )",
+    "count": 18
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 3 ( ÓC CHÓ )",
+    "count": 16
+   },
+   {
+    "dir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 7/PHÒNG KHÁCH",
+    "count": 13
+   },
+   {
+    "dir": "HOME STAY NHẸ NHÀNG/CĂN 2 NGỦ MẪU",
+    "count": 10
+   },
+   {
+    "dir": "CHUNG CƯ HIỆN ĐẠI/CĂN SỐ 14 TECCO 1 NGỦ",
+    "count": 9
+   },
+   {
+    "dir": "SUDIO/SUDIO VÁY CƯỚI/TẦNG 2",
+    "count": 3
+   }
+  ]
+ }
+]

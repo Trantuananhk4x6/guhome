@@ -1,0 +1,405 @@
+{
+  "services": [
+    {
+      "slug": "thiet-ke-noi-that",
+      "indexLabel": "01",
+      "title": "Thiết kế nội thất",
+      "summary": "Từ bố cục sinh hoạt đến độ dày của một nẹp gỗ.",
+      "description": "Chúng tôi bắt đầu bằng cách quan sát cách một gia đình thực sự sống: ai dậy sớm nhất, bữa tối kéo dài bao lâu, thứ gì luôn bị bỏ quên ở lối vào. Từ đó dựng mặt bằng, ánh sáng và bảng vật liệu. Hồ sơ giao đi gồm bản vẽ chi tiết 1:20 và 1:5, mẫu vật liệu thật, thống kê thiết bị — đủ để một xưởng mộc và một nhà thầu điện nước làm việc mà không phải đoán."
+    },
+    {
+      "slug": "thiet-ke-kien-truc",
+      "indexLabel": "02",
+      "title": "Thiết kế kiến trúc",
+      "summary": "Hình khối, hướng nắng, tỷ lệ của khoảng trống.",
+      "description": "Với nhà phố và biệt thự, phần lớn chất lượng sống được quyết định trước khi có món đồ nội thất nào: hướng mở của giếng trời, chiều sâu của hiên, vị trí một bức tường chắn nắng chiều. Chúng tôi làm việc trên khối và ánh sáng trước, trên vật liệu sau, và giữ liên tục một ngôn ngữ từ mặt đứng vào đến tay nắm cửa."
+    },
+    {
+      "slug": "thiet-ke-thi-cong",
+      "indexLabel": "03",
+      "title": "Thiết kế & thi công",
+      "summary": "Một đầu mối chịu trách nhiệm, một tiêu chuẩn hoàn thiện.",
+      "description": "Khi studio giữ cả thiết kế và thi công, khoảng cách giữa bản vẽ và hiện trường gần như biến mất: mẫu được duyệt tại xưởng, shop drawing do chính người sẽ cắt gỗ đọc, sai số được xử lý ngay trong tuần thay vì thành một cuộc thương lượng. Tiến độ, chi phí và chất lượng nằm trong cùng một bảng, và chúng tôi báo cáo cả ba mỗi hai tuần."
+    },
+    {
+      "slug": "cai-tao",
+      "indexLabel": "04",
+      "title": "Cải tạo",
+      "summary": "Giữ những gì đáng giữ, thay đổi cách ngôi nhà vận hành.",
+      "description": "Cải tạo là công việc của sự tiết chế: một căn hộ mười năm tuổi thường chỉ cần dỡ hai bức tường, kéo lại đường điện và làm mới ánh sáng để trở nên rộng hơn hẳn. Chúng tôi khảo sát kết cấu, hệ thống kỹ thuật và độ ẩm trước khi vẽ, rồi đề xuất phạm vi can thiệp nhỏ nhất mang lại thay đổi lớn nhất — kể cả khi điều đó nghĩa là giữ nguyên nền gạch cũ."
+    },
+    {
+      "slug": "do-noi-that",
+      "indexLabel": "05",
+      "title": "Đồ nội thất đặt riêng",
+      "summary": "Chế tác theo đúng kích thước và thói quen của một không gian.",
+      "description": "Bàn ăn dài 2,4 mét cho một gia đình bốn người hay đảo bếp cao 92 phân cho người nấu cao 1,72 mét là những con số không có trên catalogue. Chúng tôi thiết kế và đặt chế tác tại xưởng gỗ và xưởng kim loại quen thuộc ở Bình Dương và Thủ Đức, kiểm tra mẫu ghép, mẫu hoàn thiện và độ ổn định của gỗ trước khi cho phép cắt tấm đầu tiên."
+    }
+  ],
+  "materials": [
+    {
+      "slug": "go",
+      "name": "Gỗ",
+      "description": "Óc chó Bắc Mỹ và sồi trắng, vân dọc liên tục, hoàn thiện bằng dầu cứng lau tay. Bề mặt giữ được độ mở của thớ gỗ dưới đầu ngón tay và sẫm dần theo những chỗ được chạm nhiều nhất."
+    },
+    {
+      "slug": "da",
+      "name": "Đá",
+      "description": "Travertine và đá vôi mài mờ, để lộ lỗ khí tự nhiên thay vì trám kín. Dưới ánh sáng xiên, bề mặt honed trả lại một lớp bóng rất nhẹ — đủ để nhận ra chất đá, không đủ để chói."
+    },
+    {
+      "slug": "da-hoa-cuong",
+      "name": "Marble",
+      "description": "Calacatta, Panda White và Nero Marquina cho mặt bếp, mặt bàn và mảng tường nhỏ. Vân được chọn theo tấm, cắt đối xứng và ghép liền mạch qua cạnh, nên mỗi công trình chỉ có một bảng đá duy nhất."
+    },
+    {
+      "slug": "kim-loai",
+      "name": "Kim loại",
+      "description": "Đồng thau xước không phủ bóng, để tự lên patina theo tay người dùng, cùng thép sơn tĩnh điện đen mờ cho khung kính và chân bàn. Tiết diện luôn được giữ mảnh nhất có thể trong giới hạn kết cấu."
+    },
+    {
+      "slug": "vai",
+      "name": "Vải",
+      "description": "Lanh mộc, bouclé và bông thô trong dải cát, khói và đất nung. Chúng tôi chọn vải theo cách nó rũ và cách nó nhăn, vì cả hai điều đó sẽ hiện diện trong phòng nhiều hơn màu sắc."
+    },
+    {
+      "slug": "kinh",
+      "name": "Kính",
+      "description": "Kính siêu trong cho những nơi cần biến mất, kính reeded và kính mờ axit cho những nơi cần ánh sáng mà không cần tầm nhìn. Khung thép mảnh giữ vai trò đường kẻ trong bố cục."
+    }
+  ],
+  "articles": [
+    {
+      "slug": "chon-go-oc-cho-cho-khi-hau-sai-gon",
+      "title": "Chọn gỗ óc chó cho khí hậu Sài Gòn",
+      "excerpt": "Độ ẩm Sài Gòn giữ ở mức 75–80% quanh năm, và gỗ thì luôn tìm cách cân bằng với không khí quanh nó. Ghi chép về cách chọn dạng ván, thời gian ổn định tại công trình và lớp hoàn thiện phù hợp với từng bề mặt.",
+      "tags": ["Vật liệu", "Gỗ", "Khí hậu"],
+      "content": {
+        "nodes": [
+          {
+            "type": "paragraph",
+            "text": "Gỗ óc chó Bắc Mỹ đến xưởng trong những kiện ván đã sấy tới độ ẩm 8%. Sau ba ngày nằm trong một căn hộ ở Thảo Điền, cùng những tấm ván ấy hút thêm hơi nước và nhích lên 12%. Bốn phần trăm chênh lệch đó là toàn bộ câu chuyện của bài viết này."
+          },
+          { "type": "heading", "level": 2, "text": "Độ ẩm là biến số đầu tiên" },
+          {
+            "type": "paragraph",
+            "text": "TP. Hồ Chí Minh giữ độ ẩm tương đối trung bình 75–80% quanh năm, và trong những tuần cao điểm của mùa mưa, con số leo lên trên 90%. Gỗ là vật liệu hút ẩm: nó luôn tìm cách cân bằng với không khí quanh nó. Ván sấy theo tiêu chuẩn xuất khẩu Bắc Mỹ, thường ở mức 6–8%, sẽ tiếp tục hút ẩm cho đến khi đạt trạng thái cân bằng khoảng 12–14% tại đây."
+          },
+          {
+            "type": "paragraph",
+            "text": "Khi hút ẩm, gỗ nở, nhưng nở không đều: theo phương tiếp tuyến, độ giãn gần gấp đôi phương xuyên tâm. Một cánh tủ rộng 600 mm có thể thay đổi 3 đến 5 mm giữa tháng Ba khô và tháng Chín ẩm. Nếu người thợ bắt vít cứng cả bốn cạnh, gỗ không còn chỗ để thở và sẽ tự tìm lối thoát: cong vênh, nứt chân mộng, hở đường ghép."
+          },
+          {
+            "type": "paragraph",
+            "text": "Vì vậy quy tắc đầu tiên trong xưởng của chúng tôi là quy tắc về thời gian: mọi kiện gỗ phải nằm tại công trình ít nhất bảy ngày trước khi cắt, trong đúng điều kiện điều hòa mà nó sẽ sống cùng về sau. Chúng tôi gọi đây là để gỗ làm quen với nhà."
+          },
+          { "type": "heading", "level": 2, "text": "Nguyên khối, ghép thanh hay veneer" },
+          {
+            "type": "paragraph",
+            "text": "Ba dạng vật liệu cùng mang tên óc chó nhưng ứng xử với độ ẩm theo ba cách khác nhau. Chọn sai dạng cho sai vị trí là nguyên nhân của gần như mọi hư hỏng phải quay lại sửa."
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "items": [
+              "Gỗ nguyên khối cho những chi tiết nhỏ chịu lực và được chạm vào: tay nắm, nẹp cạnh, chân bàn, tay vịn. Bản càng rộng, rủi ro cong vênh càng lớn.",
+              "Ván ghép thanh, ghép mộng răng lược, có các thanh nhỏ được xoay xen kẽ chiều vân để triệt tiêu ứng suất. Đây là lựa chọn cho mặt bàn ăn, kệ sách và mặt bậc cầu thang.",
+              "Veneer óc chó dày 0,6 mm dán trên MDF lõi xanh chống ẩm là dạng ổn định nhất cho cánh tủ bản lớn và mảng ốp tường. Veneer được lạng liên tục từ một lóng gỗ nên vân có thể chạy đối xứng qua nhiều cánh liền nhau."
+            ]
+          },
+          { "type": "heading", "level": 2, "text": "Hoàn thiện: dầu lau hay phủ PU" },
+          {
+            "type": "paragraph",
+            "text": "Dầu cứng thấm vào thớ gỗ thay vì tạo màng. Người dùng vẫn cảm nhận được lỗ chân gỗ dưới đầu ngón tay, và một vết xước có thể được chà nhám cục bộ rồi lau lại dầu trong hai mươi phút mà không để lại vết vá. Đổi lại, dầu không chặn hơi ẩm và cần lau lại mỗi mười hai đến mười tám tháng ở khu vực chạm tay nhiều."
+          },
+          {
+            "type": "paragraph",
+            "text": "Sơn PU mờ, độ bóng 10–20%, tạo một màng kín chống ẩm và chống bẩn tốt hơn hẳn. Đó là lựa chọn hợp lý cho cánh bếp, mặt bàn làm việc và tủ phòng tắm. Nhược điểm nằm ở khả năng sửa chữa: khi màng bị xước sâu, không có cách dặm cục bộ, phải chà và phủ lại cả cánh. Chúng tôi thường chia theo cách bề mặt được dùng — dầu cho những gì được nhìn và chạm, PU cho những gì bị dùng."
+          },
+          {
+            "type": "quote",
+            "text": "Gỗ không hỏng vì khí hậu. Nó hỏng vì được lắp như thể khí hậu không tồn tại.",
+            "attribution": "Ghi chép xưởng"
+          },
+          { "type": "heading", "level": 2, "text": "Màu sẽ đổi, và đó là điều tốt" },
+          {
+            "type": "paragraph",
+            "text": "Óc chó là một trong số ít loài gỗ nhạt đi theo thời gian. Dưới ánh sáng ban ngày, sắc tím nâu đậm của ván mới dịu dần về nâu mật ong ấm trong khoảng mười tám tháng. Điều đó nghĩa là đừng chọn óc chó vì màu của mẫu nhỏ đặt trong showroom; hãy chọn vì cấu trúc vân, và vì sắc độ mà nó sẽ đến, không phải sắc độ nó đang có."
+          },
+          {
+            "type": "paragraph",
+            "text": "Kèm theo đó là một chi tiết rất thực dụng: nếu một mảng tường óc chó bị tủ lạnh hay một bức tranh khổ lớn che khuất trong nhiều năm, phần được che sẽ giữ màu sẫm hơn phần còn lại."
+          },
+          { "type": "divider" },
+          {
+            "type": "paragraph",
+            "text": "Với ba điều kiện — đúng dạng vật liệu cho từng bản, đủ thời gian ổn định tại công trình, và hoàn thiện chọn theo cách bề mặt sẽ được dùng — gỗ óc chó sống rất tốt ở Sài Gòn. Những căn hộ đầu tiên dùng vật liệu này đang bước sang năm thứ bảy, và thứ duy nhất thay đổi là màu."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "anh-sang-nhan-tao-theo-lop",
+      "title": "Ánh sáng nhân tạo theo lớp",
+      "excerpt": "Một căn phòng chỉ có đèn trần là một căn phòng chỉ có hai trạng thái: sáng và tắt. Bốn lớp ánh sáng, ba con số cần nhớ và một sơ đồ chia mạch làm nên phần còn lại.",
+      "tags": ["Ánh sáng", "Kỹ thuật", "Nguyên tắc thiết kế"],
+      "content": {
+        "nodes": [
+          {
+            "type": "paragraph",
+            "text": "Một căn phòng chỉ có đèn trần là một căn phòng chỉ có một trạng thái. Bật lên: sáng đều, phẳng, không bóng đổ, mọi bề mặt bị đối xử như nhau. Tắt đi: tối. Giữa hai trạng thái ấy không còn gì để chọn, trong khi một ngày thì có rất nhiều giờ khác nhau và mỗi giờ cần một lượng sáng khác nhau."
+          },
+          { "type": "heading", "level": 2, "text": "Bốn lớp, không phải bốn loại đèn" },
+          {
+            "type": "paragraph",
+            "text": "Chúng tôi không bắt đầu bằng việc chọn đèn mà bằng việc chia nhiệm vụ. Mỗi lớp trả lời một câu hỏi khác nhau, và một chiếc đèn có thể thuộc về hai lớp nếu được điều khiển riêng."
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "items": [
+              "Lớp nền dựng độ sáng chung của phòng: hắt trần, đèn âm khe, đèn tường. Phòng khách chỉ cần 100–150 lux ở lớp này.",
+              "Lớp chức năng phục vụ một hành động cụ thể: đèn dưới tủ bếp cho mặt thao tác, đèn thả trên bàn ăn, đèn đọc cạnh ghế. Mặt bếp cần khoảng 500 lux, mặt bàn ăn khoảng 300 lux.",
+              "Lớp nhấn tạo điểm nhìn: rọi tranh, rọi mảng vật liệu, rọi cây. Sáng gấp ba lần lớp nền là đủ để mắt nhận ra thứ tự ưu tiên trong phòng.",
+              "Lớp trang trí là bản thân chiếc đèn như một vật thể. Nó không được tính vào tính toán độ rọi, và nên được chọn sau cùng."
+            ]
+          },
+          { "type": "heading", "level": 2, "text": "Nhiệt màu và chỉ số hoàn màu" },
+          {
+            "type": "paragraph",
+            "text": "Trong không gian ở, chúng tôi dùng 2700K cho phòng khách và phòng ngủ, 3000K cho bếp và phòng tắm, và gần như không bao giờ dùng 4000K ngoài phòng kỹ thuật. Quan trọng hơn con số tuyệt đối là sự nhất quán: chênh lệch nhiệt màu giữa các đèn cùng nằm trong một tầm nhìn nên giữ dưới 200K. Mắt người rất nhạy với độ lệch này, kể cả khi không gọi tên được nguyên nhân."
+          },
+          {
+            "type": "paragraph",
+            "text": "Chỉ số hoàn màu CRI phải từ 90 trở lên, và riêng chỉ số R9 — khả năng tái tạo sắc đỏ bão hòa — nên trên 50. Đây là con số bị các bảng thông số bỏ qua nhiều nhất, và cũng là con số quyết định việc gỗ óc chó trông ấm hay trông xám, vải đất nung trông sống hay trông bẩn. Khi mua đèn, chúng tôi cũng hỏi về độ đồng đều màu giữa các bóng, thường được ghi là SDCM 3 bước trở xuống."
+          },
+          { "type": "heading", "level": 2, "text": "Góc chiếu, khoảng cách, độ chói" },
+          {
+            "type": "paragraph",
+            "text": "Đèn rọi tường nên đặt cách mặt tường 60 đến 80 cm với góc chiếu 24 đến 36 độ. Đặt sát quá sẽ tạo những vòng cung sáng chồng lên nhau như vỏ sò; đặt xa quá thì vệt sáng tãi ra và mất tác dụng. Với mảng đá hoặc vữa trát tay, chúng tôi kéo đèn gần lại còn 30 cm một cách có chủ đích để ánh sáng đi sượt qua bề mặt và làm lộ kết cấu."
+          },
+          {
+            "type": "paragraph",
+            "text": "Nguồn sáng phải được giấu. Đèn âm trần nên có chóa lùi sâu và sơn đen mờ bên trong, chỉ số chói UGR dưới 19. Nguyên tắc chúng tôi lặp lại với mọi nhà thầu điện: người ở trong phòng phải nhìn thấy ánh sáng, không nhìn thấy bóng đèn."
+          },
+          {
+            "type": "quote",
+            "text": "Thiết kế chiếu sáng tốt phần lớn là thiết kế bóng tối: quyết định thứ gì không được sáng.",
+            "attribution": "Ghi chép xưởng"
+          },
+          { "type": "heading", "level": 2, "text": "Điều khiển là nơi mọi thứ thành hình" },
+          {
+            "type": "paragraph",
+            "text": "Bốn lớp ánh sáng chỉ có ý nghĩa nếu chúng bật tắt độc lập. Điều đó nghĩa là chia mạch từ giai đoạn hồ sơ kỹ thuật, trước khi tường được xây, vì kéo thêm một tuyến dây sau khi hoàn thiện là việc gần như không ai muốn làm. Một phòng khách trung bình cần bốn đến sáu mạch riêng, và ít nhất ba trong số đó nên có dimmer."
+          },
+          {
+            "type": "paragraph",
+            "text": "Chúng tôi thường lập bốn kịch bản: ban ngày, nấu ăn, bữa tối, và đêm. Kịch bản đêm chỉ giữ lại lớp nền ở 5% với nhiệt màu 2200K dọc hành lang và lối vào phòng tắm — đủ để đi lại mà không đánh thức hẳn. Cần lưu ý driver và dimmer phải tương thích: nhiều bộ đèn LED giá rẻ bắt đầu nhấp nháy khi hạ dưới 20%, và lỗi này chỉ lộ ra sau khi trần đã đóng."
+          },
+          { "type": "divider" },
+          {
+            "type": "paragraph",
+            "text": "Chi phí của một hệ chiếu sáng theo lớp không nằm ở đèn mà nằm ở dây và ở việc quyết định sớm. Thêm mười sáu mét dây và bốn công tắc trong giai đoạn thô là khoản đầu tư rẻ nhất trong toàn bộ công trình, và là khoản duy nhất không thể mua lại sau ngày bàn giao."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "wabi-sabi-trong-can-ho-nho",
+      "title": "Wabi-sabi trong căn hộ nhỏ",
+      "excerpt": "Wabi-sabi thường bị rút gọn thành một bảng màu be xám và một chiếc bình gốm méo. Trong một căn hộ 60 mét vuông ở Sài Gòn, nó là một loạt quyết định rất cụ thể về vật liệu, khoảng trống và bảo trì.",
+      "tags": ["Wabi-sabi", "Căn hộ", "Triết lý thiết kế"],
+      "content": {
+        "nodes": [
+          {
+            "type": "paragraph",
+            "text": "Wabi-sabi thường bị dịch thành một bảng màu: be, xám tro, vữa trát tay, một chiếc bình gốm méo đặt lệch trên kệ. Nhưng gốc của khái niệm này không phải là hình thức mà là một thái độ với thời gian — chấp nhận rằng vật liệu sẽ già đi, và rằng dấu vết của việc sử dụng không phải là hư hỏng."
+          },
+          { "type": "heading", "level": 2, "text": "Chấp nhận dấu vết, không sản xuất dấu vết" },
+          {
+            "type": "paragraph",
+            "text": "Khác biệt quan trọng nhất nằm ở đây. Vữa trát tay để lộ vệt bay của người thợ; đồng thau không phủ bóng sẽ xỉn dần theo bàn tay mở cửa; gỗ hoàn thiện dầu sẽ sẫm lại đúng ở chỗ được chạm nhiều nhất. Đó là những dấu vết thật, sinh ra từ thời gian và từ người ở."
+          },
+          {
+            "type": "paragraph",
+            "text": "Ngược lại, sơn hiệu ứng in vân bê tông giả hay đồ gỗ được đánh giấy nhám cho ra vẻ cũ là những dấu vết được sản xuất. Chúng đứng yên tại thời điểm xuất xưởng: không già đi thêm, chỉ bẩn dần. Một căn hộ đầy dấu vết giả sẽ trông mệt sau ba năm, trong khi một căn hộ có ba bề mặt thật sẽ đẹp hơn sau bảy năm."
+          },
+          { "type": "heading", "level": 2, "text": "Sáu mươi mét vuông đầu tiên" },
+          {
+            "type": "paragraph",
+            "text": "Trong một căn hộ 55 đến 70 mét vuông, thứ khan hiếm không phải là vật liệu đẹp mà là sự yên tĩnh của thị giác. Chúng tôi giới hạn bảng vật liệu rất chặt: một vật liệu chủ đạo, hai vật liệu phụ, một kim loại duy nhất cho toàn bộ phụ kiện."
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "items": [
+              "Một bảng vật liệu: vữa trát tay tông cát cho tường, gỗ sồi trắng cho hệ tủ, đồng thau xước cho tay nắm và bản lề lộ.",
+              "Một khoảng trống được giữ lại: một mảng tường không treo gì, một góc sàn không kê gì. Đây là hạng mục dễ bị hy sinh nhất và cần được bảo vệ mạnh nhất.",
+              "Đồ vải không là phẳng: lanh mộc, bông thô. Nếp nhăn là một phần của vật liệu chứ không phải lỗi giặt ủi.",
+              "Ánh sáng gián tiếp, thấp và ấm, chiếu sượt qua bề mặt để kết cấu hiện ra. Ánh sáng phẳng làm mọi bề mặt thật trông như bề mặt in."
+            ]
+          },
+          { "type": "heading", "level": 2, "text": "Khoảng trống là vật liệu đắt nhất" },
+          {
+            "type": "paragraph",
+            "text": "Trong căn hộ nhỏ, cám dỗ lớn nhất là lấp đầy: kịch trần mọi hốc bằng tủ, gắn kệ lên mọi mảng tường trống, đặt một món đồ vào mọi góc. Kết quả là một không gian có nhiều chỗ chứa hơn nhưng cảm giác chật hơn, vì mắt không còn chỗ nào để nghỉ."
+          },
+          {
+            "type": "paragraph",
+            "text": "Chúng tôi thường giữ lại một mảng tường liền và một dải sàn trống dọc lối đi chính, kể cả khi khách hàng đề nghị tận dụng. Đổi lại, phần lưu trữ được dồn thành một khối duy nhất, cao kịch trần, cùng màu với tường, để nó biến mất khỏi tầm nhìn thay vì trải đều khắp phòng."
+          },
+          {
+            "type": "quote",
+            "text": "Trong một căn hộ nhỏ, thứ chúng tôi phải bảo vệ mạnh nhất trước khách hàng là những mét vuông không dùng vào việc gì.",
+            "attribution": "Ghi chép xưởng"
+          },
+          { "type": "heading", "level": 2, "text": "Những rủi ro rất thực tế" },
+          {
+            "type": "paragraph",
+            "text": "Wabi-sabi không miễn trừ kỹ thuật. Vữa trát tay ở khu vực ẩm cần lớp phủ chống thấm gốc nước, nếu không sẽ ố vĩnh viễn ngay lần đầu nước bắn lên. Gỗ mộc quanh bếp hút dầu và không thể tẩy sạch, nên phần trong tầm văng dầu phải chuyển sang hoàn thiện có màng. Đồ gốm thủ công không đồng đều kích thước, vì vậy mọi hốc âm tường dành cho chúng phải được đo theo món đồ thật, không theo bản vẽ."
+          },
+          {
+            "type": "paragraph",
+            "text": "Và một lưu ý về khí hậu: độ ẩm Sài Gòn khiến vải lanh dày lâu khô và dễ mốc ở mặt sau nếu kê sát tường. Chúng tôi để một khe hở 3 phân sau lưng ghế bọc, một chi tiết không ai nhìn thấy nhưng quyết định việc chiếc ghế còn dùng được sau năm năm hay không."
+          },
+          { "type": "divider" },
+          {
+            "type": "paragraph",
+            "text": "Điều đọng lại sau nhiều dự án nhỏ là wabi-sabi không đòi hỏi ngân sách lớn, mà đòi hỏi sự kiên nhẫn: chọn ít món hơn, chờ đúng món, và để yên cho vật liệu làm phần việc còn lại của nó."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "tu-ban-ve-den-ban-giao",
+      "title": "Từ bản vẽ đến bàn giao",
+      "excerpt": "Sáu giai đoạn, ba mốc quyết định không thể lùi, và một danh sách tồn cuối cùng. Đây là toàn bộ quy trình của studio, kèm những con số thời gian mà chúng tôi thực sự dùng khi lập tiến độ.",
+      "tags": ["Quy trình", "Studio", "Thi công"],
+      "content": {
+        "nodes": [
+          {
+            "type": "paragraph",
+            "text": "Câu hỏi được hỏi nhiều nhất trong buổi gặp đầu tiên không phải về phong cách mà về thời gian: bao lâu thì xong. Câu trả lời trung thực là một dãy sáu giai đoạn, trong đó chỉ có hai giai đoạn thực sự nằm trong tay chúng tôi, còn bốn giai đoạn còn lại phụ thuộc vào tốc độ ra quyết định của chủ nhà và vào lịch của xưởng."
+          },
+          { "type": "heading", "level": 2, "text": "Sáu giai đoạn" },
+          {
+            "type": "list",
+            "ordered": true,
+            "items": [
+              "Khảo sát và brief, 1 đến 2 tuần. Đo hiện trạng, kiểm tra kết cấu và hệ thống kỹ thuật, ghi lại thói quen sinh hoạt: ai dậy sớm nhất, nấu mấy bữa một tuần, món đồ nào chắc chắn sẽ theo về nhà mới.",
+              "Concept, 3 đến 4 tuần. Mặt bằng bố trí, bảng vật liệu, phối cảnh của những góc quyết định. Giai đoạn kết thúc bằng một buổi chốt mặt bằng, không phải bằng một buổi xem ảnh đẹp.",
+              "Hồ sơ kỹ thuật, 4 đến 6 tuần. Bản vẽ chi tiết tỉ lệ 1:20 và 1:5, sơ đồ điện nước và chiếu sáng, bảng thống kê thiết bị, vật liệu và phụ kiện.",
+              "Chọn nhà thầu, 2 tuần. Ba báo giá trên cùng một bộ hồ sơ, so sánh theo từng hạng mục thay vì theo con số tổng.",
+              "Giám sát thi công, 10 đến 16 tuần cho một căn hộ, 20 đến 28 tuần cho nhà phố. Chúng tôi có mặt tại công trình hai lần mỗi tuần và gửi báo cáo ảnh sau mỗi lần.",
+              "Nghiệm thu và bàn giao, 1 đến 2 tuần: danh sách tồn, hồ sơ hoàn công, hướng dẫn bảo trì cho từng bề mặt."
+            ]
+          },
+          { "type": "heading", "level": 2, "text": "Ba mốc không thể lùi" },
+          {
+            "type": "paragraph",
+            "text": "Mốc thứ nhất là chốt mặt bằng. Sau thời điểm này, mọi thay đổi vị trí bếp, chậu rửa hay tủ quần áo đều kéo theo đường điện, đường nước và đôi khi cả chiều dày sàn. Mốc thứ hai là chốt vật liệu bề mặt, vì gỗ và đá đều cần thời gian đặt hàng từ ba đến sáu tuần và không tồn kho theo màu. Mốc thứ ba là chốt thiết bị bếp và thiết bị vệ sinh, phải xong trước khi đi ống, bởi mỗi hãng có một kích thước chờ khác nhau."
+          },
+          {
+            "type": "paragraph",
+            "text": "Chúng tôi ghi ba mốc này lên tiến độ ngay từ tuần đầu tiên và nói rõ hệ quả bằng số ngày. Kinh nghiệm cho thấy một quyết định bị lùi hai tuần ở giai đoạn concept thường tốn bốn tuần ở giai đoạn thi công."
+          },
+          { "type": "heading", "level": 2, "text": "Shop drawing và mẫu 1:1" },
+          {
+            "type": "paragraph",
+            "text": "Giữa hồ sơ thiết kế và sản phẩm thật còn một lớp nữa: bản vẽ gia công do chính xưởng lập, thể hiện cách ghép, cách bắt phụ kiện, hướng vân và dung sai. Chúng tôi duyệt lớp bản vẽ này trước khi cho phép cắt tấm ván đầu tiên, vì đó là nơi những chi tiết tinh tế nhất của thiết kế hoặc được giữ, hoặc lặng lẽ biến mất."
+          },
+          {
+            "type": "paragraph",
+            "text": "Song song, mọi hoàn thiện đều được làm mẫu tỉ lệ thật: một mảnh gỗ 30x30 cm với đúng lớp dầu sẽ dùng, một mảng vữa trát tay 50x50 cm trên tường công trình, một đoạn nẹp đồng dài 20 cm. Mẫu được xem dưới ánh sáng của chính căn nhà vào buổi chiều, không phải dưới đèn showroom."
+          },
+          {
+            "type": "quote",
+            "text": "Một công trình tốt được quyết định ở ba buổi duyệt mẫu, không phải ở ba bản phối cảnh.",
+            "attribution": "Ghi chép xưởng"
+          },
+          { "type": "heading", "level": 2, "text": "Danh sách tồn" },
+          {
+            "type": "paragraph",
+            "text": "Hai tuần cuối cùng dành cho việc đi từng phòng và ghi lại mọi điểm chưa đạt: một cánh tủ lệch 2 mm, một công tắc đặt cao hơn quy ước, một vệt silicone thừa ở chân kính. Danh sách thường dài từ bốn mươi đến tám mươi mục, và điều đó là bình thường. Công trình chỉ được coi là bàn giao khi danh sách về không, không phải khi đồ đạc đã vào."
+          },
+          {
+            "type": "paragraph",
+            "text": "Bộ hồ sơ cuối gồm bản vẽ hoàn công đúng hiện trạng, ảnh chụp trước khi đóng trần và đóng tường, danh sách mã vật liệu để dặm về sau, và một trang hướng dẫn bảo trì ngắn cho từng bề mặt. Sáu tháng sau ngày bàn giao, chúng tôi quay lại một lần để kiểm tra gỗ, bản lề và silicone."
+          },
+          { "type": "divider" },
+          {
+            "type": "paragraph",
+            "text": "Tổng thời gian cho một căn hộ hoàn chỉnh thường rơi vào bảy đến chín tháng kể từ buổi gặp đầu tiên. Con số ấy không rút ngắn được bằng cách vẽ nhanh hơn, chỉ rút ngắn được bằng cách quyết định sớm hơn."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "vat-lieu-ben-vung-cho-bep",
+      "title": "Vật liệu bền vững cho bếp",
+      "excerpt": "Bền vững trong một căn bếp không đo bằng nhãn dán mà đo bằng số năm trước lần thay thế đầu tiên, bằng khả năng sửa từng phần, và bằng chất lượng không khí mà những tấm ván thải ra trong phòng.",
+      "tags": ["Bếp", "Vật liệu", "Bền vững"],
+      "content": {
+        "nodes": [
+          {
+            "type": "paragraph",
+            "text": "Một căn bếp trung bình ở Việt Nam bị thay sau tám đến mười hai năm, và thứ hỏng trước thường không phải mặt đá hay cánh tủ mà là ray trượt, bản lề và thùng tủ bị nở do ẩm. Vì vậy câu hỏi về vật liệu bền vững nên bắt đầu từ tuổi thọ và khả năng sửa chữa, trước khi bàn tới nhãn sinh thái."
+          },
+          { "type": "heading", "level": 2, "text": "Bền vững, đo bằng năm" },
+          {
+            "type": "paragraph",
+            "text": "Chúng tôi dùng ba câu hỏi cho mọi vật liệu bếp: nó sống được bao lâu trong điều kiện nhiệt và ẩm của một căn bếp Sài Gòn; khi hỏng thì sửa được một phần hay phải thay cả cụm; và nó phát thải gì vào không khí trong năm đầu tiên. Một vật liệu tái chế nhưng phải thay sau sáu năm không bền vững hơn một vật liệu nguyên sinh dùng được hai mươi năm."
+          },
+          { "type": "heading", "level": 2, "text": "Mặt bàn" },
+          {
+            "type": "list",
+            "ordered": false,
+            "items": [
+              "Đá tự nhiên mài mờ, chủ yếu là granite và một số loại marble cứng: chịu nhiệt tốt, mài lại được nhiều lần trong đời, nhưng cần trám lỗ định kỳ nếu là đá xốp.",
+              "Đá nung kết, tức sintered stone hoặc porcelain khổ lớn: nung ở khoảng 1200 độ, không chứa nhựa liên kết, chịu nhiệt và chịu ố tốt nhất trong nhóm, nhưng dễ mẻ cạnh nếu gia công cạnh vuông sắc.",
+              "Đá nhân tạo gốc thạch anh chứa 7 đến 10% nhựa polymer: đẹp và đồng đều, song không chịu được nồi nóng đặt trực tiếp và gần như không thể tái chế cuối vòng đời.",
+              "Inox tấm dày cho khu vực nấu: tái chế được hoàn toàn, chịu nhiệt tuyệt đối, xước theo thời gian thành một lớp patina đều mà chúng tôi thấy đẹp hơn lúc mới."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Một lưu ý ít được nói tới: bụi silica sinh ra khi cắt và mài đá nhân tạo hàm lượng thạch anh cao là nguy cơ nghề nghiệp nghiêm trọng cho thợ đá, và nhiều nước đã siết chặt dòng vật liệu này. Khi chọn đá, chúng tôi hỏi xưởng gia công về hệ thống cắt ướt và hút bụi, đúng như cách hỏi về dung sai."
+          },
+          { "type": "heading", "level": 2, "text": "Thùng tủ và cánh" },
+          {
+            "type": "paragraph",
+            "text": "Thùng tủ nên là ván MDF chống ẩm lõi xanh hoặc plywood chịu nước, dán cạnh bằng keo PUR thay vì keo EVA — đường keo PUR không bị hở khi gặp hơi nước nóng từ máy rửa bát. Với cánh, chúng tôi ưu tiên veneer thật hoặc sơn có màng bền thay vì phủ nhựa mỏng, vì lớp phủ nhựa bong ở cạnh là hỏng vĩnh viễn, còn veneer và sơn đều dặm lại được."
+          },
+          {
+            "type": "paragraph",
+            "text": "Về nguồn gốc, chứng chỉ FSC cho ván và veneer là điều kiện tối thiểu chúng tôi yêu cầu trong hồ sơ mời thầu. Về phát thải, ván đạt E1 là mức chấp nhận được và E0 là mức khuyến nghị cho căn hộ kín thường xuyên chạy điều hòa, nơi formaldehyde thoát ra rất chậm."
+          },
+          {
+            "type": "quote",
+            "text": "Bếp bền vững nhất là căn bếp không cần thay, chỉ cần thay một cánh.",
+            "attribution": "Ghi chép xưởng"
+          },
+          { "type": "heading", "level": 2, "text": "Những thứ hỏng trước tiên" },
+          {
+            "type": "paragraph",
+            "text": "Ray trượt và bản lề chiếm chưa tới 6% giá trị một căn bếp nhưng quyết định phần lớn cảm giác dùng hằng ngày và là nguyên nhân thay bếp sớm nhất. Chúng tôi chọn ray giảm chấn có tuổi thọ công bố từ 60.000 chu kỳ trở lên và luôn giữ lại mã sản phẩm trong hồ sơ bàn giao, để mười năm sau còn mua được đúng loại thay thế."
+          },
+          {
+            "type": "paragraph",
+            "text": "Nguyên tắc thiết kế đi kèm là chia bếp thành các mô-đun tiêu chuẩn cùng chiều rộng, để một cánh hỏng có thể được thay riêng mà không phải tháo cả dãy. Điều này nghe rất kỹ thuật, nhưng nó chính là ranh giới giữa một căn bếp dùng hai mươi năm và một căn bếp bị dỡ bỏ toàn bộ vì một mảng ván nở."
+          },
+          { "type": "heading", "level": 2, "text": "Không khí trong bếp" },
+          {
+            "type": "paragraph",
+            "text": "Phần bền vững ít nhìn thấy nhất là thông gió. Bếp Việt nấu nhiều dầu mỡ và nhiệt độ cao, nên máy hút mùi cần lưu lượng thực tế tối thiểu 600 mét khối mỗi giờ, ống thoát thẳng và ngắn nhất có thể, cùng một khe cấp khí bù. Không có khí bù, máy hút mạnh đến đâu cũng chỉ khuấy dầu trong phòng, và lớp dầu ấy sẽ bám lên chính những bề mặt gỗ mà chúng ta vừa chọn rất kỹ."
+          },
+          { "type": "divider" },
+          {
+            "type": "paragraph",
+            "text": "Tổng lại: chọn mặt bàn theo cách nấu, chọn thùng tủ theo độ ẩm, chọn phụ kiện theo số chu kỳ, và giữ lại toàn bộ mã vật liệu. Bốn quyết định ấy không tốn thêm nhiều tiền lúc thi công, nhưng định đoạt việc căn bếp sẽ được sửa hay bị dỡ vào năm thứ mười."
+          }
+        ]
+      }
+    }
+  ]
+}
