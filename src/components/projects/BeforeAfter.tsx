@@ -99,8 +99,8 @@ export function BeforeAfter({
     }, frame)
 
     return () => ctx.revert()
-    // `apply` closes over refs only — stable for the life of the component.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Empty deps are correct here — `apply` closes over refs only — and the
+    // current rule set agrees, so no suppression is needed.
   }, [])
 
   function positionFromClientX(clientX: number): number {

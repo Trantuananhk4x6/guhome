@@ -10,6 +10,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
   type JSX,
   type MutableRefObject,
 } from 'react'
@@ -75,12 +76,53 @@ function resolveKind(config: SceneConfig): SceneKind {
 }
 
 /** Keeps renderer-level settings in sync after the canvas has been created. */
+
+/* ------------------------- client capability probe ------------------------- */
+
+/**
+ * WebGL support and device tier, read once on the client.
+ *
+ * The server cannot know either, so the server render always emits the
+ * photograph — which is the right thing for LCP anyway, and means nothing shifts
+ * when the canvas takes over. `useSyncExternalStore` is the primitive React
+ * ships for exactly this shape of value: it lets the server snapshot differ from
+ * the client one without a hydration mismatch, and without the extra paint an
+ * effect-then-setState would cost.
+ *
+ * The probe is memoised at module scope because `getSnapshot` must return a
+ * referentially stable value — returning a fresh object each call re-renders
+ * forever.
+ */
+type Capability = { webgl: boolean; quality: QualityProfile }
+
+let probed: Capability | null = null
+
+function clientCapability(): Capability {
+  probed ??= { webgl: supportsWebGL(), quality: recommendedQuality() }
+  return probed
+}
+
+/** No subscription: capability does not change for the life of the document. */
+function subscribeToNothing(): () => void {
+  return () => {}
+}
+
+function useClientCapability(): Capability | null {
+  return useSyncExternalStore(subscribeToNothing, clientCapability, () => null)
+}
+
 function RendererSettings({ exposure, toneMapping }: { exposure: number; toneMapping: ToneMapping }): null {
   const gl = useThree((state) => state.gl)
   const invalidate = useThree((state) => state.invalidate)
   const frameloop = useThree((state) => state.frameloop)
 
   useEffect(() => {
+    // react-hooks/immutability wants the mutation moved into the hook that
+    // constructs the value. That hook is R3F's own <Canvas>, which we do not
+    // own — tone mapping is renderer state and there is no declarative route to
+    // it. This is the imperative escape hatch the rule cannot model, not a
+    // missed refactor.
+    // eslint-disable-next-line react-hooks/immutability
     gl.toneMapping = toneMapping
     gl.toneMappingExposure = exposure
     invalidate()
@@ -126,7 +168,7 @@ export function InteriorScene({
   const rootRef = useRef<HTMLDivElement | null>(null)
   const onReadyRef = useRef(onReady)
   const contextTimer = useRef<number | null>(null)
-  const [caps, setCaps] = useState<{ webgl: boolean; quality: QualityProfile } | null>(null)
+  const caps = useClientCapability()
   const [failed, setFailed] = useState(false)
   const [ready, setReady] = useState(false)
   const [curtainDone, setCurtainDone] = useState(false)
@@ -144,12 +186,6 @@ export function InteriorScene({
   useEffect(() => {
     onReadyRef.current = onReady
   }, [onReady])
-
-  // Capability probing is client-only, so the server render always emits the
-  // photograph — good for LCP, and nothing shifts when the canvas takes over.
-  useEffect(() => {
-    setCaps({ webgl: supportsWebGL(), quality: recommendedQuality() })
-  }, [])
 
   useEffect(() => {
     const root = rootRef.current
@@ -186,9 +222,17 @@ export function InteriorScene({
   // The visitor grabbing the canvas mid-walk ends the walk. One state change per
   // handover — not per frame — so the camera stays outside React's hands.
   const [handedOff, setHandedOff] = useState(false)
-  useEffect(() => {
+  // Resetting on a prop change belongs in render, not in an effect: an effect
+  // paints one frame of the stale value first, which here means a re-entered
+  // scene shows a handed-off camera for a frame before the walk resumes. This is
+  // React's documented adjust-state-during-render form — the extra render is
+  // discarded before the browser sees it.
+  const walkKey = `${mode}:${String(explore)}:${config.id}`
+  const [lastWalkKey, setLastWalkKey] = useState(walkKey)
+  if (walkKey !== lastWalkKey) {
+    setLastWalkKey(walkKey)
     setHandedOff(false)
-  }, [mode, explore, config.id])
+  }
   const handleHandoff = useCallback(() => {
     setHandedOff(true)
   }, [])
