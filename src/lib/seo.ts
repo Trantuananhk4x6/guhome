@@ -28,7 +28,7 @@ import type {
 
 /* ---------------------------------- brand ---------------------------------- */
 
-export const SITE_NAME = 'GUHOMES'
+export const SITE_NAME = 'GuHomes'
 export const SITE_TAGLINE = 'Nội thất và kiến trúc cho khí hậu Sài Gòn'
 export const SITE_LOCALE = 'vi_VN'
 
@@ -43,7 +43,7 @@ export const SITE_LOCALE = 'vi_VN'
  * schemes for one apartment. 'Dự án' is true and costs nothing.
  */
 export const SITE_DESCRIPTION =
-  'GUHOMES thiết kế và thi công nội thất, kiến trúc tại TP. Hồ Chí Minh. Hơn một trăm dự án từ 2021 đến nay: căn hộ, nhà phố, và những không gian thương mại phải mở cửa đón khách vào một ngày đã hẹn trước.'
+  'GuHomes thiết kế và thi công nội thất, kiến trúc tại TP. Hồ Chí Minh. Hơn một trăm dự án từ 2021 đến nay: căn hộ, nhà phố, và những không gian thương mại phải mở cửa đón khách vào một ngày đã hẹn trước.'
 
 /** Default OpenGraph card, rendered by `src/app/opengraph-image.tsx`. */
 const OG_IMAGE_PATH = '/opengraph-image'
@@ -114,7 +114,7 @@ function toIso(value: Date | string | null | undefined): string | undefined {
   return Number.isNaN(date.getTime()) ? undefined : date.toISOString()
 }
 
-/** `Tiêu đề — GUHOMES`, without doubling the brand when it is already there. */
+/** `Tiêu đề — GuHomes`, without doubling the brand when it is already there. */
 function composeTitle(title: string | undefined): string {
   const raw = title?.trim() ?? ''
   if (raw.length === 0) return `${SITE_NAME} — ${SITE_TAGLINE}`
@@ -314,7 +314,7 @@ export function buildArticleJsonLd(article: ArticleSummary | ArticleDetail): Jso
     isPartOf: compact({
       '@type': 'Blog',
       '@id': `${absoluteUrl('/journal')}#blog`,
-      name: 'Ghi chép — GUHOMES',
+      name: 'Ghi chép — GuHomes',
       url: absoluteUrl('/journal'),
     }),
   })

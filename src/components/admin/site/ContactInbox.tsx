@@ -60,8 +60,8 @@ const STATUS_TONE: Record<ContactStatus, 'accent' | 'ink' | 'muted'> = {
 }
 
 function mailtoHref(row: ContactInboxRow): string {
-  const subject = encodeURIComponent(`GUHOMES — phản hồi yêu cầu của ${row.name}`)
-  const intro = `Chào ${row.name},\n\nCảm ơn bạn đã liên hệ với GUHOMES.\n\n`
+  const subject = encodeURIComponent(`GuHomes — phản hồi yêu cầu của ${row.name}`)
+  const intro = `Chào ${row.name},\n\nCảm ơn bạn đã liên hệ với GuHomes.\n\n`
   return `mailto:${row.email}?subject=${subject}&body=${encodeURIComponent(intro)}`
 }
 

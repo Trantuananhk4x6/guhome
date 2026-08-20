@@ -124,7 +124,7 @@ function Node({ node, media, projects }: NodeProps) {
             preload="metadata"
             className="w-full bg-espresso"
             src={mediaUrl(ref)}
-            aria-label={ref.alt ?? ref.caption ?? 'Video của GUHOMES'}
+            aria-label={ref.alt ?? ref.caption ?? 'Video của GuHomes'}
           />
           {ref.caption ? <figcaption className="u-label mt-4">{ref.caption}</figcaption> : null}
         </figure>

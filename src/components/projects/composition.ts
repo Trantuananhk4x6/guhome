@@ -239,12 +239,31 @@ export function compositionKey(project: ProjectDetail): number {
 }
 
 /**
+ * A 32-bit avalanche (murmur3's finalizer). It is here because the obvious
+ * version is wrong in a way that is invisible until you count: a single
+ * multiply by an odd constant leaves the low bit of the product equal to the
+ * low bit of the input, so `mixed % 2` for two different salts returned the
+ * same answer — or its exact complement — on all 105 projects. Four phase
+ * combinations out of a possible thirty-two, which is a template with extra
+ * steps. Every output bit has to depend on every input bit for `% 2` and `% 4`
+ * to be independent draws.
+ */
+function avalanche(value: number): number {
+  let h = value >>> 0
+  h ^= h >>> 16
+  h = Math.imul(h, 0x85ebca6b)
+  h ^= h >>> 13
+  h = Math.imul(h, 0xc2b2ae35)
+  h ^= h >>> 16
+  return h >>> 0
+}
+
+/**
  * One phase of the key, per surface. `salt` keeps two surfaces from moving
  * together — without it every project that started its images on the left would
  * also start its prose on the left, which is a second template.
  */
 export function phaseOf(key: number, salt: number, count: number): number {
   if (count <= 1) return 0
-  const mixed = Math.imul(key + salt * 0x9e37, 0x85ebca6b) >>> 0
-  return mixed % count
+  return avalanche((key >>> 0) + Math.imul(salt, 0x9e3779b1)) % count
 }

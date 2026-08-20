@@ -100,7 +100,7 @@ const FONT_VARIABLES = [playfair, bodyFont, lora, sourceSerif, cormorant, inter,
 export async function generateMetadata(): Promise<Metadata> {
   const { brand } = await getThemeSettings()
   const description =
-    'GUHOMES là studio kiến trúc nội thất tại TP. Hồ Chí Minh — thiết kế căn hộ, nhà phố, biệt thự và không gian thương mại với vật liệu thật, ánh sáng và tỉ lệ.'
+    'GuHomes là studio kiến trúc nội thất tại TP. Hồ Chí Minh — thiết kế căn hộ, nhà phố, biệt thự và không gian thương mại với vật liệu thật, ánh sáng và tỉ lệ.'
 
   return {
     metadataBase: new URL(siteUrl),

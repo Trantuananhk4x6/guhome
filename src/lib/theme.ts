@@ -122,7 +122,7 @@ export const DEFAULT_MOTION: MotionConfig = {
 }
 
 export const DEFAULT_BRAND: BrandConfig = {
-  companyName: 'GUHOMES',
+  companyName: 'GuHomes',
   shortName: 'GU',
   tagline: 'Nội thất và kiến trúc cho khí hậu Sài Gòn',
   logoMediaId: null,

@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /*
- * GUHOMES — design tokens.
+ * GuHomes — design tokens.
  * Runtime values are CSS custom properties so the Admin theme editor can
  * override them per-request (see ThemeProvider -> inline <style>).
  * Tailwind utilities below map onto those variables, never onto raw hex.

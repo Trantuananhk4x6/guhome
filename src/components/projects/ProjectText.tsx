@@ -3,27 +3,27 @@
 /**
  * Prose inside a project story.
  *
- * Every seeded project runs four TEXT blocks — one headed, three plain — and
+ * Every seeded project runs three TEXT blocks — one headed, two plain — and
  * until now all 105 of them composed them in the same order: heading-in-a-rail,
- * then a measure right of centre, then one left of centre, then right again.
- * The order was correct and the *sequence* was the problem: a rule keyed only
- * to the block's index gives every project the same answer, because every
- * project has the same indices.
+ * then a measure right of centre, then one left of centre. The order was fine
+ * and the *sequence* was the problem: a rule keyed only to the block's index
+ * gives every project the same answer, because every project has the same
+ * indices.
  *
  * So the index picks a position inside a phrase, and the project picks which
  * phrase. `phase` comes from `compositionKey` — the project's own tally of
  * photographs, services, year and scene — so it is data, it is stable, it names
  * no slug, and project 106 gets one for free.
  *
- * FOUR AXES, FOUR READINGS. A single measure can sit left of centre, right of
+ * FOUR AXES, EIGHT READINGS. A single measure can sit left of centre, right of
  * centre, wide against the second column, or narrow in the eighth. Each phrase
- * is a permutation, so no axis repeats inside one story and two stories a page
- * apart never run the same order:
- *
- *   phase 0   inner · right · outer · left
- *   phase 1   left  · outer · right · inner
- *   phase 2   outer · left  · inner · right
- *   phase 3   right · inner · left  · outer
+ * is a permutation of all four, so no axis repeats inside one story, and eight
+ * of the twenty-four permutations are listed so that two stories rarely run the
+ * same order. A seeded project prints three TEXT blocks and the first of them
+ * carries a heading, so what a reader actually sees is positions 1 and 2 — all
+ * eight phrases differ there, and the odd-numbered ones also take the other
+ * headed composition, which makes eight distinct readings of the same block
+ * sequence.
  *
  * THE RULE MOVES WITH THE AXIS. A measure at `inner` or `outer` is near the
  * middle of the band, and the full-width hairline above it is what turns the
@@ -87,7 +87,17 @@ const PHRASES: readonly (readonly Axis[])[] = [
   ['left', 'outer', 'right', 'inner'],
   ['outer', 'left', 'inner', 'right'],
   ['right', 'inner', 'left', 'outer'],
+  ['inner', 'left', 'right', 'outer'],
+  ['outer', 'right', 'inner', 'left'],
+  ['left', 'inner', 'outer', 'right'],
+  ['right', 'outer', 'left', 'inner'],
 ]
+
+/**
+ * How many readings of one block sequence exist. `ProjectBlocks` draws a phase
+ * in this range, so adding a phrase here widens the catalogue automatically.
+ */
+export const PROSE_PHRASES = PHRASES.length
 
 /** A hairline across the whole band only makes sense under a centred measure. */
 const BAND_RULE: Record<Axis, boolean> = { inner: true, outer: true, left: false, right: false }

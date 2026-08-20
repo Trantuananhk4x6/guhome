@@ -5,6 +5,8 @@ import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { FALLBACK_FOOTER_NAV, FALLBACK_HEADER_NAV, withFallbackNav } from '@/components/layout/nav-fallback'
 import { ScrollProgress } from '@/components/layout/ScrollProgress'
+import { mediaUrl } from '@/lib/media'
+import { getMediaMap } from '@/server/queries/media'
 import { getNavigation, getThemeSettings } from '@/server/queries/site'
 
 /** Public shell: scroll rule, cursor, header, main landmark, espresso footer. */
@@ -15,6 +17,14 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
     getNavigation('header'),
     getNavigation('footer'),
   ])
+
+  // `logoMediaId` is an id on the theme row; resolve it here so the header stays
+  // a client component that receives a plain string. Falls back to setting the
+  // name in type when no logo is configured.
+  const logoMedia = theme.brand.logoMediaId
+    ? ((await getMediaMap([theme.brand.logoMediaId])).get(theme.brand.logoMediaId) ?? null)
+    : null
+  const logo = logoMedia ? mediaUrl(logoMedia, 512) : null
 
   return (
     <div className="relative flex min-h-screen flex-col">
@@ -28,7 +38,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
         Tới nội dung chính
       </a>
 
-      <Header nav={withFallbackNav(headerNav, FALLBACK_HEADER_NAV)} brand={theme.brand} />
+      <Header nav={withFallbackNav(headerNav, FALLBACK_HEADER_NAV)} brand={theme.brand} logo={logo} />
 
       <main id="main" className="flex-1">
         {children}

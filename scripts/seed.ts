@@ -556,14 +556,17 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
     },
     {
       key: 'SERVICES',
-      content: { label: '01–05', heading: 'Công trình nhỏ nhất\nrộng mười hai mét vuông.' },
+      // Both lines stay at or under the 18/23 characters the previous heading
+      // proved fit this six-column cell at 70px; SERVICES carries no `max-w`, so
+      // the column IS the measure and an extra character is an extra ragged line.
+      content: { label: '01–05', heading: 'Công trình nhỏ nhất\nlà mười hai mét vuông.' },
     },
     {
       key: 'IMMERSIVE_PROJECT',
       content: {
         label: 'Bốn điểm dừng',
         heading: 'Ai cũng dừng\nở tiền sảnh.',
-        body: 'Mắt vừa từ nắng ngoài đường bước vào còn mất mấy giây để chỉnh, nên người ta nhìn cái tủ giày trước khi nhìn phòng khách. Cuộn xuống là đi lại đúng quãng đường ấy, dừng bốn lần, lần cuối ở chi tiết vật liệu.',
+        body: 'Mắt vừa từ nắng ngoài đường bước vào còn mất mấy giây để chỉnh, nên người ta nhìn kỹ mảng tường sát cửa trước khi nhìn tới phòng khách. Cuộn xuống là đi lại đúng quãng đường ấy, dừng bốn lần, lần cuối ở chi tiết vật liệu.',
       },
     },
     {

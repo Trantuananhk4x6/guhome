@@ -1,4 +1,4 @@
-# Triển khai GUHOMES lên Vercel + trỏ DNS guhomes.vn
+# Triển khai GuHomes lên Vercel + trỏ DNS guhomes.vn
 
 Hai việc tách rời nhau: đưa site lên Vercel, rồi trỏ tên miền vào.
 Làm đúng thứ tự này, và **đọc phần cảnh báo về email trước khi sửa DNS**.

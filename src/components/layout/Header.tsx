@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
@@ -17,6 +18,14 @@ import { groupNav } from './nav-fallback'
 export interface HeaderProps {
   nav: NavItem[]
   brand: BrandConfig
+  /**
+   * Resolved URL of the brand mark, or null to set the name in type.
+   *
+   * Passed separately rather than added to `BrandConfig`, which stores
+   * `logoMediaId` and lives in the frozen `@/types/content`. The id is resolved
+   * to a URL server-side, so the client component never has to fetch it.
+   */
+  logo?: string | null
 }
 
 /** `/projects/tinh-vien` marks `/projects` active; `/` only matches exactly. */
@@ -124,7 +133,7 @@ function NavLink({
  * so renaming or reordering rows in the admin editor keeps their weight and
  * every row the editor publishes still renders somewhere.
  */
-export function Header({ nav, brand }: HeaderProps) {
+export function Header({ nav, brand, logo = null }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -318,13 +327,36 @@ export function Header({ nav, brand }: HeaderProps) {
               className="shrink-0 font-display text-[1.1875rem] font-normal uppercase leading-none tracking-[0.16em] transition-opacity duration-500 hover:opacity-60 md:text-[1.25rem] lg:text-[1.375rem]"
             >
               {/*
-                The one place on the site worth splitting into glyphs. Splitting
-                is a real cost — a span per letter, and the DOM has to be put
-                back on unmount — so it is spent on the mark rather than on any
-                sentence. `useLetterLift` restores the text and keeps an
-                aria-label, so assistive tech still hears one word.
+                The drawn mark when the brand has one, the wordmark set in type
+                when it does not — `logoMediaId` was settable in the admin and
+                rendered nowhere, so a logo uploaded there simply never appeared.
+                The image is the house mark only, not the full lockup: the
+                lockup stacks mark over wordmark and would be ~90px tall in a
+                64px masthead.
+
+                Height in `em` rather than px so it tracks the responsive type
+                scale beside it, and `priority` because this is above the fold on
+                every route.
               */}
-              <span ref={markRef}>{brand.companyName}</span>
+              {logo ? (
+                <Image
+                  src={logo}
+                  alt={brand.companyName}
+                  width={512}
+                  height={512}
+                  priority
+                  className="h-[1.9em] w-auto"
+                />
+              ) : (
+                /*
+                  The one place on the site worth splitting into glyphs.
+                  Splitting is a real cost — a span per letter, and the DOM has
+                  to be put back on unmount — so it is spent on the mark rather
+                  than on any sentence. `useLetterLift` restores the text and
+                  keeps an aria-label, so assistive tech still hears one word.
+                */
+                <span ref={markRef}>{brand.companyName}</span>
+              )}
             </Link>
 
             {/*

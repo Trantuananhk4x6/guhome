@@ -15,7 +15,7 @@ import { ImageFrame, Reveal, TextReveal } from './_components/motion'
 export const metadata: Metadata = buildMetadata({
   title: 'Bài viết',
   description:
-    'Ghi chép của GUHOMES về vật liệu, ánh sáng và những quyết định nhỏ trên công trường. Phần lớn bắt đầu từ một lần làm sai, và bài nào cũng dừng lại ở một con số cụ thể.',
+    'Ghi chép của GuHomes về vật liệu, ánh sáng và những quyết định nhỏ trên công trường. Phần lớn bắt đầu từ một lần làm sai, và bài nào cũng dừng lại ở một con số cụ thể.',
   path: '/journal',
 })
 

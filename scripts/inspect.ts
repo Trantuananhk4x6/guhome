@@ -223,7 +223,7 @@ async function main(): Promise<void> {
   }
 
   let defects = 0
-  console.log('\nGUHOMES — page inspection (no browser)\n')
+  console.log('\nGuHomes — page inspection (no browser)\n')
   console.log('  route         code    ms     KB  imgs  hN   issues')
   console.log('  ' + '-'.repeat(56))
   for (const r of reports) {

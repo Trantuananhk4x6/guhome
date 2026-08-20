@@ -511,8 +511,8 @@ export interface SeoDefaults {
 }
 
 export const DEFAULT_SEO: SeoDefaults = {
-  titleTemplate: '%s — GUHOMES',
-  defaultTitle: 'GUHOMES — Không gian mang tính cách.',
+  titleTemplate: '%s — GuHomes',
+  defaultTitle: 'GuHomes — Không gian mang tính cách.',
   description:
     'Studio nội thất và kiến trúc tại TP. Hồ Chí Minh. Chúng tôi thiết kế không gian sống bằng vật liệu thật, ánh sáng thật và tỷ lệ được cân nhắc.',
   ogImageId: null,

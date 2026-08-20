@@ -39,7 +39,7 @@ async function countRows(table: PgTable): Promise<number> {
   return rows[0]?.n ?? 0
 }
 
-console.log('\nGUHOMES — verifying database + media\n')
+console.log('\nGuHomes — verifying database + media\n')
 
 /* ---------------------------------- data ---------------------------------- */
 

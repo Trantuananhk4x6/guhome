@@ -118,7 +118,11 @@ function beatSize(kind: BandKind, key: number): number {
 export function phraseIndex(projects: readonly ProjectSummary[], startIndex: number): Band[] {
   const bands: Band[] = []
   let cursor = 0
-  let previous: BandKind | null = null
+  // A run that does not start at project 01 is a run with the masthead's lead
+  // plate above it — one project on a seven-column frame, which is a quiet band
+  // by any other name. Seeding the state with it is what stops /projects
+  // opening on a lead plate and then a second single-project plate.
+  let previous: BandKind | null = startIndex > 1 ? 'solo' : null
 
   while (cursor < projects.length) {
     const key = beatKey(projects[cursor], cursor)

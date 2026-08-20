@@ -16,7 +16,7 @@ import { Reveal, TextReveal } from './_components/motion'
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
   description:
-    'GUHOMES làm nội thất và kiến trúc ở TP. Hồ Chí Minh từ năm 2016. Mười hai công trình một năm là trần. Người ngồi nghe bạn hôm đầu cũng là người có mặt ở công trường ngày cuối.',
+    'GuHomes làm nội thất và kiến trúc ở TP. Hồ Chí Minh từ năm 2016. Mười hai công trình một năm là trần. Người ngồi nghe bạn hôm đầu cũng là người có mặt ở công trường ngày cuối.',
   path: '/studio',
 })
 
@@ -165,7 +165,7 @@ export default async function StudioPage() {
           <div className="mt-16 grid gap-12 lg:grid-cols-12">
             <Reveal delay={0.15} className="lg:col-span-6">
               <p className="u-body-lg max-w-[52ch]">
-                GUHOMES làm nội thất và kiến trúc ở TP. Hồ Chí Minh từ năm 2016. Phần lớn công
+                GuHomes làm nội thất và kiến trúc ở TP. Hồ Chí Minh từ năm 2016. Phần lớn công
                 việc là căn hộ nhận bàn giao thô và nhà phố một mặt tiền; thỉnh thoảng có một quán
                 ăn nhỏ chỉ mở buổi tối. Studio nhận tối đa mười hai công trình một năm, đủ để người
                 ngồi nghe bạn hôm đầu vẫn là người có mặt hôm thợ ghép tấm đá bếp đầu tiên. Nhiều
@@ -197,7 +197,7 @@ export default async function StudioPage() {
           <div className="mx-auto w-full max-w-[110rem]">
             <ImageFrame
               media={hero.cover}
-              alt={hero.cover?.alt ?? `${hero.title} — không gian do GUHOMES thiết kế`}
+              alt={hero.cover?.alt ?? `${hero.title} — không gian do GuHomes thiết kế`}
               ratio="aspect-[16/9]"
               sizes="(min-width: 1024px) 92vw, 100vw"
               width={2400}

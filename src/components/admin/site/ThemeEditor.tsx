@@ -453,7 +453,7 @@ export function ThemeEditor({ initial, logo: initialLogo, favicon: initialFavico
       <ConfirmDialog
         open={confirmReset}
         title="Khôi phục giao diện mặc định?"
-        description="Toàn bộ bảng màu, chữ, chuyển động và thương hiệu sẽ trở về giá trị gốc của GUHOMES. Thao tác này ghi đè bản đang lưu."
+        description="Toàn bộ bảng màu, chữ, chuyển động và thương hiệu sẽ trở về giá trị gốc của GuHomes. Thao tác này ghi đè bản đang lưu."
         confirmLabel="Khôi phục"
         cancelLabel="Huỷ"
         tone="danger"
