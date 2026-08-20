@@ -12,7 +12,7 @@ import { Reveal, TextReveal } from './_components/motion'
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
   description:
-    'Viết cho AN ATELIER diện tích, tình trạng bàn giao và tháng bạn muốn dọn vào, thư trả lời sẽ nói được điều gì đó cụ thể ngay từ lần đầu. Chúng tôi hồi âm trong vòng 24 giờ làm việc.',
+    'Thư nào gửi tới AN ATELIER cũng được đọc, dài hay ngắn. Có diện tích căn nhà và tháng bạn cần dọn vào thì hồi âm nói được điều gì đó cụ thể ngay từ lần đầu. Chúng tôi trả lời trong vòng 24 giờ làm việc.',
   path: '/contact',
 })
 
@@ -49,9 +49,10 @@ export default async function ContactPage() {
 
           <Reveal delay={0.15} className="mt-12 max-w-[54ch]">
             <p className="u-body-lg">
-              Viết cho chúng tôi diện tích, tình trạng bàn giao và tháng bạn muốn dọn vào, rồi thư
-              trả lời sẽ nói được điều gì đó cụ thể ngay từ lần đầu. Thiếu cả ba cũng không sao. Chỉ
-              là khi đó chúng tôi sẽ hỏi ngược lại bạn nhiều hơn là trả lời.
+              Thư nào gửi tới cũng được đọc, dài hay ngắn. Nhưng nếu trong đó có diện tích căn nhà
+              và tháng bạn cần dọn vào, hồi âm của chúng tôi sẽ nói được điều gì đó cụ thể ngay từ
+              lần đầu. Thiếu hai con số ấy cũng không sao. Chỉ là khi đó chúng tôi hỏi nhiều hơn
+              trả lời.
             </p>
           </Reveal>
         </div>
@@ -66,9 +67,8 @@ export default async function ContactPage() {
                 <Detail label="Địa chỉ">
                   <p>{brand.address}</p>
                   <p className="mt-2 text-muted">
-                    Ghé theo hẹn. Cái bàn dài ở giữa studio gần như lúc nào cũng đang bày mẫu của
-                    công trình đang chạy, nên chúng tôi cần biết trước một buổi để dọn chỗ cho bạn
-                    ngồi.
+                    Ghé thì báo trước một hôm. Cái bàn dài giữa studio gần như lúc nào cũng đang
+                    bày mẫu của công trình đang chạy, nên phải dọn bớt mới có chỗ cho bạn ngồi.
                   </p>
                 </Detail>
 
@@ -89,7 +89,7 @@ export default async function ContactPage() {
                     {brand.phone}
                   </a>
                   <p className="mt-2 text-muted">
-                    Thứ Hai đến thứ Sáu, 9:00 – 18:00; thứ Bảy theo hẹn. Ngoài giờ đó, nhắn tin
+                    Thứ Hai đến thứ Sáu, 9:00–18:00; thứ Bảy theo hẹn. Ngoài giờ đó thì nhắn tin
                     nhanh hơn gọi.
                   </p>
                 </Detail>
@@ -97,9 +97,9 @@ export default async function ContactPage() {
                 <Detail label="Phản hồi">
                   <p>Trong vòng 24 giờ làm việc.</p>
                   <p className="mt-2 text-muted">
-                    Buổi gặp đầu khoảng 60 phút và không tính phí. Tốt nhất là gặp ngay tại công
-                    trình, vì đứng trong phòng nhìn được cái dầm và hướng cửa thì chúng tôi mới nói
-                    được điều gì có ích.
+                    Buổi gặp đầu kéo dài chừng một tiếng và không tính phí. Gặp ngay tại công
+                    trình thì hơn hẳn, vì có đứng trong phòng, thấy cái dầm chạy ngang trần và cửa
+                    mở về hướng nào, chúng tôi mới nói được điều gì có ích.
                   </p>
                 </Detail>
 

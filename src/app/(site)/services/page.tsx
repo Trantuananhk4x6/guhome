@@ -15,7 +15,7 @@ import { ImageFrame, Reveal, TextReveal } from './_components/motion'
 export const metadata: Metadata = buildMetadata({
   title: 'Dịch vụ',
   description:
-    'Thiết kế nội thất, kiến trúc, cải tạo, thi công và đồ đặt riêng. Mỗi mục nói rõ bạn cầm về được những gì. Cuối trang là sáu việc AN ATELIER không nhận, kèm lý do.',
+    'Thiết kế nội thất, kiến trúc, cải tạo, thi công và đồ đặt riêng. Mỗi mục nói rõ bạn cầm về được những gì. Cuối trang là bảy việc AN ATELIER không nhận, và lý do của từng việc.',
   path: '/services',
 })
 
@@ -51,8 +51,9 @@ export default async function ServicesPage() {
             <Reveal delay={0.15} className="lg:col-span-6">
               <p className="u-body-lg max-w-[52ch]">
                 Bạn có thể đi cùng cả chặng, hoặc chỉ một đoạn. Mỗi mục dưới đây nói studio làm gì
-                và bạn cầm về được những gì. Phần đáng đọc nhất nằm ở cuối trang, chỗ liệt kê những
-                việc chúng tôi không nhận — vì đó mới là chỗ hay sinh chuyện vào tháng thứ sáu.
+                và bạn cầm về được những gì. Phần đáng đọc nhất nằm ở cuối trang, chỗ liệt kê bảy
+                việc chúng tôi không nhận. Tháng thứ sáu của một dự án là lúc người ta ước gì đã đọc
+                nó sớm hơn.
               </p>
             </Reveal>
 
@@ -165,14 +166,14 @@ export default async function ServicesPage() {
               Ngoài phạm vi
             </Label>
             <h2 className="u-display-sm mt-8 max-w-[20ch] text-ink">
-              Sáu việc studio không nhận.
+              Bảy việc studio không nhận.
             </h2>
             <p className="u-body-lg mt-8 max-w-[50ch]">
               Nói ra từ đầu thì mất một khách; giấu đi thì mất sáu tháng của cả hai bên.
             </p>
             <p className="mt-6 max-w-[50ch] font-body text-[0.9375rem] leading-[1.8] text-muted">
-              Mỗi dòng dưới đây đến từ một dự án có thật, và lần nào chúng tôi cũng nhận ra hơi
-              muộn.
+              Không dòng nào ở đây là giả định. Lần nào chúng tôi cũng nhận ra hơi muộn, và lần
+              nào cũng có người phải trả giá cho cái muộn ấy.
             </p>
           </Reveal>
 
@@ -213,9 +214,9 @@ export default async function ServicesPage() {
                 </div>
               </div>
               <p className="u-body-lg mt-12 max-w-[46ch] text-canvas/60">
-                Buổi gặp đầu khoảng 60 phút, không tính phí. Nếu sau buổi đó chúng tôi thấy mình
-                không phải người phù hợp, bạn sẽ nghe câu ấy ngay hôm ấy — và vẫn cầm về danh sách
-                những việc cần quyết trước khi gọi cho studio tiếp theo.
+                Buổi gặp đầu khoảng 60 phút và không tính phí. Nếu sau buổi đó chúng tôi thấy mình
+                không phải người phù hợp, bạn sẽ nghe đúng câu ấy ngay hôm ấy, và vẫn cầm về được
+                danh sách những việc cần quyết trước khi gọi cho studio tiếp theo.
               </p>
             </Reveal>
           </div>

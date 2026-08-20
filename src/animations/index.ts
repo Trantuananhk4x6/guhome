@@ -47,6 +47,7 @@ export {
 export type { HorizontalScrollOptions } from './projects'
 export {
   CURTAIN_ATTR,
+  CURTAIN_COVERING_ATTR,
   CURTAIN_HIDDEN,
   CURTAIN_NAV_TIMEOUT_MS,
   CURTAIN_OPT_OUT_ATTR,
@@ -55,6 +56,7 @@ export {
   coverNow,
   coverTimeline,
   curtainArrivalWait,
+  curtainCovering,
   curtainNavTarget,
   curtainTimeline,
   destinationPending,

@@ -460,12 +460,12 @@ async function seedMaterials(): Promise<Map<string, string>> {
     join(root, 'src/data/content/site.json'),
   )
   const materials = site?.materials ?? [
-    { slug: 'go', name: 'Gỗ', description: 'Óc chó, sồi tự nhiên — vân dọc, dầu lau mờ.' },
-    { slug: 'da', name: 'Đá', description: 'Travertine và đá vôi, bề mặt honed.' },
-    { slug: 'da-hoa-cuong', name: 'Marble', description: 'Calacatta, Panda White cho mặt bếp và bàn.' },
-    { slug: 'kim-loai', name: 'Kim loại', description: 'Đồng thau xước, thép sơn tĩnh điện đen mờ.' },
-    { slug: 'vai', name: 'Vải', description: 'Linen, bouclé, tông cát và khói.' },
-    { slug: 'kinh', name: 'Kính', description: 'Kính siêu trong, kính reeded lấy sáng gián tiếp.' },
+    { slug: 'go', name: 'Gỗ', description: 'Óc chó và sồi tự nhiên, lau dầu cứng để thớ gỗ còn nhám dưới tay.' },
+    { slug: 'da', name: 'Đá', description: 'Travertine mài mờ, lỗ khí để nguyên, không trám.' },
+    { slug: 'da-hoa-cuong', name: 'Marble', description: 'Một khối cho cả căn nhà, cắt đối xứng rồi ghép liền vân.' },
+    { slug: 'kim-loai', name: 'Kim loại', description: 'Đồng thau xước không phủ bóng, thép sơn tĩnh điện đen mờ.' },
+    { slug: 'vai', name: 'Vải', description: 'Lanh mộc và bông thô, chọn theo cách rũ trước khi tính màu.' },
+    { slug: 'kinh', name: 'Kính', description: 'Kính siêu trong khi cần biến mất, kính reeded khi chỉ cần ánh sáng.' },
   ]
   const bySlug = new Map<string, string>()
   for (const [i, m] of materials.entries()) {
@@ -498,11 +498,11 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
   }>(join(root, 'src/data/content/site.json'))
 
   const services = site?.services ?? [
-    { slug: 'thiet-ke-noi-that', indexLabel: '01', title: 'Thiết kế nội thất', summary: 'Chúng tôi vẽ đến tỉ lệ 1:5 ở những chỗ bàn tay chạm vào, vì không ai đoán được ý đồ từ một bản 1:50.', description: '' },
-    { slug: 'thiet-ke-kien-truc', indexLabel: '02', title: 'Thiết kế kiến trúc', summary: 'Chiều sâu của hiên quyết định căn phòng phía sau nó mát hay nóng.', description: '' },
-    { slug: 'thiet-ke-thi-cong', indexLabel: '03', title: 'Thiết kế & thi công', summary: 'Bạn chỉ phải gọi một số máy, kể cả khi lỗi nằm ở phía chúng tôi.', description: '' },
-    { slug: 'cai-tao', indexLabel: '04', title: 'Cải tạo', summary: 'Nhiều căn không cần đập ra làm lại. Chúng tôi hay đề nghị dừng sớm hơn chủ nhà tính.', description: '' },
-    { slug: 'do-noi-that', indexLabel: '05', title: 'Đồ nội thất đặt riêng', summary: 'Đóng theo số đo thật của căn phòng.', description: '' },
+    { slug: 'thiet-ke-noi-that', indexLabel: '01', title: 'Thiết kế nội thất', summary: 'Ở những chỗ bàn tay chạm vào, bản vẽ đi tới tỉ lệ 1:5. Không ai đoán được ý đồ từ một bản 1:50.', description: '' },
+    { slug: 'thiet-ke-kien-truc', indexLabel: '02', title: 'Thiết kế kiến trúc', summary: 'Chiều sâu của hiên quyết định căn phòng phía sau nó mát hay nóng suốt tháng Tư.', description: '' },
+    { slug: 'thiet-ke-thi-cong', indexLabel: '03', title: 'Thiết kế & thi công', summary: 'Sai ở bản vẽ hay sai ngoài công trường, bạn cũng chỉ phải gọi một số máy.', description: '' },
+    { slug: 'cai-tao', indexLabel: '04', title: 'Cải tạo', summary: 'Nhiều căn không cần đập ra làm lại. Phương án gửi đi thường dừng sớm hơn chủ nhà tính.', description: '' },
+    { slug: 'do-noi-that', indexLabel: '05', title: 'Đồ nội thất đặt riêng', summary: 'Đóng theo số đo của căn phòng, và của người sẽ đứng nấu trong đó.', description: '' },
   ]
 
   for (const [i, s] of services.entries()) {
@@ -524,7 +524,7 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       content: {
         eyebrow: 'AN ATELIER · TP. Hồ Chí Minh',
         title: 'Ba giờ chiều,\nnhà mới nói thật.',
-        body: 'Căn hộ ở đây gần như luôn chỉ có một mặt kính, và mặt ấy thường quay về hướng tây, nên phải đợi nắng đổ xuống sàn mới biết phòng nào thật sự được dùng. Mọi thứ khác vẽ sau.',
+        body: 'Căn hộ vừa nhận bàn giao thì căn nào cũng vang. Nói một câu là bốn bức tường trả lại nguyên câu đó, và phải đến tấm rèm đầu tiên, cái tủ gỗ đầu tiên, nó mới thôi nghe như một công trình đang xây.',
         cta: { label: 'Xem 105 công trình', href: '/projects' },
       },
     },
@@ -532,16 +532,16 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       key: 'FEATURED_PROJECTS',
       content: {
         label: 'Từ 76 đến 320 m²',
-        heading: 'Không cái nào\ngiống cái nào.',
-        body: 'Cái nên xem không phải màu gỗ, mà là chỗ mỗi căn bị bó lại và cách nó thoát ra.',
+        heading: 'Một căn nhà,\nnên xem chỗ nào?',
+        body: 'Không phải màu gỗ, mà là chỗ mỗi căn bị bó lại — một cây cột không dời được, một mặt kính quay sai hướng — và cách nó lách ra khỏi chỗ đó.',
       },
     },
     {
       key: 'STUDIO',
       content: {
         label: 'Công trình 2021–2026',
-        heading: 'Đo thang máy\ntrước khi vẽ tủ.',
-        body: 'Phần lớn công việc bắt đầu trong một căn hộ chưa có ai ở, nơi sàn còn phủ bạt và tiếng nói dội lại từ bốn bức tường trống. Chủ nhà cầm theo một danh sách đồ đạc dài hơn số mét vuông có thật.\n\nĐể biết chiếc tủ có vào được nhà hay không, phải đo hai thứ mà không ai chụp hình bao giờ. Lòng thang máy chở hàng, và bề rộng con hẻm ở chỗ hẹp nhất. Hai con số đó quyết định món nào đóng liền khối được và món nào phải cắt làm ba rồi ghép lại ngay giữa phòng khách. Trong hợp đồng, cái hẻm không tồn tại.',
+        heading: 'Hai con số\nkhông ai nhắc.',
+        body: 'Gần như lần nào cũng vậy, buổi đo đầu tiên diễn ra trong một căn hộ chưa có ai ở, sàn còn phủ bạt, cửa sổ còn dán nilon xanh. Chủ nhà mang theo một danh sách đồ đạc dài hơn số mét vuông có thật.\n\nMuốn biết cái tủ có vào được nhà hay không thì phải đo hai thứ không nằm trong bất kỳ bộ hồ sơ nào. Lòng thang máy chở hàng. Bề rộng con hẻm ở chỗ hẹp nhất. Hai con số đó quyết định món nào được đóng liền khối, món nào phải cắt làm ba rồi ghép lại ngay giữa phòng khách trước mặt chủ nhà. Cái hẻm không có trong hợp đồng, nhưng nó vẽ lại cái tủ nhiều hơn bất cứ ai trong studio.',
         stats: [
           { label: 'Căn hộ', value: '41' },
           { label: 'Nhà phố và biệt thự', value: '23' },
@@ -558,32 +558,32 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       key: 'IMMERSIVE_PROJECT',
       content: {
         label: 'Bốn điểm dừng',
-        heading: 'Chậm như lúc\nbạn đi xem nhà.',
-        body: 'Một tấm ảnh không kể được thứ tự. Người ta đứng ở cổng một lúc, bước vào, dừng lại ở chỗ sáng nhất, rồi sau cùng mới cúi xuống xem hai tấm đá được ghép với nhau ra sao. Cuộn xuống, theo đúng thứ tự đó.',
+        heading: 'Đi chậm lại.',
+        body: 'Ảnh chụp đưa cả căn phòng cho bạn trong một giây, còn ngoài đời thì không ai xem nhà kiểu đó. Cuộn xuống, đi lại đúng quãng đường của một người vừa mở cửa lần đầu.',
       },
     },
     {
       key: 'PHILOSOPHY',
       content: {
-        label: 'Độ ẩm 75–80% quanh năm',
-        heading: 'Gỗ sẫm lại\nở chỗ tay hay chạm.',
-        body: 'Mặt bàn ăn và tay vịn cầu thang, sau chừng hai năm, sẽ sẫm hơn phần gỗ nằm khuất trong bóng tủ, và không ai chỉnh lại cho đều được nữa. Nhưng ở cái độ ẩm này, một cánh tủ gỗ thịt cao 2,4 mét sẽ tự tìm đường cong ngay trong hai mùa mưa đầu, còn tấm MDF lõi xanh phủ veneer óc chó thì không. Nên gỗ thịt chỉ đi vào tay vịn và mép bàn.',
+        label: 'Sau ngày bàn giao',
+        heading: 'Tay vịn sẫm lại\ntrước phần còn lại.',
+        body: 'Sau chừng hai năm, mặt bàn ăn và tay vịn cầu thang sẽ đậm hơn hẳn phần gỗ nằm khuất trong bóng tủ, và không ai chỉnh cho đều lại được nữa. Đó không phải hỏng. Hỏng là khi một cánh tủ gỗ thịt cao 2,4 mét tự tìm ra đường cong của nó ngay trong hai mùa mưa đầu tiên, trong khi tấm MDF lõi xanh phủ veneer óc chó bên cạnh vẫn phẳng lì, nên gỗ thịt ở đây chỉ được đi vào tay vịn và mép bàn.',
       },
     },
     {
       key: 'JOURNAL',
       content: {
         label: 'Ghi chép xưởng',
-        heading: 'Ai cũng hỏi\nđúng ba câu đó.',
-        body: 'Gỗ nở bao nhiêu trong mùa mưa, một phòng cần mấy mạch đèn, một căn hộ 60 mét vuông có làm wabi-sabi được không — chúng tôi viết hẳn ra một lần cho gọn.',
+        heading: 'Nhiều số,\nít hình.',
+        body: 'Trong này gần như không có ảnh đẹp, chỉ có những con số phải nhớ trước khi ký duyệt một bảng vật liệu. Mỗi bài bốn phút, và không bài nào viết cho người đang tìm cảm hứng.',
       },
     },
     {
       key: 'CTA',
       content: {
         label: 'Trả lời trong 24 giờ làm việc',
-        heading: 'Cứ gửi mặt bằng,\nchúng tôi xem.',
-        body: 'Kèm thêm cái ngày bạn muốn dọn vào là chúng tôi đã hình dung được gần hết phần còn lại. Gấp quá thì nói ngay từ email đầu tiên.',
+        heading: 'Chưa chắc chắn\ncũng cứ nhắn.',
+        body: 'Có người nhắn khi vẫn đang cân nhắc giữa hai căn hộ, có người nhắn khi thợ đã vào công trình được ba tuần. Kiểu đầu dễ hơn nhiều.',
         buttonLabel: 'Liên hệ',
         href: '/contact',
       },

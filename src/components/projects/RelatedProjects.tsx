@@ -147,6 +147,18 @@ export function RelatedProjects({ projects, heading, className }: RelatedProject
           // when `scrollWidth` runs out, leaving the last card hard against the
           // right side with none of the gutter the first card opens with.
           endPadding={END_PADDING_PX}
+          /*
+            The pinned section has to be the height of the screen it is pinned
+            to. `useHorizontalScroll` pins at `top top` for the full length of
+            the travel — 1,872px at 1600×1000 — and the track is only about
+            810px tall there, so the bottom fifth of the viewport was empty
+            canvas for the best part of two screens of scrolling. That is the
+            longest-lived hole on a project page and it is pure geometry.
+            `min-h`, never a fixed height: at 2560px a card is capped at 44rem
+            and the track grows past a short viewport, and this section is
+            `lg:overflow-hidden`, so a fixed height would clip it.
+          */
+          className="lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center"
           // `py-6` keeps the card shadow inside the scroll box, so an
           // `overflow-x-auto` strip never grows a stray vertical scrollbar.
           trackClassName="items-start gap-10 px-(--spacing-gutter) py-6"

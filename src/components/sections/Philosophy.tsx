@@ -58,10 +58,16 @@ export function Philosophy({ section, data }: HomeSectionProps) {
   return (
     <section data-home-section="PHILOSOPHY" className="relative isolate overflow-hidden bg-surface">
       <figure className="relative isolate">
+        {/* A full viewport of one photograph. At 16/7 (~700px) the "held breath"
+            was shorter than the dense section above it, which is backwards: a
+            quiet beat earns its silence by taking real time. This is the
+            strongest single gesture available at the page's halfway mark, and it
+            is the section that answers "at least one must be genuinely QUIET".
+            `lg:aspect-auto` is required to cancel `sm:aspect-[3/2]`. */}
         <div
           ref={frameRef}
           data-reveal
-          className="relative isolate aspect-[4/5] w-full overflow-hidden bg-surface-alt sm:aspect-[3/2] lg:aspect-[16/7] lg:min-h-[35rem]"
+          className="relative isolate aspect-[4/5] w-full overflow-hidden bg-surface-alt sm:aspect-[3/2] lg:aspect-auto lg:h-[100svh] lg:min-h-[35rem]"
         >
           <span data-reveal-media className="absolute inset-x-0 top-[-8%] bottom-[-8%] block">
             <SectionImage media={image} alt={alt} sizes="100vw" width={2400} />

@@ -2,17 +2,24 @@
  * The homepage's compositional vocabulary — one place, so eight sections read as
  * one hand.
  *
- * These belong in `src/styles/globals.css` as `.u-display-lg`, `.u-bleed-*` and
- * `.u-scrim-*`; that file is frozen for this workflow (ARCHITECTURE §0), so the
- * same values live here as Tailwind v4 arbitrary utilities and shared style
- * objects instead. Every display step keeps the `var(--display-scale)`
- * multiplier the admin type-scale control writes — drop it and that control
- * silently stops working.
+ * ONE SCALE, ONE DEFINITION. These three steps used to be restated here as
+ * Tailwind arbitrary values because `src/styles/globals.css` was frozen and did
+ * not yet carry them. It now does — `.u-display-lg`, `.u-display`,
+ * `.u-display-sm`, byte-for-byte the same clamps, `var(--display-scale)`
+ * multiplier included — and /studio already reads them. Two copies of one scale
+ * means tuning either one silently fails to move the other, so these constants
+ * are now the class names. The tailwind-merge hazard documented here (a
+ * `leading-[...]` written before `text-[...]` is dropped by `cn`) disappears
+ * with them: a plain class carries neither utility.
+ *
+ * `.u-figure` — the one step the score adds — has since landed in `globals.css`
+ * too, so it is referenced the same way rather than restated here.
  *
  * THE SCALE, at 1600 / at 390:
  *   DISPLAY_LG  112 / 42   opening and closing statements only (Hero h1, Cta h2)
  *   DISPLAY      70 / 30   a section's loudest line, set beside content
  *   DISPLAY_SM   44 / 22   project, service, article and section-header titles
+ *   FIGURE       56 / 32   a number in the studio ledger, not a heading
  * 112 / 70 / 44 is a real scale (1.60, 1.59); 112 / 52 with nothing between is
  * what made every heading either a title card or a caption.
  */
@@ -21,22 +28,28 @@ import type { CSSProperties } from 'react'
 
 /* ------------------------------- type scale ------------------------------- */
 
-// `text-[...]` must precede `leading-[...]`: tailwind-merge treats a font-size
-// utility as conflicting with `leading-*` (because `text-lg/7` carries one), so a
-// leading written first is silently dropped by `cn`.
+// The class already sets family and weight; these are for the spans that carry a
+// display step without being a heading, and for `text-wrap: balance`, which the
+// class deliberately leaves to the caller.
 const DISPLAY_BASE = 'font-display font-medium text-balance'
 
 /** The page's bookends. Permitted in exactly two elements site-wide. */
-export const DISPLAY_LG = `${DISPLAY_BASE} text-[calc(clamp(2.625rem,7vw,8rem)*var(--display-scale))] leading-[1.02] tracking-[-0.024em]`
+export const DISPLAY_LG = `u-display-lg ${DISPLAY_BASE}`
 
 /** A section statement that has to share its band with a photograph. */
-export const DISPLAY = `${DISPLAY_BASE} text-[calc(clamp(1.875rem,4.4vw,5rem)*var(--display-scale))] leading-[1.04] tracking-[-0.02em]`
+export const DISPLAY = `u-display ${DISPLAY_BASE}`
 
 /** Titles inside a band: projects, services, articles, section headers. */
-export const DISPLAY_SM = `${DISPLAY_BASE} text-[calc(clamp(1.375rem,2.75vw,2.75rem)*var(--display-scale))] leading-[1.14] tracking-[-0.012em]`
+export const DISPLAY_SM = `u-display-sm ${DISPLAY_BASE}`
 
-/** A figure in the studio ledger — a number, not a heading. */
-export const FIGURE = 'font-display font-light text-[clamp(1.75rem,3vw,2.75rem)] leading-none'
+/**
+ * A figure in the studio ledger — a number, not a heading. 56px at 1600 against
+ * a 44px section heading is 1.27: the evidence outweighs the label introducing
+ * it without becoming a fourth display step. At the old 2.75rem cap it resolved
+ * to exactly 44px, so the ledger's numbers weighed the same as its own heading
+ * and the densest section on the page had no internal hierarchy.
+ */
+export const FIGURE = 'u-figure'
 
 /* --------------------------------- rhythm --------------------------------- */
 

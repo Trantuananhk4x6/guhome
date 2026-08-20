@@ -17,9 +17,21 @@
  *            column pinned to one edge — and centring it is the only time this
  *            page centres anything, which is what marks it as a pause.
  *
+ *   LEDE     the plain composition's opening statement — the TEXT block that
+ *            follows the hero. Wider column, one step up in size, weighted
+ *            left of the band. It is the only body copy on the page set above
+ *            17px, which is what makes the paragraphs after it read as the
+ *            record rather than as more of the same voice.
+ *
  * `occurrence` shifts the plain measure a column left or right of centre on
  * alternate blocks, so two paragraphs separated by a photograph never land on
  * exactly the same axis.
+ *
+ * MEASURE. Every prose column is capped in `ch`, not in columns. The plain path
+ * used to hand its paragraphs the whole six-column span with no cap: 720px of
+ * 17px type is roughly 90 characters a line, half again the comfortable measure
+ * and the widest running text anywhere on the site. Five columns and a 62ch cap
+ * bring it back to ~70.
  */
 
 import { useRef } from 'react'
@@ -37,6 +49,8 @@ export interface ProjectTextProps {
   width?: 'narrow' | 'wide'
   /** 0-based position among the TEXT blocks of this story. */
   occurrence?: number
+  /** This block opens the story — it is the first thing after the hero. */
+  lede?: boolean
   className?: string
 }
 
@@ -54,6 +68,7 @@ export function ProjectText({
   align = 'left',
   width = 'narrow',
   occurrence = 0,
+  lede = false,
   className,
 }: ProjectTextProps) {
   const headingRef = useRef<HTMLHeadingElement>(null)
@@ -66,9 +81,17 @@ export function ProjectText({
   if (paragraphs.length === 0 && !heading) return null
 
   const prose = (
-    <div ref={bodyRef} data-reveal className="flex flex-col gap-6">
+    <div ref={bodyRef} data-reveal className={cn('flex flex-col', lede ? 'gap-7' : 'gap-6')}>
       {paragraphs.map((paragraph, i) => (
-        <p key={i} data-reveal data-reveal-item className="text-ink/85 text-[1.0625rem] leading-[1.75]">
+        <p
+          key={i}
+          data-reveal
+          data-reveal-item
+          className={cn(
+            'text-ink/85',
+            lede ? 'max-w-[56ch] text-[1.1875rem] leading-[1.7]' : 'max-w-[62ch] text-[1.0625rem] leading-[1.75]',
+          )}
+        >
           {paragraph}
         </p>
       ))}
@@ -96,8 +119,14 @@ export function ProjectText({
   // is visibly placed inside it. The measure then swings left of centre and
   // right of centre on alternate blocks, so two paragraphs a page apart never
   // sit on the same axis.
-  const swung =
-    occurrence % 2 === 1 ? 'lg:col-span-6 lg:col-start-6' : 'lg:col-span-6 lg:col-start-3'
+  // Five columns, not six: at six the cap below never binds and the line runs
+  // to ~90 characters. The lede takes six and starts a column further left, so
+  // the opening statement and the paragraphs that answer it never share an axis.
+  const swung = lede
+    ? 'lg:col-span-6 lg:col-start-2'
+    : occurrence % 2 === 1
+      ? 'lg:col-span-5 lg:col-start-7'
+      : 'lg:col-span-5 lg:col-start-4'
 
   return (
     // The small top pad is load-bearing: a TEXT block often follows a

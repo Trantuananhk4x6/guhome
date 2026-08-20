@@ -25,9 +25,14 @@ function isActive(pathname: string, href: string): boolean {
 }
 
 /**
- * One rail item. `lead` is set in display serif at 17px against the 11px
- * uppercase labels beside it — the size and the family are the hierarchy, so
- * the bar states which door matters instead of offering six identical ones.
+ * One rail item, and the only place the bar's hierarchy is written.
+ *
+ * `lead` is set in the display serif at 17px against 11px uppercase labels: the
+ * size AND the family carry the difference, so the rail states which door
+ * matters instead of offering four identical ones. Both variants set
+ * `leading-none` on purpose — it collapses each link to a box that ends ~1.5px
+ * under its own baseline, whatever the family, which is what lets one `-bottom-2`
+ * put every hover rule in the bar on a single level.
  */
 function NavLink({
   item,
@@ -46,10 +51,15 @@ function NavLink({
       href={item.href}
       aria-current={active ? 'page' : undefined}
       className={cn(
+        // `leading-none` trails the font size in BOTH branches, never sits in
+        // the shared base: tailwind-merge drops a `leading-*` written before a
+        // `text-[...]`, and it did — the served lead link carried the body's 1.6
+        // while the labels beside it carried 1, which is exactly the mismatch
+        // that put their two hover rules at different depths.
         'group/nav relative inline-flex items-baseline text-current transition-opacity duration-500 ease-editorial',
         lead
           ? 'font-display text-[1.0625rem] leading-none tracking-[-0.01em] opacity-100'
-          : 'u-label text-current',
+          : 'u-label leading-none text-current',
         !lead &&
           (active
             ? 'opacity-100'
@@ -67,8 +77,7 @@ function NavLink({
       <span
         aria-hidden="true"
         className={cn(
-          'absolute left-0 h-px w-full origin-left bg-accent transition-transform duration-500 ease-editorial',
-          lead ? '-bottom-2.5' : '-bottom-2',
+          'absolute -bottom-2 left-0 h-px w-full origin-left bg-accent transition-transform duration-500 ease-editorial',
           active ? 'scale-x-100' : 'scale-x-0 group-hover/nav:scale-x-100 group-focus-visible/nav:scale-x-100',
         )}
       />
@@ -87,16 +96,32 @@ function NavLink({
  * legible over any photograph, however bright the frame under it happens to be.
  *
  * COMPOSITION. Six evenly-spaced links centred between a wordmark and a button
- * is the default arrangement of every generated agency site, and it says the
- * six destinations are equal when they are nothing like it. The bar is now a
- * masthead: the wordmark on the left carries `Trang chủ` (the way back belongs
- * on the mark, not in the list — the same rule `groupNav` states and the mobile
- * sheet already follows), a hairline crosses the empty middle instead of
- * leaving a hole there, the reading destinations sit right of it at label size,
- * `Dự án` leads them in display serif, and `Liên hệ` is lifted out of the list
- * entirely to sit past a vertical rule as the one conversion. Roles are matched
- * by path, so renaming or reordering rows in the admin editor keeps their
- * weight and every row the editor publishes still renders somewhere.
+ * is the default arrangement of every generated agency site, and it says the six
+ * destinations are equal when they are nothing like it. This bar is a masthead
+ * instead, built on three ideas:
+ *
+ * ONE AXIS. Every mark in the bar hangs off a single baseline — the wordmark,
+ * `Dự án`, the three labels, the mobile trigger. The outer row still centres
+ * that group inside its own height, so the inner row is baseline-aligned and the
+ * outer one is not; do not collapse the two, or the masthead sticks to the top
+ * of the bar instead of sitting in it.
+ *
+ * ONE RULE LEVEL. The spine crossing the middle, every nav hover rule and the
+ * `Liên hệ` underline all sit ~9px under that shared baseline, so the bar reads
+ * as one ruled line with type strung along it rather than four unrelated
+ * hairlines. The `translate-y` on the spine is what tunes it to the underline
+ * button's own rule depth.
+ *
+ * FOUR REGISTERS, NOT SIX ROWS. `Trang chủ` rides the wordmark (the way back
+ * belongs on the mark, which is the rule `groupNav` states and the mobile sheet
+ * already follows); the wordmark is the largest thing in the bar because a
+ * masthead's mark outranks its menu; `Dự án` leads the rail in display serif;
+ * the reading destinations cluster tighter beside it at label size, so the
+ * spacing itself says which of the four is not like the others; and `Liên hệ` is
+ * lifted out of the list entirely, past an accent tick — the one place colour is
+ * safe on a bar that has to invert over a photograph. Roles are matched by path,
+ * so renaming or reordering rows in the admin editor keeps their weight and
+ * every row the editor publishes still renders somewhere.
  */
 export function Header({ nav, brand }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null)
@@ -250,72 +275,133 @@ export function Header({ nav, brand }: HeaderProps) {
           className="u-scrim-t pointer-events-none absolute inset-x-0 top-0 h-40 opacity-0 transition-opacity duration-700 ease-editorial group-data-[scrim=on]/hdr:opacity-100"
         />
 
-        <div className="u-gutter relative flex h-20 items-center gap-5 md:h-24 md:gap-6 lg:gap-8">
-          {/*
-            The mark carries the way home. `Trang chủ` is a row the admin owns
-            and it keeps its label in the accessible name and in the mobile
-            sheet — it simply does not need a sixth identical tab pointing at
-            the page the wordmark already points at.
-          */}
-          <Link
-            href={homeHref}
-            aria-current={homeActive ? 'page' : undefined}
-            aria-label={`${brand.companyName} — ${home?.label ?? 'Trang chủ'}`}
-            className="shrink-0 font-display text-[0.9375rem] font-light uppercase leading-none tracking-[0.2em] transition-opacity duration-500 hover:opacity-60 md:text-base"
-          >
-            {brand.companyName}
-          </Link>
+        {/*
+          The outer row owns the bar's height and centres what is inside it; the
+          inner row owns the axis. Splitting them is not cosmetic — a
+          baseline-aligned flex container has no cross-axis centre to align to,
+          so putting `items-baseline` on a row with an explicit height parks the
+          whole masthead against the top edge of the bar.
 
-          {/*
-            The rule crossing the middle is the masthead's spine: it ties the
-            mark to the rail on one axis and fills the void that six centred
-            links used to float in.
-          */}
-          <span
-            aria-hidden="true"
-            className="hidden h-px min-w-6 flex-1 bg-current opacity-25 transition-opacity duration-700 md:block"
-          />
+          The bar condenses once it has a ground of its own. 96 → 76px is the
+          same move a printed masthead makes when it becomes a running head: the
+          full mark on the page you arrive at, a tighter one on every page you
+          scroll through.
+        */}
+        <div
+          className={cn(
+            'u-gutter relative flex h-20 items-center transition-[height] duration-700 ease-editorial md:h-24',
+            'md:group-data-[solid=true]/hdr:h-[4.75rem]',
+          )}
+        >
+          <div className="flex w-full items-baseline gap-x-5 md:gap-x-6 lg:gap-x-8">
+            {/*
+              The mark carries the way home. `Trang chủ` is a row the admin owns
+              and it keeps its label in the accessible name and in the mobile
+              sheet — it simply does not need a sixth identical tab pointing at
+              the page the wordmark already points at.
 
-          <nav
-            aria-label="Điều hướng chính"
-            className="hidden shrink-0 items-baseline gap-x-6 md:flex lg:gap-x-9"
-          >
-            {lead ? <NavLink item={lead} variant="lead" pathname={pathname} /> : null}
-            {rest.map((item) => (
-              <NavLink key={item.id} item={item} variant="rest" pathname={pathname} />
-            ))}
-          </nav>
+              22px against the rail's 17px serif and 11px caps: the mark is the
+              largest thing in the bar, which it was not before. Tracking comes
+              DOWN as the size goes up (0.2em → 0.16em) because letterspacing is
+              an optical correction, not a style — the wider the letters, the
+              less air they need between them.
+            */}
+            <Link
+              href={homeHref}
+              aria-current={homeActive ? 'page' : undefined}
+              aria-label={`${brand.companyName} — ${home?.label ?? 'Trang chủ'}`}
+              className="shrink-0 font-display text-[1.1875rem] font-normal uppercase leading-none tracking-[0.16em] transition-opacity duration-500 hover:opacity-60 md:text-[1.25rem] lg:text-[1.375rem]"
+            >
+              {brand.companyName}
+            </Link>
 
-          {contact ? (
-            <div className="hidden shrink-0 items-center gap-6 md:flex lg:gap-8">
-              <span aria-hidden="true" className="h-5 w-px bg-current opacity-25" />
-              <Button
-                href={contact.href}
-                variant="underline"
-                size="sm"
-                tone="ink"
-                withArrow
-                aria-current={isActive(pathname, contact.href) ? 'page' : undefined}
-                className="text-current"
-              >
-                {contact.label}
-              </Button>
-            </div>
-          ) : null}
+            {/*
+              The spine. It fills the void six centred links used to float in and
+              ties the mark to the rail on one line — set ~9px under the shared
+              baseline so it lands at the same depth as every hover rule and the
+              `Liên hệ` underline, rather than crossing the type at its optical
+              middle the way a divider would.
 
-          <button
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            aria-expanded={menuOpen}
-            aria-controls="an-mobile-menu"
-            className="u-label ml-auto flex items-center gap-3 text-current md:hidden"
-          >
-            <span aria-hidden="true" className="flex h-3 w-6 flex-col justify-between">
-              <span className="h-px w-full bg-current" />
-              <span className="h-px w-full bg-current" />
-            </span>
-            Menu
-          </button>
+              `flex-1` with no minimum on purpose: this is the only elastic item
+              in a row of `shrink-0` blocks, so at the tightest breakpoint it
+              yields to the type instead of pushing the conversion off the edge.
+              A rule that shortens is right; a rail that overflows is not.
+            */}
+            <span
+              aria-hidden="true"
+              className="hidden h-px min-w-0 flex-1 translate-y-[9px] self-baseline bg-current opacity-20 md:block"
+            />
+
+            <nav
+              aria-label="Điều hướng chính"
+              className="hidden shrink-0 items-baseline gap-x-8 md:flex lg:gap-x-12"
+            >
+              {lead ? <NavLink item={lead} variant="lead" pathname={pathname} /> : null}
+              {/*
+                The three reading destinations cluster at half the gap that
+                separates them from `Dự án`, so the rail is read as one lead and
+                a group rather than as four equal tabs. Rendered only when the
+                editor has published something for it — an empty span would leave
+                the lead sitting against a 48px gap and nothing after it.
+              */}
+              {rest.length > 0 ? (
+                <span className="flex items-baseline gap-x-5 lg:gap-x-7">
+                  {rest.map((item) => (
+                    <NavLink key={item.id} item={item} variant="rest" pathname={pathname} />
+                  ))}
+                </span>
+              ) : null}
+            </nav>
+
+            {contact ? (
+              /*
+                The conversion, lifted out of the list and marked by the one
+                piece of colour in the bar: a 1px accent stroke, which carries no
+                contrast requirement of its own and so survives the inversion
+                over a photograph where accent-coloured 11px type would fall
+                under the floor. It is the wrapper's own left border rather than
+                a tick element, for two reasons — it then runs exactly from the
+                cap height down to the button's underline, and the wrapper's
+                first flex item stays the button, so this block's baseline is the
+                word `Liên hệ` and it lands on the masthead's axis. A separate
+                empty span would have become the first item, and a box with no
+                text baselines at its bottom edge: the whole block would have
+                hung below the line it is supposed to sit on.
+              */
+              <div className="hidden shrink-0 items-baseline border-l border-accent pl-5 md:flex lg:pl-7">
+                <Button
+                  href={contact.href}
+                  variant="underline"
+                  size="sm"
+                  tone="ink"
+                  withArrow
+                  aria-current={isActive(pathname, contact.href) ? 'page' : undefined}
+                  className="text-current"
+                >
+                  {contact.label}
+                </Button>
+              </div>
+            ) : null}
+
+            {/*
+              Centred rather than baseline-aligned: the trigger's first line box
+              contains an icon, not text, so its synthesized baseline would drag
+              the whole mobile row off the mark's.
+            */}
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-expanded={menuOpen}
+              aria-controls="an-mobile-menu"
+              className="u-label ml-auto flex items-center gap-3 self-center text-current md:hidden"
+            >
+              <span aria-hidden="true" className="flex h-3 w-6 flex-col justify-between">
+                <span className="h-px w-full bg-current" />
+                <span className="h-px w-full bg-current" />
+              </span>
+              Menu
+            </button>
+          </div>
         </div>
 
         <span

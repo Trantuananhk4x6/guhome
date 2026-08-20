@@ -16,7 +16,7 @@ export default function Loading() {
         </div>
 
         <p className="mt-10 max-w-[34ch] font-display text-[1.5rem] font-normal leading-snug text-muted">
-          Ảnh công trình được giữ nguyên ở bản gốc, nên chúng về chậm hơn chữ một nhịp.
+          Chữ đến trước. Ảnh công trình để nguyên ở bản gốc nên về sau một nhịp.
         </p>
       </div>
     </div>

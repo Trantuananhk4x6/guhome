@@ -102,9 +102,9 @@ export function ContactForm({ email }: { email: string }) {
           Thư của bạn đã nằm trong hộp thư của studio.
         </p>
         <p className="u-body-lg mt-8 max-w-[46ch]">
-          Thư gửi tối thứ Sáu thì sáng thứ Hai bạn có hồi âm; chúng tôi đọc hết, kể cả những lá
-          dài. Nếu đề bài cần ngồi bàn cho ra nhẽ, chúng tôi sẽ hẹn bạn 60 phút, ở studio hoặc ngay
-          trong căn nhà đang nói tới.
+          Thư gửi tối thứ Sáu thì sáng thứ Hai bạn có hồi âm, và chúng tôi đọc hết, cả những lá
+          dài. Nếu đề bài cần ngồi xuống bàn cho ra nhẽ, chúng tôi sẽ hẹn bạn một buổi, ở studio
+          hoặc ngay trong căn nhà đang nói tới.
         </p>
         <Rule className="mt-12" />
         <p className="mt-6 font-body text-[0.8125rem] leading-relaxed text-muted">
@@ -129,7 +129,7 @@ export function ContactForm({ email }: { email: string }) {
               ? `Thư chưa đi được. Còn một mục cần bạn xem lại — ${missing.join('')} — và lý do nằm ngay dưới ô đó.`
               : missing.length > 1
                 ? `Thư chưa đi được. Còn ${missing.length} mục cần bạn xem lại — ${missing.join(', ')} — và lý do nằm ngay dưới từng ô.`
-                : 'Thư chưa đi được, và lần này lỗi nằm ở phía chúng tôi chứ không phải ở những gì bạn vừa viết.'}
+                : 'Thư chưa đi được, và lần này là lỗi của chúng tôi, không phải của những gì bạn vừa viết.'}
           </p>
           {missing.length === 0 ? (
             <p className="mt-2 font-body text-[0.75rem] leading-relaxed text-muted">
@@ -178,7 +178,7 @@ export function ContactForm({ email }: { email: string }) {
 
           <Field
             label="Điện thoại"
-            hint="Không bắt buộc. Có số thì chúng tôi gọi, và gọi thường nhanh hơn viết."
+            hint="Không bắt buộc. Nhưng có số thì chúng tôi gọi, và một cuộc gọi năm phút thường gỡ được thứ mà năm cái email không gỡ nổi."
             error={state.fieldErrors.phone}
           >
             <Input
@@ -205,13 +205,13 @@ export function ContactForm({ email }: { email: string }) {
 
         <Field
           label="Ngân sách dự kiến"
-          hint="Chỉ để chúng tôi biết nên bàn về đá tự nhiên hay đá nhân tạo. Đây không phải cam kết, và đổi được về sau."
+          hint="Chỉ để chúng tôi biết nên bàn về đá tự nhiên hay đá nhân tạo. Không phải cam kết, và đổi được bất cứ lúc nào."
           error={state.fieldErrors.budget}
         >
           <Select
             name="budget"
             options={SELECT_OPTIONS.budget}
-            placeholder="Chọn khoảng gần nhất"
+            placeholder="Khoảng nào gần nhất cũng được"
             value={values.budget}
             onChange={(event) => set('budget')(event.currentTarget.value)}
           />
@@ -220,7 +220,7 @@ export function ContactForm({ email }: { email: string }) {
         <Field
           label="Lời nhắn"
           required
-          hint="Càng cụ thể thì càng đỡ được một vòng hỏi lại. Ba dòng thật có ích hơn một trang viết cho hay."
+          hint="Ba dòng thật có ích hơn một trang viết cho hay."
           error={state.fieldErrors.message}
         >
           <Textarea

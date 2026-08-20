@@ -15,7 +15,7 @@ import { ImageFrame, Reveal, TextReveal } from './_components/motion'
 export const metadata: Metadata = buildMetadata({
   title: 'Bài viết',
   description:
-    'Ghi chép của AN ATELIER về vật liệu, ánh sáng và những quyết định nhỏ trên công trường. Phần lớn là thứ học được sau khi đã làm sai một lần.',
+    'Ghi chép của AN ATELIER về vật liệu, ánh sáng và những quyết định nhỏ trên công trường. Phần lớn bắt đầu từ một lần làm sai, và bài nào cũng dừng lại ở một con số cụ thể.',
   path: '/journal',
 })
 
@@ -53,8 +53,9 @@ export default async function JournalPage() {
           <Reveal delay={0.15} className="mt-12">
             <p className="u-body-lg max-w-[52ch]">
               Chúng tôi viết khi có thứ gì đó đáng ghi lại, nên trang này không dài thêm mỗi tuần.
-              Phần lớn những gì ở đây là thứ học được sau khi đã làm sai một lần — một loại sơn
-              không chịu nổi mùa mưa, một đảo bếp tính hụt bốn phân. Sai xong thì nhớ rất lâu.
+              Phần lớn những gì ở đây bắt đầu từ một lần làm sai — có bài bắt đầu từ một cái đảo bếp
+              tính hụt bốn phân, phát hiện ra lúc tấm đá đã cắt xong và xưởng thì đã nghỉ Tết. Sai
+              thì nhớ rất lâu. Viết ra rồi thì đỡ phải nhớ.
             </p>
           </Reveal>
         </div>
@@ -166,7 +167,7 @@ export default async function JournalPage() {
               </p>
               <p className="u-body-lg mt-8 max-w-[44ch]">
                 Chép lại xong thì nó sẽ có mặt ở đây. Trong lúc chờ, mấy công trình đã xong nói
-                được nhiều hơn là chúng tôi nói.
+                được nhiều hơn chúng tôi nói.
               </p>
               <div className="mt-12 flex flex-wrap items-center gap-8">
                 <Button href="/projects" withArrow>

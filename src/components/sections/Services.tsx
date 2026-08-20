@@ -11,7 +11,7 @@ import { cn, pad2 } from '@/lib/utils'
 import type { ServiceItem } from '@/types/content'
 
 import { SectionImage } from './SectionImage'
-import { BAND_T, DISPLAY_SM, SECTION_Y } from './composition'
+import { BAND_T, DISPLAY, DISPLAY_SM, SECTION_Y } from './composition'
 import { sectionLines, sectionText } from './content'
 import type { HomeSectionProps } from './types'
 
@@ -93,15 +93,43 @@ export function Services({ section, data }: HomeSectionProps) {
   const items = data.services.length > 0 ? data.services : SERVICE_FALLBACK
 
   return (
-    <section data-home-section="SERVICES" className={cn('u-gutter bg-surface', SECTION_Y)}>
-      <div ref={headingRef} data-reveal className="grid grid-cols-12 items-end gap-x-8 gap-y-8">
-        {/* Seven columns, not five: this section carries no lead line in the
-            database, and a four-line heading in a narrow rail with nothing beside
-            it is the title card this rebuild exists to delete. At 26ch the
-            statement sets on two lines and the band reads as a header row. */}
-        <div className="col-span-12 lg:col-span-7">
-          <Label rule>{eyebrow}</Label>
-          <h2 className={cn(DISPLAY_SM, 'mt-7 max-w-[26ch] text-ink')}>
+    // `bg-canvas`, not `bg-surface`: PHILOSOPHY directly above is oat, and two
+    // oat grounds meeting means no visible boundary at all — only apparent at
+    // 390, where PHILOSOPHY's ground actually shows behind its stacked caption.
+    <section data-home-section="SERVICES" className={cn('u-gutter bg-canvas', SECTION_Y)}>
+      {/*
+        THE HOLE, AND WHY THIS SHAPE CLOSES IT. The heading used to span seven
+        columns at 44px and the button jumped to column 11, so columns 8–10
+        rendered nothing — this section carries no `body` in the database, and a
+        26ch measure filled barely half of its own column. That left an unfilled
+        rectangle in the middle of a band: the client's "lỗi khoảng trống".
+
+        Three structural moves, none of them writing copy. The heading drops to
+        six columns and rises to 70px, so it fills its own column instead of
+        floating in it. The lead keeps columns 8–10 when an admin supplies one.
+        And the band closes on a hairline, so with no lead the remaining space is
+        an enclosed top-right corner — bounded by a rule below, the page edge
+        right and a shared baseline — which is air at an edge rather than a hole
+        in the middle. `items-end` puts the action on the heading's last
+        baseline, so the band's bottom edge reads as one line.
+
+        70.4 against the 44px service titles below is the 1.6 scale contrast the
+        header was missing; at 44px it weighed exactly what its own list items
+        weigh and did not read as a header at all.
+      */}
+      <div
+        ref={headingRef}
+        data-reveal
+        className="grid grid-cols-12 items-end gap-x-8 gap-y-8 border-b border-line pb-8"
+      >
+        <div className="col-span-12 lg:col-span-6">
+          <Label>{eyebrow}</Label>
+          {/* No `max-w`: the six-column cell IS the measure. Line breaks come
+              from the database as explicit `\n`, so a `ch` cap is only ever an
+              overflow guard — and a tight one (14ch ≈ 493px of a 720px column)
+              would wrap the seeded 18- and 23-character lines into four ragged
+              ones, rebuilding the under-filled column this change deletes. */}
+          <h2 className={cn(DISPLAY, 'mt-6 text-ink')}>
             {headingLines.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -159,7 +187,12 @@ export function Services({ section, data }: HomeSectionProps) {
                   </span>
                 ) : null}
 
-                <span className="relative col-span-12 block aspect-[2/1] overflow-hidden bg-surface-alt lg:col-span-2 lg:col-start-10 lg:row-start-1 lg:aspect-[3/2]">
+                {/* Desktop only. At 390 the thumbnail is a full-width 2/1 band,
+                    175px per row and 875px across five — this was the longest
+                    section on the phone by a wide margin. A five-register row is
+                    right at 1600; a pure typographic index is right at 390. That
+                    is designing at both sizes instead of scaling between them. */}
+                <span className="relative col-span-12 hidden aspect-[2/1] overflow-hidden bg-surface-alt lg:col-span-2 lg:col-start-10 lg:row-start-1 lg:block lg:aspect-[3/2]">
                   <span className="absolute inset-0 block transition-transform duration-[1400ms] ease-editorial group-hover:scale-[1.04] group-focus-visible:scale-[1.04]">
                     <SectionImage
                       media={cover}

@@ -143,8 +143,11 @@ function LeadBand({
                 {project.subtitle}
               </p>
             ) : null}
+            {/* Two clamped lines, not three: under a title, a subtitle and above
+                a four-cell `dl`, the third line is one register too many and it
+                is the 32px that pushes this column past the photograph beside it. */}
             {project.summary ? (
-              <p data-reveal-item className="u-body-lg mt-6 line-clamp-3 max-w-[42ch]">
+              <p data-reveal-item className="u-body-lg mt-6 line-clamp-2 max-w-[42ch]">
                 {project.summary}
               </p>
             ) : null}
@@ -197,10 +200,14 @@ function PairProject({
   const wide = variant === 'wide'
 
   return (
+    // The offset IS the composition, but 80px of it made the row 892px tall to
+    // hold a 789px item and left ~100px of unfilled canvas under the wide one's
+    // meta block. 40px still breaks the shared top edge. `lg:` prefixed, so a
+    // phone never inherits a skew that only reads in a side-by-side pair.
     <article
       className={cn(
         'col-span-12',
-        wide ? 'lg:col-span-7' : 'lg:col-span-4 lg:col-start-9 lg:mt-20',
+        wide ? 'lg:col-span-7' : 'lg:col-span-4 lg:col-start-9 lg:mt-10',
       )}
     >
       <Link
@@ -395,16 +402,20 @@ export function FeaturedProjects({ section, data }: HomeSectionProps) {
         </div>
       ) : null}
 
+      {/* One rule pair, two rows of different weight. Project 05 keeps the full
+          12-column index row; the affordance below it is a 56px label row, not a
+          second 44px display row — the section was repeating its own last
+          gesture at the exit, which is exactly the tell this rebuild deletes. */}
       <div ref={exitRef} data-reveal className={cn('border-b border-line', BAND_T)}>
         {indexed ? <IndexProject project={indexed} index={5} /> : null}
         <Link
           href="/projects"
-          className="group flex items-baseline justify-between gap-8 border-t border-line py-8 outline-offset-4"
+          className="group flex items-center justify-end gap-4 border-t border-line py-5 outline-offset-4"
         >
-          <span className={cn(DISPLAY_SM, 'text-ink transition-transform duration-700 ease-editorial group-hover:translate-x-2')}>
+          <span className="u-label text-ink transition-transform duration-700 ease-editorial group-hover:-translate-x-1 group-focus-visible:-translate-x-1">
             {allLabel}
           </span>
-          <ArrowRightIcon className="shrink-0 text-lg text-muted transition-all duration-700 ease-editorial group-hover:translate-x-1.5 group-hover:text-accent" />
+          <ArrowRightIcon className="shrink-0 text-base text-muted transition-all duration-700 ease-editorial group-hover:translate-x-1.5 group-hover:text-accent group-focus-visible:translate-x-1.5 group-focus-visible:text-accent" />
         </Link>
       </div>
     </section>

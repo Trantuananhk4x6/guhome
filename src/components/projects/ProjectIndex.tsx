@@ -20,9 +20,22 @@
  *
  * No two adjacent bands share a density, a grid or an image proportion, and the
  * loudest beat (610px for one project) is roughly five times the quietest
- * (~126px per project in a list row). The cycle is eight projects long, so a
- * reader meets every treatment inside the first three screens and then meets
- * them again as a rhythm rather than as a repetition.
+ * (~126px per project in a list row).
+ *
+ * THE PHRASE IS 19 PROJECTS, NOT 8. A four-step cycle over 104 projects is
+ * thirteen identical repeats of pair → bleed → list → solo, which is a longer
+ * template rather than an absence of one: the reader learns the loop inside two
+ * screens and then confirms it twelve more times. The score is written out
+ * instead, eight bands long, with the list appearing at three different lengths
+ * (4, 3, 5) and the two medium bands separated by a different number of
+ * projects each time round. 19 shares no factor with 8, 12 or 4, so nothing in
+ * the run ever lines up with anything else in it.
+ *
+ * THE GAP IS PART OF THE SCORE. Every band used to be 70px from its neighbour.
+ * The full-bleed plate is the only treatment that leaves the gutter, so its two
+ * edges take the section step (110px at a 1000px viewport) and every other join
+ * keeps the band step — half the joins each way, which is what makes either of
+ * them legible as a choice.
  */
 
 import Link from 'next/link'
@@ -33,7 +46,7 @@ import { ArrowUpRightIcon } from '@/components/ui/icons'
 import { cn, formatArea, pad2 } from '@/lib/utils'
 import type { ProjectSummary } from '@/types/content'
 
-import { BAND, BAND_GAP, DISPLAY_SM, DISPLAY_XS, SCRIM_B } from './composition'
+import { BAND, BAND_GAP, DISPLAY_SM, DISPLAY_XS, SCRIM_B, SECTION_GAP } from './composition'
 import { ProjectCard } from './ProjectCard'
 import { ProjectFigure } from './ProjectFigure'
 
@@ -48,9 +61,26 @@ export interface ProjectIndexProps {
 
 type BandKind = 'pair' | 'bleed' | 'list' | 'solo'
 
-/** Order matters: it is the rhythm. medium → sparse → dense → quiet. */
-const CYCLE: readonly BandKind[] = ['pair', 'bleed', 'list', 'solo']
-const BAND_SIZE: Record<BandKind, number> = { pair: 2, bleed: 1, list: 4, solo: 1 }
+interface Phrase {
+  kind: BandKind
+  /** Projects this band consumes. `list` deliberately varies. */
+  size: number
+}
+
+/**
+ * The written-out score. Read the densities down the right-hand side and no two
+ * neighbours match, including across the wrap from the last band to the first.
+ */
+const SCORE: readonly Phrase[] = [
+  { kind: 'pair', size: 2 }, //  medium
+  { kind: 'bleed', size: 1 }, // sparse
+  { kind: 'list', size: 4 }, //  dense
+  { kind: 'solo', size: 1 }, //  quiet
+  { kind: 'pair', size: 2 }, //  medium
+  { kind: 'list', size: 3 }, //  dense
+  { kind: 'bleed', size: 1 }, // sparse
+  { kind: 'list', size: 5 }, //  dense
+]
 
 interface Band {
   kind: BandKind
@@ -61,8 +91,15 @@ interface Band {
 
 /**
  * Slices the run into bands. A short list — a filtered category with three
- * projects — simply stops mid-cycle; every band renders only what it was
- * handed, so a phrase is never padded out with an empty column.
+ * projects — simply stops mid-score; every band renders only what it was
+ * handed, so a phrase is never padded out with an empty column. The one case
+ * that would leave a hole is a `pair` that receives a single project, which
+ * draws a seven-column landscape with five empty columns beside it. That band
+ * becomes a `bleed` — not a `solo`, which is what I wrote first: `pair` only
+ * ever follows `solo` or `list` in the score, so the solo substitution put two
+ * quiet bands back to back at the end of the run, which is exactly the
+ * adjacency the score exists to prevent. A full-bleed plate closes the index on
+ * its loudest single gesture and can never repeat its neighbour.
  */
 function phrase(projects: readonly ProjectSummary[], startIndex: number): Band[] {
   const bands: Band[] = []
@@ -70,14 +107,31 @@ function phrase(projects: readonly ProjectSummary[], startIndex: number): Band[]
   let step = 0
 
   while (cursor < projects.length) {
-    const kind = CYCLE[step % CYCLE.length] ?? 'list'
-    const items = projects.slice(cursor, cursor + BAND_SIZE[kind])
+    const beat = SCORE[step % SCORE.length] ?? { kind: 'list' as const, size: 4 }
+    const items = projects.slice(cursor, cursor + beat.size)
+    const kind: BandKind = beat.kind === 'pair' && items.length < 2 ? 'bleed' : beat.kind
     bands.push({ kind, items, from: startIndex + cursor })
     cursor += items.length
     step += 1
   }
 
   return bands
+}
+
+/**
+ * The step between two bands, decided by the pair rather than by a constant.
+ *
+ * Three of the four treatments sit inside the gutter and read as plates on one
+ * measure; the full bleed is the only one that leaves it. A 70px gap between a
+ * band that stops at the gutter and a photograph that runs to the glass reads
+ * as a collision, so that one join — and only that one — takes the section
+ * step. Applying it to the quiet band as well was the first thing I tried and
+ * it put three quarters of the index's joins on the larger step, at which point
+ * the larger step is the default and the smaller one is the exception, which is
+ * the opposite of a rhythm.
+ */
+function gapBetween(previous: Band, band: Band): string {
+  return previous.kind === 'bleed' || band.kind === 'bleed' ? SECTION_GAP : BAND_GAP
 }
 
 function metaLine(project: ProjectSummary): string {
@@ -328,11 +382,17 @@ export function ProjectIndex({ projects, startIndex = 1, className }: ProjectInd
 
   return (
     <div className={cn('flex flex-col', className)}>
-      {bands.map((band, i) => (
-        <div key={band.items[0]?.id ?? `band-${i}`} className={i === 0 ? undefined : BAND_GAP}>
-          <BandFrame band={band} />
-        </div>
-      ))}
+      {bands.map((band, i) => {
+        const previous = bands[i - 1]
+        return (
+          <div
+            key={band.items[0]?.id ?? `band-${i}`}
+            className={previous ? gapBetween(previous, band) : undefined}
+          >
+            <BandFrame band={band} />
+          </div>
+        )
+      })}
     </div>
   )
 }

@@ -484,6 +484,10 @@ function renderBlock(item: ProjectBlock, ctx: BlockContext, at: BlockPosition): 
           align={item.data.align ?? 'left'}
           width={item.data.width ?? 'narrow'}
           occurrence={at.occurrence}
+          // The block that answers the hero is the story's opening statement,
+          // and it is the only one that knows it — a component cannot see what
+          // it follows. Everything else about the block is identical.
+          lede={at.prev?.type === 'HERO'}
         />
       )
     }

@@ -193,6 +193,30 @@
     letter-spacing: -0.012em;
   }
 
+  /*
+   * A NUMBER, NOT A HEADING. The studio ledger's four figures used to render at
+   * clamp(1.75rem, 3vw, 2.75rem), whose 2.75rem cap resolves to exactly 44px at
+   * 1600 — pixel-identical to `.u-display-sm`, which is the size of the section
+   * heading standing directly above them. A ledger whose evidence weighs the
+   * same as the label introducing it has no internal hierarchy, and that section
+   * is one of the two carrying the page's density.
+   *
+   * 56 against 44 is 1.27: enough for the number to dominate its own band, not
+   * enough to become a fourth display step. Light rather than medium because a
+   * figure is read, not spoken — the weight comes from the size.
+   *
+   * Not a `.u-display-*` step, deliberately: it never sets a heading, so it
+   * carries no `text-wrap: balance` and no display tracking, and it must never
+   * appear in the ratio table those three steps form.
+   */
+  .u-figure {
+    font-family: var(--font-display);
+    font-size: calc(clamp(2rem, 3.6vw, 3.5rem) * var(--display-scale));
+    font-weight: 300;
+    line-height: 1;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
   .u-body-lg {
     font-size: calc(clamp(1.0625rem, 1.15vw, 1.25rem) * var(--body-scale));
     line-height: 1.75;

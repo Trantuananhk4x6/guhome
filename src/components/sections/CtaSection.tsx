@@ -43,9 +43,15 @@ export function CtaSection({ section, data }: HomeSectionProps) {
   const image = data.closingImage
 
   return (
+    // 92svh, not 80: the close read at 0.80 against JOURNAL's 0.74 and
+    // PHILOSOPHY's 0.70 — three of the last four sections within 8%, which is the
+    // audit's "flat plateau" relocated from the middle of the page to its tail.
+    // At 0.92 the close is the second-largest single frame on the page and lands
+    // just short of the hero's 1.00, which is the right relationship between an
+    // opening and a closing.
     <section
       data-home-section="CTA"
-      className="relative isolate flex min-h-[70svh] flex-col justify-end overflow-hidden bg-espresso text-canvas lg:min-h-[80svh]"
+      className="relative isolate flex min-h-[70svh] flex-col justify-end overflow-hidden bg-espresso text-canvas lg:min-h-[92svh]"
     >
       {image ? (
         <div className="absolute inset-0" aria-hidden="true">
@@ -54,7 +60,11 @@ export function CtaSection({ section, data }: HomeSectionProps) {
               shallow gradient at each end. `/86` erased the picture entirely. */}
           <div className="absolute inset-0 bg-espresso/55" />
           <div className="absolute inset-x-0 top-0 h-[24%]" style={SCRIM_T} />
-          <div className="absolute inset-x-0 bottom-0 h-[58%]" style={SCRIM_B} />
+          {/* 68% below lg. At 390 the frame is 591px, so a 58% scrim reaches
+              343px — shorter than the stacked heading, body, address and button,
+              which would leave the body copy sitting on unscrimmed photograph
+              and under the contrast floor. */}
+          <div className="absolute inset-x-0 bottom-0 h-[68%] lg:h-[58%]" style={SCRIM_B} />
         </div>
       ) : null}
 

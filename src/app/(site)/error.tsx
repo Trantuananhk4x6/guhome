@@ -29,11 +29,11 @@ export default function SiteError({
         <Rule className="mt-14 max-w-[28rem]" />
 
         <p className="u-body-lg mt-8 max-w-[46ch]">
-          Lỗi nằm ở phía chúng tôi chứ không phải ở máy bạn. Bấm thử lại một lần trước đã, vì phần
-          lớn sự cố kiểu này qua ngay ở lần thứ hai.{' '}
+          Chỗ hỏng nằm ở phía chúng tôi, không phải ở máy hay đường mạng của bạn. Bấm thử lại một
+          lần đã, vì phần lớn sự cố kiểu này qua ngay ở lần thứ hai.{' '}
           {error.digest
-            ? 'Nếu vẫn vậy, gửi cho studio dãy mã ở cuối trang. Có dãy đó thì chúng tôi lần ra đúng chỗ hỏng trong vài phút.'
-            : 'Nếu vẫn vậy, nhắn cho studio biết bạn đang mở trang nào và bấm vào đâu thì gặp, chúng tôi dò lại.'}
+            ? 'Nếu vẫn vậy, gửi cho studio dãy mã ở cuối trang; có nó thì chúng tôi lần ra đúng chỗ hỏng trong vài phút.'
+            : 'Nếu vẫn vậy, nhắn cho studio biết bạn đang mở trang nào và bấm vào đâu thì gặp, chúng tôi dò lại từ đó.'}
         </p>
 
         <div className="mt-14 flex flex-wrap items-center gap-8">

@@ -26,8 +26,8 @@ export default function NotFound() {
 
         <p className="u-body-lg mt-8 max-w-[46ch]">
           Đường dẫn có thể đã đổi, hoặc bạn đang theo một liên kết cũ mà chúng tôi chưa kịp chuyển
-          hướng. Trang dự án vẫn giữ nguyên toàn bộ công trình. Còn nếu bạn nhớ tên căn nhà hay bài
-          viết mình đang tìm, nhắn cho studio một dòng là ra ngay.
+          hướng. Không có gì mất đi cả. Toàn bộ công trình vẫn nằm nguyên ở trang dự án, và nếu bạn
+          nhớ tên căn nhà hay tên bài viết đang tìm, nhắn cho studio một dòng là ra ngay.
         </p>
 
         <div className="mt-14 flex flex-wrap items-center gap-8">

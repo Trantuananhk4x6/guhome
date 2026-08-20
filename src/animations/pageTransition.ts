@@ -50,6 +50,27 @@ export const CURTAIN_Z_INDEX = 96
 export const CURTAIN_ATTR = 'data-page-curtain'
 
 /**
+ * Stamped on the panel for as long as the curtain owns the screen for a
+ * navigation — from the first frame of the cover to the last frame of the
+ * reveal. Read it with `curtainCovering()`.
+ */
+export const CURTAIN_COVERING_ATTR = 'data-covering'
+
+/**
+ * `true` while a navigation is being staged behind the panel.
+ *
+ * For UI that is *under* the curtain (z-index below `CURTAIN_Z_INDEX`) and that
+ * animates itself away on a route change: an exit that outlives the reveal is
+ * played out in the open, on top of the page that just arrived. Anything longer
+ * than `curtainDuration().reveal` should jump to its closed state instead of
+ * animating while this is true — the reader cannot see the jump.
+ */
+export function curtainCovering(): boolean {
+  if (typeof document === 'undefined') return false
+  return document.querySelector(`[${CURTAIN_ATTR}][${CURTAIN_COVERING_ATTR}]`) !== null
+}
+
+/**
  * Opt-out marker. A left-click on any link inside `[data-no-curtain]` navigates
  * without the curtain — for surfaces that stage their own transition, or that
  * must not be covered at all.
@@ -102,6 +123,7 @@ export const CURTAIN_HIDDEN: gsap.TweenVars = {
 
 /** Puts the panel back to its resting state now, killing nothing. */
 export function hideCurtain(panel: HTMLElement): void {
+  panel.removeAttribute(CURTAIN_COVERING_ATTR)
   gsap.set(panel, CURTAIN_HIDDEN)
 }
 
@@ -115,6 +137,7 @@ export function hideCurtain(panel: HTMLElement): void {
  * and not the arrival gate below.
  */
 export function coverNow(panel: HTMLElement, mark?: HTMLElement | null): void {
+  panel.setAttribute(CURTAIN_COVERING_ATTR, '')
   gsap.set(panel, {
     autoAlpha: 1,
     scaleY: 1,
@@ -153,6 +176,7 @@ export function coverTimeline(args: CoverArgs): gsap.core.Timeline {
   const { panel, mark, onDone } = args
   const { cover } = curtainDuration()
 
+  panel.setAttribute(CURTAIN_COVERING_ATTR, '')
   gsap.set(panel, {
     autoAlpha: 1,
     scaleY: 0,
@@ -200,6 +224,7 @@ export function curtainTimeline(args: CurtainArgs): gsap.core.Timeline {
 
   // Synchronous, and deliberately not part of the timeline: a timeline renders
   // its first state on the next ticker tick, which is one frame too late.
+  panel.setAttribute(CURTAIN_COVERING_ATTR, '')
   gsap.set(panel, {
     autoAlpha: 1,
     scaleY: 1,
@@ -225,6 +250,9 @@ export function curtainTimeline(args: CurtainArgs): gsap.core.Timeline {
 
   tl.to(panel, { scaleY: 0, duration: reveal }, hold)
   tl.set(panel, { autoAlpha: 0, pointerEvents: 'none', clearProps: 'willChange' })
+  // The screen is the page's again. Released from inside the timeline rather
+  // than from `onDone`, so it is given up even when no callback was passed.
+  tl.call(() => panel.removeAttribute(CURTAIN_COVERING_ATTR))
 
   return tl
 }

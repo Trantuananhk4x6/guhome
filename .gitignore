@@ -9,3 +9,7 @@ next-env.d.ts
 .DS_Store
 .vercel/
 *.log
+
+# Agent scratch: throwaway probe scripts, never part of the build.
+scripts/tmp/
+.playwright-mcp/

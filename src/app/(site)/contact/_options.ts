@@ -24,8 +24,8 @@ export const PROJECT_TYPES: readonly ContactOption[] = [
 export const BUDGET_RANGES: readonly ContactOption[] = [
   { value: 'duoi-500', label: 'Dưới 500 triệu' },
   { value: '500-1000', label: '500 triệu – 1 tỷ' },
-  { value: '1-2-ty', label: '1 – 2 tỷ' },
-  { value: '2-5-ty', label: '2 – 5 tỷ' },
+  { value: '1-2-ty', label: '1–2 tỷ' },
+  { value: '2-5-ty', label: '2–5 tỷ' },
   { value: 'tren-5-ty', label: 'Trên 5 tỷ' },
   { value: 'chua-xac-dinh', label: 'Chưa xác định' },
 ]

@@ -3,8 +3,23 @@
 /**
  * EXPLORE SPACE — the orbit-mode 3D experience on a project page.
  *
- * Three controls, all of them hairline text: fullscreen, auto explore, reset.
- * Nothing here should read as a game HUD; the space is the interface.
+ * COMPOSITION. The stage sits on the twelve-column grid with a rail of type
+ * beside it: label and instruction at the top of columns 1–3, the scene's own
+ * camera views and the three controls at the bottom of the same rail, and the
+ * stage itself across columns 4–12, running off the right edge of the screen.
+ *
+ * It used to be a full-width picture floating in an espresso band with its type
+ * laid over its own corners, which is the one composition on a project page
+ * that answers to nothing around it — a dark rectangle between two limestone
+ * ones. Beside a rail it reads as a plate that was placed, and the rail is
+ * carrying real information rather than framing: the four authored views are
+ * the same four stops "Tự động khám phá" walks, so the reader can see what the
+ * walk is going to do before starting it.
+ *
+ * Three controls, all of them hairline text: auto explore, fullscreen, reset.
+ * Nothing here should read as a game HUD; the space is the interface. In
+ * fullscreen the rail is off-screen — the stage is the fullscreen element — so
+ * that one case, and only that case, draws an exit control over the picture.
  *
  * AUTO EXPLORE walks the scene's camera waypoints on a GSAP timeline that writes
  * into `progressRef` — never into React state, so the walk costs no renders.
@@ -17,10 +32,10 @@ import { gsap, registerGsap } from '@/animations/gsap'
 import { useReveal } from '@/animations/reveal'
 import { Button } from '@/components/ui/Button'
 import { trackEvent } from '@/lib/analytics'
-import { cn } from '@/lib/utils'
+import { cn, pad2 } from '@/lib/utils'
 import type { MediaRef, SceneConfig } from '@/types/content'
 
-import { SCRIM_B, SCRIM_T } from './composition'
+import { BLEED_R, SCRIM_B } from './composition'
 
 /** Three / R3F stays out of the server bundle and out of every other route. */
 const InteriorScene = dynamic(
@@ -52,6 +67,14 @@ interface FullscreenElement extends HTMLDivElement {
 interface FullscreenDocument extends Document {
   webkitExitFullscreen?: () => Promise<void> | void
   webkitFullscreenElement?: Element | null
+}
+
+/** The authored view names, in walk order. Empty when the scene names none. */
+function waypointLabels(scene: SceneConfig): string[] {
+  const named = scene.waypoints
+    .map((point) => point.label?.trim() ?? '')
+    .filter((label) => label.length > 0)
+  return named.length >= 2 ? named : []
 }
 
 /** Normalised 0..1 stops for the timeline, one per waypoint. */
@@ -205,80 +228,126 @@ export function Project3D({
 
   if (!scene || scene.mode === 'NONE') return null
 
+  const views = waypointLabels(scene)
+  // A scene that names camera views is a reconstruction the reader can walk. A
+  // scene that names none is `mode: IMAGE` — one photograph with a parallax
+  // camera on it, which is 16 of the 27 scenes in the catalogue. Giving that the
+  // same 780px of screen as a walkable room is the over-claim that makes a page
+  // feel padded, and it is also what leaves the rail beside it holding two small
+  // blocks 600px apart. One step down on both counts.
+  const walkable = views.length > 0
+
+  const stage = (
+    <div
+      ref={stageRef}
+      onPointerDown={handleInteract}
+      onWheel={handleInteract}
+      // The copy in the rail says "kéo để xoay" — `CustomCursor` shows KÉO to match.
+      data-cursor="drag"
+      className={cn(
+        'bg-espresso border-canvas/12 relative isolate w-full overflow-hidden border',
+        // A portrait plate on a phone, a landscape one on a desktop where it is
+        // nine columns wide and bleeding to the edge. 68svh against a 1160px
+        // stage is roughly 1.7:1 — the widest frame on the page after the hero.
+        !walkable
+          ? 'h-[42svh] min-h-[16rem] lg:h-[56svh] lg:min-h-[22rem]'
+          : height === 'screen'
+            ? 'h-[56svh] min-h-[20rem] lg:h-[78svh] lg:min-h-[30rem]'
+            : 'h-[52svh] min-h-[19rem] lg:h-[68svh] lg:min-h-[26rem]',
+        isFullscreen && 'h-screen border-0 lg:h-screen',
+      )}
+    >
+      <div aria-hidden="true" className="absolute inset-0">
+        <InteriorScene
+          key={sceneKey}
+          config={scene}
+          progressRef={progressRef}
+          mode="orbit"
+          autoExplore={autoExplore}
+          fallbackImage={fallbackImage ?? null}
+          className="h-full w-full"
+          onReady={handleReady}
+        />
+      </div>
+
+      <p className="sr-only">{description}</p>
+
+      {/*
+        The only type this frame ever carries, and only while the rail that
+        normally holds it is off-screen. Esc leaves fullscreen too, but a control
+        the reader can see is not optional. The scrim is doubled because the
+        scene under it is one the reader is rotating: it has to hold against a
+        white curtain at noon as well as against a dark corner, and two passes of
+        the shared recipe reach ~86% at the very edge while leaving the middle of
+        the frame — the part being explored — untouched.
+      */}
+      {isFullscreen ? (
+        <>
+          <span aria-hidden="true" style={SCRIM_B} className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%]" />
+          <span aria-hidden="true" style={SCRIM_B} className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%]" />
+          <div className="u-gutter absolute inset-x-0 bottom-0 pb-8">
+            <Button variant="underline" tone="light" onClick={toggleFullscreen} aria-pressed>
+              Thoát toàn màn hình
+            </Button>
+          </div>
+        </>
+      ) : null}
+    </div>
+  )
+
   return (
     <section
       ref={sectionRef}
       data-reveal
       className={cn('bg-espresso py-[var(--spacing-section)]', className)}
     >
-      {/*
-        The stage runs edge to edge and carries its own type in its corners. It
-        used to float between a label row above it and a control row below it,
-        both of them full-width bars of small text against a full-width picture
-        — three stacked bands where the section only ever had one subject. The
-        espresso padding either side is the mat; the space itself is the frame.
-      */}
-      <div
-        ref={stageRef}
-        onPointerDown={handleInteract}
-        onWheel={handleInteract}
-        // The copy inside says "kéo để xoay" — `CustomCursor` shows KÉO to match.
-        data-cursor="drag"
-        className={cn(
-          'bg-espresso relative isolate w-full overflow-hidden',
-          height === 'screen' ? 'h-[84svh] min-h-[30rem]' : 'h-[68svh] min-h-[26rem]',
-          isFullscreen && 'h-screen',
-        )}
-      >
-        <div aria-hidden="true" className="absolute inset-0">
-          <InteriorScene
-            key={sceneKey}
-            config={scene}
-            progressRef={progressRef}
-            mode="orbit"
-            autoExplore={autoExplore}
-            fallbackImage={fallbackImage ?? null}
-            className="h-full w-full"
-            onReady={handleReady}
-          />
-        </div>
-
-        <p className="sr-only">{description}</p>
-
-        {/*
-          The scrims are doubled here and nowhere else. Every other overlay in
-          the system sits on a photograph the studio chose; this one sits on a
-          scene the reader is about to rotate, so the type has to stay legible
-          against a white curtain at noon *and* against a dark corner. Two
-          passes of the shared recipe reach ~77% at the very edge while leaving
-          the middle of the frame — the part being explored — untouched, which a
-          flat hold heavy enough to do the same job would not.
-        */}
-        <span aria-hidden="true" style={SCRIM_T} className="pointer-events-none absolute inset-x-0 top-0 h-[30%]" />
-        <span aria-hidden="true" style={SCRIM_T} className="pointer-events-none absolute inset-x-0 top-0 h-[30%]" />
-        <span aria-hidden="true" style={SCRIM_B} className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%]" />
-        <span aria-hidden="true" style={SCRIM_B} className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%]" />
-
-        <div className="u-gutter pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-8 pt-7 lg:pt-9">
+      <div className="u-gutter mx-auto grid w-full max-w-[110rem] grid-cols-12 gap-x-8 gap-y-9">
+        {/* Rail, top: what this is and how it answers to a pointer. */}
+        <div className="col-span-12 lg:col-span-3 lg:col-start-1 lg:row-start-1">
           <p className="u-label text-canvas/75 flex items-center gap-3">
             <span aria-hidden="true" className="bg-accent-soft h-px w-8 shrink-0" />
             {label}
           </p>
-          <p className="text-canvas/70 hidden max-w-[34ch] text-right text-sm leading-relaxed md:block">
+          <p className="text-canvas/70 mt-6 max-w-[30ch] text-sm leading-relaxed">
             Kéo để xoay, cuộn để tiến lại gần.
           </p>
         </div>
 
-        <div className="u-gutter absolute inset-x-0 bottom-0 flex flex-wrap items-center gap-x-9 gap-y-4 pb-7 lg:pb-9">
-          <Button variant="underline" tone="light" onClick={handleAutoExplore} aria-pressed={autoExplore}>
-            {autoExplore ? 'Dừng khám phá' : 'Tự động khám phá'}
-          </Button>
-          <Button variant="underline" tone="light" onClick={toggleFullscreen} aria-pressed={isFullscreen}>
-            {isFullscreen ? 'Thoát toàn màn hình' : 'Toàn màn hình'}
-          </Button>
-          <Button variant="underline" tone="light" onClick={handleReset}>
-            Đặt lại góc nhìn
-          </Button>
+        {/* The stage: nine columns, off the right edge of the screen. */}
+        <div className={cn('col-span-12 lg:col-span-9 lg:col-start-4 lg:row-span-2 lg:row-start-1', BLEED_R)}>
+          {stage}
+        </div>
+
+        {/* Rail, foot: the walk, then the controls, both on the stage's baseline. */}
+        <div className="col-span-12 flex flex-col gap-9 lg:col-span-3 lg:col-start-1 lg:row-start-2 lg:self-end">
+          {views.length > 0 ? (
+            <div>
+              <p className="u-label text-canvas/60">Điểm nhìn</p>
+              <ol className="mt-4 flex flex-col">
+                {views.map((view, i) => (
+                  <li
+                    key={`${view}-${i}`}
+                    className="border-canvas/15 flex items-baseline gap-4 border-t py-3 last:border-b"
+                  >
+                    <span className="u-label text-accent-soft shrink-0">{pad2(i + 1)}</span>
+                    <span className="text-canvas/80 text-[0.9375rem] leading-snug">{view}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ) : null}
+
+          <div className="flex flex-wrap items-center gap-x-9 gap-y-4 lg:flex-col lg:items-start lg:gap-y-5">
+            <Button variant="underline" tone="light" onClick={handleAutoExplore} aria-pressed={autoExplore}>
+              {autoExplore ? 'Dừng khám phá' : 'Tự động khám phá'}
+            </Button>
+            <Button variant="underline" tone="light" onClick={toggleFullscreen} aria-pressed={isFullscreen}>
+              Toàn màn hình
+            </Button>
+            <Button variant="underline" tone="light" onClick={handleReset}>
+              Đặt lại góc nhìn
+            </Button>
+          </div>
         </div>
       </div>
     </section>

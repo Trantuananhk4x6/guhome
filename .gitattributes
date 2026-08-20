@@ -1,0 +1,36 @@
+# Line endings are normalised to LF in the repository regardless of platform.
+#
+# Without this, an editor on Windows that rewrites a file wholesale converts it
+# to CRLF and every line of that file shows up as changed. One pass over
+# src/components/projects/ produced a 3,603/2,990 diff where the real change was
+# 1,244/631 — two thirds of it was invisible line-ending churn, which buries the
+# actual edit and makes a review meaningless.
+* text=auto eol=lf
+
+# Binary: never touch these, and never try to diff them as text.
+*.webp   binary
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.avif   binary
+*.gif    binary
+*.ico    binary
+*.mp4    binary
+*.webm   binary
+*.woff   binary
+*.woff2  binary
+*.ttf    binary
+*.otf    binary
+*.glb    binary
+*.gltf   binary
+*.bin    binary
+*.wasm   binary
+*.hdr    binary
+*.exr    binary
+*.ktx2   binary
+*.basis  binary
+
+# Generated, and large. Collapsed in diffs so a review shows the real changes.
+package-lock.json  linguist-generated=true -diff
+drizzle/meta/**    linguist-generated=true -diff
+public/media/**    linguist-generated=true -diff

@@ -26,17 +26,35 @@ import type { CSSProperties } from 'react'
 
 const DISPLAY_BASE = 'font-display font-medium'
 
+/*
+ * ORDER IS LOAD-BEARING: `text-[…]` MUST come before `leading-[…]`.
+ *
+ * `cn` runs tailwind-merge, whose conflict map lists `leading` as a group that
+ * `font-size` overrides — Tailwind's own `text-lg` sets a line-height, so a
+ * later `text-*` has to win. An arbitrary `text-[calc(…)]` is read as a
+ * font-size, so with the leading written first every one of these classes lost
+ * its line-height on the way to the DOM. I checked the served HTML: the project
+ * hero shipped as `font-display font-medium tracking-[-0.022em] text-[calc(…)]`
+ * with no `leading-` at all, on every project page and on /projects.
+ *
+ * `h1`–`h4` were quietly covering for it at the 1.06 base rule, so the damage
+ * was invisible on most headings and loud on the two display elements that are
+ * not headings: the pulled quote is a `blockquote` and the caption over the
+ * index's full-bleed plate is a `p`, and both inherited body's 1.6 — a 70px
+ * quote setting on 112px lines instead of 75px ones.
+ */
+
 /** 86px at 1600, 36px at 390 — a project page's own name, once per page. */
-export const DISPLAY_XL = `${DISPLAY_BASE} leading-[1.04] tracking-[-0.022em] text-[calc(clamp(2.25rem,5.4vw,6rem)*var(--display-scale))]`
+export const DISPLAY_XL = `${DISPLAY_BASE} text-[calc(clamp(2.25rem,5.4vw,6rem)*var(--display-scale))] leading-[1.04] tracking-[-0.022em]`
 
 /** 70px at 1600, 30px at 390 — page h1, pulled quotes, section statements. */
-export const DISPLAY = `${DISPLAY_BASE} leading-[1.06] tracking-[-0.02em] text-[calc(clamp(1.875rem,4.4vw,5rem)*var(--display-scale))]`
+export const DISPLAY = `${DISPLAY_BASE} text-[calc(clamp(1.875rem,4.4vw,5rem)*var(--display-scale))] leading-[1.06] tracking-[-0.02em]`
 
 /** 44px at 1600, 22px at 390 — project titles, block headings. */
-export const DISPLAY_SM = `${DISPLAY_BASE} leading-[1.14] tracking-[-0.014em] text-[calc(clamp(1.375rem,2.75vw,2.75rem)*var(--display-scale))]`
+export const DISPLAY_SM = `${DISPLAY_BASE} text-[calc(clamp(1.375rem,2.75vw,2.75rem)*var(--display-scale))] leading-[1.14] tracking-[-0.014em]`
 
 /** 34px at 1600, 18px at 390 — the dense index row, where a title holds one line. */
-export const DISPLAY_XS = `${DISPLAY_BASE} leading-[1.16] tracking-[-0.01em] text-[calc(clamp(1.125rem,2.1vw,2.125rem)*var(--display-scale))]`
+export const DISPLAY_XS = `${DISPLAY_BASE} text-[calc(clamp(1.125rem,2.1vw,2.125rem)*var(--display-scale))] leading-[1.16] tracking-[-0.01em]`
 
 /* -------------------------------- rhythm ---------------------------------- */
 
@@ -49,6 +67,14 @@ export const BAND_GAP = 'mt-[clamp(3rem,7vh,5.5rem)]'
 
 /** Same measure as a spacing token, for grids that need it as a gap. */
 export const BAND_GAP_Y = 'gap-y-[clamp(3rem,7vh,5.5rem)]'
+
+/**
+ * The larger of the two inter-band steps — the page changing register rather
+ * than continuing one. `/projects` uses it either side of its full-bleed and
+ * its single centred plate, which is what stops thirteen identical 70px gaps
+ * from flattening a 105-project index into one texture.
+ */
+export const SECTION_GAP = 'mt-[clamp(4.5rem,11vh,9rem)]'
 
 /** An image leaving the gutter for the viewport edge from inside a 12-col child. */
 export const BLEED_R = 'lg:mr-[calc(var(--spacing-gutter)*-1)]'

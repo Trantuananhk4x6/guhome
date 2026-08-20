@@ -90,9 +90,11 @@ function BleedStill({ caption, media, index, alt }: StillProps) {
 
   return (
     <figure className={cn('relative isolate', BLEED_X)}>
+      {/* 21/7, not 21/8: the pinned path lost 40vh, and the fallback has to
+          track it or the client-side upgrade jumps the page under the reader. */}
       <div
         ref={frameRef}
-        className="relative isolate aspect-[4/5] w-full overflow-hidden bg-espresso sm:aspect-[3/2] lg:aspect-[21/8]"
+        className="relative isolate aspect-[4/5] w-full overflow-hidden bg-espresso sm:aspect-[3/2] lg:aspect-[21/7]"
       >
         <SectionImage media={media} alt={alt} sizes="100vw" width={2400} />
         <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[46%]" style={SCRIM_B} />
@@ -115,7 +117,7 @@ function PairStill({ caption, media, index, alt, variant }: StillProps & { varia
   const wide = variant === 'wide'
 
   return (
-    <figure className={cn('col-span-12', wide ? 'lg:col-span-7' : 'lg:col-span-4 lg:col-start-9 lg:mt-20')}>
+    <figure className={cn('col-span-12', wide ? 'lg:col-span-7' : 'lg:col-span-4 lg:col-start-9 lg:mt-10')}>
       <div
         ref={frameRef}
         className={cn(
@@ -192,16 +194,16 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
   const wide = useSyncExternalStore(subscribeWide, readWide, () => false)
   const pinned = hasScene && !reduced && wide
 
-  // The two paths are deliberately the same height (260vh pinned, ~2.5 viewports
-  // stacked), but they are never identical to the pixel, so the upgrade still
-  // moves every trigger below this band and the page has to be re-measured.
+  // The two paths land deliberately close (2.2 viewports pinned, ~2.4 stacked)
+  // and never identical to the pixel, so the upgrade still moves every trigger
+  // below this band and the page has to be re-measured.
   useEffect(() => {
     registerGsap()
     ScrollTrigger.refresh()
   }, [pinned])
 
-  // 260vh outer, 100vh sticky inner: `top top` → `bottom bottom` is exactly the
-  // 160vh the sticky panel spends pinned, so progress maps 0 → 1 across it.
+  // 220vh outer, 100vh sticky inner: `top top` → `bottom bottom` is exactly the
+  // 120vh the sticky panel spends pinned, so progress maps 0 → 1 across it.
   useCameraScroll({
     sectionRef,
     progress,
@@ -279,13 +281,21 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
       >
         {/* The heading sits BESIDE the body and the project's facts, not above
             them — this is the fallback path, and it must not open the way six
-            other sections open. */}
-        <div ref={headerRef} data-reveal className="u-gutter grid grid-cols-12 gap-x-8 gap-y-10">
-          <div className="col-span-12 lg:col-span-5">
-            <Label tone="light" rule>
-              {eyebrow}
+            other sections open. The eyebrow is lifted out of the heading column
+            onto a full-width rail, the way the pinned path opens on a rail with
+            a stage counter: an eyebrow stacked on a display heading is the one
+            gesture FEATURED is allowed to keep, and only once. */}
+        <div ref={headerRef} data-reveal className="u-gutter">
+          <div className="flex items-baseline justify-between gap-6 border-t border-canvas/15 pt-4">
+            <Label tone="light">{eyebrow}</Label>
+            <Label tone="light" className="shrink-0 text-canvas/55">
+              {project.title}
             </Label>
-            <h2 className={cn(DISPLAY, 'mt-8 max-w-[12ch] text-canvas')}>
+          </div>
+
+          <div className="mt-12 grid grid-cols-12 gap-x-8 gap-y-10">
+          <div className="col-span-12 lg:col-span-5">
+            <h2 className={cn(DISPLAY, 'max-w-[12ch] text-canvas')}>
               {headingLines.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -304,6 +314,7 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
                 Xem toàn bộ dự án
               </Button>
             </div>
+          </div>
           </div>
         </div>
 
@@ -346,7 +357,11 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
     <section
       ref={sectionRef}
       data-home-section="IMMERSIVE_PROJECT"
-      className="relative h-[260vh] bg-espresso text-canvas"
+      // 220vh, not 260: four stages across 120vh of pinned scroll is 30vh each.
+      // At 40vh the reader pushed 400px to advance one caption, which reads as an
+      // unresponsive page rather than a slow camera — and it made this section
+      // and FEATURED the same length, which is the plateau the score breaks.
+      className="relative h-[220vh] bg-espresso text-canvas"
     >
       <div className="sticky top-0 flex h-[100svh] w-full flex-col justify-between overflow-hidden">
         <div className="absolute inset-0" aria-hidden="true">

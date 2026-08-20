@@ -146,7 +146,7 @@ export default async function ArticlePage({ params }: PageProps) {
           <div className="mx-auto w-full max-w-[100rem]">
             <Reveal>
               <Label rule>Đọc tiếp</Label>
-              <p className="u-body-lg mt-8 max-w-[40ch]">Cùng một mạch với bài vừa rồi.</p>
+              <p className="u-body-lg mt-8 max-w-[40ch]">Cùng một mạch với bài bạn vừa đọc.</p>
             </Reveal>
 
             <Reveal stagger={0.07} className="mt-10">

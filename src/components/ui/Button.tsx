@@ -72,12 +72,20 @@ function buttonClasses({
   className,
 }: Required<Pick<ButtonBaseProps, 'variant' | 'size' | 'tone' | 'block'>> & { className?: string }): string {
   const base =
-    'group/btn relative inline-flex select-none items-center justify-center rounded-none font-body font-medium uppercase tracking-label leading-none transition-colors duration-500 ease-editorial disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40'
+    'group/btn relative inline-flex select-none items-center justify-center rounded-none font-body font-medium uppercase tracking-label transition-colors duration-500 ease-editorial disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40'
 
+  // `leading-none` has to come AFTER the font size, not with the rest of the
+  // base: tailwind-merge treats a `text-[...]` utility as conflicting with
+  // `leading-*` (because the `text-lg/7` shorthand carries one), so a leading
+  // written first is silently dropped by `cn`. It was — the served markup for
+  // every button on the site carried no leading at all and inherited the body's
+  // 1.6, which is 7px of extra box under an 11px label. That is what pushed the
+  // underline variant's rule off the baseline it is supposed to share with the
+  // rules around it.
   if (variant === 'underline') {
     return cn(
       base,
-      'h-auto gap-2 border-b border-current/25 px-0 pb-2 text-[0.6875rem]',
+      'h-auto gap-2 border-b border-current/25 px-0 pb-2 text-[0.6875rem] leading-none',
       UNDERLINE[tone],
       block && 'flex w-full justify-between',
       className,
@@ -87,6 +95,7 @@ function buttonClasses({
   return cn(
     base,
     SIZES[size],
+    'leading-none',
     variant === 'solid' ? SOLID[tone] : GHOST[tone],
     block && 'flex w-full',
     className,
