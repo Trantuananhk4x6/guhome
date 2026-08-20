@@ -36,6 +36,8 @@ export { useTextReveal } from './text'
 export type { TextRevealOptions } from './text'
 export { useImageReveal, useParallax } from './image'
 export type { ImageRevealOptions, ParallaxOptions } from './image'
+export { useCountUp, useLetterLift, useMagnetic, useRuleDraw, useScrollVelocity } from './interface'
+export type { CountUpOptions, MagneticOptions } from './interface'
 export { useCameraScroll } from './camera'
 export type { CameraScrollArgs } from './camera'
 export {

@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 import { gsap, registerGsap, ScrollTrigger } from '@/animations/gsap'
+import { useLetterLift, useMagnetic } from '@/animations/interface'
 import { Button } from '@/components/ui/Button'
 import { useMotionFlag } from '@/lib/motion'
 import { cn } from '@/lib/utils'
@@ -127,6 +128,10 @@ export function Header({ nav, brand }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const markRef = useRef<HTMLSpanElement>(null)
+  useLetterLift(markRef)
+  const ctaRef = useRef<HTMLSpanElement>(null)
+  useMagnetic(ctaRef)
   const [menuRoute, setMenuRoute] = useState(pathname)
   const menuOpenRef = useRef(false)
 
@@ -312,7 +317,14 @@ export function Header({ nav, brand }: HeaderProps) {
               aria-label={`${brand.companyName} — ${home?.label ?? 'Trang chủ'}`}
               className="shrink-0 font-display text-[1.1875rem] font-normal uppercase leading-none tracking-[0.16em] transition-opacity duration-500 hover:opacity-60 md:text-[1.25rem] lg:text-[1.375rem]"
             >
-              {brand.companyName}
+              {/*
+                The one place on the site worth splitting into glyphs. Splitting
+                is a real cost — a span per letter, and the DOM has to be put
+                back on unmount — so it is spent on the mark rather than on any
+                sentence. `useLetterLift` restores the text and keeps an
+                aria-label, so assistive tech still hears one word.
+              */}
+              <span ref={markRef}>{brand.companyName}</span>
             </Link>
 
             {/*
@@ -369,6 +381,16 @@ export function Header({ nav, brand }: HeaderProps) {
                 hung below the line it is supposed to sit on.
               */
               <div className="hidden shrink-0 items-baseline border-l border-accent pl-5 md:flex lg:pl-7">
+                {/*
+                  The magnetic pull goes on a wrapper, not on `Button`: Button is
+                  a server-safe component used on nearly every page, and giving it
+                  a hook would pull the whole UI kit into the client bundle to
+                  animate one control. Transforming the wrapper moves the button
+                  just the same. This is also the ONLY magnetic element on the
+                  site — on every button it would be a tic; on one, it reads as
+                  that button being the important one.
+                */}
+                <span ref={ctaRef} className="inline-block will-change-transform">
                 <Button
                   href={contact.href}
                   variant="underline"
@@ -380,6 +402,7 @@ export function Header({ nav, brand }: HeaderProps) {
                 >
                   {contact.label}
                 </Button>
+                </span>
               </div>
             ) : null}
 
