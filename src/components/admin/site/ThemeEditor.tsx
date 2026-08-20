@@ -17,6 +17,8 @@ import { Input } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
 import { Textarea } from '@/components/ui/Textarea'
 import { DEFAULT_THEME } from '@/lib/theme'
+import { THEME_PRESETS, presetForColors } from '@/lib/theme-presets'
+import { cn } from '@/lib/utils'
 import { resetTheme, saveTheme } from '@/server/actions/theme'
 import type { MediaRef, ThemeColors, ThemeSettings } from '@/types/content'
 
@@ -63,6 +65,13 @@ export function ThemeEditor({ initial, logo: initialLogo, favicon: initialFavico
   const setColors = (key: keyof ThemeColors, next: string): void => {
     draft.set((current) => ({ ...current, colors: { ...current.colors, [key]: next } }))
   }
+
+  /** Replaces all nine tokens at once; typography, motion and brand are untouched. */
+  const applyPreset = (colors: ThemeColors): void => {
+    draft.set((current) => ({ ...current, colors }))
+  }
+
+  const activePreset = presetForColors(theme.colors)
 
   const setTypography = <K extends keyof ThemeSettings['typography']>(
     key: K,
@@ -114,6 +123,47 @@ export function ThemeEditor({ initial, logo: initialLogo, favicon: initialFavico
             title="Bảng màu"
             description="Chín token dựng nên toàn bộ site. Accent dùng thật tiết chế — một nét kẻ, một số thứ tự, một trạng thái hover."
           >
+            <div className="border-line mb-9 border-b pb-8">
+              <p className="u-label mb-4">Bảng có sẵn</p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {THEME_PRESETS.map((preset) => {
+                  const active = activePreset?.id === preset.id
+                  return (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      onClick={() => applyPreset(preset.colors)}
+                      aria-pressed={active}
+                      className={cn(
+                        'border-line hover:border-accent focus-visible:border-accent group flex items-start gap-4 border p-4 text-left transition-colors duration-300',
+                        active && 'border-accent',
+                      )}
+                    >
+                      {/* The palette itself is the label — five stacked bands read
+                          faster than any name, and show the accent in context. */}
+                      <span
+                        aria-hidden
+                        className="border-line flex h-12 w-12 shrink-0 flex-col overflow-hidden border"
+                      >
+                        {([preset.colors.canvas, preset.colors.surface, preset.colors.accent, preset.colors.ink] as const).map(
+                          (swatch) => (
+                            <span key={swatch} className="flex-1" style={{ backgroundColor: swatch }} />
+                          ),
+                        )}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="text-ink block text-sm font-medium">
+                          {preset.name}
+                          {active ? ' · đang dùng' : ''}
+                        </span>
+                        <span className="text-muted mt-1 block text-xs leading-relaxed">{preset.note}</span>
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+
             <ColorTokenList
               tokens={THEME_COLOR_TOKENS}
               colors={theme.colors}

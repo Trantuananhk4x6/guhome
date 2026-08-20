@@ -353,8 +353,11 @@ export function DepthScene({ image, depth, settings, quality, overscan = 1.08 }:
     const controls = asOrbitControls(state.controls)
     const envelope = asOrbitEnvelope(state.controls)
 
+    // An unbounded live pose — the horizon is in shot — has no finite answer, so
+    // fall back on the size already held and let the matte do the rest.
+    const held = Math.max(live, coverRef.current)
     let relief = live
-    let matte = live * MATTE_FALLBACK
+    let matte = held * MATTE_FALLBACK
 
     if (controls && envelope) {
       const key = `${envelope.maxDistance.toFixed(3)}:${envelope.minPolarAngle.toFixed(3)}:${envelope.maxPolarAngle.toFixed(3)}:${envelope.minAzimuthAngle.toFixed(3)}:${envelope.maxAzimuthAngle.toFixed(3)}:${cam.fov.toFixed(2)}:${cam.aspect.toFixed(3)}`
@@ -368,10 +371,11 @@ export function DepthScene({ image, depth, settings, quality, overscan = 1.08 }:
       }
       const worst = envelopeCoverRef.current
       // Cover the envelope, but not at any price — see `MAX_ENVELOPE_COVER`.
-      relief = Math.max(live, Math.min(worst, live * MAX_ENVELOPE_COVER))
+      const ceiling = live > 0 ? live * MAX_ENVELOPE_COVER : worst
+      relief = Math.max(live, Math.min(worst, ceiling))
       matte = envelopeBoundedRef.current
-        ? Math.max(worst * MATTE_MARGIN, relief * MATTE_MARGIN)
-        : relief * MATTE_FALLBACK
+        ? Math.max(worst, relief) * MATTE_MARGIN
+        : Math.max(held, relief) * MATTE_FALLBACK
     }
 
     let changed = false

@@ -151,6 +151,10 @@ export function PageTransition(props: { children: ReactNode }): JSX.Element {
       // `coverTimeline` in this same tick, before a frame is painted.
       revealCtxRef.current?.revert()
       revealCtxRef.current = null
+      // The mark is about to be drawn in by the cover; a leftover breathing loop
+      // from the navigation before it would fight that tween for the same
+      // property.
+      stopWaiting()
 
       coveringRef.current = true
       pendingHrefRef.current = href
@@ -275,7 +279,11 @@ export function PageTransition(props: { children: ReactNode }): JSX.Element {
       // whatever state the cover left the inline styles in.
       ctx.revert()
       if (revealCtxRef.current === ctx) revealCtxRef.current = null
-      if (!coveringRef.current) hideCurtain(panel)
+      if (!coveringRef.current) {
+        // Not mid-cover, so nothing is waiting on this panel any more.
+        stopWaiting()
+        hideCurtain(panel)
+      }
     }
   }, [pathname, enabled, releaseCover, startWaiting, stopWaiting])
 

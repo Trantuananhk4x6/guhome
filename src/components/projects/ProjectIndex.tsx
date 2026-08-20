@@ -253,6 +253,8 @@ function IndexRow({ project, index }: { project: ProjectSummary; index: number }
             sizes="(min-width: 768px) 8vw, 22vw"
             width={400}
             reveal="revealClip"
+            // The house image shadow is tuned for a 600px plate; under a 93px
+            // thumbnail it is a 60px blur pooling below the row rule.
             shadow={false}
             imageClassName="ease-editorial transition-transform duration-700 group-hover:scale-[1.06]"
           />

@@ -11,11 +11,13 @@ import {
 import type { ReactNode } from 'react'
 
 import '@/styles/globals.css'
+import '@/styles/neon.css'
 
 import { PageTransition } from '@/components/animation/PageTransition'
 import { Providers } from '@/components/layout/Providers'
 import { siteUrl } from '@/lib/env'
 import { DEFAULT_THEME, THEME_STYLE_ID, themeStyleSheet } from '@/lib/theme'
+import { isDarkGround } from '@/lib/theme-presets'
 import { getThemeSettings } from '@/server/queries/site'
 
 /**
@@ -129,19 +131,33 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  colorScheme: 'light',
-  themeColor: DEFAULT_THEME.colors.canvas,
+/**
+ * Derived from the stored palette rather than fixed, so the mobile address bar
+ * and the browser's own form controls follow the theme. A hardcoded
+ * `colorScheme: 'light'` under a night ground gives you a white URL bar above a
+ * near-black page and light-styled native controls on top of it.
+ */
+export async function generateViewport(): Promise<Viewport> {
+  const theme = await getThemeSettings().catch(() => DEFAULT_THEME)
+  const dark = isDarkGround(theme.colors)
+  return {
+    width: 'device-width',
+    initialScale: 1,
+    colorScheme: dark ? 'dark' : 'light',
+    themeColor: theme.colors.canvas,
+  }
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   // `getThemeSettings()` is request-cached and falls back to DEFAULT_THEME itself.
   const theme = await getThemeSettings()
+  // Decided on the server from the stored palette, so the night treatment is in
+  // the first paint rather than arriving after hydration. `neon.css` keys every
+  // rule off this, which is what keeps the daylight theme free of the light layer.
+  const ground = isDarkGround(theme.colors) ? 'dark' : 'light'
 
   return (
-    <html lang="vi" className={FONT_VARIABLES}>
+    <html lang="vi" className={FONT_VARIABLES} data-ground={ground}>
       <body className="bg-canvas font-body text-ink">
         {/* Admin-editable palette. `:root:root` outranks the stylesheet defaults. */}
         <style
