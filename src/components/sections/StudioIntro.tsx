@@ -25,11 +25,26 @@ const BODY_FALLBACK: readonly string[] = [
   'Từ đó, không gian được dựng lên bằng vật liệu thật — gỗ óc chó, đá travertine, vữa khoáng, đồng thau xước — và bằng tỉ lệ vừa vặn với người sống trong đó. Chúng tôi tin một căn nhà tốt không cần lớn tiếng.',
 ]
 
+/**
+ * Shipped when the admin has left the stats field blank — which means these are
+ * claims the studio makes to a visitor without anyone having typed them.
+ *
+ * They used to read: founded 2014, 120 projects completed, 48,000 m² delivered,
+ * 11 awards and publications. Every one of those was invented. There is no award
+ * data anywhere in this repository, 2014 contradicts the studio page's own 2016,
+ * and 120 contradicts the 105 rows in the database. A fabricated award count on a
+ * real business's website is not a copy problem — it is the studio being caught
+ * lying the first time an editor clears a field.
+ *
+ * So the fallback now states only what the page can prove from the data it was
+ * handed, and the count is overwritten below from `data.projectCount`. If a claim
+ * cannot be derived, it does not belong here: the admin can type a real one.
+ */
 const STAT_FALLBACK: readonly SectionStat[] = [
-  { label: 'Năm thành lập', value: '2014' },
-  { label: 'Dự án đã hoàn thiện', value: '120' },
-  { label: 'Diện tích đã hoàn thiện', value: '48.000 m²' },
-  { label: 'Giải thưởng & xuất bản', value: '11' },
+  { label: 'Dự án trên trang', value: '—' },
+  { label: 'Căn hộ · nhà phố', value: '41 · 23' },
+  { label: 'Thương mại · chuyên biệt', value: '19 · 22' },
+  { label: 'Diện tích', value: '12 – 640 m²' },
 ]
 
 /**
@@ -66,11 +81,16 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
     data.studioImageCaption ??
     'Xưởng làm việc — Quận 2, TP. Hồ Chí Minh'
 
-  const stats = sectionStats(content, 'stats', STAT_FALLBACK).map((stat) =>
-    data.projectCount > 0 && stat.label.toLowerCase().includes('dự án')
-      ? { ...stat, value: String(data.projectCount) }
-      : stat,
-  )
+  // The count is always the live one, so the ledger can never contradict the
+  // catalogue sitting a section above it.
+  const stats = sectionStats(content, 'stats', STAT_FALLBACK)
+    .map((stat) =>
+      data.projectCount > 0 && stat.label.toLowerCase().includes('dự án')
+        ? { ...stat, value: String(data.projectCount) }
+        : stat,
+    )
+    // A placeholder that never got its live value is worse than one fewer figure.
+    .filter((stat) => stat.value !== '—')
 
   const image = data.studioImage ?? data.featured[1]?.cover ?? data.featured[0]?.cover ?? null
 

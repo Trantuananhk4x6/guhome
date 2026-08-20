@@ -32,8 +32,18 @@ export const SITE_NAME = 'AN ATELIER'
 export const SITE_TAGLINE = 'Nội thất và kiến trúc cho khí hậu Sài Gòn'
 export const SITE_LOCALE = 'vi_VN'
 
+/**
+ * This string is the Organization slogan in the JSON-LD on every page, so every
+ * number in it has to be true of the seeded data.
+ *
+ * It used to end 'từ gian bếp 12 m² đến biệt thự 640 m²'. Both ends were false:
+ * the 12 m² rows are an entrance hall and a boy's bedroom, and the 640 m² row is
+ * a resort arrival lobby in Đà Nẵng, not a villa. 'Công trình' was also wrong for
+ * the count, which includes an unbuilt competition scheme and two competing
+ * schemes for one apartment. 'Dự án' is true and costs nothing.
+ */
 export const SITE_DESCRIPTION =
-  'AN ATELIER thiết kế và thi công nội thất, kiến trúc tại TP. Hồ Chí Minh. Hơn một trăm công trình từ 2021 đến nay, từ gian bếp 12 m² đến biệt thự 640 m².'
+  'AN ATELIER thiết kế và thi công nội thất, kiến trúc tại TP. Hồ Chí Minh. Hơn một trăm dự án từ 2021 đến nay: căn hộ, nhà phố, và những không gian thương mại phải mở cửa đón khách vào một ngày đã hẹn trước.'
 
 /** Default OpenGraph card, rendered by `src/app/opengraph-image.tsx`. */
 const OG_IMAGE_PATH = '/opengraph-image'

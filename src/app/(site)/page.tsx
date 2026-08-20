@@ -15,10 +15,16 @@ import type {
 
 export const revalidate = 300
 
+/**
+ * Both of these were pass-1 strings that three copy passes were commissioned to
+ * kill and never reached, because they live here rather than in the seeded data —
+ * so the rejected slogan stayed on the browser tab and the rejected directory
+ * line stayed under every search result for the front page.
+ */
 export const metadata: Metadata = {
-  title: 'AN ATELIER — Không gian mang tính cách.',
+  title: 'AN ATELIER — Nội thất và kiến trúc cho khí hậu Sài Gòn',
   description:
-    'Studio nội thất và kiến trúc tại TP. Hồ Chí Minh. Chúng tôi dựng không gian bằng vật liệu thật, ánh sáng tự nhiên và tỉ lệ vừa vặn với người sống trong đó.',
+    'Studio nội thất và kiến trúc tại TP. Hồ Chí Minh. Chúng tôi thiết kế cho độ ẩm 75–80% quanh năm, cho nắng chiều đổ vào một mặt thoáng duy nhất, và cho con hẻm quyết định món đồ nào vào được tới cửa.',
 }
 
 /** Never let one unreachable table blank the homepage. */
