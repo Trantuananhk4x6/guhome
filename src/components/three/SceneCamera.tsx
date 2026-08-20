@@ -24,7 +24,7 @@ export interface SceneCameraProps {
 
 /* ------------------------------ orbit envelope ----------------------------- */
 
-interface OrbitLimits {
+export interface OrbitLimits {
   minDistance: number
   maxDistance: number
   minPolarAngle: number
@@ -77,8 +77,13 @@ function wrapPi(angle: number): number {
  * walk ends wherever it ends, and the moment the visitor grabs the controls
  * `update()` clamps the live pose. A window sized to waypoint 0 alone would
  * yank the camera on handover.
+ *
+ * Exported because `DepthScene` sizes the relief against **this** window — see
+ * `envelopeCoverage` in `@/lib/three/coverage` — and a claim about how big the
+ * plane has to be is only checkable if the window it is solved against can be
+ * evaluated outside a browser.
  */
-function orbitEnvelope(points: readonly ResolvedWaypoint[], roomDepth: number, flat: boolean): OrbitLimits {
+export function orbitEnvelope(points: readonly ResolvedWaypoint[], roomDepth: number, flat: boolean): OrbitLimits {
   const head = points[0] ?? FALLBACK_WAYPOINT
   const base = Math.atan2(head.position[0] - head.target[0], head.position[2] - head.target[2])
 
