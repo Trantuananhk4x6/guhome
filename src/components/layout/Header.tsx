@@ -345,7 +345,7 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
                   width={512}
                   height={512}
                   priority
-                  className="h-[2.9em] w-auto md:h-[3.1em]"
+                  className="h-[3.6em] w-auto md:h-[4em] lg:h-[4.4em]"
                 />
               ) : (
                 /*
