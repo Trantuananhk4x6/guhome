@@ -37,12 +37,22 @@ function isActive(pathname: string, href: string): boolean {
 /**
  * One rail item, and the only place the bar's hierarchy is written.
  *
- * `lead` is set in the display serif at 17px against 11px uppercase labels: the
- * size AND the family carry the difference, so the rail states which door
- * matters instead of offering four identical ones. Both variants set
- * `leading-none` on purpose — it collapses each link to a box that ends ~1.5px
- * under its own baseline, whatever the family, which is what lets one `-bottom-2`
- * put every hover rule in the bar on a single level.
+ * `lead` used to be set in the display SERIF, mixed case, at 17px, against 11px
+ * uppercase sans labels. The reasoning was that family plus size states which
+ * door matters. In the rendered bar it does not read as hierarchy at all — one
+ * serif word among five sans labels reads as a font that failed to load. A
+ * hierarchy has to be legible AS a hierarchy, and a reader cannot tell "this is
+ * the important one" from "this one is broken" when the only signal is that it
+ * looks unlike its neighbours.
+ *
+ * So the rail is now one typographic system — same family, same case, same
+ * tracking — and the lead is marked the way a printed index marks its first
+ * entry: a little more size, full weight, and an accent rule that is always
+ * drawn rather than waiting for a hover. Difference in degree, not in kind.
+ *
+ * Both variants keep `leading-none`, which collapses each link to a box ending
+ * ~1.5px under its own baseline, so one `-bottom-2` puts every rule in the bar
+ * on a single level.
  */
 function NavLink({
   item,
@@ -66,21 +76,21 @@ function NavLink({
         // `text-[...]`, and it did — the served lead link carried the body's 1.6
         // while the labels beside it carried 1, which is exactly the mismatch
         // that put their two hover rules at different depths.
-        'group/nav relative inline-flex items-baseline text-current transition-opacity duration-500 ease-editorial',
+        'group/nav u-label relative inline-flex items-baseline text-current transition-opacity duration-500 ease-editorial',
         lead
-          ? 'font-display text-[1.0625rem] leading-none tracking-[-0.01em] opacity-100'
-          : 'u-label leading-none text-current',
+          ? 'text-[0.8125rem] leading-none font-semibold tracking-[0.14em] opacity-100'
+          : 'leading-none text-current',
         !lead &&
           (active
             ? 'opacity-100'
-            : // 70%, not the 60% this bar used to run: ink at 60% over canvas
-              // measures 4.34:1 and at 55% it is 3.73:1 — both under AA for
-              // 11px type. At 70% it is 6.4:1 and the rail still reads as the
-              // quiet register, because the hierarchy here is carried by size
-              // and family (17px serif against 11px caps), not by fading text
-              // until it is hard to read. Canvas ink on a photograph needs a
-              // little more presence than the same label on flat limestone.
-              'opacity-70 hover:opacity-100 group-data-[mode=dark]/hdr:opacity-85 group-data-[mode=dark]/hdr:hover:opacity-100'),
+            : // 78%, not the 60% this bar used to run: ink at 60% over canvas
+              // measures 4.34:1 and at 55% it is 3.73:1, both under AA for 11px
+              // type. The rail sits over PHOTOGRAPHY, not flat limestone, so it
+              // needs more presence than a page label — and now that the lead is
+              // marked by weight and an always-drawn rule rather than by a
+              // different typeface, the quiet register no longer has to be quiet
+              // enough to get out of its way.
+              'opacity-78 hover:opacity-100 group-data-[mode=dark]/hdr:opacity-90 group-data-[mode=dark]/hdr:hover:opacity-100'),
       )}
     >
       {item.label}
@@ -88,7 +98,12 @@ function NavLink({
         aria-hidden="true"
         className={cn(
           'absolute -bottom-2 left-0 h-px w-full origin-left bg-accent transition-transform duration-500 ease-editorial',
-          active ? 'scale-x-100' : 'scale-x-0 group-hover/nav:scale-x-100 group-focus-visible/nav:scale-x-100',
+          // The lead carries its rule permanently — that, plus half a step of
+          // size and weight, is the whole hierarchy now. Everything else draws
+          // one on hover, or when it is the page you are on.
+          active || lead
+            ? 'scale-x-100'
+            : 'scale-x-0 group-hover/nav:scale-x-100 group-focus-visible/nav:scale-x-100',
         )}
       />
     </Link>
