@@ -16,6 +16,7 @@ import { clamp, cn, formatArea, pad2 } from '@/lib/utils'
 import type { MediaRef, ProjectSummary } from '@/types/content'
 
 import { SectionImage } from './SectionImage'
+import { BAND_T, BLEED_X, DISPLAY, DISPLAY_SM, SCRIM_B, SCRIM_T, SECTION_Y } from './composition'
 import { sectionLines, sectionList, sectionText } from './content'
 import type { HomeSectionProps } from './types'
 
@@ -40,16 +41,6 @@ function readWide(): boolean {
   return window.matchMedia(WIDE_QUERY).matches && supportsWebGL()
 }
 
-/**
- * Type over a photograph needs a floor under it. Two shallow gradients — one at
- * each end of the frame — hold the copy without flattening the picture the way
- * a full-panel scrim does.
- */
-const TOP_SCRIM =
-  'linear-gradient(to bottom, color-mix(in srgb, var(--c-espresso) 52%, transparent) 0%, transparent 100%)'
-const BOTTOM_SCRIM =
-  'linear-gradient(to top, color-mix(in srgb, var(--c-espresso) 62%, transparent) 0%, color-mix(in srgb, var(--c-espresso) 24%, transparent) 45%, transparent 100%)'
-
 function ProjectFacts({ project, tone }: { project: ProjectSummary; tone: 'light' | 'ink' }) {
   const facts: { term: string; value: string }[] = []
   if (project.location) facts.push({ term: 'Địa điểm', value: project.location })
@@ -62,7 +53,7 @@ function ProjectFacts({ project, tone }: { project: ProjectSummary; tone: 'light
     <dl className="grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4">
       {facts.map((fact) => (
         <div key={fact.term} className="flex flex-col gap-1.5">
-          <dt className={cn('u-label', tone === 'light' && 'text-canvas/45')}>{fact.term}</dt>
+          <dt className={cn('u-label', tone === 'light' && 'text-canvas/55')}>{fact.term}</dt>
           <dd
             className={cn(
               'font-body text-[0.9375rem] leading-snug',
@@ -77,42 +68,107 @@ function ProjectFacts({ project, tone }: { project: ProjectSummary; tone: 'light
   )
 }
 
-/** One still of the degraded sequence: image reveal, then its caption. */
-function StackedStage({
-  caption,
-  media,
-  index,
-  alt,
-}: {
+interface StillProps {
   caption: string
   media: MediaRef | null
   index: number
   alt: string
-}) {
-  const frameRef = useRef<HTMLDivElement>(null)
-  const captionRef = useRef<HTMLDivElement>(null)
+}
 
+/** Every still shares these two hooks: clip the frame, drift the layer inside. */
+function useStill() {
+  const frameRef = useRef<HTMLDivElement>(null)
+  const captionRef = useRef<HTMLElement>(null)
   useImageReveal(frameRef, { variant: 'revealClip' })
   useReveal(captionRef, { variant: 'revealUp', delay: 0.1 })
+  return { frameRef, captionRef }
+}
+
+/** Stage 01 — the full width of the screen, caption on the picture. */
+function BleedStill({ caption, media, index, alt }: StillProps) {
+  const { frameRef, captionRef } = useStill()
 
   return (
-    <figure className="flex flex-col gap-5">
-      <div ref={frameRef} className="relative aspect-[16/10] w-full overflow-hidden bg-espresso">
-        <SectionImage media={media} alt={alt} sizes="100vw" width={1600} />
+    <figure className={cn('relative isolate', BLEED_X)}>
+      <div
+        ref={frameRef}
+        className="relative isolate aspect-[4/5] w-full overflow-hidden bg-espresso sm:aspect-[3/2] lg:aspect-[21/8]"
+      >
+        <SectionImage media={media} alt={alt} sizes="100vw" width={2400} />
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[46%]" style={SCRIM_B} />
       </div>
-      <figcaption ref={captionRef} data-reveal className="u-gutter flex items-center gap-4">
+      <figcaption
+        ref={captionRef}
+        data-reveal
+        className="u-gutter absolute inset-x-0 bottom-0 flex items-center gap-4 pb-6 lg:p-[var(--spacing-gutter)]"
+      >
         <span className="u-label text-accent-soft">{pad2(index + 1)}</span>
-        <span className="u-label text-canvas/60">{caption}</span>
+        <span className="u-label text-canvas/75">{caption}</span>
       </figcaption>
     </figure>
   )
 }
 
+/** Stages 02 and 03 — a pair that never shares a top or a bottom edge. */
+function PairStill({ caption, media, index, alt, variant }: StillProps & { variant: 'wide' | 'tall' }) {
+  const { frameRef, captionRef } = useStill()
+  const wide = variant === 'wide'
+
+  return (
+    <figure className={cn('col-span-12', wide ? 'lg:col-span-7' : 'lg:col-span-4 lg:col-start-9 lg:mt-20')}>
+      <div
+        ref={frameRef}
+        className={cn(
+          'relative w-full overflow-hidden bg-espresso',
+          wide ? 'aspect-[3/2]' : 'aspect-[4/5]',
+        )}
+      >
+        <SectionImage
+          media={media}
+          alt={alt}
+          sizes={wide ? '(min-width: 1024px) 53vw, 100vw' : '(min-width: 1024px) 30vw, 100vw'}
+          width={1600}
+        />
+      </div>
+      <figcaption ref={captionRef} data-reveal className="mt-5 flex items-center gap-4">
+        <span className="u-label text-accent-soft">{pad2(index + 1)}</span>
+        <span className="u-label text-canvas/70">{caption}</span>
+      </figcaption>
+    </figure>
+  )
+}
+
+/** Stage 04 and after — inset, with the caption standing beside it, not under it. */
+function InsetStill({ caption, media, index, alt }: StillProps) {
+  const { frameRef, captionRef } = useStill()
+
+  return (
+    <figure className="grid grid-cols-12 items-start gap-x-8 gap-y-5">
+      <figcaption
+        ref={captionRef}
+        data-reveal
+        className="col-span-12 flex items-center gap-4 lg:order-1 lg:col-span-2 lg:flex-col lg:items-start lg:gap-3"
+      >
+        <span className="u-label text-accent-soft">{pad2(index + 1)}</span>
+        <span className="u-label text-canvas/70">{caption}</span>
+      </figcaption>
+      <div
+        ref={frameRef}
+        className="relative col-span-12 aspect-[16/9] w-full overflow-hidden bg-espresso lg:order-2 lg:col-span-9 lg:col-start-4 lg:aspect-[21/9]"
+      >
+        <SectionImage media={media} alt={alt} sizes="(min-width: 1024px) 68vw, 100vw" width={1600} />
+      </div>
+    </figure>
+  )
+}
+
 /**
- * The pinned 300vh moment: a sticky 100vh scene whose camera is scrubbed from
- * 0 to 1 across the section, with stage captions crossfading and the project's
- * metadata resolving at the end. Small screens and reduced motion get a stacked
- * image sequence instead — no pinning, no WebGL.
+ * Depth: the site's one camera-driven moment, at viewport four rather than
+ * viewport nine. The pinned path is a sticky 100svh scene scrubbed 0 → 1 with
+ * the stage captions crossfading and the project's facts resolving at the end;
+ * reduced motion, a narrow screen or no WebGL gets a stacked sequence of
+ * differently shaped stills instead — no pinning, no WebGL, and no four
+ * identical full-bleed frames.
  */
 export function ImmersiveProject({ section, data }: HomeSectionProps) {
   const { project, scene, gallery } = data.immersive
@@ -136,17 +192,16 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
   const wide = useSyncExternalStore(subscribeWide, readWide, () => false)
   const pinned = hasScene && !reduced && wide
 
-  // The stacked sequence and the 300vh pinned panel are wildly different
-  // heights, so the upgrade moves every trigger below this band. Without a
-  // re-measure, the reveals further down the page fire at the wrong scroll
-  // position — or, further down still, never fire at all.
+  // The two paths are deliberately the same height (260vh pinned, ~2.5 viewports
+  // stacked), but they are never identical to the pixel, so the upgrade still
+  // moves every trigger below this band and the page has to be re-measured.
   useEffect(() => {
     registerGsap()
     ScrollTrigger.refresh()
   }, [pinned])
 
-  // 300vh outer, 100vh sticky inner: `top top` → `bottom bottom` is exactly the
-  // 200vh the sticky panel spends pinned, so progress maps 0 → 1 across it.
+  // 260vh outer, 100vh sticky inner: `top top` → `bottom bottom` is exactly the
+  // 160vh the sticky panel spends pinned, so progress maps 0 → 1 across it.
   useCameraScroll({
     sectionRef,
     progress,
@@ -214,46 +269,75 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
 
   if (!pinned || scene === null) {
     const stills = stages.map((_, index) => gallery[index] ?? cover)
+    const altOf = (index: number): string => `${project.title} — ${stages[index] ?? 'không gian'}`
 
     return (
       <section
         ref={sectionRef}
         data-home-section="IMMERSIVE_PROJECT"
-        className="bg-espresso py-[var(--spacing-section)] text-canvas"
+        className={cn('overflow-hidden bg-espresso text-canvas', SECTION_Y)}
       >
-        <div ref={headerRef} data-reveal className="u-gutter flex flex-col gap-7">
-          <Label tone="light" rule>
-            {eyebrow}
-          </Label>
-          <h2 className="u-display max-w-[14ch] text-canvas">
-            {headingLines.map((line) => (
-              <span key={line} className="block">
-                {line}
-              </span>
+        {/* The heading sits BESIDE the body and the project's facts, not above
+            them — this is the fallback path, and it must not open the way six
+            other sections open. */}
+        <div ref={headerRef} data-reveal className="u-gutter grid grid-cols-12 gap-x-8 gap-y-10">
+          <div className="col-span-12 lg:col-span-5">
+            <Label tone="light" rule>
+              {eyebrow}
+            </Label>
+            <h2 className={cn(DISPLAY, 'mt-8 max-w-[12ch] text-canvas')}>
+              {headingLines.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </h2>
+          </div>
+
+          <div className="col-span-12 lg:col-span-6 lg:col-start-7">
+            <p className="u-body-lg max-w-[46ch] text-canvas/65">{body}</p>
+            <div className="mt-10 border-t border-canvas/15 pt-8">
+              <ProjectFacts project={project} tone="light" />
+            </div>
+            <div className="mt-8">
+              <Button href={href} variant="underline" tone="light" withArrow>
+                Xem toàn bộ dự án
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {stills[0] !== undefined ? (
+          <div className={cn('u-gutter', BAND_T)}>
+            <BleedStill caption={stages[0] ?? ''} media={stills[0]} index={0} alt={altOf(0)} />
+          </div>
+        ) : null}
+
+        {stills.length > 1 ? (
+          <div className={cn('u-gutter grid grid-cols-12 items-start gap-x-8 gap-y-12', BAND_T)}>
+            {stills.slice(1, 3).map((media, offset) => (
+              <PairStill
+                key={stages[offset + 1] ?? `pair-${offset}`}
+                caption={stages[offset + 1] ?? ''}
+                media={media}
+                index={offset + 1}
+                alt={altOf(offset + 1)}
+                variant={offset === 0 ? 'wide' : 'tall'}
+              />
             ))}
-          </h2>
-          <p className="u-body-lg max-w-[46ch] text-canvas/60">{body}</p>
-        </div>
+          </div>
+        ) : null}
 
-        <div className="mt-[clamp(3rem,8vh,6rem)] flex flex-col gap-[clamp(2.5rem,7vh,5rem)]">
-          {stills.map((media, index) => (
-            <StackedStage
-              key={stages[index] ?? String(index)}
-              caption={stages[index] ?? ''}
+        {stills.slice(3).map((media, offset) => (
+          <div key={stages[offset + 3] ?? `inset-${offset}`} className={cn('u-gutter', BAND_T)}>
+            <InsetStill
+              caption={stages[offset + 3] ?? ''}
               media={media}
-              index={index}
-              alt={`${project.title} — ${stages[index] ?? 'không gian'}`}
+              index={offset + 3}
+              alt={altOf(offset + 3)}
             />
-          ))}
-        </div>
-
-        <div className="u-gutter mt-[clamp(3rem,8vh,6rem)] flex flex-col gap-8 border-t border-canvas/15 pt-9">
-          <h3 className="u-display-sm text-canvas">{project.title}</h3>
-          <ProjectFacts project={project} tone="light" />
-          <Button href={href} variant="underline" tone="light" withArrow>
-            Xem toàn bộ dự án
-          </Button>
-        </div>
+          </div>
+        ))}
       </section>
     )
   }
@@ -262,7 +346,7 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
     <section
       ref={sectionRef}
       data-home-section="IMMERSIVE_PROJECT"
-      className="relative h-[300vh] bg-espresso text-canvas"
+      className="relative h-[260vh] bg-espresso text-canvas"
     >
       <div className="sticky top-0 flex h-[100svh] w-full flex-col justify-between overflow-hidden">
         <div className="absolute inset-0" aria-hidden="true">
@@ -274,8 +358,8 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
             className="absolute inset-0 h-full w-full"
           />
           <div className="absolute inset-0 bg-espresso/28" />
-          <div className="absolute inset-x-0 top-0 h-[38%]" style={{ background: TOP_SCRIM }} />
-          <div className="absolute inset-x-0 bottom-0 h-[52%]" style={{ background: BOTTOM_SCRIM }} />
+          <div className="absolute inset-x-0 top-0 h-[38%]" style={SCRIM_T} />
+          <div className="absolute inset-x-0 bottom-0 h-[52%]" style={SCRIM_B} />
         </div>
 
         <p className="sr-only">
@@ -289,7 +373,8 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
             </Label>
             <h2
               className={cn(
-                'u-display-sm max-w-[14ch] text-canvas transition-opacity duration-[900ms] ease-editorial',
+                DISPLAY_SM,
+                'max-w-[14ch] text-canvas transition-opacity duration-[900ms] ease-editorial',
                 stage === 0 ? 'opacity-100' : 'opacity-0',
               )}
             >
@@ -300,7 +385,7 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
               ))}
             </h2>
           </div>
-          <Label tone="light" className="shrink-0 text-canvas/45">
+          <Label tone="light" className="shrink-0 text-canvas/55">
             {`${pad2(Math.min(stage + 1, stageCount))} / ${pad2(stageCount)}`}
           </Label>
         </div>
@@ -312,7 +397,8 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
                 key={caption}
                 aria-hidden={index === stage ? undefined : 'true'}
                 className={cn(
-                  'u-display-sm absolute inset-x-0 bottom-0 block text-canvas transition-all duration-[900ms] ease-editorial',
+                  DISPLAY_SM,
+                  'absolute inset-x-0 bottom-0 block text-canvas transition-all duration-[900ms] ease-editorial',
                   index === stage ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0',
                 )}
               >
@@ -338,7 +424,7 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
             )}
           >
             <div className="flex flex-col gap-6">
-              <Link href={href} className="u-display-sm text-canvas outline-offset-4 hover:text-accent-soft">
+              <Link href={href} className={cn(DISPLAY_SM, 'text-canvas outline-offset-4 hover:text-accent-soft')}>
                 {project.title}
               </Link>
               <ProjectFacts project={project} tone="light" />

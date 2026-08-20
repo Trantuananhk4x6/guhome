@@ -185,8 +185,14 @@ function intrinsicSize(image: unknown): { width: number; height: number } | null
   return { width, height }
 }
 
-/** Draws `image` into a small offscreen canvas and reads it back as luminance. */
-function sampleLuminance(image: unknown, longSide: number): Field | null {
+interface Sampled {
+  pixels: Uint8ClampedArray
+  width: number
+  height: number
+}
+
+/** Draws `image` into a small offscreen canvas and reads the pixels back. */
+function sampleRgba(image: unknown, longSide: number): Sampled | null {
   const size = intrinsicSize(image)
   if (!size) return null
   const aspect = size.width / size.height
@@ -207,13 +213,19 @@ function sampleLuminance(image: unknown, longSide: number): Field | null {
     return null
   }
 
-  let pixels: Uint8ClampedArray
   try {
-    pixels = ctx.getImageData(0, 0, width, height).data
+    return { pixels: ctx.getImageData(0, 0, width, height).data, width, height }
   } catch {
     // Tainted canvas — a cross-origin photo. Nothing to infer from.
     return null
   }
+}
+
+/** Draws `image` into a small offscreen canvas and reads it back as luminance. */
+function sampleLuminance(image: unknown, longSide: number): Field | null {
+  const sampled = sampleRgba(image, longSide)
+  if (!sampled) return null
+  const { pixels, width, height } = sampled
 
   const field = createField(width, height)
   for (let i = 0, p = 0; i < field.data.length; i++, p += 4) {
@@ -223,6 +235,49 @@ function sampleLuminance(image: unknown, longSide: number): Field | null {
     field.data[i] = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255
   }
   return field
+}
+
+/* ------------------------------- mean colour ------------------------------- */
+
+/** Long side of the thumbnail the matte colour is averaged from. */
+const MATTE_RESOLUTION = 24
+
+function srgbToLinear(channel: number): number {
+  return channel <= 0.04045 ? channel / 12.92 : Math.pow((channel + 0.055) / 1.055, 2.4)
+}
+
+function linearToSrgb(channel: number): number {
+  return channel <= 0.0031308 ? channel * 12.92 : 1.055 * Math.pow(channel, 1 / 2.4) - 0.055
+}
+
+/**
+ * The photograph's mean colour, as sRGB components in 0..1, for the matte the
+ * relief is backed with.
+ *
+ * Averaged in linear light and re-encoded rather than averaged in sRGB: the
+ * sRGB mean of a photograph with any contrast in it lands noticeably darker
+ * than the light the photograph actually carries, and the whole job of this
+ * colour is to be a *plausible continuation* of the image past its own rim.
+ *
+ * Returns `null` when the image cannot be read; callers should fall back to a
+ * neutral rather than to the clear colour.
+ */
+export function meanColour(image: unknown, resolution = MATTE_RESOLUTION): [number, number, number] | null {
+  const sampled = sampleRgba(image, resolution)
+  if (!sampled) return null
+  const { pixels, width, height } = sampled
+  const count = width * height
+  if (count <= 0) return null
+
+  let r = 0
+  let g = 0
+  let b = 0
+  for (let i = 0, p = 0; i < count; i++, p += 4) {
+    r += srgbToLinear((pixels[p] ?? 0) / 255)
+    g += srgbToLinear((pixels[p + 1] ?? 0) / 255)
+    b += srgbToLinear((pixels[p + 2] ?? 0) / 255)
+  }
+  return [linearToSrgb(r / count), linearToSrgb(g / count), linearToSrgb(b / count)]
 }
 
 /* --------------------------------- output --------------------------------- */

@@ -99,12 +99,12 @@ export function ContactForm({ email }: { email: string }) {
           tabIndex={-1}
           className="u-display-sm mt-8 max-w-[20ch] text-ink outline-none"
         >
-          Thư của bạn đã nằm trong hộp của studio.
+          Thư của bạn đã nằm trong hộp thư của studio.
         </p>
         <p className="u-body-lg mt-8 max-w-[46ch]">
-          Chúng tôi đọc hết và trả lời trong vòng 24 giờ làm việc — thư gửi tối thứ Sáu thì sáng thứ
-          Hai bạn có hồi âm. Nếu đề bài cần bàn kỹ, chúng tôi sẽ đề nghị một buổi 60 phút tại studio
-          hoặc ngay trong căn nhà của bạn.
+          Thư gửi tối thứ Sáu thì sáng thứ Hai bạn có hồi âm; chúng tôi đọc hết, kể cả những lá
+          dài. Nếu đề bài cần ngồi bàn cho ra nhẽ, chúng tôi sẽ hẹn bạn 60 phút, ở studio hoặc ngay
+          trong căn nhà đang nói tới.
         </p>
         <Rule className="mt-12" />
         <p className="mt-6 font-body text-[0.8125rem] leading-relaxed text-muted">
@@ -112,7 +112,7 @@ export function ContactForm({ email }: { email: string }) {
           <a href={`mailto:${email}`} className="text-ink underline underline-offset-4">
             {email}
           </a>
-          , hộp thư đó có người mở mỗi sáng.
+          . Hộp thư đó có người mở mỗi sáng.
         </p>
       </div>
     )
@@ -125,14 +125,16 @@ export function ContactForm({ email }: { email: string }) {
       {state.formError ? (
         <div role="alert" className="border-l border-accent pl-4">
           <p className="font-body text-[0.8125rem] leading-relaxed text-accent">
-            {missing.length > 0
-              ? `Chưa gửi được. Còn ${missing.length} mục cần xem lại: ${missing.join(', ')} — lý do ghi ngay dưới từng ô.`
-              : 'Chưa gửi được, và lỗi nằm ở phía chúng tôi chứ không phải ở những gì bạn vừa viết.'}
+            {missing.length === 1
+              ? `Thư chưa đi được. Còn một mục cần bạn xem lại — ${missing.join('')} — và lý do nằm ngay dưới ô đó.`
+              : missing.length > 1
+                ? `Thư chưa đi được. Còn ${missing.length} mục cần bạn xem lại — ${missing.join(', ')} — và lý do nằm ngay dưới từng ô.`
+                : 'Thư chưa đi được, và lần này lỗi nằm ở phía chúng tôi chứ không phải ở những gì bạn vừa viết.'}
           </p>
           {missing.length === 0 ? (
             <p className="mt-2 font-body text-[0.75rem] leading-relaxed text-muted">
-              Nội dung bạn nhập vẫn còn nguyên trong ô. Bấm gửi lại sau vài phút, hoặc chép sang một
-              lá thư gửi thẳng vào{' '}
+              Chữ bạn gõ vẫn còn nguyên trong ô, không mất chữ nào. Thử bấm gửi lại sau vài phút;
+              nếu vẫn vậy thì chép sang một lá thư gửi thẳng vào{' '}
               <a href={`mailto:${email}`} className="text-ink underline underline-offset-4">
                 {email}
               </a>
@@ -176,7 +178,7 @@ export function ContactForm({ email }: { email: string }) {
 
           <Field
             label="Điện thoại"
-            hint="Không bắt buộc. Có số thì chúng tôi gọi, thường nhanh hơn viết."
+            hint="Không bắt buộc. Có số thì chúng tôi gọi, và gọi thường nhanh hơn viết."
             error={state.fieldErrors.phone}
           >
             <Input
@@ -203,7 +205,7 @@ export function ContactForm({ email }: { email: string }) {
 
         <Field
           label="Ngân sách dự kiến"
-          hint="Chỉ để chúng tôi biết nên bàn về đá tự nhiên hay đá nhân tạo. Không phải cam kết, và đổi được về sau."
+          hint="Chỉ để chúng tôi biết nên bàn về đá tự nhiên hay đá nhân tạo. Đây không phải cam kết, và đổi được về sau."
           error={state.fieldErrors.budget}
         >
           <Select
@@ -218,7 +220,7 @@ export function ContactForm({ email }: { email: string }) {
         <Field
           label="Lời nhắn"
           required
-          hint="Diện tích, tình trạng bàn giao, thời điểm muốn dọn vào. Ba dòng cụ thể có ích hơn một trang chung chung."
+          hint="Càng cụ thể thì càng đỡ được một vòng hỏi lại. Ba dòng thật có ích hơn một trang viết cho hay."
           error={state.fieldErrors.message}
         >
           <Textarea
@@ -233,8 +235,8 @@ export function ContactForm({ email }: { email: string }) {
 
       <div className="flex flex-col gap-6 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-body text-[0.75rem] leading-relaxed text-muted">
-          Thông tin này chỉ dùng để trả lời bạn. Chúng tôi không gửi bản tin và không chuyển cho ai
-          khác.
+          Những gì bạn viết ở đây chỉ dùng để trả lời bạn. Studio không gửi bản tin, và không chuyển
+          địa chỉ của ai cho bên nào khác.
         </p>
         <Button type="submit" size="lg" loading={pending} withArrow className="sm:min-w-56">
           {pending ? 'Đang gửi…' : 'Gửi lời nhắn'}

@@ -12,6 +12,7 @@
 import type { ReactNode } from 'react'
 
 import { mediaUrl } from '@/lib/media'
+import { cn } from '@/lib/utils'
 import { getMediaMap } from '@/server/queries/media'
 import { getProjectsByIds, getRelatedProjects } from '@/server/queries/projects'
 import { getSceneById } from '@/server/queries/scenes'
@@ -39,8 +40,57 @@ import { ProjectText } from './ProjectText'
 import { ProjectVideo } from './ProjectVideo'
 import { RelatedProjects } from './RelatedProjects'
 
-/** Blocks that paint their own full-width band and supply their own rhythm. */
-const BANDS = new Set<ProjectBlock['type']>(['HERO', 'SCENE_3D', 'QUOTE', 'CTA'])
+/**
+ * Blocks that paint their own ground and their own vertical padding. Nothing is
+ * added above or below them — a band that also received a wrapper gap would
+ * read as a second, wider band.
+ */
+const SELF_PADDED = new Set<ProjectBlock['type']>(['SCENE_3D', 'QUOTE', 'PROJECT_INFO', 'CTA'])
+
+/* --------------------------------- rhythm ---------------------------------- */
+
+/**
+ * The gap between two blocks, decided by the pair rather than by a constant.
+ *
+ * Every non-band block used to carry the same `py-[calc(var(--spacing-section)/2)]`,
+ * so a photograph answering a paragraph sat exactly as far from it as one
+ * chapter sat from the next: 140px, eleven times down a page, which is the
+ * mechanical part of what reads as generated. Four steps, chosen by what the
+ * two neighbours actually are:
+ *
+ *   none     the block below pads itself, or the one above already did
+ *   tight    the two belong together — a picture answering the paragraph
+ *            that just described it, or a second paragraph continuing a thought
+ *   band     the ordinary beat between two parts of one chapter
+ *   section  the page changing register: out of the hero, into the facts
+ */
+const GAP = {
+  none: '',
+  tight: 'mt-[clamp(2rem,5vh,3.5rem)]',
+  band: 'mt-[clamp(3rem,7vh,5.5rem)]',
+  section: 'mt-[clamp(4.5rem,11vh,9rem)]',
+} as const
+
+function isFullImage(block: ProjectBlock | undefined): boolean {
+  return block?.type === 'IMAGE' && (block.data.width ?? 'wide') === 'full'
+}
+
+function gapBefore(block: ProjectBlock, prev: ProjectBlock | undefined): string {
+  if (!prev) return GAP.none
+  // A band supplies both of its own edges.
+  if (SELF_PADDED.has(prev.type) || SELF_PADDED.has(block.type)) return GAP.none
+  // The hero ends flush on its photograph; the story has to start somewhere.
+  if (prev.type === 'HERO') return GAP.section
+  // A full-bleed photograph and the prose either side of it are one thought.
+  if (isFullImage(block) && prev.type === 'TEXT') return GAP.tight
+  if (isFullImage(prev) && block.type === 'TEXT') return GAP.tight
+  if (block.type === 'TEXT' && prev.type === 'TEXT') return GAP.tight
+  if (block.type === 'IMAGE' && prev.type === 'TEXT') return GAP.tight
+  // Two of the same kind in a row need the break the eye expects.
+  if (block.type === prev.type) return GAP.band
+  if (block.type === 'RELATED') return GAP.section
+  return GAP.band
+}
 
 /**
  * How many projects a `RELATED` block asks for when it has no explicit picks.
@@ -329,7 +379,22 @@ function posterUrl(ctx: BlockContext, poster: unknown): string | null {
 
 /* -------------------------------- rendering -------------------------------- */
 
-function renderBlock(item: ProjectBlock, ctx: BlockContext): ReactNode {
+/**
+ * Where a block sits among its own kind, and what it is standing next to.
+ *
+ * The block *sequence* belongs to the database and cannot be rewritten here —
+ * but how a block composes may depend on what came before it, and that is the
+ * whole answer to "an IMAGE after an IMAGE should not look identical to the
+ * first". `occurrence` is 0-based within the type, so a component can alternate
+ * without ever being told which project it is drawing.
+ */
+interface BlockPosition {
+  occurrence: number
+  prev: ProjectBlock | undefined
+  next: ProjectBlock | undefined
+}
+
+function renderBlock(item: ProjectBlock, ctx: BlockContext, at: BlockPosition): ReactNode {
   const { project } = ctx
 
   switch (item.type) {
@@ -372,6 +437,7 @@ function renderBlock(item: ProjectBlock, ctx: BlockContext): ReactNode {
           caption={item.data.caption}
           width={item.data.width ?? 'wide'}
           reveal={item.data.reveal ?? 'revealClip'}
+          occurrence={at.occurrence}
         />
       )
     }
@@ -379,7 +445,14 @@ function renderBlock(item: ProjectBlock, ctx: BlockContext): ReactNode {
     case 'GALLERY': {
       const items = refs(ctx, item.data.mediaIds)
       if (items.length === 0) return null
-      return <ProjectGallery items={items} columns={item.data.columns ?? 2} caption={item.data.caption} />
+      return (
+        <ProjectGallery
+          items={items}
+          columns={item.data.columns ?? 2}
+          caption={item.data.caption}
+          occurrence={at.occurrence}
+        />
+      )
     }
 
     case 'MASONRY': {
@@ -410,6 +483,7 @@ function renderBlock(item: ProjectBlock, ctx: BlockContext): ReactNode {
           body={body}
           align={item.data.align ?? 'left'}
           width={item.data.width ?? 'narrow'}
+          occurrence={at.occurrence}
         />
       )
     }
@@ -510,17 +584,38 @@ export async function ProjectBlocks({ project, blocks, className }: ProjectBlock
     hasSceneBlock: list.some((item) => item.type === 'SCENE_3D'),
   }
 
+  // Rendered blocks are resolved first so the rhythm is computed against what
+  // actually appears: a HERO whose media went missing, or a GALLERY whose ids no
+  // longer resolve, must not leave its gap behind as an empty band.
+  const seen = new Map<ProjectBlock['type'], number>()
+  const drawn: { item: ProjectBlock; node: ReactNode }[] = []
+
+  for (let i = 0; i < list.length; i += 1) {
+    const item = list[i]
+    if (!item) continue
+    const occurrence = seen.get(item.type) ?? 0
+    const node = renderBlock(item, ctx, { occurrence, prev: list[i - 1], next: list[i + 1] })
+    if (node === null) continue
+    seen.set(item.type, occurrence + 1)
+    drawn.push({ item, node })
+  }
+
   return (
     <div className={className}>
-      {list.map((item) => {
-        const node = renderBlock(item, ctx)
-        if (node === null) return null
-        return (
-          <div key={item.id} className={BANDS.has(item.type) ? undefined : 'py-[calc(var(--spacing-section)/2)]'}>
-            {node}
-          </div>
-        )
-      })}
+      {drawn.map(({ item, node }, i) => (
+        <div
+          key={item.id}
+          data-block={item.type}
+          className={cn(
+            gapBefore(item, drawn[i - 1]?.item),
+            // Everything that is not its own band ends at the last block's
+            // baseline; the page's closing padding belongs to the CTA.
+            i === drawn.length - 1 && !SELF_PADDED.has(item.type) && 'mb-[clamp(4.5rem,11vh,9rem)]',
+          )}
+        >
+          {node}
+        </div>
+      ))}
     </div>
   )
 }

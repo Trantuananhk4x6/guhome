@@ -6,16 +6,21 @@ import { useReveal } from '@/animations/reveal'
 import { useTextReveal } from '@/animations/text'
 import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/Label'
+import { cn } from '@/lib/utils'
 
 import { SectionImage } from './SectionImage'
+import { DISPLAY_LG, SCRIM_B, SCRIM_T } from './composition'
 import { sectionCta, sectionLines, sectionOptionalText, sectionText } from './content'
 import type { HomeSectionProps } from './types'
 
 /**
- * The closing invitation: one held photograph, dimmed almost to ground, with the
- * oversized type over it. The espresso footer follows immediately, so a flat
- * espresso panel here read as two identical black bands stacked — the picture is
- * what tells the eye this is the last room, not the end of the page.
+ * The close, and the second bookend — the mirror of the hero. The photograph
+ * keeps its upper two-thirds clear and every word sits in the lower third, so
+ * the reader's last screen is a room and the last thing they read is an address.
+ *
+ * The espresso footer follows immediately: a flat panel here read as two
+ * identical black bands stacked, which is why this is a picture, framed in the
+ * page's three steps rather than washed out to ground.
  */
 export function CtaSection({ section, data }: HomeSectionProps) {
   const headingRef = useRef<HTMLHeadingElement>(null)
@@ -38,48 +43,58 @@ export function CtaSection({ section, data }: HomeSectionProps) {
   const image = data.closingImage
 
   return (
-    <section data-home-section="CTA" className="relative isolate overflow-hidden bg-espresso text-canvas">
+    <section
+      data-home-section="CTA"
+      className="relative isolate flex min-h-[70svh] flex-col justify-end overflow-hidden bg-espresso text-canvas lg:min-h-[80svh]"
+    >
       {image ? (
         <div className="absolute inset-0" aria-hidden="true">
           <SectionImage media={image} alt="" sizes="100vw" width={2400} />
-          <div className="absolute inset-0 bg-espresso/[0.86]" />
+          {/* Three steps, as everywhere else on the page: a flat hold, then a
+              shallow gradient at each end. `/86` erased the picture entirely. */}
+          <div className="absolute inset-0 bg-espresso/55" />
+          <div className="absolute inset-x-0 top-0 h-[24%]" style={SCRIM_T} />
+          <div className="absolute inset-x-0 bottom-0 h-[58%]" style={SCRIM_B} />
         </div>
       ) : null}
 
-      <div className="u-gutter relative flex flex-col gap-12 py-[clamp(6rem,20vh,13rem)]">
-        <Label tone="light" rule>
-          {eyebrow}
-        </Label>
+      <div className="u-gutter relative pt-[clamp(8rem,24vh,16rem)] pb-[clamp(3.5rem,9vh,6rem)]">
+        <div className="grid grid-cols-12 items-end gap-x-8 gap-y-10 border-t border-canvas/15 pt-10">
+          <div className="col-span-12 lg:col-span-7">
+            <Label tone="light" rule>
+              {eyebrow}
+            </Label>
+            <h2 ref={headingRef} data-reveal className={cn(DISPLAY_LG, 'mt-8 max-w-[13ch] text-canvas')}>
+              {headingLines.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </h2>
+          </div>
 
-        <h2 ref={headingRef} data-reveal className="u-display max-w-[15ch] text-canvas">
-          {headingLines.map((line) => (
-            <span key={line} className="block">
-              {line}
-            </span>
-          ))}
-        </h2>
-
-        <div
-          ref={footRef}
-          data-reveal
-          className="flex flex-col gap-10 border-t border-canvas/15 pt-10 md:flex-row md:items-end md:justify-between md:gap-16"
-        >
-          <div data-reveal-item className="flex max-w-[44ch] flex-col items-start gap-5">
-            <p className="u-body-lg text-canvas/60">{body}</p>
+          <div
+            ref={footRef}
+            data-reveal
+            className="col-span-12 flex flex-col items-start gap-6 self-end lg:col-span-5 lg:col-start-8"
+          >
+            <p data-reveal-item className="u-body-lg max-w-[42ch] text-canvas/70">
+              {body}
+            </p>
             {email ? (
               <a
+                data-reveal-item
                 href={`mailto:${email}`}
-                className="u-label text-canvas/80 underline-offset-8 transition-colors duration-500 ease-editorial hover:text-accent-soft"
+                className="u-label text-canvas/85 underline-offset-8 transition-colors duration-500 ease-editorial hover:text-accent-soft"
               >
                 {email}
               </a>
             ) : null}
-          </div>
-
-          <div data-reveal-item className="shrink-0">
-            <Button href={cta.href} variant="ghost" tone="light" size="lg" withArrow>
-              {cta.label}
-            </Button>
+            <span data-reveal-item>
+              <Button href={cta.href} variant="ghost" tone="light" size="lg" withArrow>
+                {cta.label}
+              </Button>
+            </span>
           </div>
         </div>
       </div>

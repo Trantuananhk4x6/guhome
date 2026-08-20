@@ -70,7 +70,7 @@ export default async function ArticlePage({ params }: PageProps) {
             className="u-label inline-flex items-center gap-3 text-muted transition-colors duration-500 ease-editorial hover:text-accent"
           >
             <ArrowLeftIcon className="text-base" />
-            Nhật ký
+            Bài viết
           </Link>
 
           <div className="mt-14 grid gap-12 lg:grid-cols-12">
@@ -135,7 +135,7 @@ export default async function ArticlePage({ params }: PageProps) {
               {article.authorName ? `Viết bởi ${article.authorName}` : 'AN ATELIER'}
             </p>
             <Button href="/contact" variant="underline">
-              Trao đổi với studio
+              Viết cho studio
             </Button>
           </div>
         </div>
@@ -146,6 +146,7 @@ export default async function ArticlePage({ params }: PageProps) {
           <div className="mx-auto w-full max-w-[100rem]">
             <Reveal>
               <Label rule>Đọc tiếp</Label>
+              <p className="u-body-lg mt-8 max-w-[40ch]">Cùng một mạch với bài vừa rồi.</p>
             </Reveal>
 
             <Reveal stagger={0.07} className="mt-10">

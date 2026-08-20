@@ -29,11 +29,11 @@ import type {
 /* ---------------------------------- brand ---------------------------------- */
 
 export const SITE_NAME = 'AN ATELIER'
-export const SITE_TAGLINE = 'Không gian mang tính cách.'
+export const SITE_TAGLINE = 'Thiết kế nội thất và kiến trúc, làm ở Sài Gòn.'
 export const SITE_LOCALE = 'vi_VN'
 
 export const SITE_DESCRIPTION =
-  'AN ATELIER là studio kiến trúc và nội thất tại TP. Hồ Chí Minh. Chúng tôi thiết kế căn hộ, nhà phố, biệt thự và không gian thương mại bằng vật liệu thật, ánh sáng tự nhiên và tỷ lệ được cân nhắc.'
+  'AN ATELIER thiết kế và thi công căn hộ, nhà phố, biệt thự và không gian thương mại ở TP. Hồ Chí Minh. Chúng tôi đo nhà lúc ba giờ chiều, khi nắng vào sâu nhất, rồi mới vẽ.'
 
 /** Default OpenGraph card, rendered by `src/app/opengraph-image.tsx`. */
 const OG_IMAGE_PATH = '/opengraph-image'

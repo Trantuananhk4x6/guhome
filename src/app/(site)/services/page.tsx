@@ -15,7 +15,7 @@ import { ImageFrame, Reveal, TextReveal } from './_components/motion'
 export const metadata: Metadata = buildMetadata({
   title: 'Dịch vụ',
   description:
-    'Thiết kế nội thất, kiến trúc, cải tạo, thi công và đồ đặt riêng. Mỗi mục nói rõ bạn cầm về những gì — và trang này cũng nói luôn những việc AN ATELIER không nhận.',
+    'Thiết kế nội thất, kiến trúc, cải tạo, thi công và đồ đặt riêng. Mỗi mục nói rõ bạn cầm về được những gì. Cuối trang là sáu việc AN ATELIER không nhận, kèm lý do.',
   path: '/services',
 })
 
@@ -50,9 +50,9 @@ export default async function ServicesPage() {
           <div className="mt-16 grid gap-16 lg:grid-cols-12">
             <Reveal delay={0.15} className="lg:col-span-6">
               <p className="u-body-lg max-w-[52ch]">
-                Bạn có thể đi cùng cả chặng, hoặc chỉ một đoạn. Mỗi mục dưới đây nói rõ studio làm
-                gì và bạn cầm về những gì; cuối trang là phần nằm ngoài phạm vi, vì đó mới là chỗ
-                hay sinh chuyện vào tháng thứ sáu.
+                Bạn có thể đi cùng cả chặng, hoặc chỉ một đoạn. Mỗi mục dưới đây nói studio làm gì
+                và bạn cầm về được những gì. Phần đáng đọc nhất nằm ở cuối trang, chỗ liệt kê những
+                việc chúng tôi không nhận — vì đó mới là chỗ hay sinh chuyện vào tháng thứ sáu.
               </p>
             </Reveal>
 
@@ -170,6 +170,10 @@ export default async function ServicesPage() {
             <p className="u-body-lg mt-8 max-w-[50ch]">
               Nói ra từ đầu thì mất một khách; giấu đi thì mất sáu tháng của cả hai bên.
             </p>
+            <p className="mt-6 max-w-[50ch] font-body text-[0.9375rem] leading-[1.8] text-muted">
+              Mỗi dòng dưới đây đến từ một dự án có thật, và lần nào chúng tôi cũng nhận ra hơi
+              muộn.
+            </p>
           </Reveal>
 
           <Reveal stagger={0.06} className="mt-14">
@@ -209,9 +213,9 @@ export default async function ServicesPage() {
                 </div>
               </div>
               <p className="u-body-lg mt-12 max-w-[46ch] text-canvas/60">
-                Buổi gặp đầu kéo dài khoảng 60 phút và không tính phí. Nếu sau buổi đó chúng tôi
-                thấy dự án không hợp, chúng tôi sẽ nói thẳng — và bạn vẫn cầm về danh sách những
-                việc phải quyết trước khi gọi cho một studio khác.
+                Buổi gặp đầu khoảng 60 phút, không tính phí. Nếu sau buổi đó chúng tôi thấy mình
+                không phải người phù hợp, bạn sẽ nghe câu ấy ngay hôm ấy — và vẫn cầm về danh sách
+                những việc cần quyết trước khi gọi cho studio tiếp theo.
               </p>
             </Reveal>
           </div>

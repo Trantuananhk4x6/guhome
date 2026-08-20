@@ -1,16 +1,17 @@
 'use client'
 
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 import { useReveal } from '@/animations/reveal'
+import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/Label'
-import { SectionHeading } from '@/components/ui/SectionHeading'
 import { ArrowRightIcon } from '@/components/ui/icons'
 import { cn, pad2 } from '@/lib/utils'
-import type { MediaRef, ServiceItem } from '@/types/content'
+import type { ServiceItem } from '@/types/content'
 
 import { SectionImage } from './SectionImage'
+import { BAND_T, DISPLAY_SM, SECTION_Y } from './composition'
 import { sectionLines, sectionText } from './content'
 import type { HomeSectionProps } from './types'
 
@@ -68,11 +69,18 @@ const SERVICE_FALLBACK: readonly ServiceItem[] = [
   },
 ]
 
-/** Numbered editorial rows; hover or keyboard focus cross-fades the preview. */
+/**
+ * The offer, and the second dense beat — sold only after the work has been shown
+ * and the studio credited.
+ *
+ * Each row is the /studio process row: ordinal, name, opinion, picture, arrow —
+ * four registers of information related by one grid, using the whole 1472px. The
+ * hover-only sticky preview that used to squeeze the list into seven columns is
+ * gone; its photograph comes back as a per-row thumbnail every device gets.
+ */
 export function Services({ section, data }: HomeSectionProps) {
   const headingRef = useRef<HTMLDivElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
-  const [active, setActive] = useState(0)
 
   useReveal(headingRef, { variant: 'revealUp' })
   useReveal(listRef, { variant: 'revealUp', stagger: 0.07 })
@@ -80,84 +88,92 @@ export function Services({ section, data }: HomeSectionProps) {
   const { content } = section
   const eyebrow = sectionText(content, 'label', 'Services')
   const headingLines = sectionLines(content, 'heading', 'Từ bản vẽ đầu tiên\nđến chiếc ghế cuối cùng.')
+  const lead = sectionText(content, 'body', '')
 
   const items = data.services.length > 0 ? data.services : SERVICE_FALLBACK
-  const previews: (MediaRef | null)[] = items.map(
-    (service, index) => service.cover ?? data.featured[index % Math.max(1, data.featured.length)]?.cover ?? null,
-  )
 
   return (
-    <section data-home-section="SERVICES" className="u-gutter bg-canvas py-[var(--spacing-section)]">
-      <div ref={headingRef} data-reveal>
-        <SectionHeading
-          eyebrow={eyebrow}
-          title={headingLines.map((line) => (
-            <span key={line} className="block">
-              {line}
-            </span>
-          ))}
-        />
-      </div>
+    <section data-home-section="SERVICES" className={cn('u-gutter bg-surface', SECTION_Y)}>
+      <div ref={headingRef} data-reveal className="grid grid-cols-12 items-end gap-x-8 gap-y-8">
+        {/* Seven columns, not five: this section carries no lead line in the
+            database, and a four-line heading in a narrow rail with nothing beside
+            it is the title card this rebuild exists to delete. At 26ch the
+            statement sets on two lines and the band reads as a header row. */}
+        <div className="col-span-12 lg:col-span-7">
+          <Label rule>{eyebrow}</Label>
+          <h2 className={cn(DISPLAY_SM, 'mt-7 max-w-[26ch] text-ink')}>
+            {headingLines.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
+          </h2>
+        </div>
 
-      <div className="mt-[clamp(3.5rem,9vh,7rem)] grid grid-cols-12 gap-x-8 gap-y-12">
-        <ul ref={listRef} data-reveal className="col-span-12 border-t border-line lg:col-span-7">
-          {items.map((service, index) => (
-            <li key={service.id} data-reveal-item className="border-b border-line">
-              <Link
-                href={`/services#${service.slug}`}
-                className="group flex items-start gap-6 py-8 outline-offset-4 sm:gap-10"
-                onMouseEnter={() => setActive(index)}
-                onFocus={() => setActive(index)}
-              >
-                <span
-                  className={cn(
-                    'u-label w-8 shrink-0 pt-1 text-accent transition-transform duration-700 ease-editorial',
-                    'group-hover:-translate-y-1.5 group-focus-visible:-translate-y-1.5',
-                  )}
-                >
-                  {service.indexLabel.length > 0 ? service.indexLabel : pad2(index + 1)}
-                </span>
+        {lead.length > 0 ? (
+          <p className="u-body-lg col-span-12 max-w-[42ch] lg:col-span-3 lg:col-start-8">{lead}</p>
+        ) : null}
 
-                <span className="flex flex-1 flex-col gap-3 transition-transform duration-700 ease-editorial group-hover:translate-x-2 group-focus-visible:translate-x-2">
-                  <span className="u-display-sm block text-ink">{service.title}</span>
-                  {service.summary ? (
-                    <span className="u-body-lg block max-w-[46ch]">{service.summary}</span>
-                  ) : null}
-                </span>
-
-                <ArrowRightIcon className="mt-2 shrink-0 text-lg text-muted transition-all duration-700 ease-editorial group-hover:translate-x-1.5 group-hover:text-accent group-focus-visible:translate-x-1.5 group-focus-visible:text-accent" />
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="col-span-12 hidden lg:col-span-4 lg:col-start-9 lg:block">
-          <div className="sticky top-[clamp(5rem,12vh,9rem)]">
-            <div
-              aria-hidden="true"
-              className="relative aspect-[4/5] w-full overflow-hidden bg-surface-alt shadow-[0_50px_90px_-70px_rgba(28,27,24,0.7)]"
-            >
-              {items.map((service, index) => (
-                <span
-                  key={service.id}
-                  className={cn(
-                    'absolute inset-0 block transition-opacity duration-[900ms] ease-editorial',
-                    index === active ? 'opacity-100' : 'opacity-0',
-                  )}
-                >
-                  <SectionImage
-                    media={previews[index] ?? null}
-                    alt={service.title}
-                    sizes="(min-width: 1024px) 34vw, 100vw"
-                    width={1200}
-                  />
-                </span>
-              ))}
-            </div>
-            <Label className="mt-4">{items[active]?.title ?? ''}</Label>
-          </div>
+        <div className="col-span-12 lg:col-span-2 lg:col-start-11 lg:justify-self-end">
+          <Button href="/services" variant="underline" withArrow>
+            Tất cả dịch vụ
+          </Button>
         </div>
       </div>
+
+      <ul ref={listRef} data-reveal className={cn('border-b border-line', BAND_T)}>
+        {items.map((service, index) => {
+          const cover =
+            service.cover ?? data.featured[index % Math.max(1, data.featured.length)]?.cover ?? null
+
+          return (
+            <li key={service.id} data-reveal-item>
+              <Link
+                href={`/services#${service.slug}`}
+                className="group grid grid-cols-12 items-start gap-x-8 gap-y-5 border-t border-line py-8 outline-offset-4"
+              >
+                {/* `lg:contents` dissolves this wrapper into the row once the
+                    grid is wide enough to hold five cells. Below that, a 12-column
+                    grid with 32px gutters has no width left for columns, so the
+                    ordinal, the name and the arrow share one flex line instead. */}
+                <span className="col-span-12 flex items-baseline gap-4 lg:contents">
+                  <span className="u-label shrink-0 text-accent transition-transform duration-700 ease-editorial group-hover:-translate-y-1.5 group-focus-visible:-translate-y-1.5 lg:col-span-1 lg:row-start-1 lg:pt-1">
+                    {service.indexLabel.length > 0 ? service.indexLabel : pad2(index + 1)}
+                  </span>
+
+                  <span
+                    className={cn(
+                      DISPLAY_SM,
+                      'block flex-1 text-ink transition-transform duration-700 ease-editorial group-hover:translate-x-2 group-focus-visible:translate-x-2 lg:col-span-4 lg:col-start-2 lg:row-start-1',
+                    )}
+                  >
+                    {service.title}
+                  </span>
+
+                  <ArrowRightIcon className="shrink-0 text-lg text-muted transition-all duration-700 ease-editorial group-hover:translate-x-1.5 group-hover:text-accent group-focus-visible:translate-x-1.5 group-focus-visible:text-accent lg:col-span-1 lg:col-start-12 lg:row-start-1 lg:mt-2 lg:justify-self-end" />
+                </span>
+
+                {service.summary ? (
+                  <span className="col-span-12 block max-w-[46ch] font-body text-[1rem] leading-[1.85] text-ink/85 line-clamp-2 lg:col-span-4 lg:col-start-6 lg:row-start-1">
+                    {service.summary}
+                  </span>
+                ) : null}
+
+                <span className="relative col-span-12 block aspect-[2/1] overflow-hidden bg-surface-alt lg:col-span-2 lg:col-start-10 lg:row-start-1 lg:aspect-[3/2]">
+                  <span className="absolute inset-0 block transition-transform duration-[1400ms] ease-editorial group-hover:scale-[1.04] group-focus-visible:scale-[1.04]">
+                    <SectionImage
+                      media={cover}
+                      alt={service.title}
+                      sizes="(min-width: 1024px) 14vw, 100vw"
+                      width={800}
+                    />
+                  </span>
+                </span>
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
     </section>
   )
 }

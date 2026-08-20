@@ -16,7 +16,7 @@ import { Reveal, TextReveal } from './_components/motion'
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
   description:
-    'AN ATELIER làm nội thất và kiến trúc ở TP. Hồ Chí Minh từ năm 2016. Tối đa mười hai công trình một năm, và người ngồi với bạn buổi đầu cũng là người có mặt ở công trường ngày cuối.',
+    'AN ATELIER làm nội thất và kiến trúc ở TP. Hồ Chí Minh từ năm 2016. Mười hai công trình một năm là trần, đủ để người ngồi với bạn buổi đầu vẫn là người có mặt ở công trường ngày cuối.',
   path: '/studio',
 })
 
@@ -24,16 +24,16 @@ export const metadata: Metadata = buildMetadata({
 
 const FACTS: readonly { label: string; value: string }[] = [
   { label: 'Thành lập', value: '2016' },
-  { label: 'Địa bàn', value: 'TP. Hồ Chí Minh và các tỉnh lân cận' },
+  { label: 'Địa bàn', value: 'TP. Hồ Chí Minh, và đi tỉnh khi công trình đáng để đi' },
   { label: 'Thường làm', value: 'Căn hộ bàn giao thô, nhà phố, quán ăn và spa' },
-  { label: 'Nhịp làm việc', value: 'Tối đa 12 công trình một năm' },
+  { label: 'Nhịp làm việc', value: 'Mười hai công trình một năm, và đó là trần' },
 ]
 
 const PHILOSOPHY: readonly string[] = [
-  'Việc đầu tiên khi nhận một căn nhà là quay lại xem nó vào ba giờ chiều. Đó là giờ nắng tây đổ thẳng vào mặt tiền, giờ quyết định một căn phòng sẽ được dùng hay bị bỏ không suốt cả năm. Mặt bằng chỉ được vẽ sau khi chúng tôi đã biết bóng nắng dừng ở chỗ nào trên sàn.',
-  'Vật liệu thì chọn theo hai thứ: cách chúng cũ đi, và độ ẩm ở đây. Gỗ đưa vào nhà phải sấy về khoảng mười đến mười hai phần trăm ẩm, nếu không thì qua mùa mưa đầu tiên cánh tủ sẽ vênh và không ai chữa được nữa. Còn đá travertine giữ dấu tay, đồng thau xỉn xuống thành màu ấm hơn lúc mới — những thứ đó chúng tôi để yên cho thời gian làm.',
-  'Một mảng tường không treo gì không phải là chỗ chưa làm xong. Cảm giác rộng đến từ tỷ lệ và từ chỗ cho mắt nghỉ, không đến từ số lượng chi tiết. Ở lần duyệt cuối, chúng tôi thường bỏ bớt nhiều hơn là thêm vào.',
-  'Phần còn lại là thói quen của người ở. Ai về muộn nhất, giày cất ở đâu, bữa tối ăn trên bàn hay đứng ở đảo bếp, mở cánh tủ lạnh ra có chắn mất lối đi không. Một thiết kế tốt không bắt người ở phải học lại cách sống trong chính ngôi nhà của mình.',
+  'Ba giờ chiều tháng Tư, nắng tây vào tới giữa phòng khách và nằm lại đó đến gần sáu giờ. Đó là giờ chúng tôi hẹn quay lại. Buổi sáng thì căn nhà nào cũng dễ thương — phải đợi đến chiều mới thấy mảng sàn nóng đến mức không ai kê ghế lên, và thấy cái góc bếp đã tắt nắng từ mười giờ. Mặt bằng chỉ được vẽ sau khi chúng tôi biết bóng nắng dừng ở đâu trên sàn.',
+  'Mười đến mười hai phần trăm ẩm là mức gỗ phải sấy về trước khi vào nhà ở đây. Cao hơn thì qua mùa mưa đầu tiên cánh tủ sẽ vênh, và sau đó không ai chữa lại được. Ngoài chuyện độ ẩm, chúng tôi chọn vật liệu theo cách chúng cũ đi hơn là theo cách chúng đẹp lúc vừa lắp xong. Travertine giữ dấu tay. Đồng thau hai năm nữa xỉn xuống thành một màu ấm hơn hôm nay, còn sồi trắng thì vàng dần về phía cửa sổ và ở lại nhạt trong bóng cái tủ đứng cạnh nó.',
+  'Một mảng tường không treo gì không phải là chỗ chưa làm xong. Đó là chỗ để mắt đặt xuống. Ở lần duyệt cuối, chúng tôi thường bỏ đi nhiều hơn là thêm vào.',
+  'Phần còn lại là chuyện thói quen. Ai về nhà muộn nhất, cái túi được thả xuống chỗ nào ngay khi vừa vào cửa, bữa tối ăn ở bàn hay đứng ở đảo bếp, cánh cửa tủ lạnh mở ra có chắn mất lối đi không. Chúng tôi hỏi những câu đó trong buổi đầu tiên và ghi lại gần như nguyên văn. Một ngôi nhà tốt không bắt người ở phải học lại cách sống của chính mình.',
 ]
 
 interface ProcessStep {
@@ -47,26 +47,26 @@ const PROCESS: readonly ProcessStep[] = [
   {
     title: 'Lắng nghe',
     duration: '2–3 tuần',
-    body: 'Chúng tôi đo hiện trạng vào khung giờ bạn có nhà, rồi quay lại một lần nữa vào giữa chiều để biết nắng vào sâu tới đâu. Với căn hộ, buổi đó còn để hỏi ban quản lý ba điều rất cụ thể: giờ nào được phép thi công, thang máy chở hàng dài bao nhiêu, và mảng tường nào là vách cứng không được đụng vào. Chỗ hay hỏng ở bước này là gia chủ ngại nói con số thật; ngân sách nói càng muộn thì càng phải vẽ lại nhiều.',
+    body: 'Buổi đầu thường có một khoảng lặng, và nó luôn rơi đúng lúc hỏi về tiền. Gia chủ nhìn đi chỗ khác, rồi đưa ra một con số tròn trịa mà chính họ cũng biết là chưa thật. Chúng tôi không ép. Nhưng ngân sách nói càng muộn thì càng phải vẽ lại nhiều, nên đến cuối buổi chúng tôi sẽ hỏi lại, nhẹ hơn. Phần còn lại của hôm ấy là đo đạc, là xuống hỏi ban quản lý xem thang máy chở hàng dài bao nhiêu, và là ngồi im nghe hai vợ chồng cãi nhau rất lịch sự về chuyện có nên bỏ cái bồn tắm.',
     output: 'Bản đo hiện trạng · một trang tóm tắt đề bài · khung ngân sách tách theo hạng mục.',
   },
   {
     title: 'Phác thảo',
     duration: '3–4 tuần',
-    body: 'Hai phương án mặt bằng, không bao giờ ba: ba phương án thường có nghĩa là chưa phương án nào đủ chắc, và nó đẩy phần quyết định sang phía gia chủ. Kèm theo là mẫu vật liệu thật — bạn cầm miếng laminate lên xem trong chính căn phòng sẽ dùng nó, vào buổi chiều, chứ không xem trên màn hình. Đây cũng là lúc phải chốt vị trí bếp, vì bếp kéo theo đường nước, đường gas và ống hút mùi; đổi sau là đổi cả ba.',
-    output: 'Mặt bằng bố trí · bảng vật liệu có mẫu cầm tay · phối cảnh những phòng bạn ở nhiều nhất.',
+    body: 'Hai phương án mặt bằng, không bao giờ ba. Ba phương án nghĩa là chưa cái nào đủ chắc, và nó đẩy phần khó nhất sang cho bạn. Cùng với bản vẽ là một hộp mẫu thật, và chúng tôi mang cái hộp ấy đến chính căn phòng sẽ dùng nó, vào buổi chiều. Miếng laminate cầm trên tay dưới nắng bốn giờ có màu khác hẳn nó trên màn hình, và khác cả chính nó dưới đèn showroom. Bếp phải chốt ngay ở giai đoạn này, vì bếp kéo theo đường nước, đường gas và ống hút mùi cùng một lúc.',
+    output: 'Hai mặt bằng bố trí · hộp mẫu vật liệu để lại nhà bạn · phối cảnh những phòng bạn ở nhiều nhất.',
   },
   {
     title: 'Chi tiết',
     duration: '4–6 tuần',
-    body: 'Giai đoạn ít ảnh đẹp nhất và tốn thời gian nhất. Nội thất được vẽ tới mức người thợ không phải đoán: độ dày mặt bàn, hướng vân gỗ khi ghép, khe hở ba milimét giữa hai cánh tủ, ổ điện nằm sau đầu giường ở cao độ nào. Khu vực ẩm dùng cốt chống ẩm và chân tủ bếp nhấc khỏi sàn — ở đây thứ giết chân tủ là nước lau nhà mỗi ngày, không phải mưa. Đèn tính theo việc bạn làm trong phòng chứ không theo số bóng trên trần.',
-    output: 'Hồ sơ thi công nội thất · shop drawing cho hạng mục khó · thống kê vật tư và thiết bị.',
+    body: 'Đây là giai đoạn hồ sơ dày lên và tiến độ chậm lại. Bản vẽ đi tới mức người thợ không còn phải đoán gì nữa; khe hở giữa hai cánh tủ được ghi là ba milimét, và hướng vân khi ghép hai tấm gỗ cũng được vẽ ra. Rồi tới đoạn phải chờ. Vữa trát tay cần chừng một tháng mới ngừng co ngót, và một mã veneer hết lô là cả bảng vật liệu phải mở ra xem lại. Không ai sai cả. Nhưng lịch vẫn lùi, nên chúng tôi nói trước những chỗ ấy ngay từ bây giờ, để đến lúc đó bạn không phải ngồi nghe một lời giải thích.',
+    output: 'Hồ sơ thi công nội thất · shop drawing cho từng hạng mục khó.',
   },
   {
     title: 'Ra công trường',
     duration: '4–7 tháng',
-    body: 'Mỗi tuần một buổi ở công trường, và có mặt cả ngày vào những mốc không sửa lại được: hôm ghép tấm đá mặt bếp, hôm treo cánh tủ đầu tiên, hôm cân chỉnh đèn. Với căn hộ, phần lớn rủi ro nằm ở khâu vận chuyển — một tấm gỗ dài hai mét tư có vào lọt thang máy hay không phải biết từ lúc còn trên bản vẽ. Trước ngày bàn giao, chúng tôi tắt hết đèn trần, dựng lại toàn bộ ánh sáng buổi tối và chỉnh từng độ mở của rèm.',
-    output: 'Nghiệm thu từng hạng mục có ảnh · styling · sổ tay bảo trì cho từng loại vật liệu.',
+    body: 'Bốn đến bảy tháng ấy phần lớn là bụi và tiếng máy cắt vọng lên từ tầng dưới. Chúng tôi có mặt mỗi tuần một buổi, và cả ngày vào những hôm không sửa lại được. Rồi đến ngày cuối, và ngày cuối không giống bất kỳ ngày nào trước nó. Chúng tôi đến từ sáng, tắt hết đèn trần, rồi đợi tới sáu giờ chiều mới bật lại từng ngọn một và chỉnh độ mở của rèm cho đến khi căn phòng đứng yên. Gia chủ vào sau đó chừng mười lăm phút. Họ thường không nói gì trong hai phút đầu, và chúng tôi đã học được cách đứng im trong hai phút đó.',
+    output: 'Biên bản nghiệm thu có ảnh · một buổi styling · sổ tay bảo trì cho từng loại vật liệu.',
   },
 ]
 
@@ -78,51 +78,59 @@ interface Principle {
 const PRINCIPLES: readonly Principle[] = [
   {
     title: 'Một người theo suốt',
-    body: 'Kiến trúc sư ngồi với bạn buổi đầu cũng là người leo giàn giáo soi mối nối vào tháng thứ tám. Không có khâu bàn giao nội bộ nào để thông tin rơi mất giữa đường.',
+    body: 'Người ngồi với bạn ở buổi đầu cũng là người leo giàn giáo soi mối nối vào tháng thứ tám. Trong studio không có khâu bàn giao nội bộ nào để thông tin rơi mất dọc đường.',
   },
   {
     title: 'Nói giá trước khi vẽ',
-    body: 'Khung chi phí tách theo từng hạng mục được gửi ngay sau buổi khảo sát. Khi một lựa chọn làm lệch khung đó — đá tự nhiên thay cho đá nhân tạo chẳng hạn — chúng tôi báo con số chênh trong cùng tuần, thay vì để nó xuất hiện lúc quyết toán.',
+    body: 'Khung chi phí tách theo hạng mục được gửi ngay sau buổi khảo sát. Nếu một lựa chọn làm lệch khung đó — đá tự nhiên thay cho đá nhân tạo chẳng hạn — bạn biết con số chênh trong cùng tuần, chứ không phải lúc quyết toán.',
   },
   {
-    title: 'Bản vẽ đủ chi tiết để không ai phải đoán',
-    body: 'Một bộ hồ sơ chặt tiết kiệm nhiều tiền hơn mọi cuộc mặc cả với nhà thầu, và giữ cho chất lượng không phụ thuộc vào trí nhớ của người thợ hôm đó.',
+    title: 'Vẽ tới chỗ không ai phải đoán',
+    body: 'Một bộ hồ sơ chặt tiết kiệm nhiều tiền hơn mọi cuộc mặc cả với nhà thầu. Nó cũng giữ cho chất lượng khỏi phụ thuộc vào trí nhớ của người thợ đứng ở đó hôm ấy.',
   },
   {
     title: 'Mười hai công trình một năm',
-    body: 'Con số đó là trần, không phải chỉ tiêu. Nó giữ cho chúng tôi còn thời gian đứng ở công trường thay vì chỉ duyệt ảnh tiến độ qua Zalo.',
+    body: 'Con số đó là trần, không phải chỉ tiêu. Giữ được nó thì chúng tôi còn thời gian đứng ở công trường, thay vì duyệt ảnh tiến độ qua Zalo lúc mười giờ đêm.',
   },
   {
     title: 'Không có mẫu nhà',
     body: 'Chúng tôi không mang phương án của gia đình này sang nhà gia đình khác, kể cả khi hai căn cùng một mặt bằng chủ đầu tư và cùng hướng cửa.',
   },
   {
-    title: 'Có những việc chúng tôi từ chối',
-    body: 'Nếu bạn cần hồ sơ trong hai tuần để kịp ngày khởi công, hoặc muốn studio ký vào phương án do người khác vẽ, chúng tôi nói không ngay trong buổi gặp đầu — và giới thiệu người phù hợp hơn nếu biết ai đó.',
+    title: 'Từ chối sớm',
+    body: 'Chúng tôi nói không ngay trong buổi gặp đầu, chứ không nói vòng vo rồi im lặng ba tuần. Danh sách đầy đủ nằm ở trang dịch vụ; ở đây bạn chỉ cần biết là nó có thật, và nó dài.',
   },
 ]
 
 const FALLBACK_MATERIALS: readonly { name: string; description: string }[] = [
   {
     name: 'Gỗ óc chó',
-    description: 'Dùng cho mặt bàn và hệ tủ trung tâm. Vân trầm, và sẫm thêm một chút mỗi năm.',
+    description:
+      'Mặt bàn và hệ tủ trung tâm. Vân trầm, và mỗi năm lại sẫm thêm một chút ở đúng những chỗ tay hay chạm.',
   },
   {
     name: 'Đá travertine',
-    description: 'Bề mặt rỗ tự nhiên giữ ánh sáng lại thay vì hắt đi. Cần trám lại lỗ rỗ nếu đặt ở chỗ hay ướt.',
+    description:
+      'Lỗ rỗ tự nhiên giữ ánh sáng lại thay vì hắt đi. Đặt ở chỗ hay ướt thì phải trám trước.',
   },
   {
     name: 'Vữa vôi phủ tay',
-    description: 'Mỗi mảng tường một sắc độ hơi khác — dấu bay của người trát, không phải lỗi.',
+    description:
+      'Mỗi mảng tường một sắc độ hơi khác nhau. Đó là dấu bay của người trát, không phải lỗi.',
   },
   {
     name: 'Đồng thau',
-    description: 'Tay nắm, chỉ viền, chân bàn. Sau chừng hai năm thì xỉn xuống thành màu ấm hơn lúc mới.',
+    description:
+      'Tay nắm, chỉ viền, chân bàn. Chừng hai năm nữa nó sẽ xỉn xuống thành màu ấm hơn hôm lắp.',
   },
-  { name: 'Vải lanh mộc', description: 'Rèm và bọc ghế. Ngồi lâu sẽ nhăn, và chúng tôi chọn nó vì thế.' },
+  {
+    name: 'Vải lanh mộc',
+    description: 'Rèm và bọc ghế. Ngồi lâu thì nhăn, và chúng tôi chọn nó chính vì thế.',
+  },
   {
     name: 'Sồi trắng xử lý xà phòng',
-    description: 'Sàn giữ được sắc nhạt suốt nhiều năm, sáng sớm đi chân trần vẫn thấy ấm.',
+    description:
+      'Sàn giữ được sắc nhạt qua nhiều năm. Sáng sớm đi chân trần vẫn thấy ấm dưới lòng bàn chân.',
   },
 ]
 
@@ -151,16 +159,17 @@ export default async function StudioPage() {
           </Label>
 
           <TextReveal as="h1" className="u-display mt-10 max-w-[16ch] text-ink">
-            Nhà ở Sài Gòn phải chịu được nắng tây và độ ẩm quanh năm.
+            Ở Sài Gòn, nắng đến từ hướng tây và ở lại rất lâu.
           </TextReveal>
 
           <div className="mt-16 grid gap-12 lg:grid-cols-12">
             <Reveal delay={0.15} className="lg:col-span-6">
               <p className="u-body-lg max-w-[52ch]">
-                AN ATELIER làm nội thất và kiến trúc ở TP. Hồ Chí Minh từ năm 2016 — phần lớn là căn
-                hộ nhận bàn giao thô, nhà phố một mặt tiền và vài quán ăn nhỏ. Mười hai công trình
-                một năm là giới hạn chúng tôi tự đặt: nhiều hơn thì không còn ai kịp có mặt vào ngày
-                thợ ghép tấm đá đầu tiên.
+                AN ATELIER làm nội thất và kiến trúc ở TP. Hồ Chí Minh từ năm 2016. Phần lớn công
+                việc là căn hộ nhận bàn giao thô và nhà phố một mặt tiền; thỉnh thoảng có một quán
+                ăn nhỏ chỉ mở buổi tối. Mỗi năm studio nhận tối đa mười hai công trình, đủ để người
+                ngồi với bạn buổi đầu vẫn là người có mặt ở công trường hôm thợ ghép tấm đá bếp đầu
+                tiên. Nhiều hơn thì hỏng.
               </p>
             </Reveal>
 
@@ -209,7 +218,7 @@ export default async function StudioPage() {
                   Cách nghĩ
                 </Label>
                 <h2 className="u-display-sm mt-8 max-w-[16ch] text-ink">
-                  Ánh sáng trước, vật liệu sau, thói quen người ở sau cùng.
+                  Một căn nhà tự nói ra rất nhiều, nếu chịu đến đúng giờ.
                 </h2>
               </Reveal>
 
@@ -263,9 +272,9 @@ export default async function StudioPage() {
             </TextReveal>
             <Reveal delay={0.2}>
               <p className="u-body-lg mt-10 max-w-[46ch] text-canvas/60">
-                Họ chỉ cần thấy đèn bật đúng chỗ, ghế ngồi đúng tầm và tủ giày đủ chứa dép của cả
-                nhà. Tính cách trong một ngôi nhà là của người ở; chúng tôi chỉ dựng cái khung để nó
-                hiện ra.
+                Họ chỉ cần biết chỗ treo áo khoác, và biết bật ngọn đèn nào khi về lúc mười một giờ
+                đêm mà không muốn đánh thức ai trong nhà. Chúng tôi dựng cái khung đó rồi lui ra.
+                Ngôi nhà là của người ở.
               </p>
             </Reveal>
           </div>
@@ -279,8 +288,8 @@ export default async function StudioPage() {
             <SectionHeading
               eyebrow="Quy trình"
               index={2}
-              title="Bốn giai đoạn, và chỗ dễ hỏng của từng giai đoạn."
-              lead="Một căn hộ đi hết bốn giai đoạn này mất khoảng bảy tháng; nhà phố có phần xây thô thì gần gấp đôi. Chúng tôi nói con số ấy ngay buổi đầu, kể cả khi nó làm bạn đổi ý."
+              title="Bốn giai đoạn, và chỗ hay hỏng của từng giai đoạn."
+              lead="Một căn hộ đi hết bốn giai đoạn này mất khoảng bảy tháng; nhà phố có phần xây thô thì gần gấp đôi. Chúng tôi nói con số ấy ngay từ buổi đầu, kể cả khi nghe xong bạn đổi ý."
             />
           </Reveal>
 
@@ -336,8 +345,8 @@ export default async function StudioPage() {
             <SectionHeading
               eyebrow="Nguyên tắc"
               index={3}
-              title="Sáu điều chúng tôi tự ràng buộc mình."
-              lead="Studio không có phòng ban, nên cũng không có chỗ để đẩy trách nhiệm. Sáu điều dưới đây ràng buộc chúng tôi chặt hơn ràng buộc bạn."
+              title="Sáu điều studio tự buộc vào mình."
+              lead="Ở đây không có phòng ban, nên cũng không có chỗ nào để đẩy trách nhiệm sang. Sáu điều dưới đây trói chúng tôi chặt hơn trói bạn."
             />
           </Reveal>
 
@@ -367,7 +376,7 @@ export default async function StudioPage() {
               eyebrow="Vật liệu"
               index={4}
               title="Bảng vật liệu của studio hẹp đi theo từng năm."
-              lead="Mỗi lần một thứ không trụ nổi qua mùa mưa, hoặc nhà cung cấp lặng lẽ đổi công thức, nó bị gạch khỏi danh sách. Những gì còn lại đã ở đủ lâu để chúng tôi dám bảo hành."
+              lead="Một thứ không trụ nổi qua mùa mưa, hoặc nhà cung cấp lặng lẽ đổi công thức mà không báo, là nó bị gạch đi. Những thứ còn lại đã ở với chúng tôi đủ lâu để dám đứng ra bảo hành."
             />
           </Reveal>
 
@@ -423,7 +432,7 @@ export default async function StudioPage() {
                   Bước tiếp
                 </Label>
                 <h2 className="u-display-sm mt-8 max-w-[18ch] text-ink">
-                  Gửi mặt bằng bàn giao và nói bạn muốn dọn vào tháng nào.
+                  Gửi mặt bằng bàn giao, và nói bạn muốn dọn vào tháng nào.
                 </h2>
               </div>
               <div className="flex flex-wrap items-center gap-8">

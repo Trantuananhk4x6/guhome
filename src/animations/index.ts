@@ -47,9 +47,20 @@ export {
 export type { HorizontalScrollOptions } from './projects'
 export {
   CURTAIN_ATTR,
+  CURTAIN_HIDDEN,
+  CURTAIN_NAV_TIMEOUT_MS,
+  CURTAIN_OPT_OUT_ATTR,
   CURTAIN_Z_INDEX,
   PageTransition,
+  coverNow,
+  coverTimeline,
+  curtainArrivalWait,
+  curtainNavTarget,
   curtainTimeline,
+  destinationPending,
+  hideCurtain,
+  markWaiting,
   suppressNextCurtain,
+  whenDestinationReady,
 } from './pageTransition'
-export type { CurtainArgs } from './pageTransition'
+export type { CoverArgs, CurtainArgs } from './pageTransition'

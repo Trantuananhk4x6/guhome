@@ -7,7 +7,7 @@ import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Không tìm thấy trang',
-  description: 'Không có trang nào ở địa chỉ này trên website của AN ATELIER.',
+  description: 'Ở địa chỉ này không có trang nào. Lối về trang chủ, trang dự án và studio nằm ngay bên dưới.',
   path: '/',
   noIndex: true,
 })
@@ -20,14 +20,14 @@ export default function NotFound() {
           Không tìm thấy
         </Label>
 
-        <h1 className="u-display mt-10 max-w-[14ch] text-ink">Trang này không còn ở đây.</h1>
+        <h1 className="u-display mt-10 max-w-[14ch] text-ink">Ở địa chỉ này không có gì cả.</h1>
 
         <Rule className="mt-14 max-w-[28rem]" />
 
         <p className="u-body-lg mt-8 max-w-[46ch]">
-          Có thể một trang đã đổi đường dẫn, hoặc bạn đang theo một liên kết cũ mà chúng tôi chưa
-          kịp chuyển hướng. Danh sách công trình đầy đủ vẫn nằm ở trang dự án; còn nếu bạn nhớ tên
-          căn nhà hay bài viết mình đang tìm, nhắn cho studio một dòng là nhanh nhất.
+          Đường dẫn có thể đã đổi, hoặc bạn đang theo một liên kết cũ mà chúng tôi chưa kịp chuyển
+          hướng. Trang dự án vẫn giữ nguyên toàn bộ công trình. Còn nếu bạn nhớ tên căn nhà hay bài
+          viết mình đang tìm, nhắn cho studio một dòng là ra ngay.
         </p>
 
         <div className="mt-14 flex flex-wrap items-center gap-8">

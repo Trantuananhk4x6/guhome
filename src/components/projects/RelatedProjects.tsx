@@ -25,11 +25,12 @@ import { useSyncExternalStore } from 'react'
 
 import { HorizontalScroll } from '@/components/animation'
 import { Button } from '@/components/ui/Button'
-import { SectionHeading } from '@/components/ui/SectionHeading'
+import { Label } from '@/components/ui/Label'
 import { useMotionFlag, useMotionStore } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 import type { ProjectSummary } from '@/types/content'
 
+import { DISPLAY_SM } from './composition'
 import { ProjectCard } from './ProjectCard'
 import { ProjectGrid } from './ProjectGrid'
 
@@ -118,18 +119,25 @@ export function RelatedProjects({ projects, heading, className }: RelatedProject
 
   return (
     <section className={cn('w-full', className)}>
-      <div className="u-gutter mx-auto w-full max-w-[110rem]">
-        <SectionHeading
-          eyebrow="Selected works"
-          title={title}
-          size="sm"
-          action={
-            <Button href="/projects" variant="underline" withArrow>
-              Toàn bộ dự án
-            </Button>
-          }
-          className="mb-16"
-        />
+      {/*
+        Composed here rather than through `SectionHeading`: that component
+        stacks eyebrow → title → action, which on a 1472px measure leaves the
+        link floating alone in a 900px void beside a two-line heading. Heading
+        in five columns, action in the last two, one baseline.
+      */}
+      <div className="u-gutter mx-auto mb-[clamp(2.5rem,6vh,4rem)] grid w-full max-w-[110rem] grid-cols-12 items-end gap-x-8 gap-y-6">
+        <div className="col-span-12 lg:col-span-6">
+          <Label as="p" rule>
+            Selected works
+          </Label>
+          <h2 className={cn(DISPLAY_SM, 'text-ink mt-5 max-w-[16ch]')}>{title}</h2>
+        </div>
+
+        <div className="col-span-12 lg:col-span-3 lg:col-start-10 lg:justify-self-end">
+          <Button href="/projects" variant="underline" withArrow>
+            Toàn bộ dự án
+          </Button>
+        </div>
       </div>
 
       {rail ? (

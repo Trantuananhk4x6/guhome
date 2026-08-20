@@ -4,18 +4,21 @@ import { useTexture } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef, type JSX } from 'react'
 import {
+  Color,
+  Matrix4,
   PerspectiveCamera as PerspectiveCameraImpl,
   ShaderMaterial,
   SRGBColorSpace,
   Vector2,
-  Vector3,
   type Group,
   type Mesh,
 } from 'three'
 import type { MediaRef, SceneSettings } from '@/types/content'
 import { mediaUrl } from '@/lib/media'
 import type { QualityProfile } from '@/lib/three/capability'
-import { buildReliefField, conditionDepthField, type ReliefField } from '@/lib/three/depth-field'
+import { asOrbitControls, asOrbitEnvelope } from '@/lib/three/controls'
+import { coverageOf, createExtent, envelopeCoverage, scaleForExtent } from '@/lib/three/coverage'
+import { buildReliefField, conditionDepthField, meanColour, type ReliefField } from '@/lib/three/depth-field'
 import { releaseTextures } from '@/lib/three/loaders'
 import { RELIEF_EDGE, resolveSceneSettings, textureAspect } from '@/lib/three/scene-settings'
 
@@ -27,6 +30,33 @@ export interface DepthSceneProps {
   /** Extra coverage beyond the frustum so the plane's edge never enters frame. */
   overscan?: number
 }
+
+/**
+ * Ceiling on the relief plane, as a multiple of what the *live* framing needs.
+ *
+ * Covering the entire orbit envelope is not free: the photograph is mapped onto
+ * the plane, so every unit of extra coverage is a unit of crop at rest. Past
+ * about this much the visitor arrives at a heavily magnified centre detail of a
+ * room they were meant to see whole, which is a worse failure than the one being
+ * fixed. Beyond the ceiling the matte takes over — see `MATTE_MARGIN`.
+ */
+const MAX_ENVELOPE_COVER = 1.62
+
+/** How far past the worst case the matte reaches. It is one flat colour: cheap. */
+const MATTE_MARGIN = 1.7
+
+/** …and how far past the relief it reaches when the envelope is open-ended. */
+const MATTE_FALLBACK = 6
+
+/**
+ * Gap between the matte and the relief, as a fraction of the relief's size. The
+ * relief displaces to ±½ × `reliefDepth` (≤ 0.07) in plane units, so anything
+ * past that clears it; the rest is margin for the pointer tilt.
+ */
+const MATTE_SETBACK = 0.12
+
+/** The matte when the photograph cannot be read back — warm, mid, never black. */
+const MATTE_NEUTRAL: [number, number, number] = [0.42, 0.4, 0.37]
 
 /**
  * The photograph is the whole point, so it is drawn *unlit*: the fragment
@@ -49,7 +79,6 @@ const RELIEF_VERTEX = /* glsl */ `
   uniform float uEdgeCut;
 
   varying vec2 vUv;
-  varying float vEdge;
 
   void main() {
     vUv = uv;
@@ -65,13 +94,13 @@ const RELIEF_VERTEX = /* glsl */ `
     float depth = ( centre * 2.0 + left + right + down + up ) / 6.0;
 
     // Steepness of the field here, in field units per texel. A real depth map
-    // has a cliff at every occlusion boundary; this is what carries it to the
-    // fragment stage so those triangles can be dropped rather than stretched.
+    // has a cliff at every occlusion boundary, and this is what finds it.
     float gradient = max( abs( right - left ), abs( up - down ) );
-    vEdge = gradient;
 
-    // Relief eases off before the cliff, so the surface arrives at a dropped
-    // band already flat instead of ending mid-stretch.
+    // Relief eases off across the cliff, so the surface arrives at the far side
+    // already flat instead of stretching a triangle over the step. The band it
+    // leaves behind is flat and correctly textured — which is the whole degrade:
+    // a photograph loses its parallax there, it does not lose its pixels.
     float carry = 1.0 - smoothstep( uEdgeSoft, uEdgeCut, gradient );
 
     // …and off again at the plane's rim, so the outermost ring stays exactly
@@ -84,15 +113,32 @@ const RELIEF_VERTEX = /* glsl */ `
   }
 `
 
+/**
+ * No discard.
+ *
+ * There used to be one — `if ( vEdge > uEdgeCut ) discard;` — and it deleted
+ * exactly the wrong fragments. `carry` above is `1 - smoothstep( soft, cut, g )`,
+ * so displacement is already *identically zero* by the time the gradient reaches
+ * `uEdgeCut`: past the cut the surface is flat, sitting on the plane, carrying
+ * its texel unstretched. Those were the fragments being thrown away. The band
+ * that actually stretches is the taper between `soft` and `cut`, where `carry`
+ * is falling — and that band survived the test untouched. The result was a hole
+ * punched through the good side of every cliff with the stretched side left in
+ * frame, i.e. the opposite of the job.
+ *
+ * Inverting the test to `vEdge > uEdgeSoft && vEdge < uEdgeCut` was the other
+ * candidate and it is worse than doing nothing: the taper band is a closed ring
+ * around every steep feature, so discarding it perforates the relief with a
+ * halo of holes and each hole shows the matte through the middle of the picture.
+ * Once the taper has done its work there is nothing left worth deleting, so the
+ * cut is gone and `uEdgeCut` survives only as the far end of the taper.
+ */
 const RELIEF_FRAGMENT = /* glsl */ `
   uniform sampler2D uMap;
-  uniform float uEdgeCut;
 
   varying vec2 vUv;
-  varying float vEdge;
 
   void main() {
-    if ( vEdge > uEdgeCut ) discard;
     gl_FragColor = texture2D( uMap, vUv );
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
@@ -230,56 +276,119 @@ export function DepthScene({ image, depth, settings, quality, overscan = 1.08 }:
 
   const strength = resolved.parallaxStrength
 
+  /**
+   * The matte the relief is backed with: the photograph's own mean colour, so
+   * that anything the plane fails to cover degrades to a flat continuation of
+   * the picture instead of to the clear colour. `InteriorScene` calls
+   * `setClearAlpha(0)`, so "uncovered" means the espresso page behind the
+   * canvas — a hole, and holes read as a broken build. A matte reads as a mount.
+   */
+  const matteColour = useMemo(() => {
+    const mean = meanColour(source.image) ?? MATTE_NEUTRAL
+    return new Color().setRGB(mean[0], mean[1], mean[2], SRGBColorSpace)
+  }, [source])
+
   const groupRef = useRef<Group | null>(null)
   const meshRef = useRef<Mesh | null>(null)
+  const matteRef = useRef<Mesh | null>(null)
   const coverRef = useRef(0)
-  const rayRef = useRef(new Vector3())
+  const matteCoverRef = useRef(0)
+  const toLocalRef = useRef(new Matrix4())
+  const extentRef = useRef(createExtent())
+  /** Signature of the orbit envelope the fixed sizes below were solved for. */
+  const envelopeKeyRef = useRef('')
+  const envelopeCoverRef = useRef(0)
+  const envelopeBoundedRef = useRef(true)
 
   // Re-measure from scratch whenever the camera or the canvas changes; without
-  // this the ratchet below would hold on to the widest framing an earlier
-  // camera needed and crop the photograph for the rest of the session.
+  // this the sizing below would hold on to the widest framing an earlier camera
+  // needed and crop the photograph for the rest of the session.
   useEffect(() => {
     coverRef.current = 0
+    matteCoverRef.current = 0
+    envelopeKeyRef.current = ''
   }, [camera, size.width, size.height])
 
   /**
-   * Coverage. The plane grows to whatever the current camera can see of the
-   * z = 0 plane and never shrinks, so the first (widest) waypoint sets the
-   * composition and the dolly crops into it — which is the whole point of the
-   * move. Measured rather than assumed: an editor can author any framing and
-   * the relief still fills the frame, which is what the black band along the
-   * top of the old hero was.
+   * Coverage — how big the plane has to be so its rim stays out of frame.
+   *
+   * The old maths intersected the camera's view *axis* with `z = 0` and took
+   * `tan(fov / 2) × distance`, which is the right answer only when that axis is
+   * the plane's normal. `mode="orbit"` exists precisely so the visitor can
+   * break that assumption: one drag rakes the view, the frustum meets the plane
+   * in a trapezium running away from the camera, and the formula understated it
+   * badly enough that all four corners of the relief came into shot.
+   * {@link coverageOf} makes no such assumption — it intersects the four
+   * frustum corner rays with the plane, in the plane's own frame.
+   *
+   * Orbit is then sized **once**, against the worst pose its envelope allows,
+   * rather than ratcheting per frame: a plane that grows mid-drag magnifies the
+   * photograph while the visitor is moving, which is a second defect wearing the
+   * first one's clothes. Scroll keeps the ratchet — there is no envelope there,
+   * only an authored path, and its widest framing is its first frame.
    */
   useFrame((state) => {
     const mesh = meshRef.current
-    if (!mesh) return
+    const parent = mesh?.parent
+    if (!mesh || !parent) return
     const cam = state.camera
     if (!(cam instanceof PerspectiveCameraImpl)) return
 
-    const direction = cam.getWorldDirection(rayRef.current)
-    if (direction.z > -1e-3) return // looking away from (or along) the relief
-    const travel = -cam.position.z / direction.z
-    if (!(travel > 0)) return
+    // The relief group is translated and tipped by the pointer parallax, so the
+    // plane's rim is not where world space says it is. Measure in its frame.
+    parent.updateWorldMatrix(true, false)
+    toLocalRef.current.copy(parent.matrixWorld).invert()
 
-    // Where the view axis crosses the relief, and how far away that is.
-    const centreX = cam.position.x + direction.x * travel
-    const centreY = cam.position.y + direction.y * travel
-    const distance = Math.hypot(cam.position.x - centreX, cam.position.y - centreY, cam.position.z)
-
-    const halfHeight = Math.tan((cam.fov * Math.PI) / 360) * distance
-    const halfWidth = halfHeight * (state.size.width / Math.max(1, state.size.height))
-
+    const extent = extentRef.current
     // The rim is tapered flat by the shader, so the relief itself never costs
-    // coverage. The pointer parallax does: it slides the whole group, and tips
-    // it far enough that the far rim loses a couple of percent of its angle.
+    // coverage. The pointer parallax does: it slides the whole group between the
+    // frame this was solved on and the frame it is drawn on.
     const slack = strength * 0.4
-    const needHeight = 2 * (halfHeight + Math.abs(centreY) + slack) * overscan
-    const needWidth = 2 * (halfWidth + Math.abs(centreX) + slack) * overscan
-    const need = Math.max(needHeight, needWidth / imageAspect)
 
-    if (need > coverRef.current * 1.002) {
-      coverRef.current = need
-      mesh.scale.setScalar(need)
+    coverageOf(cam, toLocalRef.current, extent)
+    extent.x += slack
+    extent.y += slack
+    const live = extent.bounded ? scaleForExtent(extent, imageAspect) * overscan : 0
+
+    const controls = asOrbitControls(state.controls)
+    const envelope = asOrbitEnvelope(state.controls)
+
+    let relief = live
+    let matte = live * MATTE_FALLBACK
+
+    if (controls && envelope) {
+      const key = `${envelope.maxDistance.toFixed(3)}:${envelope.minPolarAngle.toFixed(3)}:${envelope.maxPolarAngle.toFixed(3)}:${envelope.minAzimuthAngle.toFixed(3)}:${envelope.maxAzimuthAngle.toFixed(3)}:${cam.fov.toFixed(2)}:${cam.aspect.toFixed(3)}`
+      if (key !== envelopeKeyRef.current) {
+        envelopeCoverage(cam, controls.target, envelope, toLocalRef.current, extent)
+        extent.x += slack
+        extent.y += slack
+        envelopeKeyRef.current = key
+        envelopeBoundedRef.current = extent.bounded
+        envelopeCoverRef.current = scaleForExtent(extent, imageAspect) * overscan
+      }
+      const worst = envelopeCoverRef.current
+      // Cover the envelope, but not at any price — see `MAX_ENVELOPE_COVER`.
+      relief = Math.max(live, Math.min(worst, live * MAX_ENVELOPE_COVER))
+      matte = envelopeBoundedRef.current
+        ? Math.max(worst * MATTE_MARGIN, relief * MATTE_MARGIN)
+        : relief * MATTE_FALLBACK
+    }
+
+    let changed = false
+    if (relief > coverRef.current * 1.002) {
+      coverRef.current = relief
+      mesh.scale.setScalar(relief)
+      changed = true
+    }
+    const backing = matteRef.current
+    if (backing && matte > matteCoverRef.current * 1.002) {
+      matteCoverRef.current = matte
+      backing.scale.setScalar(matte)
+      changed = true
+    }
+    if (changed) {
+      // Clear of the relief's own displacement, which is ±½ × `reliefDepth`.
+      if (backing) backing.position.z = -coverRef.current * MATTE_SETBACK
       state.invalidate()
     }
   })
@@ -324,6 +433,12 @@ export function DepthScene({ image, depth, settings, quality, overscan = 1.08 }:
 
   return (
     <group ref={groupRef}>
+      {/* Drawn first and never writing depth, so the relief always wins where
+          the two overlap and the matte only ever shows past the relief's rim. */}
+      <mesh ref={matteRef} renderOrder={-1} receiveShadow={false} castShadow={false}>
+        <planeGeometry args={[imageAspect, 1]} />
+        <meshBasicMaterial color={matteColour} toneMapped={false} depthWrite={false} />
+      </mesh>
       <mesh ref={meshRef} receiveShadow={false} castShadow={false}>
         <planeGeometry args={[imageAspect, 1, segments.x, segments.y]} />
         <primitive object={material} attach="material" />

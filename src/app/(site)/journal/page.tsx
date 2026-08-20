@@ -15,7 +15,7 @@ import { ImageFrame, Reveal, TextReveal } from './_components/motion'
 export const metadata: Metadata = buildMetadata({
   title: 'Bài viết',
   description:
-    'Bài viết của AN ATELIER về vật liệu, ánh sáng và những quyết định nhỏ trên công trường — phần lớn là thứ học được sau khi đã làm sai một lần.',
+    'Ghi chép của AN ATELIER về vật liệu, ánh sáng và những quyết định nhỏ trên công trường. Phần lớn là thứ học được sau khi đã làm sai một lần.',
   path: '/journal',
 })
 
@@ -52,9 +52,9 @@ export default async function JournalPage() {
 
           <Reveal delay={0.15} className="mt-12">
             <p className="u-body-lg max-w-[52ch]">
-              Phần lớn là những thứ học được sau khi đã làm sai một lần: một loại sơn không chịu nổi
-              độ ẩm, một đảo bếp tính hụt bốn phân, một ô cửa mở đúng vào hướng nắng chiều. Chúng
-              tôi chỉ viết khi có gì đó thật sự đáng ghi lại, nên trang này không dài thêm mỗi tuần.
+              Chúng tôi viết khi có thứ gì đó đáng ghi lại, nên trang này không dài thêm mỗi tuần.
+              Phần lớn những gì ở đây là thứ học được sau khi đã làm sai một lần — một loại sơn
+              không chịu nổi mùa mưa, một đảo bếp tính hụt bốn phân. Sai xong thì nhớ rất lâu.
             </p>
           </Reveal>
         </div>
@@ -162,11 +162,11 @@ export default async function JournalPage() {
           <div className="mx-auto w-full max-w-[100rem] border-t border-line pt-16">
             <Reveal>
               <p className="u-display-sm max-w-[20ch] text-ink">
-                Bài đầu tiên vẫn còn nằm trong cuốn sổ ở công trường.
+                Bài đầu tiên vẫn còn nằm trong cuốn sổ để ở công trường.
               </p>
               <p className="u-body-lg mt-8 max-w-[44ch]">
-                Khi nào chép lại xong thì nó sẽ có mặt ở đây. Trong lúc chờ, những công trình đã
-                hoàn thành nói được nhiều hơn.
+                Chép lại xong thì nó sẽ có mặt ở đây. Trong lúc chờ, mấy công trình đã xong nói
+                được nhiều hơn là chúng tôi nói.
               </p>
               <div className="mt-12 flex flex-wrap items-center gap-8">
                 <Button href="/projects" withArrow>

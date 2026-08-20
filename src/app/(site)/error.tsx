@@ -24,16 +24,16 @@ export default function SiteError({
           Sự cố
         </Label>
 
-        <h1 className="u-display mt-10 max-w-[14ch] text-ink">Trang này không tải xong được.</h1>
+        <h1 className="u-display mt-10 max-w-[14ch] text-ink">Trang này dừng lại giữa chừng.</h1>
 
         <Rule className="mt-14 max-w-[28rem]" />
 
         <p className="u-body-lg mt-8 max-w-[46ch]">
-          Lỗi nằm ở phía chúng tôi, không phải ở máy bạn, và bạn không mất gì cả. Bấm thử lại một
-          lần trước đã.{' '}
+          Lỗi nằm ở phía chúng tôi chứ không phải ở máy bạn. Bấm thử lại một lần trước đã, vì phần
+          lớn sự cố kiểu này qua ngay ở lần thứ hai.{' '}
           {error.digest
-            ? 'Nếu vẫn vậy, gửi cho studio mã sự cố ở cuối trang — có mã đó chúng tôi lần ra đúng chỗ hỏng trong vài phút.'
-            : 'Nếu vẫn vậy, nhắn cho studio biết bạn đang mở trang nào, chúng tôi sẽ dò lại.'}
+            ? 'Nếu vẫn vậy, gửi cho studio dãy mã ở cuối trang. Có dãy đó thì chúng tôi lần ra đúng chỗ hỏng trong vài phút.'
+            : 'Nếu vẫn vậy, nhắn cho studio biết bạn đang mở trang nào và bấm vào đâu thì gặp, chúng tôi dò lại.'}
         </p>
 
         <div className="mt-14 flex flex-wrap items-center gap-8">

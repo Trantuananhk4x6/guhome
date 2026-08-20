@@ -35,6 +35,7 @@ Admin: `/admin/login` — tài khoản lấy từ `ADMIN_EMAIL` / `ADMIN_PASSWOR
 | `npm run db:seed` | seed nội dung (idempotent, upsert theo slug) |
 | `npm run media:build` | dựng lại toàn bộ derivative ảnh |
 | `npm run jobs:worker` | worker chạy hàng đợi ảnh→3D |
+| `npx tsx scripts/inspect.ts` | soi trang bằng HTML đã render — không mở trình duyệt |
 
 `media:build` có cờ: `--only=<chuỗi trong tên thư mục>`, `--limit=<n ảnh/thư mục>`, `--force`.
 

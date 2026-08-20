@@ -20,6 +20,8 @@ import { trackEvent } from '@/lib/analytics'
 import { cn } from '@/lib/utils'
 import type { MediaRef, SceneConfig } from '@/types/content'
 
+import { SCRIM_B, SCRIM_T } from './composition'
+
 /** Three / R3F stays out of the server bundle and out of every other route. */
 const InteriorScene = dynamic(
   () => import('@/components/three/InteriorScene').then((m) => m.InteriorScene),
@@ -209,46 +211,65 @@ export function Project3D({
       data-reveal
       className={cn('bg-espresso py-[var(--spacing-section)]', className)}
     >
-      <div className="u-gutter mx-auto flex w-full max-w-[110rem] flex-col gap-8">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <p className="u-label text-canvas/60 flex items-center gap-3">
-            <span aria-hidden="true" className="bg-accent h-px w-8" />
+      {/*
+        The stage runs edge to edge and carries its own type in its corners. It
+        used to float between a label row above it and a control row below it,
+        both of them full-width bars of small text against a full-width picture
+        — three stacked bands where the section only ever had one subject. The
+        espresso padding either side is the mat; the space itself is the frame.
+      */}
+      <div
+        ref={stageRef}
+        onPointerDown={handleInteract}
+        onWheel={handleInteract}
+        // The copy inside says "kéo để xoay" — `CustomCursor` shows KÉO to match.
+        data-cursor="drag"
+        className={cn(
+          'bg-espresso relative isolate w-full overflow-hidden',
+          height === 'screen' ? 'h-[84svh] min-h-[30rem]' : 'h-[68svh] min-h-[26rem]',
+          isFullscreen && 'h-screen',
+        )}
+      >
+        <div aria-hidden="true" className="absolute inset-0">
+          <InteriorScene
+            key={sceneKey}
+            config={scene}
+            progressRef={progressRef}
+            mode="orbit"
+            autoExplore={autoExplore}
+            fallbackImage={fallbackImage ?? null}
+            className="h-full w-full"
+            onReady={handleReady}
+          />
+        </div>
+
+        <p className="sr-only">{description}</p>
+
+        {/*
+          The scrims are doubled here and nowhere else. Every other overlay in
+          the system sits on a photograph the studio chose; this one sits on a
+          scene the reader is about to rotate, so the type has to stay legible
+          against a white curtain at noon *and* against a dark corner. Two
+          passes of the shared recipe reach ~77% at the very edge while leaving
+          the middle of the frame — the part being explored — untouched, which a
+          flat hold heavy enough to do the same job would not.
+        */}
+        <span aria-hidden="true" style={SCRIM_T} className="pointer-events-none absolute inset-x-0 top-0 h-[30%]" />
+        <span aria-hidden="true" style={SCRIM_T} className="pointer-events-none absolute inset-x-0 top-0 h-[30%]" />
+        <span aria-hidden="true" style={SCRIM_B} className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%]" />
+        <span aria-hidden="true" style={SCRIM_B} className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%]" />
+
+        <div className="u-gutter pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-8 pt-7 lg:pt-9">
+          <p className="u-label text-canvas/75 flex items-center gap-3">
+            <span aria-hidden="true" className="bg-accent-soft h-px w-8 shrink-0" />
             {label}
           </p>
-          <p className="text-canvas/45 max-w-[46ch] text-sm leading-relaxed">
-            Kéo để xoay, cuộn để tiến lại gần. Chọn <span className="text-canvas/70">Tự động khám phá</span> để
-            camera đi theo hành trình đã dựng sẵn.
+          <p className="text-canvas/70 hidden max-w-[34ch] text-right text-sm leading-relaxed md:block">
+            Kéo để xoay, cuộn để tiến lại gần.
           </p>
         </div>
 
-        <div
-          ref={stageRef}
-          onPointerDown={handleInteract}
-          onWheel={handleInteract}
-          // The copy above says "kéo để xoay" — `CustomCursor` shows KÉO to match.
-          data-cursor="drag"
-          className={cn(
-            'bg-espresso relative isolate w-full overflow-hidden',
-            height === 'screen' ? 'h-[92svh]' : 'h-[72svh] min-h-[30rem]',
-            isFullscreen && 'h-screen',
-          )}
-        >
-          <div aria-hidden="true" className="absolute inset-0">
-            <InteriorScene
-              key={sceneKey}
-              config={scene}
-              progressRef={progressRef}
-              mode="orbit"
-              autoExplore={autoExplore}
-              fallbackImage={fallbackImage ?? null}
-              className="h-full w-full"
-              onReady={handleReady}
-            />
-          </div>
-          <p className="sr-only">{description}</p>
-        </div>
-
-        <div className="border-canvas/15 flex flex-wrap items-center gap-x-10 gap-y-4 border-t pt-6">
+        <div className="u-gutter absolute inset-x-0 bottom-0 flex flex-wrap items-center gap-x-9 gap-y-4 pb-7 lg:pb-9">
           <Button variant="underline" tone="light" onClick={handleAutoExplore} aria-pressed={autoExplore}>
             {autoExplore ? 'Dừng khám phá' : 'Tự động khám phá'}
           </Button>

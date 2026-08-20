@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils'
 import type { BrandConfig, NavItem } from '@/types/content'
 
 import { MobileMenu } from './MobileMenu'
+import { groupNav } from './nav-fallback'
 
 export interface HeaderProps {
   nav: NavItem[]
@@ -24,6 +25,58 @@ function isActive(pathname: string, href: string): boolean {
 }
 
 /**
+ * One rail item. `lead` is set in display serif at 17px against the 11px
+ * uppercase labels beside it — the size and the family are the hierarchy, so
+ * the bar states which door matters instead of offering six identical ones.
+ */
+function NavLink({
+  item,
+  variant,
+  pathname,
+}: {
+  item: NavItem
+  variant: 'lead' | 'rest'
+  pathname: string
+}) {
+  const active = isActive(pathname, item.href)
+  const lead = variant === 'lead'
+
+  return (
+    <Link
+      href={item.href}
+      aria-current={active ? 'page' : undefined}
+      className={cn(
+        'group/nav relative inline-flex items-baseline text-current transition-opacity duration-500 ease-editorial',
+        lead
+          ? 'font-display text-[1.0625rem] leading-none tracking-[-0.01em] opacity-100'
+          : 'u-label text-current',
+        !lead &&
+          (active
+            ? 'opacity-100'
+            : // 70%, not the 60% this bar used to run: ink at 60% over canvas
+              // measures 4.34:1 and at 55% it is 3.73:1 — both under AA for
+              // 11px type. At 70% it is 6.4:1 and the rail still reads as the
+              // quiet register, because the hierarchy here is carried by size
+              // and family (17px serif against 11px caps), not by fading text
+              // until it is hard to read. Canvas ink on a photograph needs a
+              // little more presence than the same label on flat limestone.
+              'opacity-70 hover:opacity-100 group-data-[mode=dark]/hdr:opacity-85 group-data-[mode=dark]/hdr:hover:opacity-100'),
+      )}
+    >
+      {item.label}
+      <span
+        aria-hidden="true"
+        className={cn(
+          'absolute left-0 h-px w-full origin-left bg-accent transition-transform duration-500 ease-editorial',
+          lead ? '-bottom-2.5' : '-bottom-2',
+          active ? 'scale-x-100' : 'scale-x-0 group-hover/nav:scale-x-100 group-focus-visible/nav:scale-x-100',
+        )}
+      />
+    </Link>
+  )
+}
+
+/**
  * Transparent + inverted for as long as a dark hero is actually behind the bar,
  * then canvas + blur + hairline once that hero has scrolled past. Hides on
  * scroll-down, reveals on scroll-up. All of it is driven by one ScrollTrigger
@@ -32,6 +85,18 @@ function isActive(pathname: string, href: string): boolean {
  * A page opts into the light-over-hero treatment by marking its hero with
  * `data-hero-tone="dark"`; a soft top scrim rides with that mode so the nav is
  * legible over any photograph, however bright the frame under it happens to be.
+ *
+ * COMPOSITION. Six evenly-spaced links centred between a wordmark and a button
+ * is the default arrangement of every generated agency site, and it says the
+ * six destinations are equal when they are nothing like it. The bar is now a
+ * masthead: the wordmark on the left carries `Trang chủ` (the way back belongs
+ * on the mark, not in the list — the same rule `groupNav` states and the mobile
+ * sheet already follows), a hairline crosses the empty middle instead of
+ * leaving a hole there, the reading destinations sit right of it at label size,
+ * `Dự án` leads them in display serif, and `Liên hệ` is lifted out of the list
+ * entirely to sit past a vertical rule as the one conversion. Roles are matched
+ * by path, so renaming or reordering rows in the admin editor keeps their
+ * weight and every row the editor publishes still renders somewhere.
  */
 export function Header({ nav, brand }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null)
@@ -39,6 +104,8 @@ export function Header({ nav, brand }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuRoute, setMenuRoute] = useState(pathname)
   const menuOpenRef = useRef(false)
+
+  const { home, lead, rest, contact } = groupNav(nav)
 
   // A route change closes the menu. Adjusting state during render — React's
   // documented pattern for "derive from a prop that changed" — closes it in the
@@ -153,6 +220,9 @@ export function Header({ nav, brand }: HeaderProps) {
     }
   }, [pathname, canHide])
 
+  const homeHref = home?.href ?? '/'
+  const homeActive = isActive(pathname, homeHref)
+
   return (
     <>
       <header
@@ -177,78 +247,75 @@ export function Header({ nav, brand }: HeaderProps) {
         */}
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-40 opacity-0 transition-opacity duration-700 ease-editorial group-data-[scrim=on]/hdr:opacity-100"
-          style={{
-            background:
-              'linear-gradient(to bottom, color-mix(in srgb, var(--c-espresso) 44%, transparent) 0%, color-mix(in srgb, var(--c-espresso) 20%, transparent) 45%, transparent 100%)',
-          }}
+          className="u-scrim-t pointer-events-none absolute inset-x-0 top-0 h-40 opacity-0 transition-opacity duration-700 ease-editorial group-data-[scrim=on]/hdr:opacity-100"
         />
 
-        <div className="u-gutter relative flex h-20 items-center justify-between gap-8 md:h-24">
+        <div className="u-gutter relative flex h-20 items-center gap-5 md:h-24 md:gap-6 lg:gap-8">
+          {/*
+            The mark carries the way home. `Trang chủ` is a row the admin owns
+            and it keeps its label in the accessible name and in the mobile
+            sheet — it simply does not need a sixth identical tab pointing at
+            the page the wordmark already points at.
+          */}
           <Link
-            href="/"
-            aria-label={`${brand.companyName} — trang chủ`}
-            className="font-display text-base font-light uppercase leading-none tracking-[0.38em] transition-opacity duration-500 hover:opacity-60 md:text-lg"
+            href={homeHref}
+            aria-current={homeActive ? 'page' : undefined}
+            aria-label={`${brand.companyName} — ${home?.label ?? 'Trang chủ'}`}
+            className="shrink-0 font-display text-[0.9375rem] font-light uppercase leading-none tracking-[0.2em] transition-opacity duration-500 hover:opacity-60 md:text-base"
           >
             {brand.companyName}
           </Link>
 
-          <nav aria-label="Điều hướng chính" className="hidden items-center gap-10 md:flex">
-            {nav.map((item) => {
-              const active = isActive(pathname, item.href)
-              return (
-                <Link
-                  key={item.id}
-                  href={item.href}
-                  aria-current={active ? 'page' : undefined}
-                  className={cn(
-                    'u-label relative inline-flex items-center text-current transition-opacity duration-500',
-                    // Canvas ink on a photograph needs more presence than the
-                    // same label sitting on a flat limestone page.
-                    active
-                      ? 'opacity-100'
-                      : 'opacity-60 hover:opacity-100 group-data-[mode=dark]/hdr:opacity-80 group-data-[mode=dark]/hdr:hover:opacity-100',
-                  )}
-                >
-                  {item.label}
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      'absolute -bottom-2 left-0 h-px w-full origin-left bg-accent transition-transform duration-500 ease-editorial',
-                      active ? 'scale-x-100' : 'scale-x-0',
-                    )}
-                  />
-                </Link>
-              )
-            })}
+          {/*
+            The rule crossing the middle is the masthead's spine: it ties the
+            mark to the rail on one axis and fills the void that six centred
+            links used to float in.
+          */}
+          <span
+            aria-hidden="true"
+            className="hidden h-px min-w-6 flex-1 bg-current opacity-25 transition-opacity duration-700 md:block"
+          />
+
+          <nav
+            aria-label="Điều hướng chính"
+            className="hidden shrink-0 items-baseline gap-x-6 md:flex lg:gap-x-9"
+          >
+            {lead ? <NavLink item={lead} variant="lead" pathname={pathname} /> : null}
+            {rest.map((item) => (
+              <NavLink key={item.id} item={item} variant="rest" pathname={pathname} />
+            ))}
           </nav>
 
-          <div className="flex items-center gap-6">
-            <Button
-              href="/contact"
-              variant="underline"
-              size="sm"
-              tone="ink"
-              withArrow
-              className="hidden text-current lg:inline-flex"
-            >
-              Đặt hẹn tư vấn
-            </Button>
+          {contact ? (
+            <div className="hidden shrink-0 items-center gap-6 md:flex lg:gap-8">
+              <span aria-hidden="true" className="h-5 w-px bg-current opacity-25" />
+              <Button
+                href={contact.href}
+                variant="underline"
+                size="sm"
+                tone="ink"
+                withArrow
+                aria-current={isActive(pathname, contact.href) ? 'page' : undefined}
+                className="text-current"
+              >
+                {contact.label}
+              </Button>
+            </div>
+          ) : null}
 
-            <button
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              aria-expanded={menuOpen}
-              aria-controls="an-mobile-menu"
-              className="u-label flex items-center gap-3 text-current md:hidden"
-            >
-              <span aria-hidden="true" className="flex h-3 w-6 flex-col justify-between">
-                <span className="h-px w-full bg-current" />
-                <span className="h-px w-full bg-current" />
-              </span>
-              Menu
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-expanded={menuOpen}
+            aria-controls="an-mobile-menu"
+            className="u-label ml-auto flex items-center gap-3 text-current md:hidden"
+          >
+            <span aria-hidden="true" className="flex h-3 w-6 flex-col justify-between">
+              <span className="h-px w-full bg-current" />
+              <span className="h-px w-full bg-current" />
+            </span>
+            Menu
+          </button>
         </div>
 
         <span

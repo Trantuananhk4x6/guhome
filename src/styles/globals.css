@@ -28,7 +28,14 @@
   --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
 
   --spacing-gutter: clamp(1.25rem, 4vw, 4.5rem);
-  --spacing-section: clamp(6rem, 14vh, 12rem);
+  /* 14vh of padding on each edge was tuned for sections that each held one
+     idea; every section now holds two or three, and sixteen edges across eight
+     sections were spending most of a viewport on nothing. */
+  --spacing-section: clamp(4.5rem, 11vh, 9rem);
+  /* The gap BETWEEN bands inside one section. It must always read as smaller
+     than a section break — before this existed each section invented its own
+     clamp and one of them (176px) had grown larger than the break it sat in. */
+  --spacing-band: clamp(3rem, 7vh, 5.5rem);
 
   --breakpoint-xs: 30rem;
   --breakpoint-3xl: 110rem;
@@ -139,18 +146,48 @@
     word-spacing: 0.08em;
   }
 
+  /*
+   * THREE display steps, not two. 112 / 70 / 44 at 1600 — ratios of 1.60 and
+   * 1.59, a real scale. The old pair was 112 / 52 with nothing between, so any
+   * heading that was not a page opener had to be either enormous or small, and
+   * every section picked enormous. A 112px heading with a 22ch measure is a
+   * 240px-tall object that spans the band and pushes its own content below the
+   * fold: that is the mechanical cause of the title-card rhythm, not a spacing
+   * bug. The middle step is the one that was missing.
+   *
+   * Every step keeps the `var(--display-scale)` multiplier — the admin type
+   * scale control writes that variable and silently dies without it.
+   */
+
+  /* The old .u-display scale, preserved for the page's two bookends only: the
+     hero h1 and the closing CTA h2. Those are the only headings with a
+     photograph behind them and an argument to make at that size. */
+  .u-display-lg {
+    font-family: var(--font-display);
+    font-size: calc(clamp(2.625rem, 7vw, 8rem) * var(--display-scale));
+    font-weight: 500;
+    /* 1.04 is the floor, not a preference: Vietnamese stacks marks above AND
+       below the x-height (ế, ộ, ữ, ậ). Tighter and the dấu of one line touches
+       the baseline of the one above. */
+    line-height: 1.04;
+    letter-spacing: -0.024em;
+  }
+
+  /* Section statements. Loud enough to lead its band, small enough to sit in a
+     6-column rail beside a photograph instead of spanning the screen alone. */
   .u-display {
     font-family: var(--font-display);
-    font-size: calc(clamp(2.25rem, 7vw, 8rem) * var(--display-scale));
+    font-size: calc(clamp(1.875rem, 4.4vw, 5rem) * var(--display-scale));
     font-weight: 500;
-    /* See the heading rule: display sizes need the same Vietnamese allowance. */
     line-height: 1.04;
     letter-spacing: -0.02em;
   }
 
+  /* Item titles: projects, services, articles, and the headings of sections
+     whose argument is their content rather than their name. */
   .u-display-sm {
     font-family: var(--font-display);
-    font-size: calc(clamp(1.5rem, 3.4vw, 3.25rem) * var(--display-scale));
+    font-size: calc(clamp(1.375rem, 2.75vw, 2.75rem) * var(--display-scale));
     font-weight: 500;
     line-height: 1.14;
     letter-spacing: -0.012em;
@@ -165,6 +202,63 @@
   .u-rule {
     height: 1px;
     background-color: var(--color-line);
+  }
+
+  /*
+   * The inter-band rhythm, applied to a section that stacks several bands. One
+   * class instead of a per-section clamp keeps every inter-band gap smaller
+   * than the section break around it, which is the only way the two reads as a
+   * hierarchy. It is also what guarantees `--spacing-band` is emitted: Tailwind
+   * v4 writes a theme variable only where something references it.
+   */
+  .u-band-stack > * + * {
+    margin-top: var(--spacing-band);
+  }
+
+  /*
+   * An image can leave the gutter without leaving the grid. Four compositions
+   * need a frame that starts inside a 12-column child and runs to the viewport
+   * edge; without a shared helper each one invents its own negative margin and
+   * they drift apart at the gutter's clamp breakpoints. The alternation between
+   * bleeding and inset images is what makes the inset ones look chosen.
+   */
+  .u-bleed-l {
+    margin-left: calc(var(--spacing-gutter) * -1);
+  }
+
+  .u-bleed-r {
+    margin-right: calc(var(--spacing-gutter) * -1);
+  }
+
+  .u-bleed-x {
+    margin-inline: calc(var(--spacing-gutter) * -1);
+  }
+
+  /*
+   * One scrim recipe for every piece of type set over a photograph. These two
+   * gradients were already hand-written in two components and the composition
+   * adds five more overlay moments — five hand-tuned copies of a gradient is
+   * how a site stops looking like one hand made it. Decorative layers only, so
+   * they never intercept a click meant for the link underneath.
+   * Contrast floor for a label riding one of these: text-canvas/70.
+   */
+  .u-scrim-t {
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--c-espresso) 52%, transparent) 0%,
+      transparent 100%
+    );
+  }
+
+  .u-scrim-b {
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--c-espresso) 62%, transparent) 0%,
+      color-mix(in srgb, var(--c-espresso) 24%, transparent) 45%,
+      transparent 100%
+    );
   }
 
   /* Applied by animation utilities before GSAP takes over, so nothing flashes

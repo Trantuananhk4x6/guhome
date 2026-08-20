@@ -6,8 +6,10 @@ import { useImageReveal } from '@/animations/image'
 import { useReveal } from '@/animations/reveal'
 import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/Label'
+import { cn } from '@/lib/utils'
 
 import { SectionImage } from './SectionImage'
+import { BAND_T, BLEED_R_LG, DISPLAY_SM, FIGURE, SCRIM_B, SECTION_T } from './composition'
 import {
   sectionLines,
   sectionOptionalText,
@@ -30,13 +32,23 @@ const STAT_FALLBACK: readonly SectionStat[] = [
   { label: 'Giải thưởng & xuất bản', value: '11' },
 ]
 
-/** Editorial two-column studio note: statement, body copy, portrait, figures. */
+/**
+ * Attribution, with evidence — the first dense beat, and the hardest cut on the
+ * page: three viewports of photography straight into one viewport of facts.
+ *
+ * Three live columns across the full width (heading rail, body copy, portrait
+ * bleeding off the right edge) instead of a six-column block beside a five-column
+ * picture, and the four figures set as one horizontal ledger instead of four
+ * stacked rows that each put a two-digit number in a 1472px band.
+ */
 export function StudioIntro({ section, data }: HomeSectionProps) {
   const copyRef = useRef<HTMLDivElement>(null)
+  const bodyRef = useRef<HTMLDivElement>(null)
   const figureRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLDListElement>(null)
 
   useReveal(copyRef, { variant: 'revealUp', stagger: 0.09 })
+  useReveal(bodyRef, { variant: 'revealUp', stagger: 0.09, delay: 0.1 })
   useImageReveal(figureRef, { variant: 'revealClip' })
   useReveal(statsRef, { variant: 'revealUp', stagger: 0.07 })
 
@@ -61,64 +73,92 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
   const image = data.studioImage ?? data.featured[1]?.cover ?? data.featured[0]?.cover ?? null
 
   return (
-    <section data-home-section="STUDIO" className="bg-surface py-[var(--spacing-section)]">
-      <div className="u-gutter grid grid-cols-12 items-start gap-x-8 gap-y-16">
-        <div ref={copyRef} data-reveal className="col-span-12 lg:row-start-1 lg:col-span-6">
+    // `pb-0` is load-bearing: the ledger's closing hairline is meant to sit on
+    // the top edge of PHILOSOPHY's photograph.
+    <section data-home-section="STUDIO" className={cn('overflow-hidden bg-canvas pb-0', SECTION_T)}>
+      {/* Four cells across three live columns. The portrait spans both rows and
+          is sized `lg:h-full`, so it ends exactly where the copy ends — the
+          320px of empty band that used to sit under the paragraphs cannot open.
+          Stacked, the order reads heading, copy, action, photograph. */}
+      <div className="u-gutter grid grid-cols-12 gap-x-8 gap-y-10">
+        <div ref={copyRef} data-reveal className="col-span-12 lg:col-span-4 lg:row-start-1">
           <Label data-reveal-item rule>
             {eyebrow}
           </Label>
 
-          <h2 data-reveal-item className="u-display mt-9 max-w-[16ch] text-ink">
+          <h2 data-reveal-item className={cn(DISPLAY_SM, 'mt-8 max-w-[12ch] text-ink')}>
             {headingLines.map((line) => (
               <span key={line} className="block">
                 {line}
               </span>
             ))}
           </h2>
-
-          <div data-reveal-item className="mt-11 flex max-w-[46ch] flex-col gap-6">
-            {paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)} className="u-body-lg">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-
-          <div data-reveal-item className="mt-11">
-            <Button href="/studio" variant="underline" withArrow>
-              {cta}
-            </Button>
-          </div>
         </div>
 
-        <figure className="col-span-12 lg:row-start-1 lg:col-span-5 lg:col-start-8">
+        <div
+          ref={bodyRef}
+          data-reveal
+          className="col-span-12 flex max-w-[44ch] flex-col gap-6 lg:col-span-4 lg:col-start-5 lg:row-start-1"
+        >
+          {paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 32)} data-reveal-item className="u-body-lg">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        {/* Row two of the left column: the action sits on the portrait's bottom
+            edge at desktop, and follows the copy on a phone. */}
+        <div className="col-span-12 lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:self-end">
+          <Button href="/studio" variant="underline" withArrow>
+            {cta}
+          </Button>
+        </div>
+
+        <figure
+          className={cn(
+            'relative col-span-12 lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1',
+            BLEED_R_LG,
+          )}
+        >
           <div
             ref={figureRef}
-            className="relative aspect-[3/4] w-full overflow-hidden bg-surface-alt shadow-[0_50px_90px_-70px_rgba(28,27,24,0.7)]"
+            className="relative isolate aspect-[4/5] w-full overflow-hidden bg-surface-alt lg:aspect-auto lg:h-full lg:min-h-[32rem]"
           >
             <SectionImage
               media={image}
               alt={caption}
-              sizes="(min-width: 1024px) 40vw, 100vw"
+              sizes="(min-width: 1024px) 34vw, 100vw"
               width={1200}
             />
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-0 hidden h-[38%] lg:block"
+              style={SCRIM_B}
+            />
           </div>
-          <figcaption className="u-label mt-4 block">{caption}</figcaption>
+          {/* Inset over its own bottom-left corner at desktop; below the frame on
+              a phone, where a scrim plate over a 350px photograph is unreadable. */}
+          <figcaption className="u-label mt-4 block lg:absolute lg:inset-x-0 lg:bottom-0 lg:mt-0 lg:p-[var(--spacing-gutter)] lg:text-canvas/75">
+            {caption}
+          </figcaption>
         </figure>
       </div>
 
-      <div className="u-gutter mt-[clamp(4rem,10vh,8rem)]">
-        <dl ref={statsRef} data-reveal className="border-t border-line">
+      <div className={cn('u-gutter', BAND_T)}>
+        <dl
+          ref={statsRef}
+          data-reveal
+          className="grid grid-cols-2 border-t border-b border-line md:grid-cols-4"
+        >
           {stats.map((stat) => (
             <div
               key={stat.label}
               data-reveal-item
-              className="grid grid-cols-12 items-baseline gap-x-6 gap-y-2 border-b border-line py-7"
+              className="border-line py-7 even:border-l even:pl-6 [&:nth-child(n+3)]:border-t md:border-l md:px-8 md:py-11 md:first:border-l-0 md:first:pl-0 md:even:pl-8 md:[&:nth-child(n+3)]:border-t-0"
             >
-              <dt className="u-label col-span-12 sm:col-span-5 lg:col-span-4">{stat.label}</dt>
-              <dd className="col-span-12 font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-none font-light text-ink sm:col-span-7 lg:col-span-8">
-                {stat.value}
-              </dd>
+              <dt className="u-label">{stat.label}</dt>
+              <dd className={cn(FIGURE, 'mt-3 text-ink')}>{stat.value}</dd>
             </div>
           ))}
         </dl>

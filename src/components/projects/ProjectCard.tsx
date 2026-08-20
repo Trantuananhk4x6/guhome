@@ -1,10 +1,13 @@
 'use client'
 
 /**
- * One project, one card. Two shapes:
- *   `grid`  — used by the related rail and any two-up listing
- *   `index` — the editorial row on /projects: oversized image, index number,
- *             title / location / year stacked beside it
+ * One project, one plate: a photograph with its caption set beneath it.
+ *
+ * The old `index` variant — an oversized image on one side and a metadata
+ * column on the other, repeated down /projects 105 times — is gone. Identical
+ * repetition is the thing the index was being criticised for, and the fix is
+ * not a better row, it is several different treatments; those now live in
+ * `ProjectIndex`'s bands, all of which draw this one plate at different scales.
  *
  * Hover: the image eases 1 → 1.05 while the overlay metadata lifts in
  * (opacity 0 → 1, y 20 → 0). A plain left-click hands the frame to
@@ -21,22 +24,35 @@ import { ArrowUpRightIcon } from '@/components/ui/icons'
 import { cn, formatArea, pad2 } from '@/lib/utils'
 import type { ProjectSummary } from '@/types/content'
 
+import { DISPLAY, DISPLAY_SM, DISPLAY_XS } from './composition'
 import { ProjectFigure } from './ProjectFigure'
 
-export type ProjectCardVariant = 'grid' | 'index'
+/** Retained so `variant="grid"` at existing call sites keeps type-checking. */
+export type ProjectCardVariant = 'grid'
+
+export type ProjectCardSize = 'sm' | 'md' | 'lg'
 
 export interface ProjectCardProps {
   project: ProjectSummary
   /** 1-based editorial index — rendered as `01`. */
   index?: number
   variant?: ProjectCardVariant
-  /** `index` variant only: which side the image sits on. */
-  align?: 'left' | 'right'
+  /** Type step of the title. `lg` is for a band's lead plate, `sm` for a strip. */
+  size?: ProjectCardSize
+  /** Prints the 35–60 word summary under the meta line. */
+  showSummary?: boolean
   aspect?: string
   sizes?: string
   width?: number
   priority?: boolean
   className?: string
+  captionClassName?: string
+}
+
+const TITLE: Record<ProjectCardSize, string> = {
+  sm: DISPLAY_XS,
+  md: DISPLAY_SM,
+  lg: DISPLAY,
 }
 
 function metaLine(project: ProjectSummary): string {
@@ -47,18 +63,18 @@ function metaLine(project: ProjectSummary): string {
 export function ProjectCard({
   project,
   index,
-  variant = 'grid',
-  align = 'left',
+  size = 'md',
+  showSummary = false,
   aspect,
   sizes,
   width,
   priority = false,
   className,
+  captionClassName,
 }: ProjectCardProps) {
   const frameRef = useRef<HTMLDivElement>(null)
   const { openProject } = useProjectTransition()
   const href = `/projects/${project.slug}`
-  const isIndex = variant === 'index'
 
   function handleClick(event: MouseEvent<HTMLAnchorElement>): void {
     if (event.defaultPrevented) return
@@ -86,7 +102,7 @@ export function ProjectCard({
       className="pointer-events-none absolute inset-x-0 bottom-0 flex translate-y-5 items-end justify-between gap-6 p-6 opacity-0 transition-[opacity,transform] duration-700 ease-editorial group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 md:p-8"
     >
       <span className="u-label text-canvas/80">{project.categoryName ?? 'Dự án'}</span>
-      <span className="u-label flex items-center gap-2 text-canvas">
+      <span className="u-label text-canvas flex items-center gap-2">
         Xem dự án
         <ArrowUpRightIcon className="text-[1.2em]" />
       </span>
@@ -96,14 +112,14 @@ export function ProjectCard({
   const scrim = (
     <span
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 bg-espresso/0 transition-colors duration-700 ease-editorial group-hover:bg-espresso/25 group-focus-visible:bg-espresso/25"
+      className="bg-espresso/0 group-hover:bg-espresso/25 group-focus-visible:bg-espresso/25 pointer-events-none absolute inset-0 transition-colors duration-700 ease-editorial"
     />
   )
 
+  const meta = metaLine(project)
+
   return (
-    <article
-      className={cn(isIndex && 'grid items-center gap-8 md:grid-cols-12 md:gap-12', className)}
-    >
+    <article className={cn('flex flex-col', className)}>
       <Link
         href={href}
         onClick={handleClick}
@@ -111,23 +127,17 @@ export function ProjectCard({
         // Read by `CustomCursor` — it resolves the *innermost* `[data-cursor]`
         // ancestor, so the figure inside must stay unmarked or it would win.
         data-cursor="project"
-        className={cn(
-          'group block focus-visible:outline-offset-8',
-          isIndex && 'md:col-span-8',
-          isIndex && align === 'right' && 'md:order-2 md:col-start-5',
-        )}
+        className="group block focus-visible:outline-offset-8"
       >
         <div ref={frameRef} className="relative">
           <ProjectFigure
             media={project.cover}
             alt={project.cover?.alt ?? `${project.title} — ${project.location ?? 'AN ATELIER'}`}
-            aspect={aspect ?? (isIndex ? '16 / 10' : '4 / 5')}
-            sizes={sizes ?? (isIndex ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 45vw, 100vw')}
-            width={width ?? (isIndex ? 1600 : 1200)}
+            aspect={aspect ?? '4 / 5'}
+            sizes={sizes ?? '(min-width: 768px) 45vw, 100vw'}
+            width={width ?? 1200}
             priority={priority}
             reveal="revealClip"
-            parallax={isIndex}
-            parallaxStrength={0.3}
             imageClassName="transition-transform duration-[900ms] ease-editorial group-hover:scale-105 group-focus-visible:scale-105"
             overlay={
               <>
@@ -139,32 +149,34 @@ export function ProjectCard({
         </div>
       </Link>
 
-      <div
-        className={cn(
-          'flex flex-col gap-4',
-          isIndex && 'md:col-span-4',
-          isIndex && align === 'right' && 'md:order-1 md:col-start-1 md:row-start-1',
-        )}
-      >
+      <div className={cn('mt-5 flex flex-col gap-2.5', captionClassName)}>
         {index !== undefined ? (
-          <span className="u-label flex items-center gap-3 text-accent">
-            <span aria-hidden="true" className="h-px w-8 bg-accent" />
-            Index {pad2(index)}
+          <span className="u-label text-accent flex items-center gap-3">
+            <span aria-hidden="true" className="bg-accent h-px w-8 shrink-0" />
+            {pad2(index)}
           </span>
         ) : null}
 
-        <h3 className={cn(isIndex ? 'u-display-sm' : 'font-display text-3xl leading-[1.05] font-normal md:text-4xl')}>
-          <Link href={href} onClick={handleClick} className="transition-colors duration-500 hover:text-accent">
+        <h3 className={cn(TITLE[size], 'text-ink')}>
+          <Link
+            href={href}
+            onClick={handleClick}
+            className="hover:text-accent transition-colors duration-500"
+          >
             {project.title}
           </Link>
         </h3>
 
-        {project.subtitle ? <p className="text-muted text-sm leading-relaxed">{project.subtitle}</p> : null}
+        {project.subtitle ? (
+          <p className="text-muted max-w-[42ch] text-sm leading-relaxed">{project.subtitle}</p>
+        ) : null}
 
-        <p className="u-label">{metaLine(project)}</p>
+        {meta ? <p className="u-label">{meta}</p> : null}
 
-        {isIndex && project.summary ? (
-          <p className="text-muted max-w-[38ch] text-sm leading-relaxed">{project.summary}</p>
+        {showSummary && project.summary ? (
+          <p className="text-muted mt-2 line-clamp-3 max-w-[46ch] text-sm leading-relaxed">
+            {project.summary}
+          </p>
         ) : null}
       </div>
     </article>

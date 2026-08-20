@@ -15,8 +15,8 @@ export default function Loading() {
           <div className="h-px w-1/3 animate-pulse bg-accent" />
         </div>
 
-        <p className="mt-10 font-display text-[1.5rem] font-normal text-muted">
-          Ảnh công trình chụp ở bản gốc rất lớn, đang tải dần.
+        <p className="mt-10 max-w-[34ch] font-display text-[1.5rem] font-normal leading-snug text-muted">
+          Ảnh công trình được giữ nguyên ở bản gốc, nên chúng về chậm hơn chữ một nhịp.
         </p>
       </div>
     </div>

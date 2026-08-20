@@ -20,7 +20,7 @@ export { ProjectAnalytics } from './ProjectAnalytics'
 export type { ProjectAnalyticsProps } from './ProjectAnalytics'
 
 export { ProjectCard } from './ProjectCard'
-export type { ProjectCardProps, ProjectCardVariant } from './ProjectCard'
+export type { ProjectCardProps, ProjectCardSize, ProjectCardVariant } from './ProjectCard'
 
 export { ProjectCta } from './ProjectCta'
 export type { ProjectCtaProps } from './ProjectCta'
@@ -42,6 +42,9 @@ export type { ProjectImageProps, ProjectImageWidth } from './ProjectImage'
 
 export { ProjectIndex } from './ProjectIndex'
 export type { ProjectIndexProps } from './ProjectIndex'
+
+export { ProjectLead } from './ProjectLead'
+export type { ProjectLeadProps } from './ProjectLead'
 
 export { ProjectInfo } from './ProjectInfo'
 export type { ProjectInfoProps } from './ProjectInfo'

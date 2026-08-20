@@ -7,7 +7,7 @@ import { PerspectiveCamera as PerspectiveCameraImpl, Vector3 } from 'three'
 import type { SceneConfig, Vec3 } from '@/types/content'
 import { FALLBACK_WAYPOINT, resolveWaypoints, type ResolvedWaypoint } from '@/lib/three/camera-path'
 import { asOrbitControls } from '@/lib/three/controls'
-import { portraitFovScale, resolveSceneSettings, waypointsFor } from '@/lib/three/scene-settings'
+import { portraitFovScale, resolveSceneSettings, usesFlatRelief, waypointsFor } from '@/lib/three/scene-settings'
 
 export interface SceneCameraProps {
   config: SceneConfig
@@ -35,6 +35,34 @@ interface OrbitLimits {
 
 const TWO_PI = Math.PI * 2
 
+/**
+ * How much freedom a *flat relief* gets, on top of whatever its authored path
+ * already uses.
+ *
+ * A plane cannot be orbited like a room, for two independent reasons that both
+ * bite at the same angle. It stops reading as a space and starts reading as a
+ * print on a wall — the whole point of `DEPTH_2_5D` is that the visitor never
+ * quite works out it is looking at a photograph — and the plane has to be large
+ * enough to cover every frustum the envelope permits, which for an oblique view
+ * means a trapezium running away from the camera. Measured against the seeded
+ * scenes, the room-shaped envelope (±48° of azimuth, out to 1.7× the authored
+ * standoff) demands a relief **16.6×** the width of the resting framing; since
+ * the photograph is mapped onto that plane, paying it would leave the visitor
+ * looking at 5% of the picture. These are the angles where both problems stay
+ * small: the relief only has to be ~1.3× oversized, and the rake never gets far
+ * enough to keystone the image.
+ */
+const FLAT_RELIEF = {
+  /** Extra azimuth each way, in radians (≈12°). */
+  azimuth: 0.21,
+  /** Extra polar each way (≈8°). Vertical rake gives a plane away sooner. */
+  polar: 0.14,
+  /** Dolly-out ceiling, as a multiple of the furthest authored standoff. */
+  dollyOut: 1.06,
+  /** Dolly-in floor, likewise — "cuộn để tiến lại gần" is the promised move. */
+  dollyIn: 0.46,
+} as const
+
 /** Shortest signed angle in (−π, π] — keeps azimuth ranges from wrapping. */
 function wrapPi(angle: number): number {
   const wrapped = (((angle + Math.PI) % TWO_PI) + TWO_PI) % TWO_PI
@@ -50,7 +78,7 @@ function wrapPi(angle: number): number {
  * `update()` clamps the live pose. A window sized to waypoint 0 alone would
  * yank the camera on handover.
  */
-function orbitEnvelope(points: readonly ResolvedWaypoint[], roomDepth: number): OrbitLimits {
+function orbitEnvelope(points: readonly ResolvedWaypoint[], roomDepth: number, flat: boolean): OrbitLimits {
   const head = points[0] ?? FALLBACK_WAYPOINT
   const base = Math.atan2(head.position[0] - head.target[0], head.position[2] - head.target[2])
 
@@ -87,6 +115,21 @@ function orbitEnvelope(points: readonly ResolvedWaypoint[], roomDepth: number): 
   if (!Number.isFinite(lowAzimuth) || !Number.isFinite(highAzimuth)) {
     lowAzimuth = base
     highAzimuth = base
+  }
+
+  if (flat) {
+    // Centred on the authored spread rather than added to both ends of it, so a
+    // path that already sweeps does not compound its own sweep into the cage.
+    const midPolar = (lowPolar + highPolar) / 2
+    const midAzimuth = (lowAzimuth + highAzimuth) / 2
+    return {
+      minDistance: Math.min(nearest, Math.max(0.5, furthest * FLAT_RELIEF.dollyIn)),
+      maxDistance: furthest * FLAT_RELIEF.dollyOut,
+      minPolarAngle: Math.max(0.04, Math.min(lowPolar, midPolar - FLAT_RELIEF.polar)),
+      maxPolarAngle: Math.min(Math.PI - 0.04, Math.max(highPolar, midPolar + FLAT_RELIEF.polar)),
+      minAzimuthAngle: Math.min(lowAzimuth, midAzimuth - FLAT_RELIEF.azimuth),
+      maxAzimuthAngle: Math.max(highAzimuth, midAzimuth + FLAT_RELIEF.azimuth),
+    }
   }
 
   // Room depth caps how far out the visitor may dolly, but never below the
@@ -196,7 +239,8 @@ export function SceneCamera({ config, mode, pathDriven = false }: SceneCameraPro
     return { position: first.position, target: first.target, fov: first.fov }
   }, [points])
 
-  const limits = useMemo(() => orbitEnvelope(points, settings.roomDepth), [points, settings.roomDepth])
+  const flat = useMemo(() => usesFlatRelief(config), [config])
+  const limits = useMemo(() => orbitEnvelope(points, settings.roomDepth, flat), [points, settings.roomDepth, flat])
 
   // A pan is a nudge, not a relocation: a fifth of the room across, a sixth of
   // it deep, and barely any vertically — heads do not float in an interior.

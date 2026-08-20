@@ -8,9 +8,10 @@ import { useReveal } from '@/animations/reveal'
 import { useTextReveal } from '@/animations/text'
 import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/Label'
-import { formatArea } from '@/lib/utils'
+import { cn, formatArea } from '@/lib/utils'
 
 import { SectionImage } from './SectionImage'
+import { DISPLAY_LG, SCRIM_B, SCRIM_T } from './composition'
 import { sectionCta, sectionLines, sectionText } from './content'
 import type { HomeSectionProps } from './types'
 
@@ -31,12 +32,6 @@ const KEYFRAMES = `
   100% { transform: translateY(160%); }
 }
 `
-
-/** Shallow gradients at the two ends of the frame — see the note at the overlay. */
-const TOP_SCRIM =
-  'linear-gradient(to bottom, color-mix(in srgb, var(--c-espresso) 50%, transparent) 0%, transparent 100%)'
-const BOTTOM_SCRIM =
-  'linear-gradient(to top, color-mix(in srgb, var(--c-espresso) 60%, transparent) 0%, color-mix(in srgb, var(--c-espresso) 22%, transparent) 45%, transparent 100%)'
 
 /**
  * 100vh opening. The featured project's scene fills the frame and its camera is
@@ -116,8 +111,8 @@ export function Hero3D({ section, data }: HomeSectionProps) {
           keeps most of its brightness.
         */}
         <div className="absolute inset-0 bg-espresso/34" />
-        <div className="absolute inset-x-0 top-0 h-[34%]" style={{ background: TOP_SCRIM }} />
-        <div className="absolute inset-x-0 bottom-0 h-[46%]" style={{ background: BOTTOM_SCRIM }} />
+        <div className="absolute inset-x-0 top-0 h-[34%]" style={SCRIM_T} />
+        <div className="absolute inset-x-0 bottom-0 h-[46%]" style={SCRIM_B} />
       </div>
 
       <p className="sr-only">
@@ -141,7 +136,7 @@ export function Hero3D({ section, data }: HomeSectionProps) {
           ) : null}
         </div>
 
-        <h1 ref={headingRef} data-reveal className="u-display max-w-[15ch] text-balance text-canvas">
+        <h1 ref={headingRef} data-reveal className={cn(DISPLAY_LG, 'max-w-[13ch] text-canvas')}>
           {titleLines.map((line) => (
             <span key={line} className="block">
               {line}
@@ -155,14 +150,14 @@ export function Hero3D({ section, data }: HomeSectionProps) {
           className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between md:gap-16"
         >
           <div className="flex max-w-[42ch] flex-col items-start gap-7">
-            <p className="u-body-lg text-canvas/70">{body}</p>
+            <p className="u-body-lg text-canvas/75">{body}</p>
             <Button href={cta.href} variant="underline" tone="light" withArrow>
               {cta.label}
             </Button>
           </div>
 
           <div className="flex items-center gap-4" aria-hidden="true">
-            <span className="u-label text-canvas/40">{scrollLabel}</span>
+            <span className="u-label text-canvas/55">{scrollLabel}</span>
             <span className="relative block h-16 w-px overflow-hidden bg-canvas/20">
               <span
                 className="absolute inset-x-0 top-0 block h-6 bg-accent-soft"

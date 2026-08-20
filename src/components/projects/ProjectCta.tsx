@@ -13,6 +13,8 @@ import { useTextReveal } from '@/animations/text'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
 
+import { DISPLAY } from './composition'
+
 export interface ProjectCtaProps {
   heading?: string
   body?: string
@@ -36,16 +38,16 @@ export function ProjectCta({
 
   return (
     <section className={cn('bg-espresso py-[var(--spacing-section)]', className)}>
-      <div className="u-gutter mx-auto grid w-full max-w-[110rem] grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-7">
-          <h2 ref={headingRef} data-reveal className="u-display text-canvas max-w-[14ch]">
+      <div className="u-gutter mx-auto grid w-full max-w-[110rem] grid-cols-1 items-end gap-10 lg:grid-cols-12 lg:gap-x-8">
+        <div className="lg:col-span-6">
+          <h2 ref={headingRef} data-reveal className={cn(DISPLAY, 'text-canvas max-w-[13ch]')}>
             {heading}
           </h2>
         </div>
 
-        <div ref={bodyRef} data-reveal className="flex flex-col gap-10 lg:col-span-5 lg:pt-4">
+        <div ref={bodyRef} data-reveal className="flex flex-col gap-8 lg:col-span-5 lg:col-start-8">
           {body ? (
-            <p data-reveal data-reveal-item className="text-canvas/60 max-w-[46ch] text-[1.0625rem] leading-[1.75]">
+            <p data-reveal data-reveal-item className="text-canvas/70 max-w-[46ch] text-[1.0625rem] leading-[1.75]">
               {body}
             </p>
           ) : null}

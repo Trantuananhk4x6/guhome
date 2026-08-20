@@ -60,22 +60,59 @@ export function resolveToneMapping(name: SceneSettings['toneMapping']): ToneMapp
 /* ---------------------------------- relief --------------------------------- */
 
 /**
- * The framing `DEPTH_2_5D` is composed for, in world units. The relief is a
- * plane at the origin; these are the only camera distances it is sized to
- * cover, and `normaliseDepthWaypoints` rewrites every authored path into them.
+ * The framing a flat relief is composed for, in world units. The relief is a
+ * plane at the origin; these are the camera poses it is sized to cover, and
+ * {@link normaliseDepthWaypoints} rescales every authored path into them.
  *
- * The push-in is deliberately small. A displaced photograph survives a 12%
- * dolly without announcing itself; at 40% the parallax between the near and far
- * parts of the relief becomes legible as *geometry*, and the illusion that the
- * visitor is looking at a photograph is gone.
+ * **The span.** This used to be `4.6 → 4.05`: a 12% push, 0.55 world units,
+ * spread over 200vh of pinned scroll. Measured on the seeded photography that
+ * moves a feature at the relief's near face 5.5px relative to one at its far
+ * face across the entire walk — under a tenth of the frame, and below the
+ * threshold at which anyone reads it as a dolly rather than as a still. It is
+ * the wrong kind of cautious: it buys nothing and costs the whole shot.
+ *
+ * `5.0 → 3.6` is 28%, and it is where the caution actually belongs. The relief
+ * is at most 14% of the plane's height deep, so the parallax it can offer is
+ * fixed; the further the camera travels the more parallax the eye *expects*,
+ * and past roughly a third of the standoff the expectation outruns the supply
+ * and the move starts reading as a photograph being zoomed. Measured the same
+ * way, this span moves that same pair of features 17.6px — felt, unmistakably a
+ * dolly, and still short of the point where the flatness announces itself.
+ *
+ * **The angles.** `sweep` and `rise` are tangents, not distances: an off-axis
+ * *angle* is what rakes the plane and what a lateral move has to be scaled by,
+ * and it is the quantity that stays meaningful when an editor authors a path in
+ * a room 12m deep and it has to be replayed against a plane 5m away. 0.10 is a
+ * touch under 6° — enough that the frame visibly travels across the photograph,
+ * not enough to keystone it into a print hanging on a wall.
+ *
+ * **The references** are the authored boldness that earns the whole envelope. A
+ * path that pushes 45% of its own longest standoff, or holds 20° off-axis, gets
+ * all of it; a timid path gets proportionally less and *stays timid*, which is
+ * the half of "keep the authoring" the old normaliser dropped.
  */
 export const DEPTH_FRAME = {
-  /** Camera distance from the relief at the widest framing (progress 0). */
-  start: 4.6,
-  /** …and at the end of the walk. */
-  end: 4.05,
-  /** Largest lateral / vertical camera drift along the way. */
-  drift: 0.3,
+  /** Camera distance from the relief at the widest framing. */
+  start: 5,
+  /** …and at the closest. */
+  end: 3.6,
+  /** Tangent of the largest rake the camera may hold on the plane. */
+  sweep: 0.1,
+  /** …and vertically, where a flat relief gives itself away sooner. */
+  rise: 0.05,
+  /** Authored push, relative to the path's own longest standoff, for the full span. */
+  pushReference: 0.45,
+  /** Authored off-axis tangent for the full `sweep`. */
+  sweepReference: 0.36,
+  /** …and for the full `rise`. */
+  riseReference: 0.26,
+  /**
+   * How much of the drift the aim follows. Swinging the camera round a fixed
+   * point would rake the plane at the full angle and flatten it; letting the
+   * target travel with the eye keeps the relief nearly square-on while the
+   * frame still travels across it.
+   */
+  aim: 0.4,
 } as const
 
 /**
@@ -176,96 +213,159 @@ export function resolveSceneSettings(settings: SceneSettings | null | undefined)
 /* -------------------------------- waypoints -------------------------------- */
 
 /**
- * A slow dolly toward the far wall, used whenever a scene has no authored path.
- * Kept in one place so the camera rig, the path driver and the room geometry
- * all agree about where "inside the room" is.
+ * One pose in the flat-relief envelope, from the two quantities that describe
+ * it: how far the eye stands off the plane, and the tangents of the angles it
+ * holds off the plane's normal. The eye and its target both travel, split by
+ * {@link DEPTH_FRAME.aim}, so `position − target` comes out at exactly
+ * `distance` with exactly the requested rake.
  */
-export function defaultWaypoints(config: SceneConfig): CameraWaypoint[] {
-  const { roomDepth, roomHeight } = resolveSceneSettings(config.settings)
-  const eye = Math.min(1.55, roomHeight * 0.5)
-  const fov = config.fov > 1 ? config.fov : 45
-
-  switch (config.mode) {
-    case 'PROCEDURAL_3D':
-      return [
-        { position: [0, eye, roomDepth * 0.46], target: [0, eye * 0.95, -roomDepth * 0.5], fov, ease: DEFAULT_EASE },
-        {
-          position: [0.35, eye * 1.02, roomDepth * 0.02],
-          target: [0, eye * 0.92, -roomDepth * 0.5],
-          fov: fov - 4,
-          ease: DEFAULT_EASE,
-        },
-        {
-          position: [-0.2, eye * 0.98, -roomDepth * 0.28],
-          target: [0.1, eye * 0.9, -roomDepth * 0.5],
-          fov: fov - 8,
-          ease: 'power3.out',
-        },
-      ]
-    case 'DEPTH_2_5D':
-      return [
-        { position: [0, 0, DEPTH_FRAME.start], target: [0, 0, 0], fov, ease: DEFAULT_EASE },
-        {
-          position: [DEPTH_FRAME.drift * 0.6, DEPTH_FRAME.drift * 0.2, (DEPTH_FRAME.start + DEPTH_FRAME.end) / 2],
-          target: [DEPTH_FRAME.drift * 0.2, 0, 0],
-          fov,
-          ease: DEFAULT_EASE,
-        },
-        {
-          position: [-DEPTH_FRAME.drift * 0.4, -DEPTH_FRAME.drift * 0.15, DEPTH_FRAME.end],
-          target: [-DEPTH_FRAME.drift * 0.15, 0, 0],
-          fov,
-          ease: 'power3.out',
-        },
-      ]
-    default:
-      return [
-        { position: [3.4, 1.9, 4.6], target: [0, 0.9, 0], fov, ease: DEFAULT_EASE },
-        { position: [0.6, 1.5, 3.4], target: [0, 0.85, 0], fov: fov - 4, ease: 'power3.out' },
-      ]
+function flatWaypoint(distance: number, sweepTan: number, riseTan: number, fov: number): CameraWaypoint {
+  const offsetX = sweepTan * distance
+  const offsetY = riseTan * distance
+  const depth = Math.sqrt(Math.max(1e-4, distance * distance - offsetX * offsetX - offsetY * offsetY))
+  const carry = 1 - DEPTH_FRAME.aim
+  const eyeX = carry > 1e-4 ? offsetX / carry : offsetX
+  const eyeY = carry > 1e-4 ? offsetY / carry : offsetY
+  return {
+    position: [eyeX, eyeY, depth],
+    target: [eyeX * DEPTH_FRAME.aim, eyeY * DEPTH_FRAME.aim, 0],
+    fov,
   }
 }
 
 /**
- * Rewrites an authored camera path into the flat framing `DEPTH_2_5D` needs.
+ * A slow dolly toward the far wall, used whenever a scene has no authored path.
+ * Kept in one place so the camera rig, the path driver and the room geometry
+ * all agree about where "inside the room" is.
  *
- * A 2.5D scene is a plane at the origin, not a room: a path authored in room
- * coordinates (`position [0, 1.9, 7.4]`, `target [0, 1.4, 0]` — which is what
- * the seeded scenes carry) aims the camera a metre and a half above the relief
- * and dollies most of the way through it, so the frame fills with whatever is
- * behind the plane. Rather than discard the authoring, this keeps its *rhythm*
- * — the number of legs, their timing, easing and labels, the direction of each
- * sideways move — and rescales it into {@link DEPTH_FRAME}, where the plane is
- * guaranteed to cover the frustum.
+ * Flat-relief scenes get their default authored **in** {@link DEPTH_FRAME}
+ * rather than in room coordinates, so `waypointsFor` can hand it straight on
+ * without a normalising pass that would only measure it against itself.
+ */
+export function defaultWaypoints(config: SceneConfig): CameraWaypoint[] {
+  const { roomDepth, roomHeight } = resolveSceneSettings(config.settings)
+  const eye = Math.min(1.55, roomHeight * 0.5)
+  const fov = config.fov > 1 ? config.fov : DEFAULT_FOV
+
+  if (usesFlatRelief(config)) {
+    const { start, end, sweep, rise } = DEPTH_FRAME
+    return [
+      { ...flatWaypoint(start, 0, rise * 0.4, fov), ease: DEFAULT_EASE },
+      { ...flatWaypoint((start + end) / 2, sweep * 0.55, rise * 0.1, fov), ease: DEFAULT_EASE },
+      { ...flatWaypoint(end, -sweep, -rise * 0.5, fov), ease: 'power3.out' },
+    ]
+  }
+
+  if (config.mode === 'PROCEDURAL_3D') {
+    return [
+      { position: [0, eye, roomDepth * 0.46], target: [0, eye * 0.95, -roomDepth * 0.5], fov, ease: DEFAULT_EASE },
+      {
+        position: [0.35, eye * 1.02, roomDepth * 0.02],
+        target: [0, eye * 0.92, -roomDepth * 0.5],
+        fov: fov - 4,
+        ease: DEFAULT_EASE,
+      },
+      {
+        position: [-0.2, eye * 0.98, -roomDepth * 0.28],
+        target: [0.1, eye * 0.9, -roomDepth * 0.5],
+        fov: fov - 8,
+        ease: 'power3.out',
+      },
+    ]
+  }
+
+  return [
+    { position: [3.4, 1.9, 4.6], target: [0, 0.9, 0], fov, ease: DEFAULT_EASE },
+    { position: [0.6, 1.5, 3.4], target: [0, 0.85, 0], fov: fov - 4, ease: 'power3.out' },
+  ]
+}
+
+/** An authored per-waypoint field of view, when the editor actually set one. */
+function authoredFov(point: CameraWaypoint, fallback: number): number {
+  return typeof point.fov === 'number' && Number.isFinite(point.fov) && point.fov > 1 ? point.fov : fallback
+}
+
+/**
+ * Rescales an authored camera path into the flat framing a relief needs.
+ *
+ * A flat-relief scene is a plane at the origin, not a room: a path authored in
+ * room coordinates (`position [0, 1.9, 7.4]`, `target [0, 1.4, 0]` — which is
+ * what the seeded scenes carry) aims the camera a metre and a half above the
+ * relief and dollies most of the way through it, so the frame fills with
+ * whatever is behind the plane. It has to be rewritten. The question is how
+ * much of the editor's work survives the rewrite.
+ *
+ * The previous answer was: the leg count, `at`, `ease` and `label`, and nothing
+ * else. Position, target and per-waypoint `fov` were thrown away and replaced
+ * with an index ramp — `start + (end − start) × index / last` — so every path
+ * on the site described the same move regardless of what was authored, and
+ * `usesFlatRelief` is true for `DEPTH_2_5D` *and* for every `PROCEDURAL_3D`
+ * scene still waiting on a GLB, which is nearly all of them. The waypoint
+ * editor in `/admin/3d-assets` was a control that did nothing.
+ *
+ * What survives now is everything that can survive without breaking the
+ * framing, expressed in the quantities that are meaningful against a plane:
+ *
+ * - **Rhythm.** Each leg's distance comes from that waypoint's *own* authored
+ *   standoff, ranked within the path's range, so a fast approach that then
+ *   settles arrives as a fast approach that settles. Not from its index.
+ * - **Direction and relative boldness.** Lateral and vertical moves are read as
+ *   off-axis *angles* and rescaled by one gain shared across the path, so a
+ *   sweep left stays a sweep left, one waypoint that leans twice as far as
+ *   another still leans twice as far, and a path that barely leaves the axis
+ *   stays on it instead of being stretched to the edge of the envelope.
+ * - **Lens.** `fov` is carried through per waypoint whenever it is finite and
+ *   greater than 1; a rack from 45° to 32° is the editor's shot, not noise.
+ * - **Timing.** `at`, `ease` and `label`, as before.
  */
 export function normaliseDepthWaypoints(waypoints: readonly CameraWaypoint[], fov: number): CameraWaypoint[] {
   if (waypoints.length === 0) return []
 
-  // The authored path's own extremes set the scale, so a timid path stays timid
-  // and a bold one uses the whole (small) drift budget.
-  let widest = 0
-  let tallest = 0
-  for (const point of waypoints) {
-    widest = Math.max(widest, Math.abs(point.position[0] - point.target[0]))
-    tallest = Math.max(tallest, Math.abs(point.position[1] - point.target[1]))
+  // Every authored waypoint as the studio actually composed it: how far the eye
+  // stood from what it was looking at, and how far off that axis it stood.
+  const authored = waypoints.map((point) => {
+    const dx = point.position[0] - point.target[0]
+    const dy = point.position[1] - point.target[1]
+    const dz = point.position[2] - point.target[2]
+    const range = Math.hypot(dx, dy, dz)
+    const safe = range > 1e-4 ? range : 1
+    return { point, range, sweep: dx / safe, rise: dy / safe }
+  })
+
+  let nearest = Number.POSITIVE_INFINITY
+  let furthest = 0
+  let boldestSweep = 0
+  let boldestRise = 0
+  for (const entry of authored) {
+    if (entry.range < nearest) nearest = entry.range
+    if (entry.range > furthest) furthest = entry.range
+    boldestSweep = Math.max(boldestSweep, Math.abs(entry.sweep))
+    boldestRise = Math.max(boldestRise, Math.abs(entry.rise))
   }
 
-  const last = waypoints.length - 1
-  return waypoints.map((point, index) => {
-    const t = last === 0 ? 0 : index / last
-    const lateral = widest > 1e-4 ? ((point.position[0] - point.target[0]) / widest) * DEPTH_FRAME.drift : 0
-    const rise = tallest > 1e-4 ? ((point.position[1] - point.target[1]) / tallest) * DEPTH_FRAME.drift * 0.45 : 0
-    const distance = DEPTH_FRAME.start + (DEPTH_FRAME.end - DEPTH_FRAME.start) * t
-    const next: CameraWaypoint = {
-      position: [lateral, rise, distance],
-      // Aiming slightly with the drift keeps the relief square-on: swinging the
-      // camera round a fixed point would rake the plane and flatten it.
-      target: [lateral * 0.4, rise * 0.4, 0],
-      fov,
-    }
-    if (typeof point.at === 'number') next.at = point.at
-    if (point.ease) next.ease = point.ease
-    if (point.label) next.label = point.label
+  const { start, end, sweep, rise, pushReference, sweepReference, riseReference } = DEPTH_FRAME
+
+  // How much of the envelope this path has earned. A path that pushes hard gets
+  // all of it; one that barely moves keeps its own restraint.
+  const pushed = furthest > 1e-4 ? (furthest - nearest) / furthest : 0
+  const span = (start - end) * Math.min(1, pushed / pushReference)
+  const spread = furthest - nearest
+
+  // One gain per axis, shared by every waypoint, so relative magnitudes survive.
+  const sweepGain = boldestSweep > 1e-4 ? (Math.min(1, boldestSweep / sweepReference) / boldestSweep) * sweep : 0
+  const riseGain = boldestRise > 1e-4 ? (Math.min(1, boldestRise / riseReference) / boldestRise) * rise : 0
+
+  return authored.map((entry) => {
+    const ranked = spread > 1e-4 ? (furthest - entry.range) / spread : 0
+    const next = flatWaypoint(
+      start - span * ranked,
+      entry.sweep * sweepGain,
+      entry.rise * riseGain,
+      authoredFov(entry.point, fov),
+    )
+    if (typeof entry.point.at === 'number') next.at = entry.point.at
+    if (entry.point.ease) next.ease = entry.point.ease
+    if (entry.point.label) next.label = entry.point.label
     return next
   })
 }
@@ -286,9 +386,10 @@ export function usesFlatRelief(config: SceneConfig): boolean {
 
 /** Authored waypoints when present, otherwise the studio default dolly. */
 export function waypointsFor(config: SceneConfig): CameraWaypoint[] {
-  const authored = config.waypoints.length > 0 ? config.waypoints : defaultWaypoints(config)
-  if (!usesFlatRelief(config)) return authored
-  return normaliseDepthWaypoints(authored, config.fov > 1 ? config.fov : DEFAULT_FOV)
+  // The default already speaks whichever dialect this mode needs.
+  if (config.waypoints.length === 0) return defaultWaypoints(config)
+  if (!usesFlatRelief(config)) return config.waypoints
+  return normaliseDepthWaypoints(config.waypoints, config.fov > 1 ? config.fov : DEFAULT_FOV)
 }
 
 /**

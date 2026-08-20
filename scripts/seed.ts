@@ -501,7 +501,7 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
     { slug: 'thiet-ke-noi-that', indexLabel: '01', title: 'Thiết kế nội thất', summary: 'Chúng tôi vẽ đến tỉ lệ 1:5 ở những chỗ bàn tay chạm vào, vì không ai đoán được ý đồ từ một bản 1:50.', description: '' },
     { slug: 'thiet-ke-kien-truc', indexLabel: '02', title: 'Thiết kế kiến trúc', summary: 'Chiều sâu của hiên quyết định căn phòng phía sau nó mát hay nóng.', description: '' },
     { slug: 'thiet-ke-thi-cong', indexLabel: '03', title: 'Thiết kế & thi công', summary: 'Bạn chỉ phải gọi một số máy, kể cả khi lỗi nằm ở phía chúng tôi.', description: '' },
-    { slug: 'cai-tao', indexLabel: '04', title: 'Cải tạo', summary: 'Không phải căn nào cũng nên đập ra làm lại. Chúng tôi hay đề nghị dừng sớm hơn chủ nhà tính.', description: '' },
+    { slug: 'cai-tao', indexLabel: '04', title: 'Cải tạo', summary: 'Nhiều căn không cần đập ra làm lại. Chúng tôi hay đề nghị dừng sớm hơn chủ nhà tính.', description: '' },
     { slug: 'do-noi-that', indexLabel: '05', title: 'Đồ nội thất đặt riêng', summary: 'Đóng theo số đo thật của căn phòng.', description: '' },
   ]
 
@@ -523,17 +523,17 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       key: 'HERO',
       content: {
         eyebrow: 'AN ATELIER · TP. Hồ Chí Minh',
-        title: 'Một mặt thoáng.\nVẫn phải đủ sáng.',
-        body: 'Phần lớn căn hộ và nhà phố ở đây chỉ mở được về một hướng. Chúng tôi thiết kế và thi công nội thất trong đúng giới hạn đó.',
+        title: 'Ba giờ chiều,\nnhà mới nói thật.',
+        body: 'Căn hộ ở đây gần như luôn chỉ có một mặt kính, và mặt ấy thường quay về hướng tây, nên phải đợi nắng đổ xuống sàn mới biết phòng nào thật sự được dùng. Mọi thứ khác vẽ sau.',
         cta: { label: 'Xem 105 công trình', href: '/projects' },
       },
     },
     {
       key: 'FEATURED_PROJECTS',
       content: {
-        label: 'Selected Works',
-        heading: 'Vài công trình gần đây,\nchọn theo ánh sáng.',
-        body: 'Cái nào cũng bắt đầu bằng một giới hạn có thật: một ô cửa duy nhất, một bức tường không được đụng tới, hay cái hẹn dọn nhà trước Tết.',
+        label: 'Từ 76 đến 320 m²',
+        heading: 'Không cái nào\ngiống cái nào.',
+        body: 'Cái nên xem không phải màu gỗ, mà là chỗ mỗi căn bị bó lại và cách nó thoát ra.',
       },
     },
     {
@@ -541,41 +541,41 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       content: {
         label: 'Công trình 2021–2026',
         heading: 'Đo thang máy\ntrước khi vẽ tủ.',
-        body: 'AN ATELIER làm nội thất và kiến trúc ở TP. Hồ Chí Minh. Phần lớn công việc bắt đầu trong một căn hộ vừa nhận bàn giao: sàn còn phủ bạt, một mặt kính hướng tây, và một danh sách đồ đạc dài hơn số mét vuông có thật.\n\nTrước khi vẽ, chúng tôi đo những thứ ít ai chụp hình: lòng thang máy hàng, bề rộng con hẻm, chiều cao cửa hầm xe. Chúng quyết định chiếc tủ nào đóng liền khối được và chiếc nào phải cắt làm ba rồi ghép lại tại chỗ.',
+        body: 'Phần lớn công việc bắt đầu trong một căn hộ chưa có ai ở, nơi sàn còn phủ bạt và tiếng nói dội lại từ bốn bức tường trống. Chủ nhà cầm theo một danh sách đồ đạc dài hơn số mét vuông có thật.\n\nĐể biết chiếc tủ có vào được nhà hay không, phải đo hai thứ mà không ai chụp hình bao giờ. Lòng thang máy chở hàng, và bề rộng con hẻm ở chỗ hẹp nhất. Hai con số đó quyết định món nào đóng liền khối được và món nào phải cắt làm ba rồi ghép lại ngay giữa phòng khách. Trong hợp đồng, cái hẻm không tồn tại.',
         stats: [
           { label: 'Căn hộ', value: '41' },
           { label: 'Nhà phố và biệt thự', value: '23' },
-          { label: 'Nhà hàng, spa và cửa hàng', value: '19' },
+          { label: 'Không gian thương mại', value: '19' },
           { label: 'Phòng và khu vực riêng lẻ', value: '22' },
         ],
       },
     },
     {
       key: 'SERVICES',
-      content: { label: '01–05', heading: 'Việc nhỏ nhất từng nhận\nlà một phòng ngủ 12 m².' },
+      content: { label: '01–05', heading: 'Mười hai mét vuông\ncũng là một công trình.' },
     },
     {
       key: 'IMMERSIVE_PROJECT',
       content: {
         label: 'Bốn điểm dừng',
-        heading: 'Đi chậm một vòng\nnhư lúc xem nhà.',
-        body: 'Bốn khung hình của cùng một công trình, xếp theo thứ tự một người bước vào: mặt tiền, tiền sảnh, chỗ ngồi quen thuộc, rồi tới đường ghép giữa hai tấm đá.',
+        heading: 'Chậm như lúc\nbạn đi xem nhà.',
+        body: 'Một tấm ảnh không kể được thứ tự. Người ta đứng ở cổng một lúc, bước vào, dừng lại ở chỗ sáng nhất, rồi sau cùng mới cúi xuống xem hai tấm đá được ghép với nhau ra sao. Cuộn xuống, theo đúng thứ tự đó.',
       },
     },
     {
       key: 'PHILOSOPHY',
       content: {
         label: 'Độ ẩm 75–80% quanh năm',
-        heading: 'Ván công nghiệp tốt\nổn định hơn gỗ thịt.',
-        body: 'Ở độ ẩm này, một cánh tủ gỗ thịt cao 2,4 mét sẽ tự tìm đường cong trong hai mùa mưa đầu; tấm MDF lõi xanh phủ veneer óc chó thì không. Chúng tôi giữ gỗ thịt cho những chỗ bàn tay chạm vào — tay vịn, mép bàn, chân ghế — và nói thẳng chuyện đó, kể cả khi hợp đồng đã ghi hai chữ gỗ tự nhiên.',
+        heading: 'Gỗ sẫm lại\nở chỗ tay hay chạm.',
+        body: 'Mặt bàn ăn và tay vịn cầu thang, sau chừng hai năm, sẽ sẫm hơn phần gỗ nằm khuất trong bóng tủ, và không ai chỉnh lại cho đều được nữa. Nhưng ở cái độ ẩm này, một cánh tủ gỗ thịt cao 2,4 mét sẽ tự tìm đường cong ngay trong hai mùa mưa đầu, còn tấm MDF lõi xanh phủ veneer óc chó thì không. Nên gỗ thịt chỉ đi vào tay vịn và mép bàn.',
       },
     },
     {
       key: 'JOURNAL',
       content: {
-        label: 'Journal',
-        heading: 'Những câu hỏi lặp lại\nở hầu hết công trường.',
-        body: 'Chúng tôi viết lại một lần cho gọn: gỗ nở bao nhiêu trong mùa mưa, một phòng cần mấy mạch đèn, đến đoạn nào thì không lùi được nữa.',
+        label: 'Ghi chép xưởng',
+        heading: 'Ai cũng hỏi\nđúng ba câu đó.',
+        body: 'Gỗ nở bao nhiêu trong mùa mưa, một phòng cần mấy mạch đèn, một căn hộ 60 mét vuông có làm wabi-sabi được không — chúng tôi viết hẳn ra một lần cho gọn.',
       },
     },
     {
@@ -583,7 +583,7 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       content: {
         label: 'Trả lời trong 24 giờ làm việc',
         heading: 'Cứ gửi mặt bằng,\nchúng tôi xem.',
-        body: 'Bản mặt bằng bàn giao và ngày bạn muốn dọn vào là đủ để bắt đầu. Phần lớn công trình trong hồ sơ này mất ba đến sáu tháng kể từ lúc chốt phương án, và chúng tôi nói ngay nếu mốc của bạn quá gấp.',
+        body: 'Kèm thêm cái ngày bạn muốn dọn vào là chúng tôi đã hình dung được gần hết phần còn lại. Gấp quá thì nói ngay từ email đầu tiên.',
         buttonLabel: 'Liên hệ',
         href: '/contact',
       },

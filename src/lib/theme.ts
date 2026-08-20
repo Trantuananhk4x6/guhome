@@ -124,7 +124,7 @@ export const DEFAULT_MOTION: MotionConfig = {
 export const DEFAULT_BRAND: BrandConfig = {
   companyName: 'AN ATELIER',
   shortName: 'AN',
-  tagline: 'Không gian mang tính cách.',
+  tagline: 'Thiết kế nội thất và kiến trúc, làm ở Sài Gòn.',
   logoMediaId: null,
   faviconMediaId: null,
   email: 'studio@anatelier.vn',
