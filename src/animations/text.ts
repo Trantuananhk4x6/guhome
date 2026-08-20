@@ -46,27 +46,33 @@ export function useTextReveal(ref: RefObject<HTMLElement | null>, opts: TextReve
     let split: SplitText | null = null
     let ctx: gsap.Context | null = null
 
-    const cancelFonts = whenFontsReady(() => {
+    const cancelFonts = whenFontsReady((fontsSettled) => {
       ctx = gsap.context(() => {
         let pieces: Element[] = []
 
-        try {
-          split = new SplitText(el, {
-            type: by === 'word' ? 'words' : 'lines,words',
-            mask: by === 'word' ? 'words' : 'lines',
-            linesClass: 'an-split-line',
-            wordsClass: 'an-split-word',
-            autoSplit: false,
-            aria: 'auto',
-          })
-          pieces = by === 'word' ? Array.from(split.words) : Array.from(split.lines)
-          if (by === 'line') {
-            for (const line of split.lines) line.setAttribute('data-split-line', '')
+        // Splitting against fallback metrics is worse than not splitting at all:
+        // Cormorant swaps in afterwards, the copy re-flows inside line masks
+        // that were measured for the wrong face, and the display heading clips.
+        // If the fonts never settled, take the plain fade instead.
+        if (fontsSettled) {
+          try {
+            split = new SplitText(el, {
+              type: by === 'word' ? 'words' : 'lines,words',
+              mask: by === 'word' ? 'words' : 'lines',
+              linesClass: 'an-split-line',
+              wordsClass: 'an-split-word',
+              autoSplit: false,
+              aria: 'auto',
+            })
+            pieces = by === 'word' ? Array.from(split.words) : Array.from(split.lines)
+            if (by === 'line') {
+              for (const line of split.lines) line.setAttribute('data-split-line', '')
+            }
+          } catch {
+            // SplitText can bail on exotic markup — never let that hide the copy.
+            split = null
+            pieces = []
           }
-        } catch {
-          // SplitText can bail on exotic markup — never let that hide the copy.
-          split = null
-          pieces = []
         }
 
         const usedSplit = pieces.length > 0

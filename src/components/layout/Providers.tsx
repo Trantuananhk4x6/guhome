@@ -23,10 +23,11 @@ export interface ProvidersProps {
  * detection stays where it belongs, inside `ScrollProvider`.
  */
 export function Providers({ motion, children }: ProvidersProps) {
-  const seeded = useRef(false)
-  if (!seeded.current) {
-    // Safe during render: no store subscriber has mounted yet at this point.
-    seeded.current = true
+  // The lazy-init ref pattern: `current` starts null and is written exactly
+  // once, on the first render, before any store subscriber exists.
+  const seeded = useRef<MotionConfig | null>(null)
+  if (seeded.current == null) {
+    seeded.current = motion
     useMotionStore.getState().setConfig(motion)
   }
 

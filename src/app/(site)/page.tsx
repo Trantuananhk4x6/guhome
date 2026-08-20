@@ -46,6 +46,7 @@ async function loadHomeData(): Promise<HomeData> {
       articles,
       materials,
       philosophyImage: materials[0]?.media ?? null,
+      closingImage: materials[1]?.media ?? null,
     }
   }
 
@@ -71,6 +72,11 @@ async function loadHomeData(): Promise<HomeData> {
   )
   const gallery = immersiveDetail?.gallery ?? []
 
+  // The studio band borrows a project photograph; carry its title through so the
+  // caption names what is actually in the frame.
+  const studioSource = rest[0] ?? null
+  const studioImage = studioSource?.cover ?? gallery[1] ?? null
+
   return {
     hero: { project: heroProject, scene: heroScene, gallery: [] },
     immersive: { project: immersiveProject, scene: immersiveScene, gallery },
@@ -78,8 +84,13 @@ async function loadHomeData(): Promise<HomeData> {
     services,
     articles,
     materials,
-    studioImage: rest[0]?.cover ?? gallery[1] ?? null,
+    studioImage,
+    studioImageCaption:
+      studioSource && studioSource.cover
+        ? [studioSource.title, studioSource.location].filter(Boolean).join(' — ')
+        : null,
     philosophyImage: materials[0]?.media ?? rest[1]?.cover ?? gallery[2] ?? null,
+    closingImage: rest[2]?.cover ?? rest[1]?.cover ?? gallery[3] ?? null,
     projectCount: projects.length,
   }
 }

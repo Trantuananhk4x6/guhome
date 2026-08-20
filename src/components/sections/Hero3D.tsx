@@ -32,6 +32,12 @@ const KEYFRAMES = `
 }
 `
 
+/** Shallow gradients at the two ends of the frame — see the note at the overlay. */
+const TOP_SCRIM =
+  'linear-gradient(to bottom, color-mix(in srgb, var(--c-espresso) 50%, transparent) 0%, transparent 100%)'
+const BOTTOM_SCRIM =
+  'linear-gradient(to top, color-mix(in srgb, var(--c-espresso) 60%, transparent) 0%, color-mix(in srgb, var(--c-espresso) 22%, transparent) 45%, transparent 100%)'
+
 /**
  * 100vh opening. The featured project's scene fills the frame and its camera is
  * driven by scroll; without a scene — or without WebGL — the cover photo takes
@@ -55,7 +61,12 @@ export function Hero3D({ section, data }: HomeSectionProps) {
     end: 'bottom top',
   })
   useTextReveal(headingRef, { by: 'line', delay: 0.15 })
-  useReveal(footRef, { variant: 'revealUp', delay: 0.55 })
+  // The hero foot is always in the first viewport, and on a tall window it can
+  // sit *below* the default `top 82%` trigger line — which leaves the opening
+  // paragraph and the only call to action invisible until a scroll that may
+  // never come. `top bottom` is true for anything on screen at load, so this
+  // reveals on arrival and still animates.
+  useReveal(footRef, { variant: 'revealUp', delay: 0.55, start: 'top bottom' })
 
   const eyebrow = sectionText(content, 'eyebrow', 'AN ATELIER')
   const titleLines = sectionLines(content, 'title', 'Không gian\nmang tính cách.')
@@ -98,7 +109,15 @@ export function Hero3D({ section, data }: HomeSectionProps) {
             </div>
           </div>
         )}
-        <div className="absolute inset-0 bg-espresso/45" />
+        {/*
+          Framing, in three flat steps rather than one heavy wash: a light hold
+          over the whole frame, then a shallow gradient at each end where the
+          type sits. The middle of the photograph — the part worth looking at —
+          keeps most of its brightness.
+        */}
+        <div className="absolute inset-0 bg-espresso/34" />
+        <div className="absolute inset-x-0 top-0 h-[34%]" style={{ background: TOP_SCRIM }} />
+        <div className="absolute inset-x-0 bottom-0 h-[46%]" style={{ background: BOTTOM_SCRIM }} />
       </div>
 
       <p className="sr-only">

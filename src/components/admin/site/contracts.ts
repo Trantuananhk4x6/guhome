@@ -55,21 +55,33 @@ export const THEME_COLOR_TOKENS: readonly ThemeColorToken[] = [
 ]
 
 /**
- * Only these two are bundled through `next/font` (see `@/lib/theme`); the rest
- * fall back to whatever the visitor's device provides.
+ * The type library, mirrored from `FONT_LIBRARY` in `@/lib/theme`.
+ *
+ * Every family here is bundled through `next/font` AND carries a Vietnamese
+ * subset. Offering anything else would be a trap: a family the site does not
+ * bundle silently degrades to a system face, and a family without the Vietnamese
+ * range (Instrument Serif, DM Serif Display, Libre Baskerville, EB Garamond)
+ * drops out mid-word and mangles the dấu. Both used to be on this list.
  */
-export const BUNDLED_FONT_NAMES: readonly string[] = ['Cormorant Garamond', 'Inter']
-
 export const DISPLAY_FONTS: readonly string[] = [
-  'Cormorant Garamond',
-  'Instrument Serif',
-  'DM Serif Display',
-  'EB Garamond',
   'Playfair Display',
-  'Libre Baskerville',
+  'Lora',
+  'Source Serif 4',
+  'Cormorant Garamond',
 ]
 
-export const BODY_FONTS: readonly string[] = ['Inter', 'Manrope', 'Geist', 'IBM Plex Sans', 'Work Sans']
+export const BODY_FONTS: readonly string[] = ['Be Vietnam Pro', 'Inter', 'Manrope']
+
+/** Short Vietnamese note shown under each family in the theme editor. */
+export const FONT_NOTES: Readonly<Record<string, string>> = {
+  'Playfair Display': 'Nét dày rõ, tương phản cao — đọc tốt ở khổ lớn.',
+  Lora: 'Ấm và mềm hơn, thân chữ đều, hợp bài viết dài.',
+  'Source Serif 4': 'Trung tính, hiện đại, ít trang trí.',
+  'Cormorant Garamond': 'Rất thanh mảnh — đẹp ở khổ rất lớn, mờ ở khổ nhỏ.',
+  'Be Vietnam Pro': 'Thiết kế riêng cho tiếng Việt, dấu rõ và cân.',
+  Inter: 'Trung tính, quen thuộc, chữ số đều.',
+  Manrope: 'Hình học, hơi tròn, nhẹ nhàng.',
+}
 
 export const REDUCED_MOTION_OPTIONS: readonly { value: 'auto' | 'force' | 'off'; label: string }[] = [
   { value: 'auto', label: 'Tự động — theo thiết lập hệ điều hành' },

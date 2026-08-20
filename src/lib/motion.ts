@@ -10,9 +10,16 @@
  * and event handlers.
  */
 
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { create } from 'zustand'
 import type { MotionConfig } from '@/types/content'
+
+/**
+ * `useLayoutEffect` in the browser, `useEffect` on the server. Declared here
+ * rather than imported from `@/animations/internal` because that module's
+ * import chain leads back to this one.
+ */
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 /** Baseline used before the server config arrives, and by any consumer rendered outside `ScrollProvider`. */
 export const DEFAULT_MOTION_CONFIG: MotionConfig = {
@@ -126,12 +133,20 @@ export function motionSpeed(): number {
  * Subscribes to `prefers-reduced-motion`, mirrors it into the store, and returns
  * the *resolved* value (admin override applied). Safe to call from many components —
  * the store de-dupes writes.
+ *
+ * This has to be a **layout** effect. `reduced` starts `false` (it cannot be read
+ * during SSR), and every animation hook arms itself in a layout effect too. A
+ * passive effect here publishes the OS preference only *after* the first paint,
+ * so a visitor who asked for reduced motion would watch one frame of the reveal
+ * they opted out of before it was reverted. Publishing in the layout phase makes
+ * React flush the re-arm synchronously, before the browser paints. For everyone
+ * else the write is `false === false` and the store drops it — no extra render.
  */
 export function useReducedMotion(): boolean {
   const config = useMotionStore((s) => s.config)
   const systemReduced = useMotionStore((s) => s.reduced)
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return
     const mq = window.matchMedia(REDUCED_MOTION_QUERY)
     const apply = (): void => useMotionStore.getState().setReduced(mq.matches)

@@ -1,5 +1,13 @@
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Inter } from 'next/font/google'
+import {
+  Be_Vietnam_Pro,
+  Cormorant_Garamond,
+  Inter,
+  Lora,
+  Manrope,
+  Playfair_Display,
+  Source_Serif_4,
+} from 'next/font/google'
 import type { ReactNode } from 'react'
 
 import '@/styles/globals.css'
@@ -11,23 +19,81 @@ import { DEFAULT_THEME, THEME_STYLE_ID, themeStyleSheet } from '@/lib/theme'
 import { getThemeSettings } from '@/server/queries/site'
 
 /**
- * next/font only accepts literal arguments, so the variable names are repeated
- * here verbatim — they must match FONT_VAR_DISPLAY / FONT_VAR_BODY in
- * `@/lib/theme`, which is what `--f-display` / `--f-body` resolve to.
+ * The type library the theme editor can choose from.
+ *
+ * next/font only accepts literal arguments, so every family is spelled out here
+ * and the `variable` names are repeated verbatim in FONT_LIBRARY in
+ * `@/lib/theme` — that is what `--f-display` / `--f-body` resolve to.
+ *
+ * Every family below carries the `vietnamese` subset. That is not a nicety:
+ * Instrument Serif and DM Serif Display, both named in the original brief, ship
+ * no Vietnamese range at all, so Vietnamese text in them falls back mid-sentence
+ * and the diacritics break. They are deliberately absent.
+ *
+ * next/font takes literal arguments only, so the subset list is repeated in full
+ * for every family rather than shared.
+ *
+ * Only the two defaults are preloaded. The rest still emit their @font-face, so
+ * switching the theme picks them up immediately, but a visitor never downloads a
+ * face the site is not using.
  */
-const displayFont = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ['latin', 'latin-ext', 'vietnamese'],
-  weight: ['300', '400'],
+  weight: ['400', '500', '600'],
   display: 'swap',
-  variable: '--font-cormorant-garamond',
+  variable: '--font-playfair-display',
 })
 
-const bodyFont = Inter({
+const bodyFont = Be_Vietnam_Pro({
+  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  weight: ['400', '500', '600'],
+  display: 'swap',
+  variable: '--font-be-vietnam-pro',
+})
+
+const lora = Lora({
   subsets: ['latin', 'latin-ext', 'vietnamese'],
   weight: ['400', '500'],
   display: 'swap',
+  preload: false,
+  variable: '--font-lora',
+})
+
+const sourceSerif = Source_Serif_4({
+  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  weight: ['400', '600'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-source-serif-4',
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  weight: ['300', '400', '500'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-cormorant-garamond',
+})
+
+const inter = Inter({
+  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  weight: ['400', '500'],
+  display: 'swap',
+  preload: false,
   variable: '--font-inter',
 })
+
+const manrope = Manrope({
+  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  weight: ['400', '500'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-manrope',
+})
+
+const FONT_VARIABLES = [playfair, bodyFont, lora, sourceSerif, cormorant, inter, manrope]
+  .map((font) => font.variable)
+  .join(' ')
 
 export async function generateMetadata(): Promise<Metadata> {
   const { brand } = await getThemeSettings()
@@ -75,7 +141,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const theme = await getThemeSettings()
 
   return (
-    <html lang="vi" className={`${displayFont.variable} ${bodyFont.variable}`}>
+    <html lang="vi" className={FONT_VARIABLES}>
       <body className="bg-canvas font-body text-ink">
         {/* Admin-editable palette. `:root:root` outranks the stylesheet defaults. */}
         <style

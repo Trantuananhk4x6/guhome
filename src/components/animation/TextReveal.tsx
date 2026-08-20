@@ -10,7 +10,7 @@
  * innerHTML, so block children inside will be flattened.
  */
 
-import { createElement, useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import type { CSSProperties, JSX, ReactNode } from 'react'
 import { useTextReveal } from '@/animations/text'
 
@@ -39,5 +39,17 @@ export function TextReveal(props: TextRevealProps): JSX.Element {
   const ref = useRef<HTMLElement>(null)
   useTextReveal(ref, { by, delay, stagger, start, once, duration })
 
-  return createElement(as, { ref, className, style, id, 'data-reveal': '' }, children)
+  // Callback ref: `<Tag>` over a union of intrinsic tags types `ref` as an
+  // intersection of element types that no single `RefObject` satisfies, and the
+  // React Compiler is happy because no ref object reaches the render output.
+  const attach = useCallback((node: HTMLElement | null): void => {
+    ref.current = node
+  }, [])
+
+  const Tag = as
+  return (
+    <Tag ref={attach} className={className} style={style} id={id} data-reveal="">
+      {children}
+    </Tag>
+  )
 }

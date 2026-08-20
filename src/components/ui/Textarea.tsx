@@ -4,7 +4,7 @@ import type { Ref, TextareaHTMLAttributes } from 'react'
 
 import { cn } from '@/lib/utils'
 
-import { controlClasses, useFieldControl, type ControlTone } from './Field'
+import { controlClasses, describedBy, useFieldControl, type ControlTone } from './Field'
 
 export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'ref'> {
   tone?: ControlTone
@@ -20,7 +20,7 @@ export function Textarea({
   id,
   required,
   rows = 4,
-  'aria-describedby': describedBy,
+  'aria-describedby': ariaDescribedBy,
   ...rest
 }: TextareaProps) {
   const field = useFieldControl()
@@ -34,7 +34,7 @@ export function Textarea({
       rows={rows}
       id={id ?? field?.id}
       required={required ?? field?.required}
-      aria-describedby={describedBy ?? field?.describedBy}
+      aria-describedby={describedBy(ariaDescribedBy, field?.describedBy)}
       aria-invalid={isInvalid || undefined}
       className={controlClasses(resolvedTone, isInvalid, cn('min-h-32 resize-y', className))}
     />

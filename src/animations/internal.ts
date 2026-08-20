@@ -64,29 +64,41 @@ export function mediaTarget(el: HTMLElement): HTMLElement {
 
 /**
  * Runs `cb` once web fonts have settled — line splitting before that produces
- * the wrong line breaks. Falls back to a timeout so a failed font never blocks
- * content. Returns a canceller.
+ * the wrong line breaks. Falls back to a timeout so a failed or very slow font
+ * never leaves the copy hidden.
+ *
+ * `cb` is told which of the two happened. `settled: false` means "these metrics
+ * are the fallback face, not Cormorant" — callers that measure text must not
+ * trust them, because the real face can still swap in underneath the
+ * measurement. Returns a canceller.
  */
-export function whenFontsReady(cb: () => void, timeoutMs = 500): () => void {
+export function whenFontsReady(cb: (settled: boolean) => void, timeoutMs = 1200): () => void {
   let done = false
-  const run = (): void => {
+  const run = (settled: boolean): void => {
     if (done) return
     done = true
-    cb()
+    cb(settled)
   }
 
   if (typeof document === 'undefined') return () => undefined
 
   const fonts: FontFaceSet | undefined = 'fonts' in document ? document.fonts : undefined
-  if (!fonts || fonts.status === 'loaded') {
-    run()
+  if (!fonts) {
+    // No Font Loading API: nothing can be waited on, so nothing can be trusted.
+    run(false)
+    return () => {
+      done = true
+    }
+  }
+  if (fonts.status === 'loaded') {
+    run(true)
     return () => {
       done = true
     }
   }
 
-  const timer = window.setTimeout(run, timeoutMs)
-  void fonts.ready.then(run).catch(run)
+  const timer = window.setTimeout(() => run(false), timeoutMs)
+  void fonts.ready.then(() => run(true)).catch(() => run(false))
 
   return () => {
     done = true

@@ -32,14 +32,14 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: P
     <main className="flex min-h-dvh items-center justify-center px-5 py-16">
       <div className="w-full max-w-sm">
         <div className="mb-10 text-center">
-          <Link href="/" className="font-display text-[2rem] font-light leading-none tracking-[-0.02em]">
+          <Link href="/" className="font-display text-[2rem] font-normal leading-none tracking-[-0.02em]">
             AN ATELIER
           </Link>
           <p className="u-label mt-3 text-accent">Studio CMS</p>
         </div>
 
         <div className="border border-line bg-surface px-6 py-8">
-          <h1 className="mb-1 font-display text-[1.5rem] font-light leading-tight">Đăng nhập</h1>
+          <h1 className="mb-1 font-display text-[1.5rem] font-normal leading-tight">Đăng nhập</h1>
           <p className="mb-7 font-body text-[0.75rem] leading-5 text-muted">
             Khu vực quản trị nội dung. Chỉ dành cho thành viên studio.
           </p>

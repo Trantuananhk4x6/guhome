@@ -52,7 +52,11 @@ export function useReveal(ref: RefObject<HTMLElement | null>, opts: RevealOption
 
     const targets = revealTargets(el)
 
-    if (!motionFlag(config, systemReduced, 'enabled')) {
+    // `revealParallax` is a scroll-driven drift, not an entrance — it has to
+    // answer to the admin's parallax switch, not just the master one.
+    // `motionFlag` checks `enabled` and reduced motion ahead of either flag.
+    const flag = variant === 'revealParallax' ? 'parallax' : 'enabled'
+    if (!motionFlag(config, systemReduced, flag)) {
       markReady(el, ...targets)
       return
     }

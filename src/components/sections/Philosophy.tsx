@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/Label'
 import { Rule } from '@/components/ui/Rule'
 
 import { SectionImage } from './SectionImage'
-import { sectionLines, sectionText } from './content'
+import { sectionLines, sectionOptionalText, sectionText } from './content'
 import type { HomeSectionProps } from './types'
 
 /** A held breath between sections: one statement, one hairline, one material. */
@@ -35,11 +35,14 @@ export function Philosophy({ section, data }: HomeSectionProps) {
 
   const material = data.materials[0] ?? null
   const image = data.philosophyImage ?? material?.media ?? data.featured[0]?.cover ?? null
-  const caption = sectionText(
-    content,
-    'caption',
-    material ? `${material.name} — ${material.description ?? 'chi tiết vật liệu'}` : 'Chi tiết vật liệu',
-  )
+
+  // A caption is one short line. The material note that used to be folded into
+  // it ran two full-bleed lines of 11px uppercase — unreadable as a label, so it
+  // is set below as body copy on a magazine measure.
+  const captionOverride = sectionOptionalText(content, 'caption')
+  const caption = captionOverride ?? material?.name ?? 'Chi tiết vật liệu'
+  const captionNote = captionOverride ? null : (material?.description ?? null)
+  const alt = captionNote ? `${caption} — ${captionNote}` : caption
 
   return (
     <section data-home-section="PHILOSOPHY" className="bg-surface py-[var(--spacing-section)]">
@@ -71,11 +74,14 @@ export function Philosophy({ section, data }: HomeSectionProps) {
           className="relative isolate aspect-[16/9] w-full overflow-hidden bg-surface-alt md:aspect-[16/6]"
         >
           <span data-reveal-media className="absolute inset-x-0 top-[-8%] bottom-[-8%] block">
-            <SectionImage media={image} alt={caption} sizes="100vw" width={2400} />
+            <SectionImage media={image} alt={alt} sizes="100vw" width={2400} />
           </span>
         </div>
-        <figcaption className="u-gutter mt-4 block">
+        <figcaption className="u-gutter mt-5 flex flex-col gap-3">
           <span className="u-label">{caption}</span>
+          {captionNote ? (
+            <p className="max-w-[58ch] font-body text-[0.9375rem] leading-relaxed text-muted">{captionNote}</p>
+          ) : null}
         </figcaption>
       </figure>
     </section>

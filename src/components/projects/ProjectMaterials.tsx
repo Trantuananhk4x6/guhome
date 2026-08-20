@@ -94,7 +94,7 @@ export function ProjectMaterials({ materials, heading, className }: ProjectMater
                     </span>
                     <span
                       className={cn(
-                        'font-display text-2xl leading-tight font-light transition-colors duration-500 md:text-3xl',
+                        'font-display text-2xl leading-tight font-normal transition-colors duration-500 md:text-3xl',
                         isActive ? 'text-ink' : 'text-muted group-hover:text-ink',
                       )}
                     >

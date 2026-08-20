@@ -7,11 +7,17 @@ import { useTextReveal } from '@/animations/text'
 import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/Label'
 
+import { SectionImage } from './SectionImage'
 import { sectionCta, sectionLines, sectionOptionalText, sectionText } from './content'
 import type { HomeSectionProps } from './types'
 
-/** The closing invitation. Espresso ground, oversized type, one link out. */
-export function CtaSection({ section }: HomeSectionProps) {
+/**
+ * The closing invitation: one held photograph, dimmed almost to ground, with the
+ * oversized type over it. The espresso footer follows immediately, so a flat
+ * espresso panel here read as two identical black bands stacked — the picture is
+ * what tells the eye this is the last room, not the end of the page.
+ */
+export function CtaSection({ section, data }: HomeSectionProps) {
   const headingRef = useRef<HTMLHeadingElement>(null)
   const footRef = useRef<HTMLDivElement>(null)
 
@@ -29,9 +35,18 @@ export function CtaSection({ section }: HomeSectionProps) {
   const cta = sectionCta(content, { label: 'Liên hệ', href: '/contact' })
   const email = sectionOptionalText(content, 'email')
 
+  const image = data.closingImage
+
   return (
-    <section data-home-section="CTA" className="bg-espresso text-canvas">
-      <div className="u-gutter flex flex-col gap-12 py-[clamp(6rem,20vh,13rem)]">
+    <section data-home-section="CTA" className="relative isolate overflow-hidden bg-espresso text-canvas">
+      {image ? (
+        <div className="absolute inset-0" aria-hidden="true">
+          <SectionImage media={image} alt="" sizes="100vw" width={2400} />
+          <div className="absolute inset-0 bg-espresso/[0.86]" />
+        </div>
+      ) : null}
+
+      <div className="u-gutter relative flex flex-col gap-12 py-[clamp(6rem,20vh,13rem)]">
         <Label tone="light" rule>
           {eyebrow}
         </Label>

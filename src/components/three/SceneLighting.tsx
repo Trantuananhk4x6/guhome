@@ -22,9 +22,18 @@ export interface SceneLightingProps {
  * background — plus a contact shadow so nothing floats. Shadow work scales
  * with the device profile and switches off entirely on weak hardware.
  */
-export function SceneLighting({ config, quality, floorY = 0, radius }: SceneLightingProps): JSX.Element {
+export function SceneLighting({ config, quality, floorY = 0, radius }: SceneLightingProps): JSX.Element | null {
   const settings = useMemo(() => resolveSceneSettings(config.settings), [config.settings])
-  const shadows = config.shadows && quality.perf !== 'low'
+
+  /**
+   * A 2.5D relief is a photograph: it is drawn unlit so the photographed light
+   * survives exactly, which leaves nothing here for a light to do. The contact
+   * shadow was worse than useless — its catcher plane sits at y = 0, edge-on
+   * through the middle of the relief, and it laid a grey band across the frame.
+   */
+  const lit = config.mode !== 'DEPTH_2_5D'
+
+  const shadows = lit && config.shadows && quality.perf !== 'low'
   const extent = radius ?? Math.max(settings.roomWidth, settings.roomDepth) * 0.75 + 2
   const keyRef = useRef<DirectionalLight | null>(null)
 
@@ -47,6 +56,8 @@ export function SceneLighting({ config, quality, floorY = 0, radius }: SceneLigh
     camera.updateProjectionMatrix()
     light.shadow.needsUpdate = true
   }, [shadows, quality.shadowMapSize, extent])
+
+  if (!lit) return null
 
   return (
     <>

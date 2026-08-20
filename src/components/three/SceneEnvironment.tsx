@@ -79,6 +79,13 @@ export function SceneEnvironment({ config, quality }: SceneEnvironmentProps): JS
   const hdriUrl = config.model && config.model.kind === 'hdri' ? mediaUrl(config.model) : null
   const preset = isEnvPreset(config.envPreset) ? config.envPreset : null
 
+  // A 2.5D relief is drawn unlit, so image-based lighting would light nothing
+  // while still costing a cube render on every mount. Only the background —
+  // which is what shows through wherever the plane does not reach — is kept.
+  if (config.mode === 'DEPTH_2_5D') {
+    return settings.background ? <color attach="background" args={[settings.background]} /> : <></>
+  }
+
   const rig = <StudioRig intensity={intensity} resolution={quality.envResolution} />
 
   const remote = hdriUrl ? (

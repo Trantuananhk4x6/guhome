@@ -697,7 +697,7 @@ export function BlockInspector({ block, position, total, onChange, ctx, error }:
             <span className="u-label text-accent">
               {meta.en} · khối {position + 1}/{total}
             </span>
-            <h2 className="mt-2 font-display text-[1.5rem] font-light leading-none text-ink">{meta.label}</h2>
+            <h2 className="mt-2 font-display text-[1.5rem] font-normal leading-none text-ink">{meta.label}</h2>
           </div>
           {block.enabled ? null : <StatusPill tone="muted">Đang ẩn</StatusPill>}
         </div>

@@ -17,7 +17,16 @@ import { SectionImage } from './SectionImage'
 import { sectionLines, sectionText } from './content'
 import type { HomeSectionProps } from './types'
 
-function JournalCard({ article, index }: { article: ArticleSummary; index: number }) {
+function JournalCard({
+  article,
+  index,
+  withFrame,
+}: {
+  article: ArticleSummary
+  index: number
+  /** False when no entry in the row has a cover — see `Journal` below. */
+  withFrame: boolean
+}) {
   const frameRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const metaRef = useRef<HTMLDivElement>(null)
@@ -36,16 +45,23 @@ function JournalCard({ article, index }: { article: ArticleSummary; index: numbe
         className="group flex flex-col gap-7 outline-offset-8"
         aria-label={`Đọc bài viết ${article.title}`}
       >
-        <div ref={frameRef} className="relative aspect-[4/3] w-full overflow-hidden bg-surface-alt">
-          <div className="absolute inset-0 transition-transform duration-[1400ms] ease-editorial group-hover:scale-[1.05] group-focus-visible:scale-[1.05]">
-            <SectionImage
-              media={article.cover}
-              alt={article.title}
-              sizes="(min-width: 768px) 31vw, 100vw"
-              width={1200}
-            />
+        {withFrame ? (
+          <div ref={frameRef} className="relative aspect-[4/3] w-full overflow-hidden bg-surface-alt">
+            <div className="absolute inset-0 transition-transform duration-[1400ms] ease-editorial group-hover:scale-[1.05] group-focus-visible:scale-[1.05]">
+              <SectionImage
+                media={article.cover}
+                alt={article.title}
+                sizes="(min-width: 768px) 31vw, 100vw"
+                width={1200}
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          <span
+            aria-hidden="true"
+            className="block h-px w-full origin-left bg-line transition-colors duration-500 ease-editorial group-hover:bg-accent group-focus-visible:bg-accent"
+          />
+        )}
 
         <h3 ref={titleRef} data-reveal className="u-display-sm text-ink">
           {article.title}
@@ -80,6 +96,10 @@ export function Journal({ section, data }: HomeSectionProps) {
   const articles = data.articles.slice(0, 3)
   if (articles.length === 0) return null
 
+  // Three empty mattes look like a broken page; a typographic index looks like a
+  // magazine. Frames come back on their own the moment the entries have covers.
+  const withFrames = articles.some((article) => article.cover !== null)
+
   const { content } = section
   const eyebrow = sectionText(content, 'label', 'Journal')
   const headingLines = sectionLines(content, 'heading', 'Ghi chép')
@@ -107,7 +127,7 @@ export function Journal({ section, data }: HomeSectionProps) {
 
       <div className="mt-[clamp(3rem,8vh,6rem)] grid grid-cols-1 gap-x-8 gap-y-16 border-t border-line pt-[clamp(2.5rem,6vh,4.5rem)] md:grid-cols-3">
         {articles.map((article, index) => (
-          <JournalCard key={article.id} article={article} index={index} />
+          <JournalCard key={article.id} article={article} index={index} withFrame={withFrames} />
         ))}
       </div>
     </section>

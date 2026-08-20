@@ -153,6 +153,7 @@ export function Button(props: ButtonProps) {
         <a
           href={href}
           className={classes}
+          aria-busy={loading || undefined}
           {...(external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
           {...rest}
         >
@@ -162,7 +163,7 @@ export function Button(props: ButtonProps) {
     }
 
     return (
-      <Link href={href} className={classes} {...rest}>
+      <Link href={href} className={classes} aria-busy={loading || undefined} {...rest}>
         {inner}
       </Link>
     )

@@ -99,7 +99,7 @@ function HeroTitle({
           {items.map((item) => (
             <div key={item.label} data-reveal data-reveal-item className="flex flex-col gap-2">
               <dt className="u-label text-canvas/50">{item.label}</dt>
-              <dd className="text-canvas font-display text-xl font-light">{item.value}</dd>
+              <dd className="text-canvas font-display text-xl font-normal">{item.value}</dd>
             </div>
           ))}
         </dl>

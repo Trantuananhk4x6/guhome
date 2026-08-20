@@ -328,7 +328,7 @@ export default async function StudioPage() {
               {PRINCIPLES.map((principle, i) => (
                 <div key={principle.title} data-reveal-item className="border-t border-line py-10">
                   <span className="u-label text-accent">{pad2(i + 1)}</span>
-                  <h3 className="mt-5 font-display text-[1.5rem] font-light leading-tight text-ink">
+                  <h3 className="mt-5 font-display text-[1.5rem] font-normal leading-tight text-ink">
                     {principle.title}
                   </h3>
                   <p className="mt-4 max-w-[46ch] font-body text-[0.9375rem] leading-[1.8] text-muted">
@@ -366,7 +366,7 @@ export default async function StudioPage() {
                       width={800}
                       variant="revealScale"
                     />
-                    <h3 className="mt-6 font-display text-[1.375rem] font-light text-ink">
+                    <h3 className="mt-6 font-display text-[1.375rem] font-normal text-ink">
                       {material.name}
                     </h3>
                     {material.description ? (
@@ -383,7 +383,7 @@ export default async function StudioPage() {
               <ul className="grid gap-x-16 md:grid-cols-2 lg:grid-cols-3">
                 {FALLBACK_MATERIALS.map((material) => (
                   <li key={material.name} data-reveal-item className="border-t border-line py-8">
-                    <h3 className="font-display text-[1.375rem] font-light text-ink">{material.name}</h3>
+                    <h3 className="font-display text-[1.375rem] font-normal text-ink">{material.name}</h3>
                     <p className="mt-3 max-w-[38ch] font-body text-[0.875rem] leading-[1.8] text-muted">
                       {material.description}
                     </p>

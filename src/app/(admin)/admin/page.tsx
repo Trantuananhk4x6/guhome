@@ -76,7 +76,7 @@ function StatTile({ label, value, hint, href }: StatTileProps) {
   const body = (
     <>
       <p className="u-label text-muted">{label}</p>
-      <p className="mt-3 font-display text-[2.5rem] font-light leading-none tabular-nums">{value}</p>
+      <p className="mt-3 font-display text-[2.5rem] font-normal leading-none tabular-nums">{value}</p>
       {hint ? <p className="mt-2 font-body text-[0.6875rem] leading-4 text-muted">{hint}</p> : null}
     </>
   )

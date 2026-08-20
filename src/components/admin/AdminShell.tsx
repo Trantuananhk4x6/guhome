@@ -36,7 +36,7 @@ export function AdminShell({ user, children }: AdminShellProps) {
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col border-r border-line bg-surface lg:flex">
         <div className="border-b border-line px-5 py-5">
           <Link href="/admin" className="block">
-            <span className="block font-display text-[1.375rem] font-light leading-none tracking-[-0.02em]">
+            <span className="block font-display text-[1.375rem] font-normal leading-none tracking-[-0.02em]">
               AN ATELIER
             </span>
             <span className="u-label mt-2 block text-[0.5625rem] text-accent">Studio CMS</span>
@@ -57,7 +57,7 @@ export function AdminShell({ user, children }: AdminShellProps) {
 
       <div className="lg:pl-60">
         <header className="sticky top-0 z-20 flex h-14 items-center justify-between gap-4 border-b border-line bg-canvas px-5 lg:px-8">
-          <Link href="/admin" className="font-display text-[1.125rem] font-light leading-none lg:hidden">
+          <Link href="/admin" className="font-display text-[1.125rem] font-normal leading-none lg:hidden">
             AN ATELIER
           </Link>
 
@@ -104,7 +104,7 @@ export function AdminPageHeader({ eyebrow, title, description, actions, classNam
     <div className={cn('mb-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-4', className)}>
       <div className="min-w-0">
         {eyebrow ? <p className="u-label mb-3 text-accent">{eyebrow}</p> : null}
-        <h1 className="font-display text-[2rem] font-light leading-none tracking-[-0.02em] lg:text-[2.5rem]">
+        <h1 className="font-display text-[2rem] font-normal leading-none tracking-[-0.02em] lg:text-[2.5rem]">
           {title}
         </h1>
         {description ? (

@@ -11,7 +11,7 @@
  * hooks onto; the hook releases it once GSAP owns the element.
  */
 
-import { createElement, useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import type { CSSProperties, JSX, ReactNode } from 'react'
 import type { RevealVariant } from '@/types/content'
 import { useReveal } from '@/animations/reveal'
@@ -69,5 +69,19 @@ export function Reveal(props: RevealProps): JSX.Element {
   const ref = useRef<HTMLElement>(null)
   useReveal(ref, { variant, delay, stagger, start, once, distance, duration })
 
-  return createElement(as, { ref, className, style, id, 'data-reveal': '' }, children)
+  // A callback ref rather than the ref object itself. `<Tag>` over a union of
+  // intrinsic tags types `ref` as an *intersection* of element types, which no
+  // single `RefObject` satisfies — a callback is contravariant and does. It also
+  // keeps the ref out of the render return value, which is what the React
+  // Compiler wants to see.
+  const attach = useCallback((node: HTMLElement | null): void => {
+    ref.current = node
+  }, [])
+
+  const Tag = as
+  return (
+    <Tag ref={attach} className={className} style={style} id={id} data-reveal="">
+      {children}
+    </Tag>
+  )
 }

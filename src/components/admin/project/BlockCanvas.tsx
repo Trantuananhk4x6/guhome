@@ -67,7 +67,7 @@ function AddBlockDialog({ open, onClose, onPick }: AddBlockDialogProps) {
               className="flex h-full w-full flex-col gap-2 p-4 text-left transition-colors duration-200 hover:bg-surface"
             >
               <span className="flex items-baseline justify-between gap-3">
-                <span className="font-display text-[1.125rem] font-light leading-none text-ink">{meta.label}</span>
+                <span className="font-display text-[1.125rem] font-normal leading-none text-ink">{meta.label}</span>
                 <span className="u-label shrink-0 text-[0.5625rem] text-accent">{meta.en}</span>
               </span>
               <span className="font-body text-[0.75rem] leading-5 text-muted">{meta.note}</span>
@@ -207,7 +207,7 @@ export function BlockCanvas({
                       <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                         <span
                           className={cn(
-                            'font-display text-[1.0625rem] font-light leading-none',
+                            'font-display text-[1.0625rem] font-normal leading-none',
                             block.enabled ? 'text-ink' : 'text-muted',
                           )}
                         >

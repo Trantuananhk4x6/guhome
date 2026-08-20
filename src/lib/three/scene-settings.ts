@@ -57,8 +57,64 @@ export function resolveToneMapping(name: SceneSettings['toneMapping']): ToneMapp
 
 /* --------------------------------- defaults -------------------------------- */
 
+/* ---------------------------------- relief --------------------------------- */
+
+/**
+ * The framing `DEPTH_2_5D` is composed for, in world units. The relief is a
+ * plane at the origin; these are the only camera distances it is sized to
+ * cover, and `normaliseDepthWaypoints` rewrites every authored path into them.
+ *
+ * The push-in is deliberately small. A displaced photograph survives a 12%
+ * dolly without announcing itself; at 40% the parallax between the near and far
+ * parts of the relief becomes legible as *geometry*, and the illusion that the
+ * visitor is looking at a photograph is gone.
+ */
+export const DEPTH_FRAME = {
+  /** Camera distance from the relief at the widest framing (progress 0). */
+  start: 4.6,
+  /** …and at the end of the walk. */
+  end: 4.05,
+  /** Largest lateral / vertical camera drift along the way. */
+  drift: 0.3,
+} as const
+
+/**
+ * Physical relief depth, as a fraction of the plane's height, for a given
+ * `displacementScale` setting.
+ *
+ * The setting is a 0–4 knob in the database and used to be fed straight to
+ * `meshStandardMaterial.displacementScale` in world units, where the seeded
+ * 1.15 meant *a third of the frame height* of displacement — far past what any
+ * inferred depth field can carry. It is now read as a relative amount and
+ * saturates: even 4 stays inside a range where the smoothed field cannot tear.
+ */
+export function reliefDepthFor(displacementScale: number): number {
+  const s = Math.max(0, displacementScale)
+  return 0.14 * (1 - Math.exp(-s * 0.9))
+}
+
+/**
+ * Depth-gradient thresholds for the relief shader, in field units per texel.
+ * Displacement fades out from `soft` and fragments are dropped past `cut`, so a
+ * genuine depth discontinuity punches a hole instead of stretching a triangle
+ * across it. Tune here — `SceneSettings` is frozen, so they are not per-scene.
+ *
+ * The two profiles are not interchangeable. A measured depth map has real
+ * occlusion cliffs and wants a tight threshold. An inferred field is smooth by
+ * construction — measured against the seeded photography its steepest central
+ * difference is ≈0.07 per texel — so a tight threshold there would silently
+ * flatten the one part of the swell that was doing any work. Its thresholds sit
+ * well clear of that and only ever catch a pathological photograph.
+ */
+export const RELIEF_EDGE = {
+  inferred: { soft: 0.14, cut: 0.22 },
+  measured: { soft: 0.055, cut: 0.1 },
+} as const
+
 export interface ResolvedSceneSettings {
   displacementScale: number
+  /** `displacementScale` as a fraction of the plane height — see `reliefDepthFor`. */
+  reliefDepth: number
   planeSegments: number
   parallaxStrength: number
   roomWidth: number
@@ -98,18 +154,20 @@ function colour(value: string | undefined): string | null {
 /** Everything a scene component needs, with sane studio defaults applied. */
 export function resolveSceneSettings(settings: SceneSettings | null | undefined): ResolvedSceneSettings {
   const s = settings ?? {}
+  const displacementScale = num(s.displacementScale, 0.9, 0, 4)
   return {
-    displacementScale: num(s.displacementScale, 0.55, 0, 4),
-    planeSegments: Math.round(num(s.planeSegments, 160, 8, 512)),
-    parallaxStrength: num(s.parallaxStrength, 0.12, 0, 1),
+    displacementScale,
+    reliefDepth: reliefDepthFor(displacementScale),
+    planeSegments: Math.round(num(s.planeSegments, 192, 8, 512)),
+    parallaxStrength: num(s.parallaxStrength, 0.3, 0, 1),
     roomWidth: num(s.roomWidth, 6.4, 1, 60),
     roomHeight: num(s.roomHeight, 3.1, 1, 30),
     roomDepth: num(s.roomDepth, 7.2, 1, 80),
     modelScale: num(s.modelScale, 1, 0.001, 1000),
     modelPosition: vec(s.modelPosition, ORIGIN),
     modelRotation: vec(s.modelRotation, ORIGIN),
-    bloom: num(s.bloom, 0.28, 0, 3),
-    vignette: num(s.vignette, 0.35, 0, 1),
+    bloom: num(s.bloom, 0.12, 0, 3),
+    vignette: num(s.vignette, 0.3, 0, 1),
     toneMapping: s.toneMapping ?? 'ACESFilmic',
     background: colour(s.background),
   }
@@ -146,9 +204,19 @@ export function defaultWaypoints(config: SceneConfig): CameraWaypoint[] {
       ]
     case 'DEPTH_2_5D':
       return [
-        { position: [0, 0, 4.2], target: [0, 0, 0], fov, ease: DEFAULT_EASE },
-        { position: [0.25, 0.06, 3.1], target: [0.02, 0, 0], fov: fov - 3, ease: DEFAULT_EASE },
-        { position: [-0.18, -0.04, 2.35], target: [-0.02, 0, 0], fov: fov - 6, ease: 'power3.out' },
+        { position: [0, 0, DEPTH_FRAME.start], target: [0, 0, 0], fov, ease: DEFAULT_EASE },
+        {
+          position: [DEPTH_FRAME.drift * 0.6, DEPTH_FRAME.drift * 0.2, (DEPTH_FRAME.start + DEPTH_FRAME.end) / 2],
+          target: [DEPTH_FRAME.drift * 0.2, 0, 0],
+          fov,
+          ease: DEFAULT_EASE,
+        },
+        {
+          position: [-DEPTH_FRAME.drift * 0.4, -DEPTH_FRAME.drift * 0.15, DEPTH_FRAME.end],
+          target: [-DEPTH_FRAME.drift * 0.15, 0, 0],
+          fov,
+          ease: 'power3.out',
+        },
       ]
     default:
       return [
@@ -158,9 +226,55 @@ export function defaultWaypoints(config: SceneConfig): CameraWaypoint[] {
   }
 }
 
+/**
+ * Rewrites an authored camera path into the flat framing `DEPTH_2_5D` needs.
+ *
+ * A 2.5D scene is a plane at the origin, not a room: a path authored in room
+ * coordinates (`position [0, 1.9, 7.4]`, `target [0, 1.4, 0]` — which is what
+ * the seeded scenes carry) aims the camera a metre and a half above the relief
+ * and dollies most of the way through it, so the frame fills with whatever is
+ * behind the plane. Rather than discard the authoring, this keeps its *rhythm*
+ * — the number of legs, their timing, easing and labels, the direction of each
+ * sideways move — and rescales it into {@link DEPTH_FRAME}, where the plane is
+ * guaranteed to cover the frustum.
+ */
+export function normaliseDepthWaypoints(waypoints: readonly CameraWaypoint[], fov: number): CameraWaypoint[] {
+  if (waypoints.length === 0) return []
+
+  // The authored path's own extremes set the scale, so a timid path stays timid
+  // and a bold one uses the whole (small) drift budget.
+  let widest = 0
+  let tallest = 0
+  for (const point of waypoints) {
+    widest = Math.max(widest, Math.abs(point.position[0] - point.target[0]))
+    tallest = Math.max(tallest, Math.abs(point.position[1] - point.target[1]))
+  }
+
+  const last = waypoints.length - 1
+  return waypoints.map((point, index) => {
+    const t = last === 0 ? 0 : index / last
+    const lateral = widest > 1e-4 ? ((point.position[0] - point.target[0]) / widest) * DEPTH_FRAME.drift : 0
+    const rise = tallest > 1e-4 ? ((point.position[1] - point.target[1]) / tallest) * DEPTH_FRAME.drift * 0.45 : 0
+    const distance = DEPTH_FRAME.start + (DEPTH_FRAME.end - DEPTH_FRAME.start) * t
+    const next: CameraWaypoint = {
+      position: [lateral, rise, distance],
+      // Aiming slightly with the drift keeps the relief square-on: swinging the
+      // camera round a fixed point would rake the plane and flatten it.
+      target: [lateral * 0.4, rise * 0.4, 0],
+      fov,
+    }
+    if (typeof point.at === 'number') next.at = point.at
+    if (point.ease) next.ease = point.ease
+    if (point.label) next.label = point.label
+    return next
+  })
+}
+
 /** Authored waypoints when present, otherwise the studio default dolly. */
 export function waypointsFor(config: SceneConfig): CameraWaypoint[] {
-  return config.waypoints.length > 0 ? config.waypoints : defaultWaypoints(config)
+  const authored = config.waypoints.length > 0 ? config.waypoints : defaultWaypoints(config)
+  if (config.mode !== 'DEPTH_2_5D') return authored
+  return normaliseDepthWaypoints(authored, config.fov > 1 ? config.fov : 45)
 }
 
 /**

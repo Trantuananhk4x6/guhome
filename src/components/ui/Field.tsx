@@ -71,6 +71,15 @@ export function Field({ label, hint, error, required = false, tone = 'ink', clas
   )
 }
 
+/**
+ * Merges a caller's own `aria-describedby` with the field's hint/error id
+ * instead of letting one silently replace the other.
+ */
+export function describedBy(own: string | undefined, field: string | undefined): string | undefined {
+  const ids = [own, field].filter((id): id is string => typeof id === 'string' && id.length > 0)
+  return ids.length > 0 ? ids.join(' ') : undefined
+}
+
 /** Shared control chrome: square, borderless except a hairline underline. */
 export function controlClasses(tone: ControlTone, invalid: boolean, className?: string): string {
   return cn(

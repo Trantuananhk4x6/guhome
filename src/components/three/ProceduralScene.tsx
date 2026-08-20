@@ -32,20 +32,19 @@ export function ProceduralScene({ image, settings, quality }: ProceduralScenePro
   const { roomWidth: W, roomHeight: H, roomDepth: D } = resolved
   const imageAspect = textureAspect(texture, image.width && image.height ? image.width / image.height : 1.5)
 
-  useEffect(() => {
-    texture.colorSpace = SRGBColorSpace
-    texture.anisotropy = Math.min(quality.maxAnisotropy, gl.capabilities.getMaxAnisotropy())
-    texture.needsUpdate = true
-  }, [texture, gl, quality.maxAnisotropy])
+  const maxAnisotropy = Math.min(quality.maxAnisotropy, gl.capabilities.getMaxAnisotropy())
 
   /**
-   * One clone per surface: clones share the GPU upload with the source (so we
-   * must never dispose them individually) but carry their own crop.
+   * One configured clone per surface. Clones share the GPU upload with the
+   * source (so we must never dispose them individually) but carry their own
+   * crop — and, unlike the loader's instance, they are ours to set up, which is
+   * where the colour space and anisotropy belong.
    */
   const maps = useMemo(() => {
     const make = (surfaceAspect: number): Texture => {
       const clone = texture.clone()
       clone.colorSpace = SRGBColorSpace
+      clone.anisotropy = maxAnisotropy
       clone.needsUpdate = true
       return coverFit(clone, surfaceAspect, imageAspect)
     }
@@ -55,7 +54,7 @@ export function ProceduralScene({ image, settings, quality }: ProceduralScenePro
       ceiling: make(W / D),
       side: make(D / H),
     }
-  }, [texture, imageAspect, W, H, D])
+  }, [texture, maxAnisotropy, imageAspect, W, H, D])
 
   /**
    * Alpha ramps that dissolve each projection as it travels away from the far
@@ -94,18 +93,15 @@ export function ProceduralScene({ image, settings, quality }: ProceduralScenePro
         <meshStandardMaterial color={shell} roughness={0.94} metalness={0} side={BackSide} />
       </mesh>
 
-      {/* The photograph itself, on the far wall. */}
+      {/*
+        The photograph itself, on the far wall — unlit and untone-mapped, so the
+        photographed colours arrive exactly as shot. Lighting it (and adding an
+        emissive copy of itself on top, as this used to) is the surest way to
+        turn a warm interior into grey concrete.
+      */}
       <mesh position={[0, H / 2, -D / 2 + 0.012]}>
         <planeGeometry args={[W, H]} />
-        <meshStandardMaterial
-          map={maps.wall}
-          emissiveMap={maps.wall}
-          emissive="#ffffff"
-          emissiveIntensity={0.58}
-          roughness={1}
-          metalness={0}
-          envMapIntensity={0.3}
-        />
+        <meshBasicMaterial map={maps.wall} toneMapped={false} />
       </mesh>
 
       {/* Floor wash. */}
@@ -117,7 +113,7 @@ export function ProceduralScene({ image, settings, quality }: ProceduralScenePro
           transparent
           opacity={0.42}
           depthWrite={false}
-          toneMapped
+          toneMapped={false}
         />
       </mesh>
 
@@ -130,7 +126,7 @@ export function ProceduralScene({ image, settings, quality }: ProceduralScenePro
           transparent
           opacity={0.2}
           depthWrite={false}
-          toneMapped
+          toneMapped={false}
         />
       </mesh>
 
@@ -143,7 +139,7 @@ export function ProceduralScene({ image, settings, quality }: ProceduralScenePro
           transparent
           opacity={0.3}
           depthWrite={false}
-          toneMapped
+          toneMapped={false}
         />
       </mesh>
       <mesh position={[W / 2 - 0.01, H / 2, 0]} rotation={[0, -Math.PI / 2, 0]}>
@@ -154,7 +150,7 @@ export function ProceduralScene({ image, settings, quality }: ProceduralScenePro
           transparent
           opacity={0.3}
           depthWrite={false}
-          toneMapped
+          toneMapped={false}
         />
       </mesh>
     </group>

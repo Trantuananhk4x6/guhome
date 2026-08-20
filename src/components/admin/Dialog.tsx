@@ -1,11 +1,13 @@
 'use client'
 
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useId, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 
 import { cn } from '@/lib/utils'
 
 import { CloseIcon } from '@/components/ui/icons'
+import { useModalLock } from '@/components/ui/modal'
+import { useHydrated } from '@/components/ui/useHydrated'
 
 export type DialogWidth = 'sm' | 'md' | 'lg' | 'xl'
 
@@ -32,8 +34,10 @@ export interface DialogProps {
 }
 
 /**
- * Modal shell: portalled to `document.body`, Escape to dismiss, focus moved to
- * the panel and restored on close, background scroll locked while open.
+ * Modal shell: portalled to `document.body`, Escape to dismiss, focus trapped
+ * in the panel and restored on close, the rest of the document made inert and
+ * its scrolling (Lenis included) held while open — all of it in `useModalLock`,
+ * shared with the public kit so the two cannot drift.
  * Square corners, hairline border — no glass, no shadow.
  */
 export function Dialog({
@@ -48,45 +52,23 @@ export function Dialog({
   bodyClassName,
   children,
 }: DialogProps) {
-  const [mounted, setMounted] = useState(false)
+  const uid = useId()
   const panelRef = useRef<HTMLDivElement | null>(null)
-  const restoreRef = useRef<HTMLElement | null>(null)
+  // `false` on the server and through hydration — the portal target only exists
+  // after that, and a matching first render is what keeps hydration quiet.
+  const hydrated = useHydrated()
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  useModalLock({ open, onClose, panelRef })
 
-  useEffect(() => {
-    if (!open) return
-
-    restoreRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        event.stopPropagation()
-        onClose()
-      }
-    }
-    document.addEventListener('keydown', onKeyDown)
-
-    const frame = window.requestAnimationFrame(() => {
-      panelRef.current?.focus()
-    })
-
-    return () => {
-      window.cancelAnimationFrame(frame)
-      document.removeEventListener('keydown', onKeyDown)
-      document.body.style.overflow = previousOverflow
-      restoreRef.current?.focus()
-    }
-  }, [open, onClose])
-
-  if (!mounted || !open) return null
+  if (!hydrated || !open) return null
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 sm:p-8">
+    // `data-ui-overlay` keeps this layer out of the inert sweep the lock runs
+    // over the rest of the document.
+    <div
+      data-ui-overlay="dialog"
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 sm:p-8"
+    >
       <div
         aria-hidden="true"
         onClick={closeOnBackdrop ? onClose : undefined}
@@ -97,7 +79,8 @@ export function Dialog({
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        aria-label={typeof title === 'string' ? title : undefined}
+        aria-labelledby={`${uid}-title`}
+        aria-describedby={description ? `${uid}-description` : undefined}
         tabIndex={-1}
         className={cn(
           'relative my-auto flex w-full flex-col border border-line bg-canvas focus:outline-none',
@@ -107,9 +90,13 @@ export function Dialog({
       >
         <header className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
           <div className="min-w-0">
-            <h2 className="font-display text-[1.375rem] font-light leading-tight">{title}</h2>
+            <h2 id={`${uid}-title`} className="font-display text-[1.375rem] font-normal leading-tight">
+              {title}
+            </h2>
             {description ? (
-              <p className="mt-1 font-body text-[0.75rem] leading-5 text-muted">{description}</p>
+              <p id={`${uid}-description`} className="mt-1 font-body text-[0.75rem] leading-5 text-muted">
+                {description}
+              </p>
             ) : null}
           </div>
           <button

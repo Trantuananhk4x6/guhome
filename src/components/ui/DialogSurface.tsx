@@ -39,6 +39,7 @@ export default function DialogSurface({
   title,
   eyebrow,
   description,
+  label,
   size = 'md',
   dismissible = true,
   className,
@@ -56,8 +57,14 @@ export default function DialogSurface({
   return createPortal(
     <AnimatePresence>
       {open ? (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+        // `data-ui-overlay` keeps this layer out of the inert sweep that
+        // `useModalLock` runs over the rest of the document.
+        <div
+          data-ui-overlay="dialog"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-6"
+        >
           <motion.div
+            aria-hidden="true"
             className="absolute inset-0 bg-espresso/70"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -70,6 +77,9 @@ export default function DialogSurface({
             role="dialog"
             aria-modal="true"
             aria-labelledby={title ? `${uid}-title` : undefined}
+            // Never leave the dialog unnamed: without a visible title it falls
+            // back to the caller's `label`, then to a plain Vietnamese noun.
+            aria-label={title ? undefined : (label ?? 'Hộp thoại')}
             aria-describedby={description ? `${uid}-description` : undefined}
             tabIndex={-1}
             initial={{ opacity: 0, y: reduced ? 0 : 24 }}

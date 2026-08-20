@@ -117,7 +117,22 @@ export function ScrollProvider(props: { children: ReactNode; motion: MotionConfi
       timer = window.setTimeout(() => ScrollTrigger.refresh(), SCROLL.refreshDebounce)
     }
 
-    window.addEventListener('resize', refresh)
+    // Mobile browsers fire `resize` every time the URL bar collapses or expands.
+    // Re-measuring there makes pinned sections jump under the reader's thumb —
+    // the same reason `ScrollTrigger.config({ ignoreMobileResize: true })` is set
+    // in `./gsap`. Only a width change is a real layout change on touch; a real
+    // rotation still arrives through `orientationchange` below.
+    const coarse = window.matchMedia?.('(pointer: coarse)').matches ?? false
+    let lastWidth = window.innerWidth
+    const onResize = (): void => {
+      const width = window.innerWidth
+      const widthChanged = width !== lastWidth
+      lastWidth = width
+      if (coarse && !widthChanged) return
+      refresh()
+    }
+
+    window.addEventListener('resize', onResize)
     window.addEventListener('orientationchange', refresh)
 
     const fonts: FontFaceSet | undefined = 'fonts' in document ? document.fonts : undefined
@@ -126,7 +141,7 @@ export function ScrollProvider(props: { children: ReactNode; motion: MotionConfi
 
     return () => {
       if (timer !== undefined) window.clearTimeout(timer)
-      window.removeEventListener('resize', refresh)
+      window.removeEventListener('resize', onResize)
       window.removeEventListener('orientationchange', refresh)
       fonts?.removeEventListener('loadingdone', refresh)
     }

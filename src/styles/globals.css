@@ -18,8 +18,8 @@
   --color-accent: var(--c-accent);
   --color-accent-soft: var(--c-accent-soft);
 
-  --font-display: var(--f-display), 'Cormorant Garamond', ui-serif, Georgia, serif;
-  --font-body: var(--f-body), 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--f-display), 'Playfair Display', ui-serif, Georgia, serif;
+  --font-body: var(--f-body), 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
 
   --tracking-label: 0.18em;
   --tracking-display: -0.02em;
@@ -46,8 +46,8 @@
   --c-accent: #a07753;
   --c-accent-soft: #c7a57c;
 
-  --f-display: 'Cormorant Garamond';
-  --f-body: 'Inter';
+  --f-display: 'Playfair Display';
+  --f-body: 'Be Vietnam Pro';
 
   --display-scale: 1;
   --body-scale: 1;
@@ -99,9 +99,13 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: var(--tracking-display);
-    line-height: 0.95;
+    /* Vietnamese stacks marks above AND below the x-height (ế, ộ, ữ, ậ), so a
+       sub-1 leading that reads as elegant in English collides here. 1.06 is the
+       tightest this can go before the dấu of one line touches the baseline of
+       the one above. */
+    line-height: 1.06;
     text-wrap: balance;
   }
 
@@ -132,23 +136,24 @@
 
   .u-display {
     font-family: var(--font-display);
-    font-size: calc(clamp(2.75rem, 8vw, 9rem) * var(--display-scale));
-    font-weight: 300;
-    line-height: 0.92;
-    letter-spacing: -0.025em;
+    font-size: calc(clamp(2.25rem, 7vw, 8rem) * var(--display-scale));
+    font-weight: 500;
+    /* See the heading rule: display sizes need the same Vietnamese allowance. */
+    line-height: 1.04;
+    letter-spacing: -0.02em;
   }
 
   .u-display-sm {
     font-family: var(--font-display);
-    font-size: calc(clamp(1.75rem, 4vw, 3.5rem) * var(--display-scale));
-    font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    font-size: calc(clamp(1.5rem, 3.4vw, 3.25rem) * var(--display-scale));
+    font-weight: 500;
+    line-height: 1.14;
+    letter-spacing: -0.012em;
   }
 
   .u-body-lg {
-    font-size: calc(clamp(1rem, 1.15vw, 1.1875rem) * var(--body-scale));
-    line-height: 1.7;
+    font-size: calc(clamp(1.0625rem, 1.15vw, 1.25rem) * var(--body-scale));
+    line-height: 1.75;
     color: var(--color-muted);
   }
 

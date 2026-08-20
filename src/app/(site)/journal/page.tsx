@@ -118,7 +118,7 @@ export default async function JournalPage() {
                       </div>
 
                       <div className="lg:col-span-6">
-                        <h3 className="font-display text-[1.75rem] font-light leading-tight text-ink transition-colors duration-500 ease-editorial group-hover/row:text-accent">
+                        <h3 className="font-display text-[1.75rem] font-normal leading-tight text-ink transition-colors duration-500 ease-editorial group-hover/row:text-accent">
                           {article.title}
                         </h3>
                         {article.excerpt ? (

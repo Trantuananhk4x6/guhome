@@ -33,7 +33,7 @@ export function ProjectQuote({ quote, attribution, className }: ProjectQuoteProp
         <blockquote
           ref={quoteRef}
           data-reveal
-          className="font-display text-ink max-w-[24ch] text-[clamp(1.75rem,4.2vw,3.75rem)] leading-[1.1] font-light -tracking-[0.02em]"
+          className="font-display text-ink max-w-[24ch] text-[clamp(1.75rem,4.2vw,3.75rem)] leading-[1.1] font-normal -tracking-[0.02em]"
         >
           {quote}
         </blockquote>

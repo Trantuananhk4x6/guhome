@@ -7,6 +7,10 @@
  * framer-motion lands in a lazy chunk that is only fetched the first time a
  * toast is raised — never in the shared client bundle of the public pages
  * (ARCHITECTURE §8: no framer-motion on the homepage).
+ *
+ * This layer is purely visual: the announcing is `ToastLiveRegion`'s job, so
+ * the text here is `aria-hidden` and only the dismiss button — named with its
+ * toast's title — is exposed to assistive tech.
  */
 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
@@ -20,17 +24,19 @@ import type { ToastItem } from './Toast'
 export interface ToastViewportProps {
   items: readonly ToastItem[]
   onDismiss: (id: string) => void
+  /** Holds the auto-dismiss clock while the stack is hovered or focused. */
+  onPause: () => void
+  onResume: () => void
 }
 
-export default function ToastViewport({ items, onDismiss }: ToastViewportProps) {
+export default function ToastViewport({ items, onDismiss, onPause, onResume }: ToastViewportProps) {
   const reduced = useReducedMotion()
 
   if (typeof document === 'undefined') return null
 
   return createPortal(
     <div
-      aria-live="polite"
-      aria-atomic="false"
+      data-ui-overlay="toast"
       className="pointer-events-none fixed bottom-6 right-6 z-[120] flex w-[min(22rem,calc(100vw-3rem))] flex-col gap-3"
     >
       <AnimatePresence initial={false}>
@@ -42,6 +48,10 @@ export default function ToastViewport({ items, onDismiss }: ToastViewportProps) 
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: reduced ? 0 : 8 }}
             transition={{ duration: reduced ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+            onMouseEnter={onPause}
+            onMouseLeave={onResume}
+            onFocus={onPause}
+            onBlur={onResume}
             className="pointer-events-auto flex items-start gap-3 rounded-none border border-espresso/20 bg-espresso px-5 py-4 text-canvas"
           >
             {item.tone !== 'default' ? (
@@ -52,7 +62,7 @@ export default function ToastViewport({ items, onDismiss }: ToastViewportProps) 
                 {item.tone === 'error' ? <AlertIcon /> : <CheckIcon />}
               </span>
             ) : null}
-            <div className="flex-1">
+            <div aria-hidden="true" className="flex-1">
               <p className="font-body text-[0.8125rem] font-medium leading-snug">{item.title}</p>
               {item.description ? (
                 <p className="mt-1 font-body text-[0.75rem] leading-relaxed text-canvas/55">{item.description}</p>
@@ -64,7 +74,7 @@ export default function ToastViewport({ items, onDismiss }: ToastViewportProps) 
               className="mt-0.5 text-canvas/45 transition-colors duration-300 hover:text-canvas"
             >
               <CloseIcon className="text-sm" />
-              <span className="sr-only">Đóng thông báo</span>
+              <span className="sr-only">Đóng thông báo: {item.title}</span>
             </button>
           </motion.div>
         ))}

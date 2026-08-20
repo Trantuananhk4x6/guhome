@@ -21,14 +21,66 @@ import type { BrandConfig, MotionConfig, ThemeColors, ThemeSettings, ThemeTypogr
  * next/font only accepts literal arguments, so the layout repeats these strings
  * verbatim — keep the two in sync.
  */
-export const FONT_VAR_DISPLAY = '--font-cormorant-garamond'
-export const FONT_VAR_BODY = '--font-inter'
+export const FONT_VAR_DISPLAY = '--font-playfair-display'
+export const FONT_VAR_BODY = '--font-be-vietnam-pro'
 
-/** Fonts bundled through next/font; anything else falls back to a system stack. */
-const BUNDLED_FONTS: ReadonlyArray<{ name: string; cssVar: string }> = [
-  { name: 'Cormorant Garamond', cssVar: FONT_VAR_DISPLAY },
-  { name: 'Inter', cssVar: FONT_VAR_BODY },
+export interface FontChoice {
+  /** Family name as stored on the theme row. */
+  readonly name: string
+  /** The `variable` next/font emits for it in `src/app/layout.tsx`. */
+  readonly cssVar: string
+  readonly role: 'display' | 'body'
+  /** One line for the theme editor, in Vietnamese. */
+  readonly note: string
+}
+
+/**
+ * The families bundled through next/font, and the only ones the theme editor
+ * offers. Every one carries a Vietnamese subset — a family without it drops out
+ * of the face mid-word on Vietnamese text and mangles the diacritics, which is
+ * why Instrument Serif and DM Serif Display are not here despite the brief
+ * naming them. Anything else stored on the theme row falls back to a system
+ * stack rather than silently rendering wrong.
+ */
+export const FONT_LIBRARY: readonly FontChoice[] = [
+  {
+    name: 'Playfair Display',
+    cssVar: FONT_VAR_DISPLAY,
+    role: 'display',
+    note: 'Mặc định — nét dày rõ, tương phản cao, đọc tốt ở khổ lớn.',
+  },
+  {
+    name: 'Lora',
+    cssVar: '--font-lora',
+    role: 'display',
+    note: 'Ấm và mềm hơn, thân chữ đều, hợp bài viết dài.',
+  },
+  {
+    name: 'Source Serif 4',
+    cssVar: '--font-source-serif-4',
+    role: 'display',
+    note: 'Trung tính, hiện đại, ít trang trí.',
+  },
+  {
+    name: 'Cormorant Garamond',
+    cssVar: '--font-cormorant-garamond',
+    role: 'display',
+    note: 'Rất thanh mảnh — đẹp ở khổ rất lớn, mờ ở khổ nhỏ.',
+  },
+  {
+    name: 'Be Vietnam Pro',
+    cssVar: FONT_VAR_BODY,
+    role: 'body',
+    note: 'Mặc định — thiết kế riêng cho tiếng Việt, dấu rõ và cân.',
+  },
+  { name: 'Inter', cssVar: '--font-inter', role: 'body', note: 'Trung tính, quen thuộc, chữ số đều.' },
+  { name: 'Manrope', cssVar: '--font-manrope', role: 'body', note: 'Hình học, hơi tròn, nhẹ nhàng.' },
 ]
+
+/** Families the theme editor may offer for a given slot. */
+export function fontsForRole(role: FontChoice['role']): readonly FontChoice[] {
+  return FONT_LIBRARY.filter((font) => font.role === role)
+}
 
 /** id of the injected `<style>` element, so the admin preview can hot-swap it. */
 export const THEME_STYLE_ID = 'an-theme-vars'
@@ -48,8 +100,8 @@ export const DEFAULT_COLORS: ThemeColors = {
 }
 
 export const DEFAULT_TYPOGRAPHY: ThemeTypography = {
-  displayFont: 'Cormorant Garamond',
-  bodyFont: 'Inter',
+  displayFont: 'Playfair Display',
+  bodyFont: 'Be Vietnam Pro',
   displayScale: 1,
   bodyScale: 1,
   tracking: 1,
@@ -126,7 +178,7 @@ function num(value: number): string {
 function cssFontStack(value: string | undefined, fallback: string): string {
   const raw = typeof value === 'string' ? value.trim() : ''
   const name = FONT_NAME_RE.test(raw) ? raw : fallback
-  const bundled = BUNDLED_FONTS.find((f) => f.name.toLowerCase() === name.toLowerCase())
+  const bundled = FONT_LIBRARY.find((f) => f.name.toLowerCase() === name.toLowerCase())
   if (bundled) return `var(${bundled.cssVar}, '${bundled.name}')`
   return `'${name.replace(/'/g, '')}'`
 }

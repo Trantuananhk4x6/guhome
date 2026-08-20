@@ -58,7 +58,7 @@ function Node({ node, media, projects }: NodeProps) {
       }
       if (node.level === 3) {
         return (
-          <h3 className={`${MEASURE} mt-16 mb-6 font-display text-[1.625rem] font-light leading-tight text-ink`}>
+          <h3 className={`${MEASURE} mt-16 mb-6 font-display text-[1.625rem] font-normal leading-tight text-ink`}>
             {node.text}
           </h3>
         )
@@ -134,7 +134,7 @@ function Node({ node, media, projects }: NodeProps) {
     case 'quote':
       return (
         <figure className={`${MEASURE} my-16 border-l border-accent pl-8`}>
-          <blockquote className="font-display text-[1.75rem] font-light leading-[1.35] text-ink">
+          <blockquote className="font-display text-[1.75rem] font-normal leading-[1.35] text-ink">
             {node.text}
           </blockquote>
           {node.attribution ? (

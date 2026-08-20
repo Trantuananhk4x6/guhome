@@ -34,7 +34,14 @@ export interface HomeData {
   articles: ArticleSummary[]
   materials: MaterialItem[]
   studioImage: MediaRef | null
+  /**
+   * Where `studioImage` came from, so the studio band can caption it honestly
+   * instead of calling a borrowed project photograph "our workshop".
+   */
+  studioImageCaption: string | null
   philosophyImage: MediaRef | null
+  /** A photograph held back from every other band, for the closing invitation. */
+  closingImage: MediaRef | null
   /** Published projects in the library — feeds the studio stat rows. */
   projectCount: number
 }
@@ -53,6 +60,8 @@ export const EMPTY_HOME_DATA: HomeData = {
   articles: [],
   materials: [],
   studioImage: null,
+  studioImageCaption: null,
   philosophyImage: null,
+  closingImage: null,
   projectCount: 0,
 }

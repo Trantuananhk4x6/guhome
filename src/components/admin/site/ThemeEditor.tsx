@@ -22,7 +22,7 @@ import type { MediaRef, ThemeColors, ThemeSettings } from '@/types/content'
 
 import {
   BODY_FONTS,
-  BUNDLED_FONT_NAMES,
+  FONT_NOTES,
   DISPLAY_FONTS,
   MOTION_TOGGLES,
   REDUCED_MOTION_OPTIONS,
@@ -39,11 +39,13 @@ export interface ThemeEditorProps {
   favicon: MediaRef | null
 }
 
+/** Every family on these lists is bundled and Vietnamese-capable, so the note
+ *  can describe how it reads instead of warning that it might not load. */
 function fontOptions(list: readonly string[]): { value: string; label: string }[] {
-  return list.map((name) => ({
-    value: name,
-    label: BUNDLED_FONT_NAMES.includes(name) ? `${name} — có sẵn` : name,
-  }))
+  return list.map((name) => {
+    const note = FONT_NOTES[name]
+    return { value: name, label: note ? `${name} — ${note}` : name }
+  })
 }
 
 export function ThemeEditor({ initial, logo: initialLogo, favicon: initialFavicon }: ThemeEditorProps) {
@@ -123,7 +125,7 @@ export function ThemeEditor({ initial, logo: initialLogo, favicon: initialFavico
           <AdminPanel
             eyebrow="Typography"
             title="Chữ"
-            description="Phông hiển thị dùng cho tiêu đề cỡ lớn; phông nội dung cho chữ đọc. Chỉ Cormorant Garamond và Inter được nhúng sẵn — các phông khác phụ thuộc thiết bị người xem."
+            description="Phông hiển thị dùng cho tiêu đề cỡ lớn; phông nội dung cho chữ đọc. Mọi phông trong danh sách đều được nhúng sẵn và có đủ bộ dấu tiếng Việt — đổi là thấy ngay, không cần build lại."
           >
             <div className="flex flex-col gap-7">
               <div className="grid gap-7 sm:grid-cols-2">

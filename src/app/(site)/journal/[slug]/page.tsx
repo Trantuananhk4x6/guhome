@@ -154,7 +154,7 @@ export default async function ArticlePage({ params }: PageProps) {
                   <li key={item.id} data-reveal-item className="border-t border-line pt-8">
                     <Link href={`/journal/${item.slug}`} className="group/next block">
                       <span className="u-label">{formatDate(item.publishedAt)}</span>
-                      <h2 className="mt-5 font-display text-[1.5rem] font-light leading-tight text-ink transition-colors duration-500 ease-editorial group-hover/next:text-accent">
+                      <h2 className="mt-5 font-display text-[1.5rem] font-normal leading-tight text-ink transition-colors duration-500 ease-editorial group-hover/next:text-accent">
                         {item.title}
                       </h2>
                       {item.excerpt ? (

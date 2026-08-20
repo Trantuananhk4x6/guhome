@@ -15,7 +15,7 @@ export default function Loading() {
           <div className="h-px w-1/3 animate-pulse bg-accent" />
         </div>
 
-        <p className="mt-10 font-display text-[1.5rem] font-light text-muted">
+        <p className="mt-10 font-display text-[1.5rem] font-normal text-muted">
           Một chút cho ảnh kịp sáng.
         </p>
       </div>

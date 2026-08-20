@@ -8,7 +8,14 @@ import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/Label'
 
 import { SectionImage } from './SectionImage'
-import { sectionLines, sectionParagraphs, sectionStats, sectionText, type SectionStat } from './content'
+import {
+  sectionLines,
+  sectionOptionalText,
+  sectionParagraphs,
+  sectionStats,
+  sectionText,
+  type SectionStat,
+} from './content'
 import type { HomeSectionProps } from './types'
 
 const BODY_FALLBACK: readonly string[] = [
@@ -38,7 +45,12 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
   const headingLines = sectionLines(content, 'heading', 'Chúng tôi thiết kế cho\nnhịp sống thật.')
   const paragraphs = sectionParagraphs(content, 'body', BODY_FALLBACK)
   const cta = sectionText(content, 'ctaLabel', 'Về studio')
-  const caption = sectionText(content, 'caption', 'Xưởng làm việc — Quận 2, TP. Hồ Chí Minh')
+  // Admin copy wins; otherwise name the project the photograph actually shows,
+  // and only claim it is the studio's own room when nothing else is known.
+  const caption =
+    sectionOptionalText(content, 'caption') ??
+    data.studioImageCaption ??
+    'Xưởng làm việc — Quận 2, TP. Hồ Chí Minh'
 
   const stats = sectionStats(content, 'stats', STAT_FALLBACK).map((stat) =>
     data.projectCount > 0 && stat.label.toLowerCase().includes('dự án')
@@ -86,7 +98,7 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
           >
             <SectionImage
               media={image}
-              alt="Không gian làm việc của AN ATELIER"
+              alt={caption}
               sizes="(min-width: 1024px) 40vw, 100vw"
               width={1200}
             />

@@ -66,7 +66,7 @@ export default async function ServicesPage() {
                         className="group/row flex items-baseline gap-6 border-t border-line py-4 transition-colors duration-500 ease-editorial hover:text-accent"
                       >
                         <span className="u-label text-accent">{indexOf(service, i)}</span>
-                        <span className="font-display text-[1.25rem] font-light text-ink transition-colors duration-500 ease-editorial group-hover/row:text-accent">
+                        <span className="font-display text-[1.25rem] font-normal text-ink transition-colors duration-500 ease-editorial group-hover/row:text-accent">
                           {service.title}
                         </span>
                       </a>

@@ -2,7 +2,7 @@
 
 import type { InputHTMLAttributes, Ref } from 'react'
 
-import { controlClasses, useFieldControl, type ControlTone } from './Field'
+import { controlClasses, describedBy, useFieldControl, type ControlTone } from './Field'
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'ref'> {
   tone?: ControlTone
@@ -17,7 +17,7 @@ export function Input({
   ref,
   id,
   required,
-  'aria-describedby': describedBy,
+  'aria-describedby': ariaDescribedBy,
   ...rest
 }: InputProps) {
   const field = useFieldControl()
@@ -30,7 +30,7 @@ export function Input({
       ref={ref}
       id={id ?? field?.id}
       required={required ?? field?.required}
-      aria-describedby={describedBy ?? field?.describedBy}
+      aria-describedby={describedBy(ariaDescribedBy, field?.describedBy)}
       aria-invalid={isInvalid || undefined}
       className={controlClasses(resolvedTone, isInvalid, className)}
     />

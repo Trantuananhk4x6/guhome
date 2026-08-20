@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { useEffect, useRef, useState, type JSX } from 'react'
 import type { MediaRef } from '@/types/content'
 import { mediaUrl } from '@/lib/media'
+import { useReducedMotion } from '@/lib/motion'
 import { cn } from '@/lib/utils'
-import { prefersReducedMotion } from '@/lib/three/capability'
 
 export interface SceneFallbackProps {
   image?: MediaRef | null
@@ -38,15 +38,18 @@ export function SceneFallback({
 }: SceneFallbackProps): JSX.Element {
   const rootRef = useRef<HTMLDivElement | null>(null)
   const layerRef = useRef<HTMLDivElement | null>(null)
-  const [revealed, setRevealed] = useState(false)
+  const [entered, setEntered] = useState(false)
+
+  // Reduced motion means the frame is simply *there* — no reveal to wait for.
+  // Derived during render rather than pushed into state from the effect: the
+  // store hook is SSR-safe, so the server keeps emitting the hidden state and
+  // hydration stays quiet.
+  const reduced = useReducedMotion()
+  const revealed = entered || reduced
 
   useEffect(() => {
     const root = rootRef.current
-    if (!root) return
-    if (prefersReducedMotion()) {
-      setRevealed(true)
-      return
-    }
+    if (!root || reduced) return
 
     let frame = 0
     let visible = false
@@ -72,7 +75,7 @@ export function SceneFallback({
         for (const entry of entries) {
           visible = entry.isIntersecting
           if (entry.isIntersecting) {
-            setRevealed(true)
+            setEntered(true)
             schedule()
           }
         }
@@ -93,7 +96,7 @@ export function SceneFallback({
       window.removeEventListener('resize', schedule)
       if (frame !== 0) window.cancelAnimationFrame(frame)
     }
-  }, [parallax])
+  }, [parallax, reduced])
 
   const src = image ? mediaUrl(image, 1600) : ''
   const alt = image?.alt ?? caption ?? ''

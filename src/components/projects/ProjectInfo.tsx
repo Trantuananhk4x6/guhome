@@ -73,7 +73,7 @@ export function ProjectInfo({ project, showServices = true, note, className }: P
               className="border-line flex items-baseline justify-between gap-8 border-t py-5 last:border-b"
             >
               <dt className="u-label shrink-0">{row.label}</dt>
-              <dd className="font-display text-ink text-right text-xl font-light md:text-2xl">{row.value}</dd>
+              <dd className="font-display text-ink text-right text-xl font-normal md:text-2xl">{row.value}</dd>
             </div>
           ))}
         </dl>

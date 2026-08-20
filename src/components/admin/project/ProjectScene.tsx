@@ -182,7 +182,7 @@ export function ProjectScene({ projectId, projectTitle, configs, options }: Proj
 
                     <div className="flex min-w-[16rem] flex-1 flex-col gap-3">
                       <div className="flex flex-wrap items-center gap-3">
-                        <span className="font-display text-[1.25rem] font-light leading-none text-ink">
+                        <span className="font-display text-[1.25rem] font-normal leading-none text-ink">
                           {option?.label ?? 'Cảnh chưa đặt tên'}
                         </span>
                         <StatusPill tone={mode === 'NONE' ? 'muted' : 'accent'}>

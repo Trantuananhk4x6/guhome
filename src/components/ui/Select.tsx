@@ -4,7 +4,7 @@ import type { Ref, SelectHTMLAttributes } from 'react'
 
 import { cn } from '@/lib/utils'
 
-import { controlClasses, useFieldControl, type ControlTone } from './Field'
+import { controlClasses, describedBy, useFieldControl, type ControlTone } from './Field'
 import { ChevronDownIcon } from './icons'
 
 export interface SelectOption {
@@ -31,7 +31,7 @@ export function Select({
   required,
   options,
   placeholder,
-  'aria-describedby': describedBy,
+  'aria-describedby': ariaDescribedBy,
   ...rest
 }: SelectProps) {
   const field = useFieldControl()
@@ -45,7 +45,7 @@ export function Select({
         ref={ref}
         id={id ?? field?.id}
         required={required ?? field?.required}
-        aria-describedby={describedBy ?? field?.describedBy}
+        aria-describedby={describedBy(ariaDescribedBy, field?.describedBy)}
         aria-invalid={isInvalid || undefined}
         className={controlClasses(resolvedTone, isInvalid, cn('appearance-none pr-8', className))}
       >

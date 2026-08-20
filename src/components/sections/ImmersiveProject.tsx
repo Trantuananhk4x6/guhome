@@ -2,9 +2,10 @@
 
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 import { useCameraScroll } from '@/animations/camera'
+import { registerGsap, ScrollTrigger } from '@/animations/gsap'
 import { useImageReveal } from '@/animations/image'
 import { useReveal } from '@/animations/reveal'
 import { Button } from '@/components/ui/Button'
@@ -24,6 +25,30 @@ const InteriorScene = dynamic(
 )
 
 const STAGE_FALLBACK: readonly string[] = ['Ngoại thất', 'Tiền sảnh', 'Phòng khách', 'Chi tiết vật liệu']
+
+/** Pinning is a desktop-only, WebGL-only affordance. */
+const WIDE_QUERY = '(min-width: 1024px)'
+
+function subscribeWide(onChange: () => void): () => void {
+  const query = window.matchMedia(WIDE_QUERY)
+  query.addEventListener('change', onChange)
+  return () => query.removeEventListener('change', onChange)
+}
+
+/** `supportsWebGL()` memoises its probe, so reading this per render stays cheap. */
+function readWide(): boolean {
+  return window.matchMedia(WIDE_QUERY).matches && supportsWebGL()
+}
+
+/**
+ * Type over a photograph needs a floor under it. Two shallow gradients — one at
+ * each end of the frame — hold the copy without flattening the picture the way
+ * a full-panel scrim does.
+ */
+const TOP_SCRIM =
+  'linear-gradient(to bottom, color-mix(in srgb, var(--c-espresso) 52%, transparent) 0%, transparent 100%)'
+const BOTTOM_SCRIM =
+  'linear-gradient(to top, color-mix(in srgb, var(--c-espresso) 62%, transparent) 0%, color-mix(in srgb, var(--c-espresso) 24%, transparent) 45%, transparent 100%)'
 
 function ProjectFacts({ project, tone }: { project: ProjectSummary; tone: 'light' | 'ink' }) {
   const facts: { term: string; value: string }[] = []
@@ -100,10 +125,25 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
   const [stage, setStage] = useState(0)
   const [resolved, setResolved] = useState(false)
   const [inView, setInView] = useState(false)
-  const [pinned, setPinned] = useState(false)
 
   const reduced = useReducedMotion()
   const hasScene = scene !== null && scene.mode !== 'NONE'
+
+  // Upgrade to the pinned scene only after mount: the server snapshot is always
+  // `false`, so SSR renders the stacked sequence and a small screen — or a
+  // machine without WebGL — never sees a swap. Subscribing to the media query
+  // instead of writing state from an effect keeps the render pure.
+  const wide = useSyncExternalStore(subscribeWide, readWide, () => false)
+  const pinned = hasScene && !reduced && wide
+
+  // The stacked sequence and the 300vh pinned panel are wildly different
+  // heights, so the upgrade moves every trigger below this band. Without a
+  // re-measure, the reveals further down the page fire at the wrong scroll
+  // position — or, further down still, never fire at all.
+  useEffect(() => {
+    registerGsap()
+    ScrollTrigger.refresh()
+  }, [pinned])
 
   // 300vh outer, 100vh sticky inner: `top top` → `bottom bottom` is exactly the
   // 200vh the sticky panel spends pinned, so progress maps 0 → 1 across it.
@@ -113,20 +153,6 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
     sensitivity: scene && scene.scrollSensitivity > 0 ? scene.scrollSensitivity : 1,
   })
   useReveal(headerRef, { variant: 'revealUp' })
-
-  // Upgrade to the pinned scene only after mount: SSR always renders the stacked
-  // sequence, so a small screen or a machine without WebGL never sees a swap.
-  useEffect(() => {
-    if (!hasScene || reduced) {
-      setPinned(false)
-      return
-    }
-    const query = window.matchMedia('(min-width: 1024px)')
-    const apply = (): void => setPinned(query.matches && supportsWebGL())
-    apply()
-    query.addEventListener('change', apply)
-    return () => query.removeEventListener('change', apply)
-  }, [hasScene, reduced])
 
   useEffect(() => {
     const el = sectionRef.current
@@ -247,7 +273,9 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
             fallbackImage={cover}
             className="absolute inset-0 h-full w-full"
           />
-          <div className="absolute inset-0 bg-espresso/35" />
+          <div className="absolute inset-0 bg-espresso/28" />
+          <div className="absolute inset-x-0 top-0 h-[38%]" style={{ background: TOP_SCRIM }} />
+          <div className="absolute inset-x-0 bottom-0 h-[52%]" style={{ background: BOTTOM_SCRIM }} />
         </div>
 
         <p className="sr-only">

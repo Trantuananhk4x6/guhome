@@ -153,7 +153,7 @@ export function ProjectCard({
           </span>
         ) : null}
 
-        <h3 className={cn(isIndex ? 'u-display-sm' : 'font-display text-3xl leading-[1.05] font-light md:text-4xl')}>
+        <h3 className={cn(isIndex ? 'u-display-sm' : 'font-display text-3xl leading-[1.05] font-normal md:text-4xl')}>
           <Link href={href} onClick={handleClick} className="transition-colors duration-500 hover:text-accent">
             {project.title}
           </Link>
