@@ -72,7 +72,12 @@ export function mediaTarget(el: HTMLElement): HTMLElement {
  * trust them, because the real face can still swap in underneath the
  * measurement. Returns a canceller.
  */
-export function whenFontsReady(cb: (settled: boolean) => void, timeoutMs = 1200): () => void {
+// 500, not 1200: every `[data-reveal]` is `opacity: 0` until `markReady` runs
+// (globals.css), and `markReady` only runs inside this callback — so the deadline
+// is also how long a heading can sit invisible on a slow font load. The `settled`
+// flag, not a longer timer, is what keeps a line from being split against
+// fallback metrics.
+export function whenFontsReady(cb: (settled: boolean) => void, timeoutMs = 500): () => void {
   let done = false
   const run = (settled: boolean): void => {
     if (done) return

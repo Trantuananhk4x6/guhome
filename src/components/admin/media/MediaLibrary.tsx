@@ -376,7 +376,10 @@ export function MediaLibrary({ items, total, folders, projects, filters }: Media
               Dọn
             </button>
           </div>
-          <ul className="max-h-64 overflow-y-auto">
+          {/* `data-lenis-prevent`: Lenis preventDefaults every wheel event on
+              every route, so a capped list floating above the page cannot be
+              wheeled without opting out of it. */}
+          <ul data-lenis-prevent className="max-h-64 overflow-y-auto">
             {uploads.tasks.map((task) => (
               <li key={task.id} className="border-b border-line px-4 py-3 last:border-b-0">
                 <div className="flex items-baseline justify-between gap-3">

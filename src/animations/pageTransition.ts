@@ -34,8 +34,12 @@ import { gsap } from './gsap'
  */
 export { suppressNextCurtain } from './internal'
 
-/** Sits above sticky UI, below nothing. */
-export const CURTAIN_Z_INDEX = 90
+/**
+ * Must outrank everything the curtain is supposed to wipe over: header z-50,
+ * scroll progress z-60, mobile menu z-95. It stays *below* Dialog (z-100) and
+ * Toast (z-120), which are modal surfaces a navigation should not paint over.
+ */
+export const CURTAIN_Z_INDEX = 96
 export const CURTAIN_ATTR = 'data-page-curtain'
 
 export interface CurtainArgs {

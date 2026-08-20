@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { useId, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useId, useRef, useState, type ReactNode, type RefObject } from 'react'
 
 import { useModalLock } from './modal'
 
@@ -50,8 +50,62 @@ export function Dialog(props: DialogProps) {
   if (open && !armed) setArmed(true)
 
   useModalLock({ open, onClose, panelRef })
+  useLenisPrevent({ open, panelRef })
 
   if (!armed) return null
 
   return <DialogSurface {...props} uid={uid} panelRef={panelRef} />
+}
+
+/**
+ * Hands the mouse wheel back to the dialog.
+ *
+ * Lenis owns scrolling on every route and calls `preventDefault()` on every
+ * wheel event it sees — while running *and* while stopped, which is the state
+ * `useModalLock` leaves it in. It skips an event only when the composed path
+ * crosses `data-lenis-prevent`, so the panel (which is the scroller here, capped
+ * at `max-h-[85vh]`) has to carry the attribute or a long dialog cannot be
+ * scrolled by wheel at all.
+ *
+ * Set from here rather than written into the markup because the surface is a
+ * lazy `next/dynamic` chunk: `Dialog` owns the ref, and on a first open the
+ * panel is still a network round-trip away, so this polls for it the way
+ * `useModalLock` polls for the same node.
+ */
+function useLenisPrevent({
+  open,
+  panelRef,
+}: {
+  open: boolean
+  panelRef: RefObject<HTMLDivElement | null>
+}): void {
+  useEffect(() => {
+    if (!open) return
+
+    let frame = 0
+    let attempts = 0
+    let marked: HTMLElement | null = null
+
+    const attach = (): void => {
+      const panel = panelRef.current
+      if (!panel) {
+        attempts += 1
+        if (attempts > 90) return
+        frame = window.requestAnimationFrame(attach)
+        return
+      }
+      // The overlay when it is there — one attribute then covers the panel and
+      // anything else that layer may hold — otherwise the panel itself.
+      const target = panel.closest<HTMLElement>('[data-ui-overlay="dialog"]') ?? panel
+      if (target.hasAttribute('data-lenis-prevent')) return
+      target.setAttribute('data-lenis-prevent', '')
+      marked = target
+    }
+    frame = window.requestAnimationFrame(attach)
+
+    return () => {
+      window.cancelAnimationFrame(frame)
+      marked?.removeAttribute('data-lenis-prevent')
+    }
+  }, [open, panelRef])
 }

@@ -119,7 +119,11 @@ export function MediaDetails({ item, projects, onClose, onSaved, onDeleted }: Me
         </button>
       </header>
 
-      <div className="flex-1 overflow-y-auto">
+      {/* `data-lenis-prevent`: Lenis owns the wheel on every route, admin
+          included, and calls `preventDefault()` on it. This drawer is not a
+          modal — nothing stops Lenis while it is open — so without the attribute
+          the metadata below the preview is unreachable by wheel. */}
+      <div data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto">
         <div className="relative aspect-4/3 w-full border-b border-line bg-surface-alt">
           {item.kind === 'video' ? (
             <video

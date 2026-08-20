@@ -65,8 +65,17 @@ export function Dialog({
   return createPortal(
     // `data-ui-overlay` keeps this layer out of the inert sweep the lock runs
     // over the rest of the document.
+    //
+    // `data-lenis-prevent` is what makes a mouse wheel work in here at all.
+    // Lenis owns scrolling on every route (admin included) and calls
+    // `preventDefault()` on every wheel it sees — while running *and* while
+    // stopped, which is exactly the state `useModalLock` puts it in. Lenis skips
+    // an event whose composed path crosses this attribute, so marking the
+    // outermost layer hands the wheel back to this overlay and to every scroller
+    // nested inside it (the panel body included).
     <div
       data-ui-overlay="dialog"
+      data-lenis-prevent
       className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 sm:p-8"
     >
       <div
@@ -84,11 +93,17 @@ export function Dialog({
         tabIndex={-1}
         className={cn(
           'relative my-auto flex w-full flex-col border border-line bg-canvas focus:outline-none',
+          // Capped to the viewport minus the overlay's own padding, so header and
+          // footer stay pinned and only the body between them scrolls. Without
+          // this the panel grows to its content — a 180-row media list pushed the
+          // footer, and with it the primary action, thousands of pixels below the
+          // fold.
+          'max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)]',
           WIDTHS[width],
           className,
         )}
       >
-        <header className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
+        <header className="flex shrink-0 items-start justify-between gap-4 border-b border-line px-5 py-4">
           <div className="min-w-0">
             <h2 id={`${uid}-title`} className="font-display text-[1.375rem] font-normal leading-tight">
               {title}
@@ -112,7 +127,7 @@ export function Dialog({
         <div className={cn('min-h-0 flex-1 overflow-y-auto px-5 py-5', bodyClassName)}>{children}</div>
 
         {footer ? (
-          <footer className="flex flex-wrap items-center justify-end gap-2 border-t border-line px-5 py-4">
+          <footer className="flex shrink-0 flex-wrap items-center justify-end gap-2 border-t border-line px-5 py-4">
             {footer}
           </footer>
         ) : null}
