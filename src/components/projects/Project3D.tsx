@@ -21,14 +21,20 @@
  * fullscreen the rail is off-screen — the stage is the fullscreen element — so
  * that one case, and only that case, draws an exit control over the picture.
  *
- * AUTO EXPLORE walks the scene's camera waypoints on a GSAP timeline that writes
- * into `progressRef` — never into React state, so the walk costs no renders.
+ * AUTO EXPLORE is a toggle, not a schedule. This component owns one boolean and
+ * hands it to `InteriorScene`; in orbit mode that mounts `CameraPath` with
+ * `driver="tour"`, which runs the authored legs and holds on its own clock
+ * (`createTourClock`, and the `TOUR_LEG_SECONDS` / `TOUR_HOLD_SECONDS` constants
+ * beside it in `@/lib/three/camera-path`) and mutates the camera per frame —
+ * never React state, so the walk costs no renders. Nothing here drives it: this
+ * file used to run a second, parallel GSAP timeline writing into `progressRef`,
+ * which the tour driver never reads. `progressRef` survives only so "đặt lại góc
+ * nhìn" can put the parameter back to zero as the scene remounts.
  */
 
 import dynamic from 'next/dynamic'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { gsap, registerGsap } from '@/animations/gsap'
 import { useReveal } from '@/animations/reveal'
 import { Button } from '@/components/ui/Button'
 import { trackEvent } from '@/lib/analytics'
@@ -42,11 +48,6 @@ const InteriorScene = dynamic(
   () => import('@/components/three/InteriorScene').then((m) => m.InteriorScene),
   { ssr: false },
 )
-
-/** Seconds spent travelling between two waypoints at animationSpeed = 1. */
-const LEG_SECONDS = 4.5
-/** Pause on arrival, so a waypoint reads as a composed view rather than a fly-by. */
-const HOLD_SECONDS = 1.1
 
 export interface Project3DProps {
   scene: SceneConfig | null
@@ -77,17 +78,6 @@ function waypointLabels(scene: SceneConfig): string[] {
   return named.length >= 2 ? named : []
 }
 
-/** Normalised 0..1 stops for the timeline, one per waypoint. */
-function waypointStops(scene: SceneConfig): number[] {
-  const points = scene.waypoints
-  if (points.length < 2) return [0, 1]
-  return points.map((point, i) => {
-    const at = point.at
-    if (typeof at === 'number' && Number.isFinite(at)) return Math.min(1, Math.max(0, at))
-    return i / (points.length - 1)
-  })
-}
-
 export function Project3D({
   scene,
   fallbackImage,
@@ -98,8 +88,9 @@ export function Project3D({
 }: Project3DProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
+  // Handed to `InteriorScene` for the scroll driver's sake and reset by "đặt lại
+  // góc nhìn"; the orbit-mode tour driver keeps its own clock and never reads it.
   const progressRef = useRef(0)
-  const timelineRef = useRef<gsap.core.Timeline | null>(null)
   const openedRef = useRef(false)
   const interactedRef = useRef(false)
 
@@ -108,55 +99,6 @@ export function Project3D({
   const [sceneKey, setSceneKey] = useState(0)
 
   useReveal(sectionRef, { variant: 'revealUp' })
-
-  const killTimeline = useCallback((): void => {
-    timelineRef.current?.kill()
-    timelineRef.current = null
-  }, [])
-
-  /* ------------------------------- auto explore ------------------------------ */
-
-  useEffect(() => {
-    if (!autoExplore || !scene) return
-    registerGsap()
-
-    const stops = waypointStops(scene)
-    const speed = scene.animationSpeed > 0 ? scene.animationSpeed : 1
-    const proxy = { value: progressRef.current }
-    const write = (): void => {
-      progressRef.current = proxy.value
-    }
-
-    const timeline = gsap.timeline({ repeat: -1, onUpdate: write })
-    let previous = proxy.value
-
-    for (const stop of stops) {
-      const distance = Math.abs(stop - previous) || 0.001
-      timeline
-        .to(proxy, {
-          value: stop,
-          duration: (LEG_SECONDS * distance) / speed,
-          ease: 'power1.inOut',
-          onUpdate: write,
-        })
-        .to({}, { duration: HOLD_SECONDS / speed })
-      previous = stop
-    }
-
-    // Close the loop back to the first stop so the repeat does not snap.
-    timeline.to(proxy, {
-      value: stops[0] ?? 0,
-      duration: LEG_SECONDS / speed,
-      ease: 'power1.inOut',
-      onUpdate: write,
-    })
-
-    timelineRef.current = timeline
-    return () => {
-      timeline.kill()
-      if (timelineRef.current === timeline) timelineRef.current = null
-    }
-  }, [autoExplore, scene])
 
   /* -------------------------------- fullscreen ------------------------------- */
 
@@ -218,13 +160,13 @@ export function Project3D({
   }, [payload])
 
   const handleReset = useCallback((): void => {
-    killTimeline()
     setAutoExplore(false)
     progressRef.current = 0
     // Remounting is the only reliable way to put orbit controls back to their
-    // authored starting frame.
+    // authored starting frame — and it is what ends the tour clock, which lives
+    // inside `CameraPath` rather than out here.
     setSceneKey((key) => key + 1)
-  }, [killTimeline])
+  }, [])
 
   if (!scene || scene.mode === 'NONE') return null
 

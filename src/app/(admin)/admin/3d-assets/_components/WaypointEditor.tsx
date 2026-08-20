@@ -12,14 +12,59 @@ import type { CameraWaypoint, Vec3 } from '@/types/content'
 
 import { NumberSlider, SelectRow, Vec3Field } from './controls'
 
+/**
+ * Segment default — matches `DEFAULT_EASE` in `@/lib/three/camera-path`.
+ * `power2.inOut` keeps velocity continuous across a waypoint; an `.out` ease on
+ * every leg would restart the dolly at full speed at each stop.
+ */
+export const DEFAULT_WAYPOINT_EASE = 'power2.inOut'
+
+/**
+ * The only eases an editor may author. Four of them are the studio vocabulary
+ * (docs/REQUIREMENTS.md item 32 — `power2.out`, `power3.out`, `power4.inOut`,
+ * `expo.out`), plus the mid-path default above.
+ *
+ * Linear is deliberately absent: a constant-speed dolly is the one camera idiom
+ * the brief rules out, and it used to sit at the top of this list as
+ * "Tuyến tính". Every value here resolves in `EASINGS` (`camera-path.ts`).
+ */
 const EASES: readonly { value: string; label: string }[] = [
-  { value: 'none', label: 'Tuyến tính' },
-  { value: 'sine.inOut', label: 'Sine in-out' },
-  { value: 'power1.inOut', label: 'Power1 in-out' },
-  { value: 'power2.inOut', label: 'Power2 in-out' },
-  { value: 'power3.inOut', label: 'Power3 in-out' },
-  { value: 'expo.inOut', label: 'Expo in-out' },
+  { value: DEFAULT_WAYPOINT_EASE, label: 'Power2 in-out — mặc định, nối chặng' },
+  { value: 'power2.out', label: 'Power2 out — dừng gọn' },
+  { value: 'power3.out', label: 'Power3 out — giảm tốc điện ảnh' },
+  { value: 'power4.inOut', label: 'Power4 in-out — đối xứng, chậm rãi' },
+  { value: 'expo.out', label: 'Expo out — cập bến nhẹ' },
 ]
+
+/**
+ * Eases that used to be selectable, mapped onto the closest survivor so a row
+ * written before the list was narrowed never renders as an empty `<select>`.
+ * `none` in particular — it was the first entry in the old list — becomes the
+ * default rather than staying linear.
+ */
+const RETIRED_EASES: Readonly<Record<string, string>> = {
+  none: DEFAULT_WAYPOINT_EASE,
+  linear: DEFAULT_WAYPOINT_EASE,
+  'sine.inOut': DEFAULT_WAYPOINT_EASE,
+  'power1.inOut': DEFAULT_WAYPOINT_EASE,
+  'power3.inOut': 'power4.inOut',
+  'expo.inOut': 'expo.out',
+}
+
+/** A stored ease coerced into `EASES`, so the dropdown always has a selection. */
+export function normaliseEase(value: string | null | undefined): string {
+  if (!value) return DEFAULT_WAYPOINT_EASE
+  if (EASES.some((option) => option.value === value)) return value
+  return RETIRED_EASES[value] ?? DEFAULT_WAYPOINT_EASE
+}
+
+/**
+ * Applied once when the scene editor loads a config, so what the dropdown shows
+ * is also what a save writes back.
+ */
+export function normaliseWaypointEases(waypoints: readonly CameraWaypoint[]): CameraWaypoint[] {
+  return waypoints.map((point) => ({ ...point, ease: normaliseEase(point.ease) }))
+}
 
 export interface WaypointEditorProps {
   waypoints: readonly CameraWaypoint[]
@@ -51,7 +96,7 @@ export function WaypointEditor({ waypoints, defaultFov, onCapture, onChange }: W
     const position: Vec3 = last ? last.position : [4, 1.6, 6]
     const target: Vec3 = last ? last.target : [0, 1.2, 0]
     const at = waypoints.length === 0 ? 0 : Math.min(1, (last?.at ?? 0) + 0.25)
-    onChange([...waypoints, { position, target, at, fov: defaultFov, ease: 'power2.inOut' }])
+    onChange([...waypoints, { position, target, at, fov: defaultFov, ease: DEFAULT_WAYPOINT_EASE }])
   }
 
   function sort(): void {
@@ -179,7 +224,7 @@ export function WaypointEditor({ waypoints, defaultFov, onCapture, onChange }: W
               />
               <SelectRow
                 label="Ease"
-                value={point.ease ?? 'power2.inOut'}
+                value={normaliseEase(point.ease)}
                 options={EASES}
                 onChange={(value) => patch(index, { ease: value })}
               />

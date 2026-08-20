@@ -25,6 +25,16 @@ import {
 import { sectionLines, sectionText } from './content'
 import type { HomeSectionProps } from './types'
 
+/**
+ * Seconds between the beats of a band: the photograph, then the name, then the
+ * account of it. Every other section on the page already arrives in that order
+ * because its parts sit at different heights and each `useReveal` triggers on
+ * its own top edge — but a band whose picture and heading share a grid row
+ * shares a trigger line too, and fires them together. This is the delay that
+ * puts the order back where geometry cannot.
+ */
+const BEAT = 0.14
+
 /** `Địa điểm · Diện tích · Năm` — one line, for the bands that only get one. */
 function metaLine(project: ProjectSummary): string {
   return [project.location, formatArea(project.area), project.year ? String(project.year) : null]
@@ -63,12 +73,16 @@ function LeadBand({
   const metaRef = useRef<HTMLDivElement>(null)
   const figureRef = useRef<HTMLDivElement>(null)
 
-  useReveal(headRef, { variant: 'revealUp' })
-  useReveal(metaRef, { variant: 'revealUp', stagger: 0.08 })
-  // Clip the frame, drift the overscanned layer inside it — never both on one
+  // The photograph is beat one and it enters from the edge it occupies: columns
+  // 8–12, bleeding off the right of the screen. The frame carries the entrance,
+  // the overscanned layer inside it carries the drift — never both on one
   // element, or the two transforms fight.
-  useReveal(figureRef, { variant: 'revealClip' })
+  useReveal(figureRef, { variant: 'revealRight' })
   useParallax(figureRef, { strength: 0.45 })
+  // …then the name, then the sentence under it. The head shares row 1 with the
+  // picture, so without `delay` all three landed on the same frame.
+  useReveal(headRef, { variant: 'revealUp', delay: BEAT, stagger: BEAT })
+  useReveal(metaRef, { variant: 'revealUp', stagger: 0.08 })
 
   const href = `/projects/${project.slug}`
 
@@ -79,16 +93,24 @@ function LeadBand({
     // open between them. It also puts the photograph before the dossier once the
     // band stacks, instead of after 800px of type.
     <div className="group/lead grid grid-cols-12 gap-x-8 gap-y-10">
+      {/* `data-reveal-item` on each child, so `useReveal` staggers the three
+          rather than lifting the block as one slab. */}
       <div ref={headRef} data-reveal className="col-span-12 lg:col-span-6 lg:row-start-1">
-        <Label rule>{eyebrow}</Label>
-        <h2 className={cn(DISPLAY, 'mt-8 max-w-[16ch] text-ink')}>
+        <Label data-reveal-item rule>
+          {eyebrow}
+        </Label>
+        <h2 data-reveal-item className={cn(DISPLAY, 'mt-8 max-w-[16ch] text-ink')}>
           {headingLines.map((line) => (
             <span key={line} className="block">
               {line}
             </span>
           ))}
         </h2>
-        {lead.length > 0 ? <p className="u-body-lg mt-7 max-w-[46ch]">{lead}</p> : null}
+        {lead.length > 0 ? (
+          <p data-reveal-item className="u-body-lg mt-7 max-w-[46ch]">
+            {lead}
+          </p>
+        ) : null}
       </div>
 
       {/* Same destination as the dossier below, so it is hidden from assistive
@@ -193,11 +215,14 @@ function PairProject({
   const figureRef = useRef<HTMLDivElement>(null)
   const metaRef = useRef<HTMLDivElement>(null)
 
-  useReveal(figureRef, { variant: 'revealClip' })
-  useParallax(figureRef, { strength: 0.45 })
-  useReveal(metaRef, { variant: 'revealUp', stagger: 0.08 })
-
   const wide = variant === 'wide'
+
+  // The pair is the one place on the page where the composition alternates —
+  // the wide plate holds columns 1–7, the tall one 9–12 — so each enters from
+  // the side it occupies instead of both wiping upward in unison.
+  useReveal(figureRef, { variant: wide ? 'revealLeft' : 'revealRight' })
+  useParallax(figureRef, { strength: 0.45 })
+  useReveal(metaRef, { variant: 'revealUp', delay: BEAT, stagger: 0.08 })
 
   return (
     // The offset IS the composition, but 80px of it made the row 892px tall to

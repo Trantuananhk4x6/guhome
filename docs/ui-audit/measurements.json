@@ -1,0 +1,518 @@
+[
+ {
+  "name": "d-home",
+  "url": "/",
+  "viewport": "1600x1000",
+  "pageHeight": 12348,
+  "overflowing": [
+   "div.absolute.inset-0.will-change-transform",
+   "img.object-cover"
+  ],
+  "sections": [
+   {
+    "key": "HERO",
+    "top": 0,
+    "height": 1000
+   },
+   {
+    "key": "FEATURED_PROJECTS",
+    "top": 1000,
+    "height": 2861
+   },
+   {
+    "key": "IMMERSIVE_PROJECT",
+    "top": 3861,
+    "height": 2508
+   },
+   {
+    "key": "STUDIO",
+    "top": 6369,
+    "height": 830
+   },
+   {
+    "key": "PHILOSOPHY",
+    "top": 7199,
+    "height": 1000
+   },
+   {
+    "key": "SERVICES",
+    "top": 8199,
+    "height": 1574
+   },
+   {
+    "key": "JOURNAL",
+    "top": 9773,
+    "height": 765
+   },
+   {
+    "key": "CTA",
+    "top": 10538,
+    "height": 920
+   },
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 11458,
+    "height": 890
+   }
+  ]
+ },
+ {
+  "name": "d-projects",
+  "url": "/projects",
+  "viewport": "1600x1000",
+  "pageHeight": 34244,
+  "overflowing": [],
+  "sections": [
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 33354,
+    "height": 890
+   }
+  ]
+ },
+ {
+  "name": "d-slug",
+  "url": "/projects/tam-rem-be-tong",
+  "viewport": "1600x1000",
+  "pageHeight": 12238,
+  "overflowing": [],
+  "sections": [
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 11348,
+    "height": 890
+   }
+  ]
+ },
+ {
+  "name": "d-studio",
+  "url": "/studio",
+  "viewport": "1600x1000",
+  "pageHeight": 10230,
+  "overflowing": [],
+  "sections": [
+   {
+    "key": "section.u-gutter.pt-[calc(var(--spacing-section)*0.75)]",
+    "top": 0,
+    "height": 693
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.7)]",
+    "top": 770,
+    "height": 862
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 1742,
+    "height": 1054
+   },
+   {
+    "key": "section.mt-[var(--spacing-section)].bg-espresso",
+    "top": 2906,
+    "height": 642
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 3658,
+    "height": 1687
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.8)]",
+    "top": 5433,
+    "height": 664
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 6207,
+    "height": 1056
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 7373,
+    "height": 1473
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 8956,
+    "height": 274
+   },
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 9340,
+    "height": 890
+   }
+  ]
+ },
+ {
+  "name": "d-services",
+  "url": "/services",
+  "viewport": "1600x1000",
+  "pageHeight": 8563,
+  "overflowing": [],
+  "sections": [
+   {
+    "key": "section.u-gutter.pt-[calc(var(--spacing-section)*0.75)]",
+    "top": 0,
+    "height": 685
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.85)]",
+    "top": 779,
+    "height": 893
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.85)]",
+    "top": 1765,
+    "height": 893
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.85)]",
+    "top": 2751,
+    "height": 893
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.85)]",
+    "top": 3737,
+    "height": 922
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.85)]",
+    "top": 4753,
+    "height": 835
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 5698,
+    "height": 1116
+   },
+   {
+    "key": "section.mt-[var(--spacing-section)].bg-espresso",
+    "top": 6924,
+    "height": 639
+   },
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 7673,
+    "height": 890
+   }
+  ]
+ },
+ {
+  "name": "d-journal",
+  "url": "/journal",
+  "viewport": "1600x1000",
+  "pageHeight": 3857,
+  "overflowing": [],
+  "sections": [
+   {
+    "key": "section.u-gutter.pt-[calc(var(--spacing-section)*0.75)]",
+    "top": 0,
+    "height": 504
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.6)]",
+    "top": 570,
+    "height": 1018
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 1698,
+    "height": 1159
+   },
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 2967,
+    "height": 890
+   }
+  ]
+ },
+ {
+  "name": "d-contact",
+  "url": "/contact",
+  "viewport": "1600x1000",
+  "pageHeight": 2513,
+  "overflowing": [],
+  "sections": [
+   {
+    "key": "section.u-gutter.pt-[calc(var(--spacing-section)*0.75)]",
+    "top": 0,
+    "height": 577
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.6)]",
+    "top": 643,
+    "height": 870
+   },
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 1623,
+    "height": 890
+   }
+  ]
+ },
+ {
+  "name": "m-home",
+  "url": "/",
+  "viewport": "390x844",
+  "pageHeight": 14276,
+  "overflowing": [
+   "div.absolute.inset-0.will-change-transform",
+   "img.object-cover"
+  ],
+  "sections": [
+   {
+    "key": "HERO",
+    "top": 0,
+    "height": 844
+   },
+   {
+    "key": "FEATURED_PROJECTS",
+    "top": 844,
+    "height": 3365
+   },
+   {
+    "key": "IMMERSIVE_PROJECT",
+    "top": 4209,
+    "height": 2511
+   },
+   {
+    "key": "STUDIO",
+    "top": 6721,
+    "height": 1584
+   },
+   {
+    "key": "PHILOSOPHY",
+    "top": 8305,
+    "height": 809
+   },
+   {
+    "key": "SERVICES",
+    "top": 9113,
+    "height": 1336
+   },
+   {
+    "key": "JOURNAL",
+    "top": 10449,
+    "height": 1297
+   },
+   {
+    "key": "CTA",
+    "top": 11746,
+    "height": 734
+   },
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 12480,
+    "height": 1796
+   }
+  ]
+ },
+ {
+  "name": "m-projects",
+  "url": "/projects",
+  "viewport": "390x844",
+  "pageHeight": 35604,
+  "overflowing": [
+   "li.shrink-0.lg:border-line.lg:shrink",
+   "a.group/filter.u-label.relative",
+   "span.lg:pr-4",
+   "li.shrink-0.lg:border-line.lg:shrink",
+   "a.group/filter.u-label.relative",
+   "span.lg:pr-4"
+  ],
+  "sections": [
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 33808,
+    "height": 1796
+   }
+  ]
+ },
+ {
+  "name": "m-slug",
+  "url": "/projects/tam-rem-be-tong",
+  "viewport": "390x844",
+  "pageHeight": 16109,
+  "overflowing": [],
+  "sections": [
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 14313,
+    "height": 1796
+   }
+  ]
+ },
+ {
+  "name": "m-studio",
+  "url": "/studio",
+  "viewport": "390x844",
+  "pageHeight": 15008,
+  "overflowing": [],
+  "sections": [
+   {
+    "key": "section.u-gutter.pt-[calc(var(--spacing-section)*0.75)]",
+    "top": 0,
+    "height": 990
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.7)]",
+    "top": 1055,
+    "height": 230
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 1379,
+    "height": 1457
+   },
+   {
+    "key": "section.mt-[var(--spacing-section)].bg-espresso",
+    "top": 2928,
+    "height": 506
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 3527,
+    "height": 3277
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.8)]",
+    "top": 6878,
+    "height": 201
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 7172,
+    "height": 2043
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 9308,
+    "height": 3416
+   },
+   {
+    "key": "section.u-gutter.mt-[var(--spacing-section)]",
+    "top": 12817,
+    "height": 303
+   },
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 13212,
+    "height": 1796
+   }
+  ]
+ },
+ {
+  "name": "t-home",
+  "url": "/",
+  "viewport": "1024x900",
+  "pageHeight": 10641,
+  "overflowing": [
+   "div.absolute.inset-0.will-change-transform",
+   "img.object-cover"
+  ],
+  "sections": [
+   {
+    "key": "HERO",
+    "top": 0,
+    "height": 900
+   },
+   {
+    "key": "FEATURED_PROJECTS",
+    "top": 900,
+    "height": 2318
+   },
+   {
+    "key": "IMMERSIVE_PROJECT",
+    "top": 3218,
+    "height": 1923
+   },
+   {
+    "key": "STUDIO",
+    "top": 5141,
+    "height": 935
+   },
+   {
+    "key": "PHILOSOPHY",
+    "top": 6076,
+    "height": 900
+   },
+   {
+    "key": "SERVICES",
+    "top": 6976,
+    "height": 1205
+   },
+   {
+    "key": "JOURNAL",
+    "top": 8181,
+    "height": 773
+   },
+   {
+    "key": "CTA",
+    "top": 8954,
+    "height": 828
+   },
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 9782,
+    "height": 858
+   }
+  ]
+ },
+ {
+  "name": "w-home",
+  "url": "/",
+  "viewport": "2560x1100",
+  "pageHeight": 15205,
+  "overflowing": [
+   "div.absolute.inset-0.will-change-transform",
+   "img.object-cover"
+  ],
+  "sections": [
+   {
+    "key": "HERO",
+    "top": 0,
+    "height": 1100
+   },
+   {
+    "key": "FEATURED_PROJECTS",
+    "top": 1100,
+    "height": 3661
+   },
+   {
+    "key": "IMMERSIVE_PROJECT",
+    "top": 4761,
+    "height": 3559
+   },
+   {
+    "key": "STUDIO",
+    "top": 8320,
+    "height": 946
+   },
+   {
+    "key": "PHILOSOPHY",
+    "top": 9266,
+    "height": 1100
+   },
+   {
+    "key": "SERVICES",
+    "top": 10366,
+    "height": 2147
+   },
+   {
+    "key": "JOURNAL",
+    "top": 12513,
+    "height": 779
+   },
+   {
+    "key": "CTA",
+    "top": 13291,
+    "height": 1012
+   },
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 14303,
+    "height": 901
+   }
+  ]
+ }
+]

@@ -98,6 +98,13 @@ export function useImageReveal(ref: RefObject<HTMLElement | null>, opts: ImageRe
   }, [ref, variant, delay, start, once, duration, scaleFrom, config, systemReduced])
 }
 
+/**
+ * Hard ceiling on the drift, as a fraction of the frame's own measured size.
+ * The tween runs from `+travel/2` to `-travel/2`, so 0.2 is the ±10% the brief
+ * asks for — the bound every `ProjectFigure` overscan is cut to match.
+ */
+const MAX_TRAVEL_RATIO = 0.2
+
 export interface ParallaxOptions {
   /** multiplier on the 140px baseline travel; 0.5 is subtle, 2 is dramatic */
   strength?: number
@@ -111,6 +118,11 @@ export interface ParallaxOptions {
  * Drifts the media inside `ref` against the scroll. The wrapper needs
  * `overflow: hidden` and the media should be overscaled (the `Parallax`
  * component does both) or the drift will expose an edge.
+ *
+ * Travel is the smaller of the pixel budget and ±10% of the frame — a fixed
+ * pixel budget is a different effect at every size (140px is 13% of a 1080px
+ * frame and 66% of a 211px one), and past the overscan a caller provides the
+ * matte shows through inside the frame.
  */
 export function useParallax(ref: RefObject<HTMLElement | null>, opts: ParallaxOptions = {}): void {
   const { strength = 1, axis = 'y', scrub = true } = opts
@@ -130,16 +142,28 @@ export function useParallax(ref: RefObject<HTMLElement | null>, opts: ParallaxOp
       return
     }
 
-    const travel = dist(DISTANCE.parallax * strength)
+    const budget = dist(DISTANCE.parallax * strength)
     markReady(el, media)
-    if (travel === 0) return
+    if (budget === 0) return
+
+    /**
+     * Function-based so `invalidateOnRefresh` re-measures on resize instead of
+     * freezing the first layout's numbers — the same element is 534px tall on a
+     * desktop and 211px on a phone, and only the measurement knows which.
+     * A zero measurement means the frame has no layout box yet; fall back to the
+     * budget and let the next refresh clamp it properly.
+     */
+    const travel = (): number => {
+      const size = axis === 'y' ? el.offsetHeight : el.offsetWidth
+      return size > 0 ? Math.min(budget, size * MAX_TRAVEL_RATIO) : budget
+    }
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
         media,
-        { [axis]: travel / 2 },
+        { [axis]: () => travel() / 2 },
         {
-          [axis]: -travel / 2,
+          [axis]: () => -travel() / 2,
           ease: EASE.none,
           scrollTrigger: {
             trigger: el,

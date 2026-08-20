@@ -27,7 +27,7 @@ import { formatTimestamp } from '@/components/admin/media/format'
 
 import { MediaPickerField } from './MediaPickerField'
 import { ScenePreview } from './ScenePreview'
-import { WaypointEditor } from './WaypointEditor'
+import { DEFAULT_WAYPOINT_EASE, WaypointEditor, normaliseWaypointEases } from './WaypointEditor'
 import { readPreviewCamera } from './camera'
 import { ControlGroup, NumberSlider, SelectRow, ToggleRow, Vec3Field } from './controls'
 
@@ -68,7 +68,13 @@ export function SceneEditor({
   onSaved,
   onDeleted,
 }: SceneEditorProps) {
-  const [config, setConfig] = useState<SceneConfig>(scene.config)
+  // Eases are coerced into the selectable set on load (the editor is remounted
+  // per scene by `key`), so the dropdown can never render an empty selection and
+  // a save writes back exactly what was on screen.
+  const [config, setConfig] = useState<SceneConfig>(() => ({
+    ...scene.config,
+    waypoints: normaliseWaypointEases(scene.config.waypoints),
+  }))
   const [name, setName] = useState(scene.name ?? '')
   const [previewMode, setPreviewMode] = useState<'orbit' | 'scroll'>('orbit')
   const [notice, setNotice] = useState<Notice | null>(null)
@@ -118,7 +124,7 @@ export function SceneEditor({
       position: snapshot.position,
       target: snapshot.target,
       fov: snapshot.fov ?? config.fov,
-      ease: 'power2.inOut',
+      ease: DEFAULT_WAYPOINT_EASE,
     }
 
     if (index === null) {

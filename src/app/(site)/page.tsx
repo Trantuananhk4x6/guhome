@@ -22,7 +22,9 @@ export const revalidate = 300
  * line stayed under every search result for the front page.
  */
 export const metadata: Metadata = {
-  title: 'GuHomes — Nội thất và kiến trúc cho khí hậu Sài Gòn',
+  // `absolute` opts out of the root layout's `%s · GuHomes` template — otherwise the
+  // home page prints the brand twice ("GuHomes — … · GuHomes").
+  title: { absolute: 'GuHomes — Nội thất và kiến trúc cho khí hậu Sài Gòn' },
   description:
     'Studio nội thất và kiến trúc tại TP. Hồ Chí Minh. Chúng tôi thiết kế cho độ ẩm 75–80% quanh năm, cho nắng chiều đổ vào một mặt thoáng duy nhất, và cho con hẻm quyết định món đồ nào vào được tới cửa.',
 }

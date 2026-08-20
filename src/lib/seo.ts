@@ -114,12 +114,31 @@ function toIso(value: Date | string | null | undefined): string | undefined {
   return Number.isNaN(date.getTime()) ? undefined : date.toISOString()
 }
 
-/** `Tiêu đề — GuHomes`, without doubling the brand when it is already there. */
+/**
+ * Legacy brand suffixes written into `projects.seo.title` / `articles.seo.title`
+ * by earlier seeds ("… — AN ATELIER", "… — GUHOMES"). Matched case-insensitively
+ * with either dash, and stripped so the brand is printed by the template alone.
+ */
+const BRAND_SUFFIX = /\s*[—-]\s*(?:guhomes|gu homes|an atelier)\s*$/i
+
+/** The mirror case: "GuHomes — <tagline>" passed as a page title (the homepage). */
+const BRAND_PREFIX = /^\s*(?:guhomes|gu homes|an atelier)\s*[—-]\s*/i
+
+/**
+ * The PAGE-level title only — never the brand.
+ *
+ * The root layout declares `title.template = '%s · <brand>'`, which Next applies
+ * to every child page title. Appending the brand here printed it twice, and with
+ * a stored `seo.title` that already carried its own suffix, three times
+ * ("Hơi Thở Hinoki — GUHOMES — GuHomes · GuHomes"). The old guard could not
+ * catch it either: it compared an upper-cased haystack against the mixed-case
+ * `SITE_NAME`, so it never matched.
+ */
 function composeTitle(title: string | undefined): string {
   const raw = title?.trim() ?? ''
-  if (raw.length === 0) return `${SITE_NAME} — ${SITE_TAGLINE}`
-  if (raw.toUpperCase().includes(SITE_NAME)) return raw
-  return `${raw} — ${SITE_NAME}`
+  if (raw.length === 0) return SITE_TAGLINE
+  const stripped = raw.replace(BRAND_SUFFIX, '').replace(BRAND_PREFIX, '').trim()
+  return stripped.length > 0 ? stripped : SITE_TAGLINE
 }
 
 /* ------------------------------- buildMetadata ------------------------------ */

@@ -9,12 +9,18 @@
 
 import { eq } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
+import { headers } from 'next/headers'
 import { z } from 'zod'
 
-import { hashPassword, requireAdmin, revokeUserSessions, signIn, verifyPassword } from '@/server/auth'
+import { hashPassword, requireAdmin, revokeUserSessions, verifyPassword } from '@/server/auth'
+// Not re-exported by `@/server/auth` (§6.6 publishes only the login surface).
+// Imported directly on purpose — see `changeOwnPassword` below for why the
+// re-issue must not go through `signIn()`.
+import { createSession, sha256 } from '@/server/auth/session'
 import { db } from '@/server/db'
 import { auditLogs, revisions, users } from '@/server/db/schema'
 import type { ActionResult } from '@/components/admin/site/contracts'
+import type { UserRole } from '@/types/content'
 
 import { SITE_SETTINGS_ENTITY, SITE_SETTINGS_ID } from './site-settings'
 
@@ -126,7 +132,14 @@ export async function saveSeoDefaults(input: unknown): Promise<ActionResult> {
  *
  * The current password is verified first, then every session for the account is
  * revoked (so a stolen cookie dies with the old password) and a fresh one is
- * issued for this browser.
+ * issued for this browser via `createSession()`.
+ *
+ * Deliberately *not* `signIn()`: that helper runs the failed-login rate limiter
+ * first, so an admin who had mistyped their password a few times in the last ten
+ * minutes would have the re-issue refused — silently, since the result was
+ * discarded — and be logged straight out by their own successful password
+ * change. The credential check `signIn()` would repeat has already happened
+ * above, and this is not a login attempt, so the limiter does not apply.
  */
 export async function changeOwnPassword(input: unknown): Promise<ActionResult> {
   const session = await requireAdmin()
@@ -140,7 +153,7 @@ export async function changeOwnPassword(input: unknown): Promise<ActionResult> {
 
   try {
     const rows = await db
-      .select({ id: users.id, email: users.email, passwordHash: users.passwordHash })
+      .select({ id: users.id, email: users.email, role: users.role, passwordHash: users.passwordHash })
       .from(users)
       .where(eq(users.id, session.userId))
       .limit(1)
@@ -167,8 +180,30 @@ export async function changeOwnPassword(input: unknown): Promise<ActionResult> {
       .where(eq(users.id, user.id))
 
     await revokeUserSessions(user.id)
+
     // Re-issue this browser's session so the admin is not thrown out mid-edit.
-    await signIn(user.email, newPassword)
+    // A failure here leaves the account with no live session at all, so it is
+    // reported rather than swallowed — the new password is already saved.
+    try {
+      const headerList = await headers()
+      const forwarded = headerList.get('x-forwarded-for')?.split(',')[0]?.trim()
+      const ip = forwarded && forwarded.length > 0 ? forwarded : (headerList.get('x-real-ip') ?? 'unknown')
+      const role: UserRole = user.role
+      await createSession(
+        { userId: user.id, email: user.email, role },
+        { userAgent: headerList.get('user-agent'), ipHash: sha256(ip) },
+      )
+    } catch (error) {
+      console.error('[settings/actions] session re-issue after password change failed', error)
+      await audit(session.userId, 'account.password_change', 'user', user.id, {
+        email: user.email,
+        sessionReissued: false,
+      })
+      return {
+        ok: false,
+        error: 'Đã đổi mật khẩu nhưng không cấp lại được phiên. Vui lòng đăng nhập lại bằng mật khẩu mới.',
+      }
+    }
 
     await audit(session.userId, 'account.password_change', 'user', user.id, { email: user.email })
     revalidatePath('/admin/settings')

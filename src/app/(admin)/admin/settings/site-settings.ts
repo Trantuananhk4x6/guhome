@@ -11,16 +11,42 @@
  * below is then a single-row select and this module keeps the same API.
  */
 
-import { and, desc, eq } from 'drizzle-orm'
+import { and, desc, eq, ne, type SQL } from 'drizzle-orm'
 import { cache } from 'react'
 
 import { db } from '@/server/db'
 import { revisions } from '@/server/db/schema'
 import { DEFAULT_SEO, type SeoDefaults } from '@/components/admin/site/contracts'
 
-/** Stable, reserved id — never collides with a real entity uuid. */
+/**
+ * The pseudo-entity type these rows are filed under.
+ *
+ * `revisions` is otherwise an audit trail of *real* entities — a project, an
+ * article — so this value is a deliberate squatter: it exists only because the
+ * schema is frozen and has nowhere else to put a singleton settings document.
+ * Every `revisions` row carrying it is site settings, never content.
+ *
+ * Consequence, and the reason this is a single exported constant rather than a
+ * string literal at each call site: any query that lists revisions as *edit
+ * history* must exclude it, or the SEO document shows up as a phantom entry in
+ * a project's or article's history. Use `notSiteSettings()` below for that —
+ * do not re-type the string.
+ */
 export const SITE_SETTINGS_ENTITY = 'site_settings'
+
+/** Stable, reserved id — never collides with a real entity uuid. */
 export const SITE_SETTINGS_ID = '00000000-0000-4000-8000-000000000001'
+
+/**
+ * Drop the settings pseudo-entity from a revision-history query:
+ * `.where(and(eq(revisions.entityId, projectId), notSiteSettings()))`.
+ *
+ * No admin screen lists revision history yet, so this currently has no call
+ * site — it exists so the first one that does cannot get it wrong.
+ */
+export function notSiteSettings(): SQL {
+  return ne(revisions.entityType, SITE_SETTINGS_ENTITY)
+}
 
 function readString(source: Record<string, unknown>, key: string, fallback: string): string {
   const value = source[key]

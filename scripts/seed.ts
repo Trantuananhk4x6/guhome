@@ -143,8 +143,8 @@ function loadManifest(): Map<string, ManifestEntry[]> {
 /* ---------------------------------- steps --------------------------------- */
 
 async function seedAdmin(): Promise<string> {
-  const email = process.env.ADMIN_EMAIL ?? 'admin@anatelier.vn'
-  const password = process.env.ADMIN_PASSWORD ?? 'AnAtelier@2026'
+  const email = process.env.ADMIN_EMAIL ?? 'admin@guhomes.vn'
+  const password = process.env.ADMIN_PASSWORD ?? 'GuHomes@2026'
   const existing = await db.select().from(schema.users).where(eq(schema.users.email, email)).limit(1)
   const found = existing[0]
   if (found) {
@@ -153,7 +153,7 @@ async function seedAdmin(): Promise<string> {
   }
   const inserted = await db
     .insert(schema.users)
-    .values({ email, name: 'AN ATELIER Studio', passwordHash: hashPassword(password), role: 'admin' })
+    .values({ email, name: 'GuHomes Studio', passwordHash: hashPassword(password), role: 'admin' })
     .returning({ id: schema.users.id })
   const row = inserted[0]
   if (!row) throw new Error('failed to create admin user')
@@ -192,7 +192,10 @@ async function upsertMedia(entry: ManifestEntry, alt: string, caption: string | 
     .values({
       kind: 'image',
       storageKey: entry.storageKey,
-      url: `/media/${entry.storageKey}-${Math.max(...entry.widths)}.webp`,
+      // The canonical shape is the derivative BASE — no width, no extension.
+      // mediaUrl()/mediaSrcSet() append `-<width>.webp`; writing a concrete file
+      // here pins every consumer to one derivative (see docs/audit/audit-stack-db.md).
+      url: `/media/${entry.storageKey}`,
       width: entry.width,
       height: entry.height,
       bytes: entry.bytes,
@@ -206,6 +209,7 @@ async function upsertMedia(entry: ManifestEntry, alt: string, caption: string | 
     .onConflictDoUpdate({
       target: schema.media.storageKey,
       set: {
+        url: `/media/${entry.storageKey}`,
         width: entry.width,
         height: entry.height,
         bytes: entry.bytes,
@@ -219,6 +223,22 @@ async function upsertMedia(entry: ManifestEntry, alt: string, caption: string | 
   const row = rows[0]
   if (!row) throw new Error(`failed to upsert media ${entry.storageKey}`)
   return row.id
+}
+
+/**
+ * Rotate the reveal variants across projects. A single variant everywhere is the
+ * failure mode the brief calls out (§18: "do not animate every image identically"),
+ * and it also left revealLeft/revealRight with no call site anywhere on the site.
+ */
+const WIDE_REVEALS = ['revealClip', 'revealLeft', 'revealScale', 'revealRight'] as const
+const FULL_REVEALS = ['revealParallax', 'revealUp', 'revealScale', 'revealClip'] as const
+
+function wideReveal(order: number): string {
+  return WIDE_REVEALS[Math.abs(order) % WIDE_REVEALS.length] ?? 'revealClip'
+}
+
+function fullReveal(order: number): string {
+  return FULL_REVEALS[Math.abs(order) % FULL_REVEALS.length] ?? 'revealParallax'
 }
 
 function blocksFor(
@@ -238,7 +258,7 @@ function blocksFor(
     type: 'TEXT',
     data: { heading: seed.subtitle, body: seed.description[0] ?? seed.summary, width: 'narrow', align: 'left' },
   })
-  if (second) blocks.push({ type: 'IMAGE', data: { mediaId: second, width: 'wide', reveal: 'revealClip' } })
+  if (second) blocks.push({ type: 'IMAGE', data: { mediaId: second, width: 'wide', reveal: wideReveal(seed.order) } })
   if (sceneId) blocks.push({ type: 'SCENE_3D', data: { sceneId, height: 'screen', label: 'Khám phá không gian' } })
   if (seed.description[1]) {
     blocks.push({ type: 'TEXT', data: { body: seed.description[1], width: 'narrow', align: 'left' } })
@@ -247,7 +267,7 @@ function blocksFor(
   if (seed.description[2]) {
     blocks.push({ type: 'QUOTE', data: { quote: seed.description[2].split('. ')[0] + '.', attribution: 'AN ATELIER' } })
   }
-  if (third) blocks.push({ type: 'IMAGE', data: { mediaId: third, width: 'full', reveal: 'revealParallax' } })
+  if (third) blocks.push({ type: 'IMAGE', data: { mediaId: third, width: 'full', reveal: fullReveal(seed.order) } })
   if (seed.description[3]) {
     blocks.push({ type: 'TEXT', data: { body: seed.description[3], width: 'narrow', align: 'left' } })
   }
@@ -361,7 +381,7 @@ async function seedProjects(
         duration: seed.duration,
         style: seed.style,
         services: seed.services,
-        seo: { title: `${seed.title} — AN ATELIER`, description: seed.seoDescription },
+        seo: { title: seed.title, description: seed.seoDescription },
         publishedAt: new Date(),
       })
       .onConflictDoUpdate({
@@ -656,7 +676,7 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
         authorId: adminId,
         readingMinutes: 4,
         publishedAt: new Date(Date.now() - i * 86_400_000 * 9),
-        seo: { title: `${a.title} — AN ATELIER`, description: a.excerpt.slice(0, 155) },
+        seo: { title: a.title, description: a.excerpt.slice(0, 155) },
       })
       .onConflictDoUpdate({
         target: schema.articles.slug,

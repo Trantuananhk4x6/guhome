@@ -5,9 +5,16 @@
  *
  * The store is filled from the DB-backed `ThemeSettings.motion` by `ScrollProvider`
  * (see `@/animations/scroll`), so the admin theme editor can dial motion down —
- * or off — site-wide without a rebuild. `motionEnabled()` is deliberately a plain
- * function (not a hook) so it can be called from inside `gsap.context()` callbacks
- * and event handlers.
+ * or off — site-wide without a rebuild.
+ *
+ * Two ways to read it, and the choice matters:
+ *   - `useMotionFlag(flag)` / `useReducedMotion()` — **reactive**. Subscribe to the
+ *     store, so a component re-renders when the config or the OS preference lands.
+ *     This is what a component must use to decide whether to animate at all.
+ *   - `motionEnabled(flag)` / `motionIntensity()` / `motionSpeed()` — **snapshots**.
+ *     Plain functions, callable from inside `gsap.context()` callbacks and event
+ *     handlers where a hook cannot go. They never re-render anything, so they must
+ *     not gate mount-time behaviour (see the note on `motionEnabled`).
  */
 
 import { useEffect, useLayoutEffect } from 'react'
@@ -106,6 +113,20 @@ export function motionFlag(config: MotionConfig, systemReduced: boolean, flag: k
 /**
  * `true` when the given motion feature may run right now.
  * Honours the global `enabled` switch and reduced motion before the flag itself.
+ *
+ * **This is a snapshot, not a subscription.** It reads the store once and never
+ * re-renders anything when the answer changes. Use it only from imperative code
+ * that runs at the moment of the decision — an event handler, a `gsap.context()`
+ * callback, a pointer/scroll listener.
+ *
+ * Do **not** use it to gate mount-time behaviour. `reduced` cannot be read during
+ * SSR, so it starts `false`; `ScrollProvider` publishes the OS preference and the
+ * admin config in a layout effect, and a child's own effect runs *before* its
+ * parent's. A component that snapshots `motionEnabled('enabled')` on mount
+ * therefore reads the optimistic default and keeps the animation a
+ * reduced-motion visitor opted out of. Use {@link useMotionFlag} (or
+ * {@link useReducedMotion}) there: they subscribe, so a late publish re-renders
+ * the consumer.
  */
 export function motionEnabled(flag: keyof MotionConfig): boolean {
   const { config, reduced } = useMotionStore.getState()
