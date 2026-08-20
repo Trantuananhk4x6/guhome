@@ -301,7 +301,18 @@ export function Project3D({
       data-reveal
       className={cn('bg-espresso py-[var(--spacing-section)]', className)}
     >
-      <div className="u-gutter mx-auto grid w-full max-w-[110rem] grid-cols-12 gap-x-8 gap-y-9">
+      {/*
+        ROWS SIZED TO THEIR CONTENT. The stage spans both rows of the rail, and
+        with two `auto` tracks the grid hands the stage's surplus height to each
+        of them equally. For a scene that names no camera views — 16 of the 27
+        in the catalogue — the rail then holds an 82px head in a 262px track and
+        a ~100px control stack in another, with 378px of nothing between them.
+        `auto 1fr` gives the head exactly its own height and the remainder to
+        the second track, so the controls sit either on the stage's baseline
+        (a walkable scene, where the view list fills the track above them) or
+        directly under the head (everything else). Neither leaves a hole.
+      */}
+      <div className="u-gutter mx-auto grid w-full max-w-[110rem] grid-cols-12 gap-x-8 gap-y-9 lg:grid-rows-[auto_1fr]">
         {/* Rail, top: what this is and how it answers to a pointer. */}
         <div className="col-span-12 lg:col-span-3 lg:col-start-1 lg:row-start-1">
           <p className="u-label text-canvas/75 flex items-center gap-3">
@@ -319,7 +330,12 @@ export function Project3D({
         </div>
 
         {/* Rail, foot: the walk, then the controls, both on the stage's baseline. */}
-        <div className="col-span-12 flex flex-col gap-9 lg:col-span-3 lg:col-start-1 lg:row-start-2 lg:self-end">
+        <div
+          className={cn(
+            'col-span-12 flex flex-col gap-9 lg:col-span-3 lg:col-start-1 lg:row-start-2',
+            walkable ? 'lg:self-end' : 'lg:self-start',
+          )}
+        >
           {views.length > 0 ? (
             <div>
               <p className="u-label text-canvas/60">Điểm nhìn</p>

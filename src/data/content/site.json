@@ -141,7 +141,7 @@
     {
       "slug": "anh-sang-nhan-tao-theo-lop",
       "title": "Ánh sáng nhân tạo theo lớp",
-      "excerpt": "Một căn phòng chỉ có đèn trần thì cả ngày chỉ có hai lựa chọn, bật hoặc tắt. Bài này viết về bốn lớp ánh sáng, và về lý do phải chia mạch từ lúc tường còn chưa xây.",
+      "excerpt": "Một căn phòng chỉ có đèn trần thì cả ngày có đúng hai trạng thái, bật và tắt. Bốn lớp ánh sáng, mỗi lớp một mạch riêng, và lý do phải chia mạch từ lúc tường còn chưa xây.",
       "tags": ["Ánh sáng", "Kỹ thuật", "Nguyên tắc thiết kế"],
       "content": {
         "nodes": [
@@ -207,7 +207,7 @@
     {
       "slug": "wabi-sabi-trong-can-ho-nho",
       "title": "Wabi-sabi trong căn hộ nhỏ",
-      "excerpt": "Wabi-sabi hay bị rút gọn thành một bảng màu be xám và một chiếc bình gốm méo. Trong sáu mươi mét vuông ở Sài Gòn, nó là chuyện chấp nhận dấu vết thật và từ chối thứ dấu vết được sản xuất sẵn.",
+      "excerpt": "Wabi-sabi hay bị rút gọn thành một bảng màu be xám và một chiếc bình gốm méo. Trong sáu mươi mét vuông ở Sài Gòn, phần khó nhất là giữ lại một mảng tường trống và một dải sàn dọc lối đi chính.",
       "tags": ["Wabi-sabi", "Căn hộ", "Triết lý thiết kế"],
       "content": {
         "nodes": [
@@ -273,7 +273,7 @@
     {
       "slug": "tu-ban-ve-den-ban-giao",
       "title": "Từ bản vẽ đến bàn giao",
-      "excerpt": "Bảy đến chín tháng cho một căn hộ, tính từ buổi gặp đầu tiên. Con số ấy không rút ngắn được bằng cách vẽ nhanh hơn, chỉ rút ngắn được bằng cách quyết định sớm hơn.",
+      "excerpt": "Bảy đến chín tháng cho một căn hộ, tính từ buổi gặp đầu tiên. Sáu giai đoạn, ba mốc phải chốt đúng hạn, và một quyết định lùi hai tuần ở giai đoạn concept thường tốn bốn tuần ngoài công trường.",
       "tags": ["Quy trình", "Studio", "Thi công"],
       "content": {
         "nodes": [
@@ -337,7 +337,7 @@
     {
       "slug": "vat-lieu-ben-vung-cho-bep",
       "title": "Vật liệu bền vững cho bếp",
-      "excerpt": "Một căn bếp Việt thường bị thay sau tám đến mười hai năm, và thứ hỏng trước không phải mặt đá mà là ray trượt với thùng tủ nở ẩm. Bền vững, ở đây, đo bằng năm và bằng chuyện có sửa được từng phần hay không.",
+      "excerpt": "Một căn bếp Việt thường bị thay sau tám đến mười hai năm. Ray trượt và bản lề chiếm chưa tới 6% giá trị căn bếp, và chính chúng quyết định năm nào cả dãy tủ bị dỡ đi.",
       "tags": ["Bếp", "Vật liệu", "Bền vững"],
       "content": {
         "nodes": [

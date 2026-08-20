@@ -522,9 +522,13 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
     {
       key: 'HERO',
       content: {
-        eyebrow: 'AN ATELIER · TP. Hồ Chí Minh',
-        title: 'Ba giờ chiều,\nnhà mới nói thật.',
-        body: 'Căn hộ vừa nhận bàn giao thì căn nào cũng vang. Nói một câu là bốn bức tường trả lại nguyên câu đó, và phải đến tấm rèm đầu tiên, cái tủ gỗ đầu tiên, nó mới thôi nghe như một công trình đang xây.',
+        // No studio name here. The header logo renders the brand from the theme
+        // row a few pixels above this label, so a name typed into the copy is a
+        // second source of truth that goes stale the moment the brand is edited
+        // — which is exactly what it did.
+        eyebrow: 'Nội thất · TP. Hồ Chí Minh',
+        title: 'Căn hộ trống\nnào cũng vang.',
+        body: 'Người đi nhận nhà nói một câu, bốn bức tường trả lại nguyên câu đó. Tấm rèm đầu tiên và cái tủ gỗ đầu tiên vào nhà thì tiếng vọng lắng xuống.',
         cta: { label: 'Xem 105 công trình', href: '/projects' },
       },
     },
@@ -532,16 +536,16 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       key: 'FEATURED_PROJECTS',
       content: {
         label: 'Từ 76 đến 320 m²',
-        heading: 'Một căn nhà,\nnên xem chỗ nào?',
-        body: 'Không phải màu gỗ, mà là chỗ mỗi căn bị bó lại — một cây cột không dời được, một mặt kính quay sai hướng — và cách nó lách ra khỏi chỗ đó.',
+        heading: 'Xem hai lần\ntrong một ngày.',
+        body: 'Ba căn dưới đây ở Thủ Đức, một ở Quận 7, một ở Quận 3. Lần thứ nhất vào giờ nắng gắt nhất, để biết mặt nào phải che. Lần thứ hai sau bảy giờ tối, khi người trong nhà đã về và bật hết đèn.',
       },
     },
     {
       key: 'STUDIO',
       content: {
         label: 'Công trình 2021–2026',
-        heading: 'Hai con số\nkhông ai nhắc.',
-        body: 'Gần như lần nào cũng vậy, buổi đo đầu tiên diễn ra trong một căn hộ chưa có ai ở, sàn còn phủ bạt, cửa sổ còn dán nilon xanh. Chủ nhà mang theo một danh sách đồ đạc dài hơn số mét vuông có thật.\n\nMuốn biết cái tủ có vào được nhà hay không thì phải đo hai thứ không nằm trong bất kỳ bộ hồ sơ nào. Lòng thang máy chở hàng. Bề rộng con hẻm ở chỗ hẹp nhất. Hai con số đó quyết định món nào được đóng liền khối, món nào phải cắt làm ba rồi ghép lại ngay giữa phòng khách trước mặt chủ nhà. Cái hẻm không có trong hợp đồng, nhưng nó vẽ lại cái tủ nhiều hơn bất cứ ai trong studio.',
+        heading: 'Hai con số\nđo trước tiên.',
+        body: 'Buổi đo đầu tiên gần như lần nào cũng diễn ra trong một căn hộ chưa có ai ở, sàn còn phủ bạt, cửa sổ còn dán nilon xanh. Chủ nhà mang theo một danh sách đồ đạc dài hơn số mét vuông có thật.\n\nHai con số đó là lòng thang máy chở hàng và khúc quẹo ở chiếu nghỉ cầu thang bộ. Chúng tôi đo cả hai bằng thước dây ngay trong buổi đầu, trước khi vẽ dòng nào. Cái tủ áo dài ba mét vì thế được đóng liền khối, hoặc cắt làm ba rồi ghép lại ngay giữa phòng khách, giữa lúc cả nhà đứng xem.',
         stats: [
           { label: 'Căn hộ', value: '41' },
           { label: 'Nhà phố và biệt thự', value: '23' },
@@ -552,38 +556,38 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
     },
     {
       key: 'SERVICES',
-      content: { label: '01–05', heading: 'Mười hai mét vuông\ncũng là một công trình.' },
+      content: { label: '01–05', heading: 'Công trình nhỏ nhất\nrộng mười hai mét vuông.' },
     },
     {
       key: 'IMMERSIVE_PROJECT',
       content: {
         label: 'Bốn điểm dừng',
-        heading: 'Đi chậm lại.',
-        body: 'Ảnh chụp đưa cả căn phòng cho bạn trong một giây, còn ngoài đời thì không ai xem nhà kiểu đó. Cuộn xuống, đi lại đúng quãng đường của một người vừa mở cửa lần đầu.',
+        heading: 'Ai cũng dừng\nở tiền sảnh.',
+        body: 'Mắt vừa từ nắng ngoài đường bước vào còn mất mấy giây để chỉnh, nên người ta nhìn cái tủ giày trước khi nhìn phòng khách. Cuộn xuống là đi lại đúng quãng đường ấy, dừng bốn lần, lần cuối ở chi tiết vật liệu.',
       },
     },
     {
       key: 'PHILOSOPHY',
       content: {
         label: 'Sau ngày bàn giao',
-        heading: 'Tay vịn sẫm lại\ntrước phần còn lại.',
-        body: 'Sau chừng hai năm, mặt bàn ăn và tay vịn cầu thang sẽ đậm hơn hẳn phần gỗ nằm khuất trong bóng tủ, và không ai chỉnh cho đều lại được nữa. Đó không phải hỏng. Hỏng là khi một cánh tủ gỗ thịt cao 2,4 mét tự tìm ra đường cong của nó ngay trong hai mùa mưa đầu tiên, trong khi tấm MDF lõi xanh phủ veneer óc chó bên cạnh vẫn phẳng lì, nên gỗ thịt ở đây chỉ được đi vào tay vịn và mép bàn.',
+        heading: 'Chúng tôi quay lại\nsau sáu tháng.',
+        body: 'Thứ đáng xem nhất hôm đó là những món đã bị dời chỗ. Cái ghế gỗ kéo ra khỏi bàn ăn để ngồi gần cửa sổ hơn, cái đèn bàn chuyển sang phía tay trái. Chúng tôi chép lại hết, và bản vẽ cho căn tiếp theo bắt đầu từ mấy dòng ấy.',
       },
     },
     {
       key: 'JOURNAL',
       content: {
         label: 'Ghi chép xưởng',
-        heading: 'Nhiều số,\nít hình.',
-        body: 'Trong này gần như không có ảnh đẹp, chỉ có những con số phải nhớ trước khi ký duyệt một bảng vật liệu. Mỗi bài bốn phút, và không bài nào viết cho người đang tìm cảm hứng.',
+        heading: 'Những câu\nchủ nhà hay hỏi.',
+        body: 'Một căn hộ mất bao lâu từ buổi gặp đầu tới ngày dọn vào. Cái bếp này bao nhiêu năm thì phải thay. Trong này có câu trả lời cho cả hai, con số đi trước, phần vì sao để xuống dưới.',
       },
     },
     {
       key: 'CTA',
       content: {
         label: 'Trả lời trong 24 giờ làm việc',
-        heading: 'Chưa chắc chắn\ncũng cứ nhắn.',
-        body: 'Có người nhắn khi vẫn đang cân nhắc giữa hai căn hộ, có người nhắn khi thợ đã vào công trình được ba tuần. Kiểu đầu dễ hơn nhiều.',
+        heading: 'Cứ nhắn\nlúc phân vân.',
+        body: 'Có người nhắn lúc còn đang xem hai căn hộ. Có người nhắn khi thợ đã vào công trình được ba tuần. Chúng tôi đọc tin nhắn vào buổi sáng, trước khi ra công trường, và trả lời hết trong ngày hôm đó.',
         buttonLabel: 'Liên hệ',
         href: '/contact',
       },

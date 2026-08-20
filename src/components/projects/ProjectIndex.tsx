@@ -8,13 +8,13 @@
  * what reads as machine-made, and it also made the index 88 viewports long
  * while leaving half of every band empty.
  *
- * The run is now phrased. Four treatments cycle by index position, so the
- * rhythm is data-driven and never names a project:
+ * The run is now phrased. Four treatments, chosen band by band from the
+ * projects themselves, so the rhythm is data-driven and never names one:
  *
  *   PAIR   two projects, asymmetric — a 7-column landscape against a
  *          4-column portrait dropped 96px so they share no edge.   (medium)
  *   BLEED  one project at 100vw, 21:8, caption set into the picture. (sparse)
- *   LIST   four projects as index rows — ordinal, name, one line of
+ *   LIST   three to six projects as index rows — ordinal, name, one line of
  *          subtitle, location · area · year, a 93px thumbnail, arrow. (dense)
  *   SOLO   one project, centred, 16:10, caption beneath.        (the exhale)
  *
@@ -22,14 +22,16 @@
  * loudest beat (610px for one project) is roughly five times the quietest
  * (~126px per project in a list row).
  *
- * THE PHRASE IS 19 PROJECTS, NOT 8. A four-step cycle over 104 projects is
- * thirteen identical repeats of pair → bleed → list → solo, which is a longer
- * template rather than an absence of one: the reader learns the loop inside two
- * screens and then confirms it twelve more times. The score is written out
- * instead, eight bands long, with the list appearing at three different lengths
- * (4, 3, 5) and the two medium bands separated by a different number of
- * projects each time round. 19 shares no factor with 8, 12 or 4, so nothing in
- * the run ever lines up with anything else in it.
+ * THE PHRASING IS NOT A SCORE ANY MORE. It used to be eight beats written out
+ * and cycled — `pair bleed list solo pair list bleed list` — and although the
+ * *sizes* staggered (19 projects a cycle against 8 bands), the sequence of
+ * treatments is the score, and a loop of eight repeats five and a half times
+ * across 104 projects. It is chosen band by band now, out of whatever is still
+ * legal after the previous band, resolved by a number read off the projects
+ * standing at the cursor. `indexScore.ts` holds it, alone and pure, so the
+ * sequence it produces for the real catalogue can be printed and measured
+ * without a browser. On today's 104 it draws 45 bands with no two neighbours
+ * sharing a treatment, no two quiet bands adjacent, and no period at all.
  *
  * THE GAP IS PART OF THE SCORE. Every band used to be 70px from its neighbour.
  * The full-bleed plate is the only treatment that leaves the gutter, so its two
@@ -46,7 +48,8 @@ import { ArrowUpRightIcon } from '@/components/ui/icons'
 import { cn, formatArea, pad2 } from '@/lib/utils'
 import type { ProjectSummary } from '@/types/content'
 
-import { BAND, BAND_GAP, DISPLAY_SM, DISPLAY_XS, SCRIM_B, SECTION_GAP } from './composition'
+import { BAND, BAND_GAP, DISPLAY_SM, SCRIM_B, SECTION_GAP } from './composition'
+import { phraseIndex, type Band } from './indexScore'
 import { ProjectCard } from './ProjectCard'
 import { ProjectFigure } from './ProjectFigure'
 
@@ -55,67 +58,6 @@ export interface ProjectIndexProps {
   /** Editorial number printed against `projects[0]`. The lead plate is 01. */
   startIndex?: number
   className?: string
-}
-
-/* ------------------------------- phrasing --------------------------------- */
-
-type BandKind = 'pair' | 'bleed' | 'list' | 'solo'
-
-interface Phrase {
-  kind: BandKind
-  /** Projects this band consumes. `list` deliberately varies. */
-  size: number
-}
-
-/**
- * The written-out score. Read the densities down the right-hand side and no two
- * neighbours match, including across the wrap from the last band to the first.
- */
-const SCORE: readonly Phrase[] = [
-  { kind: 'pair', size: 2 }, //  medium
-  { kind: 'bleed', size: 1 }, // sparse
-  { kind: 'list', size: 4 }, //  dense
-  { kind: 'solo', size: 1 }, //  quiet
-  { kind: 'pair', size: 2 }, //  medium
-  { kind: 'list', size: 3 }, //  dense
-  { kind: 'bleed', size: 1 }, // sparse
-  { kind: 'list', size: 5 }, //  dense
-]
-
-interface Band {
-  kind: BandKind
-  items: ProjectSummary[]
-  /** Editorial number of `items[0]`. */
-  from: number
-}
-
-/**
- * Slices the run into bands. A short list — a filtered category with three
- * projects — simply stops mid-score; every band renders only what it was
- * handed, so a phrase is never padded out with an empty column. The one case
- * that would leave a hole is a `pair` that receives a single project, which
- * draws a seven-column landscape with five empty columns beside it. That band
- * becomes a `bleed` — not a `solo`, which is what I wrote first: `pair` only
- * ever follows `solo` or `list` in the score, so the solo substitution put two
- * quiet bands back to back at the end of the run, which is exactly the
- * adjacency the score exists to prevent. A full-bleed plate closes the index on
- * its loudest single gesture and can never repeat its neighbour.
- */
-function phrase(projects: readonly ProjectSummary[], startIndex: number): Band[] {
-  const bands: Band[] = []
-  let cursor = 0
-  let step = 0
-
-  while (cursor < projects.length) {
-    const beat = SCORE[step % SCORE.length] ?? { kind: 'list' as const, size: 4 }
-    const items = projects.slice(cursor, cursor + beat.size)
-    const kind: BandKind = beat.kind === 'pair' && items.length < 2 ? 'bleed' : beat.kind
-    bands.push({ kind, items, from: startIndex + cursor })
-    cursor += items.length
-    step += 1
-  }
-
-  return bands
 }
 
 /**
@@ -250,7 +192,7 @@ function BleedBand({ items, from }: { items: ProjectSummary[]; from: number }) {
 
         <div className="u-gutter mt-5 flex flex-col gap-2.5 md:hidden">
           <span className="u-label text-accent">{pad2(from)}</span>
-          <p className={cn(DISPLAY_XS, 'text-ink')}>{project.title}</p>
+          <p className={cn(DISPLAY_SM, 'text-ink')}>{project.title}</p>
           {project.subtitle ? (
             <p className="text-muted text-sm leading-relaxed">{project.subtitle}</p>
           ) : null}
@@ -286,7 +228,7 @@ function IndexRow({ project, index }: { project: ProjectSummary; index: number }
 
         <h3
           className={cn(
-            DISPLAY_XS,
+            DISPLAY_SM,
             'text-ink group-hover:text-accent col-span-9 transition-colors duration-500 md:col-span-4',
           )}
         >
@@ -378,7 +320,7 @@ function BandFrame({ band }: { band: Band }) {
 
 export function ProjectIndex({ projects, startIndex = 1, className }: ProjectIndexProps) {
   if (projects.length === 0) return null
-  const bands = phrase(projects, startIndex)
+  const bands = phraseIndex(projects, startIndex)
 
   return (
     <div className={cn('flex flex-col', className)}>

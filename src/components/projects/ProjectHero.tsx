@@ -22,7 +22,7 @@ import { mediaUrl } from '@/lib/media'
 import { cn, formatArea } from '@/lib/utils'
 import type { MediaRef, ProjectDetail, SceneConfig } from '@/types/content'
 
-import { DISPLAY_XL, SCRIM_B } from './composition'
+import { DISPLAY_LG, SCRIM_B } from './composition'
 
 /** Three/R3F never reaches the server bundle — nor the projects index route. */
 const InteriorScene = dynamic(
@@ -90,7 +90,7 @@ function HeroTitle({
     <div className="grid grid-cols-12 items-end gap-x-8 gap-y-10">
       <div ref={liveRef} data-reveal className="col-span-12 flex flex-col gap-6 lg:col-span-7">
         <p className="u-label text-canvas/70">{eyebrow}</p>
-        <h1 className={cn(DISPLAY_XL, 'text-canvas max-w-[13ch]')}>{title}</h1>
+        <h1 className={cn(DISPLAY_LG, 'text-canvas max-w-[13ch]')}>{title}</h1>
         {/* The seed writes the subtitle into the eyebrow as well, so on most
             projects these two lines are the same string. Printing it twice is
             not a composition, it is a duplicate. */}

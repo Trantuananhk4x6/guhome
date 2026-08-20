@@ -13,7 +13,7 @@ import { useTextReveal } from '@/animations/text'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
 
-import { DISPLAY } from './composition'
+import { DISPLAY_LG } from './composition'
 
 export interface ProjectCtaProps {
   heading?: string
@@ -40,7 +40,7 @@ export function ProjectCta({
     <section className={cn('bg-espresso py-[var(--spacing-section)]', className)}>
       <div className="u-gutter mx-auto grid w-full max-w-[110rem] grid-cols-1 items-end gap-10 lg:grid-cols-12 lg:gap-x-8">
         <div className="lg:col-span-6">
-          <h2 ref={headingRef} data-reveal className={cn(DISPLAY, 'text-canvas max-w-[13ch]')}>
+          <h2 ref={headingRef} data-reveal className={cn(DISPLAY_LG, 'text-canvas max-w-[13ch]')}>
             {heading}
           </h2>
         </div>

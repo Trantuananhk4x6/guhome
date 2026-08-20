@@ -24,20 +24,27 @@ import { ArrowUpRightIcon } from '@/components/ui/icons'
 import { cn, formatArea, pad2 } from '@/lib/utils'
 import type { ProjectSummary } from '@/types/content'
 
-import { DISPLAY, DISPLAY_SM, DISPLAY_XS } from './composition'
+import { DISPLAY, DISPLAY_SM } from './composition'
 import { ProjectFigure } from './ProjectFigure'
 
 /** Retained so `variant="grid"` at existing call sites keeps type-checking. */
 export type ProjectCardVariant = 'grid'
 
-export type ProjectCardSize = 'sm' | 'md' | 'lg'
+/**
+ * Two steps, because the shared scale has two steps that fit a card title: 44px
+ * inside a band and 70px when the card *is* the band. There used to be a third,
+ * `sm`, on a 34px step this file kept privately; the step is gone and no call
+ * site ever asked for it. Two variants that resolve to one size are not two
+ * variants.
+ */
+export type ProjectCardSize = 'md' | 'lg'
 
 export interface ProjectCardProps {
   project: ProjectSummary
   /** 1-based editorial index — rendered as `01`. */
   index?: number
   variant?: ProjectCardVariant
-  /** Type step of the title. `lg` is for a band's lead plate, `sm` for a strip. */
+  /** Type step of the title. `lg` is for a band's lead plate, `md` for a plate inside one. */
   size?: ProjectCardSize
   /** Prints the 35–60 word summary under the meta line. */
   showSummary?: boolean
@@ -50,7 +57,6 @@ export interface ProjectCardProps {
 }
 
 const TITLE: Record<ProjectCardSize, string> = {
-  sm: DISPLAY_XS,
   md: DISPLAY_SM,
   lg: DISPLAY,
 }

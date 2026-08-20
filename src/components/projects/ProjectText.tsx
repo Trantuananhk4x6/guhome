@@ -1,37 +1,48 @@
 'use client'
 
 /**
- * Prose inside a project story — and the block that most often looked like a
- * template, because it always did the same thing: a 62-character column hard
- * against the left gutter with roughly 900px of empty canvas beside it, four
- * times down a page.
+ * Prose inside a project story.
  *
- * Two compositions now, chosen by what the block actually holds:
+ * Every seeded project runs four TEXT blocks — one headed, three plain — and
+ * until now all 105 of them composed them in the same order: heading-in-a-rail,
+ * then a measure right of centre, then one left of centre, then right again.
+ * The order was correct and the *sequence* was the problem: a rule keyed only
+ * to the block's index gives every project the same answer, because every
+ * project has the same indices.
  *
- *   HEADED   the heading sits *beside* the prose in a four-column rail, with
- *            an accent hairline above it. Heading and body across one band,
- *            which is what fills the measure instead of stacking two blocks.
- *   PLAIN    a single centred measure, and nothing else in the band. The
- *            seeded stories put one paragraph in each of these, so the
- *            composition that suits them is a held reading break rather than a
- *            column pinned to one edge — and centring it is the only time this
- *            page centres anything, which is what marks it as a pause.
+ * So the index picks a position inside a phrase, and the project picks which
+ * phrase. `phase` comes from `compositionKey` — the project's own tally of
+ * photographs, services, year and scene — so it is data, it is stable, it names
+ * no slug, and project 106 gets one for free.
  *
- *   LEDE     the plain composition's opening statement — the TEXT block that
- *            follows the hero. Wider column, one step up in size, weighted
- *            left of the band. It is the only body copy on the page set above
- *            17px, which is what makes the paragraphs after it read as the
- *            record rather than as more of the same voice.
+ * FOUR AXES, FOUR READINGS. A single measure can sit left of centre, right of
+ * centre, wide against the second column, or narrow in the eighth. Each phrase
+ * is a permutation, so no axis repeats inside one story and two stories a page
+ * apart never run the same order:
  *
- * `occurrence` shifts the plain measure a column left or right of centre on
- * alternate blocks, so two paragraphs separated by a photograph never land on
- * exactly the same axis.
+ *   phase 0   inner · right · outer · left
+ *   phase 1   left  · outer · right · inner
+ *   phase 2   outer · left  · inner · right
+ *   phase 3   right · inner · left  · outer
  *
- * MEASURE. Every prose column is capped in `ch`, not in columns. The plain path
- * used to hand its paragraphs the whole six-column span with no cap: 720px of
- * 17px type is roughly 90 characters a line, half again the comfortable measure
- * and the widest running text anywhere on the site. Five columns and a 62ch cap
- * bring it back to ~70.
+ * THE RULE MOVES WITH THE AXIS. A measure at `inner` or `outer` is near the
+ * middle of the band, and the full-width hairline above it is what turns the
+ * space either side into a margin rather than a hole. A measure at `left` or
+ * `right` is already anchored to one edge, so the hairline belongs to the
+ * column — a band-wide rule there just draws a line to nowhere.
+ *
+ * TWO HEADED COMPOSITIONS, also by phase. `rail` sets the heading in four
+ * columns under a band-wide hairline with the prose beside it; `facing` indents
+ * the heading, marks it with a short accent rule, and drops the prose into the
+ * last four columns under a rule of its own.
+ *
+ * LEDE is the block that follows the hero — wider column, one step up in size,
+ * weighted left. It is the only body copy on the page above 17px, which is what
+ * makes the paragraphs after it read as the record rather than as more of the
+ * same voice.
+ *
+ * MEASURE. Every prose column is capped in `ch`, not in columns, so an axis
+ * change never turns into a line-length change.
  */
 
 import { useRef } from 'react'
@@ -49,9 +60,41 @@ export interface ProjectTextProps {
   width?: 'narrow' | 'wide'
   /** 0-based position among the TEXT blocks of this story. */
   occurrence?: number
+  /** The project's composition phase — which phrase this story reads. */
+  phase?: number
   /** This block opens the story — it is the first thing after the hero. */
   lede?: boolean
   className?: string
+}
+
+/* ---------------------------------- axes ----------------------------------- */
+
+const AXES = {
+  /** Left of centre — the measure the eye returns to. */
+  inner: 'lg:col-span-5 lg:col-start-4',
+  /** Right of centre. */
+  outer: 'lg:col-span-5 lg:col-start-7',
+  /** Wide, against the second column. */
+  left: 'lg:col-span-6 lg:col-start-2',
+  /** Narrow, held in the last third. */
+  right: 'lg:col-span-4 lg:col-start-8',
+} as const
+
+type Axis = keyof typeof AXES
+
+const PHRASES: readonly (readonly Axis[])[] = [
+  ['inner', 'right', 'outer', 'left'],
+  ['left', 'outer', 'right', 'inner'],
+  ['outer', 'left', 'inner', 'right'],
+  ['right', 'inner', 'left', 'outer'],
+]
+
+/** A hairline across the whole band only makes sense under a centred measure. */
+const BAND_RULE: Record<Axis, boolean> = { inner: true, outer: true, left: false, right: false }
+
+function axisFor(phase: number, occurrence: number): Axis {
+  const phrase = PHRASES[phase % PHRASES.length] ?? PHRASES[0] ?? ['inner']
+  return phrase[occurrence % phrase.length] ?? 'inner'
 }
 
 /** Blank-line separated paragraphs; a single newline is a soft wrap, not a break. */
@@ -68,6 +111,7 @@ export function ProjectText({
   align = 'left',
   width = 'narrow',
   occurrence = 0,
+  phase = 0,
   lede = false,
   className,
 }: ProjectTextProps) {
@@ -89,7 +133,9 @@ export function ProjectText({
           data-reveal-item
           className={cn(
             'text-ink/85',
-            lede ? 'max-w-[56ch] text-[1.1875rem] leading-[1.7]' : 'max-w-[62ch] text-[1.0625rem] leading-[1.75]',
+            lede
+              ? 'max-w-[56ch] text-[1.1875rem] leading-[1.7]'
+              : 'max-w-[62ch] text-[1.0625rem] leading-[1.75]',
           )}
         >
           {paragraph}
@@ -98,7 +144,31 @@ export function ProjectText({
     </div>
   )
 
+  /* --------------------------------- headed -------------------------------- */
+
   if (heading) {
+    if (phase % 2 === 1) {
+      return (
+        <section
+          className={cn(
+            'u-gutter mx-auto grid w-full max-w-[110rem] grid-cols-12 gap-x-8 gap-y-10',
+            className,
+          )}
+        >
+          <div className="col-span-12 lg:col-span-5 lg:col-start-2">
+            <span aria-hidden="true" className="bg-accent block h-px w-16" />
+            <h2 ref={headingRef} data-reveal className={cn(DISPLAY_SM, 'text-ink mt-7 max-w-[16ch]')}>
+              {heading}
+            </h2>
+          </div>
+
+          <div className="border-line col-span-12 max-w-[62ch] border-t pt-8 lg:col-span-4 lg:col-start-8 lg:mt-16">
+            {prose}
+          </div>
+        </section>
+      )
+    }
+
     return (
       <section
         className={cn('u-gutter mx-auto grid w-full max-w-[110rem] grid-cols-12 gap-x-8 gap-y-8', className)}
@@ -109,35 +179,31 @@ export function ProjectText({
           </h2>
         </div>
 
-        <div className={cn('col-span-12 max-w-[62ch] lg:col-span-6 lg:col-start-6 lg:pt-7')}>{prose}</div>
+        <div className="col-span-12 max-w-[62ch] lg:col-span-6 lg:col-start-6 lg:pt-7">{prose}</div>
       </section>
     )
   }
 
-  // The hairline is what turns the space either side of a single measure into a
-  // margin instead of a hole: the band is visibly the full width, and the type
-  // is visibly placed inside it. The measure then swings left of centre and
-  // right of centre on alternate blocks, so two paragraphs a page apart never
-  // sit on the same axis.
-  // Five columns, not six: at six the cap below never binds and the line runs
-  // to ~90 characters. The lede takes six and starts a column further left, so
-  // the opening statement and the paragraphs that answer it never share an axis.
-  const swung = lede
-    ? 'lg:col-span-6 lg:col-start-2'
-    : occurrence % 2 === 1
-      ? 'lg:col-span-5 lg:col-start-7'
-      : 'lg:col-span-5 lg:col-start-4'
+  /* --------------------------------- plain --------------------------------- */
+
+  // The lede keeps its own axis: it is the opening statement, and it is the one
+  // block on the page whose position is decided by what it is rather than by
+  // where it falls in a phrase.
+  const axis = axisFor(phase, occurrence)
+  const column = lede ? 'lg:col-span-6 lg:col-start-2' : AXES[axis]
+  const bandRule = lede || BAND_RULE[axis]
 
   return (
     // The small top pad is load-bearing: a TEXT block often follows a
     // full-bleed espresso band, and a hairline drawn flush against that band's
     // edge disappears into it.
     <section className={cn('u-gutter mx-auto w-full max-w-[110rem] pt-[clamp(1.5rem,4vh,3rem)]', className)}>
-      <div className="border-line grid grid-cols-12 border-t pt-8 lg:pt-11">
+      <div className={cn('grid grid-cols-12', bandRule && 'border-line border-t pt-8 lg:pt-11')}>
         <div
           className={cn(
             'col-span-12',
-            width === 'narrow' ? swung : 'lg:col-span-8 lg:col-start-3',
+            width === 'narrow' ? column : 'lg:col-span-8 lg:col-start-3',
+            !bandRule && 'border-line border-t pt-8 lg:pt-11',
             align === 'center' && 'text-center',
           )}
         >

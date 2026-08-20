@@ -27,11 +27,12 @@ import type {
 } from '@/types/content'
 
 import { BeforeAfter } from './BeforeAfter'
+import { compositionKey, phaseOf } from './composition'
 import { Project3D } from './Project3D'
 import { ProjectCta } from './ProjectCta'
 import { ProjectGallery } from './ProjectGallery'
 import { ProjectHero } from './ProjectHero'
-import { ProjectImage } from './ProjectImage'
+import { isGroundedImage, ProjectImage } from './ProjectImage'
 import { ProjectInfo } from './ProjectInfo'
 import { ProjectMasonry } from './ProjectMasonry'
 import { ProjectMaterials } from './ProjectMaterials'
@@ -44,6 +45,12 @@ import { RelatedProjects } from './RelatedProjects'
  * Blocks that paint their own ground and their own vertical padding. Nothing is
  * added above or below them — a band that also received a wrapper gap would
  * read as a second, wider band.
+ *
+ * Membership is not decided by type alone any more: a `full` IMAGE whose
+ * photograph is a portrait paints an espresso ground and holds the picture
+ * inside the measure rather than cropping it to a strip, so that one *instance*
+ * pads itself while the landscape ones do not. `ProjectImage.isGroundedImage`
+ * answers, from the same media dimensions it frames the picture with.
  */
 const SELF_PADDED = new Set<ProjectBlock['type']>(['SCENE_3D', 'QUOTE', 'PROJECT_INFO', 'CTA'])
 
@@ -75,10 +82,19 @@ function isFullImage(block: ProjectBlock | undefined): boolean {
   return block?.type === 'IMAGE' && (block.data.width ?? 'wide') === 'full'
 }
 
-function gapBefore(block: ProjectBlock, prev: ProjectBlock | undefined): string {
-  if (!prev) return GAP.none
+/** A block that actually rendered, and whether it brought its own edges. */
+interface Drawn {
+  item: ProjectBlock
+  node: ReactNode
+  padded: boolean
+}
+
+function gapBefore(current: Drawn, previous: Drawn | undefined): string {
+  if (!previous) return GAP.none
   // A band supplies both of its own edges.
-  if (SELF_PADDED.has(prev.type) || SELF_PADDED.has(block.type)) return GAP.none
+  if (previous.padded || current.padded) return GAP.none
+  const block = current.item
+  const prev = previous.item
   // The hero ends flush on its photograph; the story has to start somewhere.
   if (prev.type === 'HERO') return GAP.section
   // A full-bleed photograph and the prose either side of it are one thought.
@@ -357,6 +373,34 @@ interface BlockContext {
   scenes: Map<string, SceneConfig>
   /** True when a dedicated 3D section exists, so the hero stays photographic. */
   hasSceneBlock: boolean
+  /** This project's composition phase, one draw per surface. */
+  phase: Phase
+}
+
+/**
+ * WHY A PHASE AT ALL.
+ *
+ * The block sequence is the database's, and on the seeded catalogue it is the
+ * same sequence 105 times: hero, text, image, text, gallery, quote, image,
+ * text, masonry, facts, neighbours, invitation. Most of what makes two of those
+ * pages different is already data — an IMAGE frames its own photograph, a
+ * GALLERY lays out its own — but a handful of choices have no proportion to
+ * read: which side the first plate takes, which axis the first paragraph swings
+ * to, which way the pulled quote leans. Keyed to the block index alone, those
+ * choices are identical on every project, and three identical text treatments
+ * in the same order is exactly what the review found.
+ *
+ * `compositionKey` turns the project's own tally — photographs, how many of
+ * them are landscape, services, year, whether a scene was reconstructed — into
+ * one number, and `phaseOf` draws an independent value from it per surface. No
+ * slug is named, nothing is authored, and project 106 has a phase the moment it
+ * has a gallery.
+ */
+interface Phase {
+  image: number
+  text: number
+  gallery: number
+  quote: number
 }
 
 function ref(ctx: BlockContext, id: unknown): MediaRef | null {
@@ -438,6 +482,7 @@ function renderBlock(item: ProjectBlock, ctx: BlockContext, at: BlockPosition): 
           width={item.data.width ?? 'wide'}
           reveal={item.data.reveal ?? 'revealClip'}
           occurrence={at.occurrence}
+          phase={ctx.phase.image}
         />
       )
     }
@@ -451,6 +496,7 @@ function renderBlock(item: ProjectBlock, ctx: BlockContext, at: BlockPosition): 
           columns={item.data.columns ?? 2}
           caption={item.data.caption}
           occurrence={at.occurrence}
+          phase={ctx.phase.gallery}
         />
       )
     }
@@ -484,6 +530,7 @@ function renderBlock(item: ProjectBlock, ctx: BlockContext, at: BlockPosition): 
           align={item.data.align ?? 'left'}
           width={item.data.width ?? 'narrow'}
           occurrence={at.occurrence}
+          phase={ctx.phase.text}
           // The block that answers the hero is the story's opening statement,
           // and it is the only one that knows it — a component cannot see what
           // it follows. Everything else about the block is identical.
@@ -495,7 +542,7 @@ function renderBlock(item: ProjectBlock, ctx: BlockContext, at: BlockPosition): 
     case 'QUOTE': {
       const quote = typeof item.data.quote === 'string' ? item.data.quote.trim() : ''
       if (quote.length === 0) return null
-      return <ProjectQuote quote={quote} attribution={item.data.attribution} />
+      return <ProjectQuote quote={quote} attribution={item.data.attribution} phase={ctx.phase.quote} />
     }
 
     case 'MATERIALS': {
@@ -543,6 +590,16 @@ function renderBlock(item: ProjectBlock, ctx: BlockContext, at: BlockPosition): 
   }
 }
 
+/**
+ * Whether this block, as drawn, brings its own ground and its own vertical
+ * padding — so the wrapper must not add a gap either side of it.
+ */
+function paintsOwnGround(item: ProjectBlock, ctx: BlockContext): boolean {
+  if (SELF_PADDED.has(item.type)) return true
+  if (item.type !== 'IMAGE') return false
+  return isGroundedImage(ref(ctx, item.data.mediaId), item.data.width ?? 'wide')
+}
+
 export interface ProjectBlocksProps {
   project: ProjectDetail
   /** Defaults to the project's own blocks, falling back to the default story. */
@@ -576,6 +633,11 @@ export async function ProjectBlocks({ project, blocks, className }: ProjectBlock
     relatedByBlock.set(item.id, picked.length > 0 ? picked : related)
   }
 
+  // Independent salts, so a project that starts its plates on the right does not
+  // also, always, start its prose on the right — two surfaces moving together is
+  // a second template.
+  const key = compositionKey(project)
+
   const ctx: BlockContext = {
     project,
     media,
@@ -586,13 +648,19 @@ export async function ProjectBlocks({ project, blocks, className }: ProjectBlock
       sceneList.filter((scene): scene is SceneConfig => scene !== null).map((scene) => [scene.id, scene]),
     ),
     hasSceneBlock: list.some((item) => item.type === 'SCENE_3D'),
+    phase: {
+      image: phaseOf(key, 1, 2),
+      text: phaseOf(key, 2, 4),
+      gallery: phaseOf(key, 3, 2),
+      quote: phaseOf(key, 4, 2),
+    },
   }
 
   // Rendered blocks are resolved first so the rhythm is computed against what
   // actually appears: a HERO whose media went missing, or a GALLERY whose ids no
   // longer resolve, must not leave its gap behind as an empty band.
   const seen = new Map<ProjectBlock['type'], number>()
-  const drawn: { item: ProjectBlock; node: ReactNode }[] = []
+  const drawn: Drawn[] = []
 
   for (let i = 0; i < list.length; i += 1) {
     const item = list[i]
@@ -601,23 +669,23 @@ export async function ProjectBlocks({ project, blocks, className }: ProjectBlock
     const node = renderBlock(item, ctx, { occurrence, prev: list[i - 1], next: list[i + 1] })
     if (node === null) continue
     seen.set(item.type, occurrence + 1)
-    drawn.push({ item, node })
+    drawn.push({ item, node, padded: paintsOwnGround(item, ctx) })
   }
 
   return (
     <div className={className}>
-      {drawn.map(({ item, node }, i) => (
+      {drawn.map((entry, i) => (
         <div
-          key={item.id}
-          data-block={item.type}
+          key={entry.item.id}
+          data-block={entry.item.type}
           className={cn(
-            gapBefore(item, drawn[i - 1]?.item),
+            gapBefore(entry, drawn[i - 1]),
             // Everything that is not its own band ends at the last block's
             // baseline; the page's closing padding belongs to the CTA.
-            i === drawn.length - 1 && !SELF_PADDED.has(item.type) && 'mb-[clamp(4.5rem,11vh,9rem)]',
+            i === drawn.length - 1 && !entry.padded && 'mb-[clamp(4.5rem,11vh,9rem)]',
           )}
         >
-          {node}
+          {entry.node}
         </div>
       ))}
     </div>

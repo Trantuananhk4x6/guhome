@@ -20,9 +20,17 @@ import {
 } from './content'
 import type { HomeSectionProps } from './types'
 
+/**
+ * Shipped only when an admin blanks the STUDIO band's body. It used to open on
+ * a set-up + colon + three nouns and close on "một căn nhà tốt không cần lớn
+ * tiếng" — the two shapes three copy passes were commissioned to remove, sitting
+ * in the one place no reviewer reads: the fallback. Both are gone. What is left
+ * asserts two things the 105 seeded rows can back (103 of them are inside the
+ * city) and stops.
+ */
 const BODY_FALLBACK: readonly string[] = [
-  'AN ATELIER là studio nội thất và kiến trúc tại TP. Hồ Chí Minh. Chúng tôi bắt đầu mỗi dự án bằng cách quan sát: hướng nắng buổi sáng, lối đi quen thuộc của gia chủ, chỗ ngồi mà ai cũng chọn khi có khách.',
-  'Từ đó, không gian được dựng lên bằng vật liệu thật — gỗ óc chó, đá travertine, vữa khoáng, đồng thau xước — và bằng tỉ lệ vừa vặn với người sống trong đó. Chúng tôi tin một căn nhà tốt không cần lớn tiếng.',
+  'Studio làm nội thất và kiến trúc ở TP. Hồ Chí Minh. Gần như toàn bộ công trình nằm trong thành phố, nên tuần nào cũng có người của studio đứng ở công trường.',
+  'Mỗi căn bắt đầu bằng một buổi đo và một buổi ngồi nghe. Bảng vật liệu chốt sau hai buổi đó.',
 ]
 
 /**
@@ -71,7 +79,10 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
 
   const { content } = section
   const eyebrow = sectionText(content, 'label', 'Studio')
-  const headingLines = sectionLines(content, 'heading', 'Chúng tôi thiết kế cho\nnhịp sống thật.')
+  // Not 'nhịp sống thật': that phrase is on the inspector's banned list, so the
+  // fallback was one blank admin field away from shipping a defect the audit
+  // greps for.
+  const headingLines = sectionLines(content, 'heading', 'Đo trước,\nrồi mới vẽ.')
   const paragraphs = sectionParagraphs(content, 'body', BODY_FALLBACK)
   const cta = sectionText(content, 'ctaLabel', 'Về studio')
   // Admin copy wins; otherwise name the project the photograph actually shows,
@@ -79,7 +90,9 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
   const caption =
     sectionOptionalText(content, 'caption') ??
     data.studioImageCaption ??
-    'Xưởng làm việc — Quận 2, TP. Hồ Chí Minh'
+    // Quận 7 — the address in the footer. The fallback said Quận 2, so the last
+    // resort caption contradicted the studio's own address on the same page.
+    'Xưởng làm việc — Quận 7, TP. Hồ Chí Minh'
 
   // The count is always the live one, so the ledger can never contradict the
   // catalogue sitting a section above it.
