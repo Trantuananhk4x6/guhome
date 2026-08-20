@@ -16,14 +16,14 @@
  * no slug, and project 106 gets one for free.
  *
  * FOUR AXES, EIGHT READINGS. A single measure can sit left of centre, right of
- * centre, wide against the second column, or narrow in the eighth. Each phrase
- * is a permutation of all four, so no axis repeats inside one story, and eight
- * of the twenty-four permutations are listed so that two stories rarely run the
- * same order. A seeded project prints three TEXT blocks and the first of them
- * carries a heading, so what a reader actually sees is positions 1 and 2 — all
- * eight phrases differ there, and the odd-numbered ones also take the other
- * headed composition, which makes eight distinct readings of the same block
- * sequence.
+ * centre, wide against the second column, or narrow in the eighth
+ * (`PROSE_AXES`). Each phrase is a permutation of all four, so no axis repeats
+ * inside one story, and eight of the twenty-four permutations are listed so
+ * that two stories rarely run the same order. A seeded project prints three
+ * TEXT blocks and the first of them carries a heading, so what a reader
+ * actually sees is positions 1 and 2 — all eight phrases differ there, and the
+ * odd-numbered ones also take the other headed composition, which makes eight
+ * distinct readings of the same block sequence.
  *
  * THE RULE MOVES WITH THE AXIS. A measure at `inner` or `outer` is near the
  * middle of the band, and the full-width hairline above it is what turns the
@@ -51,7 +51,7 @@ import { useReveal } from '@/animations/reveal'
 import { useTextReveal } from '@/animations/text'
 import { cn } from '@/lib/utils'
 
-import { DISPLAY_SM } from './composition'
+import { DISPLAY_SM, PROSE_AXES, PROSE_BAND_RULE, proseAxis } from './composition'
 
 export interface ProjectTextProps {
   heading?: string
@@ -65,46 +65,6 @@ export interface ProjectTextProps {
   /** This block opens the story — it is the first thing after the hero. */
   lede?: boolean
   className?: string
-}
-
-/* ---------------------------------- axes ----------------------------------- */
-
-const AXES = {
-  /** Left of centre — the measure the eye returns to. */
-  inner: 'lg:col-span-5 lg:col-start-4',
-  /** Right of centre. */
-  outer: 'lg:col-span-5 lg:col-start-7',
-  /** Wide, against the second column. */
-  left: 'lg:col-span-6 lg:col-start-2',
-  /** Narrow, held in the last third. */
-  right: 'lg:col-span-4 lg:col-start-8',
-} as const
-
-type Axis = keyof typeof AXES
-
-const PHRASES: readonly (readonly Axis[])[] = [
-  ['inner', 'right', 'outer', 'left'],
-  ['left', 'outer', 'right', 'inner'],
-  ['outer', 'left', 'inner', 'right'],
-  ['right', 'inner', 'left', 'outer'],
-  ['inner', 'left', 'right', 'outer'],
-  ['outer', 'right', 'inner', 'left'],
-  ['left', 'inner', 'outer', 'right'],
-  ['right', 'outer', 'left', 'inner'],
-]
-
-/**
- * How many readings of one block sequence exist. `ProjectBlocks` draws a phase
- * in this range, so adding a phrase here widens the catalogue automatically.
- */
-export const PROSE_PHRASES = PHRASES.length
-
-/** A hairline across the whole band only makes sense under a centred measure. */
-const BAND_RULE: Record<Axis, boolean> = { inner: true, outer: true, left: false, right: false }
-
-function axisFor(phase: number, occurrence: number): Axis {
-  const phrase = PHRASES[phase % PHRASES.length] ?? PHRASES[0] ?? ['inner']
-  return phrase[occurrence % phrase.length] ?? 'inner'
 }
 
 /** Blank-line separated paragraphs; a single newline is a soft wrap, not a break. */
@@ -199,9 +159,9 @@ export function ProjectText({
   // The lede keeps its own axis: it is the opening statement, and it is the one
   // block on the page whose position is decided by what it is rather than by
   // where it falls in a phrase.
-  const axis = axisFor(phase, occurrence)
-  const column = lede ? 'lg:col-span-6 lg:col-start-2' : AXES[axis]
-  const bandRule = lede || BAND_RULE[axis]
+  const axis = proseAxis(phase, occurrence)
+  const column = lede ? 'lg:col-span-6 lg:col-start-2' : PROSE_AXES[axis]
+  const bandRule = lede || PROSE_BAND_RULE[axis]
 
   return (
     // The small top pad is load-bearing: a TEXT block often follows a

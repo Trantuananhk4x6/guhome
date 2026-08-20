@@ -208,6 +208,62 @@ export function snapDistinct(
   return free ?? ranked[0] ?? snapProportion(target, choices)
 }
 
+/* -------------------------------- prose axes ------------------------------- */
+
+/**
+ * Where a single measure of prose sits on the twelve columns.
+ *
+ * These live here rather than in `ProjectText` for a reason that cost a
+ * rendering pass to find: `ProjectText` is a `'use client'` module, and a
+ * server component that imports a *value* from one of those gets a client
+ * reference, not the value. `ProjectBlocks` needs the number of phrases to draw
+ * a phase in range, and importing it across that boundary handed it
+ * `undefined` — `key % undefined` is `NaN`, every project fell through to the
+ * first phrase, and all 105 pages went back to composing their prose
+ * identically. The vocabulary belongs to the composition module anyway.
+ */
+export const PROSE_AXES = {
+  /** Left of centre — the measure the eye returns to. */
+  inner: 'lg:col-span-5 lg:col-start-4',
+  /** Right of centre. */
+  outer: 'lg:col-span-5 lg:col-start-7',
+  /** Wide, against the second column. */
+  left: 'lg:col-span-6 lg:col-start-2',
+  /** Narrow, held in the last third. */
+  right: 'lg:col-span-4 lg:col-start-8',
+} as const
+
+export type ProseAxis = keyof typeof PROSE_AXES
+
+/**
+ * Eight of the twenty-four permutations of the four axes. A permutation never
+ * repeats an axis inside one story; eight of them means two stories rarely read
+ * the same order.
+ */
+export const PROSE_PHRASES: readonly (readonly ProseAxis[])[] = [
+  ['inner', 'right', 'outer', 'left'],
+  ['left', 'outer', 'right', 'inner'],
+  ['outer', 'left', 'inner', 'right'],
+  ['right', 'inner', 'left', 'outer'],
+  ['inner', 'left', 'right', 'outer'],
+  ['outer', 'right', 'inner', 'left'],
+  ['left', 'inner', 'outer', 'right'],
+  ['right', 'outer', 'left', 'inner'],
+]
+
+/** A hairline across the whole band only makes sense under a centred measure. */
+export const PROSE_BAND_RULE: Record<ProseAxis, boolean> = {
+  inner: true,
+  outer: true,
+  left: false,
+  right: false,
+}
+
+export function proseAxis(phase: number, occurrence: number): ProseAxis {
+  const phrase = PROSE_PHRASES[phase % PROSE_PHRASES.length] ?? PROSE_PHRASES[0] ?? ['inner']
+  return phrase[occurrence % phrase.length] ?? 'inner'
+}
+
 /* ----------------------------- composition key ----------------------------- */
 
 /**

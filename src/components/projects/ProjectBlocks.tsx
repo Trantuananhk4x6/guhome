@@ -27,7 +27,7 @@ import type {
 } from '@/types/content'
 
 import { BeforeAfter } from './BeforeAfter'
-import { compositionKey, phaseOf } from './composition'
+import { compositionKey, phaseOf, PROSE_PHRASES } from './composition'
 import { Project3D } from './Project3D'
 import { ProjectCta } from './ProjectCta'
 import { ProjectGallery } from './ProjectGallery'
@@ -37,7 +37,7 @@ import { ProjectInfo } from './ProjectInfo'
 import { ProjectMasonry } from './ProjectMasonry'
 import { ProjectMaterials } from './ProjectMaterials'
 import { ProjectQuote } from './ProjectQuote'
-import { PROSE_PHRASES, ProjectText } from './ProjectText'
+import { ProjectText } from './ProjectText'
 import { ProjectVideo } from './ProjectVideo'
 import { RelatedProjects } from './RelatedProjects'
 
@@ -650,7 +650,7 @@ export async function ProjectBlocks({ project, blocks, className }: ProjectBlock
     hasSceneBlock: list.some((item) => item.type === 'SCENE_3D'),
     phase: {
       image: phaseOf(key, 1, 2),
-      text: phaseOf(key, 2, PROSE_PHRASES),
+      text: phaseOf(key, 2, PROSE_PHRASES.length),
       gallery: phaseOf(key, 3, 2),
       quote: phaseOf(key, 4, 2),
     },
