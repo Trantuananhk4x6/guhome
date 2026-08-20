@@ -63,7 +63,7 @@ export function Hero3D({ section, data }: HomeSectionProps) {
   // reveals on arrival and still animates.
   useReveal(footRef, { variant: 'revealUp', delay: 0.55, start: 'top bottom' })
 
-  const eyebrow = sectionText(content, 'eyebrow', 'AN ATELIER')
+  const eyebrow = sectionText(content, 'eyebrow', 'GUHOMES')
   const titleLines = sectionLines(content, 'title', 'Không gian\nmang tính cách.')
   const body = sectionText(content, 'body', 'Studio nội thất và kiến trúc tại TP. Hồ Chí Minh.')
   const cta = sectionCta(content, { label: 'Xem dự án', href: '/projects' })
@@ -118,7 +118,7 @@ export function Hero3D({ section, data }: HomeSectionProps) {
       <p className="sr-only">
         {project
           ? `Dựng cảnh nội thất dự án ${project.title}${project.location ? `, ${project.location}` : ''}.`
-          : 'Hình ảnh không gian nội thất do AN ATELIER thực hiện.'}
+          : 'Hình ảnh không gian nội thất do GUHOMES thực hiện.'}
       </p>
 
       <div className="relative z-10 flex h-full flex-col justify-between u-gutter pt-[clamp(6.5rem,16vh,11rem)] pb-[clamp(1.75rem,5vh,3.5rem)]">

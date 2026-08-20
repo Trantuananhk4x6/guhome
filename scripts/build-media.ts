@@ -1,5 +1,5 @@
 /**
- * AN ATELIER — media build.
+ * GUHOMES — media build.
  *
  *   npx tsx scripts/build-media.ts [--only=<substring>] [--limit=<n>] [--force]
  *                                  [--concurrency=<n>]
@@ -424,7 +424,7 @@ function sortEntries(entries: ManifestEntry[]): ManifestEntry[] {
 }
 
 const PLACEHOLDER_SVG = [
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1067" width="1600" height="1067" role="img" aria-label="AN ATELIER">',
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1067" width="1600" height="1067" role="img" aria-label="GUHOMES">',
   '<rect width="1600" height="1067" fill="#EAE5DA"/>',
   '<rect x="80" y="80" width="1440" height="907" fill="none" stroke="#D7D0C2" stroke-width="2"/>',
   '<line x1="80" y1="533.5" x2="1520" y2="533.5" stroke="#D7D0C2" stroke-width="1"/>',
@@ -545,7 +545,7 @@ async function main(): Promise<void> {
   const needle = options.only ? options.only.toLowerCase() : null
   const selected = needle ? inventory.filter((f) => f.dir.toLowerCase().includes(needle)) : inventory
 
-  console.log(`AN ATELIER — media build`)
+  console.log(`GUHOMES — media build`)
   console.log(`  source     ${toPosix(SOURCE_ROOT)}`)
   console.log(`  output     ${toPosix(OUT_ROOT)}`)
   console.log(

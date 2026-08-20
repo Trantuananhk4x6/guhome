@@ -45,7 +45,7 @@ export function AdminShell({ user, children }: AdminShellProps) {
         <div className="border-b border-line px-5 py-5">
           <Link href="/admin" className="block">
             <span className="block font-display text-[1.375rem] font-normal leading-none tracking-[-0.02em]">
-              AN ATELIER
+              GUHOMES
             </span>
             <span className="u-label mt-2 block text-[0.5625rem] text-accent">Studio CMS</span>
           </Link>
@@ -66,7 +66,7 @@ export function AdminShell({ user, children }: AdminShellProps) {
       <div className="lg:pl-60">
         <header className="sticky top-0 z-20 flex h-14 items-center justify-between gap-4 border-b border-line bg-canvas px-5 lg:px-8">
           <Link href="/admin" className="font-display text-[1.125rem] font-normal leading-none lg:hidden">
-            AN ATELIER
+            GUHOMES
           </Link>
 
           <div className="ml-auto flex items-center gap-4">

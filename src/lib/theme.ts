@@ -122,19 +122,19 @@ export const DEFAULT_MOTION: MotionConfig = {
 }
 
 export const DEFAULT_BRAND: BrandConfig = {
-  companyName: 'AN ATELIER',
-  shortName: 'AN',
+  companyName: 'GUHOMES',
+  shortName: 'GU',
   tagline: 'Nội thất và kiến trúc cho khí hậu Sài Gòn',
   logoMediaId: null,
   faviconMediaId: null,
-  email: 'studio@anatelier.vn',
+  email: 'studio@guhomes.vn',
   phone: '+84 28 3822 1975',
   address: 'Quận 7, TP. Hồ Chí Minh',
   social: [
-    { label: 'Instagram', href: 'https://www.instagram.com/anatelier.vn' },
-    { label: 'Behance', href: 'https://www.behance.net/anatelier' },
-    { label: 'Pinterest', href: 'https://www.pinterest.com/anatelier' },
-    { label: 'Facebook', href: 'https://www.facebook.com/anatelier.vn' },
+    { label: 'Instagram', href: 'https://www.instagram.com/guhomes.vn' },
+    { label: 'Behance', href: 'https://www.behance.net/guhomes' },
+    { label: 'Pinterest', href: 'https://www.pinterest.com/guhomes' },
+    { label: 'Facebook', href: 'https://www.facebook.com/guhomes.vn' },
   ],
 }
 

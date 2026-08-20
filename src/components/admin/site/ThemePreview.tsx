@@ -94,7 +94,7 @@ function previewStyleSheet(theme: ThemeSettings): string {
 
 export function ThemePreview({ theme }: { theme: ThemeSettings }) {
   const sheet = useMemo(() => previewStyleSheet(theme), [theme])
-  const brandName = theme.brand.companyName.trim().length > 0 ? theme.brand.companyName : 'AN ATELIER'
+  const brandName = theme.brand.companyName.trim().length > 0 ? theme.brand.companyName : 'GUHOMES'
   const tagline = theme.brand.tagline.trim().length > 0 ? theme.brand.tagline : 'Không gian mang tính cách.'
 
   return (

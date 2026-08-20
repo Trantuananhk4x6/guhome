@@ -1,5 +1,5 @@
 /**
- * AN ATELIER — image→3D job worker.
+ * GUHOMES — image→3D job worker.
  *
  *   npm run jobs:worker
  *   npx tsx scripts/jobs-worker.ts [--once] [--limit=<n>] [--job=<id>]
@@ -402,7 +402,7 @@ async function runNamedJob(jobId: string): Promise<void> {
 async function main(): Promise<void> {
   const env = serverEnv()
 
-  log('info', 'AN ATELIER — jobs worker', {
+  log('info', 'GUHOMES — jobs worker', {
     mode: options.job ? 'single' : options.once ? 'once' : 'loop',
     intervalMs: options.once || options.job ? undefined : options.intervalMs,
     concurrency: options.job ? 1 : options.concurrency,

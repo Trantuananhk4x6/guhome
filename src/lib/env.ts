@@ -3,7 +3,7 @@ import { z } from 'zod'
 const serverEnvSchema = z.object({
   DATABASE_URL: z.string().min(1),
   AUTH_SECRET: z.string().min(16),
-  ADMIN_EMAIL: z.string().email().default('admin@anatelier.vn'),
+  ADMIN_EMAIL: z.string().email().default('admin@guhomes.vn'),
   ADMIN_PASSWORD: z.string().min(8).default('AnAtelier@2026'),
   STORAGE_DRIVER: z.enum(['local', 's3']).default('local'),
   STORAGE_LOCAL_ROOT: z.string().default('./public/media'),

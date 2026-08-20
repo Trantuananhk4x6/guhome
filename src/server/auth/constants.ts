@@ -11,7 +11,11 @@ import type { JWTPayload } from 'jose'
 import type { UserRole } from '@/types/content'
 
 /** Name of the httpOnly session cookie. */
-export const SESSION_COOKIE = 'an_session'
+// Renamed with the brand. Any session issued under the old name is orphaned
+// rather than accepted, so everyone signs in once more after this ships — which
+// is the correct outcome anyway: the JWT issuer and audience changed too, so an
+// old token would fail verification even if the cookie still reached us.
+export const SESSION_COOKIE = 'gu_session'
 
 /** Session lifetime — 7 days, in seconds. */
 export const SESSION_MAX_AGE = 60 * 60 * 24 * 7
@@ -19,8 +23,8 @@ export const SESSION_MAX_AGE = 60 * 60 * 24 * 7
 /** JWT signing algorithm (symmetric — AUTH_SECRET). */
 export const JWT_ALG = 'HS256'
 
-export const JWT_ISSUER = 'an-atelier'
-export const JWT_AUDIENCE = 'an-atelier-admin'
+export const JWT_ISSUER = 'guhomes'
+export const JWT_AUDIENCE = 'guhomes-admin'
 
 /** Where unauthenticated visitors are sent. */
 export const LOGIN_PATH = '/admin/login'

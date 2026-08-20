@@ -15,7 +15,7 @@ import { ImageFrame, Reveal, TextReveal } from './_components/motion'
 export const metadata: Metadata = buildMetadata({
   title: 'Dịch vụ',
   description:
-    'Thiết kế nội thất, kiến trúc, cải tạo, thi công và đồ đặt riêng. Mỗi mục nói rõ bạn cầm về được những gì. Cuối trang là bảy việc AN ATELIER không nhận, và lý do của từng việc.',
+    'Thiết kế nội thất, kiến trúc, cải tạo, thi công và đồ đặt riêng. Mỗi mục nói rõ bạn cầm về được những gì. Cuối trang là bảy việc GUHOMES không nhận, và lý do của từng việc.',
   path: '/services',
 })
 
@@ -99,7 +99,7 @@ export default async function ServicesPage() {
                   <div className="lg:sticky lg:top-32">
                     <ImageFrame
                       media={coverFor(service, i)}
-                      alt={service.cover?.alt ?? `${service.title} — AN ATELIER`}
+                      alt={service.cover?.alt ?? `${service.title} — GUHOMES`}
                       ratio="aspect-[4/5]"
                       sizes="(min-width: 1024px) 38vw, 100vw"
                       width={1200}

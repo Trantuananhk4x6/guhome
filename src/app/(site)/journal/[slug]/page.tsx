@@ -132,7 +132,7 @@ export default async function ArticlePage({ params }: PageProps) {
           <Rule />
           <div className="mt-10 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
             <p className="u-label">
-              {article.authorName ? `Viết bởi ${article.authorName}` : 'AN ATELIER'}
+              {article.authorName ? `Viết bởi ${article.authorName}` : 'GUHOMES'}
             </p>
             <Button href="/contact" variant="underline">
               Viết cho studio

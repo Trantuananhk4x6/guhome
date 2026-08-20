@@ -113,7 +113,7 @@ export default function OpengraphImage(): ImageResponse {
           }}
         >
           <span style={{ display: 'flex' }}>Studio</span>
-          <span style={{ display: 'flex' }}>anatelier.vn</span>
+          <span style={{ display: 'flex' }}>guhomes.vn</span>
         </div>
       </div>
     ),
