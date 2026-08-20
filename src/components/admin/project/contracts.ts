@@ -672,13 +672,78 @@ export interface BlockSavePayload {
   data: unknown
 }
 
+/**
+ * Fields that stay in the payload even when blank, because `ProjectBlock`
+ * declares them *required* — dropping them would send a block whose `data` no
+ * longer matches its own contract. Both renderers already test these with
+ * `.trim()` and skip the block, so a blank one costs nothing.
+ */
+const REQUIRED_TEXT_KEYS: Record<ProjectBlockType, readonly string[]> = {
+  HERO: [],
+  SCENE_3D: [],
+  IMAGE: [],
+  GALLERY: [],
+  MASONRY: [],
+  VIDEO: [],
+  TEXT: ['body'],
+  QUOTE: ['quote'],
+  MATERIALS: [],
+  BEFORE_AFTER: [],
+  PROJECT_INFO: [],
+  RELATED: [],
+  CTA: [],
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
+
+/** Blank the way the server sees it — every optional text field is `.trim()`ed there. */
+function isBlankText(value: unknown): boolean {
+  return typeof value === 'string' && value.trim().length === 0
+}
+
+/**
+ * Nested values keep their shape: array positions are preserved (id lists must
+ * not shift), and only the objects inside them get cleaned — an item with a
+ * blank caption is the same bug one level down.
+ */
+function stripEmptyValue(value: unknown): unknown {
+  if (Array.isArray(value)) return (value as readonly unknown[]).map(stripEmptyValue)
+  if (isRecord(value)) return stripEmpty(value)
+  return value
+}
+
+/**
+ * Copy of `data` without its blank optional strings.
+ *
+ * The inspector normalises absent optionals to `''` so every control stays
+ * controlled, but `''` is not an absent value once it reaches jsonb: the public
+ * renderers fall back only on `undefined` — `title ?? project.title` in
+ * `ProjectHero`, `heading ?? 'Vật liệu'` in `ProjectMaterials`, the default
+ * parameters on `ProjectCta` and `Project3D` — so a persisted `''` paints an
+ * empty heading where the fallback belongs. `keep` names the keys that are
+ * required by the block type and must survive blank.
+ */
+export function stripEmpty(
+  data: Record<string, unknown>,
+  keep: readonly string[] = [],
+): Record<string, unknown> {
+  const out: Record<string, unknown> = {}
+  for (const [key, value] of Object.entries(data)) {
+    if (isBlankText(value) && !keep.includes(key)) continue
+    out[key] = stripEmptyValue(value)
+  }
+  return out
+}
+
 /** Shapes the draft list for `saveBlocks` — order comes from the array index. */
 export function toBlockPayload(blocks: readonly BlockDraft[]): BlockSavePayload[] {
   return blocks.map((block) => ({
     ...(block.id ? { id: block.id } : {}),
     type: block.type,
     enabled: block.enabled,
-    data: block.data,
+    data: stripEmpty(block.data, REQUIRED_TEXT_KEYS[block.type]),
   }))
 }
 

@@ -42,6 +42,17 @@ import { RelatedProjects } from './RelatedProjects'
 /** Blocks that paint their own full-width band and supply their own rhythm. */
 const BANDS = new Set<ProjectBlock['type']>(['HERO', 'SCENE_3D', 'QUOTE', 'CTA'])
 
+/**
+ * How many projects a `RELATED` block asks for when it has no explicit picks.
+ *
+ * Six, not three, because `RelatedProjects` renders a *pinned rail*: it only
+ * travels as far as its track overflows the viewport. Six 34rem cards make a
+ * ~3608px track — ~1690px of travel at 1920px — where three made 1856px, which
+ * is narrower than the screen the rail was pinned on. `RelatedProjects` still
+ * measures before it pins, so a smaller catalogue degrades to the static grid.
+ */
+const RELATED_COUNT = 6
+
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 /** jsonb is not validated at the boundary, so ids are filtered before they reach SQL. */
@@ -473,7 +484,7 @@ export async function ProjectBlocks({ project, blocks, className }: ProjectBlock
     getMediaMap(mediaIds),
     getMaterialsByIds(materialIds),
     getProjectsByIds(projectIds),
-    needsRelated ? getRelatedProjects(project.id, 3) : Promise.resolve<ProjectSummary[]>([]),
+    needsRelated ? getRelatedProjects(project.id, RELATED_COUNT) : Promise.resolve<ProjectSummary[]>([]),
     Promise.all(sceneIds.map((id) => getSceneById(id))),
   ])
 

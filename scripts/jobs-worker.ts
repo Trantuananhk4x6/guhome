@@ -256,14 +256,21 @@ let lastSweepAt = 0
  * Oldest queued job, or an abandoned `running` row past the stale window.
  * `claimNextQueuedJob` only looks at `queued`, so without this sweep a job
  * orphaned by a killed worker would sit in `running` forever.
+ *
+ * The `STALE_SWEEP_MS` throttle exists to keep an *idle* worker from scanning
+ * `running` on every poll — it must never cap how many abandoned rows a single
+ * invocation can recover. So the clock is armed only on a sweep that found
+ * nothing: a reclaimed row leaves `lastSweepAt` untouched and the very next
+ * lane iteration sweeps again, which is what lets `--once` actually drain the
+ * queue it just counted. Under `--once` there is no idle polling at all, so the
+ * throttle is skipped outright.
  */
 async function claimNext(): Promise<ReconJobRecord | null> {
   const queued = await claimNextQueuedJob()
   if (queued) return queued
 
   const now = Date.now()
-  if (now - lastSweepAt < STALE_SWEEP_MS) return null
-  lastSweepAt = now
+  if (!options.once && now - lastSweepAt < STALE_SWEEP_MS) return null
 
   const running = await listJobs({ status: ['running'], limit: 50 })
   for (const job of running) {
@@ -274,6 +281,9 @@ async function claimNext(): Promise<ReconJobRecord | null> {
       return reclaimed
     }
   }
+
+  // Nothing left to recover: only now may the idle throttle arm.
+  lastSweepAt = now
   return null
 }
 

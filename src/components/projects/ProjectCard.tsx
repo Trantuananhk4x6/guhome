@@ -66,6 +66,17 @@ export function ProjectCard({
     const el = frameRef.current
     if (!el) return
     event.preventDefault()
+    // Clicked from inside a project page — the related rail — the hero of the
+    // page we are leaving already carries `an-project-media` (ProjectHero marks
+    // it `data-hero-media`), and `openProject` is about to put that same name on
+    // this card. Two elements with one `view-transition-name` is an error the
+    // spec resolves by skipping the transition, which costs exactly the morph
+    // the rail exists to show. Release the outgoing one; it unmounts anyway.
+    // (A page renders one hero. Clearing every match keeps the count at one even
+    // if an editor ever stacks two HERO blocks.)
+    document
+      .querySelectorAll<HTMLElement>('[data-hero-media]')
+      .forEach((hero) => hero.style.removeProperty('view-transition-name'))
     openProject(el, href)
   }
 

@@ -150,9 +150,17 @@ export function ProjectHero({
         with a scene renders `InteriorScene` instead of `<Image>`, and stamping the
         image alone left the flagship 3D projects with a plain cross-fade. This
         element holds either branch, so the card always has something to morph into.
+
+        `data-hero-media` is how the *outgoing* page finds it again. On a
+        project → project click `ProjectCard.handleClick` stamps the same name on
+        the card it is expanding, and two elements sharing one
+        `view-transition-name` is an error the spec answers by skipping the
+        morph — so the card clears this one first. Nothing restores it: this
+        document is the one being navigated away from.
       */}
       <div
         aria-hidden="true"
+        data-hero-media=""
         className="absolute inset-0"
         style={{ viewTransitionName: PROJECT_VIEW_TRANSITION_NAME } as CSSProperties}
       >

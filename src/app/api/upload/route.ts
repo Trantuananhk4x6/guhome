@@ -114,11 +114,22 @@ const SOURCE_PATH_MAX = 260
 
 const MEDIA_KINDS = ['image', 'video', 'glb', 'hdri', 'texture', 'depth'] as const satisfies readonly MediaKind[]
 
-/** Letters (Vietnamese included), digits, space and `. _ - /`. Nothing else. */
-const FOLDER_CHARSET = /^[\p{L}\p{N} ._/-]+$/u
-
-/** `..` as a whole segment, or an absolute/UNC path. */
-const FOLDER_UNSAFE = /(^|\/)\.\.(\/|$)|^\/|^[a-z]:/i
+/**
+ * Folder labels are editorial free text lifted verbatim from the real library
+ * (`public/media/manifest.json`, mirrored into the DB by `scripts/seed.ts`),
+ * where names like `SHOP + CỬA HÀNG + SPA/SPA` and
+ * `DUPLEX/CĂN HIỆN ĐẠI 1 ( ANH THỌ )/TẦNG 2` are the norm. A character
+ * allowlist could not keep up with that vocabulary, so the field is validated
+ * by what it must *not* contain instead: control characters (the refine on the
+ * schema), a `..` segment, a backslash — banned outright so no Windows-style
+ * separator can smuggle a segment past the `/`-based check — and any absolute,
+ * UNC or drive-qualified path. Length stays bounded by `FOLDER_MAX`.
+ *
+ * The value never reaches a filesystem path: the storage prefix is
+ * `slugify(folder)`, which keeps only `[a-z0-9-]`. This guard is the outer
+ * layer of that defence, not the only one.
+ */
+const FOLDER_UNSAFE = /\\|(^|\/)\.\.(\/|$)|^\/|^[a-z]:/i
 
 /**
  * True when the string holds a C0 or C1 control character. Written as a code
@@ -158,8 +169,11 @@ const uploadFieldsSchema = z.strictObject({
     .string()
     .trim()
     .max(FOLDER_MAX, `Tên thư mục tối đa ${FOLDER_MAX} ký tự.`)
-    .regex(FOLDER_CHARSET, 'Thư mục chỉ được dùng chữ, số, khoảng trắng và các ký tự . _ - /')
-    .refine((value) => !FOLDER_UNSAFE.test(value), 'Thư mục không được chứa “..” hoặc đường dẫn tuyệt đối.')
+    .refine((value) => !hasControlChar(value), NO_CONTROLS)
+    .refine(
+      (value) => !FOLDER_UNSAFE.test(value),
+      'Thư mục không được chứa “..”, dấu “\\” hoặc đường dẫn tuyệt đối.',
+    )
     .optional(),
   alt: z
     .string()

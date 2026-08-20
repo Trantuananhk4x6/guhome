@@ -93,15 +93,18 @@ export default async function AdminArticlesPage({ searchParams }: { searchParams
   }
   if (search.length > 0) query.search = search
 
-  const [rows, counts, publishedRows] = await Promise.all([
-    listAdminArticles(query),
-    countAdminArticles(),
-    // The schedule is a timestamp comparison, so it cannot come out of
-    // `countAdminArticles` — it is counted over the published window instead.
-    listAdminArticles({ status: 'published', limit: FETCH_LIMIT }),
-  ])
+  const [rows, counts] = await Promise.all([listAdminArticles(query), countAdminArticles()])
 
-  const scheduledCount = publishedRows.filter(isScheduled).length
+  /**
+   * The schedule is a timestamp comparison, so it cannot come out of
+   * `countAdminArticles` — but it does not need a read of its own either.
+   * `all`, `published` and `scheduled` all fetch the published window already,
+   * so the number is derived from `rows`. The draft and archived windows hold
+   * no published row to count, so the toggle stays reachable but goes bare
+   * rather than paying for a second pass over every article document.
+   */
+  const countsScheduled = view === 'all' || view === 'published' || view === 'scheduled'
+  const scheduledCount = countsScheduled ? rows.filter(isScheduled).length : null
 
   const filtered = view === 'scheduled' ? rows.filter(isScheduled) : rows
   const total = filtered.length
@@ -120,13 +123,13 @@ export default async function AdminArticlesPage({ searchParams }: { searchParams
         description="Toàn bộ nhật ký của studio, kể cả bản nháp và bài đã hẹn giờ. Bộ lọc và từ khoá nằm trong đường dẫn nên mọi khung nhìn đều chia sẻ được."
         actions={
           <>
-            {scheduledCount > 0 || view === 'scheduled' ? (
+            {scheduledCount === null || scheduledCount > 0 || view === 'scheduled' ? (
               <Button
                 href={view === 'scheduled' ? viewHref('published', search) : viewHref('scheduled', search)}
                 variant={view === 'scheduled' ? 'solid' : 'ghost'}
                 size="sm"
               >
-                Hẹn giờ · {scheduledCount}
+                {scheduledCount === null ? 'Hẹn giờ' : `Hẹn giờ · ${scheduledCount}`}
               </Button>
             ) : null}
             <Button href="/admin/articles/new" variant="solid" size="sm">
