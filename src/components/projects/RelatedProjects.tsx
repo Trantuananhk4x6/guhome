@@ -40,16 +40,24 @@ export interface RelatedProjectsProps {
 }
 
 /** One measure for every card, so the track advances in even steps. */
-const CARD = 'w-[min(78vw,34rem)] shrink-0'
-const CARD_SIZES = '(min-width: 1024px) 34rem, 78vw'
+const CARD = 'w-[clamp(20rem,32vw,44rem)] shrink-0'
+const CARD_SIZES = '(min-width: 2200px) 44rem, (min-width: 1024px) 32vw, 78vw'
 
 /* ------------------------------ track geometry ----------------------------- */
 /* Every number here is read straight off the markup below. Change one there and
    change it here, or the rail will pin on viewports it cannot travel across.   */
 
-/** `min(78vw,34rem)` — 34rem binds on any viewport wider than 698px. */
-const CARD_MAX_PX = 544
-const CARD_VW = 0.78
+/** `clamp(20rem,32vw,44rem)`. A viewport-proportional card is what keeps the
+ *  track overflowing on an ultrawide monitor: a fixed 34rem card left six
+ *  siblings 240px short of the pin threshold at 3440px and actually *narrower*
+ *  than the viewport at 3840px, so the rail silently became a grid on exactly
+ *  the screens it looks best on. 32vw caps at 44rem so a card never outgrows a
+ *  comfortable reading measure. The rail only runs at ≥1024px
+ *  (`HORIZONTAL_QUERY`), where 32vw ≥ 20rem, so the lower clamp is a floor for
+ *  the SSR pass rather than a width anyone sees. */
+const CARD_MAX_PX = 704
+const CARD_MIN_PX = 320
+const CARD_VW = 0.32
 /** `gap-10` */
 const GAP_PX = 40
 /** `--spacing-gutter: clamp(1.25rem, 4vw, 4.5rem)` — one on each side of the track. */
@@ -67,7 +75,7 @@ const MIN_TRAVEL_PX = 320
  * window.innerWidth + endPadding` — evaluated one render before the track exists.
  */
 function travelPx(count: number, viewport: number): number {
-  const card = Math.min(viewport * CARD_VW, CARD_MAX_PX)
+  const card = Math.min(Math.max(viewport * CARD_VW, CARD_MIN_PX), CARD_MAX_PX)
   const gutter = Math.min(GUTTER_MAX_PX, Math.max(GUTTER_MIN_PX, viewport * GUTTER_VW))
   const track = count * card + Math.max(0, count - 1) * GAP_PX + 2 * gutter
   return Math.max(0, track - viewport + END_PADDING_PX)
@@ -83,9 +91,12 @@ function useTrackTravels(count: number): boolean {
   return useSyncExternalStore(
     subscribeToViewport,
     () => travelPx(count, window.innerWidth) >= MIN_TRAVEL_PX,
-    // No viewport on the server. Four 34rem cards is the first count that
-    // overflows a desktop screen; the first client commit measures for real.
-    () => count >= 4,
+    // No viewport on the server, so guess the *static* variant every time and
+    // let the first client commit upgrade to the rail once it can measure.
+    // Guessing the rail instead would make the wide-screen path render a pinned
+    // 100vh section and then tear it back out, which reads as a broken page;
+    // grid → rail is the one direction where the swap looks deliberate.
+    () => false,
   )
 }
 

@@ -28,6 +28,17 @@ Positioning: interior architecture studio, Ho Chi Minh City. Content language is
 - Do not touch: `package.json`, `tsconfig.json`, `next.config.ts`, `drizzle.config.ts`,
   `src/types/content.ts`, `src/server/db/schema.ts`, `src/styles/globals.css`,
   `.env.local`. If you truly need a change there, note it in your final report instead.
+- **Exception — `tsconfig.json` is co-owned with Next.** `next dev` / `next build` run
+  `writeConfigurationDefaults` and rewrite `compilerOptions.jsx` to `react-jsx` (Next 16
+  uses the React automatic runtime), append `.next/dev/types/**/*.ts` to `include`, and
+  re-pretty-print the file. That is Next asserting its own contract, not an agent editing a
+  frozen file — the committed values are Next's. Do not revert them and do not report them
+  as a violation; `npx tsc --noEmit` passes either way. Everything else in the file is still
+  frozen. Next likewise generates `AGENTS.md` / `CLAUDE.md` at the repo root on every dev
+  run; both are committed so the tree stays clean.
+- `next dev` and `next build` are for the orchestrator, not for agents: a build inside an
+  agent races the dev server and rewrites the file above mid-review. Verify with
+  `npx tsc --noEmit` and `npx eslint <paths>`.
 
 ## 1. Stack (already installed, versions pinned)
 
