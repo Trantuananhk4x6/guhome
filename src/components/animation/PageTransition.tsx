@@ -51,7 +51,15 @@ export function PageTransition(props: { children: ReactNode }): JSX.Element {
   const { children } = props
   const pathname = usePathname()
   const router = useRouter()
-  const enabled = useMotionFlag('pageTransition')
+  /**
+   * The curtain is a public-site gesture. It sits in the root layout, which wraps
+   * the (admin) route group too, so without this every CMS navigation — and an
+   * editor makes dozens in a session — paid 1.1s of animation to cross from a
+   * list to a form. An editing tool should feel instant; the cinema belongs on
+   * the side of the site a visitor sees once.
+   */
+  const isAdmin = pathname === '/admin' || pathname.startsWith('/admin/')
+  const enabled = useMotionFlag('pageTransition') && !isAdmin
 
   const panelRef = useRef<HTMLDivElement>(null)
   const markRef = useRef<HTMLSpanElement>(null)

@@ -505,7 +505,11 @@ export function ProjectEditor({
           />
 
           <aside className="lg:sticky lg:top-[4.5rem]">
-            <div className="max-h-[calc(100dvh-11rem)] overflow-y-auto border border-line bg-canvas">
+            {/* Opt out of Lenis so the block list scrolls on a wheel. */}
+            <div
+              data-lenis-prevent
+              className="max-h-[calc(100dvh-11rem)] overflow-y-auto border border-line bg-canvas"
+            >
               {selected ? (
                 <BlockInspector
                   key={selected.key}

@@ -134,6 +134,11 @@ export function MobileMenu({ id, open, onClose, nav, brand }: MobileMenuProps) {
     >
       <div
         data-menu-panel
+        // Lenis preventDefaults every wheel and touchmove on the document,
+        // including while stopped, so a nested scroller never receives them.
+        // Without this opt-out the menu is unscrollable on the one device it
+        // exists for.
+        data-lenis-prevent
         className="flex h-full w-full flex-col overflow-y-auto overscroll-contain bg-canvas text-ink"
       >
         <div className="u-gutter flex h-20 shrink-0 items-center justify-between border-b border-line">

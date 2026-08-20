@@ -132,9 +132,14 @@ export function reliefDepthFor(displacementScale: number): number {
 
 /**
  * Depth-gradient thresholds for the relief shader, in field units per texel.
- * Displacement fades out from `soft` and fragments are dropped past `cut`, so a
- * genuine depth discontinuity punches a hole instead of stretching a triangle
- * across it. Tune here — `SceneSettings` is frozen, so they are not per-scene.
+ * Displacement tapers from `soft` and reaches zero at `cut`; nothing is
+ * discarded, so `cut` now marks only the far end of the taper. A cliff therefore
+ * flattens into a correctly-textured band rather than punching a hole — which is
+ * the better degrade, and also the only one that was ever happening: the taper
+ * makes displacement identically zero at `cut`, so the discard that used to sit
+ * past it deleted exactly the fragments that were already flat and right, while
+ * the genuinely stretched band between `soft` and `cut` survived untouched.
+ * Tune here — `SceneSettings` is frozen, so they are not per-scene.
  *
  * The two profiles are not interchangeable. A measured depth map has real
  * occlusion cliffs and wants a tight threshold. An inferred field is smooth by

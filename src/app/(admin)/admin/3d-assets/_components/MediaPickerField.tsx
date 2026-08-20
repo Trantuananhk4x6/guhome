@@ -119,7 +119,8 @@ export function MediaPickerField({ label, value, kinds, hint, disabled = false, 
               </button>
             </header>
 
-            <div className="flex-1 overflow-y-auto p-6">
+            {/* Opt out of Lenis, as the shared admin Dialog does. */}
+            <div data-lenis-prevent className="flex-1 overflow-y-auto p-6">
               {pending && results.length === 0 ? (
                 <p className="u-label py-16 text-center">Đang tải…</p>
               ) : results.length === 0 ? (

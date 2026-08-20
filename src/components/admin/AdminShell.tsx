@@ -33,7 +33,15 @@ const ROLE_LABEL: Record<UserRole, string> = {
 export function AdminShell({ user, children }: AdminShellProps) {
   return (
     <div className="min-h-dvh bg-canvas text-ink">
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col border-r border-line bg-surface lg:flex">
+      {/* Lenis runs on /admin too and preventDefaults every wheel event before a
+          nested scroller sees it, so the CMS rail is unscrollable once it
+          overflows. Marking the whole aside covers everything inside it — the
+          attribute has to sit on a DOM element, not on <AdminNav>, which does not
+          forward unknown props. */}
+      <aside
+        data-lenis-prevent
+        className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col border-r border-line bg-surface lg:flex"
+      >
         <div className="border-b border-line px-5 py-5">
           <Link href="/admin" className="block">
             <span className="block font-display text-[1.375rem] font-normal leading-none tracking-[-0.02em]">
