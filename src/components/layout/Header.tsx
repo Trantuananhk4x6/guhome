@@ -345,7 +345,7 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
                   width={512}
                   height={512}
                   priority
-                  className="h-[1.9em] w-auto"
+                  className="h-[2.9em] w-auto md:h-[3.1em]"
                 />
               ) : (
                 /*
@@ -380,6 +380,14 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
               aria-label="Điều hướng chính"
               className="hidden shrink-0 items-baseline gap-x-8 md:flex lg:gap-x-12"
             >
+              {/*
+                `groupNav` pulls Trang chủ onto the wordmark, on the reasoning
+                that a logo already IS the way home. The client asked for it back
+                in the list — a visitor who does not know that convention has no
+                visible way home — so it renders here as a `rest` weight: present,
+                but not competing with Dự án for the eye.
+              */}
+              {home ? <NavLink item={home} variant="rest" pathname={pathname} /> : null}
               {lead ? <NavLink item={lead} variant="lead" pathname={pathname} /> : null}
               {/*
                 The three reading destinations cluster at half the gap that

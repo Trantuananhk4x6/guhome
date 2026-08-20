@@ -22,7 +22,7 @@
  *     given fewer columns and one of them dropped so they share no edge.
  *   A LEFTOVER plate is held alone, inset or bleeding.
  *
- * Each shape has two variants and they alternate down the run, offset by the
+ * Each shape has three variants and they cycle down the run, offset by the
  * project's composition phase — so two projects whose photographs happen to be
  * shaped alike still do not open on the same arrangement.
  *
@@ -93,35 +93,61 @@ const CROP_PANO = 1.35
 
 type PairCombo = 'tall-tall' | 'tall-flat' | 'flat-tall' | 'flat-flat'
 type Shape = readonly [string, string]
+type Variants<T> = readonly [T, T, T]
 
 /**
- * Two variants per combination, alternating down the run. The drop is the whole
- * point: two plates that share a top edge read as a template, two that share
- * neither edge read as a spread.
+ * THREE variants per combination, not two.
+ *
+ * Two was the first version and it is visibly short: a six-photograph gallery
+ * of one orientation — `dia-son-bac-ha` is six landscapes at 1.50 — builds
+ * three pair rows, and a two-step alternation gives the first and third the
+ * same span pattern. Three steps means every row of a six-plate gallery has its
+ * own arrangement, and the cycle only closes on the seventh.
+ *
+ * The drop is the other half of it: two plates that share a top edge read as a
+ * template, two that share neither edge read as a spread.
  */
-const PAIRS: Record<PairCombo, readonly [Shape, Shape]> = {
+const PAIRS: Record<PairCombo, Variants<Shape>> = {
   'tall-tall': [
     ['lg:col-span-4 lg:col-start-1', 'lg:col-span-4 lg:col-start-8 lg:mt-24'],
     ['lg:col-span-4 lg:col-start-2 lg:mt-20', 'lg:col-span-5 lg:col-start-8'],
+    ['lg:col-span-5 lg:col-start-1 lg:mt-10', 'lg:col-span-4 lg:col-start-7'],
   ],
   'tall-flat': [
     ['lg:col-span-4 lg:col-start-1', 'lg:col-span-7 lg:col-start-6 lg:mt-20'],
     ['lg:col-span-4 lg:col-start-2 lg:mt-16', 'lg:col-span-6 lg:col-start-7'],
+    ['lg:col-span-4 lg:col-start-3 lg:mt-24', 'lg:col-span-5 lg:col-start-8'],
   ],
   'flat-tall': [
     ['lg:col-span-7 lg:col-start-1', 'lg:col-span-4 lg:col-start-9 lg:mt-24'],
     ['lg:col-span-6 lg:col-start-1 lg:mt-14', 'lg:col-span-4 lg:col-start-8'],
+    ['lg:col-span-8 lg:col-start-1 lg:mt-10', 'lg:col-span-3 lg:col-start-10'],
   ],
   'flat-flat': [
     ['lg:col-span-6 lg:col-start-1', 'lg:col-span-5 lg:col-start-8 lg:mt-16'],
     ['lg:col-span-5 lg:col-start-2', 'lg:col-span-6 lg:col-start-7 lg:mt-24'],
+    ['lg:col-span-5 lg:col-start-1 lg:mt-12', 'lg:col-span-6 lg:col-start-7'],
   ],
 }
 
-const SOLOS: Record<Orientation, readonly [string, string]> = {
-  tall: ['lg:col-span-4 lg:col-start-5', cn('lg:col-span-5 lg:col-start-8', BLEED_R)],
-  flat: ['lg:col-span-8 lg:col-start-3', cn('lg:col-span-7 lg:col-start-6', BLEED_R)],
-  pano: ['lg:col-span-12', 'lg:col-span-10 lg:col-start-2'],
+const SOLOS: Record<Orientation, Variants<string>> = {
+  tall: [
+    'lg:col-span-4 lg:col-start-5',
+    cn('lg:col-span-5 lg:col-start-8', BLEED_R),
+    'lg:col-span-4 lg:col-start-2',
+  ],
+  flat: [
+    'lg:col-span-8 lg:col-start-3',
+    cn('lg:col-span-7 lg:col-start-6', BLEED_R),
+    'lg:col-span-6 lg:col-start-2',
+  ],
+  pano: ['lg:col-span-12', 'lg:col-span-10 lg:col-start-2', cn('lg:col-span-11 lg:col-start-2', BLEED_R)],
+}
+
+/** `step % 3`, narrowed so the tuples above index exactly. */
+function variantOf(step: number): 0 | 1 | 2 {
+  const at = ((step % 3) + 3) % 3
+  return at === 1 ? 1 : at === 2 ? 2 : 0
 }
 
 /** Roughly what share of the viewport each role occupies once it is placed. */
@@ -133,7 +159,7 @@ const SIZES: Record<Orientation, string> = {
 
 const REQUEST: Record<Orientation, number> = { tall: 1200, flat: 1600, pano: 2400 }
 
-/** Three drift rates, cycled — all well inside the ±10% ceiling. */
+/** Five drift rates, cycled — all well inside the ±10% ceiling, and 5 is coprime with the 3-step variant cycle, so the two never line up. */
 const STRENGTHS = [0.24, 0.34, 0.2, 0.3, 0.26] as const
 
 /* --------------------------------- the plan -------------------------------- */
@@ -204,10 +230,10 @@ function planGallery(items: readonly MediaRef[], phase: number): Plate[] {
     const first = items[index]
     if (!first) break
     const firstOrientation = orientationOf(first)
-    const variant = step % 2
+    const variant = variantOf(step)
 
     if (firstOrientation === 'pano') {
-      place(first, SOLOS.pano[variant === 1 ? 1 : 0], 'pano')
+      place(first, SOLOS.pano[variant], 'pano')
       index += 1
       step += 1
       continue
@@ -217,7 +243,7 @@ function planGallery(items: readonly MediaRef[], phase: number): Plate[] {
     const secondOrientation = second ? orientationOf(second) : null
 
     if (second && secondOrientation && secondOrientation !== 'pano') {
-      const shape = PAIRS[pairCombo(firstOrientation, secondOrientation)][variant === 1 ? 1 : 0]
+      const shape = PAIRS[pairCombo(firstOrientation, secondOrientation)][variant]
       place(first, shape[0], firstOrientation)
       place(second, shape[1], secondOrientation)
       index += 2
@@ -225,7 +251,7 @@ function planGallery(items: readonly MediaRef[], phase: number): Plate[] {
       continue
     }
 
-    place(first, SOLOS[firstOrientation][variant === 1 ? 1 : 0], firstOrientation)
+    place(first, SOLOS[firstOrientation][variant], firstOrientation)
     index += 1
     step += 1
   }

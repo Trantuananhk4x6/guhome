@@ -25,8 +25,13 @@ export function Footer({ nav, brand }: FooterProps) {
   const tel = `tel:${brand.phone.replace(/\s+/g, '')}`
   const pages = [lead, ...rest, contact].filter((item): item is NavItem => item !== null)
 
+  // The accent hairline below is not decoration — it is the only thing that
+  // separates this band from the page on a night palette. Two near-blacks cannot
+  // be told apart by luminance (canvas and espresso measure 1.08:1), so without
+  // an edge the footer reads as the page simply continuing. On the daylight
+  // palette the same rule reads as the deliberate join it always was.
   return (
-    <footer className="bg-espresso text-canvas">
+    <footer className="border-t border-accent/45 bg-espresso text-canvas">
       <div className="u-gutter pb-12 pt-section">
         <section className="grid gap-10 border-b border-canvas/12 pb-16 md:grid-cols-12 md:gap-10">
           <div className="flex flex-col gap-6 md:col-span-7">

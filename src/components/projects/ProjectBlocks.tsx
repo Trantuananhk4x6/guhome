@@ -651,7 +651,7 @@ export async function ProjectBlocks({ project, blocks, className }: ProjectBlock
     phase: {
       image: phaseOf(key, 1, 2),
       text: phaseOf(key, 2, PROSE_PHRASES.length),
-      gallery: phaseOf(key, 3, 2),
+      gallery: phaseOf(key, 3, 3),
       quote: phaseOf(key, 4, 2),
     },
   }

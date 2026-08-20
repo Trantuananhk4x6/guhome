@@ -20,9 +20,9 @@
  *
  * That alone makes the two IMAGE blocks on one page different (they are
  * different photographs) *and* makes the same block different across projects.
- * On the eight slugs the review diffed, `wide` now resolves to 4/3, 3/2, 16/9,
- * a 4-column portrait plate and a 5-column one; `full` to 3/2, 2/1, 21/9 and
- * two espresso-ground plates.
+ * Fetched back off the eight slugs the review diffed, `wide` now resolves to
+ * 4/5, 9/10, 4/3, 3/2 and 16/9, and `full` to 3/2, 2/1, 21/9 and three
+ * espresso-ground portrait plates. No page's two IMAGE blocks agree.
  *
  * A PORTRAIT IS NOT A BAND. When a `full` block points at a portrait, running
  * it to the glass would mean cropping it to a strip — the opposite of what
@@ -124,15 +124,22 @@ interface Placement {
   width: number
 }
 
+/*
+ * The asymmetry is an `lg` composition, because it depends on the bleed to make
+ * the open columns read as a margin. Between 640 and 1023 there is no bleed —
+ * the plate would simply be seven columns hard against one edge with five empty
+ * ones beside it, which is the dead rectangle again. It is centred there
+ * instead, and only takes a side once it can leave the gutter.
+ */
 const WIDE_PLATE: Record<'left' | 'right', Placement> = {
   left: {
-    span: cn('col-span-12 sm:col-span-7 lg:col-span-4', BLEED_L),
-    sizes: '(min-width: 1024px) 38vw, (min-width: 640px) 60vw, 100vw',
+    span: cn('col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-4 lg:col-start-1', BLEED_L),
+    sizes: '(min-width: 1024px) 38vw, (min-width: 640px) 66vw, 100vw',
     width: 1600,
   },
   right: {
-    span: cn('col-span-12 sm:col-span-7 sm:col-start-6 lg:col-span-4 lg:col-start-9', BLEED_R),
-    sizes: '(min-width: 1024px) 38vw, (min-width: 640px) 60vw, 100vw',
+    span: cn('col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-4 lg:col-start-9', BLEED_R),
+    sizes: '(min-width: 1024px) 38vw, (min-width: 640px) 66vw, 100vw',
     width: 1600,
   },
 }
@@ -173,21 +180,26 @@ const PLACEMENT: Record<ImageFamily, Record<'left' | 'right', Placement>> = {
 
 /** The `full` plate, held inside the measure on its own ground. */
 const GROUND_PLATE: Record<'left' | 'right', string> = {
-  left: 'col-span-12 sm:col-span-7 sm:col-start-2 lg:col-span-4 lg:col-start-2',
-  right: 'col-span-12 sm:col-span-7 sm:col-start-5 lg:col-span-4 lg:col-start-8',
+  left: 'col-span-12 sm:col-span-6 sm:col-start-4 lg:col-span-4 lg:col-start-2',
+  right: 'col-span-12 sm:col-span-6 sm:col-start-4 lg:col-span-4 lg:col-start-8',
 }
 
-/** The `narrow` plate: the one composition on the page that is centred. */
+/**
+ * The `narrow` plate: the one composition on the page that is actually centred,
+ * so each family takes an even span around the middle line — 4 columns from 5,
+ * 6 from 4, 8 from 3. A 5-column span cannot centre on a 12-column grid, which
+ * is how the square family used to sit half a column left of everything else.
+ */
 const HELD_PLATE: Record<ImageFamily, string> = {
   plate: 'col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-4 lg:col-start-5',
-  square: 'col-span-12 sm:col-span-10 sm:col-start-2 lg:col-span-5 lg:col-start-4',
-  band: 'col-span-12 sm:col-span-10 sm:col-start-2 lg:col-span-6 lg:col-start-4',
+  square: 'col-span-12 sm:col-span-10 sm:col-start-2 lg:col-span-6 lg:col-start-4',
+  band: 'col-span-12 sm:col-span-10 sm:col-start-2 lg:col-span-8 lg:col-start-3',
 }
 
 const HELD_SIZES: Record<ImageFamily, string> = {
   plate: '(min-width: 1024px) 34vw, (min-width: 640px) 66vw, 100vw',
-  square: '(min-width: 1024px) 42vw, (min-width: 640px) 82vw, 100vw',
-  band: '(min-width: 1024px) 50vw, (min-width: 640px) 82vw, 100vw',
+  square: '(min-width: 1024px) 50vw, (min-width: 640px) 82vw, 100vw',
+  band: '(min-width: 1024px) 66vw, (min-width: 640px) 82vw, 100vw',
 }
 
 /** Steps permitted per family, per breakpoint, with the crop each may spend. */
