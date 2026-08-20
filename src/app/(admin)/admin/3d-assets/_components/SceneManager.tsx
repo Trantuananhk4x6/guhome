@@ -45,6 +45,17 @@ export function SceneManager({ scenes, jobs, projects }: SceneManagerProps) {
   const active = scenes.find((scene) => scene.config.id === activeId) ?? null
   const pendingReview = jobs.filter((job) => job.status === 'review').length
 
+  // A project resolves to its *oldest* scene on the public site, and `fetchScenes`
+  // orders by project then creation, so the first row per project is the one
+  // visitors get. Anything after it is editable but invisible unless a SCENE_3D
+  // block names it — the editor says so rather than letting the work vanish.
+  const primaryByProject = new Map<string, string>()
+  for (const scene of scenes) {
+    const projectId = scene.config.projectId
+    if (!projectId || primaryByProject.has(projectId)) continue
+    primaryByProject.set(projectId, scene.config.id)
+  }
+
   function addScene(): void {
     setNotice(null)
     startTransition(async () => {
@@ -164,6 +175,10 @@ export function SceneManager({ scenes, jobs, projects }: SceneManagerProps) {
                 key={active.config.id}
                 scene={active}
                 projects={projects}
+                shadowedByPrimary={
+                  active.config.projectId !== null &&
+                  primaryByProject.get(active.config.projectId) !== active.config.id
+                }
                 onSaved={() => router.refresh()}
                 onDeleted={() => {
                   setActiveId(null)

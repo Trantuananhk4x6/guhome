@@ -136,13 +136,26 @@ export function ProjectHero({
   return (
     <section
       ref={sectionRef}
+      // The hero is espresso on both branches, so the header must invert over it.
+      // `Header` looks for exactly `[data-hero-tone="dark"]` — any other value is inert.
+      data-hero-tone="dark"
       className={cn(
         'bg-espresso relative isolate flex w-full flex-col justify-end overflow-hidden',
         fullBleed ? 'min-h-[92svh]' : 'min-h-[70svh]',
         className,
       )}
     >
-      <div aria-hidden="true" className="absolute inset-0">
+      {/*
+        The view-transition name lives on the wrapper, not on one branch: a project
+        with a scene renders `InteriorScene` instead of `<Image>`, and stamping the
+        image alone left the flagship 3D projects with a plain cross-fade. This
+        element holds either branch, so the card always has something to morph into.
+      */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{ viewTransitionName: PROJECT_VIEW_TRANSITION_NAME } as CSSProperties}
+      >
         {useScene && scene ? (
           <InteriorScene
             config={scene}
@@ -160,9 +173,6 @@ export function ProjectHero({
             priority
             sizes="100vw"
             className="object-cover"
-            // Pairs with the name the card transition stamps on the thumbnail,
-            // so the card morphs into this frame instead of cross-fading.
-            style={{ viewTransitionName: PROJECT_VIEW_TRANSITION_NAME } as CSSProperties}
             onLoad={() => setSettled(true)}
             {...(cover.blurDataURL ? { placeholder: 'blur' as const, blurDataURL: cover.blurDataURL } : {})}
           />

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { gsap, registerGsap, ScrollTrigger } from '@/animations/gsap'
 import { Button } from '@/components/ui/Button'
-import { motionEnabled } from '@/lib/motion'
+import { useMotionFlag } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 import type { BrandConfig, NavItem } from '@/types/content'
 
@@ -37,6 +37,13 @@ export function Header({ nav, brand }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuOpenRef = useRef(false)
 
+  // Reactive, not a store snapshot: a snapshot read inside the effect below is
+  // captured before `ScrollProvider` (an ancestor) publishes the OS
+  // `prefers-reduced-motion` value, so reduced-motion visitors would keep the
+  // hide-on-scroll header forever. Re-arming on change is safe — the cleanup
+  // reverts the context and parks the header at `yPercent: 0`.
+  const canHide = useMotionFlag('enabled')
+
   useEffect(() => {
     setMenuOpen(false)
   }, [pathname])
@@ -52,7 +59,6 @@ export function Header({ nav, brand }: HeaderProps) {
     if (!el) return
 
     const heroDark = document.querySelector('[data-hero-tone="dark"]') !== null
-    const canHide = motionEnabled('enabled')
     let hidden = false
 
     const paint = (scroll: number) => {
@@ -92,7 +98,7 @@ export function Header({ nav, brand }: HeaderProps) {
       gsap.killTweensOf(el)
       gsap.set(el, { yPercent: 0 })
     }
-  }, [pathname])
+  }, [pathname, canHide])
 
   return (
     <>

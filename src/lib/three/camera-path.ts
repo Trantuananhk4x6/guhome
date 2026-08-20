@@ -398,9 +398,114 @@ export function damp(current: number, goal: number, lambda: number, delta: numbe
   return Math.abs(goal - next) < 1e-5 ? goal : next
 }
 
-/** Ping-pong 0→1→0 over `period` seconds — used by auto-explore. */
+/** Ping-pong 0→1→0 over `period` seconds — a constant-speed sweep with no stops. */
 export function pingPong(time: number, period: number): number {
   if (period <= 0) return 0
   const phase = (time % (period * 2)) / period
   return phase <= 1 ? phase : 2 - phase
+}
+
+/* ------------------------------- tour clock ------------------------------- */
+
+/**
+ * Seconds to travel the whole 0→1 span at `speed = 1`. A leg covering a quarter
+ * of the path therefore takes a quarter of this — waypoints placed close
+ * together are reached quickly, a long run to the far wall takes its time.
+ */
+export const TOUR_LEG_SECONDS = 4.5
+
+/**
+ * Pause on arrival at every waypoint, so a stop reads as a composed view rather
+ * than a fly-by. The hold is the whole difference between an architectural
+ * walkthrough and a game camera.
+ */
+export const TOUR_HOLD_SECONDS = 1.1
+
+/** Never schedule a leg shorter than this, however close two waypoints sit. */
+const MIN_LEG_SECONDS = 0.12
+
+export interface TourClockOptions {
+  legSeconds?: number
+  holdSeconds?: number
+  /** `SceneConfig.animationSpeed`; higher = a quicker walk. */
+  speed?: number
+}
+
+export interface TourClock {
+  /** Seconds for one full loop — out through every waypoint and back home. */
+  readonly duration: number
+  /** Path parameter (0..1) at `time` seconds. Loops forever. */
+  progressAt(time: number): number
+}
+
+interface TourStep {
+  from: number
+  to: number
+  /** Seconds from the top of the loop. */
+  start: number
+  duration: number
+}
+
+/**
+ * Turns resolved waypoints into a looping schedule — travel, hold, travel,
+ * hold, … then a closing leg back to the first stop so the repeat never snaps.
+ *
+ * The clock advances **linearly** inside a leg on purpose. Easing already
+ * happens once, per waypoint, inside `createCameraPath` (`ResolvedWaypoint.ease`,
+ * `power2.inOut` by default); easing the clock on top of that would square the
+ * curve and the dolly would crawl in and out of every waypoint.
+ */
+export function createTourClock(
+  points: readonly ResolvedWaypoint[] | null | undefined,
+  options: TourClockOptions = {},
+): TourClock {
+  const leg = Math.max(MIN_LEG_SECONDS, options.legSeconds ?? TOUR_LEG_SECONDS)
+  const hold = Math.max(0, options.holdSeconds ?? TOUR_HOLD_SECONDS)
+  const requested = options.speed
+  const speed =
+    typeof requested === 'number' && Number.isFinite(requested) ? Math.min(Math.max(requested, 0.05), 8) : 1
+  const held = hold / speed
+
+  const stops: number[] = []
+  for (const point of points ?? []) stops.push(clamp01(point.at))
+  const home = stops[0] ?? 0
+
+  const steps: TourStep[] = []
+  let cursor = 0
+  const push = (from: number, to: number, seconds: number): void => {
+    if (seconds <= 0) return
+    steps.push({ from, to, start: cursor, duration: seconds })
+    cursor += seconds
+  }
+
+  for (let i = 1; i < stops.length; i++) {
+    const from = stops[i - 1] ?? home
+    const to = stops[i] ?? home
+    push(from, to, Math.max(MIN_LEG_SECONDS, (leg * Math.abs(to - from)) / speed))
+    push(to, to, held)
+  }
+
+  const last = stops[stops.length - 1] ?? home
+  if (last !== home) {
+    push(last, home, Math.max(MIN_LEG_SECONDS, (leg * Math.abs(home - last)) / speed))
+    push(home, home, held)
+  }
+
+  const duration = cursor
+
+  return {
+    duration,
+    progressAt(time: number): number {
+      // A single waypoint is a still frame: there is nothing to schedule.
+      if (!Number.isFinite(time) || duration <= 0) return home
+      const wrapped = ((time % duration) + duration) % duration
+      for (const step of steps) {
+        if (wrapped < step.start + step.duration) {
+          const u = step.duration > 0 ? (wrapped - step.start) / step.duration : 1
+          return step.from + (step.to - step.from) * clamp01(u)
+        }
+      }
+      return home
+    },
+  }
 }

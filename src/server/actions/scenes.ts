@@ -46,7 +46,7 @@ async function audit(
   userId: string,
   action: string,
   entityId: string | null,
-  meta?: Record<string, unknown>,
+  meta?: Record<string, unknown> | null,
 ): Promise<void> {
   try {
     await db.insert(auditLogs).values({
@@ -82,7 +82,13 @@ async function revalidateScene(projectId: string | null): Promise<void> {
 const SCENE_MODES = ['NONE', 'IMAGE', 'DEPTH_2_5D', 'PROCEDURAL_3D', 'NATIVE_GLB'] as const
 
 const coord = z.number().min(-1000, 'Toạ độ quá nhỏ.').max(1000, 'Toạ độ quá lớn.')
-const vec3 = z.tuple([coord, coord, coord])
+/**
+ * `.readonly()` is load-bearing: `Vec3` in `@/types/content` is a *readonly*
+ * tuple, so a plain `z.tuple(...)` would refuse `CameraWaypoint.position` on the
+ * way in. Zod maps readonly through both `z.input` and `z.output`, so the parsed
+ * value still assigns straight back into `CameraWaypoint` / `SceneSettings`.
+ */
+const vec3 = z.tuple([coord, coord, coord]).readonly()
 
 const waypointSchema = z.object({
   position: vec3,

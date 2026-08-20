@@ -54,57 +54,175 @@ function idList(value: unknown): string[] {
   return value.filter(isId)
 }
 
+/* --------------------------- before / after pairing ------------------------ */
+
+/**
+ * `BEFORE_AFTER` needs two *specific* photographs, and nothing in `ProjectDetail`
+ * marks a photograph as "the before". The only channel that survives from the
+ * media table to `MediaRef` is free text — `caption` and `alt` — so the pair is
+ * declared there, with an explicit leading tag:
+ *
+ * ```
+ * caption: "Trước — phòng khách nhìn từ sảnh"
+ * caption: "Sau — phòng khách nhìn từ sảnh"
+ * ```
+ *
+ * Accepted tags, accent- and case-insensitive, either bracketed (`[Trước] …`)
+ * or followed by `:` `—` `–` `-` `|`:
+ * `trước` / `trước cải tạo` / `hiện trạng` / `before`, and
+ * `sau` / `sau cải tạo` / `sau khi hoàn thiện` / `after`.
+ *
+ * Untagged media is never guessed at. A wrongly paired slider is worse than no
+ * slider, and gallery order alone carries no such meaning.
+ */
+const BEFORE_TAGS = new Set(['truoc', 'truoc cai tao', 'truoc khi cai tao', 'hien trang', 'before'])
+const AFTER_TAGS = new Set(['sau', 'sau cai tao', 'sau khi cai tao', 'sau khi hoan thien', 'after'])
+
+function deaccent(value: string): string {
+  return value
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/đ/g, 'd')
+    .toLowerCase()
+}
+
+/** The bracketed or delimited prefix of a caption, normalised. `null` when absent. */
+function leadingTag(text: string): string | null {
+  const plain = deaccent(text).trim()
+  const bracketed = /^[[(]([^\])]{1,32})[\])]/.exec(plain)
+  if (bracketed?.[1]) return bracketed[1].trim().replace(/\s+/g, ' ')
+  const delimited = /^([^:–—|-]{1,32})[:–—|-]/.exec(plain)
+  if (delimited?.[1]) return delimited[1].trim().replace(/\s+/g, ' ')
+  return null
+}
+
+type PairRole = 'before' | 'after'
+
+function pairRole(media: MediaRef): PairRole | null {
+  for (const text of [media.caption, media.alt]) {
+    if (!text) continue
+    const tag = leadingTag(text)
+    if (tag === null) continue
+    if (BEFORE_TAGS.has(tag)) return 'before'
+    if (AFTER_TAGS.has(tag)) return 'after'
+  }
+  return null
+}
+
+/** Drops the tag, leaving the human half of the caption. */
+function withoutTag(text: string | null): string | null {
+  if (!text) return null
+  const rest = text
+    .replace(/^\s*(?:[[(][^\])]{1,32}[\])]|[^:–—|-]{1,32}[:–—|-])\s*/, '')
+    .trim()
+  return rest.length > 0 ? rest : null
+}
+
+interface BeforeAfterPair {
+  before: MediaRef
+  after: MediaRef
+}
+
+/** Each tagged `before` is closed by the next tagged `after`, in gallery order. */
+function beforeAfterPairs(gallery: readonly MediaRef[]): BeforeAfterPair[] {
+  const out: BeforeAfterPair[] = []
+  let pending: MediaRef | null = null
+
+  for (const media of gallery) {
+    const role = pairRole(media)
+    if (role === 'before') {
+      pending = media
+      continue
+    }
+    if (role === 'after' && pending) {
+      out.push({ before: pending, after: media })
+      pending = null
+    }
+  }
+
+  return out
+}
+
+function pairLabel(pair: BeforeAfterPair): string {
+  return (
+    withoutTag(pair.after.caption) ??
+    withoutTag(pair.before.caption) ??
+    'Hiện trạng và không gian sau khi hoàn thiện.'
+  )
+}
+
 /* ------------------------------ default story ------------------------------ */
 
 /**
  * The story a project tells when nobody has composed one in the admin yet:
- * hero, description, gallery, facts, neighbours, invitation.
+ * hero, description, gallery, any before/after pair the media declares, facts,
+ * neighbours, invitation.
  */
 export function defaultBlocks(project: ProjectDetail): ProjectBlock[] {
-  const out: ProjectBlock[] = [
-    {
-      id: 'default-hero',
-      type: 'HERO',
-      order: 0,
-      enabled: true,
-      data: { mediaId: project.cover?.id ?? null, fullBleed: true },
-    },
-  ]
+  const out: ProjectBlock[] = []
+  let order = 0
+
+  out.push({
+    id: 'default-hero',
+    type: 'HERO',
+    order: order++,
+    enabled: true,
+    data: { mediaId: project.cover?.id ?? null, fullBleed: true },
+  })
 
   if (project.description && project.description.trim().length > 0) {
     out.push({
       id: 'default-text',
       type: 'TEXT',
-      order: 1,
+      order: order++,
       enabled: true,
       data: { body: project.description, width: 'narrow', align: 'left' },
     })
   }
 
-  if (project.gallery.length > 0) {
+  // The two halves of a comparison belong to the slider, not to the contact sheet.
+  const pairs = beforeAfterPairs(project.gallery)
+  const paired = new Set<string>()
+  for (const pair of pairs) {
+    paired.add(pair.before.id)
+    paired.add(pair.after.id)
+  }
+
+  const gallery = project.gallery.filter((item) => !paired.has(item.id))
+  if (gallery.length > 0) {
     out.push({
       id: 'default-gallery',
       type: 'GALLERY',
-      order: 2,
+      order: order++,
       enabled: true,
-      data: { mediaIds: project.gallery.map((item) => item.id), columns: 2 },
+      data: { mediaIds: gallery.map((item) => item.id), columns: 2 },
     })
   }
+
+  pairs.forEach((pair, i) => {
+    out.push({
+      id: `default-before-after-${i}`,
+      type: 'BEFORE_AFTER',
+      order: order++,
+      enabled: true,
+      data: { beforeMediaId: pair.before.id, afterMediaId: pair.after.id, label: pairLabel(pair) },
+    })
+  })
 
   if (project.scene && project.scene.mode !== 'NONE') {
     out.push({
       id: 'default-scene',
       type: 'SCENE_3D',
-      order: 3,
+      order: order++,
       enabled: true,
       data: { sceneId: project.scene.id, height: 'tall', label: 'Explore space' },
     })
   }
 
   out.push(
-    { id: 'default-info', type: 'PROJECT_INFO', order: 4, enabled: true, data: { showServices: true } },
-    { id: 'default-related', type: 'RELATED', order: 5, enabled: true, data: { projectIds: [] } },
-    { id: 'default-cta', type: 'CTA', order: 6, enabled: true, data: {} },
+    { id: 'default-info', type: 'PROJECT_INFO', order: order++, enabled: true, data: { showServices: true } },
+    { id: 'default-related', type: 'RELATED', order: order++, enabled: true, data: { projectIds: [] } },
+    { id: 'default-cta', type: 'CTA', order: order++, enabled: true, data: {} },
   )
 
   return out

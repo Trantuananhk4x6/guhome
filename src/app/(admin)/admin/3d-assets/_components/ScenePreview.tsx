@@ -6,6 +6,12 @@
  * `InteriorScene` is the single entry point into the 3D system and arrives
  * through `next/dynamic({ ssr: false })`, so three never touches the server
  * render. The container ref is what `readPreviewCamera()` searches for a canvas.
+ *
+ * `progressRef` is forwarded in scroll mode only. It has exactly one writer —
+ * the editor's simulated-progress slider, which is rendered only for that mode —
+ * so in orbit mode it would hand `InteriorScene` a ref frozen at whatever the
+ * slider last left behind, and the scene would read it as an authored camera
+ * path parked at that value instead of letting the operator orbit freely.
  */
 
 import dynamic from 'next/dynamic'
@@ -57,7 +63,7 @@ export function ScenePreview({
       <InteriorScene
         config={config}
         mode={mode}
-        progressRef={progressRef}
+        {...(mode === 'scroll' ? { progressRef } : {})}
         autoExplore={autoExplore}
         fallbackImage={fallbackImage}
         className="absolute inset-0 h-full w-full"

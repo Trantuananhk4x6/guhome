@@ -25,6 +25,14 @@ import type { MediaRef, RevealVariant } from '@/types/content'
 /** Vertical overscan of the inner wrapper, in %. Caps the drift at ±10%. */
 const OVERSCAN = 12
 
+/**
+ * States `CustomCursor` recognises. Anything else is a no-op there, so this is a
+ * closed union rather than a free string. Opt-in per surface: `ProjectCard` marks
+ * its own link `project`, and `closest()` picks the innermost match — so a figure
+ * inside a card must stay unmarked or it would win the lookup.
+ */
+export type FigureCursor = 'view' | 'drag' | 'project'
+
 export interface ProjectFigureProps {
   media: MediaRef | null
   /** Overrides `media.alt`. Pass `''` for a decorative image. */
@@ -43,6 +51,8 @@ export interface ProjectFigureProps {
   caption?: ReactNode
   /** Sits on top of the image — hover cues, index numbers. */
   overlay?: ReactNode
+  /** Stamps `data-cursor` on the frame. Leave unset inside a marked ancestor. */
+  cursor?: FigureCursor
   className?: string
   frameClassName?: string
   imageClassName?: string
@@ -82,11 +92,12 @@ type FrameProps = FrameInnerProps & {
   reveal: RevealVariant
   className?: string
   overlay?: ReactNode
+  cursor?: FigureCursor
   strength: number
 }
 
 /** Entrance reveal only — the hook animates the inner `[data-reveal-media]` wrapper. */
-function StaticFrame({ aspect, reveal, className, overlay, strength: _strength, ...inner }: FrameProps) {
+function StaticFrame({ aspect, reveal, className, overlay, cursor, strength: _strength, ...inner }: FrameProps) {
   const frameRef = useRef<HTMLDivElement>(null)
   useImageReveal(frameRef, { variant: reveal })
 
@@ -94,6 +105,7 @@ function StaticFrame({ aspect, reveal, className, overlay, strength: _strength, 
     <div
       ref={frameRef}
       data-reveal
+      {...(cursor ? { 'data-cursor': cursor } : {})}
       className={cn('relative isolate overflow-hidden bg-surface-alt', className)}
       style={aspect ? { aspectRatio: aspect } : undefined}
     >
@@ -109,7 +121,7 @@ function StaticFrame({ aspect, reveal, className, overlay, strength: _strength, 
  * Entrance on the frame, drift on the inner wrapper. The wrapper is overscanned
  * by `OVERSCAN`% top and bottom so the frame edge never shows through.
  */
-function ParallaxFrame({ aspect, reveal, className, overlay, strength, ...inner }: FrameProps) {
+function ParallaxFrame({ aspect, reveal, className, overlay, cursor, strength, ...inner }: FrameProps) {
   const frameRef = useRef<HTMLDivElement>(null)
   useReveal(frameRef, { variant: reveal })
   useParallax(frameRef, { strength })
@@ -118,6 +130,7 @@ function ParallaxFrame({ aspect, reveal, className, overlay, strength, ...inner 
     <div
       ref={frameRef}
       data-reveal
+      {...(cursor ? { 'data-cursor': cursor } : {})}
       className={cn('relative isolate overflow-hidden bg-surface-alt', className)}
       style={aspect ? { aspectRatio: aspect } : undefined}
     >
@@ -145,6 +158,7 @@ export function ProjectFigure({
   parallaxStrength = 0.35,
   caption,
   overlay,
+  cursor,
   className,
   frameClassName,
   imageClassName,
@@ -164,6 +178,7 @@ export function ProjectFigure({
     reveal,
     className: frameClasses,
     overlay,
+    cursor,
     strength: parallaxStrength,
   }
 

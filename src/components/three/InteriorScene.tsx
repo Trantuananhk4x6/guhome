@@ -35,6 +35,9 @@ const DepthScene = lazy(() => import('@/components/three/DepthScene'))
 const ProceduralScene = lazy(() => import('@/components/three/ProceduralScene'))
 const SceneEffects = lazy(() => import('@/components/three/SceneEffects'))
 
+/** How long a lost WebGL context has to come back before we return to the photo. */
+const CONTEXT_RESTORE_GRACE_MS = 1200
+
 export interface InteriorSceneProps {
   config: SceneConfig
   /** 0..1 scroll-driven camera progress, mutated outside React. */
@@ -122,6 +125,7 @@ export function InteriorScene({
 }: InteriorSceneProps): JSX.Element {
   const rootRef = useRef<HTMLDivElement | null>(null)
   const onReadyRef = useRef(onReady)
+  const contextTimer = useRef<number | null>(null)
   const [caps, setCaps] = useState<{ webgl: boolean; quality: QualityProfile } | null>(null)
   const [failed, setFailed] = useState(false)
   const [ready, setReady] = useState(false)
@@ -178,27 +182,72 @@ export function InteriorScene({
     !failed
 
   const explore = autoExplore ?? config.autoExplore
-  const dynamicLoop = mode === 'orbit' || explore || progressRef !== undefined
+
+  // The visitor grabbing the canvas mid-walk ends the walk. One state change per
+  // handover — not per frame — so the camera stays outside React's hands.
+  const [handedOff, setHandedOff] = useState(false)
+  useEffect(() => {
+    setHandedOff(false)
+  }, [mode, explore, config.id])
+  const handleHandoff = useCallback(() => {
+    setHandedOff(true)
+  }, [])
+
+  // Waypoints own the camera in scroll mode always, and in orbit mode for as
+  // long as AUTO EXPLORE is on and the visitor has not taken over. Folding
+  // `motionAllowsCamera` in here means that under reduced motion the path simply
+  // never mounts and the orbit controls stay live — the correct a11y outcome.
+  const pathDriven = motionAllowsCamera && (mode === 'scroll' || explore) && !handedOff
+  // Orbit needs a live loop for the controls' damping; otherwise only a driven
+  // camera does. A reduced-motion hero is a still frame and renders on demand.
+  const dynamicLoop = mode === 'orbit' || pathDriven
   const frameloop = !inView ? 'never' : dynamicLoop ? 'always' : 'demand'
+
+  const handleError = useCallback(() => {
+    setFailed(true)
+    setReady(false)
+    setCurtainDone(true)
+  }, [])
+
+  // A lost context is not a React throw, so the boundary below never sees it —
+  // without this the canvas would simply go black over a photograph that has
+  // already faded out. Browsers usually hand the context back, so give them a
+  // moment before conceding and returning to the still.
+  useEffect(() => {
+    return () => {
+      if (contextTimer.current !== null) {
+        window.clearTimeout(contextTimer.current)
+        contextTimer.current = null
+      }
+    }
+  }, [])
 
   const handleCreated = useCallback(
     (state: RootState) => {
       state.gl.toneMapping = toneMapping
       state.gl.toneMappingExposure = config.exposure > 0 ? config.exposure : 1
       state.gl.setClearAlpha(0)
+
+      const canvas = state.gl.domElement
+      canvas.addEventListener('webglcontextlost', () => {
+        if (contextTimer.current !== null) return
+        contextTimer.current = window.setTimeout(() => {
+          contextTimer.current = null
+          handleError()
+        }, CONTEXT_RESTORE_GRACE_MS)
+      })
+      canvas.addEventListener('webglcontextrestored', () => {
+        if (contextTimer.current === null) return
+        window.clearTimeout(contextTimer.current)
+        contextTimer.current = null
+      })
     },
-    [toneMapping, config.exposure],
+    [toneMapping, config.exposure, handleError],
   )
 
   const handleMounted = useCallback(() => {
     setReady(true)
     onReadyRef.current?.()
-  }, [])
-
-  const handleError = useCallback(() => {
-    setFailed(true)
-    setReady(false)
-    setCurtainDone(true)
   }, [])
 
   const handleCurtainDone = useCallback(() => {
@@ -249,15 +298,19 @@ export function InteriorScene({
               eventPrefix="client"
             >
               <RendererSettings exposure={config.exposure > 0 ? config.exposure : 1} toneMapping={toneMapping} />
-              <SceneCamera config={config} mode={mode} autoRotate={mode === 'orbit' && explore} />
-              {mode === 'scroll' && (
+              <SceneCamera config={config} mode={mode} pathDriven={pathDriven} />
+              {pathDriven && (
                 <CameraPath
                   waypoints={waypoints}
                   progressRef={progressRef}
                   fov={config.fov > 1 ? config.fov : 45}
-                  autoExplore={explore}
+                  /* Orbit mode has no scroll to follow, so AUTO EXPLORE runs the
+                     authored schedule itself — legs, holds and all. */
+                  driver={mode === 'orbit' ? 'tour' : 'progress'}
                   speed={config.animationSpeed}
-                  enabled={motionAllowsCamera}
+                  blendSeconds={mode === 'orbit' ? 1.4 : 0}
+                  yieldOnPointer={mode === 'orbit'}
+                  onYield={handleHandoff}
                 />
               )}
 

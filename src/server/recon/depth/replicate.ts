@@ -10,7 +10,13 @@
  *   REPLICATE_DEPTH_MODEL    → POST /v1/models/<model>/predictions   (latest version)
  *   default                  → DEFAULT_MODEL below
  *
- * Those two are read straight from `process.env` rather than `serverEnv()`
+ * A third escape hatch, `REPLICATE_DEPTH_INVERT=1`, flips the returned map
+ * before it is normalised. Depth Anything and MiDaS already publish inverse
+ * depth (white = near), which is our convention, but a model that returns
+ * *metric* depth has it the other way round and every scene built from it would
+ * push the far wall at the camera. Set it once per model, not per job.
+ *
+ * All three are read straight from `process.env` rather than `serverEnv()`
  * because `src/lib/env.ts` is owned by another area and only declares
  * DEPTH_PROVIDER / REPLICATE_API_TOKEN. They are optional in every deployment.
  *

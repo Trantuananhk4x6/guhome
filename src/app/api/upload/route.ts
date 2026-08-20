@@ -7,6 +7,12 @@
  * 24px blur placeholder, written through `storage()`. Everything else is stored
  * verbatim under its own extension.
  *
+ * This is the largest untrusted-input surface in the app, so it is validated in
+ * two layers: the *binary* is checked against an extension allowlist, a MIME
+ * cross-check and a per-group byte cap, and the *text* fields (`kind`, `folder`,
+ * `alt`, `caption`) plus the derived `sourcePath` go through the zod schema
+ * below before anything reaches a Postgres `text` column.
+ *
  * Response: `{ ok: true, media: MediaItem }` or `{ ok: false, error }`.
  */
 
@@ -14,6 +20,7 @@ import { createHash } from 'node:crypto'
 
 import { NextResponse } from 'next/server'
 import sharp from 'sharp'
+import { z } from 'zod'
 
 import { MEDIA_WIDTHS, toMediaRef } from '@/lib/media'
 import { slugify } from '@/lib/utils'
@@ -92,6 +99,117 @@ const GENERIC_MIMES = new Set(['', 'application/octet-stream', 'binary/octet-str
 /** Kinds an image upload may be filed under (a depth map is still a webp). */
 const IMAGE_KIND_OVERRIDES: readonly MediaKind[] = ['image', 'depth', 'texture']
 
+/* -------------------------------- validation ------------------------------- */
+
+/**
+ * Ceilings for the text columns. `alt` and `caption` match
+ * `src/server/actions/media.ts` so the two write paths cannot disagree about
+ * what the library will accept.
+ */
+const ALT_MAX = 240
+const CAPTION_MAX = 400
+const FOLDER_MAX = 120
+const FILE_NAME_MAX = 400
+const SOURCE_PATH_MAX = 260
+
+const MEDIA_KINDS = ['image', 'video', 'glb', 'hdri', 'texture', 'depth'] as const satisfies readonly MediaKind[]
+
+/** Letters (Vietnamese included), digits, space and `. _ - /`. Nothing else. */
+const FOLDER_CHARSET = /^[\p{L}\p{N} ._/-]+$/u
+
+/** `..` as a whole segment, or an absolute/UNC path. */
+const FOLDER_UNSAFE = /(^|\/)\.\.(\/|$)|^\/|^[a-z]:/i
+
+/**
+ * True when the string holds a C0 or C1 control character. Written as a code
+ * point scan rather than a regex class so no raw control byte ever has to
+ * live in this source file.
+ */
+function hasControlChar(value: string, allowBreaks = false): boolean {
+  for (const char of value) {
+    const code = char.codePointAt(0) ?? 0
+    if (allowBreaks && (code === 9 || code === 10 || code === 13)) continue
+    if (code < 32 || (code >= 127 && code <= 159)) return true
+  }
+  return false
+}
+
+/** Every control character replaced by a space. */
+function stripControlChars(value: string): string {
+  let out = ''
+  for (const char of value) {
+    const code = char.codePointAt(0) ?? 0
+    out += code < 32 || (code >= 127 && code <= 159) ? ' ' : char
+  }
+  return out
+}
+
+const NO_CONTROLS = 'Giá trị chứa ký tự điều khiển không hợp lệ.'
+
+/**
+ * The non-file part of the multipart body. Strict: an unexpected field is a
+ * client bug, and silently ignoring it is how unvalidated data creeps back in.
+ * Empty values are dropped before parsing, so every key is optional here and a
+ * missing key means "leave it null".
+ */
+const uploadFieldsSchema = z.strictObject({
+  kind: z.enum(MEDIA_KINDS, { error: 'Loại tệp yêu cầu không hợp lệ.' }).optional(),
+  folder: z
+    .string()
+    .trim()
+    .max(FOLDER_MAX, `Tên thư mục tối đa ${FOLDER_MAX} ký tự.`)
+    .regex(FOLDER_CHARSET, 'Thư mục chỉ được dùng chữ, số, khoảng trắng và các ký tự . _ - /')
+    .refine((value) => !FOLDER_UNSAFE.test(value), 'Thư mục không được chứa “..” hoặc đường dẫn tuyệt đối.')
+    .optional(),
+  alt: z
+    .string()
+    .trim()
+    .max(ALT_MAX, `Alt tối đa ${ALT_MAX} ký tự.`)
+    .refine((value) => !hasControlChar(value), NO_CONTROLS)
+    .optional(),
+  caption: z
+    .string()
+    .trim()
+    .max(CAPTION_MAX, `Chú thích tối đa ${CAPTION_MAX} ký tự.`)
+    .refine((value) => !hasControlChar(value, true), NO_CONTROLS)
+    .optional(),
+})
+
+type UploadFields = z.infer<typeof uploadFieldsSchema>
+
+/**
+ * Every non-file entry, trimmed, with blanks dropped so an empty input reads as
+ * "not provided" rather than as an empty string in Postgres.
+ */
+function textFields(form: FormData): Record<string, string> {
+  const out: Record<string, string> = {}
+  for (const [key, value] of form.entries()) {
+    if (key === 'file' || typeof value !== 'string') continue
+    if (out[key] !== undefined) continue // first occurrence wins
+    const clean = value.trim()
+    if (clean.length > 0) out[key] = clean
+  }
+  return out
+}
+
+/**
+ * `file.name` is attacker-controlled and lands in `media.source_path`. Keep it
+ * as a readable provenance note: forward slashes, no control characters, no
+ * traversal segments, bounded length (the tail is kept so the filename itself
+ * always survives).
+ */
+function sanitiseSourcePath(name: string): string | null {
+  const flat = stripControlChars(name.replace(/\\/g, '/')).replace(/\s+/g, ' ')
+  const segments = flat
+    .split('/')
+    .map((segment) => segment.trim())
+    .filter((segment) => segment.length > 0 && segment !== '.' && segment !== '..')
+  const joined = segments.join('/')
+  if (joined.length === 0) return null
+  if (joined.length <= SOURCE_PATH_MAX) return joined
+  return joined.slice(joined.length - SOURCE_PATH_MAX)
+}
+
 /* --------------------------------- pipeline -------------------------------- */
 
 const WEBP_QUALITY = 82
@@ -130,11 +248,14 @@ function formatMb(bytes: number): string {
   return `${Math.round(bytes / MB)}MB`
 }
 
-function readString(form: FormData, key: string): string | null {
-  const value = form.get(key)
-  if (typeof value !== 'string') return null
-  const clean = value.trim()
-  return clean.length === 0 ? null : clean
+/** The first zod message, so the operator sees the actual constraint they broke. */
+function firstIssue(error: z.ZodError): string {
+  const issue = error.issues[0]
+  if (!issue) return 'Dữ liệu tải lên không hợp lệ.'
+  if (issue.code === 'unrecognized_keys') {
+    return `Biểu mẫu tải lên có trường không được hỗ trợ: ${issue.keys.join(', ')}.`
+  }
+  return issue.message
 }
 
 /* ---------------------------------- route --------------------------------- */
@@ -155,9 +276,18 @@ export async function POST(request: Request): Promise<NextResponse> {
     return jsonError('Không đọc được dữ liệu tải lên.', 400)
   }
 
+  // Text fields first: the cheapest rejection there is, and it lands before the
+  // file bytes are copied into a Buffer or handed to sharp.
+  const parsedFields = uploadFieldsSchema.safeParse(textFields(form))
+  if (!parsedFields.success) return jsonError(firstIssue(parsedFields.error), 400)
+  const fields: UploadFields = parsedFields.data
+
   const file = form.get('file')
   if (!(file instanceof File)) return jsonError('Thiếu tệp cần tải lên.', 400)
   if (file.size === 0) return jsonError('Tệp rỗng.', 400)
+  if (file.name.length > FILE_NAME_MAX) {
+    return jsonError(`Tên tệp quá dài (tối đa ${FILE_NAME_MAX} ký tự).`, 400)
+  }
 
   const extension = extensionOf(file.name)
   const group = EXTENSION_GROUPS[extension]
@@ -177,7 +307,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     return jsonError(`Tệp ${formatMb(file.size)} vượt giới hạn ${formatMb(spec.maxBytes)} cho loại này.`, 413)
   }
 
-  const requestedKind = readString(form, 'kind')
+  const requestedKind = fields.kind
   let kind: MediaKind = spec.kind
   if (requestedKind && requestedKind !== spec.kind) {
     const override = IMAGE_KIND_OVERRIDES.find((value) => value === requestedKind)
@@ -185,9 +315,10 @@ export async function POST(request: Request): Promise<NextResponse> {
     kind = override
   }
 
-  const folder = readString(form, 'folder')
-  const alt = readString(form, 'alt')
-  const caption = readString(form, 'caption')
+  const folder = fields.folder ?? null
+  const alt = fields.alt ?? null
+  const caption = fields.caption ?? null
+  const sourcePath = sanitiseSourcePath(file.name)
 
   const buffer = Buffer.from(await file.arrayBuffer())
   const checksum = createHash('sha1').update(buffer).digest('hex')
@@ -265,7 +396,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         alt,
         caption,
         folder,
-        sourcePath: file.name,
+        sourcePath,
         checksum,
       })
       .onConflictDoUpdate({

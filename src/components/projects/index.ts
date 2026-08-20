@@ -26,7 +26,7 @@ export { ProjectCta } from './ProjectCta'
 export type { ProjectCtaProps } from './ProjectCta'
 
 export { ProjectFigure } from './ProjectFigure'
-export type { ProjectFigureProps } from './ProjectFigure'
+export type { FigureCursor, ProjectFigureProps } from './ProjectFigure'
 
 export { ProjectGallery } from './ProjectGallery'
 export type { GalleryColumns, ProjectGalleryProps } from './ProjectGallery'

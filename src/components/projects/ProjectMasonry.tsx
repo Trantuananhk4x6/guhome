@@ -56,6 +56,7 @@ export function ProjectMasonry({ items, columns = 3, className }: ProjectMasonry
               sizes={SIZES[columns]}
               width={REQUEST_WIDTH[columns]}
               reveal="revealScale"
+              cursor="view"
               caption={item.caption ?? undefined}
             />
           </div>

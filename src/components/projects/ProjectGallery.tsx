@@ -59,6 +59,7 @@ export function ProjectGallery({ items, columns = 2, caption, className }: Proje
             reveal="revealClip"
             parallax
             parallaxStrength={STRENGTHS[i % STRENGTHS.length] ?? 0.28}
+            cursor="view"
             caption={item.caption ?? undefined}
             className={cn(columns > 2 && i % 2 === 1 && 'lg:mt-16')}
           />

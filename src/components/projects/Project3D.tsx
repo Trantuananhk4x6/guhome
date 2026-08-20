@@ -225,6 +225,8 @@ export function Project3D({
           ref={stageRef}
           onPointerDown={handleInteract}
           onWheel={handleInteract}
+          // The copy above says "kéo để xoay" — `CustomCursor` shows KÉO to match.
+          data-cursor="drag"
           className={cn(
             'bg-espresso relative isolate w-full overflow-hidden',
             height === 'screen' ? 'h-[92svh]' : 'h-[72svh] min-h-[30rem]',

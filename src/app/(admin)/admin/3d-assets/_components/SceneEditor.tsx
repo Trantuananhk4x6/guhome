@@ -51,11 +51,23 @@ interface Notice {
 export interface SceneEditorProps {
   scene: SceneListItem
   projects: readonly ProjectOption[]
+  /**
+   * True when the project already carries an older scene. `getSceneForProject()`
+   * resolves a project to its *oldest* scene, so this one reaches the public
+   * site only where a SCENE_3D block names it by id.
+   */
+  shadowedByPrimary?: boolean
   onSaved: () => void
   onDeleted: () => void
 }
 
-export function SceneEditor({ scene, projects, onSaved, onDeleted }: SceneEditorProps) {
+export function SceneEditor({
+  scene,
+  projects,
+  shadowedByPrimary = false,
+  onSaved,
+  onDeleted,
+}: SceneEditorProps) {
   const [config, setConfig] = useState<SceneConfig>(scene.config)
   const [name, setName] = useState(scene.name ?? '')
   const [previewMode, setPreviewMode] = useState<'orbit' | 'scroll'>('orbit')
@@ -189,6 +201,16 @@ export function SceneEditor({ scene, projects, onSaved, onDeleted }: SceneEditor
   if (needsSource && !config.sourceImage) warnings.push('Chế độ này cần một ảnh nguồn.')
   if (needsDepth && !config.depthMap) warnings.push('Chưa có bản đồ độ sâu — tạo job dựng 3D ở tab Job.')
   if (needsModel && !config.model) warnings.push('Chế độ GLB cần một tệp mô hình.')
+  // Only meaningful while the project select still matches what was loaded:
+  // re-pointing the scene changes the answer, and the list has not caught up.
+  if (shadowedByPrimary && config.projectId === scene.config.projectId) {
+    warnings.push(
+      'Dự án này đã có một cảnh tạo trước đó. Trang dự án chỉ dùng cảnh đầu tiên — cảnh này chỉ hiện khi được gọi đích danh trong khối SCENE_3D.',
+    )
+  }
+  if (config.mode === 'NONE' && config.projectId) {
+    warnings.push('Chế độ “Không dùng 3D” — trang dự án sẽ không hiện khối không gian nào.')
+  }
 
   return (
     <div className="flex flex-col gap-8">

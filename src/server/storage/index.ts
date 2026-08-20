@@ -46,16 +46,24 @@ export function contentTypeFor(key: string): string {
       return 'image/png'
     case 'svg':
       return 'image/svg+xml'
+    case 'tif':
+    case 'tiff':
+      return 'image/tiff'
     case 'mp4':
+    case 'm4v':
       return 'video/mp4'
     case 'webm':
       return 'video/webm'
+    case 'mov':
+      return 'video/quicktime'
     case 'glb':
       return 'model/gltf-binary'
     case 'gltf':
       return 'model/gltf+json'
     case 'hdr':
       return 'image/vnd.radiance'
+    case 'exr':
+      return 'image/x-exr'
     case 'ktx2':
       return 'image/ktx2'
     case 'json':

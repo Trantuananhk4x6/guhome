@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react'
 import { gsap, registerGsap } from '@/animations/gsap'
 import { useLenis } from '@/animations/scroll'
 import { CloseIcon } from '@/components/ui/icons'
-import { motionEnabled } from '@/lib/motion'
+import { useMotionFlag } from '@/lib/motion'
 import { cn, pad2 } from '@/lib/utils'
 import type { BrandConfig, NavItem } from '@/types/content'
 
@@ -29,18 +29,28 @@ export function MobileMenu({ id, open, onClose, nav, brand }: MobileMenuProps) {
   const openerRef = useRef<HTMLElement | null>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const onCloseRef = useRef(onClose)
+  const openRef = useRef(open)
   const lenis = useLenis()
+
+  // Reactive rather than a store snapshot: read once inside the effect below it
+  // would be captured before `ScrollProvider` publishes the OS
+  // `prefers-reduced-motion` value, and the timeline would keep animating.
+  const canAnimate = useMotionFlag('enabled')
 
   useEffect(() => {
     onCloseRef.current = onClose
   }, [onClose])
 
   useEffect(() => {
+    openRef.current = open
+  }, [open])
+
+  useEffect(() => {
     registerGsap()
     const root = rootRef.current
     if (!root) return
 
-    const speed = motionEnabled('enabled') ? 1 : 0
+    const speed = canAnimate ? 1 : 0
 
     const ctx = gsap.context(() => {
       gsap.set(root, { autoAlpha: 0 })
@@ -59,6 +69,9 @@ export function MobileMenu({ id, open, onClose, nav, brand }: MobileMenuProps) {
           `-=${0.35 * speed}`,
         )
         .fromTo('[data-menu-foot]', { opacity: 0 }, { opacity: 1, duration: 0.5 * speed }, `-=${0.25 * speed}`)
+      // Rebuilt when the motion setting changes; the open/close effect below is
+      // keyed on `open` alone, so re-sync the new timeline by hand.
+      if (openRef.current) timeline.progress(1)
       timelineRef.current = timeline
     }, rootRef)
 
@@ -66,7 +79,7 @@ export function MobileMenu({ id, open, onClose, nav, brand }: MobileMenuProps) {
       timelineRef.current = null
       ctx.revert()
     }
-  }, [])
+  }, [canAnimate])
 
   useEffect(() => {
     const timeline = timelineRef.current

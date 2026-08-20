@@ -38,6 +38,17 @@ type ReconMode = Exclude<SceneMode, 'NONE' | 'IMAGE'>
 
 const POLL_MS = 2500
 
+/**
+ * Modes a job can actually derive from a photograph.
+ *
+ * `RECON_MODES` also lists `NATIVE_GLB` because an existing job row may carry
+ * it, but a GLB is uploaded, never reconstructed: the pipeline only runs
+ * `DEPTH_2_5D` and `PROCEDURAL_3D`. Offering it in the create form would just
+ * buy a rejected request, so it is filtered out here rather than in the shared
+ * label map, which the table below still needs in full.
+ */
+const BUILDABLE_MODES: readonly ReconMode[] = RECON_MODES.filter((mode) => mode !== 'NATIVE_GLB')
+
 const STATUS_TONES: Record<ReconStatus, string> = {
   queued: 'border-line text-muted',
   running: 'border-ink text-ink',
@@ -110,7 +121,9 @@ export function ReconJobs({ jobs, projects }: ReconJobsProps) {
       cancelled = true
       clearInterval(timer)
     }
-  }, [busy, rows])
+    // Deliberately keyed on `busy` alone: every poll replaces `rows`, so listing
+    // it here would tear the interval down and rebuild it on each tick.
+  }, [busy])
 
   async function refresh(): Promise<void> {
     const next = await fetchReconJobs()
@@ -219,9 +232,9 @@ export function ReconJobs({ jobs, projects }: ReconJobsProps) {
         <SelectRow
           label="Chế độ dựng"
           value={mode}
-          options={RECON_MODES.map((value) => ({ value, label: SCENE_MODE_LABELS[value] }))}
+          options={BUILDABLE_MODES.map((value) => ({ value, label: SCENE_MODE_LABELS[value] }))}
           onChange={(value) => {
-            const next = RECON_MODES.find((item) => item === value)
+            const next = BUILDABLE_MODES.find((item) => item === value)
             if (next) setMode(next)
           }}
         />

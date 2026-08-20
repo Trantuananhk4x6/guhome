@@ -171,6 +171,8 @@ export function BeforeAfter({
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
+          // `CustomCursor` reads this and swaps the ring to the KÉO state.
+          data-cursor="drag"
           style={{ '--ba': `${START}%` } as CSSProperties}
           className="bg-surface-alt relative isolate aspect-[16/10] w-full touch-pan-y overflow-hidden select-none shadow-[0_24px_60px_-40px_rgba(28,27,24,0.55)]"
         >

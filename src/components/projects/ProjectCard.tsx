@@ -97,6 +97,9 @@ export function ProjectCard({
         href={href}
         onClick={handleClick}
         aria-label={`${project.title}${project.location ? ` — ${project.location}` : ''}`}
+        // Read by `CustomCursor` — it resolves the *innermost* `[data-cursor]`
+        // ancestor, so the figure inside must stay unmarked or it would win.
+        data-cursor="project"
         className={cn(
           'group block focus-visible:outline-offset-8',
           isIndex && 'md:col-span-8',
