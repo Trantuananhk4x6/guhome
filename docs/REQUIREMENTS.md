@@ -24,7 +24,14 @@ line that proves it, or the concrete gap.
 
 ## R3 Design direction (§3, §63, §64)
 12. Warm neutral palette, editable from Admin at runtime (no rebuild).
-13. Display serif (Cormorant Garamond family) + clean sans body (Inter family).
+13. Display serif + clean sans body, both carrying a full Vietnamese subset.
+    **Superseded 2026-08-20 by the client, who called the original pairing hard to
+    read.** Cormorant Garamond at weight 300 with sub-1 leading washes out under
+    Vietnamese diacritics, which stack above and below the x-height. Shipping pair
+    is now Playfair Display 500 (display) + Be Vietnam Pro (body). Instrument Serif
+    and DM Serif Display, named in the brief, are unusable here: neither ships a
+    Vietnamese range, so text drops out of the face mid-word. Seven Vietnamese-capable
+    families are bundled and switchable from /admin/theme.
 14. Oversized typography, large whitespace, asymmetric editorial composition.
 15. No SaaS-template look, no gaming look, no excessive gradients/neon/rounded cards.
 16. Priority order respected: photography → architecture → typography → story → 3D → motion.

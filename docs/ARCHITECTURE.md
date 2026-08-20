@@ -70,8 +70,13 @@ gradients, no glassmorphism, no rounded-2xl cards, no drop shadows beyond a soft
 image shadow. Corners are square (`rounded-none`) except tiny controls (`rounded-full`
 for the scroll dot / cursor).
 
-Type: display = **Cormorant Garamond** (300/400, tight leading, large sizes),
-body = **Inter** (400/500). Labels: 11px, `tracking-[0.18em]`, uppercase, muted.
+Type: display = **Playfair Display** (500, leading ≥1.04), body = **Be Vietnam Pro**
+(400/500). Leading never goes below 1.0: Vietnamese stacks diacritics above *and*
+below the x-height (ế, ộ, ữ, ậ), so English-tuned tight leading collides. Uppercase
+tracking is 0.11em, not 0.18em, for the same reason — wide tracking dissolves a
+Vietnamese word faster than an English one. Every bundled family must carry the
+`vietnamese` subset; `FONT_LIBRARY` in `@/lib/theme` is the list, and the theme
+editor may only offer what is on it. Labels: 11px, `.u-label`, uppercase, muted.
 Utility classes already exist: `.u-display`, `.u-display-sm`, `.u-label`, `.u-body-lg`,
 `.u-gutter`, `.u-rule`.
 

@@ -9,13 +9,13 @@ import { getPublishedProjects } from '@/server/queries/projects'
 import { getServices } from '@/server/queries/site'
 import type { MediaRef, ServiceItem } from '@/types/content'
 
-import { FALLBACK_SERVICES, deliverablesFor, paragraphsOf } from './_content'
+import { EXCLUSIONS, FALLBACK_SERVICES, deliverablesFor, paragraphsOf } from './_content'
 import { ImageFrame, Reveal, TextReveal } from './_components/motion'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Dịch vụ',
   description:
-    'Thiết kế nội thất, kiến trúc & cải tạo, thi công và bàn giao — những cách AN ATELIER có thể đi cùng một ngôi nhà, kèm danh mục hồ sơ bàn giao của từng bước.',
+    'Thiết kế nội thất, kiến trúc, cải tạo, thi công và đồ đặt riêng. Mỗi mục nói rõ bạn cầm về những gì — và trang này cũng nói luôn những việc AN ATELIER không nhận.',
   path: '/services',
 })
 
@@ -40,19 +40,19 @@ export default async function ServicesPage() {
       <section className="u-gutter pt-[calc(var(--spacing-section)*0.75)]">
         <div className="mx-auto w-full max-w-[110rem]">
           <Label rule index="—">
-            Services
+            Dịch vụ
           </Label>
 
           <TextReveal as="h1" className="u-display mt-10 max-w-[14ch] text-ink">
-            Từ bản vẽ đầu tiên đến ngày bạn dọn vào.
+            Chúng tôi làm gì, và dừng lại ở đâu.
           </TextReveal>
 
           <div className="mt-16 grid gap-16 lg:grid-cols-12">
             <Reveal delay={0.15} className="lg:col-span-6">
               <p className="u-body-lg max-w-[52ch]">
-                Bạn có thể đi cùng chúng tôi cả chặng, hoặc chỉ một đoạn. Mỗi mục dưới đây nói rõ
-                studio làm gì, mất bao lâu, và bạn cầm về những gì khi kết thúc — không có hạng mục
-                nào được viết mơ hồ để dễ diễn giải về sau.
+                Bạn có thể đi cùng cả chặng, hoặc chỉ một đoạn. Mỗi mục dưới đây nói rõ studio làm
+                gì và bạn cầm về những gì; cuối trang là phần nằm ngoài phạm vi, vì đó mới là chỗ
+                hay sinh chuyện vào tháng thứ sáu.
               </p>
             </Reveal>
 
@@ -109,9 +109,7 @@ export default async function ServicesPage() {
 
                 <div className={imageFirst ? 'lg:col-span-6 lg:col-start-7' : 'lg:col-span-6 lg:order-1'}>
                   <Reveal>
-                    <Label index={indexOf(service, i)} rule tone="muted">
-                      Service
-                    </Label>
+                    <Label index={indexOf(service, i)} rule tone="muted" />
                     <h2 className="u-display-sm mt-8 max-w-[18ch] text-ink">{service.title}</h2>
                     {service.summary ? (
                       <p className="u-body-lg mt-8 max-w-[48ch]">{service.summary}</p>
@@ -159,6 +157,36 @@ export default async function ServicesPage() {
         )
       })}
 
+      {/* ------------------------------- exclusions ------------------------------ */}
+      <section className="u-gutter mt-[var(--spacing-section)]">
+        <div className="mx-auto w-full max-w-[110rem] border-t border-line pt-14">
+          <Reveal>
+            <Label rule tone="accent">
+              Ngoài phạm vi
+            </Label>
+            <h2 className="u-display-sm mt-8 max-w-[20ch] text-ink">
+              Sáu việc studio không nhận.
+            </h2>
+            <p className="u-body-lg mt-8 max-w-[50ch]">
+              Nói ra từ đầu thì mất một khách; giấu đi thì mất sáu tháng của cả hai bên.
+            </p>
+          </Reveal>
+
+          <Reveal stagger={0.06} className="mt-14">
+            <ul className="grid gap-x-16 md:grid-cols-2">
+              {EXCLUSIONS.map((item) => (
+                <li key={item} data-reveal-item className="border-t border-line py-8">
+                  <p className="max-w-[46ch] font-body text-[0.9375rem] leading-[1.8] text-ink/85">
+                    {item}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <Rule />
+          </Reveal>
+        </div>
+      </section>
+
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="mt-[var(--spacing-section)] bg-espresso py-[calc(var(--spacing-section)*0.8)] text-canvas">
         <div className="u-gutter">
@@ -168,7 +196,9 @@ export default async function ServicesPage() {
                 Bắt đầu
               </Label>
               <div className="mt-10 flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
-                <h2 className="u-display max-w-[13ch] text-canvas">Nói với chúng tôi bạn đang ở đâu.</h2>
+                <h2 className="u-display max-w-[13ch] text-canvas">
+                  Nói cho chúng tôi biết bạn đang mắc ở đâu.
+                </h2>
                 <div className="flex flex-wrap items-center gap-8">
                   <Button href="/contact" size="lg" tone="light" withArrow>
                     Liên hệ studio
@@ -179,8 +209,9 @@ export default async function ServicesPage() {
                 </div>
               </div>
               <p className="u-body-lg mt-12 max-w-[46ch] text-canvas/60">
-                Buổi tư vấn đầu tiên kéo dài khoảng 60 phút và không tính phí. Kể cả khi sau đó chúng
-                ta không làm việc cùng nhau, bạn vẫn cầm về một hướng đi rõ ràng.
+                Buổi gặp đầu kéo dài khoảng 60 phút và không tính phí. Nếu sau buổi đó chúng tôi
+                thấy dự án không hợp, chúng tôi sẽ nói thẳng — và bạn vẫn cầm về danh sách những
+                việc phải quyết trước khi gọi cho một studio khác.
               </p>
             </Reveal>
           </div>

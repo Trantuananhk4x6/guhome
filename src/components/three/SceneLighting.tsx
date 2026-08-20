@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, type JSX } from 'react'
 import type { DirectionalLight } from 'three'
 import type { SceneConfig } from '@/types/content'
 import type { QualityProfile } from '@/lib/three/capability'
-import { resolveSceneSettings } from '@/lib/three/scene-settings'
+import { resolveSceneSettings, usesFlatRelief } from '@/lib/three/scene-settings'
 
 export interface SceneLightingProps {
   config: SceneConfig
@@ -26,12 +26,12 @@ export function SceneLighting({ config, quality, floorY = 0, radius }: SceneLigh
   const settings = useMemo(() => resolveSceneSettings(config.settings), [config.settings])
 
   /**
-   * A 2.5D relief is a photograph: it is drawn unlit so the photographed light
+   * A relief is a photograph: it is drawn unlit so the photographed light
    * survives exactly, which leaves nothing here for a light to do. The contact
    * shadow was worse than useless — its catcher plane sits at y = 0, edge-on
    * through the middle of the relief, and it laid a grey band across the frame.
    */
-  const lit = config.mode !== 'DEPTH_2_5D'
+  const lit = !usesFlatRelief(config)
 
   const shadows = lit && config.shadows && quality.perf !== 'low'
   const extent = radius ?? Math.max(settings.roomWidth, settings.roomDepth) * 0.75 + 2

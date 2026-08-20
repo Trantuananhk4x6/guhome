@@ -17,7 +17,7 @@ import { mediaUrl } from '@/lib/media'
 import type { QualityProfile } from '@/lib/three/capability'
 import { buildReliefField, conditionDepthField, type ReliefField } from '@/lib/three/depth-field'
 import { releaseTextures } from '@/lib/three/loaders'
-import { DEPTH_FRAME, RELIEF_EDGE, resolveSceneSettings, textureAspect } from '@/lib/three/scene-settings'
+import { RELIEF_EDGE, resolveSceneSettings, textureAspect } from '@/lib/three/scene-settings'
 
 export interface DepthSceneProps {
   image: MediaRef
@@ -148,16 +148,21 @@ export function DepthScene({ image, depth, settings, quality, overscan = 1.08 }:
    * from the photograph, at an amplitude low enough that being wrong about the
    * geometry costs nothing.
    */
-  const relief: ReliefField | null = useMemo(() => {
-    const measuredImage = measured.image as CanvasImageSource | undefined
-    if (hasMeasured && measuredImage) return conditionDepthField(measuredImage)
-    const photoImage = source.image as CanvasImageSource | undefined
-    return photoImage ? buildReliefField(photoImage) : null
+  const relief = useMemo<{ field: ReliefField; measured: boolean } | null>(() => {
+    if (hasMeasured) {
+      const field = conditionDepthField(measured.image)
+      if (field) return { field, measured: true }
+      // The map exists but could not be read. Falling through to the inferred
+      // swell is right, and so is dropping to the inferred amplitude with it —
+      // the trust travels with the field, not with the request.
+    }
+    const inferred = buildReliefField(source.image)
+    return inferred ? { field: inferred, measured: false } : null
   }, [hasMeasured, measured, source])
 
   useEffect(() => {
     return () => {
-      relief?.texture.dispose()
+      relief?.field.texture.dispose()
     }
   }, [relief])
 
@@ -177,8 +182,8 @@ export function DepthScene({ image, depth, settings, quality, overscan = 1.08 }:
   // keeps a little in reserve — but only a little. Set much lower than this and
   // the parallax stops being felt at all, which is a flat photograph with extra
   // steps; the relief has to be worth the canvas or it should not be there.
-  const amplitude = resolved.reliefDepth * (hasMeasured ? 1 : 0.85) * 6 /* DEBUG */
-  const edge = { soft: 0.03, cut: 0.05 } /* DEBUG */
+  const amplitude = resolved.reliefDepth * (relief?.measured ? 1 : 0.85)
+  const edge = relief?.measured ? RELIEF_EDGE.measured : RELIEF_EDGE.inferred
 
   const imageAspect = textureAspect(source, image.width && image.height ? image.width / image.height : 1.5)
 
@@ -189,7 +194,7 @@ export function DepthScene({ image, depth, settings, quality, overscan = 1.08 }:
    */
   const segments = useMemo(() => {
     const cap = Math.min(resolved.planeSegments, quality.planeSegments)
-    const y = relief ? Math.round(relief.height * 1.5) : cap
+    const y = relief ? Math.round(relief.field.height * 1.5) : cap
     const segY = Math.max(12, Math.min(cap, y))
     return { x: Math.max(12, Math.round(segY * imageAspect)), y: segY }
   }, [relief, resolved.planeSegments, quality.planeSegments, imageAspect])
@@ -203,8 +208,10 @@ export function DepthScene({ image, depth, settings, quality, overscan = 1.08 }:
     return new ShaderMaterial({
       uniforms: {
         uMap: { value: photo },
-        uRelief: { value: relief?.texture ?? null },
-        uTexel: { value: new Vector2(relief ? 1 / relief.width : 0, relief ? 1 / relief.height : 0) },
+        uRelief: { value: relief?.field.texture ?? null },
+        uTexel: {
+          value: new Vector2(relief ? 1 / relief.field.width : 0, relief ? 1 / relief.field.height : 0),
+        },
         uAmplitude: { value: relief ? amplitude : 0 },
         uEdgeSoft: { value: edge.soft },
         uEdgeCut: { value: edge.cut },

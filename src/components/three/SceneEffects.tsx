@@ -35,11 +35,18 @@ export function SceneEffects({ settings, quality, enabled = true, smaa = true }:
     <EffectComposer multisampling={0} enableNormalPass={false} resolutionScale={1}>
       <>
         {useSmaa && <SMAA />}
+        {/*
+          The bloom threshold has to clear the *photograph*, not just the lights.
+          A 2.5D relief renders the source image unlit, so a paper screen or a
+          white bouclé chair arrives at ~0.9 linear without being a light source
+          at all; at the old 0.86 the whole interior glowed and the highlights
+          went milky. 0.93 leaves the lamps and the window and nothing else.
+        */}
         {useBloom && (
           <Bloom
             intensity={resolved.bloom}
-            luminanceThreshold={0.86}
-            luminanceSmoothing={0.28}
+            luminanceThreshold={0.93}
+            luminanceSmoothing={0.22}
             radius={0.72}
             mipmapBlur
           />

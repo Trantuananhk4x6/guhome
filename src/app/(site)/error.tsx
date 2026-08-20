@@ -24,13 +24,16 @@ export default function SiteError({
           Sự cố
         </Label>
 
-        <h1 className="u-display mt-10 max-w-[14ch] text-ink">Có gì đó vừa gãy giữa chừng.</h1>
+        <h1 className="u-display mt-10 max-w-[14ch] text-ink">Trang này không tải xong được.</h1>
 
         <Rule className="mt-14 max-w-[28rem]" />
 
         <p className="u-body-lg mt-8 max-w-[46ch]">
-          Trang chưa dựng xong được. Bạn thử tải lại một lần — nếu vẫn vậy, viết cho chúng tôi một
-          dòng và studio sẽ xử lý.
+          Lỗi nằm ở phía chúng tôi, không phải ở máy bạn, và bạn không mất gì cả. Bấm thử lại một
+          lần trước đã.{' '}
+          {error.digest
+            ? 'Nếu vẫn vậy, gửi cho studio mã sự cố ở cuối trang — có mã đó chúng tôi lần ra đúng chỗ hỏng trong vài phút.'
+            : 'Nếu vẫn vậy, nhắn cho studio biết bạn đang mở trang nào, chúng tôi sẽ dò lại.'}
         </p>
 
         <div className="mt-14 flex flex-wrap items-center gap-8">

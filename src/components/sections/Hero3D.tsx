@@ -132,9 +132,11 @@ export function Hero3D({ section, data }: HomeSectionProps) {
             {eyebrow}
           </Label>
           {project ? (
-            <Label tone="light" className="text-canvas/45">
-              {project.title}
-              {meta ? ` — ${meta}` : ''}
+            // On a phone the full credit wraps to two lines and crowds the top
+            // of the frame, so the small screen gets the project's name alone.
+            <Label tone="light" className="text-canvas/55">
+              <span className="sm:hidden">{project.title}</span>
+              <span className="hidden sm:inline">{meta ? `${project.title} — ${meta}` : project.title}</span>
             </Label>
           ) : null}
         </div>

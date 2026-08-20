@@ -81,11 +81,17 @@ export function Header({ nav, brand }: HeaderProps) {
     const paint = (scroll: number) => {
       const hero = toneElement()
       // Measured, not assumed: the header inverts only while the dark hero is
-      // genuinely behind the bar, and becomes the canvas rail the moment its
-      // bottom edge passes above it.
+      // genuinely behind the bar, and inks itself the moment that hero's bottom
+      // edge passes above it.
       const overHero = hero !== null && hero.getBoundingClientRect().bottom > el.offsetHeight * 0.75
+      // Once the page has moved at all, the header needs a ground of its own —
+      // otherwise it floats over whatever the hero's own display type has
+      // scrolled up into it. The ground takes the tone of what is behind it:
+      // espresso over the hero, canvas everywhere else.
+      const rail = scroll > 24
       el.dataset.mode = overHero ? 'dark' : 'light'
-      el.dataset.solid = !overHero && scroll > 24 ? 'true' : 'false'
+      el.dataset.solid = rail ? 'true' : 'false'
+      el.dataset.scrim = overHero && !rail ? 'on' : 'off'
     }
 
     paint(window.scrollY)
@@ -153,11 +159,14 @@ export function Header({ nav, brand }: HeaderProps) {
         ref={headerRef}
         data-solid="false"
         data-mode="light"
+        data-scrim="off"
         className={cn(
           'group/hdr fixed inset-x-0 top-0 z-50 text-ink will-change-transform',
           'transition-colors duration-700 ease-editorial',
           'data-[mode=dark]:text-canvas',
-          'data-[solid=true]:bg-canvas/85 data-[solid=true]:backdrop-blur-md',
+          'data-[solid=true]:backdrop-blur-md',
+          'data-[mode=light]:data-[solid=true]:bg-canvas/85',
+          'data-[mode=dark]:data-[solid=true]:bg-espresso/80',
         )}
       >
         {/*
@@ -168,7 +177,7 @@ export function Header({ nav, brand }: HeaderProps) {
         */}
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-40 opacity-0 transition-opacity duration-700 ease-editorial group-data-[mode=dark]/hdr:opacity-100"
+          className="pointer-events-none absolute inset-x-0 top-0 h-40 opacity-0 transition-opacity duration-700 ease-editorial group-data-[scrim=on]/hdr:opacity-100"
           style={{
             background:
               'linear-gradient(to bottom, color-mix(in srgb, var(--c-espresso) 44%, transparent) 0%, color-mix(in srgb, var(--c-espresso) 20%, transparent) 45%, transparent 100%)',
@@ -244,7 +253,7 @@ export function Header({ nav, brand }: HeaderProps) {
 
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-line opacity-0 transition-opacity duration-700 group-data-[solid=true]/hdr:opacity-100"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-line opacity-0 transition-opacity duration-700 group-data-[mode=dark]/hdr:bg-canvas/15 group-data-[solid=true]/hdr:opacity-100"
         />
       </header>
 

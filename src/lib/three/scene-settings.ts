@@ -16,7 +16,7 @@ import {
   type ToneMapping,
 } from 'three'
 import type { CameraWaypoint, SceneConfig, SceneSettings, Vec3 } from '@/types/content'
-import { DEFAULT_EASE } from '@/lib/three/camera-path'
+import { DEFAULT_EASE, DEFAULT_FOV } from '@/lib/three/camera-path'
 
 /* ------------------------------- environment ------------------------------ */
 
@@ -270,11 +270,25 @@ export function normaliseDepthWaypoints(waypoints: readonly CameraWaypoint[], fo
   })
 }
 
+/**
+ * True when the scene will be drawn as a flat relief rather than as geometry:
+ * every `DEPTH_2_5D` scene, and every `PROCEDURAL_3D` scene whose recon job has
+ * not (yet) produced a GLB, since all such a scene has is one photograph.
+ *
+ * Three things key off this — the camera framing below, the lighting rig and
+ * the environment probe — and they must agree, so the test lives here.
+ */
+export function usesFlatRelief(config: SceneConfig): boolean {
+  if (config.mode === 'DEPTH_2_5D') return true
+  if (config.mode !== 'PROCEDURAL_3D') return false
+  return !(config.model !== null && config.model.kind === 'glb')
+}
+
 /** Authored waypoints when present, otherwise the studio default dolly. */
 export function waypointsFor(config: SceneConfig): CameraWaypoint[] {
   const authored = config.waypoints.length > 0 ? config.waypoints : defaultWaypoints(config)
-  if (config.mode !== 'DEPTH_2_5D') return authored
-  return normaliseDepthWaypoints(authored, config.fov > 1 ? config.fov : 45)
+  if (!usesFlatRelief(config)) return authored
+  return normaliseDepthWaypoints(authored, config.fov > 1 ? config.fov : DEFAULT_FOV)
 }
 
 /**

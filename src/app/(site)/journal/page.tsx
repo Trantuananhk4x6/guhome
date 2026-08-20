@@ -13,9 +13,9 @@ import type { ArticleSummary } from '@/types/content'
 import { ImageFrame, Reveal, TextReveal } from './_components/motion'
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Nhật ký',
+  title: 'Bài viết',
   description:
-    'Ghi chép của AN ATELIER về vật liệu, ánh sáng, tỷ lệ và những quyết định nhỏ làm nên một không gian ở được lâu dài.',
+    'Bài viết của AN ATELIER về vật liệu, ánh sáng và những quyết định nhỏ trên công trường — phần lớn là thứ học được sau khi đã làm sai một lần.',
   path: '/journal',
 })
 
@@ -43,17 +43,18 @@ export default async function JournalPage() {
       <section className="u-gutter pt-[calc(var(--spacing-section)*0.75)]">
         <div className="mx-auto w-full max-w-[100rem]">
           <Label rule index="—">
-            Journal
+            Bài viết
           </Label>
 
           <TextReveal as="h1" className="u-display mt-10 max-w-[13ch] text-ink">
-            Ghi chép giữa hai lần ra công trường.
+            Viết giữa hai lần ra công trường.
           </TextReveal>
 
           <Reveal delay={0.15} className="mt-12">
             <p className="u-body-lg max-w-[52ch]">
-              Những gì chúng tôi học được từ vật liệu, ánh sáng và từ chính các gia chủ — viết ngắn,
-              viết chậm, và chỉ viết khi có điều đáng nói.
+              Phần lớn là những thứ học được sau khi đã làm sai một lần: một loại sơn không chịu nổi
+              độ ẩm, một đảo bếp tính hụt bốn phân, một ô cửa mở đúng vào hướng nắng chiều. Chúng
+              tôi chỉ viết khi có gì đó thật sự đáng ghi lại, nên trang này không dài thêm mỗi tuần.
             </p>
           </Reveal>
         </div>
@@ -161,11 +162,11 @@ export default async function JournalPage() {
           <div className="mx-auto w-full max-w-[100rem] border-t border-line pt-16">
             <Reveal>
               <p className="u-display-sm max-w-[20ch] text-ink">
-                Bài viết đầu tiên đang được viết trên công trường.
+                Bài đầu tiên vẫn còn nằm trong cuốn sổ ở công trường.
               </p>
               <p className="u-body-lg mt-8 max-w-[44ch]">
-                Trong lúc chờ, bạn có thể xem những gì studio đã hoàn thành, hoặc viết cho chúng tôi
-                một dòng.
+                Khi nào chép lại xong thì nó sẽ có mặt ở đây. Trong lúc chờ, những công trình đã
+                hoàn thành nói được nhiều hơn.
               </p>
               <div className="mt-12 flex flex-wrap items-center gap-8">
                 <Button href="/projects" withArrow>

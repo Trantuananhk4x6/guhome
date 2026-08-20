@@ -12,7 +12,7 @@ import { Reveal, TextReveal } from './_components/motion'
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
   description:
-    'Kể cho AN ATELIER nghe về không gian của bạn — diện tích, hiện trạng, thời điểm bắt đầu. Chúng tôi phản hồi trong vòng 24 giờ làm việc.',
+    'Diện tích, tình trạng bàn giao, thời điểm bạn muốn dọn vào — ba dòng đó đủ để AN ATELIER trả lời cụ thể. Chúng tôi hồi âm trong vòng 24 giờ làm việc.',
   path: '/contact',
 })
 
@@ -40,18 +40,18 @@ export default async function ContactPage() {
       <section className="u-gutter pt-[calc(var(--spacing-section)*0.75)]">
         <div className="mx-auto w-full max-w-[100rem]">
           <Label rule index="—">
-            Contact
+            Liên hệ
           </Label>
 
           <TextReveal as="h1" className="u-display mt-10 max-w-[15ch] text-ink">
-            Kể cho chúng tôi nghe về không gian của bạn.
+            Căn nhà của bạn đang ở tình trạng nào?
           </TextReveal>
 
           <Reveal delay={0.15} className="mt-12 max-w-[54ch]">
             <p className="u-body-lg">
-              Một dòng cũng đủ để bắt đầu. Nhưng nếu bạn nói được diện tích, hiện trạng căn nhà và
-              thời điểm muốn dọn vào, chúng tôi sẽ trả lời cụ thể hơn nhiều — kể cả khi câu trả lời
-              là dự án này chưa hợp với studio.
+              Ba thứ giúp chúng tôi trả lời cụ thể ngay từ thư đầu: diện tích, tình trạng bàn giao,
+              và thời điểm bạn muốn dọn vào. Thiếu cả ba cũng không sao — chỉ là khi đó thư trả lời
+              của chúng tôi sẽ toàn câu hỏi ngược lại.
             </p>
           </Reveal>
         </div>
@@ -66,7 +66,8 @@ export default async function ContactPage() {
                 <Detail label="Địa chỉ">
                   <p>{brand.address}</p>
                   <p className="mt-2 text-muted">
-                    Ghé studio theo hẹn — để chúng tôi kịp dọn bàn và pha ấm trà.
+                    Ghé theo hẹn. Bàn làm việc thường đang bày kín mẫu vật liệu của dự án đang chạy,
+                    nên chúng tôi cần biết trước một buổi.
                   </p>
                 </Detail>
 
@@ -86,14 +87,18 @@ export default async function ContactPage() {
                   >
                     {brand.phone}
                   </a>
-                  <p className="mt-2 text-muted">Thứ Hai – Thứ Sáu, 9:00 – 18:00. Thứ Bảy theo hẹn.</p>
+                  <p className="mt-2 text-muted">
+                    Thứ Hai – Thứ Sáu, 9:00 – 18:00. Thứ Bảy theo hẹn. Ngoài giờ đó thì nhắn tin
+                    nhanh hơn gọi.
+                  </p>
                 </Detail>
 
                 <Detail label="Phản hồi">
                   <p>Trong vòng 24 giờ làm việc.</p>
                   <p className="mt-2 text-muted">
-                    Buổi tư vấn đầu tiên kéo dài khoảng 60 phút và không tính phí — tại studio, hoặc
-                    ngay trong không gian bạn định cải tạo.
+                    Buổi gặp đầu khoảng 60 phút, không tính phí, và tốt nhất là ngay tại công trình
+                    — chúng tôi cần nhìn thấy trần, dầm và hướng cửa trước khi nói được điều gì có
+                    ích.
                   </p>
                 </Detail>
 
@@ -123,7 +128,7 @@ export default async function ContactPage() {
           <div className="lg:col-span-6 lg:col-start-7">
             <Reveal delay={0.1}>
               <Label rule tone="accent">
-                Gửi yêu cầu
+                Viết cho studio
               </Label>
               <div className="mt-10">
                 <ContactForm email={brand.email} />

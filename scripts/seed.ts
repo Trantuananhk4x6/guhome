@@ -177,8 +177,8 @@ async function seedCategories(): Promise<Map<string, string>> {
   }
   const journal = await db
     .insert(schema.categories)
-    .values({ slug: 'ghi-chep', name: 'Ghi chép', nameEn: 'Notes', order: 1, kind: 'journal' })
-    .onConflictDoUpdate({ target: schema.categories.slug, set: { name: 'Ghi chép' } })
+    .values({ slug: 'ghi-chep', name: 'Bài viết', nameEn: 'Journal', order: 1, kind: 'journal' })
+    .onConflictDoUpdate({ target: schema.categories.slug, set: { name: 'Bài viết' } })
     .returning({ id: schema.categories.id })
   const journalRow = journal[0]
   if (journalRow) map.set('ghi-chep', journalRow.id)
@@ -498,11 +498,11 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
   }>(join(root, 'src/data/content/site.json'))
 
   const services = site?.services ?? [
-    { slug: 'thiet-ke-noi-that', indexLabel: '01', title: 'Thiết kế nội thất', summary: 'Từ bố cục đến từng chi tiết mộc.', description: '' },
-    { slug: 'thiet-ke-kien-truc', indexLabel: '02', title: 'Thiết kế kiến trúc', summary: 'Hình khối, ánh sáng và tỷ lệ.', description: '' },
-    { slug: 'thiet-ke-thi-cong', indexLabel: '03', title: 'Thiết kế & thi công', summary: 'Một đầu mối, một tiêu chuẩn.', description: '' },
-    { slug: 'cai-tao', indexLabel: '04', title: 'Cải tạo', summary: 'Giữ ký ức, đổi cách sống.', description: '' },
-    { slug: 'do-noi-that', indexLabel: '05', title: 'Đồ nội thất đặt riêng', summary: 'Chế tác theo từng không gian.', description: '' },
+    { slug: 'thiet-ke-noi-that', indexLabel: '01', title: 'Thiết kế nội thất', summary: 'Chúng tôi vẽ đến tỉ lệ 1:5 ở những chỗ bàn tay chạm vào, vì không ai đoán được ý đồ từ một bản 1:50.', description: '' },
+    { slug: 'thiet-ke-kien-truc', indexLabel: '02', title: 'Thiết kế kiến trúc', summary: 'Chiều sâu của hiên quyết định căn phòng phía sau nó mát hay nóng.', description: '' },
+    { slug: 'thiet-ke-thi-cong', indexLabel: '03', title: 'Thiết kế & thi công', summary: 'Bạn chỉ phải gọi một số máy, kể cả khi lỗi nằm ở phía chúng tôi.', description: '' },
+    { slug: 'cai-tao', indexLabel: '04', title: 'Cải tạo', summary: 'Không phải căn nào cũng nên đập ra làm lại. Chúng tôi hay đề nghị dừng sớm hơn chủ nhà tính.', description: '' },
+    { slug: 'do-noi-that', indexLabel: '05', title: 'Đồ nội thất đặt riêng', summary: 'Đóng theo số đo thật của căn phòng.', description: '' },
   ]
 
   for (const [i, s] of services.entries()) {
@@ -519,14 +519,75 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
   // materials are seeded before projects (seedMaterials) so blocks can reference them
 
   const sections: { key: HomepageSectionRow['key']; content: Record<string, unknown> }[] = [
-    { key: 'HERO', content: { eyebrow: 'AN ATELIER', title: 'Không gian\nmang tính cách.', body: 'Studio nội thất và kiến trúc tại TP. Hồ Chí Minh.', cta: { label: 'Xem dự án', href: '/projects' } } },
-    { key: 'FEATURED_PROJECTS', content: { label: 'Selected Works', heading: 'Những công trình\nchúng tôi chăm chút.' } },
-    { key: 'STUDIO', content: { label: 'Studio', heading: 'Chúng tôi thiết kế cho\nnhịp sống thật.', body: '' } },
-    { key: 'SERVICES', content: { label: 'Services', heading: 'Dịch vụ' } },
-    { key: 'IMMERSIVE_PROJECT', content: { label: 'Immersive', heading: 'Bước vào không gian' } },
-    { key: 'PHILOSOPHY', content: { label: 'Philosophy', heading: 'Ít vật liệu hơn,\nnhiều ánh sáng hơn.' } },
-    { key: 'JOURNAL', content: { label: 'Journal', heading: 'Ghi chép' } },
-    { key: 'CTA', content: { heading: 'Kể cho chúng tôi\nvề ngôi nhà của bạn.', buttonLabel: 'Liên hệ', href: '/contact' } },
+    {
+      key: 'HERO',
+      content: {
+        eyebrow: 'AN ATELIER · TP. Hồ Chí Minh',
+        title: 'Một mặt thoáng.\nVẫn phải đủ sáng.',
+        body: 'Phần lớn căn hộ và nhà phố ở đây chỉ mở được về một hướng. Chúng tôi thiết kế và thi công nội thất trong đúng giới hạn đó.',
+        cta: { label: 'Xem 105 công trình', href: '/projects' },
+      },
+    },
+    {
+      key: 'FEATURED_PROJECTS',
+      content: {
+        label: 'Selected Works',
+        heading: 'Vài công trình gần đây,\nchọn theo ánh sáng.',
+        body: 'Cái nào cũng bắt đầu bằng một giới hạn có thật: một ô cửa duy nhất, một bức tường không được đụng tới, hay cái hẹn dọn nhà trước Tết.',
+      },
+    },
+    {
+      key: 'STUDIO',
+      content: {
+        label: 'Công trình 2021–2026',
+        heading: 'Đo thang máy\ntrước khi vẽ tủ.',
+        body: 'AN ATELIER làm nội thất và kiến trúc ở TP. Hồ Chí Minh. Phần lớn công việc bắt đầu trong một căn hộ vừa nhận bàn giao: sàn còn phủ bạt, một mặt kính hướng tây, và một danh sách đồ đạc dài hơn số mét vuông có thật.\n\nTrước khi vẽ, chúng tôi đo những thứ ít ai chụp hình: lòng thang máy hàng, bề rộng con hẻm, chiều cao cửa hầm xe. Chúng quyết định chiếc tủ nào đóng liền khối được và chiếc nào phải cắt làm ba rồi ghép lại tại chỗ.',
+        stats: [
+          { label: 'Căn hộ', value: '41' },
+          { label: 'Nhà phố và biệt thự', value: '23' },
+          { label: 'Nhà hàng, spa và cửa hàng', value: '19' },
+          { label: 'Phòng và khu vực riêng lẻ', value: '22' },
+        ],
+      },
+    },
+    {
+      key: 'SERVICES',
+      content: { label: '01–05', heading: 'Việc nhỏ nhất từng nhận\nlà một phòng ngủ 12 m².' },
+    },
+    {
+      key: 'IMMERSIVE_PROJECT',
+      content: {
+        label: 'Bốn điểm dừng',
+        heading: 'Đi chậm một vòng\nnhư lúc xem nhà.',
+        body: 'Bốn khung hình của cùng một công trình, xếp theo thứ tự một người bước vào: mặt tiền, tiền sảnh, chỗ ngồi quen thuộc, rồi tới đường ghép giữa hai tấm đá.',
+      },
+    },
+    {
+      key: 'PHILOSOPHY',
+      content: {
+        label: 'Độ ẩm 75–80% quanh năm',
+        heading: 'Ván công nghiệp tốt\nổn định hơn gỗ thịt.',
+        body: 'Ở độ ẩm này, một cánh tủ gỗ thịt cao 2,4 mét sẽ tự tìm đường cong trong hai mùa mưa đầu; tấm MDF lõi xanh phủ veneer óc chó thì không. Chúng tôi giữ gỗ thịt cho những chỗ bàn tay chạm vào — tay vịn, mép bàn, chân ghế — và nói thẳng chuyện đó, kể cả khi hợp đồng đã ghi hai chữ gỗ tự nhiên.',
+      },
+    },
+    {
+      key: 'JOURNAL',
+      content: {
+        label: 'Journal',
+        heading: 'Những câu hỏi lặp lại\nở hầu hết công trường.',
+        body: 'Chúng tôi viết lại một lần cho gọn: gỗ nở bao nhiêu trong mùa mưa, một phòng cần mấy mạch đèn, đến đoạn nào thì không lùi được nữa.',
+      },
+    },
+    {
+      key: 'CTA',
+      content: {
+        label: 'Trả lời trong 24 giờ làm việc',
+        heading: 'Cứ gửi mặt bằng,\nchúng tôi xem.',
+        body: 'Bản mặt bằng bàn giao và ngày bạn muốn dọn vào là đủ để bắt đầu. Phần lớn công trình trong hồ sơ này mất ba đến sáu tháng kể từ lúc chốt phương án, và chúng tôi nói ngay nếu mốc của bạn quá gấp.',
+        buttonLabel: 'Liên hệ',
+        href: '/contact',
+      },
+    },
   ]
   for (const [i, s] of sections.entries()) {
     await db
@@ -539,18 +600,20 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
   const navCount = await db.select({ n: sql<number>`count(*)::int` }).from(schema.navigation)
   if ((navCount[0]?.n ?? 0) === 0) {
     await db.insert(schema.navigation).values([
-      { location: 'header', label: 'Dự án', href: '/projects', order: 0 },
-      { location: 'header', label: 'Studio', href: '/studio', order: 1 },
-      { location: 'header', label: 'Dịch vụ', href: '/services', order: 2 },
-      { location: 'header', label: 'Ghi chép', href: '/journal', order: 3 },
-      { location: 'header', label: 'Liên hệ', href: '/contact', order: 4 },
-      { location: 'footer', label: 'Dự án', href: '/projects', order: 0 },
-      { location: 'footer', label: 'Studio', href: '/studio', order: 1 },
-      { location: 'footer', label: 'Dịch vụ', href: '/services', order: 2 },
-      { location: 'footer', label: 'Ghi chép', href: '/journal', order: 3 },
-      { location: 'footer', label: 'Liên hệ', href: '/contact', order: 4 },
+      { location: 'header', label: 'Trang chủ', href: '/', order: 0 },
+      { location: 'header', label: 'Dự án', href: '/projects', order: 1 },
+      { location: 'header', label: 'Studio', href: '/studio', order: 2 },
+      { location: 'header', label: 'Dịch vụ', href: '/services', order: 3 },
+      { location: 'header', label: 'Bài viết', href: '/journal', order: 4 },
+      { location: 'header', label: 'Liên hệ', href: '/contact', order: 5 },
+      { location: 'footer', label: 'Trang chủ', href: '/', order: 0 },
+      { location: 'footer', label: 'Dự án', href: '/projects', order: 1 },
+      { location: 'footer', label: 'Studio', href: '/studio', order: 2 },
+      { location: 'footer', label: 'Dịch vụ', href: '/services', order: 3 },
+      { location: 'footer', label: 'Bài viết', href: '/journal', order: 4 },
+      { location: 'footer', label: 'Liên hệ', href: '/contact', order: 5 },
     ])
-    log('navigation', '10 rows')
+    log('navigation', '12 rows')
   } else {
     log('navigation', 'already configured')
   }

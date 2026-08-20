@@ -16,7 +16,7 @@ export default function Loading() {
         </div>
 
         <p className="mt-10 font-display text-[1.5rem] font-normal text-muted">
-          Một chút cho ảnh kịp sáng.
+          Ảnh công trình chụp ở bản gốc rất lớn, đang tải dần.
         </p>
       </div>
     </div>

@@ -7,7 +7,7 @@ import { buildMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Không tìm thấy trang',
-  description: 'Đường dẫn này không còn tồn tại trên website của AN ATELIER.',
+  description: 'Không có trang nào ở địa chỉ này trên website của AN ATELIER.',
   path: '/',
   noIndex: true,
 })
@@ -25,8 +25,9 @@ export default function NotFound() {
         <Rule className="mt-14 max-w-[28rem]" />
 
         <p className="u-body-lg mt-8 max-w-[46ch]">
-          Có thể đường dẫn đã đổi, hoặc dự án bạn tìm đang được sắp xếp lại. Bạn thử quay về từ đầu —
-          hoặc nói cho chúng tôi biết bạn đang tìm gì.
+          Có thể một trang đã đổi đường dẫn, hoặc bạn đang theo một liên kết cũ mà chúng tôi chưa
+          kịp chuyển hướng. Danh sách công trình đầy đủ vẫn nằm ở trang dự án; còn nếu bạn nhớ tên
+          căn nhà hay bài viết mình đang tìm, nhắn cho studio một dòng là nhanh nhất.
         </p>
 
         <div className="mt-14 flex flex-wrap items-center gap-8">

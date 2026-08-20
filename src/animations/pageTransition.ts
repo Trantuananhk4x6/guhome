@@ -3,9 +3,20 @@
 /**
  * Page-transition curtain.
  *
- * A single espresso panel wipes up over the outgoing page, the route is swapped
- * while the screen is covered, then the panel retracts upward off the new one.
- * Total runtime is clamped to the 0.8–1.2s brief by `curtainDuration()`.
+ * A single espresso panel that is **already covering the screen** when the
+ * incoming route first paints, and then lifts off it, uncovering from the top
+ * down so the reader meets the new heading first.
+ *
+ * Why there is no animated cover half: in the App Router a layout's `children`
+ * is a stable element whose contents the router swaps internally, so a layout
+ * component cannot hold the outgoing page on screen. By the time
+ * `usePathname()` reports the new route, React is already committing that route.
+ * A tweened cover would therefore wipe across a page the reader has just been
+ * shown and then hand it back — the one thing a transition must never do. The
+ * panel is instead set opaque synchronously, inside the layout effect that runs
+ * between the commit and the paint, so the destination is never seen bare.
+ *
+ * Total runtime stays inside the 0.8–1.2s brief via `curtainDuration()`.
  *
  * The component itself lives in `@/components/animation/PageTransition` and is
  * re-exported here so consumers can follow the §6.3 contract
@@ -32,58 +43,50 @@ export interface CurtainArgs {
   panel: HTMLElement
   /** optional hairline / mark that breathes while the screen is covered */
   mark?: HTMLElement | null
-  /** run while fully covered: swap the route content and reset scroll here */
-  onCovered: () => void
   /** run after the panel has retracted */
   onDone?: () => void
 }
 
 /**
- * Builds the cover → swap → reveal timeline. Call inside a `gsap.context()` so
- * an interrupted navigation reverts cleanly.
+ * Covers `panel` immediately, then builds the reveal timeline.
+ *
+ * Call it inside a `gsap.context()` **from a layout effect** — the cover is a
+ * synchronous `gsap.set`, and it only does its job if it lands before the
+ * browser paints. The context also makes an interrupted navigation revert the
+ * panel to hidden instead of stranding the reader behind it.
  */
 export function curtainTimeline(args: CurtainArgs): gsap.core.Timeline {
-  const { panel, mark, onCovered, onDone } = args
+  const { panel, mark, onDone } = args
   const { cover, reveal } = curtainDuration()
 
-  // A beat of full black before the swap; taken out of the reveal half so the
-  // clamped total still holds.
-  const hold = Math.min(0.08, reveal * 0.15)
-  const retract = reveal - hold
+  // A beat of full black before the panel lifts, so the cut reads as deliberate
+  // rather than as a dropped frame.
+  const hold = cover * 0.5
+
+  // Synchronous, and deliberately not part of the timeline: a timeline renders
+  // its first state on the next ticker tick, which is one frame too late.
+  gsap.set(panel, {
+    autoAlpha: 1,
+    scaleY: 1,
+    // Bottom-anchored: as scaleY falls to 0 the covered band shrinks downward,
+    // so the top of the page — where the display heading sits — is uncovered
+    // first, and the reader catches its own reveal in flight.
+    transformOrigin: '50% 100%',
+    pointerEvents: 'auto',
+    willChange: 'transform',
+  })
 
   const tl = gsap.timeline({
     defaults: { ease: EASE.inOut },
     onComplete: onDone,
   })
 
-  tl.set(panel, {
-    autoAlpha: 1,
-    scaleY: 0,
-    transformOrigin: '50% 100%',
-    pointerEvents: 'auto',
-    willChange: 'transform',
-  })
-
-  tl.to(panel, { scaleY: 1, duration: cover })
-
   if (mark) {
-    tl.fromTo(
-      mark,
-      { autoAlpha: 0, scaleX: 0 },
-      { autoAlpha: 1, scaleX: 1, duration: cover * 0.7, ease: EASE.expo },
-      cover * 0.35,
-    )
+    tl.fromTo(mark, { autoAlpha: 0, scaleX: 0 }, { autoAlpha: 1, scaleX: 1, duration: hold, ease: EASE.expo }, 0)
+    tl.to(mark, { autoAlpha: 0, duration: reveal * 0.35, ease: EASE.out }, hold)
   }
 
-  tl.addLabel('covered', cover)
-  tl.call(onCovered, undefined, 'covered')
-
-  const out = `covered+=${hold}`
-  if (mark) {
-    tl.to(mark, { autoAlpha: 0, duration: retract * 0.4, ease: EASE.out }, out)
-  }
-  tl.set(panel, { transformOrigin: '50% 0%' }, out)
-  tl.to(panel, { scaleY: 0, duration: retract }, out)
+  tl.to(panel, { scaleY: 0, duration: reveal }, hold)
   tl.set(panel, { autoAlpha: 0, pointerEvents: 'none', clearProps: 'willChange' })
 
   return tl

@@ -1,22 +1,25 @@
 'use client'
 
 /**
- * Wraps the routed content and holds the outgoing page on screen while an
- * espresso curtain wipes across it. The route swap happens under full cover, so
- * you never see a half-painted page.
+ * Wraps the routed content and covers the screen while the new route arrives on
+ * it, then lifts the cover away.
  *
- * Wrap `{children}` of the `(site)` layout with this. Disabled — and completely
+ * It does **not** try to hold the outgoing page on screen. In the App Router a
+ * layout's `children` is a stable element whose contents the router swaps
+ * internally — parking it in state hands back the very same element, so it
+ * renders whatever route the router currently holds. The component this replaced
+ * did exactly that and, because the cover was tweened in over half a second,
+ * the reader watched the destination appear, get wiped over, and come back.
+ * Covering synchronously in the layout effect that runs between the route commit
+ * and the paint is what actually works: the destination is never painted bare,
+ * and the only motion is the reveal — which lands on top of the incoming page's
+ * own entrance animations rather than fighting them.
+ *
+ * Wrap `{children}` of the root layout with this. Disabled — and completely
  * inert — when `MotionConfig.pageTransition` is false or motion is reduced.
- *
- * What is painted lives in state, not in a ref: the outgoing page has to survive
- * arbitrary re-renders while the curtain runs, and a render React discards must
- * never be able to leave the component displaying a tree that was never
- * committed. `shownPathRef` mirrors `shown.path` purely so the swap effect can
- * ask "is this a new route?" without taking the displayed route as a dependency —
- * that dependency would tear the running curtain down at the moment it succeeds.
  */
 
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import type { JSX, ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { useMotionFlag } from '@/lib/motion'
@@ -24,12 +27,6 @@ import { gsap, ScrollTrigger, registerGsap } from '@/animations/gsap'
 import { consumeCurtainSuppression, useIsoLayoutEffect } from '@/animations/internal'
 import { CURTAIN_Z_INDEX, curtainTimeline } from '@/animations/pageTransition'
 import { scrollToTop } from '@/animations/scroll'
-
-interface Shown {
-  /** The route `node` belongs to. Lags `pathname` while the curtain covers. */
-  path: string
-  node: ReactNode
-}
 
 export function PageTransition(props: { children: ReactNode }): JSX.Element {
   const { children } = props
@@ -39,84 +36,48 @@ export function PageTransition(props: { children: ReactNode }): JSX.Element {
   const panelRef = useRef<HTMLDivElement>(null)
   const markRef = useRef<HTMLSpanElement>(null)
 
-  const [shown, setShown] = useState<Shown>(() => ({ path: pathname, node: children }))
-
   /**
-   * Mirror of `shown.path`, written only from the swap. Refs are read and
-   * written exclusively inside effects here, never during render.
+   * The route this component has already reacted to. Seeded with the mount
+   * pathname so a first load is never curtained, and touched only from inside
+   * the effect below — never during render.
    */
-  const shownPathRef = useRef(pathname)
-  /** Newest committed children, so the swap does not take `children` as a dep. */
-  const pendingRef = useRef<ReactNode>(children)
-  /** Set at the swap so the next layout pass re-measures ScrollTriggers. */
-  const needsRefreshRef = useRef(false)
-
-  // Same route, fresh content (search params, revalidation, streamed-in blocks):
-  // pass it through immediately. A render-phase update on this component's own
-  // state — React re-renders before committing, so nothing stale ever paints.
-  // While the curtain is up, `shown.path` is the *outgoing* route, so this is
-  // false and the frozen page is left alone.
-  if (shown.path === pathname && shown.node !== children) {
-    setShown({ path: pathname, node: children })
-  }
-
-  // Mirror the newest children *after* the commit. Doing this during render — as
-  // this component used to — lets a render React throws away (a suspended
-  // navigation, a replayed render) leave the swap holding a tree that was never
-  // shown. Declared above the swap effect so it has already run when a
-  // navigation lands in the same commit.
-  useIsoLayoutEffect(() => {
-    pendingRef.current = children
-  })
+  const handledPathRef = useRef(pathname)
 
   useIsoLayoutEffect(() => {
-    // TEMP-AUDIT
-    const w = window as unknown as { __PTLOG?: string[] }
-    w.__PTLOG = w.__PTLOG ?? []
-    w.__PTLOG.push(`effect path=${pathname} shown=${shownPathRef.current} enabled=${String(enabled)} panel=${String(!!panelRef.current)}`)
-    if (shownPathRef.current === pathname) return
+    // `enabled` is in the dependency list because the curtain must not outlive
+    // a motion setting being switched off mid-flight, but a change to it is not
+    // a navigation — only a new pathname is.
+    if (handledPathRef.current === pathname) return
+    handledPathRef.current = pathname
 
-    const swap = (): void => {
-      shownPathRef.current = pathname
-      needsRefreshRef.current = true
-      scrollToTop()
-      // Read from the ref, not from a closure: the incoming route may have
-      // streamed more content in during the half-second the curtain was up.
-      setShown({ path: pathname, node: pendingRef.current })
-    }
-
-    const panel = panelRef.current
-    // A project card expansion (or a View Transition) is already covering the
-    // screen for this navigation — swap underneath it instead of curtaining too.
+    // Always consume, even on the paths that skip the curtain: a flag left
+    // standing would swallow the *next* navigation's curtain instead of this
+    // one's. (A project card expansion or a View Transition sets it, because it
+    // is already covering the screen for this navigation itself.)
     const suppressed = consumeCurtainSuppression()
-    w.__PTLOG.push(`branch enabled=${String(enabled)} panel=${String(!!panel)} suppressed=${String(suppressed)}`)
-    if (!enabled || !panel || suppressed) {
-      swap()
-      return
-    }
 
     registerGsap()
+
+    // Both of these have to happen before the paint, in this order: reset the
+    // scroll so the incoming page is measured at the top, then re-measure. The
+    // new page's own hooks have already created their ScrollTriggers by now —
+    // React runs children's layout effects before the parent's.
+    scrollToTop()
+    ScrollTrigger.refresh()
+
+    const panel = panelRef.current
+    if (!enabled || !panel || suppressed) return
+
     const ctx = gsap.context(() => {
-      const tl = curtainTimeline({ panel, mark: markRef.current, onCovered: swap })
-      w.__PTLOG.push(`built dur=${tl.duration()} t=${gsap.ticker.time}`)
-      tl.eventCallback('onComplete', () => w.__PTLOG?.push(`complete t=${gsap.ticker.time}`))
+      curtainTimeline({ panel, mark: markRef.current })
     }, panel)
 
     return () => {
-      // Reverting an interrupted curtain leaves `shownPathRef` on the outgoing
-      // route, so the navigation that interrupted it re-arms and still swaps.
+      // Reverting an interrupted curtain returns the panel to hidden, so a
+      // navigation that lands mid-reveal can never strand the reader behind it.
       ctx.revert()
     }
   }, [pathname, enabled])
-
-  useIsoLayoutEffect(() => {
-    if (!needsRefreshRef.current) return
-    needsRefreshRef.current = false
-    registerGsap()
-    // The new page is in the DOM and Lenis has already been reset to 0, so every
-    // start/end measured here is measured against the layout the reader sees.
-    ScrollTrigger.refresh()
-  }, [shown])
 
   return (
     <>
@@ -135,7 +96,7 @@ export function PageTransition(props: { children: ReactNode }): JSX.Element {
       >
         <span ref={markRef} className="block h-px w-24 bg-accent-soft" style={{ opacity: 0 }} />
       </div>
-      {shown.node}
+      {children}
     </>
   )
 }
