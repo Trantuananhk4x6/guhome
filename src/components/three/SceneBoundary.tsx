@@ -46,7 +46,7 @@ export class SceneBoundary extends Component<SceneBoundaryProps, SceneBoundarySt
   override componentDidCatch(error: Error, info: ErrorInfo): void {
     this.setState({ failedKey: this.props.resetKey ?? null })
     if (process.env.NODE_ENV !== 'production') {
-      console.error('[an-atelier/three] scene failed', error, info.componentStack)
+      console.error('[guhome/three] scene failed', error, info.componentStack)
     }
     this.props.onError?.(error)
   }

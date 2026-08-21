@@ -11,9 +11,18 @@ export interface ContactOption {
   label: string
 }
 
-/** Mirrors the project taxonomy in `src/data/seed-types.ts`, plus an escape hatch. */
+/**
+ * Mirrors the project taxonomy in `src/data/seed-types.ts`, plus an escape hatch.
+ *
+ * `chung-cu` has no matching project category on purpose. Callers say "chung cư"
+ * for the building and "căn hộ" for the unit inside it, and asking them to pick
+ * the studio's filing word loses the distinction the studio actually wants:
+ * a whole-block or common-area brief is a different job from one apartment. It
+ * files under `can-ho` in the portfolio, and arrives labelled plainly in the inbox.
+ */
 export const PROJECT_TYPES: readonly ContactOption[] = [
   { value: 'can-ho', label: 'Căn hộ' },
+  { value: 'chung-cu', label: 'Chung cư' },
   { value: 'nha-pho', label: 'Nhà phố' },
   { value: 'biet-thu-resort', label: 'Biệt thự & Resort' },
   { value: 'thuong-mai', label: 'Thương mại' },

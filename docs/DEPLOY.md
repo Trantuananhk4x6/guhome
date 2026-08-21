@@ -44,7 +44,7 @@ Chọn một trong hai:
   mời `Trantuananhk4x6` quyền **Write**. Bấm chấp nhận lời mời, rồi:
 
   ```bash
-  cd d:/guhome/an-atelier
+  cd d:/guhome/guhome
   git push -u origin main
   ```
 

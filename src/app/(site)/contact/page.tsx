@@ -35,6 +35,14 @@ export default async function ContactPage() {
   const { brand } = theme
   const telHref = `tel:${brand.phone.replace(/[^\d+]/g, '')}`
 
+  // The address is one editable string in the theme, but it reads as two lines:
+  // the street, then the ward and city. Split on the first comma so the card
+  // keeps that rhythm without the admin having to type markup.
+  const commaAt = brand.address.indexOf(',')
+  const addressStreet = commaAt > 0 ? brand.address.slice(0, commaAt).trim() : brand.address
+  const addressArea = commaAt > 0 ? brand.address.slice(commaAt + 1).trim() : ''
+  const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(brand.address)}`
+
   return (
     <div className="pb-[var(--spacing-section)]">
       <section className="u-gutter pt-[calc(var(--spacing-section)*0.75)]">
@@ -63,15 +71,50 @@ export default async function ContactPage() {
           <div className="lg:col-span-5">
             <Reveal variant="revealUp">
               <Label rule>Studio</Label>
-              <div className="mt-8">
-                <Detail label="Địa chỉ">
-                  <p>{brand.address}</p>
-                  <p className="mt-2 text-muted">
-                    Ghé thì báo trước một hôm. Cái bàn dài giữa studio gần như lúc nào cũng đang
-                    bày mẫu của công trình đang chạy, nên phải dọn bớt mới có chỗ cho bạn ngồi.
-                  </p>
-                </Detail>
 
+              {/*
+                The address and the phone are the two things a visitor who has
+                decided actually goes looking for, so they leave the label/value
+                list and take a card of their own: an accent edge, the oat
+                surface, and the street set in the display face. Square corners
+                and a hairline keep it inside the design language.
+              */}
+              <address className="mt-8 border border-line border-t-2 border-t-accent bg-surface px-6 py-8 not-italic sm:px-8 sm:py-9">
+                <Label>Địa chỉ studio</Label>
+                <p className="mt-4 font-display text-[1.75rem] leading-[1.15] font-normal text-ink sm:text-[2.125rem]">
+                  {addressStreet}
+                  {addressArea ? (
+                    <>
+                      <br />
+                      <span className="text-muted">{addressArea}</span>
+                    </>
+                  ) : null}
+                </p>
+
+                <div className="mt-6 flex flex-wrap items-baseline gap-x-8 gap-y-3">
+                  <a
+                    href={telHref}
+                    className="font-display text-[1.375rem] leading-none font-normal text-ink transition-colors duration-500 ease-editorial hover:text-accent sm:text-[1.625rem]"
+                  >
+                    {brand.phone}
+                  </a>
+                  <a
+                    href={mapsHref}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="u-label text-accent underline decoration-accent/40 underline-offset-4 transition-colors duration-500 ease-editorial hover:decoration-accent"
+                  >
+                    Chỉ đường →
+                  </a>
+                </div>
+
+                <p className="mt-6 font-body text-[0.9375rem] leading-relaxed text-muted">
+                  Ghé thì báo trước một hôm. Cái bàn dài giữa studio gần như lúc nào cũng đang bày
+                  mẫu của công trình đang chạy, nên phải dọn bớt mới có chỗ cho bạn ngồi.
+                </p>
+              </address>
+
+              <div className="mt-8">
                 <Detail label="Email">
                   <a
                     href={`mailto:${brand.email}`}
@@ -81,17 +124,11 @@ export default async function ContactPage() {
                   </a>
                 </Detail>
 
-                <Detail label="Điện thoại">
-                  <a
-                    href={telHref}
-                    className="underline decoration-line underline-offset-4 transition-colors duration-500 ease-editorial hover:decoration-accent"
-                  >
-                    {brand.phone}
-                  </a>
-                  <p className="mt-2 text-muted">
-                    Thứ Hai đến thứ Sáu, 9:00–18:00; thứ Bảy theo hẹn. Ngoài giờ đó thì nhắn tin
-                    nhanh hơn gọi.
-                  </p>
+                {/* The number itself now lives in the card above; repeating it here
+                    would give the same page two competing places to tap. */}
+                <Detail label="Giờ làm việc">
+                  <p>Thứ Hai – thứ Sáu, 9:00–18:00. Thứ Bảy theo hẹn.</p>
+                  <p className="mt-2 text-muted">Ngoài giờ đó thì nhắn tin nhanh hơn gọi.</p>
                 </Detail>
 
                 <Detail label="Phản hồi">

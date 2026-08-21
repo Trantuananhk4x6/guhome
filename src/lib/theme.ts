@@ -128,8 +128,11 @@ export const DEFAULT_BRAND: BrandConfig = {
   logoMediaId: null,
   faviconMediaId: null,
   email: 'studio@guhomes.vn',
-  phone: '+84 28 3822 1975',
-  address: 'Quận 7, TP. Hồ Chí Minh',
+  // Real studio contact details — editable in Admin → Giao diện → Thương hiệu.
+  // The phone is stored in the local form because that is how a Vietnamese
+  // visitor reads it; `tel:` hrefs strip the spacing themselves.
+  phone: '0368 757 916',
+  address: '14 Đường 41, Phường An Khánh, TP. Hồ Chí Minh',
   social: [
     { label: 'Instagram', href: 'https://www.instagram.com/guhomes.vn' },
     { label: 'Behance', href: 'https://www.behance.net/guhomes' },

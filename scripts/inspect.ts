@@ -125,7 +125,7 @@ function typographyFindings(text: string): Finding[] {
 
 async function inspect(route: string): Promise<RouteReport> {
   const started = Date.now()
-  const res = await fetch(`${BASE}${route}`, { headers: { 'user-agent': 'an-atelier-inspect' } })
+  const res = await fetch(`${BASE}${route}`, { headers: { 'user-agent': 'guhome-inspect' } })
   const html = await res.text()
   const ms = Date.now() - started
   const text = textOf(html).replace(/\s+/g, ' ').trim()
