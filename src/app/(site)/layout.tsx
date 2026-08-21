@@ -44,7 +44,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
         {children}
       </main>
 
-      <Footer nav={withFallbackNav(footerNav, FALLBACK_FOOTER_NAV)} brand={theme.brand} />
+      <Footer nav={withFallbackNav(footerNav, FALLBACK_FOOTER_NAV)} brand={theme.brand} logo={logo} />
     </div>
   )
 }

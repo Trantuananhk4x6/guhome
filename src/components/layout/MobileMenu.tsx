@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
@@ -18,6 +19,8 @@ export interface MobileMenuProps {
   onClose: () => void
   nav: NavItem[]
   brand: BrandConfig
+  /** Resolved URL of the horizontal lockup, or null to set the name in type. */
+  logo?: string | null
 }
 
 /**
@@ -29,7 +32,7 @@ export interface MobileMenuProps {
  * human. GSAP rather than framer-motion, because this ships on the homepage
  * (ARCHITECTURE §8) — and Lenis is stopped while it is open.
  */
-export function MobileMenu({ id, open, onClose, nav, brand }: MobileMenuProps) {
+export function MobileMenu({ id, open, onClose, nav, brand, logo = null }: MobileMenuProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<ReturnType<typeof gsap.timeline> | null>(null)
   const openerRef = useRef<HTMLElement | null>(null)
@@ -148,9 +151,13 @@ export function MobileMenu({ id, open, onClose, nav, brand }: MobileMenuProps) {
             aria-label={`${brand.companyName} — ${home?.label ?? 'Trang chủ'}`}
             className="group flex flex-col gap-1.5"
           >
-            <span className="font-display text-sm uppercase leading-none tracking-[0.2em] transition-colors duration-500 group-hover:text-accent">
-              {brand.companyName}
-            </span>
+            {logo ? (
+              <Image src={logo} alt={brand.companyName} width={960} height={174} className="h-8 w-auto" />
+            ) : (
+              <span className="font-display text-sm uppercase leading-none tracking-[0.2em] transition-colors duration-500 group-hover:text-accent">
+                {brand.companyName}
+              </span>
+            )}
             {home ? <span className="u-label text-[0.625rem] text-muted">{home.label}</span> : null}
           </Link>
           <button

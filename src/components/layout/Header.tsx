@@ -423,10 +423,16 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
                 <Image
                   src={logo}
                   alt={brand.companyName}
-                  width={512}
-                  height={512}
+                  width={960}
+                  height={174}
                   priority
-                  className="h-[2.5em] w-auto"
+                  // The horizontal lockup — mark AND wordmark — composed from the
+                  // supplied art rather than the art itself, which stacks them
+                  // and would set the name at 12px in an 84px bar. Height in em
+                  // so it tracks the responsive step beside it; `self-center`
+                  // because an image in a baseline row sits on its BOTTOM edge,
+                  // which would hang a 5.5:1 lockup below the nav's baseline.
+                  className="h-[1.7em] w-auto self-center md:h-[1.8em]"
                 />
               ) : (
                 /*
@@ -576,7 +582,14 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
         />
       </header>
 
-      <MobileMenu id="an-mobile-menu" open={menuOpen} onClose={() => setMenuOpen(false)} nav={nav} brand={brand} />
+      <MobileMenu
+        id="an-mobile-menu"
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        nav={nav}
+        brand={brand}
+        logo={logo}
+      />
     </>
   )
 }
