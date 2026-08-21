@@ -172,10 +172,29 @@ export function ProjectHero({
         morph — so the card clears this one first. Nothing restores it: this
         document is the one being navigated away from.
       */}
+      {/*
+        THE PHOTOGRAPH STOPS HALF WAY DOWN A PHONE. At 390 the record — HẠNG
+        MỤC / ĐỊA ĐIỂM / DIỆN TÍCH / NĂM — was set straight over the brightest,
+        busiest part of the cover: `ĐỊA ĐIỂM — Gò Vấp, TP. Hồ Chí Minh` on a
+        pale façade and `DIỆN TÍCH — 168 m²` across a white garage door and a
+        red car (docs/ui-after/m-slug-00000.png). The bottom scrim is tuned for
+        the desktop crop, where the same rows sit higher in the frame and over
+        darker pixels, and no scrim strong enough to carry four hairline rows at
+        390 would leave a photograph underneath worth showing.
+
+        So below `lg` the media layer takes the top 50svh and the title block
+        sits on the section's own espresso beneath it: type on a solid ground
+        instead of on a picture, and the picture no longer has to be dimmed to
+        make the type work. It also gives the h1 the clearance it lacked — the
+        descender of `Tông` was landing on the first rule.
+
+        At `lg` and up nothing changes: `bottom-0 h-auto` restores the full
+        bleed and the content returns to `justify-end` over the frame.
+      */}
       <div
         aria-hidden="true"
         data-hero-media=""
-        className="absolute inset-0"
+        className="absolute inset-x-0 top-0 h-[50svh] lg:bottom-0 lg:h-auto"
         style={{ viewTransitionName: PROJECT_VIEW_TRANSITION_NAME } as CSSProperties}
       >
         {useScene && scene ? (
@@ -207,7 +226,12 @@ export function ProjectHero({
           photograph — the part anyone actually came to look at — was dimmed by
           the same amount.
         */}
-        <span className="bg-espresso/34 absolute inset-0" />
+        {/* The flat hold exists so the header stays legible over any frame and
+            so the title block has a floor. Below `lg` the title block is no
+            longer ON the photograph, so most of that hold is dimming a picture
+            for no one: 18% there, the full 34% from `lg` up where type still
+            rides the frame. */}
+        <span className="bg-espresso/18 absolute inset-0 lg:bg-espresso/34" />
         <span aria-hidden="true" style={SCRIM_B} className="absolute inset-x-0 bottom-0 h-[62%]" />
       </div>
 
@@ -218,7 +242,10 @@ export function ProjectHero({
         </p>
       ) : null}
 
-      <div className="u-gutter relative z-10 mx-auto w-full max-w-[110rem] pt-40 pb-14 md:pb-20">
+      {/* `mt-[50svh]` is what puts the block under the photograph rather than
+          over it; the 160px of top padding was clearance for the fixed header,
+          which below `lg` now sits over the picture instead of over this. */}
+      <div className="u-gutter relative z-10 mx-auto mt-[50svh] w-full max-w-[110rem] pt-10 pb-14 lg:mt-0 lg:pt-40 lg:pb-20">
         <HeroTitle
           key={settled ? 'settled' : 'pending'}
           project={project}

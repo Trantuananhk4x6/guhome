@@ -29,7 +29,7 @@ export function LoginForm({ next }: LoginFormProps) {
           autoFocus
           defaultValue={state.email ?? ''}
           invalid={Boolean(state.error)}
-          placeholder="ban@anatelier.vn"
+          placeholder="ban@guhomes.vn"
         />
       </FormRow>
 

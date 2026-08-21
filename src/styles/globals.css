@@ -18,6 +18,16 @@
   --color-accent: var(--c-accent);
   --color-accent-soft: var(--c-accent-soft);
 
+  /*
+   * A ROLE, NOT A COLOUR — the foreground for anything sitting on a permanently
+   * dark ground (an espresso band, a photograph under a scrim). It resolves to
+   * whichever end of the palette is the LIGHT one, so it is correct in daylight
+   * and at night. New work should reach for `text-on-dark` rather than
+   * `text-canvas`; see the compatibility shim below for why the old spelling
+   * still works.
+   */
+  --color-on-dark: var(--c-on-dark);
+
   --font-display: var(--f-display), 'Playfair Display', ui-serif, Georgia, serif;
   --font-body: var(--f-body), 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
 
@@ -47,11 +57,15 @@
   --c-surface: #eae5da;
   --c-surface-alt: #dcd5c7;
   --c-ink: #1c1b18;
-  --c-muted: #78736a;
+  --c-muted: #5f5a50;
   --c-line: #d7d0c2;
   --c-espresso: #131210;
   --c-accent: #a07753;
   --c-accent-soft: #c7a57c;
+
+  /* The light end of the palette. On a daylight ground that is `canvas`; the
+     night override lives in the block below. */
+  --c-on-dark: var(--c-canvas);
 
   --f-display: 'Playfair Display';
   --f-body: 'Be Vietnam Pro';
@@ -64,6 +78,152 @@
   --motion-duration: 1s;
 
   color-scheme: light;
+}
+
+/*
+ * ============================================================================
+ * ON-DARK TOKEN RESOLUTION — the fix for the palette inversion.
+ * ============================================================================
+ *
+ * THE BUG. 134 uses of `text-canvas` across 42 files do not mean "the colour
+ * canvas". They mean "the text that sits on the dark band". Those two readings
+ * were the same thing while canvas was limestone; the moment a night preset
+ * makes canvas #14120E they diverge, and every one of those 134 becomes
+ * dark-on-dark. Measured on amber-night: text-canvas on bg-espresso is 1.08:1
+ * where it needs 18:1. The same inversion hits `border-canvas/12`, the low-alpha
+ * `bg-canvas/20` hairlines, and — unreported but just as dead — the `light`
+ * Button's `bg-canvas text-espresso`, which is the primary CTA of /services.
+ *
+ * WHY IT INVERTS, PRECISELY. `espresso` is the only palette colour that is dark
+ * in all four presets (#131210 / #080705 / #070910 / #080508); a photograph
+ * under a scrim behaves the same way. Every other token swaps ends when the
+ * ground flips: canvas <-> ink, and accent goes from mid-dark pigment to lit
+ * source. So a pairing of two swapping tokens survives the flip on its own —
+ * `bg-ink text-canvas` measures 15.3:1 in limestone and 16.9:1 on amber-night
+ * without anyone touching it. What breaks is exactly a swapping token paired
+ * with the one that never swaps. That is the whole bug, stated as a rule.
+ *
+ * THE CHOICE. Option (a), a `--c-on-espresso` role token with all 134 call
+ * sites migrated, is the correct semantics but it edits 42 files owned by other
+ * agents, and it still rots: nothing stops the next component from writing
+ * `text-canvas` on a dark band. Option (b), redefining the token inside dark
+ * regions, needs no component edits and cannot rot — but on its own it is too
+ * blunt, because a blanket flip would also hit the pairs that were already
+ * correct. Flipping `text-canvas` on `bg-accent` takes amber-night from 10.5:1
+ * to 1.61:1, cyan from 13.0:1 to 1.28:1, magenta from 6.1:1 to 2.77:1: three new
+ * invisible-text bugs traded for one fixed one.
+ *
+ * So this is (b) with the rule above written into the selectors, plus (a)'s
+ * token published in `@theme` as the sanctioned spelling for new work. Nothing
+ * is flipped wholesale; what is redefined is `--color-canvas` *on the elements
+ * and regions that are genuinely on a dark ground*, and it is put back on the
+ * fills that already invert by themselves. Every Tailwind canvas utility —
+ * plain and every alpha step — compiles to `var(--color-canvas)` (verified in
+ * the served bundle: `.text-canvas\/55` is
+ * `color-mix(in oklab, var(--color-canvas) 55%, transparent)`), so re-pointing
+ * the custom property carries all thirteen alpha variants with it for free.
+ *
+ * Everything below is gated on `[data-ground='dark']`, which the root layout
+ * sets from the stored palette. Under a daylight ground these rules do not
+ * exist, so the limestone rendering is untouched by construction rather than by
+ * a value that happens to come out the same.
+ */
+
+/*
+ * PRECEDENCE IS DECLARED, NOT COUNTED. The four rules below must fire in a fixed
+ * order — region, then element, then the fills that opt out, then the hover that
+ * opts back in — and the first version of this got it wrong: adding the `:not()`
+ * to rule 2 raised it to (0,3,0) and it silently began outranking the (0,2,0)
+ * opt-out, which turned the contact form's submit button cream-on-cream at
+ * 1.0:1. Named layers make the order explicit and immune to that: a later layer
+ * wins over an earlier one at ANY specificity, so a future exception can be
+ * added without re-deriving anyone's selector weight.
+ */
+@layer an-ondark-region, an-ondark-element, an-ondark-fill, an-ondark-hover;
+
+/* 0. THE ROLE. On a night ground the light end of the palette is `ink`, not
+      `canvas` — that single swap is what the rest of this block distributes. */
+[data-ground='dark'] {
+  --c-on-dark: var(--c-ink);
+}
+
+/* 1. REGIONS. A permanently dark ground, named by the markup that makes it so:
+      an opaque espresso fill, or one of the two tone contracts the components
+      already publish (`data-hero-tone` is Hero3D/ProjectHero, `data-mode` is the
+      Header over a dark hero). `[data-on-dark]` is the hook for anything new.
+      The custom property inherits, so every descendant is covered — including
+      the ones that never name canvas at all, like the `light` Button's fill.
+      Written as `.bg-espresso` deliberately: the class selector matches only the
+      exact token, so the translucent `bg-espresso/40` dialog *scrims* — which
+      wrap light content they must not invert — are excluded. */
+@layer an-ondark-region {
+  [data-ground='dark'] .bg-espresso,
+  [data-ground='dark'] [data-hero-tone='dark'],
+  [data-ground='dark'] [data-mode='dark'],
+  [data-ground='dark'] [data-on-dark] {
+    --color-canvas: var(--c-on-dark);
+    /* `hover:bg-surface` is the `light` Button's hover fill and the only use of
+       surface inside a dark region; without this it hovers to a dark chip under
+       dark text. Recessed from the light end rather than equal to it, which is
+       what `surface` means on the daylight ground too. */
+    --color-surface: color-mix(in srgb, var(--c-on-dark) 86%, var(--c-espresso));
+  }
+}
+
+/* 2. ELEMENTS. Type set over a photograph has no espresso fill to inherit from —
+      the card scrims are `bg-espresso/25`, which rule 1 rightly ignores. Match
+      the element by the utility it carries instead. This is sound for the same
+      reason the bug is: painting text the colour of the page ground is invisible
+      *by definition*, so `text-canvas` can only ever have meant "on something
+      that is not the page ground". Substring matching also picks up the variant
+      spellings — `hover:text-canvas`, `data-[mode=dark]:text-canvas`,
+      `placeholder:text-canvas/35`.
+
+      The `:not()` is load-bearing, and it is what a class-substring match costs:
+      the selector cannot tell an ACTIVE `text-canvas` from a conditional variant
+      that is merely armed. The Header carries `data-[mode=dark]:text-canvas`
+      alongside `data-[mode=light]:data-[solid=true]:bg-canvas/96`, so without
+      the guard the scrolled light-mode bar was re-pointed to the light end and
+      came out a cream slab with near-invisible nav on it — I shot it before I
+      caught it. Excluding any element that also paints a canvas FILL sends those
+      to rule 1 instead, which reads the tone the component actually publishes:
+      here, the Header's own `data-mode`. Nothing is lost, because an element
+      carrying a canvas fill on a dark ground is by definition inside a dark
+      region that rule 1 already covers. */
+@layer an-ondark-element {
+  [data-ground='dark'] [class*='text-canvas']:not([class*='bg-canvas']),
+  [data-ground='dark'] [class*='border-canvas']:not([class*='bg-canvas']) {
+    --color-canvas: var(--c-on-dark);
+  }
+}
+
+/* 3. THE OPT-OUT, and the reason this is a rule set rather than one line. A fill
+      that swaps ends with the ground already carries its foreground across the
+      flip; re-pointing canvas on top of it is what would break it. `bg-ink` is
+      the admin's active chip and the skip link, `bg-accent` the accent button
+      and the selected-media tick. A declaration on the element beats the value
+      inherited from rule 1, so an accent chip inside the espresso footer lands
+      here and not there. */
+@layer an-ondark-fill {
+  [data-ground='dark'] .bg-ink,
+  [data-ground='dark'] .bg-accent,
+  [data-ground='dark'] .bg-accent-soft,
+  [data-ground='dark'] .hover\:bg-ink:hover,
+  [data-ground='dark'] .hover\:bg-accent:hover,
+  [data-ground='dark'] .hover\:bg-accent-soft:hover,
+  [data-ground='dark'] .focus-visible\:bg-ink:focus-visible {
+    --color-canvas: var(--c-canvas);
+  }
+}
+
+/* 4. AND BACK IN. `bg-ink text-canvas hover:bg-espresso` — the solid ink Button
+      and the admin's solid action — leave an inverting fill for the one that
+      never inverts, so the hover state is on-dark even though the resting state
+      is not. Last, and one specificity step above rule 3, so it wins the hover. */
+@layer an-ondark-hover {
+  [data-ground='dark'] .hover\:bg-espresso:hover {
+    --color-canvas: var(--c-on-dark);
+  }
 }
 
 @layer base {
@@ -294,6 +454,21 @@
   [data-split-line] {
     display: block;
     overflow: hidden;
+
+    /*
+      Vietnamese stacks a tone mark on top of a vowel that may already carry a
+      circumflex or breve — ố, ế, ữ, ậ — so the ink reaches well above and below
+      the line box that Latin text needs. The mask this reveal depends on clips
+      to that box, which sliced the acute clean off the display heading: "trống"
+      rendered as "trông", changing the word.
+
+      Padding grows the clip region; the matching negative margin pulls the box
+      back so the visual leading is exactly what it was. The mask still starts
+      the line fully outside itself, because the translate is a percentage of
+      the (now taller) element.
+    */
+    padding-block: 0.26em 0.16em;
+    margin-block: -0.26em -0.16em;
   }
 }
 

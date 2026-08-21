@@ -175,17 +175,24 @@ export function SectionHeading({
         </div>
 
         {/*
-          Cols 8–12, not 7–10. When the database carries no lead the remaining
-          space runs to the page edge and is closed by the band's own rule, so it
-          reads as an enclosed corner; the old 4-column lead left columns 8, 9
-          and 10 rendering nothing between a heading and a right-aligned button —
-          an unfilled rectangle in the middle of a row, which is the one shape
-          whitespace must never take.
+          The lead's span depends on whether an action shares the row, and that
+          dependency is the whole point. Cols 8–12 when it does not: the space
+          runs to the page edge and is closed by the band's own rule, so it reads
+          as an enclosed corner rather than an unfilled rectangle mid-row.
+
+          Cols 8–10 when it does. 8–12 CONTAINS the action's 11–12, and two items
+          placed on overlapping tracks are not overlaid — grid auto-placement
+          moves the second one to a new row. So a band carrying both a lead and
+          an action dropped the action onto a row of its own, where a lone
+          underlined link sat marooned between two hairlines with a whole empty
+          band beside it. The hole the `band` layout exists to prevent, produced
+          by `band` itself, in the one combination that actually occurs.
         */}
         {lead ? (
           <p
             className={cn(
-              'u-body-lg col-span-12 max-w-[46ch] lg:col-span-5 lg:col-start-8',
+              'u-body-lg col-span-12 max-w-[46ch] lg:col-start-8',
+              action ? 'lg:col-span-3' : 'lg:col-span-5',
               light && 'text-canvas/60',
             )}
           >

@@ -42,12 +42,29 @@ function metaLine(project: ProjectSummary): string {
     .join(' · ')
 }
 
+/**
+ * `sm:contents` is what puts the four values on one baseline. Each pair is its
+ * own flex column on a phone, but from `sm` up the wrapper dissolves and the dl
+ * itself becomes a two-row grid flowing down each column, so every `dt` lands in
+ * row one and every `dd` in row two.
+ *
+ * The alternative — four independent flex columns — misaligns the moment one
+ * label wraps and the others do not, which is exactly what happened at 1024:
+ * `PHONG CÁCH` took two lines while ĐỊA ĐIỂM, DIỆN TÍCH and NĂM took one, so
+ * `Japandi` sat a line below `240 m²` and `2024` and the row lost its baseline.
+ * A `min-height` would have fixed that instance and only that instance; a shared
+ * row fixes every label, at every width, in every language.
+ *
+ * `self-end` on the label and `self-start` on the value keep a single-line label
+ * hugging the value it introduces instead of floating at the top of a row some
+ * other cell made two lines tall.
+ */
 function MetaCell({ term, value }: { term: string; value: string | null }) {
   if (!value) return null
   return (
-    <div className="flex flex-col gap-1.5">
-      <dt className="u-label">{term}</dt>
-      <dd className="font-body text-[0.9375rem] leading-snug text-ink">{value}</dd>
+    <div className="flex flex-col gap-1.5 sm:contents">
+      <dt className="u-label sm:self-end">{term}</dt>
+      <dd className="font-body text-[0.9375rem] leading-snug text-ink sm:self-start">{value}</dd>
     </div>
   )
 }
@@ -178,7 +195,7 @@ function LeadBand({
                 half of it empty — the hole the audit named, in miniature. */}
             <dl
               data-reveal-item
-              className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-7 sm:grid-cols-4"
+              className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-7 sm:grid-flow-col sm:grid-cols-4 sm:grid-rows-[auto_auto] sm:gap-y-1.5"
             >
               <MetaCell term="Địa điểm" value={project.location} />
               <MetaCell term="Diện tích" value={formatArea(project.area)} />

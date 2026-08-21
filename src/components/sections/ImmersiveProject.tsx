@@ -50,13 +50,21 @@ function ProjectFacts({ project, tone }: { project: ProjectSummary; tone: 'light
   if (project.style) facts.push({ term: 'Phong cách', value: project.style })
 
   return (
-    <dl className="grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-4">
+    // One shared two-row grid from `sm` up, not four independent flex columns:
+    // `PHONG CÁCH` wraps to two lines at 1024 while ĐỊA ĐIỂM, DIỆN TÍCH and NĂM
+    // do not, and four separate columns let its value drop a line below the
+    // other three. `sm:contents` dissolves each pair into the dl so every term
+    // shares row one and every value shares row two — see `MetaCell` in
+    // FeaturedProjects, which carries the same row at the same breakpoints.
+    <dl className="grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-flow-col sm:grid-cols-4 sm:grid-rows-[auto_auto] sm:gap-y-1.5">
       {facts.map((fact) => (
-        <div key={fact.term} className="flex flex-col gap-1.5">
-          <dt className={cn('u-label', tone === 'light' && 'text-canvas/55')}>{fact.term}</dt>
+        <div key={fact.term} className="flex flex-col gap-1.5 sm:contents">
+          <dt className={cn('u-label sm:self-end', tone === 'light' && 'text-canvas/55')}>
+            {fact.term}
+          </dt>
           <dd
             className={cn(
-              'font-body text-[0.9375rem] leading-snug',
+              'font-body text-[0.9375rem] leading-snug sm:self-start',
               tone === 'light' ? 'text-canvas' : 'text-ink',
             )}
           >

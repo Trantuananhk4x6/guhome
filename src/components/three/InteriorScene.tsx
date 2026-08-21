@@ -383,8 +383,12 @@ export function InteriorScene({
       )}
 
       {/* The curtain owns its own exit tween, so it stays mounted until it says
-          it is finished — unmounting on `ready` would cut the crossfade. */}
-      {canRender && !curtainDone && <ThreeLoader image={fallback} onDone={handleCurtainDone} />}
+          it is finished — unmounting on `ready` would cut the crossfade. It also
+          owns the decision not to appear at all: `sceneId` is how it recognises
+          a scene this document has already prepared, and skips. */}
+      {canRender && !curtainDone && (
+        <ThreeLoader image={fallback} sceneId={config.id} onDone={handleCurtainDone} />
+      )}
 
       {description && <p className="sr-only">{description}</p>}
     </div>

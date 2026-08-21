@@ -11,7 +11,7 @@ import { ArrowUpRightIcon } from '@/components/ui/icons'
 import { cn, formatDate } from '@/lib/utils'
 import type { ArticleSummary } from '@/types/content'
 
-import { BAND_T, DISPLAY_SM, SECTION_T } from './composition'
+import { BAND_T, DISPLAY, DISPLAY_SM, SECTION_T } from './composition'
 import { sectionLines, sectionText } from './content'
 import type { HomeSectionProps } from './types'
 
@@ -115,10 +115,28 @@ export function Journal({ section, data }: HomeSectionProps) {
           A RAIL, NOT A BLOCK. This header and SERVICES' emitted the byte-identical
           container `grid grid-cols-12 items-end gap-x-8 gap-y-8` — two sections
           with the same header markup is the template tell in its purest form. The
-          two now differ in every dimension that reads: SERVICES has a bottom rule,
-          a 70px heading and left weight; this has a top rule, a 44px heading,
-          `items-start`, and its eyebrow pulled out of the heading column into its
-          own two columns so nothing sits above the heading at all.
+          two now differ in every dimension that reads: SERVICES has a bottom rule
+          and left weight across seven columns; this has a top rule, `items-start`,
+          and its eyebrow pulled out of the heading column into two of its own so
+          nothing sits above the heading at all.
+
+          AND THE HEADING IS A STEP LOUDER THAN ITS ITEMS, which is the part the
+          rail alone could not buy. `u-display-sm` used to appear four times in
+          this section — once here and once on each of three article titles — so
+          the header weighed exactly what its items weighed, and since the items
+          come in threes and each sets two lines, they won. Measured at 1600: the
+          header set 44px against three 44px titles. It now sets 70.4px against
+          them, which is the 1.6 step the scale already defines between a section
+          statement and an item title. The heading takes columns 3–8 of this
+          inset grid — 664px, holding the widest seeded line's 494px of ink with
+          170 to spare, where columns 3–7 would have left 54px and put this
+          header one glyph from a third line, which is the fragility SERVICES'
+          band was just widened to escape.
+
+          The action moved out of columns 11–12 and under the lead it concludes.
+          It was the only element in the header not attached to anything, and
+          stacking it beneath the eyebrow instead would have put two 11px
+          uppercase lines on top of each other and read as one four-word label.
         */}
         <div
           ref={headingRef}
@@ -127,7 +145,7 @@ export function Journal({ section, data }: HomeSectionProps) {
         >
           <Label className="col-span-12 lg:col-span-2">{eyebrow}</Label>
 
-          <h2 className={cn(DISPLAY_SM, 'col-span-12 text-ink lg:col-span-5 lg:col-start-3')}>
+          <h2 className={cn(DISPLAY, 'col-span-12 text-ink lg:col-span-6 lg:col-start-3')}>
             {headingLines.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -135,11 +153,8 @@ export function Journal({ section, data }: HomeSectionProps) {
             ))}
           </h2>
 
-          {lead.length > 0 ? (
-            <p className="u-body-lg col-span-12 max-w-[46ch] lg:col-span-3 lg:col-start-8">{lead}</p>
-          ) : null}
-
-          <div className="col-span-12 lg:col-span-2 lg:col-start-11 lg:justify-self-end">
+          <div className="col-span-12 flex flex-col items-start gap-6 lg:col-span-4 lg:col-start-9">
+            {lead.length > 0 ? <p className="u-body-lg max-w-[46ch]">{lead}</p> : null}
             <Button href="/journal" variant="underline" withArrow>
               Tất cả bài viết
             </Button>

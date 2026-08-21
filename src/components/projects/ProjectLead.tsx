@@ -85,7 +85,7 @@ export function ProjectLead({ project, index = 1, className }: ProjectLeadProps)
         <div ref={frameRef} className="relative">
           <ProjectFigure
             media={project.cover}
-            alt={project.cover?.alt ?? `${project.title} — ${project.location ?? 'AN ATELIER'}`}
+            alt={project.cover?.alt ?? `${project.title} — ${project.location ?? 'GuHomes'}`}
             sizes="(min-width: 1024px) 58vw, 100vw"
             width={1600}
             priority

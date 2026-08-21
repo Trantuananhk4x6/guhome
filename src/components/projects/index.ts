@@ -13,6 +13,9 @@ export type { BeforeAfterProps } from './BeforeAfter'
 export { CategoryFilter } from './CategoryFilter'
 export type { CategoryFilterProps, CategoryOption } from './CategoryFilter'
 
+export { IndexPager } from './IndexPager'
+export type { IndexPagerProps } from './IndexPager'
+
 export { Project3D } from './Project3D'
 export type { Project3DProps } from './Project3D'
 

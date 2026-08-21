@@ -138,7 +138,7 @@ export function ProjectCard({
         <div ref={frameRef} className="relative">
           <ProjectFigure
             media={project.cover}
-            alt={project.cover?.alt ?? `${project.title} — ${project.location ?? 'AN ATELIER'}`}
+            alt={project.cover?.alt ?? `${project.title} — ${project.location ?? 'GuHomes'}`}
             aspect={aspect ?? '4 / 5'}
             sizes={sizes ?? '(min-width: 768px) 45vw, 100vw'}
             width={width ?? 1200}

@@ -83,7 +83,7 @@ function metaLine(project: ProjectSummary): string {
 }
 
 function coverAlt(project: ProjectSummary): string {
-  return project.cover?.alt ?? `${project.title} — ${project.location ?? 'AN ATELIER'}`
+  return project.cover?.alt ?? `${project.title} — ${project.location ?? 'GuHomes'}`
 }
 
 /* ---------------------------------- pair ---------------------------------- */

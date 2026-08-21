@@ -9,9 +9,29 @@
  * is the register the studio's process rows already use — several kinds of
  * information related by one grid — and it fills a 469px rail that was
  * previously a strip of six words with 400px of nothing under it. Below `lg`
- * there is no rail to fill, so it collapses to a single scrollable line of
- * labels: 40px instead of 210px, which is what keeps a photograph inside the
- * first mobile screen.
+ * there is no rail to fill, so it collapses to a band of labels rather than a
+ * stack of rows: ~76px instead of 210px, which is what keeps a photograph
+ * inside the first mobile screen.
+ *
+ * THE PHONE BAND WRAPS, IT DOES NOT SCROLL. It used to be one `overflow-x-auto`
+ * line whose comment argued "the clipped last item is the affordance". Shot at
+ * 390 (docs/ui-after/m-projects-00000.png) that reads as a broken layout, not as
+ * an invitation: the strip ends `TẤT CẢ | CĂN HỘ | NHÀ PHỐ | BIỆT THỰ & I`, a
+ * word bisected flush against the glass with no fade, no sliver of a next item
+ * and no scrollbar — and two of the six categories, THƯƠNG MẠI and KHÔNG GIAN
+ * CHUYÊN BIỆT, are off-screen with nothing at all to say they exist.
+ *
+ * A fade over the last 32px would have made the clipping deliberate without
+ * making the two hidden categories reachable by anything but a guess. Wrapping
+ * costs ~36px of height and shows the whole taxonomy, so the one control that
+ * can shorten a 105-project index is fully legible on the device where the
+ * index is longest. `whitespace-nowrap` stays on each label, so the band breaks
+ * BETWEEN names and never inside one.
+ *
+ * The counts come with it. They were `hidden lg:inline`, which is backwards:
+ * the figures are what tell a visitor that CĂN HỘ is 41 projects and BIỆT THỰ
+ * is 3, and that is worth more on the phone — where the run is 42 screens —
+ * than on the desktop where the whole index is a scroll away.
  */
 
 import Link from 'next/link'
@@ -46,13 +66,13 @@ function Row({
   isActive: boolean
 }) {
   return (
-    <li className="shrink-0 lg:border-line lg:shrink lg:border-t lg:last:border-b">
+    <li className="lg:border-line lg:border-t lg:last:border-b">
       <Link
         href={href}
         aria-current={isActive ? 'page' : undefined}
         className={cn(
-          'group/filter u-label relative flex items-center gap-4 pb-2 whitespace-nowrap transition-colors duration-500 ease-editorial',
-          'lg:w-full lg:justify-between lg:py-3.5 lg:whitespace-normal',
+          'group/filter u-label relative flex items-baseline gap-2 pb-2 whitespace-nowrap transition-colors duration-500 ease-editorial',
+          'lg:w-full lg:items-center lg:justify-between lg:gap-4 lg:py-3.5 lg:whitespace-normal',
           isActive ? 'text-ink' : 'text-muted hover:text-ink',
         )}
       >
@@ -61,7 +81,7 @@ function Row({
         {count === undefined ? null : (
           <span
             className={cn(
-              'hidden tabular-nums transition-colors duration-500 lg:inline',
+              'tabular-nums transition-colors duration-500',
               isActive ? 'text-accent' : 'text-muted/70',
             )}
           >
@@ -87,11 +107,8 @@ export function CategoryFilter({ categories, active, total, className }: Categor
     <nav aria-label="Lọc dự án theo hạng mục" className={className}>
       <ul
         className={cn(
-          'flex flex-nowrap items-end gap-x-7 overflow-x-auto pb-1',
-          // The strip is a filter, not a scroll region: a visible bar under six
-          // words reads as a control. The clipped last item is the affordance.
-          '[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
-          'lg:flex-col lg:items-stretch lg:gap-x-0 lg:overflow-visible lg:pb-0',
+          'flex flex-wrap items-baseline gap-x-6 gap-y-3 pb-1',
+          'lg:flex-col lg:flex-nowrap lg:items-stretch lg:gap-x-0 lg:gap-y-0 lg:pb-0',
         )}
       >
         <Row href="/projects" name="Tất cả" count={total} isActive={active === null} />

@@ -165,7 +165,7 @@ export default async function ServicesPage() {
             <Label rule tone="accent">
               Ngoài phạm vi
             </Label>
-            <h2 className="u-display-sm mt-8 max-w-[20ch] text-ink">
+            <h2 className="u-display-sm mt-8 max-w-[24ch] text-ink">
               Bảy việc studio không nhận.
             </h2>
             <p className="u-body-lg mt-8 max-w-[50ch]">

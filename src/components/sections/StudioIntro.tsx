@@ -129,11 +129,21 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
           320px of empty band that used to sit under the paragraphs cannot open.
           Stacked, the order reads heading, copy, action, photograph. */}
       <div className="u-gutter mt-10 grid grid-cols-12 gap-x-8 gap-y-10">
-        <div ref={copyRef} data-reveal className="col-span-12 lg:col-span-4 lg:row-start-1">
-          {/* The four-column cell is the measure. A 12ch cap filled 264px of a
-              469px column and shredded the seeded 27-character second line into
-              three ragged ones — the line breaks are the author's, written as
-              `\n` in the database, and a `ch` guard must not fight them. */}
+        <div ref={copyRef} data-reveal className="col-span-12 lg:col-span-3 lg:row-start-1">
+          {/* The heading cell is the measure. A 12ch cap filled 264px of it and
+              shredded the seeded 27-character second line into three ragged
+              ones — the line breaks are the author's, written as `\n` in the
+              database, and a `ch` guard must not fight them.
+
+              THREE COLUMNS, NOT FOUR. Measured at 1600: the seeded lines set 202
+              and 259px of ink. In a four-column cell (469px) the longer line
+              filled 55% of its own width while the paragraphs beside it ran the
+              full 346px height of the row, so the band's left third was
+              469 × 246px of nothing — the largest dead rectangle left on this
+              page. A three-column cell is 344px: the same two lines now fill 75%
+              of their measure, the void drops to 344 × 246 (a quarter of its
+              area gone), and the width goes to the copy, which is the only
+              column here with more to say. */}
           <h2 data-reveal-item className={cn(DISPLAY_SM, 'text-ink')}>
             {headingLines.map((line) => (
               <span key={line} className="block">
@@ -146,7 +156,7 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
         <div
           ref={bodyRef}
           data-reveal
-          className="col-span-12 flex max-w-[44ch] flex-col gap-6 lg:col-span-4 lg:col-start-5 lg:row-start-1"
+          className="col-span-12 flex max-w-[46ch] flex-col gap-6 lg:col-span-5 lg:col-start-4 lg:row-start-1"
         >
           {paragraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 32)} data-reveal-item className="u-body-lg">
@@ -157,7 +167,7 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
 
         {/* Row two of the left column: the action sits on the portrait's bottom
             edge at desktop, and follows the copy on a phone. */}
-        <div className="col-span-12 lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:self-end">
+        <div className="col-span-12 lg:col-span-3 lg:col-start-1 lg:row-start-2 lg:self-end">
           <Button href="/studio" variant="underline" withArrow>
             {cta}
           </Button>

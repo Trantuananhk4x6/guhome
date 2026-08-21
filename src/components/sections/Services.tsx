@@ -122,13 +122,23 @@ export function Services({ section, data }: HomeSectionProps) {
         data-reveal
         className="grid grid-cols-12 items-end gap-x-8 gap-y-8 border-b border-line pb-8"
       >
-        <div className="col-span-12 lg:col-span-6">
+        <div className="col-span-12 lg:col-span-7">
           <Label>{eyebrow}</Label>
-          {/* No `max-w`: the six-column cell IS the measure. Line breaks come
+          {/* No `max-w`: the seven-column cell IS the measure. Line breaks come
               from the database as explicit `\n`, so a `ch` cap is only ever an
-              overflow guard — and a tight one (14ch ≈ 493px of a 720px column)
-              would wrap the seeded 18- and 23-character lines into four ragged
-              ones, rebuilding the under-filled column this change deletes. */}
+              overflow guard — and a tight one (14ch ≈ 493px) would wrap the
+              seeded lines into four ragged ones, rebuilding the under-filled
+              column this shape deletes.
+
+              SEVEN, NOT SIX. Measured at 1600: the seeded second line "là mười
+              hai mét vuông." sets 688px of ink in the 720px a six-column cell
+              gives it — 32px of slack, which at 70px display is about one
+              Vietnamese glyph. The next character an admin types reflows the
+              header to three lines and grows this section by 73px, and
+              Vietnamese sets wider than Latin for the same character count, so
+              the margin was always going to be spent. Seven columns is 845px:
+              157px of headroom, ~4 more characters, and it also shortens the
+              empty run to the right of the heading rather than lengthening it. */}
           <h2 className={cn(DISPLAY, 'mt-6 text-ink')}>
             {headingLines.map((line) => (
               <span key={line} className="block">

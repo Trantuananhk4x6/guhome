@@ -1,0 +1,59 @@
+[
+ {
+  "name": "w-home",
+  "url": "/",
+  "viewport": "2560x1100",
+  "pageHeight": 15145,
+  "overflowing": [
+   "div.absolute.inset-0.will-change-transform",
+   "img.object-cover"
+  ],
+  "sections": [
+   {
+    "key": "HERO",
+    "top": 0,
+    "height": 1100
+   },
+   {
+    "key": "FEATURED_PROJECTS",
+    "top": 1100,
+    "height": 3661
+   },
+   {
+    "key": "STUDIO",
+    "top": 4761,
+    "height": 876
+   },
+   {
+    "key": "SERVICES",
+    "top": 5637,
+    "height": 2147
+   },
+   {
+    "key": "IMMERSIVE_PROJECT",
+    "top": 7784,
+    "height": 3559
+   },
+   {
+    "key": "PHILOSOPHY",
+    "top": 11343,
+    "height": 1100
+   },
+   {
+    "key": "JOURNAL",
+    "top": 12443,
+    "height": 789
+   },
+   {
+    "key": "CTA",
+    "top": 13232,
+    "height": 1012
+   },
+   {
+    "key": "footer.border-t.border-accent/45",
+    "top": 14244,
+    "height": 901
+   }
+  ]
+ }
+]

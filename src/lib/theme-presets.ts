@@ -46,7 +46,14 @@ export const LIMESTONE: ThemePreset = {
     surface: '#EAE5DA',
     surfaceAlt: '#DCD5C7',
     ink: '#1C1B18',
-    muted: '#78736A',
+    // Not #78736A. Measured against the three grounds it actually sits on it
+    // was 4.18 / 3.75 / 3.21 — below AA on all of them, and `muted` carries
+    // every body paragraph and every 11px label on the site. The night presets
+    // were 6.8–7.4 the whole time, so this failed only in daylight, which is
+    // the default, and stayed invisible to anyone testing on a dark ground.
+    // #5F5A50 measures 6.07 / 5.45 / 4.69 and is still unmistakably the quiet
+    // register beside ink at 15.3.
+    muted: '#5F5A50',
     line: '#D7D0C2',
     espresso: '#131210',
     accent: '#A07753',

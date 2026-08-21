@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       seo?.description ??
       project.summary ??
       project.subtitle ??
-      `${project.title} — dự án nội thất do AN ATELIER thiết kế và giám sát thi công.`,
+      `${project.title} — dự án nội thất do GuHomes thiết kế và giám sát thi công.`,
     path: `/projects/${project.slug}`,
     image,
     type: 'article',

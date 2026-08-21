@@ -270,7 +270,7 @@ export function SceneEditor({
       <div className="grid gap-12 xl:grid-cols-[minmax(0,25rem)_minmax(0,1fr)]">
         {/* ------------------------------ controls ----------------------------- */}
         <div className="order-2 flex flex-col xl:order-1">
-          <ControlGroup title="Nguồn & chế độ" hint="Chế độ quyết định cách AN ATELIER dựng không gian.">
+          <ControlGroup title="Nguồn & chế độ" hint="Chế độ quyết định cách GuHomes dựng không gian.">
             <SelectRow
               label="Chế độ"
               value={config.mode}

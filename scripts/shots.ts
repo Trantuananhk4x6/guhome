@@ -104,16 +104,35 @@ async function measure(page: Page): Promise<Omit<Measurement, 'name' | 'url' | '
         }
       })
 
-    // Anything wider than the viewport is a horizontal-scroll bug, and the body
-    // usually hides it with overflow-x, so it never announces itself.
+    // Anything wider than the viewport is a horizontal-scroll bug — but only if
+    // nothing between it and the root clips or scrolls it. An oversized parallax
+    // layer inside an overflow-hidden parent, or a filter row inside an
+    // overflow-x-auto strip, is DESIGNED to exceed the viewport. Reporting those
+    // is worse than reporting nothing: a review that opens with two false
+    // positives teaches the reader to skip the list.
+    // No named function in here: tsx compiles one into a `__name` helper that
+    // does not exist in the page, and page.evaluate then throws ReferenceError.
     const vw = document.documentElement.clientWidth
-    const overflowing = Array.from(document.querySelectorAll('main *'))
-      .filter((el) => {
-        const b = el.getBoundingClientRect()
-        return b.width > 0 && (b.right > vw + 2 || b.left < -2)
-      })
-      .slice(0, 6)
-      .map((el) => `${el.tagName.toLowerCase()}.${String(el.className).split(/\s+/).slice(0, 3).join('.')}`)
+    const overflowing: string[] = []
+    for (const el of Array.from(document.querySelectorAll('main *'))) {
+      if (overflowing.length >= 6) break
+      const b = el.getBoundingClientRect()
+      if (b.width <= 0) continue
+      if (b.right <= vw + 2 && b.left >= -2) continue
+      let clipped = false
+      let n: Element | null = el.parentElement
+      while (n && n !== document.body) {
+        if (/hidden|clip|auto|scroll/.test(getComputedStyle(n).overflowX)) {
+          clipped = true
+          break
+        }
+        n = n.parentElement
+      }
+      if (clipped) continue
+      overflowing.push(
+        `${el.tagName.toLowerCase()}.${String(el.className).split(/\s+/).slice(0, 3).join('.')}`,
+      )
+    }
 
     return { pageHeight: document.body.scrollHeight, overflowing, sections: secs }
   })

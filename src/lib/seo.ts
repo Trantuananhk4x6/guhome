@@ -116,7 +116,7 @@ function toIso(value: Date | string | null | undefined): string | undefined {
 
 /**
  * Legacy brand suffixes written into `projects.seo.title` / `articles.seo.title`
- * by earlier seeds ("… — AN ATELIER", "… — GUHOMES"). Matched case-insensitively
+ * by earlier seeds ("… — GuHomes", "… — GUHOMES"). Matched case-insensitively
  * with either dash, and stripped so the brand is printed by the template alone.
  */
 const BRAND_SUFFIX = /\s*[—-]\s*(?:guhomes|gu homes|an atelier)\s*$/i

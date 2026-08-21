@@ -265,7 +265,7 @@ function blocksFor(
   }
   if (gallery.length) blocks.push({ type: 'GALLERY', data: { mediaIds: gallery, columns: 2 } })
   if (seed.description[2]) {
-    blocks.push({ type: 'QUOTE', data: { quote: seed.description[2].split('. ')[0] + '.', attribution: 'AN ATELIER' } })
+    blocks.push({ type: 'QUOTE', data: { quote: seed.description[2].split('. ')[0] + '.', attribution: 'GuHomes' } })
   }
   if (third) blocks.push({ type: 'IMAGE', data: { mediaId: third, width: 'full', reveal: fullReveal(seed.order) } })
   if (seed.description[3]) {
@@ -519,7 +519,7 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
 
   const services = site?.services ?? [
     { slug: 'thiet-ke-noi-that', indexLabel: '01', title: 'Thiết kế nội thất', summary: 'Ở những chỗ bàn tay chạm vào, bản vẽ đi tới tỉ lệ 1:5. Không ai đoán được ý đồ từ một bản 1:50.', description: '' },
-    { slug: 'thiet-ke-kien-truc', indexLabel: '02', title: 'Thiết kế kiến trúc', summary: 'Chiều sâu của hiên quyết định căn phòng phía sau nó mát hay nóng suốt tháng Tư.', description: '' },
+    { slug: 'thiet-ke-kien-truc', indexLabel: '02', title: 'Thiết kế kiến trúc', summary: 'Hiên nông thì căn phòng phía sau nó nóng suốt tháng Tư.', description: '' },
     { slug: 'thiet-ke-thi-cong', indexLabel: '03', title: 'Thiết kế & thi công', summary: 'Sai ở bản vẽ hay sai ngoài công trường, bạn cũng chỉ phải gọi một số máy.', description: '' },
     { slug: 'cai-tao', indexLabel: '04', title: 'Cải tạo', summary: 'Nhiều căn không cần đập ra làm lại. Phương án gửi đi thường dừng sớm hơn chủ nhà tính.', description: '' },
     { slug: 'do-noi-that', indexLabel: '05', title: 'Đồ nội thất đặt riêng', summary: 'Đóng theo số đo của căn phòng, và của người sẽ đứng nấu trong đó.', description: '' },
@@ -565,7 +565,7 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       content: {
         label: 'Công trình 2021–2026',
         heading: 'Hai con số\nđo trước tiên.',
-        body: 'Buổi đo đầu tiên gần như lần nào cũng diễn ra trong một căn hộ chưa có ai ở, sàn còn phủ bạt, cửa sổ còn dán nilon xanh. Chủ nhà mang theo một danh sách đồ đạc dài hơn số mét vuông có thật.\n\nHai con số đó là lòng thang máy chở hàng và khúc quẹo ở chiếu nghỉ cầu thang bộ. Chúng tôi đo cả hai bằng thước dây ngay trong buổi đầu, trước khi vẽ dòng nào. Cái tủ áo dài ba mét vì thế được đóng liền khối, hoặc cắt làm ba rồi ghép lại ngay giữa phòng khách, giữa lúc cả nhà đứng xem.',
+        body: 'Buổi đo đầu tiên thường diễn ra trong một căn hộ chưa có ai ở, sàn còn phủ bạt, cửa sổ còn dán nilon xanh. Chủ nhà mang theo một danh sách đồ đạc dài hơn số mét vuông có thật.\n\nHai con số đó là lòng thang máy chở hàng và khúc quẹo ở chiếu nghỉ cầu thang bộ. Chúng tôi đo cả hai bằng thước dây ngay trong buổi đầu, trước khi vẽ dòng nào. Cái tủ áo dài ba mét vì thế được đóng liền khối, hoặc cắt làm ba rồi ghép lại ngay giữa phòng khách, giữa lúc cả nhà đứng xem.',
         stats: [
           { label: 'Căn hộ', value: '41' },
           { label: 'Nhà phố và biệt thự', value: '23' },
@@ -585,7 +585,7 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       key: 'IMMERSIVE_PROJECT',
       content: {
         label: 'Bốn điểm dừng',
-        heading: 'Ai cũng dừng\nở tiền sảnh.',
+        heading: 'Tường sát cửa\nđược nhìn kỹ.',
         body: 'Mắt vừa từ nắng ngoài đường bước vào còn mất mấy giây để chỉnh, nên người ta nhìn kỹ mảng tường sát cửa trước khi nhìn tới phòng khách. Cuộn xuống là đi lại đúng quãng đường ấy, dừng bốn lần, lần cuối ở chi tiết vật liệu.',
       },
     },
@@ -602,7 +602,7 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       content: {
         label: 'Ghi chép xưởng',
         heading: 'Những câu\nchủ nhà hay hỏi.',
-        body: 'Một căn hộ mất bao lâu từ buổi gặp đầu tới ngày dọn vào. Cái bếp này bao nhiêu năm thì phải thay. Trong này có câu trả lời cho cả hai, con số đi trước, phần vì sao để xuống dưới.',
+        body: 'Gỗ óc chó có trụ nổi mùa mưa ở đây không. Một phòng khách cần mấy mạch đèn riêng. Sáu mươi mét vuông thì phải bỏ bớt cái gì. Ba bài dưới đây trả lời đúng ba câu đó, con số đi trước.',
       },
     },
     {
@@ -688,7 +688,7 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
 
 /* ---------------------------------- main ---------------------------------- */
 
-console.log('\nAN ATELIER — seeding Neon\n')
+console.log('\nGuHomes — seeding Neon\n')
 const adminId = await seedAdmin()
 const categoryIds = await seedCategories()
 const materialIdBySlug = await seedMaterials()

@@ -3,11 +3,8 @@
   "name": "d-home",
   "url": "/",
   "viewport": "1600x1000",
-  "pageHeight": 12348,
-  "overflowing": [
-   "div.absolute.inset-0.will-change-transform",
-   "img.object-cover"
-  ],
+  "pageHeight": 12338,
+  "overflowing": [],
   "sections": [
    {
     "key": "HERO",
@@ -20,39 +17,39 @@
     "height": 2861
    },
    {
-    "key": "IMMERSIVE_PROJECT",
-    "top": 3861,
-    "height": 2508
-   },
-   {
     "key": "STUDIO",
-    "top": 6369,
+    "top": 3861,
     "height": 830
    },
    {
-    "key": "PHILOSOPHY",
-    "top": 7199,
-    "height": 1000
+    "key": "SERVICES",
+    "top": 4691,
+    "height": 1574
    },
    {
-    "key": "SERVICES",
-    "top": 8199,
-    "height": 1574
+    "key": "IMMERSIVE_PROJECT",
+    "top": 6265,
+    "height": 2508
+   },
+   {
+    "key": "PHILOSOPHY",
+    "top": 8773,
+    "height": 1000
    },
    {
     "key": "JOURNAL",
     "top": 9773,
-    "height": 765
+    "height": 747
    },
    {
     "key": "CTA",
-    "top": 10538,
+    "top": 10520,
     "height": 920
    },
    {
     "key": "footer.border-t.border-accent/45",
-    "top": 11458,
-    "height": 890
+    "top": 11440,
+    "height": 898
    }
   ]
  },
@@ -60,13 +57,13 @@
   "name": "d-projects",
   "url": "/projects",
   "viewport": "1600x1000",
-  "pageHeight": 34244,
+  "pageHeight": 7733,
   "overflowing": [],
   "sections": [
    {
     "key": "footer.border-t.border-accent/45",
-    "top": 33354,
-    "height": 890
+    "top": 6835,
+    "height": 898
    }
   ]
  },
@@ -74,13 +71,13 @@
   "name": "d-slug",
   "url": "/projects/tam-rem-be-tong",
   "viewport": "1600x1000",
-  "pageHeight": 12238,
+  "pageHeight": 12246,
   "overflowing": [],
   "sections": [
    {
     "key": "footer.border-t.border-accent/45",
     "top": 11348,
-    "height": 890
+    "height": 898
    }
   ]
  },
@@ -88,7 +85,7 @@
   "name": "d-studio",
   "url": "/studio",
   "viewport": "1600x1000",
-  "pageHeight": 10230,
+  "pageHeight": 10238,
   "overflowing": [],
   "sections": [
    {
@@ -139,7 +136,7 @@
    {
     "key": "footer.border-t.border-accent/45",
     "top": 9340,
-    "height": 890
+    "height": 898
    }
   ]
  },
@@ -147,7 +144,7 @@
   "name": "d-services",
   "url": "/services",
   "viewport": "1600x1000",
-  "pageHeight": 8563,
+  "pageHeight": 8539,
   "overflowing": [],
   "sections": [
    {
@@ -163,37 +160,37 @@
    {
     "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.85)]",
     "top": 1765,
+    "height": 860
+   },
+   {
+    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.85)]",
+    "top": 2719,
     "height": 893
    },
    {
     "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.85)]",
-    "top": 2751,
-    "height": 893
-   },
-   {
-    "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.85)]",
-    "top": 3737,
+    "top": 3705,
     "height": 922
    },
    {
     "key": "section.u-gutter.mt-[calc(var(--spacing-section)*0.85)]",
-    "top": 4753,
+    "top": 4721,
     "height": 835
    },
    {
     "key": "section.u-gutter.mt-[var(--spacing-section)]",
-    "top": 5698,
+    "top": 5666,
     "height": 1116
    },
    {
     "key": "section.mt-[var(--spacing-section)].bg-espresso",
-    "top": 6924,
+    "top": 6892,
     "height": 639
    },
    {
     "key": "footer.border-t.border-accent/45",
-    "top": 7673,
-    "height": 890
+    "top": 7641,
+    "height": 898
    }
   ]
  },
@@ -201,7 +198,7 @@
   "name": "d-journal",
   "url": "/journal",
   "viewport": "1600x1000",
-  "pageHeight": 3857,
+  "pageHeight": 3865,
   "overflowing": [],
   "sections": [
    {
@@ -222,7 +219,7 @@
    {
     "key": "footer.border-t.border-accent/45",
     "top": 2967,
-    "height": 890
+    "height": 898
    }
   ]
  },
@@ -230,7 +227,7 @@
   "name": "d-contact",
   "url": "/contact",
   "viewport": "1600x1000",
-  "pageHeight": 2513,
+  "pageHeight": 2521,
   "overflowing": [],
   "sections": [
    {
@@ -246,7 +243,7 @@
    {
     "key": "footer.border-t.border-accent/45",
     "top": 1623,
-    "height": 890
+    "height": 898
    }
   ]
  },
@@ -254,11 +251,8 @@
   "name": "m-home",
   "url": "/",
   "viewport": "390x844",
-  "pageHeight": 14276,
-  "overflowing": [
-   "div.absolute.inset-0.will-change-transform",
-   "img.object-cover"
-  ],
+  "pageHeight": 13983,
+  "overflowing": [],
   "sections": [
    {
     "key": "HERO",
@@ -271,39 +265,39 @@
     "height": 3365
    },
    {
-    "key": "IMMERSIVE_PROJECT",
-    "top": 4209,
-    "height": 2511
-   },
-   {
     "key": "STUDIO",
-    "top": 6721,
+    "top": 4209,
     "height": 1584
    },
    {
-    "key": "PHILOSOPHY",
-    "top": 8305,
-    "height": 809
+    "key": "SERVICES",
+    "top": 5794,
+    "height": 1336
    },
    {
-    "key": "SERVICES",
-    "top": 9113,
-    "height": 1336
+    "key": "IMMERSIVE_PROJECT",
+    "top": 7130,
+    "height": 2511
+   },
+   {
+    "key": "PHILOSOPHY",
+    "top": 9641,
+    "height": 809
    },
    {
     "key": "JOURNAL",
     "top": 10449,
-    "height": 1297
+    "height": 1301
    },
    {
     "key": "CTA",
-    "top": 11746,
+    "top": 11750,
     "height": 734
    },
    {
     "key": "footer.border-t.border-accent/45",
-    "top": 12480,
-    "height": 1796
+    "top": 12484,
+    "height": 1498
    }
   ]
  },
@@ -311,20 +305,13 @@
   "name": "m-projects",
   "url": "/projects",
   "viewport": "390x844",
-  "pageHeight": 35604,
-  "overflowing": [
-   "li.shrink-0.lg:border-line.lg:shrink",
-   "a.group/filter.u-label.relative",
-   "span.lg:pr-4",
-   "li.shrink-0.lg:border-line.lg:shrink",
-   "a.group/filter.u-label.relative",
-   "span.lg:pr-4"
-  ],
+  "pageHeight": 8914,
+  "overflowing": [],
   "sections": [
    {
     "key": "footer.border-t.border-accent/45",
-    "top": 33808,
-    "height": 1796
+    "top": 7415,
+    "height": 1498
    }
   ]
  },
@@ -332,13 +319,13 @@
   "name": "m-slug",
   "url": "/projects/tam-rem-be-tong",
   "viewport": "390x844",
-  "pageHeight": 16109,
+  "pageHeight": 15920,
   "overflowing": [],
   "sections": [
    {
     "key": "footer.border-t.border-accent/45",
-    "top": 14313,
-    "height": 1796
+    "top": 14421,
+    "height": 1498
    }
   ]
  },
@@ -346,7 +333,7 @@
   "name": "m-studio",
   "url": "/studio",
   "viewport": "390x844",
-  "pageHeight": 15008,
+  "pageHeight": 14711,
   "overflowing": [],
   "sections": [
    {
@@ -397,7 +384,7 @@
    {
     "key": "footer.border-t.border-accent/45",
     "top": 13212,
-    "height": 1796
+    "height": 1498
    }
   ]
  },
@@ -405,11 +392,8 @@
   "name": "t-home",
   "url": "/",
   "viewport": "1024x900",
-  "pageHeight": 10641,
-  "overflowing": [
-   "div.absolute.inset-0.will-change-transform",
-   "img.object-cover"
-  ],
+  "pageHeight": 10575,
+  "overflowing": [],
   "sections": [
    {
     "key": "HERO",
@@ -419,42 +403,42 @@
    {
     "key": "FEATURED_PROJECTS",
     "top": 900,
-    "height": 2318
-   },
-   {
-    "key": "IMMERSIVE_PROJECT",
-    "top": 3218,
-    "height": 1923
+    "height": 2336
    },
    {
     "key": "STUDIO",
-    "top": 5141,
-    "height": 935
-   },
-   {
-    "key": "PHILOSOPHY",
-    "top": 6076,
-    "height": 900
+    "top": 3236,
+    "height": 845
    },
    {
     "key": "SERVICES",
-    "top": 6976,
-    "height": 1205
+    "top": 4081,
+    "height": 1203
+   },
+   {
+    "key": "IMMERSIVE_PROJECT",
+    "top": 5285,
+    "height": 1940
+   },
+   {
+    "key": "PHILOSOPHY",
+    "top": 7225,
+    "height": 900
    },
    {
     "key": "JOURNAL",
-    "top": 8181,
-    "height": 773
+    "top": 8125,
+    "height": 760
    },
    {
     "key": "CTA",
-    "top": 8954,
+    "top": 8885,
     "height": 828
    },
    {
     "key": "footer.border-t.border-accent/45",
-    "top": 9782,
-    "height": 858
+    "top": 9713,
+    "height": 863
    }
   ]
  },
@@ -462,11 +446,8 @@
   "name": "w-home",
   "url": "/",
   "viewport": "2560x1100",
-  "pageHeight": 15205,
-  "overflowing": [
-   "div.absolute.inset-0.will-change-transform",
-   "img.object-cover"
-  ],
+  "pageHeight": 15153,
+  "overflowing": [],
   "sections": [
    {
     "key": "HERO",
@@ -479,39 +460,39 @@
     "height": 3661
    },
    {
-    "key": "IMMERSIVE_PROJECT",
-    "top": 4761,
-    "height": 3559
-   },
-   {
     "key": "STUDIO",
-    "top": 8320,
-    "height": 946
-   },
-   {
-    "key": "PHILOSOPHY",
-    "top": 9266,
-    "height": 1100
+    "top": 4761,
+    "height": 876
    },
    {
     "key": "SERVICES",
-    "top": 10366,
+    "top": 5637,
     "height": 2147
    },
    {
+    "key": "IMMERSIVE_PROJECT",
+    "top": 7784,
+    "height": 3559
+   },
+   {
+    "key": "PHILOSOPHY",
+    "top": 11343,
+    "height": 1100
+   },
+   {
     "key": "JOURNAL",
-    "top": 12513,
-    "height": 779
+    "top": 12443,
+    "height": 789
    },
    {
     "key": "CTA",
-    "top": 13291,
+    "top": 13232,
     "height": 1012
    },
    {
     "key": "footer.border-t.border-accent/45",
-    "top": 14303,
-    "height": 901
+    "top": 14244,
+    "height": 909
    }
   ]
  }

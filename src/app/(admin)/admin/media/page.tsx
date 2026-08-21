@@ -17,7 +17,7 @@ import { countMedia, listMedia, listMediaFolders, type MediaListOptions } from '
 import type { MediaKind } from '@/types/content'
 
 export const metadata: Metadata = {
-  title: 'Thư viện · AN ATELIER',
+  title: 'Thư viện · GuHomes',
 }
 
 export const dynamic = 'force-dynamic'

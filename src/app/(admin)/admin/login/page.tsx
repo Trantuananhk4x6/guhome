@@ -33,7 +33,7 @@ export default async function AdminLoginPage({ searchParams }: { searchParams: P
       <div className="w-full max-w-sm">
         <div className="mb-10 text-center">
           <Link href="/" className="font-display text-[2rem] font-normal leading-none tracking-[-0.02em]">
-            AN ATELIER
+            GuHomes
           </Link>
           <p className="u-label mt-3 text-accent">Studio CMS</p>
         </div>

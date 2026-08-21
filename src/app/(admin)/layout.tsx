@@ -12,7 +12,7 @@ import type { ReactNode } from 'react'
  * serif except the wordmark.
  */
 export const metadata: Metadata = {
-  title: { default: 'CMS · AN ATELIER', template: '%s · CMS AN ATELIER' },
+  title: { default: 'CMS · GuHomes', template: '%s · CMS GuHomes' },
   robots: { index: false, follow: false, nocache: true },
 }
 
