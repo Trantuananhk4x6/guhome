@@ -144,7 +144,26 @@ function loadManifest(): Map<string, ManifestEntry[]> {
 
 async function seedAdmin(): Promise<string> {
   const email = process.env.ADMIN_EMAIL ?? 'admin@guhomes.vn'
-  const password = process.env.ADMIN_PASSWORD ?? 'GuHomes@2026'
+  /*
+    No literal fallback. A default password in a public repository is a published
+    credential: any deploy that forgets to set ADMIN_PASSWORD would ship an admin
+    login that anyone reading this file can use. The same shape was removed from
+    src/lib/env.ts and survived here, wearing the new brand name.
+
+    Failing loudly is the correct behaviour for a seed — it runs once, by hand,
+    with a terminal in front of it, so a clear stop costs a minute and a silent
+    default costs the site.
+  */
+  const password = process.env.ADMIN_PASSWORD
+  if (!password || password.length < 8) {
+    throw new Error(
+      [
+        'ADMIN_PASSWORD is not set, or is under 8 characters.',
+        'Set it in .env.local before seeding — there is deliberately no default:',
+        '  ADMIN_PASSWORD="<something only you know>"',
+      ].join('\n'),
+    )
+  }
   const existing = await db.select().from(schema.users).where(eq(schema.users.email, email)).limit(1)
   const found = existing[0]
   if (found) {

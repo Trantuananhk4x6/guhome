@@ -57,6 +57,23 @@ export function useReveal(ref: RefObject<HTMLElement | null>, opts: RevealOption
     // `motionFlag` checks `enabled` and reduced motion ahead of either flag.
     const flag = variant === 'revealParallax' ? 'parallax' : 'enabled'
     if (!motionFlag(config, systemReduced, flag)) {
+      /*
+        `markReady` alone is not enough, and the gap left a whole stagger group
+        permanently invisible.
+
+        The OS preference reaches the store from an effect in an ANCESTOR, so on
+        first paint this hook still believes motion is on and GSAP writes an
+        inline `opacity: 0; visibility: hidden` through `autoAlpha`. When the
+        preference lands the hook re-runs and takes this branch — which clears
+        the CSS anti-flash rule but leaves that inline pair untouched, because
+        the context that wrote it belonged to the previous run and its `revert`
+        already happened.
+
+        So clear the properties the entrance could have written. `clearProps` on
+        an element GSAP never touched is a no-op, which is why this is safe to
+        run unconditionally rather than guarded on a flag we cannot observe.
+      */
+      gsap.set([el, ...targets], { clearProps: 'opacity,visibility,transform,clipPath' })
       markReady(el, ...targets)
       return
     }
