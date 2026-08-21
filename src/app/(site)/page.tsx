@@ -59,7 +59,15 @@ async function loadHomeData(): Promise<HomeData> {
   }
 
   const featuredOnly = projects.filter((project) => project.featured)
-  const showcase = (featuredOnly.length > 0 ? featuredOnly : projects).slice(0, 5)
+  const pool = featuredOnly.length > 0 ? featuredOnly : projects
+
+  /*
+   * SEVEN, NOT FIVE. The hero and the pinned band are both drawn from this
+   * slice, and both are then *withheld* from the FEATURED band below — a
+   * five-deep slice therefore leaves that band three projects for five slots.
+   * Seven is five slots plus the two the page spends above them.
+   */
+  const showcase = pool.slice(0, 7)
 
   // The hero and the pinned section each want a project with a real scene, and
   // they should not be the same project when the library allows a second one.
@@ -75,20 +83,57 @@ async function loadHomeData(): Promise<HomeData> {
     immersiveProject ? safe(() => getProjectBySlug(immersiveProject.slug), null) : null,
   ])
 
-  const rest = projects.filter(
-    (project) => project.id !== heroProject?.id && project.id !== immersiveProject?.id,
-  )
   const gallery = immersiveDetail?.gallery ?? []
+
+  /*
+   * ONE PHOTOGRAPH, ONE PLACE ON THE PAGE.
+   *
+   * Every band below used to index independently — `showcase` for the featured
+   * band, `rest[0..2]` for the studio, philosophy and closing frames — so
+   * nothing stopped two of them landing on the same project. Two did: the hero
+   * and FEATURED slot 01 were both `showcase[0]`, and FEATURED slot 02 and
+   * IMMERSIVE still 01 were both the pinned project's cover. A visitor met the
+   * same photograph twice inside the first two viewports of a portfolio holding
+   * 1485 of them.
+   *
+   * So allocation is a single pass with a ledger. Every band asks `claim` for
+   * projects nobody has spoken for yet, in preference order — the featured pool
+   * first, then the rest of the library — and a project handed out once is never
+   * handed out again on this page.
+   */
+  const spokenFor = new Set<string>()
+  for (const project of [heroProject, immersiveProject]) {
+    if (project) spokenFor.add(project.id)
+  }
+
+  /** Up to `count` projects nobody has claimed yet, taken from `sources` in order. */
+  const claim = (count: number, ...sources: readonly (readonly ProjectSummary[])[]) => {
+    const taken: ProjectSummary[] = []
+    for (const source of sources) {
+      for (const project of source) {
+        if (taken.length >= count) return taken
+        if (spokenFor.has(project.id)) continue
+        spokenFor.add(project.id)
+        taken.push(project)
+      }
+    }
+    return taken
+  }
+
+  // FEATURED draws five distinct treatments; a library too small to fill them
+  // without repeating the hero keeps the old behaviour rather than losing a band.
+  const band = claim(5, showcase, pool, projects)
+  const featured = band.length > 0 ? band : showcase
 
   // The studio band borrows a project photograph; carry its title through so the
   // caption names what is actually in the frame.
-  const studioSource = rest[0] ?? null
+  const studioSource = claim(1, projects)[0] ?? null
   const studioImage = studioSource?.cover ?? gallery[1] ?? null
 
   return {
     hero: { project: heroProject, scene: heroScene, gallery: [] },
     immersive: { project: immersiveProject, scene: immersiveScene, gallery },
-    featured: showcase,
+    featured,
     services,
     articles,
     materials,
@@ -97,8 +142,10 @@ async function loadHomeData(): Promise<HomeData> {
       studioSource && studioSource.cover
         ? [studioSource.title, studioSource.location].filter(Boolean).join(' — ')
         : null,
-    philosophyImage: materials[0]?.media ?? rest[1]?.cover ?? gallery[2] ?? null,
-    closingImage: rest[2]?.cover ?? rest[1]?.cover ?? gallery[3] ?? null,
+    // `claim` only runs when the material has no photograph of its own, so a
+    // project is never spent on a band that was not going to show it.
+    philosophyImage: materials[0]?.media ?? claim(1, projects)[0]?.cover ?? gallery[2] ?? null,
+    closingImage: claim(1, projects)[0]?.cover ?? gallery[3] ?? null,
     projectCount: projects.length,
   }
 }

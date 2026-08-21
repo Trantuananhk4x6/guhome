@@ -1,4 +1,4 @@
-# AN ATELIER — Requirement checklist
+# GuHomes — Requirement checklist
 
 Derived from the client brief (68 sections). Every line is a verifiable claim about
 the built system. Auditors: mark each `MET` / `PARTIAL` / `MISSING` with the file and

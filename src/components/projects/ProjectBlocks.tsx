@@ -375,6 +375,72 @@ interface BlockContext {
   hasSceneBlock: boolean
   /** This project's composition phase, one draw per surface. */
   phase: Phase
+  /**
+   * Fewer than `SPARSE_BELOW` distinct photographs will actually be painted by
+   * this story, so the prose stops composing against pictures that are not
+   * there. See `PROSE_SETTLED`.
+   */
+  sparse: boolean
+}
+
+/**
+ * A story with fewer than this many photographs is composed as prose rather
+ * than as a sequence of plates.
+ *
+ * Three is where the swinging prose axes stop paying for themselves: at two
+ * photographs the hero and one plate are the whole of the page's imagery, and
+ * every measure held in the last third is a hole rather than a counterweight.
+ * On the seeded catalogue this selects exactly twelve of the 105 published
+ * projects — the same twelve whose source folders hold only the one or two
+ * frames they already show, so the shortfall cannot be fixed by attaching more.
+ */
+const SPARSE_BELOW = 3
+
+/**
+ * The distinct photographs this story will actually paint.
+ *
+ * Counted from resolved media rather than from `project.gallery`, because what
+ * matters to the composition is what appears on *this page*: a project may hold
+ * thirty photographs and print two, and a SCENE_3D falling back to the cover
+ * repeats a photograph rather than adding one.
+ */
+function paintedPictures(
+  list: readonly ProjectBlock[],
+  media: Map<string, MediaRef>,
+  project: ProjectDetail,
+): Set<string> {
+  const out = new Set<string>()
+  const add = (id: unknown): void => {
+    if (isId(id) && media.has(id)) out.add(id)
+  }
+
+  for (const item of list) {
+    switch (item.type) {
+      case 'HERO': {
+        // HERO falls back to the cover when its own ref has gone missing, and
+        // that fallback is still a photograph on the page.
+        if (isId(item.data.mediaId) && media.has(item.data.mediaId)) out.add(item.data.mediaId)
+        else if (project.cover) out.add(project.cover.id)
+        break
+      }
+      case 'IMAGE':
+      case 'VIDEO':
+        add(item.data.mediaId)
+        break
+      case 'GALLERY':
+      case 'MASONRY':
+        for (const id of idList(item.data.mediaIds)) add(id)
+        break
+      case 'BEFORE_AFTER':
+        add(item.data.beforeMediaId)
+        add(item.data.afterMediaId)
+        break
+      default:
+        break
+    }
+  }
+
+  return out
 }
 
 /**
@@ -535,6 +601,7 @@ function renderBlock(item: ProjectBlock, ctx: BlockContext, at: BlockPosition): 
           // and it is the only one that knows it — a component cannot see what
           // it follows. Everything else about the block is identical.
           lede={at.prev?.type === 'HERO'}
+          settled={ctx.sparse}
         />
       )
     }
@@ -654,6 +721,7 @@ export async function ProjectBlocks({ project, blocks, className }: ProjectBlock
       gallery: phaseOf(key, 3, 3),
       quote: phaseOf(key, 4, 2),
     },
+    sparse: paintedPictures(list, media, project).size < SPARSE_BELOW,
   }
 
   // Rendered blocks are resolved first so the rhythm is computed against what

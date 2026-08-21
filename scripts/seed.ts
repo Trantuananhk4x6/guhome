@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url'
 import { randomBytes, scryptSync } from 'node:crypto'
 
 import { config } from 'dotenv'
-import { eq, sql } from 'drizzle-orm'
+import { eq, inArray, sql } from 'drizzle-orm'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = join(here, '..')
@@ -249,8 +249,20 @@ function blocksFor(
   detail: FolderDetail | undefined,
 ) {
   const [first, second, third, ...rest] = mediaIds
-  const gallery = rest.slice(0, 6)
-  const masonry = rest.slice(6)
+
+  /**
+   * MASONRY is a three-column contact sheet across a 110rem measure, so a
+   * remainder of one or two plates leaves two thirds of that measure empty —
+   * which `rest.slice(6)` produced for thirteen projects (eight with a single
+   * photograph in the band). GALLERY, by contrast, composes a run of any length
+   * and holds a leftover plate deliberately, inset or bleeding. So the sheet
+   * only appears when it can fill a row; anything shorter goes back to the
+   * gallery.
+   */
+  const MASONRY_MIN = 3
+  const sheet = rest.length - 6 >= MASONRY_MIN
+  const gallery = sheet ? rest.slice(0, 6) : rest
+  const masonry = sheet ? rest.slice(6) : []
   const blocks: { type: ProjectBlockTypeDb; data: Record<string, unknown> }[] = []
 
   blocks.push({ type: 'HERO', data: { mediaId: first ?? null, eyebrow: seed.subtitle, title: seed.title, fullBleed: true } })
@@ -504,6 +516,137 @@ async function seedMaterials(): Promise<Map<string, string>> {
   return bySlug
 }
 
+/* --------------------------- reconstruction output -------------------------- */
+
+/**
+ * Attaches every approved 3D reconstruction to its scene.
+ *
+ * `seedProjects` deletes and recreates `scenes` on every run, so a scene's
+ * `depth_media_id` / `model_media_id` cannot survive in the row itself — the
+ * link has to be rebuilt here, after the scenes exist, or the site ships eight
+ * DEPTH_2_5D scenes with no depth map and three PROCEDURAL_3D scenes that
+ * rebuild an untextured box instead of loading the GLB already exported for
+ * them.
+ *
+ * The join is `recon_jobs.source_media_id = scenes.source_media_id`:
+ * `recon_jobs.scene_id` is nulled by the delete (`on delete set null`), while
+ * the source photograph is stable, and a scene is created from exactly one
+ * cover. `scene_id` is written back so the admin's job list can find its scene.
+ *
+ * For a procedural room the metric settings and the camera path travel with the
+ * GLB. They have to: the seeded defaults describe a 6 × 3.2 × 8 m room and the
+ * exported geometry is whatever the photograph implied (2.2 × 2.8 × 1.8 m for
+ * one of them), so keeping the seeded waypoints would walk the camera through a
+ * room that is not there. `modelScale` undoes `ModelViewer`'s framing normalise
+ * — see `settingsForRoom` in src/server/recon/reconstructors/procedural.ts.
+ *
+ * Depth scenes keep their authored `displacementScale` / `planeSegments` /
+ * `parallaxStrength`: those are inside the safe band with a measured field
+ * (`reliefDepthFor` saturates) and the framing does not depend on them.
+ */
+async function attachReconResults(): Promise<void> {
+  const jobs = await db
+    .select({
+      jobId: schema.reconJobs.id,
+      mode: schema.reconJobs.mode,
+      result: schema.reconJobs.result,
+      sceneId: schema.scenes.id,
+      settings: schema.scenes.settings,
+    })
+    .from(schema.reconJobs)
+    .innerJoin(schema.scenes, eq(schema.scenes.sourceMediaId, schema.reconJobs.sourceMediaId))
+    .where(eq(schema.reconJobs.status, 'approved'))
+
+  let depth = 0
+  let model = 0
+
+  for (const job of jobs) {
+    const result = job.result
+    if (!result) continue
+
+    if (job.mode === 'DEPTH_2_5D' && result.depthMediaId) {
+      await db
+        .update(schema.scenes)
+        .set({ depthMediaId: result.depthMediaId, updatedAt: new Date() })
+        .where(eq(schema.scenes.id, job.sceneId))
+      depth++
+    }
+
+    if (job.mode === 'PROCEDURAL_3D' && result.modelMediaId) {
+      const suggested = result.suggestedSettings ?? {}
+      await db
+        .update(schema.scenes)
+        .set({
+          modelMediaId: result.modelMediaId,
+          settings: { ...(job.settings ?? {}), ...suggested },
+          waypoints: result.suggestedWaypoints ?? [],
+          updatedAt: new Date(),
+        })
+        .where(eq(schema.scenes.id, job.sceneId))
+      model++
+    }
+
+    await db
+      .update(schema.reconJobs)
+      .set({ sceneId: job.sceneId })
+      .where(eq(schema.reconJobs.id, job.jobId))
+  }
+
+  log('3d recon', jobs.length === 0 ? 'no approved jobs' : `${depth} depth map(s), ${model} model(s) attached`)
+}
+
+/* ------------------------- article rich-text media ------------------------- */
+
+/**
+ * Journal bodies reference photographs by media **storage key**, not by id:
+ * `{ "type": "image", "mediaKey": "bep-ben-khom-truc/4", "caption": "…" }`.
+ *
+ * Ids are random UUIDs minted by `upsertMedia`, so a literal id in `site.json`
+ * would be wrong on any database seeded from scratch. The storage key is the
+ * natural key (`media.storage_key` is unique), so it survives a re-seed, and it
+ * is also the thing a human can check against `public/media/<key>-1600.webp`.
+ *
+ * A key that resolves to nothing drops the node rather than shipping a broken
+ * frame: `--content` runs against a database that may hold no media at all, and
+ * a `mediaId` pointing at nowhere renders the placeholder tile on a public page.
+ */
+async function resolveArticleMedia(
+  nodes: readonly { type: string; [k: string]: unknown }[],
+): Promise<{ nodes: { type: string; [k: string]: unknown }[]; resolved: number; dropped: number }> {
+  const keys = new Set<string>()
+  for (const node of nodes) {
+    const key = node.mediaKey
+    if (typeof key === 'string' && key.length > 0) keys.add(key)
+  }
+  if (keys.size === 0) return { nodes: [...nodes], resolved: 0, dropped: 0 }
+
+  const rows = await db
+    .select({ id: schema.media.id, storageKey: schema.media.storageKey })
+    .from(schema.media)
+    .where(inArray(schema.media.storageKey, [...keys]))
+  const idByKey = new Map(rows.map((row) => [row.storageKey, row.id]))
+
+  let resolved = 0
+  let dropped = 0
+  const out: { type: string; [k: string]: unknown }[] = []
+  for (const node of nodes) {
+    const key = node.mediaKey
+    if (typeof key !== 'string' || key.length === 0) {
+      out.push(node)
+      continue
+    }
+    const id = idByKey.get(key)
+    if (id === undefined) {
+      dropped++
+      continue
+    }
+    const { mediaKey: _mediaKey, ...rest } = node
+    out.push({ ...rest, mediaId: id })
+    resolved++
+  }
+  return { nodes: out, resolved, dropped }
+}
+
 async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>) {
   const site = readJson<{
     services?: { slug: string; indexLabel: string; title: string; summary: string; description: string }[]
@@ -586,7 +729,13 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       content: {
         label: 'Bốn điểm dừng',
         heading: 'Tường sát cửa\nđược nhìn kỹ.',
-        body: 'Mắt vừa từ nắng ngoài đường bước vào còn mất mấy giây để chỉnh, nên người ta nhìn kỹ mảng tường sát cửa trước khi nhìn tới phòng khách. Cuộn xuống là đi lại đúng quãng đường ấy, dừng bốn lần, lần cuối ở chi tiết vật liệu.',
+        body: 'Mắt vừa từ nắng ngoài đường bước vào còn mất mấy giây để chỉnh, nên người ta nhìn kỹ mảng tường sát cửa trước khi nhìn tới phòng khách. Cuộn xuống là đi lại đúng quãng đường ấy và dừng bốn lần.',
+        // No `stages` key on purpose. ImmersiveProject falls back to each
+        // frame's own caption and then to the project's place line, and its two
+        // paths disagree about what a stage even is: pinned, the four labels
+        // annotate one camera walk across a single photograph, so a room name
+        // would sit over a room it does not show. Authored names belong here
+        // only once the stills carry real per-frame captions.
       },
     },
     {
@@ -662,7 +811,13 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
 
   const articles = site?.articles ?? []
   const journalCategory = categoryIds.get('ghi-chep') ?? null
+  let articleImages = 0
+  let articleImagesDropped = 0
   for (const [i, a] of articles.entries()) {
+    const body = await resolveArticleMedia(a.content.nodes)
+    articleImages += body.resolved
+    articleImagesDropped += body.dropped
+    const content = { nodes: body.nodes }
     await db
       .insert(schema.articles)
       .values({
@@ -671,7 +826,7 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
         excerpt: a.excerpt,
         tags: a.tags,
         categoryId: journalCategory,
-        content: a.content as never,
+        content: content as never,
         status: 'published',
         authorId: adminId,
         readingMinutes: 4,
@@ -680,10 +835,14 @@ async function seedSiteConfig(adminId: string, categoryIds: Map<string, string>)
       })
       .onConflictDoUpdate({
         target: schema.articles.slug,
-        set: { title: a.title, excerpt: a.excerpt, content: a.content as never, tags: a.tags, status: 'published' },
+        set: { title: a.title, excerpt: a.excerpt, content: content as never, tags: a.tags, status: 'published' },
       })
   }
   log('articles', `${articles.length} rows`)
+  log(
+    'article images',
+    `${articleImages} node(s) resolved${articleImagesDropped > 0 ? `, ${articleImagesDropped} dropped (media missing)` : ''}`,
+  )
 }
 
 /* ---------------------------------- main ---------------------------------- */
@@ -701,6 +860,10 @@ if (seeds.length === 0) {
 } else {
   await seedProjects(seeds, manifest, categoryIds, details, materialIdBySlug)
 }
+
+// After the scenes exist: seedProjects recreates them, so the recon links have
+// to be rebuilt every run.
+await attachReconResults()
 
 await seedSiteConfig(adminId, categoryIds)
 console.log('\nDone.\n')

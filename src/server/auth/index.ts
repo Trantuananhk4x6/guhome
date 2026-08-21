@@ -49,8 +49,8 @@ const RATE_LIMIT_MAX_KEYS = 5_000
 type AttemptStore = Map<string, number[]>
 
 // Survives dev hot-reloads; per-process only (single-region deployment).
-const globalScope = globalThis as typeof globalThis & { __anAtelierLoginAttempts?: AttemptStore }
-const loginAttempts: AttemptStore = (globalScope.__anAtelierLoginAttempts ??= new Map())
+const globalScope = globalThis as typeof globalThis & { __guHomesLoginAttempts?: AttemptStore }
+const loginAttempts: AttemptStore = (globalScope.__guHomesLoginAttempts ??= new Map())
 
 function recentAttempts(key: string, now: number): number[] {
   const cutoff = now - RATE_LIMIT_WINDOW_MS

@@ -51,7 +51,7 @@ import { useReveal } from '@/animations/reveal'
 import { useTextReveal } from '@/animations/text'
 import { cn } from '@/lib/utils'
 
-import { DISPLAY_SM, PROSE_AXES, PROSE_BAND_RULE, proseAxis } from './composition'
+import { DISPLAY_SM, PROSE_AXES, PROSE_BAND_RULE, PROSE_SETTLED, proseAxis } from './composition'
 
 export interface ProjectTextProps {
   heading?: string
@@ -64,6 +64,11 @@ export interface ProjectTextProps {
   phase?: number
   /** This block opens the story — it is the first thing after the hero. */
   lede?: boolean
+  /**
+   * This story has almost no photographs, so the swinging axes have nothing to
+   * swing around. See `PROSE_SETTLED`.
+   */
+  settled?: boolean
   className?: string
 }
 
@@ -83,6 +88,7 @@ export function ProjectText({
   occurrence = 0,
   phase = 0,
   lede = false,
+  settled = false,
   className,
 }: ProjectTextProps) {
   const headingRef = useRef<HTMLHeadingElement>(null)
@@ -160,8 +166,14 @@ export function ProjectText({
   // block on the page whose position is decided by what it is rather than by
   // where it falls in a phrase.
   const axis = proseAxis(phase, occurrence)
-  const column = lede ? 'lg:col-span-6 lg:col-start-2' : PROSE_AXES[axis]
-  const bandRule = lede || PROSE_BAND_RULE[axis]
+  // The lede keeps its left anchor even in a settled story: an opening
+  // statement held against the second column is a beginning, not a hole.
+  const column = lede
+    ? 'lg:col-span-6 lg:col-start-2'
+    : settled
+      ? PROSE_SETTLED
+      : PROSE_AXES[axis]
+  const bandRule = lede || settled || PROSE_BAND_RULE[axis]
 
   return (
     // The small top pad is load-bearing: a TEXT block often follows a

@@ -25,7 +25,42 @@ const InteriorScene = dynamic(
   { ssr: false },
 )
 
-const STAGE_FALLBACK: readonly string[] = ['Ngoại thất', 'Tiền sảnh', 'Phòng khách', 'Chi tiết vật liệu']
+/** At most this many stops, however many photographs the project turns out to have. */
+const MAX_STAGES = 4
+
+/**
+ * WHAT A STOP IS ALLOWED TO BE CALLED.
+ *
+ * This band used to caption its four stills `Ngoại thất / Tiền sảnh / Phòng
+ * khách / Chi tiết vật liệu` from a constant, because the database row carries
+ * no `stages` key and never has. The stills are just `gallery[0..3]` in seed
+ * order, so nothing tied a caption to its subject — and on the project this
+ * band actually resolves to, all thirteen photographs live in one folder called
+ * PHÒNG KHÁCH. Still 01, whose own alt text reads "Tầng tiếp khách nhà phố",
+ * was captioned NGOẠI THẤT over a photograph of a sofa.
+ *
+ * That is not a copy problem, it is a caption asserting a fact about a picture
+ * that the picture contradicts, and the library cannot fix it: **no project in
+ * the catalogue has photographs in more than one folder** (checked — 0 of 105),
+ * so there is no per-frame signal anywhere in the data that could name a room.
+ *
+ * So the band stops naming rooms it cannot see. In order of preference:
+ *
+ *   1. `content.stages` — an editor who knows the photographs may name them,
+ *      and that override is now the only way a room name reaches this band.
+ *   2. `media.caption` — per-frame, per-photograph, and the channel the caption
+ *      backfill writes to. Empty across the library today; correct tomorrow.
+ *   3. the project's own place line — its subtitle before the location, which is
+ *      true of every frame it holds because they are all frames of that place.
+ *
+ * A stop label is never invented from position.
+ */
+function placeLine(project: ProjectSummary): string {
+  const subtitle = project.subtitle?.split('·')[0]?.trim()
+  if (subtitle && subtitle.length > 0) return subtitle
+  if (project.categoryName) return project.categoryName
+  return project.title
+}
 
 /** Pinning is a desktop-only, WebGL-only affordance. */
 const WIDE_QUERY = '(min-width: 1024px)'
@@ -238,8 +273,23 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
     'body',
     'Cuộn để đi xuyên qua căn nhà — từ mặt tiền, qua tiền sảnh, tới chỗ ngồi quen thuộc và những chi tiết vật liệu ở cự ly gần.',
   )
-  const stages = sectionList(content, 'stages', STAGE_FALLBACK)
-  const stageCount = stages.length
+  /*
+   * The stops follow the photographs, not a constant. A project with two frames
+   * gets two stops — the old code mapped a fixed four names over
+   * `gallery[i] ?? cover` and printed the *same* photograph four times under
+   * four different room names when the gallery was short.
+   */
+  const authored = sectionList(content, 'stages', [])
+  const frames = gallery.length > 0 ? gallery.slice(0, MAX_STAGES) : []
+  const stageCount = Math.max(1, Math.min(MAX_STAGES, frames.length > 0 ? frames.length : 1))
+  const place = project ? placeLine(project) : ''
+  const stages: string[] = Array.from(
+    { length: stageCount },
+    (_, index) => authored[index] ?? frames[index]?.caption ?? place,
+  )
+  // Four identical labels are not four stops: when nothing distinguishes them,
+  // the pinned path holds one line instead of cross-fading a word into itself.
+  const namedStops = new Set(stages).size > 1
 
   // Scroll progress is read in rAF and written straight to the DOM — no state per frame.
   useEffect(() => {
@@ -278,8 +328,17 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
   const href = `/projects/${project.slug}`
 
   if (!pinned || scene === null) {
-    const stills = stages.map((_, index) => gallery[index] ?? cover)
-    const altOf = (index: number): string => `${project.title} — ${stages[index] ?? 'không gian'}`
+    const stills = stages.map((_, index) => frames[index] ?? cover)
+    // The photograph's own alt text first: it is written per project and it is
+    // true. The old line pasted the invented stage name into the accessible
+    // name too, so a screen reader heard NGOẠI THẤT for the same sofa.
+    const altOf = (index: number): string =>
+      stills[index]?.alt ?? `${project.title} — ${stages[index] ?? place}`
+    // Unnamed stops say the true line once and then let the ordinal carry the
+    // sequence. Printing "Tầng tiếp khách nhà phố" under all four frames is
+    // accurate and still reads as a component repeating itself.
+    const captionOf = (index: number): string =>
+      namedStops || index === 0 ? (stages[index] ?? '') : ''
 
     return (
       <section
@@ -328,16 +387,19 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
 
         {stills[0] !== undefined ? (
           <div className={cn('u-gutter', BAND_T)}>
-            <BleedStill caption={stages[0] ?? ''} media={stills[0]} index={0} alt={altOf(0)} />
+            <BleedStill caption={captionOf(0)} media={stills[0]} index={0} alt={altOf(0)} />
           </div>
         ) : null}
 
+        {/* Keyed by position, not by caption: when the stops share one true
+            label — which is the normal case until the photographs carry their
+            own captions — four `key={caption}` siblings are four duplicate keys. */}
         {stills.length > 1 ? (
           <div className={cn('u-gutter grid grid-cols-12 items-start gap-x-8 gap-y-12', BAND_T)}>
             {stills.slice(1, 3).map((media, offset) => (
               <PairStill
-                key={stages[offset + 1] ?? `pair-${offset}`}
-                caption={stages[offset + 1] ?? ''}
+                key={media?.id ?? `pair-${offset}`}
+                caption={captionOf(offset + 1)}
                 media={media}
                 index={offset + 1}
                 alt={altOf(offset + 1)}
@@ -348,9 +410,9 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
         ) : null}
 
         {stills.slice(3).map((media, offset) => (
-          <div key={stages[offset + 3] ?? `inset-${offset}`} className={cn('u-gutter', BAND_T)}>
+          <div key={media?.id ?? `inset-${offset}`} className={cn('u-gutter', BAND_T)}>
             <InsetStill
-              caption={stages[offset + 3] ?? ''}
+              caption={captionOf(offset + 3)}
               media={media}
               index={offset + 3}
               alt={altOf(offset + 3)}
@@ -386,7 +448,9 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
         </div>
 
         <p className="sr-only">
-          {`Chuỗi cảnh dựng 3D dự án ${project.title}: ${stages.join(', ')}.`}
+          {namedStops
+            ? `Chuỗi cảnh dựng 3D dự án ${project.title}: ${stages.join(', ')}.`
+            : `Chuỗi ${stageCount} cảnh dựng 3D dự án ${project.title} — ${place}.`}
         </p>
 
         <div className="relative z-10 u-gutter flex items-start justify-between gap-8 pt-[clamp(5rem,12vh,8rem)]">
@@ -414,15 +478,20 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
         </div>
 
         <div className="relative z-10 u-gutter flex flex-col gap-8 pb-[clamp(2rem,6vh,4rem)]">
+          {/* One standing line when the stops share a label — a word crossfading
+              into an identical copy of itself reads as a stuck animation, and
+              four `key={caption}` siblings would collide besides. */}
           <div className="relative h-[clamp(3rem,7vw,5.5rem)]">
-            {stages.map((caption, index) => (
+            {(namedStops ? stages : stages.slice(0, 1)).map((caption, index) => (
               <span
-                key={caption}
-                aria-hidden={index === stage ? undefined : 'true'}
+                key={`${index}-${caption}`}
+                aria-hidden={!namedStops || index === stage ? undefined : 'true'}
                 className={cn(
                   DISPLAY_SM,
                   'absolute inset-x-0 bottom-0 block text-canvas transition-all duration-[900ms] ease-editorial',
-                  index === stage ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0',
+                  !namedStops || index === stage
+                    ? 'translate-y-0 opacity-100'
+                    : 'translate-y-3 opacity-0',
                 )}
               >
                 {caption}

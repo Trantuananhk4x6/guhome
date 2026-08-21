@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/Label'
 import { Rule } from '@/components/ui/Rule'
 import { ArrowUpRightIcon } from '@/components/ui/icons'
+import { mediaUrl } from '@/lib/media'
 import { buildMetadata } from '@/lib/seo'
 import { formatDate, pad2 } from '@/lib/utils'
 import { getPublishedArticles } from '@/server/queries/articles'
@@ -30,6 +32,43 @@ function metaParts(article: ArticleSummary): string[] {
   const reading = readingLabel(article)
   if (reading) parts.push(reading)
   return parts
+}
+
+/**
+ * The cover a list row was already handed.
+ *
+ * Every published article carries `coverMediaId`, and `ArticleSummary.cover` has
+ * always been loaded and typed — but only the featured block drew it, so the
+ * four rows below it printed ordinal, date, title, excerpt, tags and an arrow
+ * and dropped the photograph on the floor. The result was a 3,878px index
+ * showing one picture on a site whose argument is 1,485 of them.
+ *
+ * Deliberately not `ImageFrame`: the row is already a `[data-reveal-item]`
+ * inside the list's staggered reveal, so a second reveal nested inside it would
+ * be a ScrollTrigger measuring a box its own parent is still holding at
+ * `autoAlpha: 0`. The row's reveal carries the picture in with the text.
+ *
+ * Returns `null` for an article with no cover, and the row's explicit column
+ * starts mean the rest of it does not shift when that happens.
+ */
+function RowCover({ article }: { article: ArticleSummary }) {
+  const { cover } = article
+  if (!cover) return null
+
+  return (
+    <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-alt sm:aspect-[4/3] lg:col-span-2 lg:col-start-3">
+      <Image
+        src={mediaUrl(cover, 800)}
+        alt={cover.alt ?? article.title}
+        fill
+        sizes="(min-width: 1024px) 16vw, 100vw"
+        className="object-cover transition-transform duration-[1.2s] ease-editorial group-hover/row:scale-[1.03]"
+        {...(cover.blurDataURL
+          ? { placeholder: 'blur' as const, blurDataURL: cover.blurDataURL }
+          : {})}
+      />
+    </div>
+  )
 }
 
 export default async function JournalPage() {
@@ -110,16 +149,23 @@ export default async function JournalPage() {
               <ul>
                 {rest.map((article, i) => (
                   <li key={article.id} data-reveal-item>
+                    {/* Explicit column starts, not auto-placement: the row now
+                        holds a photograph that an article without a cover will
+                        not draw, and auto-placement would slide the title, the
+                        tags and the arrow one slot left when that happens —
+                        which is how the arrow ended up on a row of its own. */}
                     <Link
                       href={`/journal/${article.slug}`}
-                      className="group/row grid gap-6 border-t border-line py-10 lg:grid-cols-12 lg:gap-10"
+                      className="group/row grid items-start gap-6 border-t border-line py-10 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10"
                     >
-                      <div className="flex items-baseline gap-6 lg:col-span-2">
+                      <div className="flex items-baseline gap-6 lg:col-span-2 lg:col-start-1">
                         <span className="u-label text-accent">{pad2(i + 2)}</span>
                         <span className="u-label">{formatDate(article.publishedAt)}</span>
                       </div>
 
-                      <div className="lg:col-span-6">
+                      <RowCover article={article} />
+
+                      <div className="lg:col-span-5 lg:col-start-5">
                         <h3 className="font-display text-[1.75rem] font-normal leading-tight text-ink transition-colors duration-500 ease-editorial group-hover/row:text-accent">
                           {article.title}
                         </h3>
@@ -130,7 +176,7 @@ export default async function JournalPage() {
                         ) : null}
                       </div>
 
-                      <div className="lg:col-span-3 lg:col-start-10">
+                      <div className="lg:col-span-2 lg:col-start-10">
                         {article.tags.length > 0 ? (
                           <ul className="flex flex-wrap gap-x-4 gap-y-2">
                             {article.tags.map((tag) => (
@@ -145,7 +191,7 @@ export default async function JournalPage() {
                         ) : null}
                       </div>
 
-                      <div className="hidden lg:col-span-1 lg:flex lg:justify-end">
+                      <div className="hidden lg:col-span-1 lg:col-start-12 lg:flex lg:justify-end">
                         <ArrowUpRightIcon className="text-xl text-muted transition-all duration-500 ease-editorial group-hover/row:translate-x-1 group-hover/row:-translate-y-1 group-hover/row:text-accent" />
                       </div>
                     </Link>

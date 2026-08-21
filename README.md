@@ -1,4 +1,4 @@
-# AN ATELIER
+# GuHomes
 
 Website studio nội thất & kiến trúc — portfolio 3D tương tác + CMS.
 
@@ -19,7 +19,12 @@ npx tsx scripts/verify.ts      # kiểm tra DB + media trước khi chạy
 npm run dev                    # http://localhost:3000
 ```
 
-Admin: `/admin/login` — tài khoản lấy từ `ADMIN_EMAIL` / `ADMIN_PASSWORD` trong `.env.local`.
+Admin: `/admin/login`. Hàng `users` trong DB đã có sẵn tài khoản quản trị
+`admin@guhomes.vn` — trước đây nó nằm ở tên miền của thương hiệu cũ và đã được đổi
+cùng đợt đổi tên. `ADMIN_EMAIL` / `ADMIN_PASSWORD` trong `.env.local` chỉ được
+`npm run db:seed` dùng để **tạo mới** tài khoản; seed bỏ qua nếu email đó đã tồn tại.
+Vì vậy nếu `ADMIN_EMAIL` không khớp với hàng đang có, lần seed sau sẽ tạo thêm một
+tài khoản admin thứ hai — hãy đặt `ADMIN_EMAIL="admin@guhomes.vn"`.
 **Đổi mật khẩu ngay sau lần đăng nhập đầu tiên** (Cài đặt → Tài khoản).
 
 ## Scripts

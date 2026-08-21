@@ -1,10 +1,20 @@
-# AN ATELIER — Architecture Contract
+# GuHomes — Architecture Contract
 
 Read this **before writing any code**. It is the single source of truth that keeps
 parallel work compatible. Do not restate or redefine anything declared here.
 
-Studio brand: **AN ATELIER** — "an" (bình an / stillness) + atelier.
-Tagline: *Không gian mang tính cách.* — "Spaces with character."
+Studio brand: **GuHomes**, short name **Gu**. Casing is exactly that — not
+GUHOMES, not Guhomes. The studio was renamed from its previous name; nothing in
+`src/`, `public/` or the database may carry the old one.
+Tagline: *Nội thất và kiến trúc cho khí hậu Sài Gòn.*
+
+The live values are the `theme_settings.brand` row (`companyName`, `shortName`,
+`tagline`, `email`, `address`, `social`) — that row, not this document, is what
+the site renders. Verify with a query before quoting a brand string anywhere.
+Several component fallbacks still hard-code the pre-rename tagline *Không gian
+mang tính cách.* as their default argument (`Hero3D`, `ThemePreview`,
+`DEFAULT_SEO.defaultTitle`); they are dead while the row is populated, and are a
+copy decision rather than a rename one.
 Positioning: interior architecture studio, Ho Chi Minh City. Content language is
 **Vietnamese**, with English used only for small editorial labels (`SELECTED WORKS`,
 `STUDIO`, `INDEX 01`). Never machine-translated English body copy.

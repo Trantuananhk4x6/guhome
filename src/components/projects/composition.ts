@@ -259,6 +259,26 @@ export const PROSE_BAND_RULE: Record<ProseAxis, boolean> = {
   right: false,
 }
 
+/**
+ * The measure a story reads at when it has no photographs to compose against.
+ *
+ * The four axes above are an answer to a page that alternates prose and plates:
+ * a measure held in the last third is a composition when a picture is carrying
+ * the other two thirds, and a hole when nothing is. Twelve published projects
+ * hold fewer than three photographs between all of their blocks — and the
+ * library cannot top them up, because all 1,485 photographs are already
+ * attached and each of those twelve owns exactly the one or two frames it
+ * already shows. On `/projects/keo-bac-ha` that produced a 204px paragraph
+ * pinned to columns 8–11 with 860px of empty canvas to its left.
+ *
+ * So a story that cannot compose against pictures stops trying: one centred
+ * reading measure, under a hairline that runs the full band, which is what
+ * turns the space either side into a margin instead of a gap where a
+ * photograph was supposed to be. Nothing is dropped — every paragraph the
+ * studio wrote still prints.
+ */
+export const PROSE_SETTLED = 'lg:col-span-6 lg:col-start-4'
+
 export function proseAxis(phase: number, occurrence: number): ProseAxis {
   const phrase = PROSE_PHRASES[phase % PROSE_PHRASES.length] ?? PROSE_PHRASES[0] ?? ['inner']
   return phrase[occurrence % phrase.length] ?? 'inner'

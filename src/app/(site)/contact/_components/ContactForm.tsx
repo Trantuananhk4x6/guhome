@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState, useEffect, useRef, useState } from 'react'
+import { useActionState, useEffect, useRef, useState, type ReactNode } from 'react'
 
 import { Button } from '@/components/ui/Button'
 import { Field } from '@/components/ui/Field'
@@ -63,6 +63,38 @@ function unresolvedFields(errors: ContactFieldErrors): string[] {
 const SELECT_OPTIONS = {
   projectType: PROJECT_TYPES.map((option) => ({ value: option.value, label: option.label })),
   budget: BUDGET_RANGES.map((option) => ({ value: option.value, label: option.label })),
+}
+
+/**
+ * One numbered group of the form.
+ *
+ * A real `fieldset`/`legend`, so the grouping a sighted reader sees is the same
+ * grouping a screen reader announces. The index is `aria-hidden`: it is a
+ * counting aid for the eye, and read aloud it just prefixes every legend with a
+ * number.
+ */
+function FormSection({
+  index,
+  title,
+  note,
+  children,
+}: {
+  index: string
+  title: string
+  note: string
+  children: ReactNode
+}) {
+  return (
+    <fieldset className="border-line grid gap-6 border-0 border-t p-0 pt-7 lg:grid-cols-12 lg:gap-8">
+      <legend className="sr-only">{title}</legend>
+      <div aria-hidden className="flex items-baseline gap-4 lg:col-span-3 lg:flex-col lg:gap-2">
+        <span className="u-label text-accent">{index}</span>
+        <span className="text-ink font-display text-[1.25rem] leading-none">{title}</span>
+        <p className="text-muted hidden text-[0.8125rem] leading-relaxed lg:block">{note}</p>
+      </div>
+      <div className="lg:col-span-9">{children}</div>
+    </fieldset>
+  )
 }
 
 export function ContactForm({ email }: { email: string }) {
@@ -150,10 +182,24 @@ export function ContactForm({ email }: { email: string }) {
         <input id="an-company" name="company" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <fieldset disabled={pending} className="flex flex-col gap-10 border-0 p-0">
+      {/*
+        Three groups, not one list of seven fields.
+
+        A form is judged before it is read: seven controls in a column reads as
+        long, and a reader deciding whether to bother counts rows. The same seven
+        under three headings reads as three short questions — who you are, what
+        the job is, what you want to say — and each heading tells the reader why
+        it is being asked, which is the part that actually gets a phone number
+        typed in.
+
+        Every group is its own `fieldset`, so the grouping is real to a screen
+        reader rather than a visual arrangement it cannot hear.
+      */}
+      <fieldset disabled={pending} className="flex flex-col gap-12 border-0 p-0">
         <legend className="sr-only">Thông tin liên hệ</legend>
 
-        <div className="grid gap-10 sm:grid-cols-2">
+        <FormSection index="01" title="Liên hệ" note="Để chúng tôi biết gọi ai, và gọi bằng cách nào.">
+        <div className="grid gap-8 sm:grid-cols-2">
           <Field label="Họ và tên" required error={state.fieldErrors.name}>
             <Input
               name="name"
@@ -191,17 +237,24 @@ export function ContactForm({ email }: { email: string }) {
               onChange={(event) => set('phone')(event.currentTarget.value)}
             />
           </Field>
+        </div>
+        </FormSection>
 
+        <FormSection
+          index="02"
+          title="Công trình"
+          note="Hai câu này quyết định ai trong studio đọc thư của bạn trước."
+        >
+        <div className="grid gap-8 sm:grid-cols-2">
           <Field label="Loại công trình" required error={state.fieldErrors.projectType}>
             <Select
               name="projectType"
               options={SELECT_OPTIONS.projectType}
               placeholder="Chọn mục gần đúng nhất"
               value={values.projectType}
-              onChange={(event) => set('projectType')(event.currentTarget.value)}
+              onChange={(event) => set('projectType')(event.target.value)}
             />
           </Field>
-        </div>
 
         <Field
           label="Ngân sách dự kiến"
@@ -213,10 +266,13 @@ export function ContactForm({ email }: { email: string }) {
             options={SELECT_OPTIONS.budget}
             placeholder="Khoảng nào gần nhất cũng được"
             value={values.budget}
-            onChange={(event) => set('budget')(event.currentTarget.value)}
+            onChange={(event) => set('budget')(event.target.value)}
           />
         </Field>
+        </div>
+        </FormSection>
 
+        <FormSection index="03" title="Lời nhắn" note="Phần duy nhất không có ô nào chọn sẵn.">
         <Field
           label="Lời nhắn"
           required
@@ -231,6 +287,7 @@ export function ContactForm({ email }: { email: string }) {
             onChange={(event) => set('message')(event.currentTarget.value)}
           />
         </Field>
+        </FormSection>
       </fieldset>
 
       <div className="flex flex-col gap-6 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">

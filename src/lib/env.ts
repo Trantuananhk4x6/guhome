@@ -3,8 +3,14 @@ import { z } from 'zod'
 const serverEnvSchema = z.object({
   DATABASE_URL: z.string().min(1),
   AUTH_SECRET: z.string().min(16),
-  ADMIN_EMAIL: z.string().email().default('admin@guhomes.vn'),
-  ADMIN_PASSWORD: z.string().min(8).default('AnAtelier@2026'),
+  // Seed-time only (`scripts/seed.ts` reads `process.env` directly); nothing in
+  // the running app consumes either. Deliberately NOT defaulted: the previous
+  // literal default was the studio's old brand name, so any deploy that forgot
+  // to set ADMIN_PASSWORD accepted a password published in this repository.
+  // `.optional()` rather than required because a web deploy that never runs the
+  // seed must not 500 on an unused variable.
+  ADMIN_EMAIL: z.string().email().optional(),
+  ADMIN_PASSWORD: z.string().min(8).optional(),
   STORAGE_DRIVER: z.enum(['local', 's3']).default('local'),
   STORAGE_LOCAL_ROOT: z.string().default('./public/media'),
   MEDIA_SOURCE_ROOT: z.string().default('D:/guhome'),

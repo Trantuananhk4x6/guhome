@@ -35,6 +35,47 @@ import type { HomeSectionProps } from './types'
  */
 const BEAT = 0.14
 
+/**
+ * KEEP THE BAND'S OWN NUMBERS TRUE.
+ *
+ * The seeded eyebrow reads `Từ 76 đến 320 m²` — a measurement of the five
+ * projects standing underneath it, typed once by an editor and then keyed to
+ * nothing. The moment the band's membership changes it is a false statistic on
+ * the front page: 76 m² is Trầm Tích Xám, and when that project moved to the
+ * pinned band the range under this heading became 82–320 while the heading went
+ * on saying 76.
+ *
+ * So the two numbers are recomputed from the projects actually drawn, and only
+ * the numbers — the editor's wording, separator and unit are left exactly as
+ * typed, and a label that is not a range (`Selected Works`) is passed through
+ * untouched. Same contract as the STUDIO band, which overwrites its project
+ * count from `data.projectCount` so the ledger cannot contradict the catalogue.
+ */
+const AREA_RANGE = /(\d+)(\s*(?:đến|–|—|-|to)\s*)(\d+)/
+
+/** Leading integer of `118 m²`. `null` when the row has no usable figure. */
+function areaValue(area: string | null): number | null {
+  if (!area) return null
+  const match = /\d+/.exec(area)
+  if (!match) return null
+  const value = Number.parseInt(match[0], 10)
+  return Number.isFinite(value) ? value : null
+}
+
+function liveAreaRange(label: string, projects: readonly ProjectSummary[]): string {
+  if (!AREA_RANGE.test(label)) return label
+  const areas = projects
+    .map((project) => areaValue(project.area))
+    .filter((value): value is number => value !== null)
+  // One figure cannot describe a range, and none cannot describe anything —
+  // leave the editor's line alone rather than printing `0 đến 0`.
+  if (areas.length < 2) return label
+  const low = Math.min(...areas)
+  const high = Math.max(...areas)
+  if (low === high) return label
+  return label.replace(AREA_RANGE, (_match, _from: string, join: string) => `${low}${join}${high}`)
+}
+
 /** `Địa điểm · Diện tích · Năm` — one line, for the bands that only get one. */
 function metaLine(project: ProjectSummary): string {
   return [project.location, formatArea(project.area), project.year ? String(project.year) : null]
@@ -412,7 +453,7 @@ export function FeaturedProjects({ section, data }: HomeSectionProps) {
   const indexed = projects[4] ?? null
 
   const { content } = section
-  const eyebrow = sectionText(content, 'label', 'Selected Works')
+  const eyebrow = liveAreaRange(sectionText(content, 'label', 'Selected Works'), projects)
   const headingLines = sectionLines(content, 'heading', 'Những công trình\nchúng tôi chăm chút.')
   const lead = sectionText(content, 'body', '')
 

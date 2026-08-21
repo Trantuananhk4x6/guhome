@@ -1,10 +1,16 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import { Label } from '@/components/ui/Label'
 import { Rule } from '@/components/ui/Rule'
+import { ArrowUpRightIcon } from '@/components/ui/icons'
+import { mediaUrl } from '@/lib/media'
 import { buildMetadata } from '@/lib/seo'
+import { getPublishedProjects } from '@/server/queries/projects'
 import { getThemeSettings } from '@/server/queries/site'
+import type { ProjectSummary } from '@/types/content'
 
 import { ContactForm } from './_components/ContactForm'
 import { Reveal, TextReveal } from './_components/motion'
@@ -30,9 +36,70 @@ function Detail({ label, children }: DetailProps) {
   )
 }
 
+/**
+ * THE ONE PHOTOGRAPH ON THIS PAGE.
+ *
+ * /contact was the only public route carrying no picture of the work at all —
+ * 2,607px on desktop whose three `<img>` elements were the header logo, its
+ * duplicate and the footer logo. On a site whose whole argument is 1,485 of the
+ * studio's own photographs, the page where a visitor decides to write showed
+ * none of them.
+ *
+ * No slug is named here. The band takes the first project the studio itself
+ * ordered to the front of its featured list whose cover is a wide frame big
+ * enough to fill a band — so it follows the admin's own ordering and needs no
+ * editing when the catalogue changes. It is captioned with the project it
+ * belongs to and links there, the way the STUDIO band captions its borrowed
+ * photograph: this is a photograph *of a project*, and it must never be
+ * mistaken for a photograph of the office.
+ */
+const BAND_MIN_WIDTH = 1600
+const BAND_MIN_RATIO = 1.2
+
+/**
+ * The page's own question is "căn nhà của bạn đang ở tình trạng nào?", so the
+ * frame that answers it should be somewhere a person lives. Seven of the eight
+ * featured projects are; without this the band opened on a Japanese pedicure
+ * spa directly under that sentence. Same taxonomy the form's own PROJECT_TYPES
+ * select already uses, and an unknown slug simply falls through to the next
+ * preference rather than emptying the band.
+ */
+const HOME_CATEGORIES: ReadonlySet<string> = new Set(['can-ho', 'nha-pho', 'biet-thu-resort'])
+
+function fillsABand(project: ProjectSummary): boolean {
+  const cover = project.cover
+  if (!cover?.width || !cover.height) return false
+  return cover.width >= BAND_MIN_WIDTH && cover.width / cover.height >= BAND_MIN_RATIO
+}
+
+function bandProject(projects: readonly ProjectSummary[]): ProjectSummary | null {
+  const withCover = projects.filter((project) => project.cover !== null)
+  const homes = withCover.filter(
+    (project) => project.categorySlug !== null && HOME_CATEGORIES.has(project.categorySlug),
+  )
+  return homes.find(fillsABand) ?? homes[0] ?? withCover.find(fillsABand) ?? withCover[0] ?? null
+}
+
 export default async function ContactPage() {
-  const theme = await getThemeSettings()
+  const [theme, featured] = await Promise.all([
+    getThemeSettings(),
+    // One unreachable table must not blank the page a client writes from.
+    getPublishedProjects({ featured: true, limit: 8 }).catch((error: unknown) => {
+      console.error('[contact] project query failed — the band will be omitted', error)
+      return [] as ProjectSummary[]
+    }),
+  ])
   const { brand } = theme
+
+  const showcase = bandProject(featured)
+  const showcaseCover = showcase?.cover ?? null
+  // A frame chosen from the photograph rather than assumed: the featured covers
+  // run from 0.75 to 1.59, and a portrait dropped into a 3:2 band loses its top
+  // and bottom.
+  const showcasePortrait =
+    showcaseCover?.width && showcaseCover.height
+      ? showcaseCover.width / showcaseCover.height < 1
+      : false
   const telHref = `tel:${brand.phone.replace(/[^\d+]/g, '')}`
 
   // The address is one editable string in the theme, but it reads as two lines:
@@ -65,6 +132,57 @@ export default async function ContactPage() {
           </Reveal>
         </div>
       </section>
+
+      {showcase && showcaseCover ? (
+        <section className="u-gutter mt-[calc(var(--spacing-section)*0.55)]">
+          <div className="mx-auto grid w-full max-w-[100rem] items-end gap-10 lg:grid-cols-12 lg:gap-x-8">
+            <Reveal variant="revealClip" className="lg:col-span-7 lg:col-start-1">
+              <div
+                className={
+                  showcasePortrait
+                    ? 'relative aspect-[4/5] w-full overflow-hidden bg-surface-alt'
+                    : 'relative aspect-[4/3] w-full overflow-hidden bg-surface-alt sm:aspect-[3/2]'
+                }
+              >
+                <Image
+                  src={mediaUrl(showcaseCover, 1600)}
+                  alt={showcaseCover.alt ?? showcase.title}
+                  fill
+                  sizes="(min-width: 1024px) 56vw, 100vw"
+                  className="object-cover"
+                  {...(showcaseCover.blurDataURL
+                    ? { placeholder: 'blur' as const, blurDataURL: showcaseCover.blurDataURL }
+                    : {})}
+                />
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.12} className="lg:col-span-4 lg:col-start-9">
+              {/* Named, not implied. The caption says which project this is and
+                  links to it, so the frame is never read as the studio's room. */}
+              <Label rule>Công trình</Label>
+              <p className="mt-7 font-display text-[1.5rem] leading-[1.2] font-normal text-ink sm:text-[1.75rem]">
+                {showcase.title}
+              </p>
+              {showcase.subtitle ? (
+                <p className="u-label mt-4 text-muted">{showcase.subtitle}</p>
+              ) : null}
+              {showcase.location ? (
+                <p className="mt-5 font-body text-[0.9375rem] leading-relaxed text-muted">
+                  {showcase.location}
+                </p>
+              ) : null}
+              <Link
+                href={`/projects/${showcase.slug}`}
+                className="group u-label mt-7 inline-flex items-center gap-3 text-ink transition-colors duration-500 ease-editorial hover:text-accent"
+              >
+                Xem công trình này
+                <ArrowUpRightIcon className="text-base transition-transform duration-500 ease-editorial group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
 
       <section className="u-gutter mt-[calc(var(--spacing-section)*0.6)]">
         <div className="mx-auto grid w-full max-w-[100rem] gap-16 lg:grid-cols-12 lg:gap-24">

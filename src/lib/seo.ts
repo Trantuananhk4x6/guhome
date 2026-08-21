@@ -118,11 +118,15 @@ function toIso(value: Date | string | null | undefined): string | undefined {
  * Legacy brand suffixes written into `projects.seo.title` / `articles.seo.title`
  * by earlier seeds ("… — GuHomes", "… — GUHOMES"). Matched case-insensitively
  * with either dash, and stripped so the brand is printed by the template alone.
+ *
+ * The stored rows have since been cleaned (110 of them carried "— GUHOMES"), so
+ * this is now a guard against an editor typing the brand into the SEO field
+ * rather than a data migration.
  */
-const BRAND_SUFFIX = /\s*[—-]\s*(?:guhomes|gu homes|an atelier)\s*$/i
+const BRAND_SUFFIX = /\s*[—-]\s*(?:guhomes|gu homes)\s*$/i
 
 /** The mirror case: "GuHomes — <tagline>" passed as a page title (the homepage). */
-const BRAND_PREFIX = /^\s*(?:guhomes|gu homes|an atelier)\s*[—-]\s*/i
+const BRAND_PREFIX = /^\s*(?:guhomes|gu homes)\s*[—-]\s*/i
 
 /**
  * The PAGE-level title only — never the brand.
@@ -423,7 +427,7 @@ export function buildWebsiteJsonLd(): JsonLdObject {
     '@type': 'WebSite',
     '@id': `${home}#website`,
     name: SITE_NAME,
-    alternateName: 'Guhomes Studio',
+    alternateName: 'GuHomes Studio',
     description: SITE_DESCRIPTION,
     url: home,
     inLanguage: 'vi-VN',
