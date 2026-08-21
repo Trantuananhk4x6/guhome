@@ -13,6 +13,7 @@ import {
   uuid,
 } from 'drizzle-orm/pg-core'
 
+import type { AppearanceConfig } from '@/lib/appearance'
 import type {
   AnalyticsEventType,
   CameraWaypoint,
@@ -338,6 +339,15 @@ export const themeSettings = pgTable('theme_settings', {
   typography: jsonb('typography').$type<ThemeTypography>().notNull(),
   motion: jsonb('motion').$type<MotionConfig>().notNull(),
   brand: jsonb('brand').$type<BrandConfig>().notNull(),
+  /**
+   * Which palette a visitor gets, and whether they may change it.
+   *
+   * Deliberately its own column rather than a key inside `colors`: `colors` is a
+   * single palette and this decides *between* palettes, so folding it in would
+   * make the shape of the theme row depend on its own contents. Typed in
+   * `@/lib/appearance` rather than in the frozen `@/types/content`.
+   */
+  appearance: jsonb('appearance').$type<AppearanceConfig>(),
   updatedBy: uuid('updated_by').references(() => users.id, { onDelete: 'set null' }),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
 })
