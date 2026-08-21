@@ -12,6 +12,7 @@
 import { and, asc, desc, eq } from 'drizzle-orm'
 import { cache } from 'react'
 
+import { DEFAULT_APPEARANCE, readAppearance, type AppearanceConfig } from '@/lib/appearance'
 import { DEFAULT_THEME } from '@/lib/theme'
 import { db } from '@/server/db'
 import {
@@ -51,6 +52,28 @@ async function safeRead<T>(label: string, run: () => Promise<T>, fallback: T): P
  * filled row (or a palette written before a new token existed) can never leave
  * the site with an undefined colour.
  */
+/**
+ * Which palette a visitor gets, and whether they may switch.
+ *
+ * A separate reader rather than a field on `ThemeSettings`, because that type
+ * lives in the frozen `@/types/content` and this is not part of a palette — it
+ * decides BETWEEN palettes.
+ */
+export const getAppearance = cache(async (): Promise<AppearanceConfig> => {
+  return safeRead(
+    'getAppearance',
+    async () => {
+      const rows = await db
+        .select({ appearance: themeSettings.appearance })
+        .from(themeSettings)
+        .orderBy(desc(themeSettings.updatedAt))
+        .limit(1)
+      return readAppearance(rows[0]?.appearance)
+    },
+    DEFAULT_APPEARANCE,
+  )
+})
+
 export const getThemeSettings = cache(async (): Promise<ThemeSettings> => {
   return safeRead(
     'getThemeSettings',

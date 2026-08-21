@@ -7,15 +7,17 @@ import { FALLBACK_FOOTER_NAV, FALLBACK_HEADER_NAV, withFallbackNav } from '@/com
 import { ScrollProgress } from '@/components/layout/ScrollProgress'
 import { mediaUrl } from '@/lib/media'
 import { getMediaMap } from '@/server/queries/media'
-import { getNavigation, getThemeSettings } from '@/server/queries/site'
+import { ThemeToggle } from '@/components/layout/ThemeToggle'
+import { getAppearance, getNavigation, getThemeSettings } from '@/server/queries/site'
 
 /** Public shell: scroll rule, cursor, header, main landmark, espresso footer. */
 export default async function SiteLayout({ children }: { children: ReactNode }) {
   // Every query here degrades to defaults internally, so the shell always renders.
-  const [theme, headerNav, footerNav] = await Promise.all([
+  const [theme, headerNav, footerNav, appearance] = await Promise.all([
     getThemeSettings(),
     getNavigation('header'),
     getNavigation('footer'),
+    getAppearance(),
   ])
 
   // `logoMediaId` is an id on the theme row; resolve it here so the header stays
@@ -44,7 +46,20 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
         {children}
       </main>
 
-      <Footer nav={withFallbackNav(footerNav, FALLBACK_FOOTER_NAV)} brand={theme.brand} logo={logo} />
+      <Footer
+        nav={withFallbackNav(footerNav, FALLBACK_FOOTER_NAV)}
+        brand={theme.brand}
+        logo={logo}
+        /*
+          The switch lives in the footer, not the masthead. A theme control is a
+          preference, not a destination: putting it in the nav makes a visitor
+          weigh it against `Dự án` every time they look up. The footer is where
+          people already go for the things a site lets them change.
+        */
+        themeToggle={
+          appearance.allowVisitorChoice ? <ThemeToggle mode={appearance.mode} /> : null
+        }
+      />
     </div>
   )
 }

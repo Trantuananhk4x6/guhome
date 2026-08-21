@@ -17,6 +17,11 @@ import { Input } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
 import { Textarea } from '@/components/ui/Textarea'
 import { DEFAULT_THEME } from '@/lib/theme'
+import {
+  APPEARANCE_MODES,
+  DEFAULT_APPEARANCE,
+  type AppearanceConfig,
+} from '@/lib/appearance'
 import { THEME_PRESETS, presetForColors } from '@/lib/theme-presets'
 import { cn } from '@/lib/utils'
 import { resetTheme, saveTheme } from '@/server/actions/theme'
@@ -37,6 +42,8 @@ import { useActionRunner, useEditorDraft } from './useEditorState'
 
 export interface ThemeEditorProps {
   initial: ThemeSettings
+  /** Which palette a visitor gets — stored beside the theme, not inside it. */
+  initialAppearance: AppearanceConfig
   logo: MediaRef | null
   favicon: MediaRef | null
 }
@@ -50,7 +57,13 @@ function fontOptions(list: readonly string[]): { value: string; label: string }[
   })
 }
 
-export function ThemeEditor({ initial, logo: initialLogo, favicon: initialFavicon }: ThemeEditorProps) {
+export function ThemeEditor({
+  initial,
+  initialAppearance,
+  logo: initialLogo,
+  favicon: initialFavicon,
+}: ThemeEditorProps) {
+  const [appearance, setAppearance] = useState<AppearanceConfig>(initialAppearance)
   const router = useRouter()
   const draft = useEditorDraft<ThemeSettings>(initial)
   const runner = useActionRunner()
@@ -91,7 +104,10 @@ export function ThemeEditor({ initial, logo: initialLogo, favicon: initialFavico
   const motionOff = !theme.motion.enabled || theme.motion.reducedMotion === 'force'
 
   const handleSave = (): void => {
-    runner.run(() => saveTheme(theme), {
+    // Appearance rides along with the theme rather than having its own save:
+    // an editor who picks 'always dark' and a matching palette expects one button
+    // to commit both, not two that can disagree.
+    runner.run(() => saveTheme({ ...theme, appearance }), {
       success: 'Đã lưu giao diện. Toàn site đã cập nhật.',
       onSuccess: () => {
         draft.commit(theme)
@@ -106,6 +122,7 @@ export function ThemeEditor({ initial, logo: initialLogo, favicon: initialFavico
       success: 'Đã khôi phục bảng màu mặc định.',
       onSuccess: () => {
         draft.commit(DEFAULT_THEME)
+        setAppearance(DEFAULT_APPEARANCE)
         setLogo(null)
         setFavicon(null)
         router.refresh()
@@ -118,6 +135,62 @@ export function ThemeEditor({ initial, logo: initialLogo, favicon: initialFavico
       <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_26rem]">
         {/* ------------------------------ controls ----------------------------- */}
         <div className="flex flex-col gap-8">
+          <AdminPanel
+            eyebrow="Appearance"
+            title="Nền sáng hay tối"
+            description="Chọn mặc định cho khách mở trang lần đầu, và có cho khách tự đổi hay không. Chọn 'Tự động' thì trang theo thiết lập sáng/tối trên máy của họ."
+          >
+            <div className="flex flex-col gap-7">
+              <div className="grid gap-3 sm:grid-cols-3">
+                {APPEARANCE_MODES.map((option) => {
+                  const active = appearance.mode === option.value
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => setAppearance((a) => ({ ...a, mode: option.value }))}
+                      className={cn(
+                        'border-line hover:border-accent focus-visible:border-accent flex flex-col gap-2 border p-4 text-left transition-colors duration-300',
+                        active && 'border-accent',
+                      )}
+                    >
+                      <span className="text-ink text-sm font-medium">
+                        {option.label}
+                        {active ? ' · đang dùng' : ''}
+                      </span>
+                      <span className="text-muted text-xs leading-relaxed">{option.note}</span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <ToggleRow
+                label="Cho khách tự đổi sáng/tối"
+                note="Hiện một nút ba trạng thái ở chân trang: Sáng · Tối · Theo máy. Tắt đi thì mọi khách đều thấy đúng bảng màu bạn chọn ở trên."
+                checked={appearance.allowVisitorChoice}
+                onChange={(next) => setAppearance((a) => ({ ...a, allowVisitorChoice: next }))}
+              />
+
+              <div className="grid gap-7 sm:grid-cols-2">
+                <Field label="Bảng dùng khi sáng">
+                  <Select
+                    value={appearance.lightPreset}
+                    options={THEME_PRESETS.filter((x) => !x.dark).map((x) => ({ value: x.id, label: x.name }))}
+                    onChange={(e) => setAppearance((a) => ({ ...a, lightPreset: e.target.value }))}
+                  />
+                </Field>
+                <Field label="Bảng dùng khi tối">
+                  <Select
+                    value={appearance.darkPreset}
+                    options={THEME_PRESETS.filter((x) => x.dark).map((x) => ({ value: x.id, label: x.name }))}
+                    onChange={(e) => setAppearance((a) => ({ ...a, darkPreset: e.target.value }))}
+                  />
+                </Field>
+              </div>
+            </div>
+          </AdminPanel>
+
           <AdminPanel
             eyebrow="Palette"
             title="Bảng màu"

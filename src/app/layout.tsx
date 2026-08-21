@@ -16,9 +16,9 @@ import '@/styles/neon.css'
 import { PageTransition } from '@/components/animation/PageTransition'
 import { Providers } from '@/components/layout/Providers'
 import { siteUrl } from '@/lib/env'
-import { DEFAULT_THEME, THEME_STYLE_ID, themeStyleSheet } from '@/lib/theme'
-import { isDarkGround } from '@/lib/theme-presets'
-import { getThemeSettings } from '@/server/queries/site'
+import { resolveAppearance, themeBootScript } from '@/lib/appearance'
+import { DEFAULT_THEME, THEME_STYLE_ID, dualThemeStyleSheet } from '@/lib/theme'
+import { getAppearance, getThemeSettings } from '@/server/queries/site'
 
 /**
  * The type library the theme editor can choose from.
@@ -138,33 +138,75 @@ export async function generateMetadata(): Promise<Metadata> {
  * near-black page and light-styled native controls on top of it.
  */
 export async function generateViewport(): Promise<Viewport> {
-  const theme = await getThemeSettings().catch(() => DEFAULT_THEME)
-  const dark = isDarkGround(theme.colors)
+  const [theme, appearance] = await Promise.all([
+    getThemeSettings().catch(() => DEFAULT_THEME),
+    getAppearance().catch(() => null),
+  ])
+  const resolved = appearance ? resolveAppearance(appearance, theme.colors) : null
+  const mode = appearance?.mode ?? 'light'
+  // `light dark` tells the browser the page supports both, so it picks the right
+  // form-control and scrollbar rendering itself instead of guessing from one
+  // themeColor. The two themeColor entries let the mobile address bar follow.
   return {
     width: 'device-width',
     initialScale: 1,
-    colorScheme: dark ? 'dark' : 'light',
-    themeColor: theme.colors.canvas,
+    colorScheme: mode === 'auto' ? 'light dark' : mode,
+    themeColor: resolved
+      ? [
+          { media: '(prefers-color-scheme: light)', color: resolved.light.canvas },
+          { media: '(prefers-color-scheme: dark)', color: resolved.dark.canvas },
+        ]
+      : theme.colors.canvas,
   }
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  // `getThemeSettings()` is request-cached and falls back to DEFAULT_THEME itself.
-  const theme = await getThemeSettings()
-  // Decided on the server from the stored palette, so the night treatment is in
-  // the first paint rather than arriving after hydration. `neon.css` keys every
-  // rule off this, which is what keeps the daylight theme free of the light layer.
-  const ground = isDarkGround(theme.colors) ? 'dark' : 'light'
+  // Both request-cached, and both fall back to a working default internally.
+  const [theme, appearance] = await Promise.all([getThemeSettings(), getAppearance()])
+  const resolved = resolveAppearance(appearance, theme.colors)
 
+  /*
+    The server does not choose the palette — it ships both and lets a selector
+    decide. `prefers-color-scheme` is only knowable in the browser, and a
+    visitor's choice has to survive a page they have not requested yet.
+
+    `suppressHydrationWarning` on <html> is required and not a shortcut: the boot
+    script below writes `data-theme` and `data-ground` before React hydrates, so
+    the attributes React finds are legitimately not the ones it rendered.
+  */
   return (
-    <html lang="vi" className={FONT_VARIABLES} data-ground={ground}>
+    <html
+      lang="vi"
+      className={FONT_VARIABLES}
+      data-theme={appearance.mode === 'dark' ? 'dark' : 'light'}
+      data-ground={appearance.mode === 'dark' ? 'dark' : 'light'}
+      suppressHydrationWarning
+    >
+      <head>
+        {/*
+          Blocking, and deliberately so: without it a visitor who chose dark gets
+          one frame of light while React hydrates — the flash every theme
+          switcher is judged by. It reads localStorage and one media query, and
+          costs less than the reflow it prevents.
+        */}
+        <script dangerouslySetInnerHTML={{ __html: themeBootScript(appearance.mode) }} />
+      </head>
       <body className="bg-canvas font-body text-ink">
-        {/* Admin-editable palette. `:root:root` outranks the stylesheet defaults. */}
+        {/* Admin-editable palettes. `:root:root` outranks the stylesheet defaults. */}
         <style
           id={THEME_STYLE_ID}
-          href="an-atelier-theme"
+          href="guhomes-theme"
           precedence="high"
-          dangerouslySetInnerHTML={{ __html: themeStyleSheet(theme) }}
+          dangerouslySetInnerHTML={{
+            __html: dualThemeStyleSheet({
+              theme,
+              light: resolved.light,
+              dark: resolved.dark,
+              bothPalettes: resolved.bothPalettes,
+              followSystem: appearance.mode === 'auto',
+              darkByDefault: appearance.mode === 'dark',
+            }),
+          }}
         />
         <Providers motion={theme.motion}>
           <PageTransition>{children}</PageTransition>

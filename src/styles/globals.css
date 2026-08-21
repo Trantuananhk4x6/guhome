@@ -63,9 +63,11 @@
   --c-accent: #a07753;
   --c-accent-soft: #c7a57c;
 
-  /* The light end of the palette. On a daylight ground that is `canvas`; the
-     night override lives in the block below. */
-  --c-on-dark: var(--c-canvas);
+  /* Text on a dark band. A literal, NOT `var(--c-canvas)`: the whole point is
+     that it does not follow the palette. Invert the ground and canvas goes dark
+     while this stays light, which is what the espresso bands need. The server
+     overrides it per palette; this is the database-less fallback. */
+  --c-on-dark: #f4f1ea;
 
   --f-display: 'Playfair Display';
   --f-body: 'Be Vietnam Pro';
@@ -285,6 +287,28 @@
     outline: 1px solid var(--color-accent);
     outline-offset: 3px;
   }
+}
+
+/*
+ * The one rule that makes 134 usages survive an inverted palette.
+ *
+ * Components spell "light text on the dark band" as `text-canvas` on
+ * `bg-espresso` — true only while canvas IS light. Flip to a night palette and
+ * every one of them is dark-on-dark: measured 1.08:1 where it needs 18:1.
+ *
+ * Rebinding `--color-canvas` inside an espresso surface fixes all of them at
+ * once, with no component edits, because Tailwind v4 resolves every canvas
+ * utility — including the alpha variants, which compile to
+ * `color-mix(in oklab, var(--color-canvas) 55%, transparent)` — through that one
+ * custom property. On a daylight palette `--c-on-dark` equals canvas, so this is
+ * a no-op there rather than a special case to remember.
+ *
+ * Semantically: inside a dark band, "canvas" means the light ground, which is
+ * what the components meant all along.
+ */
+.bg-espresso,
+[data-on-dark] {
+  --color-canvas: var(--c-on-dark);
 }
 
 @layer components {

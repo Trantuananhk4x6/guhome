@@ -189,8 +189,10 @@ function cssFontStack(value: string | undefined, fallback: string): string {
  * ARCHITECTURE §6.7 — `"--c-canvas:#f4f1ea;..."`.
  * Returns declarations only (no selector); the caller wraps them in a rule.
  */
-export function themeToCssVars(t: ThemeSettings): string {
+export function themeToCssVars(t: ThemeSettings, onDarkGround?: string): string {
   const colors = t.colors ?? DEFAULT_COLORS
+  // Falls back to the daylight canvas, which is a light ground by definition.
+  const onDark = onDarkGround ?? DEFAULT_COLORS.canvas
   const type = t.typography ?? DEFAULT_TYPOGRAPHY
   const motion = t.motion ?? DEFAULT_MOTION
 
@@ -209,6 +211,13 @@ export function themeToCssVars(t: ThemeSettings): string {
     `--c-espresso:${cssColor(colors.espresso, DEFAULT_COLORS.espresso)}`,
     `--c-accent:${cssColor(colors.accent, DEFAULT_COLORS.accent)}`,
     `--c-accent-soft:${cssColor(colors.accentSoft, DEFAULT_COLORS.accentSoft)}`,
+    // The one value that must NOT follow the palette. Components spell "text on
+    // the dark band" as `text-canvas`, which is true only while canvas is light;
+    // invert the palette and 134 usages across 42 files become dark-on-dark.
+    // `--c-on-dark` is always a light ground, and globals.css rebinds
+    // `--color-canvas` to it inside every espresso surface — so every one of
+    // those usages keeps working, in either direction, with no component edits.
+    `--c-on-dark:${cssColor(onDark, DEFAULT_COLORS.canvas)}`,
     `--f-display:${cssFontStack(type.displayFont, DEFAULT_TYPOGRAPHY.displayFont)}`,
     `--f-body:${cssFontStack(type.bodyFont, DEFAULT_TYPOGRAPHY.bodyFont)}`,
     `--display-scale:${num(cssNumber(type.displayScale, 0.6, 2, DEFAULT_TYPOGRAPHY.displayScale))}`,
@@ -227,4 +236,47 @@ export function themeToCssVars(t: ThemeSettings): string {
  */
 export function themeStyleSheet(t: ThemeSettings): string {
   return `:root:root{${themeToCssVars(t)}}`
+}
+
+export interface DualThemeInput {
+  readonly theme: ThemeSettings
+  readonly light: ThemeColors
+  readonly dark: ThemeColors
+  /** Emit the dark blocks at all. False ships one palette and nothing else. */
+  readonly bothPalettes: boolean
+  /** Apply dark when the OS asks and the visitor has not overridden. */
+  readonly followSystem: boolean
+  /** Apply dark unless the visitor has explicitly chosen light. */
+  readonly darkByDefault: boolean
+}
+
+/**
+ * Both palettes in one stylesheet, with a selector deciding between them.
+ *
+ * The server cannot pick: `prefers-color-scheme` is only knowable in the browser,
+ * and a visitor's choice has to survive a page they have not requested yet. So
+ * the cascade decides, and every block is written `:root:root...` so it outranks
+ * the `@theme` defaults regardless of stylesheet order.
+ *
+ * `:not([data-theme="light"])` is what lets an explicit choice beat the OS in
+ * BOTH directions — without it, someone on a dark-mode phone could never choose
+ * light.
+ */
+export function dualThemeStyleSheet(input: DualThemeInput): string {
+  const { theme, light, dark, bothPalettes, followSystem, darkByDefault } = input
+  const onDark = light.canvas
+  const lightVars = themeToCssVars({ ...theme, colors: light }, onDark)
+  if (!bothPalettes) return `:root:root{${lightVars}}`
+
+  const darkVars = themeToCssVars({ ...theme, colors: dark }, onDark)
+  const blocks = [`:root:root{${lightVars}}`, `:root:root[data-theme="dark"]{${darkVars}}`]
+  if (darkByDefault) {
+    blocks.push(`:root:root:not([data-theme="light"]){${darkVars}}`)
+  }
+  if (followSystem) {
+    blocks.push(
+      `@media (prefers-color-scheme: dark){:root:root:not([data-theme="light"]){${darkVars}}}`,
+    )
+  }
+  return blocks.join('')
 }

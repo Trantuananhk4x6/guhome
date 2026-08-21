@@ -17,6 +17,7 @@ import { requireAdmin } from '@/server/auth'
 import { db } from '@/server/db'
 import { auditLogs, themeSettings } from '@/server/db/schema'
 import type { ActionResult } from '@/components/admin/site/contracts'
+import { DEFAULT_APPEARANCE, type AppearanceConfig } from '@/lib/appearance'
 import type { ThemeSettings } from '@/types/content'
 
 /* -------------------------------- validation ------------------------------- */
@@ -87,7 +88,20 @@ const brandSchema = z.object({
     .max(12, 'Tối đa 12 kênh.'),
 })
 
+/**
+ * Which palette a visitor gets. Optional so an older client that does not send it
+ * still saves — the persist step leaves the stored value alone in that case,
+ * rather than silently resetting a setting the form never showed.
+ */
+const appearanceSchema = z.object({
+  mode: z.enum(['light', 'dark', 'auto']),
+  lightPreset: z.string().min(1).max(48),
+  darkPreset: z.string().min(1).max(48),
+  allowVisitorChoice: z.boolean(),
+})
+
 const themeSchema = z.object({
+  appearance: appearanceSchema.optional(),
   colors: colorsSchema,
   typography: typographySchema,
   motion: motionSchema,
@@ -129,7 +143,11 @@ function revalidateEverything(): void {
   revalidatePath('/', 'layout')
 }
 
-async function persist(theme: ThemeSettings, userId: string): Promise<string> {
+async function persist(
+  theme: ThemeSettings,
+  userId: string,
+  appearance?: AppearanceConfig,
+): Promise<string> {
   const existing = await db
     .select({ id: themeSettings.id })
     .from(themeSettings)
@@ -145,6 +163,9 @@ async function persist(theme: ThemeSettings, userId: string): Promise<string> {
         typography: theme.typography,
         motion: theme.motion,
         brand: theme.brand,
+        // Spread, so omitting it leaves the stored value alone rather than
+        // nulling a setting the submitting form may never have shown.
+        ...(appearance ? { appearance } : {}),
         updatedBy: userId,
         updatedAt: new Date(),
       })
@@ -159,6 +180,7 @@ async function persist(theme: ThemeSettings, userId: string): Promise<string> {
       typography: theme.typography,
       motion: theme.motion,
       brand: theme.brand,
+      appearance: appearance ?? DEFAULT_APPEARANCE,
       updatedBy: userId,
     })
     .returning({ id: themeSettings.id })
@@ -181,10 +203,11 @@ export async function saveTheme(input: unknown): Promise<ActionResult> {
     }
   }
 
-  const theme: ThemeSettings = parsed.data
+  const { appearance, ...rest } = parsed.data
+  const theme: ThemeSettings = rest
 
   try {
-    const id = await persist(theme, session.userId)
+    const id = await persist(theme, session.userId, appearance)
     revalidateEverything()
     await audit(
       session.userId,
@@ -194,6 +217,7 @@ export async function saveTheme(input: unknown): Promise<ActionResult> {
         displayFont: theme.typography.displayFont,
         bodyFont: theme.typography.bodyFont,
         motionEnabled: theme.motion.enabled,
+        appearanceMode: appearance?.mode ?? null,
       },
       id.length > 0 ? id : undefined,
     )
