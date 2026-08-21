@@ -152,6 +152,8 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  /** Latched ground state, so the threshold can have two edges. */
+  const railRef = useRef(false)
   const markRef = useRef<HTMLSpanElement>(null)
   useLetterLift(markRef)
   const ctaRef = useRef<HTMLSpanElement>(null)
@@ -209,7 +211,12 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
       // otherwise it floats over whatever the hero's own display type has
       // scrolled up into it. The ground takes the tone of what is behind it:
       // espresso over the hero, canvas everywhere else.
-      const rail = scroll > 24
+      // Hysteresis, not a single threshold: a reader resting at exactly 24px —
+      // or nudging a trackpad — would otherwise flip the ground on and off,
+      // and each flip is a 700ms colour transition. Ground appears at 28px and
+      // does not leave until 12px, so the two edges can never chatter.
+      const rail = railRef.current ? scroll > 12 : scroll > 28
+      railRef.current = rail
       el.dataset.mode = overHero ? 'dark' : 'light'
       el.dataset.solid = rail ? 'true' : 'false'
       el.dataset.scrim = overHero && !rail ? 'on' : 'off'
@@ -227,17 +234,37 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
       })
     }
 
-    // Watch for the hero landing after hydration, then stop — one rAF-throttled
-    // repaint per mutation burst, and nothing at all once the tone is known.
+    /**
+     * Watch for the hero landing after hydration.
+     *
+     * `tone !== null` is NOT the finish line, and stopping there was a real
+     * defect: an element can be in the DOM a frame before it has layout, and a
+     * hero with height 0 makes `overHero` false — so the bar inked itself dark
+     * over a dark photograph and, with the watcher already disconnected, never
+     * reconsidered. Measured on arrival: the first paint reported light, over a
+     * hero that is dark.
+     *
+     * So the handover happens only once the hero is BOTH present and measured,
+     * and a ResizeObserver takes over from there — the hero is `100svh`, and on
+     * a phone that value changes when the address bar collapses.
+     */
+    let sizeWatcher: ResizeObserver | null = null
     const watcher = new MutationObserver(() => {
       repaint()
-      if (tone !== null) watcher.disconnect()
+      const hero = toneElement()
+      if (hero === null || hero.getBoundingClientRect().height <= 0) return
+      watcher.disconnect()
+      sizeWatcher = new ResizeObserver(repaint)
+      sizeWatcher.observe(hero)
     })
     watcher.observe(document.body, { childList: true, subtree: true })
     // Generous, because a cold dev compile can stream the page in seconds after
     // the shell; the watcher is idle work until then and stops the moment the
     // hero appears.
     const stopWatching = window.setTimeout(() => watcher.disconnect(), 15000)
+    // The server-rendered hero is usually already there; one extra pass after
+    // layout settles catches it without waiting for a mutation that never comes.
+    const settle = window.requestAnimationFrame(repaint)
     window.addEventListener('resize', repaint)
 
     const ctx = gsap.context(() => {
@@ -263,6 +290,8 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
 
     return () => {
       watcher.disconnect()
+      sizeWatcher?.disconnect()
+      window.cancelAnimationFrame(settle)
       window.clearTimeout(stopWatching)
       window.removeEventListener('resize', repaint)
       ctx.revert()
@@ -323,12 +352,23 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
           full mark on the page you arrive at, a tighter one on every page you
           scroll through.
         */}
-        <div
-          className={cn(
-            'u-gutter relative flex h-20 items-center transition-[height] duration-700 ease-editorial md:h-24',
-            'md:group-data-[solid=true]/hdr:h-[4.75rem]',
-          )}
-        >
+        {/*
+          ONE height, in every state.
+
+          The bar used to condense 96 → 76px on scroll, animated over 700ms. The
+          intent was the move a printed masthead makes when it becomes a running
+          head. What it actually does on screen: because the row is
+          `items-baseline`, changing its height re-solves the baseline and EVERY
+          element in the bar slides — measured, the nav moved 13px vertically
+          each time the reader crossed 24px of scroll. Scroll down and back up
+          near that threshold and the whole masthead swims. That is the layout
+          breaking up as you scroll, and no amount of easing fixes it, because
+          the movement is the feature.
+
+          So the bar is now a constant. What changes on scroll is what SHOULD
+          change: it gains a ground and a hairline. Nothing moves.
+        */}
+        <div className="u-gutter relative flex h-20 items-center md:h-[5.25rem]">
           <div className="flex w-full items-baseline gap-x-5 md:gap-x-6 lg:gap-x-8">
             {/*
               The mark carries the way home. `Trang chủ` is a row the admin owns
@@ -359,6 +399,25 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
                 Height in `em` rather than px so it tracks the responsive type
                 scale beside it, and `priority` because this is above the fold on
                 every route.
+
+                2.5em, NOT 4.4em, and the number is measured rather than
+                preferred. The row is baseline-aligned and an <img> baselines on
+                its own bottom edge, so the mark's height sets the level of every
+                rule in the bar: the nav underlines, the spine and the `Liên hệ`
+                stroke all land ~9px under it. At 4.4em the mark was 97px inside
+                a 76px scrolled bar — measured on /services at 1600 scrolled to
+                1100 — so it was clipped 16px at the top, and it dragged the
+                shared baseline to y=82 with the underlines at y=90, fourteen
+                pixels BELOW the bar's own ground. That is why body copy reads
+                straight through the nav glyphs on that frame: the labels are
+                not behind a weak backdrop, they are outside the bar entirely.
+
+                The ceiling is arithmetic. Centred in the 76px scrolled bar the
+                baseline sits at (76 + h)/2 and the rules 8px under it, so the
+                whole masthead is inside its ground only while h ≤ ~58px. 2.5em
+                resolves to 47.5 / 50 / 55px across the three steps — still by
+                far the largest mark in a bar of 11px labels, and now a mark the
+                bar can actually contain.
               */}
               {logo ? (
                 <Image
@@ -367,7 +426,7 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
                   width={512}
                   height={512}
                   priority
-                  className="h-[3.6em] w-auto md:h-[4em] lg:h-[4.4em]"
+                  className="h-[2.5em] w-auto"
                 />
               ) : (
                 /*
@@ -398,9 +457,31 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
               className="hidden h-px min-w-0 flex-1 translate-y-[9px] self-baseline bg-current opacity-20 md:block"
             />
 
+            {/*
+              THE RAIL YIELDS BEFORE THE CONVERSION DOES. The row used to be a
+              `flex-1` spine between two `shrink-0` blocks, which means the line
+              has exactly one elastic pixel budget — the spine — and when that
+              is spent the line overflows and `overflow-x: hidden` on <body>
+              clips whatever is furthest right. Furthest right is `Liên hệ`.
+
+              Measured at the tightest width the rail exists at: 768px, gutter
+              4vw = 30.7px, so the row is 707px and the four blocks and their
+              gaps came to 670px. Thirty-seven pixels of slack — three or four
+              characters — on labels the admin can rename at will. `Bài viết` →
+              `Nhật ký công trình` and the studio loses its conversion on every
+              tablet.
+
+              So the nav is now the elastic block instead: `min-w-0` lets it
+              shrink past its content, `flex-wrap` means shrinking wraps the
+              rail onto a second line rather than clipping it, and the spine
+              still collapses first (basis 0 absorbs no shrink). Nothing is ever
+              cut off, and the block that survives untouched is the one the site
+              exists to deliver visitors to. The tightened md gaps below widen
+              the slack that reaches that fallback from 37px to ~91px.
+            */}
             <nav
               aria-label="Điều hướng chính"
-              className="hidden shrink-0 items-baseline gap-x-8 md:flex lg:gap-x-12"
+              className="hidden min-w-0 flex-wrap items-baseline justify-end gap-x-6 gap-y-2 md:flex lg:gap-x-12"
             >
               {/*
                 `groupNav` pulls Trang chủ onto the wordmark, on the reasoning
@@ -419,7 +500,7 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
                 the lead sitting against a 48px gap and nothing after it.
               */}
               {rest.length > 0 ? (
-                <span className="flex items-baseline gap-x-5 lg:gap-x-7">
+                <span className="flex min-w-0 flex-wrap items-baseline gap-x-4 gap-y-2 lg:gap-x-7">
                   {rest.map((item) => (
                     <NavLink key={item.id} item={item} variant="rest" pathname={pathname} />
                   ))}
