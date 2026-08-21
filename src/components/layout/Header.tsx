@@ -288,9 +288,16 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
           'group/hdr fixed inset-x-0 top-0 z-50 text-ink will-change-transform',
           'transition-colors duration-700 ease-editorial',
           'data-[mode=dark]:text-canvas',
-          'data-[solid=true]:backdrop-blur-md',
-          'data-[mode=light]:data-[solid=true]:bg-canvas/85',
-          'data-[mode=dark]:data-[solid=true]:bg-espresso/80',
+          // 85% and 80% were chosen to keep a little of the photograph alive
+          // behind the bar. Over a project index of full-bleed imagery that is
+          // not restraint, it is an unresolved bar: the pictures read straight
+          // through the nav and the labels sit on whatever happens to be under
+          // them. A bar that has committed to being a bar is calmer than one
+          // that is half there. The blur stays, so it still feels like glass
+          // rather than a slab, and the hairline below gives it a real edge.
+          'data-[solid=true]:backdrop-blur-xl',
+          'data-[mode=light]:data-[solid=true]:bg-canvas/96',
+          'data-[mode=dark]:data-[solid=true]:bg-espresso/94',
         )}
       >
         {/*
@@ -484,7 +491,7 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
 
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-line opacity-0 transition-opacity duration-700 group-data-[mode=dark]/hdr:bg-canvas/15 group-data-[solid=true]/hdr:opacity-100"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-line opacity-0 transition-opacity duration-700 group-data-[mode=dark]/hdr:bg-canvas/25 group-data-[solid=true]/hdr:opacity-100"
         />
       </header>
 
