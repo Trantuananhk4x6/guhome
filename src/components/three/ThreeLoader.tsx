@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, type JSX } from 'react'
 import { gsap, registerGsap } from '@/animations/gsap'
 import type { MediaRef } from '@/types/content'
 import { mediaUrl } from '@/lib/media'
+import { BrandMark } from '@/components/ui/BrandMark'
 import { clamp, cn } from '@/lib/utils'
 
 export interface ThreeLoaderProps {
@@ -217,6 +218,11 @@ export function ThreeLoader({
         </div>
       )}
       <div className="absolute inset-0 bg-espresso/55" />
+
+      {/* Centred on the blurred room the visitor is about to walk into. */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <BrandMark waiting onDark className="h-16 w-16 md:h-20 md:w-20" />
+      </div>
 
       <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 p-[var(--spacing-gutter)] pb-[calc(var(--spacing-gutter)*1.2)]">
         <div className="flex items-baseline justify-between gap-8">

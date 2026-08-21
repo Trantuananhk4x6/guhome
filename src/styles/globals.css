@@ -515,3 +515,23 @@
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * The waiting mark. Opacity and a hair of scale, nothing else — a spinner says
+ * "the machine is busy", a mark that breathes says "the studio is opening the
+ * door", which is the register this site is in everywhere else.
+ *
+ * `motion-safe:` gates the class that uses it, so a reader who asked for reduced
+ * motion gets a still mark rather than a still page with one thing moving on it.
+ */
+@keyframes brand-breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,3 +1,4 @@
+import { BrandMark } from '@/components/ui/BrandMark'
 import { Label } from '@/components/ui/Label'
 
 export default function Loading() {
@@ -8,6 +9,10 @@ export default function Loading() {
       className="u-gutter flex min-h-[72vh] items-center py-[calc(var(--spacing-section)*0.75)]"
     >
       <div className="mx-auto w-full max-w-[100rem]">
+        {/* The mark first, then the word. On a slow connection this is the only
+            thing on screen for a second or two, so it should be the studio's
+            face rather than a label. */}
+        <BrandMark waiting className="mb-8 h-14 w-14" />
         <Label>Đang tải</Label>
 
         {/* A hairline that breathes — the quietest loader in the system. */}
