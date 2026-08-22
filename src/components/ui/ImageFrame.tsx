@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useRef, type ReactNode, type RefObject } from 'react'
 
 import { useImageReveal } from '@/animations/image'
+import { mediaUrl } from '@/lib/media'
 import { cn } from '@/lib/utils'
 import type { MediaRef, RevealVariant } from '@/types/content'
 
@@ -26,6 +27,14 @@ export interface ImageFrameProps {
   alt?: string
   ratio?: ImageRatio
   sizes?: string
+  /**
+   * Derivative width asked of the media pipeline, as in `ProjectFigure`.
+   * `media.url` is the base storage key, so it must go through `mediaUrl()`
+   * before `next/image` sees it — handing the raw value over pinned the frame
+   * to whichever single derivative the row happened to name (or 404'd on a row
+   * that correctly stores no extension at all).
+   */
+  width?: number
   priority?: boolean
   quality?: number
   /** `true` uses `media.caption`; a node renders that instead. */
@@ -60,6 +69,7 @@ export function ImageFrame({
   alt,
   ratio = '4/3',
   sizes = '(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 40vw',
+  width = 1600,
   priority = false,
   quality,
   caption,
@@ -91,7 +101,7 @@ export function ImageFrame({
 
       {media ? (
         <Image
-          src={media.url}
+          src={mediaUrl(media, width)}
           alt={alt ?? media.alt ?? ''}
           {...(intrinsic
             ? { width: media.width ?? 1600, height: media.height ?? 1067 }
