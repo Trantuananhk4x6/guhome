@@ -1,0 +1,431 @@
+{
+  "agent": "waypoints-b",
+  "folders": [
+    {
+      "sourceDir": "THE OPERA METROPOLE ( ANH VŨ )/ẢNH THIẾT KẾ 3D",
+      "coverIndex": 0,
+      "materials": [],
+      "rooms": [],
+      "palette": "",
+      "lighting": "",
+      "waypoints": [
+        {
+          "position": [
+            -0.35,
+            1.86,
+            8.8
+          ],
+          "target": [
+            0.2,
+            1.62,
+            -2.2
+          ],
+          "at": 0,
+          "ease": "power2.out",
+          "label": "Tường trắng giữ nguyên"
+        },
+        {
+          "position": [
+            -0.9,
+            1.8,
+            6.3
+          ],
+          "target": [
+            -1.5,
+            1.7,
+            -1.6
+          ],
+          "at": 0.33,
+          "ease": "power4.inOut",
+          "label": "Phù điêu gốm đất nung"
+        },
+        {
+          "position": [
+            -0.2,
+            1.66,
+            3.9
+          ],
+          "target": [
+            1.7,
+            1.3,
+            -1.9
+          ],
+          "at": 0.66,
+          "ease": "power3.out",
+          "label": "Quay sang thân tủ xẻ rãnh"
+        },
+        {
+          "position": [
+            0.55,
+            1.5,
+            1.9
+          ],
+          "target": [
+            2.15,
+            0.72,
+            -1.4
+          ],
+          "at": 1,
+          "ease": "expo.out",
+          "label": "Dải lửa sinh học cao độ thấp"
+        }
+      ],
+      "images": []
+    },
+    {
+      "sourceDir": "CHUNG CƯ MỸ GIA - Q7 - PHÚ MỸ HƯNG/ẢNH THIẾT KẾ 3D",
+      "coverIndex": 0,
+      "materials": [],
+      "rooms": [],
+      "palette": "",
+      "lighting": "",
+      "waypoints": [
+        {
+          "position": [
+            0.5,
+            1.82,
+            8.6
+          ],
+          "target": [
+            0.1,
+            1.5,
+            -1.2
+          ],
+          "at": 0,
+          "ease": "power2.out",
+          "label": "Trục chung không vách"
+        },
+        {
+          "position": [
+            -0.7,
+            1.76,
+            6.1
+          ],
+          "target": [
+            -0.7,
+            1.44,
+            -1.6
+          ],
+          "at": 0.33,
+          "ease": "power2.inOut",
+          "label": "Cụm ngồi nỉ thấp"
+        },
+        {
+          "position": [
+            0.3,
+            1.68,
+            3.6
+          ],
+          "target": [
+            0.5,
+            1.4,
+            -2.4
+          ],
+          "at": 0.66,
+          "ease": "power3.out",
+          "label": "Rèm cà phê sữa lọc nắng"
+        },
+        {
+          "position": [
+            1.05,
+            1.56,
+            1.6
+          ],
+          "target": [
+            1.25,
+            1.18,
+            -2.6
+          ],
+          "at": 1,
+          "ease": "expo.out",
+          "label": "Bàn ăn trên sàn đá ngà"
+        }
+      ],
+      "images": []
+    },
+    {
+      "sourceDir": "DUPLEX/CĂN HIỆN ĐẠI 1 ( ANH THỌ )",
+      "coverIndex": 0,
+      "materials": [],
+      "rooms": [],
+      "palette": "",
+      "lighting": "",
+      "waypoints": [
+        {
+          "position": [
+            1.6,
+            1.88,
+            7.4
+          ],
+          "target": [
+            -0.6,
+            3.2,
+            -1.8
+          ],
+          "at": 0,
+          "ease": "power2.out",
+          "label": "Ngước lên khoảng thông tầng"
+        },
+        {
+          "position": [
+            1,
+            1.84,
+            5.4
+          ],
+          "target": [
+            -0.5,
+            2.45,
+            -2
+          ],
+          "at": 0.32,
+          "ease": "power4.inOut",
+          "label": "Ba vòng đèn lệch cao độ"
+        },
+        {
+          "position": [
+            0.35,
+            1.72,
+            3.2
+          ],
+          "target": [
+            -0.7,
+            1.72,
+            -2.2
+          ],
+          "at": 0.66,
+          "ease": "power2.inOut",
+          "label": "Hốc vòm đất nung khoét sâu"
+        },
+        {
+          "position": [
+            -0.15,
+            1.54,
+            1.35
+          ],
+          "target": [
+            -0.85,
+            1.15,
+            -2.35
+          ],
+          "at": 1,
+          "ease": "expo.out",
+          "label": "Tủ sơn bóng dưới chân vòm"
+        }
+      ],
+      "images": []
+    },
+    {
+      "sourceDir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 7/PHÒNG KHÁCH",
+      "coverIndex": 0,
+      "materials": [],
+      "rooms": [],
+      "palette": "",
+      "lighting": "",
+      "waypoints": [
+        {
+          "position": [
+            -0.25,
+            1.88,
+            8.4
+          ],
+          "target": [
+            0,
+            1.75,
+            -2
+          ],
+          "at": 0,
+          "ease": "power2.out",
+          "label": "Phòng khách phải yên"
+        },
+        {
+          "position": [
+            0.55,
+            1.82,
+            6.2
+          ],
+          "target": [
+            1.5,
+            1.6,
+            -1.5
+          ],
+          "at": 0.33,
+          "ease": "power2.inOut",
+          "label": "Tủ travertine hắt sáng"
+        },
+        {
+          "position": [
+            0.1,
+            1.72,
+            3.9
+          ],
+          "target": [
+            -0.15,
+            1.5,
+            -2.3
+          ],
+          "at": 0.66,
+          "ease": "power4.inOut",
+          "label": "Sofa nhung xám chạy hết phòng"
+        },
+        {
+          "position": [
+            -0.1,
+            1.58,
+            2
+          ],
+          "target": [
+            -0.05,
+            1.62,
+            -2.6
+          ],
+          "at": 1,
+          "ease": "power3.out",
+          "label": "Mạch breccia ghép đối xứng"
+        }
+      ],
+      "images": []
+    },
+    {
+      "sourceDir": "NHÀ PHỐ HIỆN ĐẠI/NHÀ PHỐ 6/PHÒNG KHÁCH BẾP",
+      "coverIndex": 0,
+      "materials": [],
+      "rooms": [],
+      "palette": "",
+      "lighting": "",
+      "waypoints": [
+        {
+          "position": [
+            0.95,
+            1.84,
+            7.2
+          ],
+          "target": [
+            0.1,
+            2,
+            -2
+          ],
+          "at": 0,
+          "ease": "power3.out",
+          "label": "Từ nửa bếp nhìn sang"
+        },
+        {
+          "position": [
+            0.4,
+            1.8,
+            5.1
+          ],
+          "target": [
+            0,
+            2.35,
+            -2.2
+          ],
+          "at": 0.33,
+          "ease": "power4.inOut",
+          "label": "Mảng óc chó cao gần bốn mét"
+        },
+        {
+          "position": [
+            0.05,
+            1.7,
+            3.1
+          ],
+          "target": [
+            0,
+            2,
+            -2.4
+          ],
+          "at": 0.66,
+          "ease": "power2.inOut",
+          "label": "Đá ghép đối xứng giữa tường"
+        },
+        {
+          "position": [
+            0,
+            1.55,
+            1.3
+          ],
+          "target": [
+            0,
+            1.35,
+            -2.5
+          ],
+          "at": 1,
+          "ease": "expo.out",
+          "label": "Nhịp vân xương cá đổi chiều"
+        }
+      ],
+      "images": []
+    },
+    {
+      "sourceDir": "SHOP + CỬA HÀNG + SPA/SPA/SPA SỐ 2 JAPAN",
+      "coverIndex": 0,
+      "materials": [],
+      "rooms": [],
+      "palette": "",
+      "lighting": "",
+      "waypoints": [
+        {
+          "position": [
+            0,
+            1.72,
+            12.8
+          ],
+          "target": [
+            0,
+            1.62,
+            -1.6
+          ],
+          "at": 0,
+          "ease": "power2.out",
+          "label": "Bỏ giày ở cửa"
+        },
+        {
+          "position": [
+            0.1,
+            1.68,
+            9
+          ],
+          "target": [
+            0,
+            1.9,
+            -1.8
+          ],
+          "at": 0.33,
+          "ease": "power2.inOut",
+          "label": "Hai bệ tần bì nâng hai trăm"
+        },
+        {
+          "position": [
+            -0.08,
+            1.6,
+            5.4
+          ],
+          "target": [
+            0,
+            2.15,
+            -2
+          ],
+          "at": 0.66,
+          "ease": "power4.inOut",
+          "label": "Dải cửa sổ giấy sáng đều"
+        },
+        {
+          "position": [
+            0,
+            1.5,
+            2.2
+          ],
+          "target": [
+            0,
+            1.45,
+            -2.4
+          ],
+          "at": 1,
+          "ease": "expo.out",
+          "label": "Bộ cửa lùa chạm chim hạc"
+        }
+      ],
+      "images": []
+    }
+  ]
+}

@@ -1,0 +1,537 @@
+@import 'tailwindcss';
+
+/*
+ * GuHomes — design tokens.
+ * Runtime values are CSS custom properties so the Admin theme editor can
+ * override them per-request (see ThemeProvider -> inline <style>).
+ * Tailwind utilities below map onto those variables, never onto raw hex.
+ */
+
+@theme {
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+  --color-surface-alt: var(--c-surface-alt);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-line: var(--c-line);
+  --color-espresso: var(--c-espresso);
+  --color-accent: var(--c-accent);
+  --color-accent-soft: var(--c-accent-soft);
+
+  /*
+   * A ROLE, NOT A COLOUR — the foreground for anything sitting on a permanently
+   * dark ground (an espresso band, a photograph under a scrim). It resolves to
+   * whichever end of the palette is the LIGHT one, so it is correct in daylight
+   * and at night. New work should reach for `text-on-dark` rather than
+   * `text-canvas`; see the compatibility shim below for why the old spelling
+   * still works.
+   */
+  --color-on-dark: var(--c-on-dark);
+
+  --font-display: var(--f-display), 'Playfair Display', ui-serif, Georgia, serif;
+  --font-body: var(--f-body), 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+
+  --tracking-label: 0.11em;
+  --tracking-display: -0.02em;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --spacing-gutter: clamp(1.25rem, 4vw, 4.5rem);
+  /* 14vh of padding on each edge was tuned for sections that each held one
+     idea; every section now holds two or three, and sixteen edges across eight
+     sections were spending most of a viewport on nothing. */
+  --spacing-section: clamp(4.5rem, 11vh, 9rem);
+  /* The gap BETWEEN bands inside one section. It must always read as smaller
+     than a section break — before this existed each section invented its own
+     clamp and one of them (176px) had grown larger than the break it sat in. */
+  --spacing-band: clamp(3rem, 7vh, 5.5rem);
+
+  --breakpoint-xs: 30rem;
+  --breakpoint-3xl: 110rem;
+}
+
+:root {
+  /* Palette — limestone / oat / ink with a bronze-clay accent. */
+  --c-canvas: #f4f1ea;
+  --c-surface: #eae5da;
+  --c-surface-alt: #dcd5c7;
+  --c-ink: #1c1b18;
+  --c-muted: #5f5a50;
+  --c-line: #d7d0c2;
+  --c-espresso: #131210;
+  --c-accent: #a07753;
+  --c-accent-soft: #c7a57c;
+
+  /* Text on a dark band. A literal, NOT `var(--c-canvas)`: the whole point is
+     that it does not follow the palette. Invert the ground and canvas goes dark
+     while this stays light, which is what the espresso bands need. The server
+     overrides it per palette; this is the database-less fallback. */
+  --c-on-dark: #f4f1ea;
+
+  --f-display: 'Playfair Display';
+  --f-body: 'Be Vietnam Pro';
+
+  --display-scale: 1;
+  --body-scale: 1;
+
+  /* Motion — overridden by MotionConfig / prefers-reduced-motion. */
+  --motion-intensity: 1;
+  --motion-duration: 1s;
+
+  color-scheme: light;
+}
+
+/*
+ * ============================================================================
+ * ON-DARK TOKEN RESOLUTION — the fix for the palette inversion.
+ * ============================================================================
+ *
+ * THE BUG. 134 uses of `text-canvas` across 42 files do not mean "the colour
+ * canvas". They mean "the text that sits on the dark band". Those two readings
+ * were the same thing while canvas was limestone; the moment a night preset
+ * makes canvas #14120E they diverge, and every one of those 134 becomes
+ * dark-on-dark. Measured on amber-night: text-canvas on bg-espresso is 1.08:1
+ * where it needs 18:1. The same inversion hits `border-canvas/12`, the low-alpha
+ * `bg-canvas/20` hairlines, and — unreported but just as dead — the `light`
+ * Button's `bg-canvas text-espresso`, which is the primary CTA of /services.
+ *
+ * WHY IT INVERTS, PRECISELY. `espresso` is the only palette colour that is dark
+ * in all four presets (#131210 / #080705 / #070910 / #080508); a photograph
+ * under a scrim behaves the same way. Every other token swaps ends when the
+ * ground flips: canvas <-> ink, and accent goes from mid-dark pigment to lit
+ * source. So a pairing of two swapping tokens survives the flip on its own —
+ * `bg-ink text-canvas` measures 15.3:1 in limestone and 16.9:1 on amber-night
+ * without anyone touching it. What breaks is exactly a swapping token paired
+ * with the one that never swaps. That is the whole bug, stated as a rule.
+ *
+ * THE CHOICE. Option (a), a `--c-on-espresso` role token with all 134 call
+ * sites migrated, is the correct semantics but it edits 42 files owned by other
+ * agents, and it still rots: nothing stops the next component from writing
+ * `text-canvas` on a dark band. Option (b), redefining the token inside dark
+ * regions, needs no component edits and cannot rot — but on its own it is too
+ * blunt, because a blanket flip would also hit the pairs that were already
+ * correct. Flipping `text-canvas` on `bg-accent` takes amber-night from 10.5:1
+ * to 1.61:1, cyan from 13.0:1 to 1.28:1, magenta from 6.1:1 to 2.77:1: three new
+ * invisible-text bugs traded for one fixed one.
+ *
+ * So this is (b) with the rule above written into the selectors, plus (a)'s
+ * token published in `@theme` as the sanctioned spelling for new work. Nothing
+ * is flipped wholesale; what is redefined is `--color-canvas` *on the elements
+ * and regions that are genuinely on a dark ground*, and it is put back on the
+ * fills that already invert by themselves. Every Tailwind canvas utility —
+ * plain and every alpha step — compiles to `var(--color-canvas)` (verified in
+ * the served bundle: `.text-canvas\/55` is
+ * `color-mix(in oklab, var(--color-canvas) 55%, transparent)`), so re-pointing
+ * the custom property carries all thirteen alpha variants with it for free.
+ *
+ * Everything below is gated on `[data-ground='dark']`, which the root layout
+ * sets from the stored palette. Under a daylight ground these rules do not
+ * exist, so the limestone rendering is untouched by construction rather than by
+ * a value that happens to come out the same.
+ */
+
+/*
+ * PRECEDENCE IS DECLARED, NOT COUNTED. The four rules below must fire in a fixed
+ * order — region, then element, then the fills that opt out, then the hover that
+ * opts back in — and the first version of this got it wrong: adding the `:not()`
+ * to rule 2 raised it to (0,3,0) and it silently began outranking the (0,2,0)
+ * opt-out, which turned the contact form's submit button cream-on-cream at
+ * 1.0:1. Named layers make the order explicit and immune to that: a later layer
+ * wins over an earlier one at ANY specificity, so a future exception can be
+ * added without re-deriving anyone's selector weight.
+ */
+@layer an-ondark-region, an-ondark-element, an-ondark-fill, an-ondark-hover;
+
+/* 0. THE ROLE. On a night ground the light end of the palette is `ink`, not
+      `canvas` — that single swap is what the rest of this block distributes. */
+[data-ground='dark'] {
+  --c-on-dark: var(--c-ink);
+}
+
+/* 1. REGIONS. A permanently dark ground, named by the markup that makes it so:
+      an opaque espresso fill, or one of the two tone contracts the components
+      already publish (`data-hero-tone` is Hero3D/ProjectHero, `data-mode` is the
+      Header over a dark hero). `[data-on-dark]` is the hook for anything new.
+      The custom property inherits, so every descendant is covered — including
+      the ones that never name canvas at all, like the `light` Button's fill.
+      Written as `.bg-espresso` deliberately: the class selector matches only the
+      exact token, so the translucent `bg-espresso/40` dialog *scrims* — which
+      wrap light content they must not invert — are excluded. */
+@layer an-ondark-region {
+  [data-ground='dark'] .bg-espresso,
+  [data-ground='dark'] [data-hero-tone='dark'],
+  [data-ground='dark'] [data-mode='dark'],
+  [data-ground='dark'] [data-on-dark] {
+    --color-canvas: var(--c-on-dark);
+    /* `hover:bg-surface` is the `light` Button's hover fill and the only use of
+       surface inside a dark region; without this it hovers to a dark chip under
+       dark text. Recessed from the light end rather than equal to it, which is
+       what `surface` means on the daylight ground too. */
+    --color-surface: color-mix(in srgb, var(--c-on-dark) 86%, var(--c-espresso));
+  }
+}
+
+/* 2. ELEMENTS. Type set over a photograph has no espresso fill to inherit from —
+      the card scrims are `bg-espresso/25`, which rule 1 rightly ignores. Match
+      the element by the utility it carries instead. This is sound for the same
+      reason the bug is: painting text the colour of the page ground is invisible
+      *by definition*, so `text-canvas` can only ever have meant "on something
+      that is not the page ground". Substring matching also picks up the variant
+      spellings — `hover:text-canvas`, `data-[mode=dark]:text-canvas`,
+      `placeholder:text-canvas/35`.
+
+      The `:not()` is load-bearing, and it is what a class-substring match costs:
+      the selector cannot tell an ACTIVE `text-canvas` from a conditional variant
+      that is merely armed. The Header carries `data-[mode=dark]:text-canvas`
+      alongside `data-[mode=light]:data-[solid=true]:bg-canvas/96`, so without
+      the guard the scrolled light-mode bar was re-pointed to the light end and
+      came out a cream slab with near-invisible nav on it — I shot it before I
+      caught it. Excluding any element that also paints a canvas FILL sends those
+      to rule 1 instead, which reads the tone the component actually publishes:
+      here, the Header's own `data-mode`. Nothing is lost, because an element
+      carrying a canvas fill on a dark ground is by definition inside a dark
+      region that rule 1 already covers. */
+@layer an-ondark-element {
+  [data-ground='dark'] [class*='text-canvas']:not([class*='bg-canvas']),
+  [data-ground='dark'] [class*='border-canvas']:not([class*='bg-canvas']) {
+    --color-canvas: var(--c-on-dark);
+  }
+}
+
+/* 3. THE OPT-OUT, and the reason this is a rule set rather than one line. A fill
+      that swaps ends with the ground already carries its foreground across the
+      flip; re-pointing canvas on top of it is what would break it. `bg-ink` is
+      the admin's active chip and the skip link, `bg-accent` the accent button
+      and the selected-media tick. A declaration on the element beats the value
+      inherited from rule 1, so an accent chip inside the espresso footer lands
+      here and not there. */
+@layer an-ondark-fill {
+  [data-ground='dark'] .bg-ink,
+  [data-ground='dark'] .bg-accent,
+  [data-ground='dark'] .bg-accent-soft,
+  [data-ground='dark'] .hover\:bg-ink:hover,
+  [data-ground='dark'] .hover\:bg-accent:hover,
+  [data-ground='dark'] .hover\:bg-accent-soft:hover,
+  [data-ground='dark'] .focus-visible\:bg-ink:focus-visible {
+    --color-canvas: var(--c-canvas);
+  }
+}
+
+/* 4. AND BACK IN. `bg-ink text-canvas hover:bg-espresso` — the solid ink Button
+      and the admin's solid action — leave an inverting fill for the one that
+      never inverts, so the hover state is on-dark even though the resting state
+      is not. Last, and one specificity step above rule 3, so it wins the hover. */
+@layer an-ondark-hover {
+  [data-ground='dark'] .hover\:bg-espresso:hover {
+    --color-canvas: var(--c-on-dark);
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: calc(1rem * var(--body-scale));
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Lenis owns scrolling; these are its required base styles. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: var(--tracking-display);
+    /* Vietnamese stacks marks above AND below the x-height (ế, ộ, ữ, ậ), so a
+       sub-1 leading that reads as elegant in English collides here. 1.06 is the
+       tightest this can go before the dấu of one line touches the baseline of
+       the one above. */
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-canvas);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+/*
+ * The one rule that makes 134 usages survive an inverted palette.
+ *
+ * Components spell "light text on the dark band" as `text-canvas` on
+ * `bg-espresso` — true only while canvas IS light. Flip to a night palette and
+ * every one of them is dark-on-dark: measured 1.08:1 where it needs 18:1.
+ *
+ * Rebinding `--color-canvas` inside an espresso surface fixes all of them at
+ * once, with no component edits, because Tailwind v4 resolves every canvas
+ * utility — including the alpha variants, which compile to
+ * `color-mix(in oklab, var(--color-canvas) 55%, transparent)` — through that one
+ * custom property. On a daylight palette `--c-on-dark` equals canvas, so this is
+ * a no-op there rather than a special case to remember.
+ *
+ * Semantically: inside a dark band, "canvas" means the light ground, which is
+ * what the components meant all along.
+ */
+.bg-espresso,
+[data-on-dark] {
+  --color-canvas: var(--c-on-dark);
+}
+
+@layer components {
+  .u-gutter {
+    padding-inline: var(--spacing-gutter);
+  }
+
+  /* 0.18em of tracking on uppercase Vietnamese pulls a word apart faster than it
+     does in English — the marks already add optical space, so "DỰ ÁN" stopped
+     reading as two words and started reading as six floating letters. 0.11em
+     keeps the editorial feel without dissolving the word. */
+  .u-label {
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-muted);
+    word-spacing: 0.08em;
+  }
+
+  /*
+   * THREE display steps, not two. 112 / 70 / 44 at 1600 — ratios of 1.60 and
+   * 1.59, a real scale. The old pair was 112 / 52 with nothing between, so any
+   * heading that was not a page opener had to be either enormous or small, and
+   * every section picked enormous. A 112px heading with a 22ch measure is a
+   * 240px-tall object that spans the band and pushes its own content below the
+   * fold: that is the mechanical cause of the title-card rhythm, not a spacing
+   * bug. The middle step is the one that was missing.
+   *
+   * Every step keeps the `var(--display-scale)` multiplier — the admin type
+   * scale control writes that variable and silently dies without it.
+   */
+
+  /* The old .u-display scale, preserved for the page's two bookends only: the
+     hero h1 and the closing CTA h2. Those are the only headings with a
+     photograph behind them and an argument to make at that size. */
+  .u-display-lg {
+    font-family: var(--font-display);
+    font-size: calc(clamp(2.625rem, 7vw, 8rem) * var(--display-scale));
+    font-weight: 500;
+    /* 1.04 is the floor, not a preference: Vietnamese stacks marks above AND
+       below the x-height (ế, ộ, ữ, ậ). Tighter and the dấu of one line touches
+       the baseline of the one above. */
+    line-height: 1.04;
+    letter-spacing: -0.024em;
+  }
+
+  /* Section statements. Loud enough to lead its band, small enough to sit in a
+     6-column rail beside a photograph instead of spanning the screen alone. */
+  .u-display {
+    font-family: var(--font-display);
+    font-size: calc(clamp(1.875rem, 4.4vw, 5rem) * var(--display-scale));
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+
+  /* Item titles: projects, services, articles, and the headings of sections
+     whose argument is their content rather than their name. */
+  .u-display-sm {
+    font-family: var(--font-display);
+    font-size: calc(clamp(1.375rem, 2.75vw, 2.75rem) * var(--display-scale));
+    font-weight: 500;
+    line-height: 1.14;
+    letter-spacing: -0.012em;
+  }
+
+  /*
+   * A NUMBER, NOT A HEADING. The studio ledger's four figures used to render at
+   * clamp(1.75rem, 3vw, 2.75rem), whose 2.75rem cap resolves to exactly 44px at
+   * 1600 — pixel-identical to `.u-display-sm`, which is the size of the section
+   * heading standing directly above them. A ledger whose evidence weighs the
+   * same as the label introducing it has no internal hierarchy, and that section
+   * is one of the two carrying the page's density.
+   *
+   * 56 against 44 is 1.27: enough for the number to dominate its own band, not
+   * enough to become a fourth display step. Light rather than medium because a
+   * figure is read, not spoken — the weight comes from the size.
+   *
+   * Not a `.u-display-*` step, deliberately: it never sets a heading, so it
+   * carries no `text-wrap: balance` and no display tracking, and it must never
+   * appear in the ratio table those three steps form.
+   */
+  .u-figure {
+    font-family: var(--font-display);
+    font-size: calc(clamp(2rem, 3.6vw, 3.5rem) * var(--display-scale));
+    font-weight: 300;
+    line-height: 1;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  .u-body-lg {
+    font-size: calc(clamp(1.0625rem, 1.15vw, 1.25rem) * var(--body-scale));
+    line-height: 1.75;
+    color: var(--color-muted);
+  }
+
+  .u-rule {
+    height: 1px;
+    background-color: var(--color-line);
+  }
+
+  /*
+   * The inter-band rhythm, applied to a section that stacks several bands. One
+   * class instead of a per-section clamp keeps every inter-band gap smaller
+   * than the section break around it, which is the only way the two reads as a
+   * hierarchy. It is also what guarantees `--spacing-band` is emitted: Tailwind
+   * v4 writes a theme variable only where something references it.
+   */
+  .u-band-stack > * + * {
+    margin-top: var(--spacing-band);
+  }
+
+  /*
+   * An image can leave the gutter without leaving the grid. Four compositions
+   * need a frame that starts inside a 12-column child and runs to the viewport
+   * edge; without a shared helper each one invents its own negative margin and
+   * they drift apart at the gutter's clamp breakpoints. The alternation between
+   * bleeding and inset images is what makes the inset ones look chosen.
+   */
+  .u-bleed-l {
+    margin-left: calc(var(--spacing-gutter) * -1);
+  }
+
+  .u-bleed-r {
+    margin-right: calc(var(--spacing-gutter) * -1);
+  }
+
+  .u-bleed-x {
+    margin-inline: calc(var(--spacing-gutter) * -1);
+  }
+
+  /*
+   * One scrim recipe for every piece of type set over a photograph. These two
+   * gradients were already hand-written in two components and the composition
+   * adds five more overlay moments — five hand-tuned copies of a gradient is
+   * how a site stops looking like one hand made it. Decorative layers only, so
+   * they never intercept a click meant for the link underneath.
+   * Contrast floor for a label riding one of these: text-canvas/70.
+   */
+  .u-scrim-t {
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--c-espresso) 52%, transparent) 0%,
+      transparent 100%
+    );
+  }
+
+  .u-scrim-b {
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--c-espresso) 62%, transparent) 0%,
+      color-mix(in srgb, var(--c-espresso) 24%, transparent) 45%,
+      transparent 100%
+    );
+  }
+
+  /* Applied by animation utilities before GSAP takes over, so nothing flashes
+     unstyled when JS is still loading. */
+  [data-reveal]:not([data-reveal-ready]) {
+    opacity: 0;
+  }
+
+  [data-split-line] {
+    display: block;
+    overflow: hidden;
+
+    /*
+      Vietnamese stacks a tone mark on top of a vowel that may already carry a
+      circumflex or breve — ố, ế, ữ, ậ — so the ink reaches well above and below
+      the line box that Latin text needs. The mask this reveal depends on clips
+      to that box, which sliced the acute clean off the display heading: "trống"
+      rendered as "trông", changing the word.
+
+      Padding grows the clip region; the matching negative margin pulls the box
+      back so the visual leading is exactly what it was. The mask still starts
+      the line fully outside itself, because the translate is a percentage of
+      the (now taller) element.
+    */
+    padding-block: 0.26em 0.16em;
+    margin-block: -0.26em -0.16em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-intensity: 0;
+    --motion-duration: 0.01s;
+  }
+
+  [data-reveal]:not([data-reveal-ready]) {
+    opacity: 1;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+ * The waiting mark. Opacity and a hair of scale, nothing else — a spinner says
+ * "the machine is busy", a mark that breathes says "the studio is opening the
+ * door", which is the register this site is in everywhere else.
+ *
+ * `motion-safe:` gates the class that uses it, so a reader who asked for reduced
+ * motion gets a still mark rather than a still page with one thing moving on it.
+ */
+@keyframes brand-breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
