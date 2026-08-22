@@ -65,7 +65,26 @@ const PLACEHOLDER_PATH = path.join(OUT_ROOT, 'placeholder.svg')
  * the file ~29%. Effort 6 is worth its build time: it is free bytes at identical
  * quality (-6.2% at the same q), and this runs once, offline.
  */
-const WEBP_QUALITY = 76
+/*
+ * Quality stays at 82, and the reason is a measurement that contradicts the
+ * paragraph above.
+ *
+ * Almost nothing on this site serves these files directly — they go through
+ * `next/image`, which re-encodes to AVIF (Next's own default quality, not ours)
+ * using our WebP as the SOURCE. Lowering the intermediate therefore does not
+ * make the delivered file smaller; it just hands the second encoder a worse
+ * original. Measured across 24 photographs through the real chain, q76 came out
+ * marginally WORSE than q82 at comparable delivered size — the 29% saving is
+ * real on disk and invisible on the wire.
+ *
+ * Effort 6 stays: it is strictly better compression at the same quality, and it
+ * costs build time only.
+ *
+ * The real image win on this site is not here. It is either serving these
+ * already-sized derivatives directly instead of paying for a second encode, or
+ * tuning `next/image`'s own quality — both bigger changes than a constant.
+ */
+const WEBP_QUALITY = 82
 const WEBP_EFFORT = 6
 
 /** Blur tiles are 24px wide; effort buys nothing at that size. */
@@ -452,7 +471,12 @@ function isManifestEntry(value: unknown): value is ManifestEntry {
     typeof entry.width === 'number' &&
     typeof entry.height === 'number' &&
     typeof entry.blurDataURL === 'string' &&
-    typeof entry.encode === 'string' &&
+    // `encode` is deliberately NOT required. The shipped manifest has 1,485
+    // entries written before the field existed, and requiring it here would make
+    // readManifest() reject every one of them: the run would then treat the whole
+    // library as absent, and write back only what it processed in that session.
+    // A legacy entry is a valid entry — the resume check in buildOne compares
+    // `encode` separately and simply re-encodes anything whose recipe is unknown.
     Array.isArray(entry.widths) &&
     entry.widths.every((w) => typeof w === 'number')
   )

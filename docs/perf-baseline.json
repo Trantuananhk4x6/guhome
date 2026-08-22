@@ -1,0 +1,2210 @@
+[
+  {
+    "route": "/",
+    "arrival": {
+      "bytes": 731450,
+      "count": 55,
+      "byKind": {
+        "document": 42113,
+        "script": 282860,
+        "style": 20702,
+        "image": 183142,
+        "font": 121307,
+        "media": 0,
+        "other": 81326
+      }
+    },
+    "engaged": {
+      "bytes": 2387004,
+      "count": 87,
+      "byKind": {
+        "document": 42113,
+        "script": 628051,
+        "style": 20702,
+        "image": 1390372,
+        "font": 121307,
+        "media": 0,
+        "other": 184459
+      }
+    },
+    "worst": [
+      {
+        "url": "/_next/image?/media/hoi-tho-hinoki/0-1600.webp",
+        "kb": 96
+      },
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kb": 70
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kb": 47
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kb": 42
+      }
+    ],
+    "hits": [
+      {
+        "url": "/",
+        "kind": "document",
+        "kb": 41.1
+      },
+      {
+        "url": "/_next/image?/media/brand/guhomes-row-800.webp",
+        "kind": "image",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/static/chunks/2ymehvuw6-plx.css",
+        "kind": "style",
+        "kb": 20.2
+      },
+      {
+        "url": "/_next/image?/brand/guhomes-mark-256.png",
+        "kind": "image",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/14e23f9b59180572-s.p.0t8ljjjn9wtsx.woff2",
+        "kind": "font",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+        "kind": "font",
+        "kb": 37.9
+      },
+      {
+        "url": "/_next/static/media/3c285486269019b7-s.p.2g-0we2o5_ngd.woff2",
+        "kind": "font",
+        "kb": 12.9
+      },
+      {
+        "url": "/_next/static/media/625a092f804baad3-s.p.1zvg0ggiaivzo.woff2",
+        "kind": "font",
+        "kb": 5.3
+      },
+      {
+        "url": "/_next/static/media/53e45098eac42afb-s.p.1uklb5el4zgvl.woff2",
+        "kind": "font",
+        "kb": 4.9
+      },
+      {
+        "url": "/_next/static/media/6afabefbb32d7517-s.p.0jaqhc1tb-5xm.woff2",
+        "kind": "font",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/85ea1b3aadcead52-s.p.05i4gb4p0piv4.woff2",
+        "kind": "font",
+        "kb": 7
+      },
+      {
+        "url": "/_next/static/media/a4f4f75ad654963f-s.p.1hvvd1t-trplq.woff2",
+        "kind": "font",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/static/media/b49b0d9b851e4899-s.p.2zyohmvb-ks7f.woff2",
+        "kind": "font",
+        "kb": 20.8
+      },
+      {
+        "url": "/_next/static/chunks/3yfl9fgvivx3-.js",
+        "kind": "script",
+        "kb": 3.9
+      },
+      {
+        "url": "/_next/static/chunks/3fntmmi971322.js",
+        "kind": "script",
+        "kb": 4
+      },
+      {
+        "url": "/_next/static/chunks/11jq0c2_zavac.js",
+        "kind": "script",
+        "kb": 8.7
+      },
+      {
+        "url": "/_next/static/chunks/turbopack-23v0ky2c61k49.js",
+        "kind": "script",
+        "kb": 4.6
+      },
+      {
+        "url": "/_next/static/chunks/2-673evsg3q-m.js",
+        "kind": "script",
+        "kb": 0.6
+      },
+      {
+        "url": "/_next/static/chunks/1z4xfxq9z1-dr.js",
+        "kind": "script",
+        "kb": 7.5
+      },
+      {
+        "url": "/_next/static/chunks/3huoqhfkzp8jy.js",
+        "kind": "script",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/chunks/308uj-qf3veg4.js",
+        "kind": "script",
+        "kb": 11.5
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kind": "script",
+        "kb": 42.2
+      },
+      {
+        "url": "/_next/static/chunks/25jl4kp5py1d4.js",
+        "kind": "script",
+        "kb": 1.8
+      },
+      {
+        "url": "/_next/static/chunks/2hp-d1k6v4jcp.js",
+        "kind": "script",
+        "kb": 4.1
+      },
+      {
+        "url": "/_next/static/chunks/2i9k7w_uscdhd.js",
+        "kind": "script",
+        "kb": 10.3
+      },
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kind": "script",
+        "kb": 70.3
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kind": "script",
+        "kb": 46.9
+      },
+      {
+        "url": "/_next/static/chunks/3jh_q7grmosjb.js",
+        "kind": "script",
+        "kb": 11.4
+      },
+      {
+        "url": "/_next/static/chunks/0li4babdiuavi.js",
+        "kind": "script",
+        "kb": 1
+      },
+      {
+        "url": "/icon.png?icon.2q-e_7sprchc1.png",
+        "kind": "other",
+        "kb": 2.1
+      },
+      {
+        "url": "/_next/static/chunks/2acpuzmb-kj7j.js",
+        "kind": "script",
+        "kb": 6.6
+      },
+      {
+        "url": "/_next/image?/media/wabi-sabi-can-ho-2-ngu/6-1600.webp",
+        "kind": "image",
+        "kb": 17.1
+      },
+      {
+        "url": "/_next/image?/media/nha-pho-kinh-doan-spa/30-1600.webp",
+        "kind": "image",
+        "kb": 32.5
+      },
+      {
+        "url": "/_next/image?/media/may-trang-tang-cao/0-1600.webp",
+        "kind": "image",
+        "kb": 12.5
+      },
+      {
+        "url": "/studio?_rsc=5CB68i4pnAekjehf",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/services?_rsc=5CB68i4pnAekjehf",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/journal?_rsc=5CB68i4pnAekjehf",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/projects?_rsc=5CB68i4pnAekjehf",
+        "kind": "other",
+        "kb": 0.5
+      },
+      {
+        "url": "/contact?_rsc=5CB68i4pnAekjehf",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/projects/may-trang-tang-cao?_rsc=5CB68i4pnAekjehf",
+        "kind": "other",
+        "kb": 1
+      },
+      {
+        "url": "/?_rsc=fA_u5FizDPKOIdgy",
+        "kind": "other",
+        "kb": 6.4
+      },
+      {
+        "url": "/?_rsc=gzSU19M5behYtFJ2",
+        "kind": "other",
+        "kb": 17.2
+      },
+      {
+        "url": "/studio?_rsc=JmiQa2iv9vkjGXyN",
+        "kind": "other",
+        "kb": 11.2
+      },
+      {
+        "url": "/services?_rsc=58q71lXtk5vX2vIg",
+        "kind": "other",
+        "kb": 9.6
+      },
+      {
+        "url": "/journal?_rsc=vYitUeQFBByBcOlL",
+        "kind": "other",
+        "kb": 5.7
+      },
+      {
+        "url": "/_next/static/chunks/2vnz-fl2uf4z-.js",
+        "kind": "script",
+        "kb": 3.2
+      },
+      {
+        "url": "/contact?_rsc=DP6HOShfwTtsuMz8",
+        "kind": "other",
+        "kb": 4.5
+      },
+      {
+        "url": "/_next/static/chunks/3wf1qdt8u_exh.js",
+        "kind": "script",
+        "kb": 3
+      },
+      {
+        "url": "/projects/may-trang-tang-cao?_rsc=lXgVy4icVkuKRDeA",
+        "kind": "other",
+        "kb": 17.4
+      },
+      {
+        "url": "/_next/static/chunks/26-jtxlwvoarf.js",
+        "kind": "script",
+        "kb": 3.1
+      },
+      {
+        "url": "/_next/static/chunks/1zezhik4zwdry.js",
+        "kind": "script",
+        "kb": 7.4
+      },
+      {
+        "url": "/_next/static/chunks/143jiqts0w5zi.js",
+        "kind": "script",
+        "kb": 6
+      },
+      {
+        "url": "/_next/static/chunks/1p6eyazecu4cn.js",
+        "kind": "script",
+        "kb": 9
+      },
+      {
+        "url": "/_next/image?/media/hoi-tho-hinoki/0-1600.webp",
+        "kind": "image",
+        "kb": 96.1
+      },
+      {
+        "url": "/projects?_rsc=tXyZJ52UQVBCVsD3",
+        "kind": "other",
+        "kb": 0.4
+      }
+    ]
+  },
+  {
+    "route": "/projects",
+    "arrival": {
+      "bytes": 723975,
+      "count": 65,
+      "byKind": {
+        "document": 42283,
+        "script": 283783,
+        "style": 20702,
+        "image": 143363,
+        "font": 121307,
+        "media": 0,
+        "other": 112537
+      }
+    },
+    "engaged": {
+      "bytes": 1154679,
+      "count": 103,
+      "byKind": {
+        "document": 42283,
+        "script": 283783,
+        "style": 20702,
+        "image": 310033,
+        "font": 121307,
+        "media": 0,
+        "other": 376571
+      }
+    },
+    "worst": [
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kb": 70
+      },
+      {
+        "url": "/_next/image?/media/den-giay-ban-mai/0-1600.webp",
+        "kb": 58
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kb": 47
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kb": 42
+      }
+    ],
+    "hits": [
+      {
+        "url": "/projects",
+        "kind": "document",
+        "kb": 41.3
+      },
+      {
+        "url": "/_next/image?/media/brand/guhomes-row-800.webp",
+        "kind": "image",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/image?/brand/guhomes-mark-256.png",
+        "kind": "image",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/chunks/2ymehvuw6-plx.css",
+        "kind": "style",
+        "kb": 20.2
+      },
+      {
+        "url": "/_next/static/media/14e23f9b59180572-s.p.0t8ljjjn9wtsx.woff2",
+        "kind": "font",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/media/3c285486269019b7-s.p.2g-0we2o5_ngd.woff2",
+        "kind": "font",
+        "kb": 12.9
+      },
+      {
+        "url": "/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+        "kind": "font",
+        "kb": 37.9
+      },
+      {
+        "url": "/_next/image?/media/den-giay-ban-mai/0-1600.webp",
+        "kind": "image",
+        "kb": 57.9
+      },
+      {
+        "url": "/_next/static/media/53e45098eac42afb-s.p.1uklb5el4zgvl.woff2",
+        "kind": "font",
+        "kb": 4.9
+      },
+      {
+        "url": "/_next/static/media/625a092f804baad3-s.p.1zvg0ggiaivzo.woff2",
+        "kind": "font",
+        "kb": 5.3
+      },
+      {
+        "url": "/_next/static/media/6afabefbb32d7517-s.p.0jaqhc1tb-5xm.woff2",
+        "kind": "font",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/a4f4f75ad654963f-s.p.1hvvd1t-trplq.woff2",
+        "kind": "font",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/static/media/85ea1b3aadcead52-s.p.05i4gb4p0piv4.woff2",
+        "kind": "font",
+        "kb": 7
+      },
+      {
+        "url": "/_next/static/media/b49b0d9b851e4899-s.p.2zyohmvb-ks7f.woff2",
+        "kind": "font",
+        "kb": 20.8
+      },
+      {
+        "url": "/_next/static/chunks/3yfl9fgvivx3-.js",
+        "kind": "script",
+        "kb": 3.9
+      },
+      {
+        "url": "/_next/static/chunks/11jq0c2_zavac.js",
+        "kind": "script",
+        "kb": 8.7
+      },
+      {
+        "url": "/_next/static/chunks/2-673evsg3q-m.js",
+        "kind": "script",
+        "kb": 0.6
+      },
+      {
+        "url": "/_next/static/chunks/turbopack-23v0ky2c61k49.js",
+        "kind": "script",
+        "kb": 4.6
+      },
+      {
+        "url": "/_next/static/chunks/3fntmmi971322.js",
+        "kind": "script",
+        "kb": 4
+      },
+      {
+        "url": "/_next/static/chunks/1z4xfxq9z1-dr.js",
+        "kind": "script",
+        "kb": 7.5
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kind": "script",
+        "kb": 42.2
+      },
+      {
+        "url": "/_next/static/chunks/3huoqhfkzp8jy.js",
+        "kind": "script",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/chunks/2i9k7w_uscdhd.js",
+        "kind": "script",
+        "kb": 10.3
+      },
+      {
+        "url": "/_next/static/chunks/308uj-qf3veg4.js",
+        "kind": "script",
+        "kb": 11.5
+      },
+      {
+        "url": "/_next/static/chunks/12uj1y4dcbtmg.js",
+        "kind": "script",
+        "kb": 7.5
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kind": "script",
+        "kb": 46.9
+      },
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kind": "script",
+        "kb": 70.3
+      },
+      {
+        "url": "/_next/image?/media/nha-pho-hien-dai-nha-pho-1-mat-tien/1-1200.webp",
+        "kind": "image",
+        "kb": 41.3
+      },
+      {
+        "url": "/_next/image?/media/duoi-mai-tre/0-400.webp",
+        "kind": "image",
+        "kb": 2.2
+      },
+      {
+        "url": "/_next/image?/media/not-tram-ca-cao/0-1200.webp",
+        "kind": "image",
+        "kb": 12.8
+      },
+      {
+        "url": "/_next/image?/media/hoi-tho-hinoki/0-400.webp",
+        "kind": "image",
+        "kb": 1.7
+      },
+      {
+        "url": "/_next/image?/media/anh-kim-van-da/0-400.webp",
+        "kind": "image",
+        "kb": 1.6
+      },
+      {
+        "url": "/_next/image?/media/nha-pho-12/0-400.webp",
+        "kind": "image",
+        "kb": 1.9
+      },
+      {
+        "url": "/_next/static/chunks/0li4babdiuavi.js",
+        "kind": "script",
+        "kb": 1
+      },
+      {
+        "url": "/_next/static/chunks/25jl4kp5py1d4.js",
+        "kind": "script",
+        "kb": 1.8
+      },
+      {
+        "url": "/icon.png?icon.2q-e_7sprchc1.png",
+        "kind": "other",
+        "kb": 2.1
+      },
+      {
+        "url": "/?_rsc=rVOxZyJZQf-ncF1B",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/studio?_rsc=rVOxZyJZQf-ncF1B",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/services?_rsc=rVOxZyJZQf-ncF1B",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/journal?_rsc=rVOxZyJZQf-ncF1B",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/contact?_rsc=rVOxZyJZQf-ncF1B",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/?_rsc=TugjtaiaEk6-utcA",
+        "kind": "other",
+        "kb": 6.4
+      },
+      {
+        "url": "/projects/tam-rem-be-tong?_rsc=rVOxZyJZQf-ncF1B",
+        "kind": "other",
+        "kb": 1
+      },
+      {
+        "url": "/projects/not-tram-ca-cao?_rsc=rVOxZyJZQf-ncF1B",
+        "kind": "other",
+        "kb": 1
+      },
+      {
+        "url": "/projects/den-giay-ban-mai?_rsc=rVOxZyJZQf-ncF1B",
+        "kind": "other",
+        "kb": 1
+      },
+      {
+        "url": "/?_rsc=9Kyrjlw-Z8CAJXA4",
+        "kind": "other",
+        "kb": 17.2
+      },
+      {
+        "url": "/_next/static/chunks/2hp-d1k6v4jcp.js",
+        "kind": "script",
+        "kb": 4.1
+      },
+      {
+        "url": "/_next/static/chunks/3jh_q7grmosjb.js",
+        "kind": "script",
+        "kb": 11.4
+      },
+      {
+        "url": "/studio?_rsc=6_yikoEmhMjEEIcy",
+        "kind": "other",
+        "kb": 11.2
+      },
+      {
+        "url": "/services?_rsc=2fMHwZsQmcqDng5T",
+        "kind": "other",
+        "kb": 9.6
+      },
+      {
+        "url": "/journal?_rsc=s1JNbPQWrAt-HQWB",
+        "kind": "other",
+        "kb": 5.7
+      },
+      {
+        "url": "/contact?_rsc=CeIGST6zHDCXvMXI",
+        "kind": "other",
+        "kb": 4.5
+      },
+      {
+        "url": "/_next/static/chunks/2vnz-fl2uf4z-.js",
+        "kind": "script",
+        "kb": 3.2
+      },
+      {
+        "url": "/_next/static/chunks/3wf1qdt8u_exh.js",
+        "kind": "script",
+        "kb": 3
+      },
+      {
+        "url": "/_next/static/chunks/26-jtxlwvoarf.js",
+        "kind": "script",
+        "kb": 3.1
+      },
+      {
+        "url": "/_next/static/chunks/1zezhik4zwdry.js",
+        "kind": "script",
+        "kb": 7.4
+      },
+      {
+        "url": "/projects?_rsc=1TX1itLzob2zpySZ",
+        "kind": "other",
+        "kb": 0.4
+      },
+      {
+        "url": "/projects?category=can-ho&_rsc=1TX1itLzob2zpySZ",
+        "kind": "other",
+        "kb": 0.4
+      },
+      {
+        "url": "/projects/den-giay-ban-mai?_rsc=FB7EPA9oUYl7SKf2",
+        "kind": "other",
+        "kb": 15.1
+      },
+      {
+        "url": "/projects/tam-rem-be-tong?_rsc=FB7EPA9oUYl7SKf2",
+        "kind": "other",
+        "kb": 15.7
+      },
+      {
+        "url": "/projects/not-tram-ca-cao?_rsc=FB7EPA9oUYl7SKf2",
+        "kind": "other",
+        "kb": 13.8
+      },
+      {
+        "url": "/_next/static/chunks/143jiqts0w5zi.js",
+        "kind": "script",
+        "kb": 6
+      },
+      {
+        "url": "/_next/static/chunks/1p6eyazecu4cn.js",
+        "kind": "script",
+        "kb": 9
+      },
+      {
+        "url": "/projects?category=nha-pho&_rsc=1TX1itLzob2zpySZ",
+        "kind": "other",
+        "kb": 0.4
+      },
+      {
+        "url": "/projects?category=biet-thu-resort&_rsc=1TX1itLzob2zpySZ",
+        "kind": "other",
+        "kb": 0.4
+      }
+    ]
+  },
+  {
+    "route": "/projects/hoi-tho-hinoki",
+    "arrival": {
+      "bytes": 717612,
+      "count": 53,
+      "byKind": {
+        "document": 45374,
+        "script": 283821,
+        "style": 20702,
+        "image": 182809,
+        "font": 121307,
+        "media": 0,
+        "other": 63599
+      }
+    },
+    "engaged": {
+      "bytes": 2439251,
+      "count": 112,
+      "byKind": {
+        "document": 45374,
+        "script": 622854,
+        "style": 20702,
+        "image": 1503838,
+        "font": 121307,
+        "media": 0,
+        "other": 125176
+      }
+    },
+    "worst": [
+      {
+        "url": "/_next/image?/media/hoi-tho-hinoki/0-1600.webp",
+        "kb": 96
+      },
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kb": 70
+      },
+      {
+        "url": "/_next/image?/media/hoi-tho-hinoki/1-1600.webp",
+        "kb": 62
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kb": 47
+      }
+    ],
+    "hits": [
+      {
+        "url": "/projects/hoi-tho-hinoki",
+        "kind": "document",
+        "kb": 44.3
+      },
+      {
+        "url": "/_next/static/chunks/2ymehvuw6-plx.css",
+        "kind": "style",
+        "kb": 20.2
+      },
+      {
+        "url": "/_next/image?/media/brand/guhomes-row-800.webp",
+        "kind": "image",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/image?/brand/guhomes-mark-256.png",
+        "kind": "image",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/14e23f9b59180572-s.p.0t8ljjjn9wtsx.woff2",
+        "kind": "font",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+        "kind": "font",
+        "kb": 37.9
+      },
+      {
+        "url": "/_next/static/media/3c285486269019b7-s.p.2g-0we2o5_ngd.woff2",
+        "kind": "font",
+        "kb": 12.9
+      },
+      {
+        "url": "/_next/static/media/53e45098eac42afb-s.p.1uklb5el4zgvl.woff2",
+        "kind": "font",
+        "kb": 4.9
+      },
+      {
+        "url": "/_next/image?/media/hoi-tho-hinoki/0-1600.webp",
+        "kind": "image",
+        "kb": 96.1
+      },
+      {
+        "url": "/_next/static/media/625a092f804baad3-s.p.1zvg0ggiaivzo.woff2",
+        "kind": "font",
+        "kb": 5.3
+      },
+      {
+        "url": "/_next/static/media/a4f4f75ad654963f-s.p.1hvvd1t-trplq.woff2",
+        "kind": "font",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/static/media/85ea1b3aadcead52-s.p.05i4gb4p0piv4.woff2",
+        "kind": "font",
+        "kb": 7
+      },
+      {
+        "url": "/_next/static/media/6afabefbb32d7517-s.p.0jaqhc1tb-5xm.woff2",
+        "kind": "font",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/b49b0d9b851e4899-s.p.2zyohmvb-ks7f.woff2",
+        "kind": "font",
+        "kb": 20.8
+      },
+      {
+        "url": "/_next/static/chunks/3yfl9fgvivx3-.js",
+        "kind": "script",
+        "kb": 3.9
+      },
+      {
+        "url": "/_next/static/chunks/2-673evsg3q-m.js",
+        "kind": "script",
+        "kb": 0.6
+      },
+      {
+        "url": "/_next/static/chunks/11jq0c2_zavac.js",
+        "kind": "script",
+        "kb": 8.7
+      },
+      {
+        "url": "/_next/static/chunks/3fntmmi971322.js",
+        "kind": "script",
+        "kb": 4
+      },
+      {
+        "url": "/_next/static/chunks/turbopack-23v0ky2c61k49.js",
+        "kind": "script",
+        "kb": 4.6
+      },
+      {
+        "url": "/_next/static/chunks/1z4xfxq9z1-dr.js",
+        "kind": "script",
+        "kb": 7.5
+      },
+      {
+        "url": "/_next/static/chunks/308uj-qf3veg4.js",
+        "kind": "script",
+        "kb": 11.5
+      },
+      {
+        "url": "/_next/static/chunks/3huoqhfkzp8jy.js",
+        "kind": "script",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kind": "script",
+        "kb": 42.2
+      },
+      {
+        "url": "/_next/static/chunks/0li4babdiuavi.js",
+        "kind": "script",
+        "kb": 1
+      },
+      {
+        "url": "/_next/static/chunks/25jl4kp5py1d4.js",
+        "kind": "script",
+        "kb": 1.8
+      },
+      {
+        "url": "/_next/image?/media/hoi-tho-hinoki/1-1600.webp",
+        "kind": "image",
+        "kb": 61.9
+      },
+      {
+        "url": "/_next/static/chunks/2i9k7w_uscdhd.js",
+        "kind": "script",
+        "kb": 10.3
+      },
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kind": "script",
+        "kb": 70.3
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kind": "script",
+        "kb": 46.9
+      },
+      {
+        "url": "/_next/static/chunks/143jiqts0w5zi.js",
+        "kind": "script",
+        "kb": 6
+      },
+      {
+        "url": "/_next/static/chunks/1p6eyazecu4cn.js",
+        "kind": "script",
+        "kb": 9
+      },
+      {
+        "url": "/icon.png?icon.2q-e_7sprchc1.png",
+        "kind": "other",
+        "kb": 2.1
+      },
+      {
+        "url": "/_next/static/chunks/2y2320yz3rr62.js",
+        "kind": "script",
+        "kb": 7.5
+      },
+      {
+        "url": "/?_rsc=zTzRf1y4fc6R5CKl",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/studio?_rsc=zTzRf1y4fc6R5CKl",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/services?_rsc=zTzRf1y4fc6R5CKl",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/projects?_rsc=zTzRf1y4fc6R5CKl",
+        "kind": "other",
+        "kb": 0.5
+      },
+      {
+        "url": "/journal?_rsc=zTzRf1y4fc6R5CKl",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/contact?_rsc=zTzRf1y4fc6R5CKl",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/?_rsc=O-XHhLGtMx-2Eiu9",
+        "kind": "other",
+        "kb": 6.4
+      },
+      {
+        "url": "/?_rsc=t6P95HsOLib5Cn0E",
+        "kind": "other",
+        "kb": 17.2
+      },
+      {
+        "url": "/studio?_rsc=bF926ABm252WoHe_",
+        "kind": "other",
+        "kb": 11.2
+      },
+      {
+        "url": "/_next/static/chunks/2hp-d1k6v4jcp.js",
+        "kind": "script",
+        "kb": 4.1
+      },
+      {
+        "url": "/services?_rsc=voB3VRb8soDoceeB",
+        "kind": "other",
+        "kb": 9.6
+      },
+      {
+        "url": "/_next/static/chunks/3jh_q7grmosjb.js",
+        "kind": "script",
+        "kb": 11.4
+      },
+      {
+        "url": "/journal?_rsc=cxIwRrv8OQOU_TrS",
+        "kind": "other",
+        "kb": 5.7
+      },
+      {
+        "url": "/contact?_rsc=5nUxT_CDyp_mQdaJ",
+        "kind": "other",
+        "kb": 4.5
+      },
+      {
+        "url": "/_next/static/chunks/2vnz-fl2uf4z-.js",
+        "kind": "script",
+        "kb": 3.2
+      },
+      {
+        "url": "/_next/static/chunks/3wf1qdt8u_exh.js",
+        "kind": "script",
+        "kb": 3
+      },
+      {
+        "url": "/_next/static/chunks/26-jtxlwvoarf.js",
+        "kind": "script",
+        "kb": 3.1
+      },
+      {
+        "url": "/_next/static/chunks/1zezhik4zwdry.js",
+        "kind": "script",
+        "kb": 7.4
+      },
+      {
+        "url": "/api/analytics",
+        "kind": "other",
+        "kb": 0.2
+      },
+      {
+        "url": "/projects?_rsc=pTK8kthCInEL8zd_",
+        "kind": "other",
+        "kb": 0.4
+      }
+    ]
+  },
+  {
+    "route": "/studio",
+    "arrival": {
+      "bytes": 638217,
+      "count": 49,
+      "byKind": {
+        "document": 32904,
+        "script": 260728,
+        "style": 20702,
+        "image": 139370,
+        "font": 121307,
+        "media": 0,
+        "other": 63206
+      }
+    },
+    "engaged": {
+      "bytes": 830081,
+      "count": 56,
+      "byKind": {
+        "document": 32904,
+        "script": 260728,
+        "style": 20702,
+        "image": 331234,
+        "font": 121307,
+        "media": 0,
+        "other": 63206
+      }
+    },
+    "worst": [
+      {
+        "url": "/_next/image?/media/hoi-tho-hinoki/0-1600.webp",
+        "kb": 96
+      },
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kb": 70
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kb": 47
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kb": 42
+      }
+    ],
+    "hits": [
+      {
+        "url": "/studio",
+        "kind": "document",
+        "kb": 32.1
+      },
+      {
+        "url": "/_next/static/media/14e23f9b59180572-s.p.0t8ljjjn9wtsx.woff2",
+        "kind": "font",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/chunks/2ymehvuw6-plx.css",
+        "kind": "style",
+        "kb": 20.2
+      },
+      {
+        "url": "/_next/image?/media/brand/guhomes-row-800.webp",
+        "kind": "image",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/image?/brand/guhomes-mark-256.png",
+        "kind": "image",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+        "kind": "font",
+        "kb": 37.9
+      },
+      {
+        "url": "/_next/static/media/3c285486269019b7-s.p.2g-0we2o5_ngd.woff2",
+        "kind": "font",
+        "kb": 12.9
+      },
+      {
+        "url": "/_next/static/media/53e45098eac42afb-s.p.1uklb5el4zgvl.woff2",
+        "kind": "font",
+        "kb": 4.9
+      },
+      {
+        "url": "/_next/static/media/625a092f804baad3-s.p.1zvg0ggiaivzo.woff2",
+        "kind": "font",
+        "kb": 5.3
+      },
+      {
+        "url": "/_next/static/media/6afabefbb32d7517-s.p.0jaqhc1tb-5xm.woff2",
+        "kind": "font",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/85ea1b3aadcead52-s.p.05i4gb4p0piv4.woff2",
+        "kind": "font",
+        "kb": 7
+      },
+      {
+        "url": "/_next/static/media/a4f4f75ad654963f-s.p.1hvvd1t-trplq.woff2",
+        "kind": "font",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/static/media/b49b0d9b851e4899-s.p.2zyohmvb-ks7f.woff2",
+        "kind": "font",
+        "kb": 20.8
+      },
+      {
+        "url": "/_next/image?/media/hoi-tho-hinoki/0-1600.webp",
+        "kind": "image",
+        "kb": 96.1
+      },
+      {
+        "url": "/_next/static/chunks/3yfl9fgvivx3-.js",
+        "kind": "script",
+        "kb": 3.9
+      },
+      {
+        "url": "/_next/static/chunks/11jq0c2_zavac.js",
+        "kind": "script",
+        "kb": 8.7
+      },
+      {
+        "url": "/_next/static/chunks/turbopack-23v0ky2c61k49.js",
+        "kind": "script",
+        "kb": 4.6
+      },
+      {
+        "url": "/_next/static/chunks/2-673evsg3q-m.js",
+        "kind": "script",
+        "kb": 0.6
+      },
+      {
+        "url": "/_next/static/chunks/3fntmmi971322.js",
+        "kind": "script",
+        "kb": 4
+      },
+      {
+        "url": "/_next/static/chunks/308uj-qf3veg4.js",
+        "kind": "script",
+        "kb": 11.5
+      },
+      {
+        "url": "/_next/static/chunks/1z4xfxq9z1-dr.js",
+        "kind": "script",
+        "kb": 7.5
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kind": "script",
+        "kb": 42.2
+      },
+      {
+        "url": "/_next/static/chunks/3huoqhfkzp8jy.js",
+        "kind": "script",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kind": "script",
+        "kb": 46.9
+      },
+      {
+        "url": "/_next/static/chunks/25jl4kp5py1d4.js",
+        "kind": "script",
+        "kb": 1.8
+      },
+      {
+        "url": "/_next/static/chunks/2i9k7w_uscdhd.js",
+        "kind": "script",
+        "kb": 10.3
+      },
+      {
+        "url": "/_next/static/chunks/2vnz-fl2uf4z-.js",
+        "kind": "script",
+        "kb": 3.2
+      },
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kind": "script",
+        "kb": 70.3
+      },
+      {
+        "url": "/_next/image?/media/nha-pho-hien-dai-nha-pho-7-phong-khach/0-1200.webp",
+        "kind": "image",
+        "kb": 19.4
+      },
+      {
+        "url": "/icon.png?icon.2q-e_7sprchc1.png",
+        "kind": "other",
+        "kb": 2.1
+      },
+      {
+        "url": "/?_rsc=1xkjR6qovEdN5-_9",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/projects?_rsc=1xkjR6qovEdN5-_9",
+        "kind": "other",
+        "kb": 0.4
+      },
+      {
+        "url": "/studio?_rsc=1xkjR6qovEdN5-_9",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/services?_rsc=1xkjR6qovEdN5-_9",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/journal?_rsc=1xkjR6qovEdN5-_9",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/contact?_rsc=1xkjR6qovEdN5-_9",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/?_rsc=UWtyZ3xtydd5Z8ad",
+        "kind": "other",
+        "kb": 6.4
+      },
+      {
+        "url": "/?_rsc=fr0Dh0EKpLBJHPlF",
+        "kind": "other",
+        "kb": 17.2
+      },
+      {
+        "url": "/studio?_rsc=hT1ML4BTJKDZ8tNJ",
+        "kind": "other",
+        "kb": 11.2
+      },
+      {
+        "url": "/services?_rsc=4p9D-DFqxCAoGQ3v",
+        "kind": "other",
+        "kb": 9.6
+      },
+      {
+        "url": "/_next/static/chunks/0li4babdiuavi.js",
+        "kind": "script",
+        "kb": 1
+      },
+      {
+        "url": "/_next/static/chunks/2hp-d1k6v4jcp.js",
+        "kind": "script",
+        "kb": 4.1
+      },
+      {
+        "url": "/journal?_rsc=hyr7BpwVqN2MQ6g_",
+        "kind": "other",
+        "kb": 5.7
+      },
+      {
+        "url": "/_next/static/chunks/3jh_q7grmosjb.js",
+        "kind": "script",
+        "kb": 11.4
+      },
+      {
+        "url": "/contact?_rsc=CA4r2CtGD7A99y9a",
+        "kind": "other",
+        "kb": 4.5
+      },
+      {
+        "url": "/_next/static/chunks/3wf1qdt8u_exh.js",
+        "kind": "script",
+        "kb": 3
+      },
+      {
+        "url": "/_next/static/chunks/26-jtxlwvoarf.js",
+        "kind": "script",
+        "kb": 3.1
+      },
+      {
+        "url": "/_next/static/chunks/1zezhik4zwdry.js",
+        "kind": "script",
+        "kb": 7.4
+      },
+      {
+        "url": "/projects?_rsc=qvajPJFzoPGNrtRf",
+        "kind": "other",
+        "kb": 0.4
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "arrival": {
+      "bytes": 559757,
+      "count": 49,
+      "byKind": {
+        "document": 29188,
+        "script": 260728,
+        "style": 20702,
+        "image": 64626,
+        "font": 121307,
+        "media": 0,
+        "other": 63206
+      }
+    },
+    "engaged": {
+      "bytes": 588026,
+      "count": 52,
+      "byKind": {
+        "document": 29188,
+        "script": 260728,
+        "style": 20702,
+        "image": 92895,
+        "font": 121307,
+        "media": 0,
+        "other": 63206
+      }
+    },
+    "worst": [
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kb": 70
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kb": 47
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kb": 42
+      },
+      {
+        "url": "/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+        "kb": 38
+      }
+    ],
+    "hits": [
+      {
+        "url": "/services",
+        "kind": "document",
+        "kb": 28.5
+      },
+      {
+        "url": "/_next/static/chunks/2ymehvuw6-plx.css",
+        "kind": "style",
+        "kb": 20.2
+      },
+      {
+        "url": "/_next/image?/media/brand/guhomes-row-800.webp",
+        "kind": "image",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/image?/brand/guhomes-mark-256.png",
+        "kind": "image",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/14e23f9b59180572-s.p.0t8ljjjn9wtsx.woff2",
+        "kind": "font",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/media/53e45098eac42afb-s.p.1uklb5el4zgvl.woff2",
+        "kind": "font",
+        "kb": 4.9
+      },
+      {
+        "url": "/_next/static/media/3c285486269019b7-s.p.2g-0we2o5_ngd.woff2",
+        "kind": "font",
+        "kb": 12.9
+      },
+      {
+        "url": "/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+        "kind": "font",
+        "kb": 37.9
+      },
+      {
+        "url": "/_next/static/media/625a092f804baad3-s.p.1zvg0ggiaivzo.woff2",
+        "kind": "font",
+        "kb": 5.3
+      },
+      {
+        "url": "/_next/static/media/6afabefbb32d7517-s.p.0jaqhc1tb-5xm.woff2",
+        "kind": "font",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/85ea1b3aadcead52-s.p.05i4gb4p0piv4.woff2",
+        "kind": "font",
+        "kb": 7
+      },
+      {
+        "url": "/_next/static/media/a4f4f75ad654963f-s.p.1hvvd1t-trplq.woff2",
+        "kind": "font",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/static/media/b49b0d9b851e4899-s.p.2zyohmvb-ks7f.woff2",
+        "kind": "font",
+        "kb": 20.8
+      },
+      {
+        "url": "/_next/image?/media/buc-tuong-soi/14-1200.webp",
+        "kind": "image",
+        "kb": 15.4
+      },
+      {
+        "url": "/_next/static/chunks/3yfl9fgvivx3-.js",
+        "kind": "script",
+        "kb": 3.9
+      },
+      {
+        "url": "/_next/static/chunks/11jq0c2_zavac.js",
+        "kind": "script",
+        "kb": 8.7
+      },
+      {
+        "url": "/_next/static/chunks/2-673evsg3q-m.js",
+        "kind": "script",
+        "kb": 0.6
+      },
+      {
+        "url": "/_next/static/chunks/turbopack-23v0ky2c61k49.js",
+        "kind": "script",
+        "kb": 4.6
+      },
+      {
+        "url": "/_next/static/chunks/3fntmmi971322.js",
+        "kind": "script",
+        "kb": 4
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kind": "script",
+        "kb": 42.2
+      },
+      {
+        "url": "/_next/static/chunks/1z4xfxq9z1-dr.js",
+        "kind": "script",
+        "kb": 7.5
+      },
+      {
+        "url": "/_next/static/chunks/308uj-qf3veg4.js",
+        "kind": "script",
+        "kb": 11.5
+      },
+      {
+        "url": "/_next/static/chunks/3huoqhfkzp8jy.js",
+        "kind": "script",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/chunks/2i9k7w_uscdhd.js",
+        "kind": "script",
+        "kb": 10.3
+      },
+      {
+        "url": "/_next/static/chunks/25jl4kp5py1d4.js",
+        "kind": "script",
+        "kb": 1.8
+      },
+      {
+        "url": "/_next/static/chunks/3wf1qdt8u_exh.js",
+        "kind": "script",
+        "kb": 3
+      },
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kind": "script",
+        "kb": 70.3
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kind": "script",
+        "kb": 46.9
+      },
+      {
+        "url": "/_next/image?/media/nha-pho-hien-dai-nha-pho-1-mat-tien/0-1200.webp",
+        "kind": "image",
+        "kb": 27.2
+      },
+      {
+        "url": "/icon.png?icon.2q-e_7sprchc1.png",
+        "kind": "other",
+        "kb": 2.1
+      },
+      {
+        "url": "/?_rsc=1RpmAqYJEMFF4n7A",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/projects?_rsc=1RpmAqYJEMFF4n7A",
+        "kind": "other",
+        "kb": 0.4
+      },
+      {
+        "url": "/studio?_rsc=1RpmAqYJEMFF4n7A",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/services?_rsc=1RpmAqYJEMFF4n7A",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/journal?_rsc=1RpmAqYJEMFF4n7A",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/contact?_rsc=1RpmAqYJEMFF4n7A",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/?_rsc=2sHoqgex55WVLzcf",
+        "kind": "other",
+        "kb": 6.4
+      },
+      {
+        "url": "/?_rsc=_VrW75gbRtbJDpQN",
+        "kind": "other",
+        "kb": 17.2
+      },
+      {
+        "url": "/studio?_rsc=aUUcDKjoC2TlYUQ3",
+        "kind": "other",
+        "kb": 11.2
+      },
+      {
+        "url": "/services?_rsc=uQ96PWVdbn8jkTu1",
+        "kind": "other",
+        "kb": 9.6
+      },
+      {
+        "url": "/_next/static/chunks/0li4babdiuavi.js",
+        "kind": "script",
+        "kb": 1
+      },
+      {
+        "url": "/_next/static/chunks/2hp-d1k6v4jcp.js",
+        "kind": "script",
+        "kb": 4.1
+      },
+      {
+        "url": "/_next/static/chunks/3jh_q7grmosjb.js",
+        "kind": "script",
+        "kb": 11.4
+      },
+      {
+        "url": "/journal?_rsc=Ys55DvEHzkm9YD8b",
+        "kind": "other",
+        "kb": 5.7
+      },
+      {
+        "url": "/contact?_rsc=TQthSr4Vzhg5rtEZ",
+        "kind": "other",
+        "kb": 4.5
+      },
+      {
+        "url": "/_next/static/chunks/2vnz-fl2uf4z-.js",
+        "kind": "script",
+        "kb": 3.2
+      },
+      {
+        "url": "/_next/static/chunks/26-jtxlwvoarf.js",
+        "kind": "script",
+        "kb": 3.1
+      },
+      {
+        "url": "/_next/static/chunks/1zezhik4zwdry.js",
+        "kind": "script",
+        "kb": 7.4
+      },
+      {
+        "url": "/projects?_rsc=Ktn5x2ERov_cBgED",
+        "kind": "other",
+        "kb": 0.4
+      }
+    ]
+  },
+  {
+    "route": "/journal",
+    "arrival": {
+      "bytes": 561586,
+      "count": 54,
+      "byKind": {
+        "document": 21977,
+        "script": 266886,
+        "style": 20702,
+        "image": 59159,
+        "font": 121307,
+        "media": 0,
+        "other": 71555
+      }
+    },
+    "engaged": {
+      "bytes": 595447,
+      "count": 59,
+      "byKind": {
+        "document": 21977,
+        "script": 266886,
+        "style": 20702,
+        "image": 63925,
+        "font": 121307,
+        "media": 0,
+        "other": 100650
+      }
+    },
+    "worst": [
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kb": 70
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kb": 47
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kb": 42
+      },
+      {
+        "url": "/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+        "kb": 38
+      }
+    ],
+    "hits": [
+      {
+        "url": "/journal",
+        "kind": "document",
+        "kb": 21.5
+      },
+      {
+        "url": "/_next/image?/media/brand/guhomes-row-800.webp",
+        "kind": "image",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/image?/brand/guhomes-mark-256.png",
+        "kind": "image",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/14e23f9b59180572-s.p.0t8ljjjn9wtsx.woff2",
+        "kind": "font",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/chunks/2ymehvuw6-plx.css",
+        "kind": "style",
+        "kb": 20.2
+      },
+      {
+        "url": "/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+        "kind": "font",
+        "kb": 37.9
+      },
+      {
+        "url": "/_next/static/media/3c285486269019b7-s.p.2g-0we2o5_ngd.woff2",
+        "kind": "font",
+        "kb": 12.9
+      },
+      {
+        "url": "/_next/static/media/625a092f804baad3-s.p.1zvg0ggiaivzo.woff2",
+        "kind": "font",
+        "kb": 5.3
+      },
+      {
+        "url": "/_next/static/media/53e45098eac42afb-s.p.1uklb5el4zgvl.woff2",
+        "kind": "font",
+        "kb": 4.9
+      },
+      {
+        "url": "/_next/image?/media/anh-kim-van-da/0-800.webp",
+        "kind": "image",
+        "kb": 27.4
+      },
+      {
+        "url": "/_next/static/media/85ea1b3aadcead52-s.p.05i4gb4p0piv4.woff2",
+        "kind": "font",
+        "kb": 7
+      },
+      {
+        "url": "/_next/static/media/6afabefbb32d7517-s.p.0jaqhc1tb-5xm.woff2",
+        "kind": "font",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/a4f4f75ad654963f-s.p.1hvvd1t-trplq.woff2",
+        "kind": "font",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/static/media/b49b0d9b851e4899-s.p.2zyohmvb-ks7f.woff2",
+        "kind": "font",
+        "kb": 20.8
+      },
+      {
+        "url": "/_next/static/chunks/3yfl9fgvivx3-.js",
+        "kind": "script",
+        "kb": 3.9
+      },
+      {
+        "url": "/_next/static/chunks/11jq0c2_zavac.js",
+        "kind": "script",
+        "kb": 8.7
+      },
+      {
+        "url": "/_next/static/chunks/3fntmmi971322.js",
+        "kind": "script",
+        "kb": 4
+      },
+      {
+        "url": "/_next/static/chunks/turbopack-23v0ky2c61k49.js",
+        "kind": "script",
+        "kb": 4.6
+      },
+      {
+        "url": "/_next/static/chunks/2-673evsg3q-m.js",
+        "kind": "script",
+        "kb": 0.6
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kind": "script",
+        "kb": 42.2
+      },
+      {
+        "url": "/_next/static/chunks/1z4xfxq9z1-dr.js",
+        "kind": "script",
+        "kb": 7.5
+      },
+      {
+        "url": "/_next/static/chunks/308uj-qf3veg4.js",
+        "kind": "script",
+        "kb": 11.5
+      },
+      {
+        "url": "/_next/static/chunks/26-jtxlwvoarf.js",
+        "kind": "script",
+        "kb": 3.1
+      },
+      {
+        "url": "/_next/static/chunks/25jl4kp5py1d4.js",
+        "kind": "script",
+        "kb": 1.8
+      },
+      {
+        "url": "/_next/static/chunks/3huoqhfkzp8jy.js",
+        "kind": "script",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/chunks/2i9k7w_uscdhd.js",
+        "kind": "script",
+        "kb": 10.3
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kind": "script",
+        "kb": 46.9
+      },
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kind": "script",
+        "kb": 70.3
+      },
+      {
+        "url": "/_next/image?/media/wabi-sabi-can-ho-2-ngu/10-800.webp",
+        "kind": "image",
+        "kb": 4
+      },
+      {
+        "url": "/_next/image?/media/nhat-ky-phan-tho/16-800.webp",
+        "kind": "image",
+        "kb": 1.7
+      },
+      {
+        "url": "/_next/image?/media/trang-trong-vach/1-800.webp",
+        "kind": "image",
+        "kb": 4.1
+      },
+      {
+        "url": "/icon.png?icon.2q-e_7sprchc1.png",
+        "kind": "other",
+        "kb": 2.1
+      },
+      {
+        "url": "/?_rsc=PPJxfRJ-k5tS7084",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/projects?_rsc=PPJxfRJ-k5tS7084",
+        "kind": "other",
+        "kb": 0.4
+      },
+      {
+        "url": "/studio?_rsc=PPJxfRJ-k5tS7084",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/services?_rsc=PPJxfRJ-k5tS7084",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/journal?_rsc=PPJxfRJ-k5tS7084",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/contact?_rsc=PPJxfRJ-k5tS7084",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/journal/chon-go-oc-cho-cho-khi-hau-sai-gon?_rsc=PPJxfRJ-k5tS7084",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/?_rsc=DHPFEoNQIZcRQvNv",
+        "kind": "other",
+        "kb": 6.4
+      },
+      {
+        "url": "/?_rsc=blOAOO3312jBVaAR",
+        "kind": "other",
+        "kb": 17.2
+      },
+      {
+        "url": "/studio?_rsc=0rwJvMlR2hZVS3a7",
+        "kind": "other",
+        "kb": 11.2
+      },
+      {
+        "url": "/_next/static/chunks/0li4babdiuavi.js",
+        "kind": "script",
+        "kb": 1
+      },
+      {
+        "url": "/_next/static/chunks/2hp-d1k6v4jcp.js",
+        "kind": "script",
+        "kb": 4.1
+      },
+      {
+        "url": "/services?_rsc=t2aG66GYcqUx5_5B",
+        "kind": "other",
+        "kb": 9.6
+      },
+      {
+        "url": "/_next/static/chunks/3jh_q7grmosjb.js",
+        "kind": "script",
+        "kb": 11.4
+      },
+      {
+        "url": "/journal?_rsc=dPqmoXSvbtYpxReR",
+        "kind": "other",
+        "kb": 5.7
+      },
+      {
+        "url": "/contact?_rsc=_lL1DrAoMCzps8FM",
+        "kind": "other",
+        "kb": 4.5
+      },
+      {
+        "url": "/journal/chon-go-oc-cho-cho-khi-hau-sai-gon?_rsc=0hlCAVlabqsguN-k",
+        "kind": "other",
+        "kb": 7.2
+      },
+      {
+        "url": "/_next/static/chunks/2vnz-fl2uf4z-.js",
+        "kind": "script",
+        "kb": 3.2
+      },
+      {
+        "url": "/_next/static/chunks/3wf1qdt8u_exh.js",
+        "kind": "script",
+        "kb": 3
+      },
+      {
+        "url": "/_next/static/chunks/1zezhik4zwdry.js",
+        "kind": "script",
+        "kb": 7.4
+      },
+      {
+        "url": "/_next/static/chunks/0eyqr1fq7e9wp.js",
+        "kind": "script",
+        "kb": 6
+      },
+      {
+        "url": "/projects?_rsc=PHlL9_R32Alzzlxs",
+        "kind": "other",
+        "kb": 0.4
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "arrival": {
+      "bytes": 527014,
+      "count": 48,
+      "byKind": {
+        "document": 20330,
+        "script": 260728,
+        "style": 20702,
+        "image": 40546,
+        "font": 121307,
+        "media": 0,
+        "other": 63401
+      }
+    },
+    "engaged": {
+      "bytes": 561260,
+      "count": 52,
+      "byKind": {
+        "document": 20330,
+        "script": 276128,
+        "style": 20702,
+        "image": 40546,
+        "font": 121307,
+        "media": 0,
+        "other": 82247
+      }
+    },
+    "worst": [
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kb": 70
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kb": 47
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kb": 42
+      },
+      {
+        "url": "/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+        "kb": 38
+      }
+    ],
+    "hits": [
+      {
+        "url": "/contact",
+        "kind": "document",
+        "kb": 19.9
+      },
+      {
+        "url": "/_next/image?/media/brand/guhomes-row-800.webp",
+        "kind": "image",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/image?/brand/guhomes-mark-256.png",
+        "kind": "image",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/chunks/2ymehvuw6-plx.css",
+        "kind": "style",
+        "kb": 20.2
+      },
+      {
+        "url": "/_next/static/media/14e23f9b59180572-s.p.0t8ljjjn9wtsx.woff2",
+        "kind": "font",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/media/3c285486269019b7-s.p.2g-0we2o5_ngd.woff2",
+        "kind": "font",
+        "kb": 12.9
+      },
+      {
+        "url": "/_next/static/media/53e45098eac42afb-s.p.1uklb5el4zgvl.woff2",
+        "kind": "font",
+        "kb": 4.9
+      },
+      {
+        "url": "/_next/static/media/2a65768255d6b625-s.p.3u4lli0-axodc.woff2",
+        "kind": "font",
+        "kb": 37.9
+      },
+      {
+        "url": "/_next/static/media/625a092f804baad3-s.p.1zvg0ggiaivzo.woff2",
+        "kind": "font",
+        "kb": 5.3
+      },
+      {
+        "url": "/_next/static/media/6afabefbb32d7517-s.p.0jaqhc1tb-5xm.woff2",
+        "kind": "font",
+        "kb": 7.3
+      },
+      {
+        "url": "/_next/static/media/85ea1b3aadcead52-s.p.05i4gb4p0piv4.woff2",
+        "kind": "font",
+        "kb": 7
+      },
+      {
+        "url": "/_next/static/media/a4f4f75ad654963f-s.p.1hvvd1t-trplq.woff2",
+        "kind": "font",
+        "kb": 13.3
+      },
+      {
+        "url": "/_next/static/media/b49b0d9b851e4899-s.p.2zyohmvb-ks7f.woff2",
+        "kind": "font",
+        "kb": 20.8
+      },
+      {
+        "url": "/_next/static/chunks/3yfl9fgvivx3-.js",
+        "kind": "script",
+        "kb": 3.9
+      },
+      {
+        "url": "/_next/static/chunks/11jq0c2_zavac.js",
+        "kind": "script",
+        "kb": 8.7
+      },
+      {
+        "url": "/_next/static/chunks/turbopack-23v0ky2c61k49.js",
+        "kind": "script",
+        "kb": 4.6
+      },
+      {
+        "url": "/_next/static/chunks/2-673evsg3q-m.js",
+        "kind": "script",
+        "kb": 0.6
+      },
+      {
+        "url": "/_next/static/chunks/3fntmmi971322.js",
+        "kind": "script",
+        "kb": 4
+      },
+      {
+        "url": "/_next/static/chunks/1z4xfxq9z1-dr.js",
+        "kind": "script",
+        "kb": 7.5
+      },
+      {
+        "url": "/_next/static/chunks/308uj-qf3veg4.js",
+        "kind": "script",
+        "kb": 11.5
+      },
+      {
+        "url": "/_next/static/chunks/3huoqhfkzp8jy.js",
+        "kind": "script",
+        "kb": 9.1
+      },
+      {
+        "url": "/_next/static/chunks/3xo_gi65utu-c.js",
+        "kind": "script",
+        "kb": 42.2
+      },
+      {
+        "url": "/_next/static/chunks/2i9k7w_uscdhd.js",
+        "kind": "script",
+        "kb": 10.3
+      },
+      {
+        "url": "/_next/static/chunks/227kwhsrjlnp4.js",
+        "kind": "script",
+        "kb": 70.3
+      },
+      {
+        "url": "/_next/static/chunks/2x69il346ac_p.js",
+        "kind": "script",
+        "kb": 46.9
+      },
+      {
+        "url": "/_next/static/chunks/25jl4kp5py1d4.js",
+        "kind": "script",
+        "kb": 1.8
+      },
+      {
+        "url": "/_next/static/chunks/1zezhik4zwdry.js",
+        "kind": "script",
+        "kb": 7.4
+      },
+      {
+        "url": "/_next/image?/media/may-trang-tang-cao/0-1600.webp",
+        "kind": "image",
+        "kb": 19
+      },
+      {
+        "url": "/icon.png?icon.2q-e_7sprchc1.png",
+        "kind": "other",
+        "kb": 2.1
+      },
+      {
+        "url": "/?_rsc=h2vb-LAkAGynSY5z",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/studio?_rsc=h2vb-LAkAGynSY5z",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/services?_rsc=h2vb-LAkAGynSY5z",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/projects?_rsc=h2vb-LAkAGynSY5z",
+        "kind": "other",
+        "kb": 0.5
+      },
+      {
+        "url": "/journal?_rsc=h2vb-LAkAGynSY5z",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/contact?_rsc=h2vb-LAkAGynSY5z",
+        "kind": "other",
+        "kb": 0.9
+      },
+      {
+        "url": "/?_rsc=K56QiJQxYFcwcMGE",
+        "kind": "other",
+        "kb": 6.4
+      },
+      {
+        "url": "/?_rsc=f711Rkq3qfDeaBvF",
+        "kind": "other",
+        "kb": 17.2
+      },
+      {
+        "url": "/studio?_rsc=vjcAo0e47Y4PMbcW",
+        "kind": "other",
+        "kb": 11.2
+      },
+      {
+        "url": "/services?_rsc=YlzGd1MG0EsVSe0v",
+        "kind": "other",
+        "kb": 9.6
+      },
+      {
+        "url": "/_next/static/chunks/0li4babdiuavi.js",
+        "kind": "script",
+        "kb": 1
+      },
+      {
+        "url": "/_next/static/chunks/2hp-d1k6v4jcp.js",
+        "kind": "script",
+        "kb": 4.1
+      },
+      {
+        "url": "/_next/static/chunks/3jh_q7grmosjb.js",
+        "kind": "script",
+        "kb": 11.4
+      },
+      {
+        "url": "/journal?_rsc=E2fzbXV_Ha0J0WdP",
+        "kind": "other",
+        "kb": 5.7
+      },
+      {
+        "url": "/contact?_rsc=dx-wVYNH8BUisaWq",
+        "kind": "other",
+        "kb": 4.5
+      },
+      {
+        "url": "/_next/static/chunks/3wf1qdt8u_exh.js",
+        "kind": "script",
+        "kb": 3
+      },
+      {
+        "url": "/_next/static/chunks/2vnz-fl2uf4z-.js",
+        "kind": "script",
+        "kb": 3.2
+      },
+      {
+        "url": "/_next/static/chunks/26-jtxlwvoarf.js",
+        "kind": "script",
+        "kb": 3.1
+      },
+      {
+        "url": "/projects?_rsc=mTa8tpfUvA8h8GpF",
+        "kind": "other",
+        "kb": 0.4
+      }
+    ]
+  }
+]

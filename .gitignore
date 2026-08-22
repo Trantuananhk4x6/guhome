@@ -17,3 +17,6 @@ scripts/tmp/
 docs/ui-after/
 docs/ui-probe/
 docs/survey-shots/
+
+# Scratch space for the measuring scripts (perf.ts, verify-3d.ts).
+.tmp/

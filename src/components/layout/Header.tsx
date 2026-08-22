@@ -78,7 +78,14 @@ function NavLink({
         // that put their two hover rules at different depths.
         'group/nav u-label relative inline-flex items-baseline text-current transition-opacity duration-500 ease-editorial',
         lead
-          ? 'text-[0.8125rem] leading-none font-semibold tracking-[0.14em] opacity-100'
+          ? // `font-medium`, not `font-semibold`: 600 was the ONLY use of that
+            // weight on the site, and a static family pays for it in three more
+            // font files on every page load. It was also the fourth signal
+            // marking this link — it is already two points larger than the
+            // labels beside it, held at full opacity, and carries a permanent
+            // rule. Losing the half-step between 500 and 600 at 13px under
+            // 0.14em tracking costs nothing those three do not already say.
+            'text-[0.8125rem] leading-none font-medium tracking-[0.14em] opacity-100'
           : 'leading-none text-current',
         !lead &&
           (active

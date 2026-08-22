@@ -147,6 +147,30 @@ export function CameraPath({
     }
   }, [enabled, yieldOnPointer, gl, invalidate])
 
+  /**
+   * The scroll wake-up, and the reason the hero can render on demand.
+   *
+   * `progressRef` is a ref: writing to it changes nothing anybody is watching.
+   * On a `demand` frameloop `useFrame` only runs when a frame has been asked
+   * for, so scrolling would move the progress value silently and the camera
+   * would sit still until something else happened to request a draw. One
+   * invalidate per scroll event is enough — from there the `!settled` check at
+   * the end of the frame keeps the loop alive by itself until the dolly stops.
+   *
+   * The tour driver is exempt: it advances on elapsed time, never settles while
+   * it is running, and is given a live loop by the caller.
+   */
+  useEffect(() => {
+    if (!enabled || driver === 'tour') return
+    const wake = (): void => invalidate()
+    window.addEventListener('scroll', wake, { passive: true })
+    window.addEventListener('resize', wake, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', wake)
+      window.removeEventListener('resize', wake)
+    }
+  }, [enabled, driver, invalidate])
+
   useFrame((state, delta) => {
     if (!enabled || yielded.current) return
     const camera = state.camera
