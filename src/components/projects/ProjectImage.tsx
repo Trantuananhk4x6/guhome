@@ -125,6 +125,35 @@ interface Placement {
 }
 
 /*
+ * SIZES DESCRIBE THE SLOT, AND THE SLOT STOPS GROWING.
+ *
+ * Every grid below is `max-w-[110rem]` — 1760px. Past a 1760px viewport the
+ * container is capped and the picture's slot is a *fixed* number of pixels,
+ * but a bare `vw` fraction keeps climbing with the window, so the browser is
+ * told to fetch a size the layout will never use. Measured on the live pages
+ * (scripts/tmp probe, 2026-08), a `wide` square block occupies 1150px at both
+ * 1760 and 1920 while `72vw` claimed 1267px and 1382px — enough to push the
+ * request from the 1080 candidate to 1280 and then 1600.
+ *
+ * So each string states three measured truths: the fixed width above the cap,
+ * the real fraction between 1024 and the cap, and the real fraction below it.
+ * The numbers carry ~1% headroom over the measurement, never less — a `sizes`
+ * that understates the slot fetches too few pixels and shows a soft picture,
+ * which is the one failure worse than fetching too many.
+ *
+ *   placement          >=1760px    1024-1759   640-1023   <640
+ *   WIDE_PLATE            611px         35%        61%     92%
+ *   WIDE_SQUARE          1150px         65%        92%     92%
+ *   WIDE_BAND.left       1619px         92%        92%     92%
+ *   WIDE_BAND.right      1285px         73%        92%     92%
+ *   GROUND_PLATE          540px         31%        46%     92%
+ *   HELD.plate            540px         31%        61%     92%
+ *   HELD.square           810px         46%        77%     92%
+ *   HELD.band            1079px         61%        77%     92%
+ */
+const CAP = '(min-width: 1760px)'
+
+/*
  * The asymmetry is an `lg` composition, because it depends on the bleed to make
  * the open columns read as a margin. Between 640 and 1023 there is no bleed —
  * the plate would simply be seven columns hard against one edge with five empty
@@ -134,12 +163,12 @@ interface Placement {
 const WIDE_PLATE: Record<'left' | 'right', Placement> = {
   left: {
     span: cn('col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-4 lg:col-start-1', BLEED_L),
-    sizes: '(min-width: 1024px) 38vw, (min-width: 640px) 66vw, 100vw',
+    sizes: `${CAP} 620px, (min-width: 1024px) 36vw, (min-width: 640px) 62vw, 93vw`,
     width: 1600,
   },
   right: {
     span: cn('col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-4 lg:col-start-9', BLEED_R),
-    sizes: '(min-width: 1024px) 38vw, (min-width: 640px) 66vw, 100vw',
+    sizes: `${CAP} 620px, (min-width: 1024px) 36vw, (min-width: 640px) 62vw, 93vw`,
     width: 1600,
   },
 }
@@ -147,12 +176,12 @@ const WIDE_PLATE: Record<'left' | 'right', Placement> = {
 const WIDE_SQUARE: Record<'left' | 'right', Placement> = {
   left: {
     span: cn('col-span-12 lg:col-span-8', BLEED_L),
-    sizes: '(min-width: 1024px) 72vw, 100vw',
+    sizes: `${CAP} 1160px, (min-width: 1024px) 66vw, 93vw`,
     width: 2400,
   },
   right: {
     span: cn('col-span-12 lg:col-span-8 lg:col-start-5', BLEED_R),
-    sizes: '(min-width: 1024px) 72vw, 100vw',
+    sizes: `${CAP} 1160px, (min-width: 1024px) 66vw, 93vw`,
     width: 2400,
   },
 }
@@ -162,12 +191,12 @@ const WIDE_BAND: Record<'left' | 'right', Placement> = {
   // there is nothing to leave empty.
   left: {
     span: 'col-span-12',
-    sizes: '(min-width: 1024px) 92vw, 100vw',
+    sizes: `${CAP} 1640px, 93vw`,
     width: 2400,
   },
   right: {
     span: cn('col-span-12 lg:col-span-9 lg:col-start-4', BLEED_R),
-    sizes: '(min-width: 1024px) 76vw, 100vw',
+    sizes: `${CAP} 1300px, (min-width: 1024px) 74vw, 93vw`,
     width: 2400,
   },
 }
@@ -197,9 +226,9 @@ const HELD_PLATE: Record<ImageFamily, string> = {
 }
 
 const HELD_SIZES: Record<ImageFamily, string> = {
-  plate: '(min-width: 1024px) 34vw, (min-width: 640px) 66vw, 100vw',
-  square: '(min-width: 1024px) 50vw, (min-width: 640px) 82vw, 100vw',
-  band: '(min-width: 1024px) 66vw, (min-width: 640px) 82vw, 100vw',
+  plate: `${CAP} 550px, (min-width: 1024px) 31vw, (min-width: 640px) 62vw, 93vw`,
+  square: `${CAP} 820px, (min-width: 1024px) 47vw, (min-width: 640px) 78vw, 93vw`,
+  band: `${CAP} 1090px, (min-width: 1024px) 62vw, (min-width: 640px) 78vw, 93vw`,
 }
 
 /** Steps permitted per family, per breakpoint, with the crop each may spend. */
@@ -283,7 +312,7 @@ export function ProjectImage({
               <ProjectFigure
                 media={media}
                 alt={alt}
-                sizes="(min-width: 1024px) 34vw, (min-width: 640px) 58vw, 100vw"
+                sizes={`${CAP} 550px, (min-width: 1024px) 31vw, (min-width: 640px) 47vw, 93vw`}
                 width={1600}
                 priority={priority}
                 reveal={reveal}

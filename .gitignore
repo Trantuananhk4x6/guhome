@@ -12,7 +12,11 @@ next-env.d.ts
 
 # Agent scratch: throwaway probe scripts, never part of the build.
 scripts/tmp/
+.perf/
 .playwright-mcp/
 docs/ui-after/
 docs/ui-probe/
 docs/survey-shots/
+
+# Scratch space for the measuring scripts (perf.ts, verify-3d.ts).
+.tmp/

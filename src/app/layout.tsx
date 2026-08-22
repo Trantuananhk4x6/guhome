@@ -35,26 +35,42 @@ import { getAppearance, getThemeSettings } from '@/server/queries/site'
  * next/font takes literal arguments only, so the subset list is repeated in full
  * for every family rather than shared.
  *
+ * The two rendered families keep `latin-ext`, and that is not the obvious call —
+ * it looks like European padding on a Vietnamese site. I removed it, measured,
+ * and put it back. Google does not split Be Vietnam Pro along the line the
+ * subset NAMES imply: `latin-ext` carries đ ư ơ ă ĩ ũ Đ, seven of the most
+ * common letters in Vietnamese, while `vietnamese` carries the tone-marked forms
+ * at U+1EA0–1EF1. Both files are genuinely required to render one Vietnamese
+ * sentence. Dropping `latin-ext` from `subsets` did not stop the download — the
+ * @font-face rule is emitted either way, and the browser fetched it the moment
+ * it hit the first `đ`. All it removed was the PRELOAD, which moved that fetch
+ * from the head to after CSS parse and put a swap on the commonest letters on
+ * the page. Eight kilobytes saved for a visible reflow is a bad trade.
+ *
+ * Weights are 400 and 500 only. This is a static family, so a third weight is
+ * three more files across the three subsets; 600 was used in exactly one place
+ * (see Header) and had three other signals doing the same job.
+ *
  * Only the two defaults are preloaded. The rest still emit their @font-face, so
  * switching the theme picks them up immediately, but a visitor never downloads a
  * face the site is not using.
  */
 const playfair = Playfair_Display({
   subsets: ['latin', 'latin-ext', 'vietnamese'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500'],
   display: 'swap',
   variable: '--font-playfair-display',
 })
 
 const bodyFont = Be_Vietnam_Pro({
   subsets: ['latin', 'latin-ext', 'vietnamese'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500'],
   display: 'swap',
   variable: '--font-be-vietnam-pro',
 })
 
 const lora = Lora({
-  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  subsets: ['latin', 'vietnamese'],
   weight: ['400', '500'],
   display: 'swap',
   preload: false,
@@ -62,7 +78,7 @@ const lora = Lora({
 })
 
 const sourceSerif = Source_Serif_4({
-  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  subsets: ['latin', 'vietnamese'],
   weight: ['400', '600'],
   display: 'swap',
   preload: false,
@@ -70,7 +86,7 @@ const sourceSerif = Source_Serif_4({
 })
 
 const cormorant = Cormorant_Garamond({
-  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  subsets: ['latin', 'vietnamese'],
   weight: ['300', '400', '500'],
   display: 'swap',
   preload: false,
@@ -78,7 +94,7 @@ const cormorant = Cormorant_Garamond({
 })
 
 const inter = Inter({
-  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  subsets: ['latin', 'vietnamese'],
   weight: ['400', '500'],
   display: 'swap',
   preload: false,
@@ -86,7 +102,7 @@ const inter = Inter({
 })
 
 const manrope = Manrope({
-  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  subsets: ['latin', 'vietnamese'],
   weight: ['400', '500'],
   display: 'swap',
   preload: false,

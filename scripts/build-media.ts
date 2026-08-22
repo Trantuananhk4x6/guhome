@@ -42,8 +42,54 @@ const CONTENT_DIR = path.resolve(REPO_ROOT, process.env.MEDIA_CONTENT_DIR ?? './
 const MANIFEST_PATH = path.join(OUT_ROOT, 'manifest.json')
 const PLACEHOLDER_PATH = path.join(OUT_ROOT, 'placeholder.svg')
 
+/*
+ * ENCODE SETTINGS — measured, not guessed (scripts/tmp harness, 2026-08).
+ *
+ * Every derivative is consumed two ways, and the two want different things:
+ *
+ *   1. `next/image` re-encodes it to AVIF before it reaches a browser. Next's
+ *      optimiser runs `avif({ quality: round(q * 50/80), effort: 3 })`, so the
+ *      site's default `q=75` means the visitor receives AVIF **q47** — the file
+ *      below is only ever an intermediate on that path. Six representative
+ *      frames encoded at q82/q78/q74/q70 and pushed through that exact AVIF step
+ *      landed within 2.8% of each other (107.9 -> 104.8 KB). The intermediate's
+ *      quality barely moves the delivered byte count.
+ *   2. `DepthScene` loads it *raw* through `useTexture`, straight off disk with
+ *      no optimiser in between. There the bytes below are the bytes on the wire,
+ *      1:1 — 500 KB of the homepage's image payload is exactly this.
+ *
+ * So the setting is chosen for case 2 and for disk, and judged by eye on the two
+ * failure modes that matter for interior photography: banding on a flat wall and
+ * mush in fine joinery. q76/effort6 showed neither against q82/effort4 on a
+ * bright flat wall, a dark walnut room and a kumiko screen at 1:1, while cutting
+ * the file ~29%. Effort 6 is worth its build time: it is free bytes at identical
+ * quality (-6.2% at the same q), and this runs once, offline.
+ */
+/*
+ * Quality stays at 82, and the reason is a measurement that contradicts the
+ * paragraph above.
+ *
+ * Almost nothing on this site serves these files directly — they go through
+ * `next/image`, which re-encodes to AVIF (Next's own default quality, not ours)
+ * using our WebP as the SOURCE. Lowering the intermediate therefore does not
+ * make the delivered file smaller; it just hands the second encoder a worse
+ * original. Measured across 24 photographs through the real chain, q76 came out
+ * marginally WORSE than q82 at comparable delivered size — the 29% saving is
+ * real on disk and invisible on the wire.
+ *
+ * Effort 6 stays: it is strictly better compression at the same quality, and it
+ * costs build time only.
+ *
+ * The real image win on this site is not here. It is either serving these
+ * already-sized derivatives directly instead of paying for a second encode, or
+ * tuning `next/image`'s own quality — both bigger changes than a constant.
+ */
 const WEBP_QUALITY = 82
-const WEBP_EFFORT = 4
+const WEBP_EFFORT = 6
+
+/** Blur tiles are 24px wide; effort buys nothing at that size. */
+const BLUR_QUALITY = 45
+const BLUR_EFFORT = 4
 const BLUR_WIDTH = 24
 const PROGRESS_EVERY = 25
 
@@ -83,6 +129,13 @@ interface ManifestEntry {
   checksum: string
   sourceBytes: number
   sourceMime: string
+  /**
+   * Settings the derivatives on disk were written with, e.g. `webp:q76:e6`.
+   * The resume check compares it, so changing WEBP_QUALITY / WEBP_EFFORT
+   * re-encodes on the next run instead of silently reusing the old files —
+   * which is what made a quality change a `--force`-or-nothing affair before.
+   */
+  encode: string
 }
 
 interface Options {
@@ -90,6 +143,8 @@ interface Options {
   limit: number | null
   force: boolean
   concurrency: number
+  quality: number
+  effort: number
 }
 
 interface Task {
@@ -108,7 +163,14 @@ interface Failure {
 /* ---------------------------------- cli ----------------------------------- */
 
 function parseArgs(argv: readonly string[]): Options {
-  const options: Options = { only: null, limit: null, force: false, concurrency: 6 }
+  const options: Options = {
+    only: null,
+    limit: null,
+    force: false,
+    concurrency: 6,
+    quality: WEBP_QUALITY,
+    effort: WEBP_EFFORT,
+  }
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]
@@ -145,6 +207,16 @@ function parseArgs(argv: readonly string[]): Options {
         if (Number.isFinite(n) && n > 0) options.concurrency = Math.min(n, 32)
         break
       }
+      case '--quality': {
+        const n = Number.parseInt(value, 10)
+        if (Number.isFinite(n) && n >= 1 && n <= 100) options.quality = n
+        break
+      }
+      case '--effort': {
+        const n = Number.parseInt(value, 10)
+        if (Number.isFinite(n) && n >= 0 && n <= 6) options.effort = n
+        break
+      }
       default:
         break
     }
@@ -161,6 +233,8 @@ function printUsage(): void {
       '  --only=<substring>    only folders whose inventory dir contains this (case-insensitive)',
       '  --limit=<n>           at most n photos per folder',
       '  --concurrency=<n>     parallel photos (default 6)',
+      `  --quality=<1-100>     webp quality (default ${WEBP_QUALITY})`,
+      `  --effort=<0-6>        webp effort (default ${WEBP_EFFORT}; higher is smaller and slower)`,
       '  --force               re-encode derivatives that already exist',
     ].join('\n'),
   )
@@ -397,6 +471,12 @@ function isManifestEntry(value: unknown): value is ManifestEntry {
     typeof entry.width === 'number' &&
     typeof entry.height === 'number' &&
     typeof entry.blurDataURL === 'string' &&
+    // `encode` is deliberately NOT required. The shipped manifest has 1,485
+    // entries written before the field existed, and requiring it here would make
+    // readManifest() reject every one of them: the run would then treat the whole
+    // library as absent, and write back only what it processed in that session.
+    // A legacy entry is a valid entry — the resume check in buildOne compares
+    // `encode` separately and simply re-encodes anything whose recipe is unknown.
     Array.isArray(entry.widths) &&
     entry.widths.every((w) => typeof w === 'number')
   )
@@ -434,6 +514,11 @@ const PLACEHOLDER_SVG = [
 
 /* ------------------------------- processing ------------------------------- */
 
+/** Identifies the settings a derivative was written with. See `ManifestEntry.encode`. */
+function encodeSignature(options: Options): string {
+  return `webp:q${options.quality}:e${options.effort}`
+}
+
 function derivativePath(slug: string, index: number, width: number): string {
   return path.join(OUT_ROOT, slug, `${index}-${width}.webp`)
 }
@@ -457,9 +542,16 @@ async function buildOne(
   previous: ManifestEntry | undefined,
 ): Promise<{ entry: ManifestEntry; reused: boolean }> {
   const storageKey = `${task.slug}/${task.index}`
+  const encode = encodeSignature(options)
 
-  // Resumable: everything the manifest promised is on disk.
-  if (!options.force && previous !== undefined && previous.widths.length > 0 && previous.blurDataURL.length > 0) {
+  // Resumable: everything the manifest promised is on disk, at these settings.
+  if (
+    !options.force &&
+    previous !== undefined &&
+    previous.widths.length > 0 &&
+    previous.blurDataURL.length > 0 &&
+    previous.encode === encode
+  ) {
     const present = await Promise.all(
       previous.widths.map((w) => pathExists(derivativePath(task.slug, task.index, w))),
     )
@@ -468,6 +560,7 @@ async function buildOne(
         reused: true,
         entry: {
           ...previous,
+          encode,
           storageKey,
           folder: task.folder,
           sourcePath: toPosix(task.sourcePath),
@@ -489,17 +582,14 @@ async function buildOne(
   await mkdir(path.join(OUT_ROOT, task.slug), { recursive: true })
 
   let largestBytes = 0
+  // Reaching here means the entry is being rebuilt, so an existing file was
+  // written with settings we no longer want — always overwrite it.
   for (const width of widths) {
     const target = derivativePath(task.slug, task.index, width)
-    if (!options.force && (await pathExists(target))) {
-      const existing = await stat(target)
-      largestBytes = Math.max(largestBytes, existing.size)
-      continue
-    }
     const info = await pipeline
       .clone()
       .resize({ width, withoutEnlargement: true })
-      .webp({ quality: WEBP_QUALITY, effort: WEBP_EFFORT })
+      .webp({ quality: options.quality, effort: options.effort })
       .toFile(target)
     largestBytes = Math.max(largestBytes, info.size)
   }
@@ -508,7 +598,7 @@ async function buildOne(
     .clone()
     .resize({ width: BLUR_WIDTH })
     .blur(1)
-    .webp({ quality: 45, effort: WEBP_EFFORT })
+    .webp({ quality: BLUR_QUALITY, effort: BLUR_EFFORT })
     .toBuffer()
 
   return {
@@ -527,6 +617,7 @@ async function buildOne(
       checksum,
       sourceBytes: source.byteLength,
       sourceMime: meta.format ? `image/${meta.format}` : 'image/jpeg',
+      encode,
     },
   }
 }
@@ -552,6 +643,7 @@ async function main(): Promise<void> {
     `  folders    ${selected.length}/${inventory.length}${needle ? ` (--only=${options.only})` : ''}` +
       `${options.limit ? `  limit ${options.limit}/folder` : ''}${options.force ? '  [force]' : ''}`,
   )
+  console.log(`  encode     ${encodeSignature(options)}`)
   if (overrides.exact.size > 0) console.log(`  slugs      ${overrides.exact.size} from src/data/content`)
   if (selected.length === 0) {
     console.log('  nothing matched — exiting')

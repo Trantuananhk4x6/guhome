@@ -384,9 +384,26 @@ export function InteriorScene({
   // `motionAllowsCamera` in here means that under reduced motion the path simply
   // never mounts and the orbit controls stay live — the correct a11y outcome.
   const pathDriven = motionAllowsCamera && (mode === 'scroll' || explore) && !handedOff
-  // Orbit needs a live loop for the controls' damping; otherwise only a driven
-  // camera does. A reduced-motion hero is a still frame and renders on demand.
-  const dynamicLoop = mode === 'orbit' || pathDriven
+  /*
+   * Only orbit gets a live loop, and this is the single biggest running cost on
+   * the site.
+   *
+   * A scroll-driven hero used to render at 60fps for as long as it was on
+   * screen, whether or not anything moved — which is most of the time a visitor
+   * spends looking at it. On a laptop that is a continuous GPU load, with bloom
+   * and a vignette on top, for a frame identical to the last one.
+   *
+   * It does not need to be. Every moving part of this scene already re-arms
+   * `invalidate()` while it is animating and stops when it converges: the dolly
+   * in CameraPath, the pointer parallax in DepthScene, the pan in SceneCamera.
+   * The one gap was that scrolling changed the camera's progress silently —
+   * closed by the scroll listener in CameraPath. So a still hero now costs
+   * nothing and a moving one is indistinguishable from before.
+   *
+   * Orbit is the exception on purpose: its tour driver advances on elapsed time
+   * and the controls' damping wants frames it never asks for.
+   */
+  const dynamicLoop = mode === 'orbit'
   const frameloop = !inView ? 'never' : dynamicLoop ? 'always' : 'demand'
 
   const handleError = useCallback(() => {
