@@ -3,24 +3,25 @@
  *
  * The site already stores ONE palette on the theme row and writes it out as CSS
  * custom properties. Supporting two means the stylesheet has to carry both and
- * let a selector decide, rather than the server picking one and baking it in:
- * a visitor's choice has to survive a page they have not requested yet, and
- * `prefers-color-scheme` is only knowable in the browser.
+ * let a selector decide, rather than the server picking one and baking it in,
+ * because `prefers-color-scheme` is only knowable in the browser.
  *
  * So the cascade below is the whole feature:
  *
  *   :root                                    the light palette, always
  *   :root[data-theme="dark"]                 the dark one, when asked for
- *   @media (prefers-color-scheme: dark)      the dark one, when the OS asks and
- *     :root:not([data-theme="light"])        the visitor has not overridden
+ *   @media (prefers-color-scheme: dark)      the dark one, when the OS asks
+ *     :root:not([data-theme="light"])
  *
- * The `:not()` is what makes an explicit choice beat the OS in both directions —
- * without it, a visitor on a dark-mode phone could never choose light.
- *
- * `mode` decides which of those three blocks the server emits:
- *   'light'  only the first — one palette, no switching
+ * `mode` decides which of those blocks the server emits:
+ *   'light'  only the first — one palette
  *   'dark'   the first two, with the dark block also applied unconditionally
- *   'auto'   all three — the OS decides, the visitor can override
+ *   'auto'   all three — the machine decides
+ *
+ * The visitor no longer decides anything: the public switch is gone and the
+ * admin's `mode` is the only input. What remains of the old feature is the
+ * cleanup in `themeBootScript`, which throws away a choice made back when the
+ * switch existed — see the note there.
  */
 
 import type { ThemeColors } from '@/types/content'
@@ -36,25 +37,29 @@ export interface AppearanceConfig {
   readonly lightPreset: string
   /** Preset id used for the dark palette. */
   readonly darkPreset: string
-  /** Whether the public site shows a switch at all. */
-  readonly allowVisitorChoice: boolean
+  /**
+   * Dead, and kept only so a theme row written before the public switch was
+   * removed still parses and still saves. Always `false`; nothing reads it.
+   */
+  readonly allowVisitorChoice: false
 }
 
 export const DEFAULT_APPEARANCE: AppearanceConfig = {
   mode: 'auto',
   lightPreset: 'limestone',
   darkPreset: 'amber-night',
-  allowVisitorChoice: true,
+  allowVisitorChoice: false,
 }
 
-/** Attribute the toggle writes on `<html>`; also read by `neon.css`. */
-export const THEME_ATTR = 'data-theme'
-/** Where a visitor's choice survives a reload. */
+/**
+ * Where a visitor's choice used to survive a reload. Nothing writes it any
+ * more — the boot script only deletes it.
+ */
 export const THEME_STORAGE_KEY = 'guhomes-theme'
 
 export const APPEARANCE_MODES: readonly { value: AppearanceMode; label: string; note: string }[] = [
-  { value: 'auto', label: 'Tự động', note: 'Theo thiết lập sáng/tối của máy khách. Khách vẫn đổi được.' },
-  { value: 'light', label: 'Luôn sáng', note: 'Một bảng màu duy nhất, không có nút đổi.' },
+  { value: 'auto', label: 'Tự động', note: 'Theo thiết lập sáng/tối trên máy của khách.' },
+  { value: 'light', label: 'Luôn sáng', note: 'Một bảng màu duy nhất, kể cả khi máy khách đang để tối.' },
   { value: 'dark', label: 'Luôn tối', note: 'Mở ra là nền tối, kể cả khi máy khách đang để sáng.' },
 ]
 
@@ -70,10 +75,9 @@ export function readAppearance(value: unknown): AppearanceConfig {
     mode,
     lightPreset: preset(raw.lightPreset, DEFAULT_APPEARANCE.lightPreset),
     darkPreset: preset(raw.darkPreset, DEFAULT_APPEARANCE.darkPreset),
-    allowVisitorChoice:
-      typeof raw.allowVisitorChoice === 'boolean'
-        ? raw.allowVisitorChoice
-        : DEFAULT_APPEARANCE.allowVisitorChoice,
+    // Forced, not read: a row saved while the public switch still existed may
+    // carry `true`, and honouring it would put the switch back.
+    allowVisitorChoice: false,
   }
 }
 
@@ -81,15 +85,14 @@ export interface ResolvedAppearance {
   readonly config: AppearanceConfig
   readonly light: ThemeColors
   readonly dark: ThemeColors
-  /** Render the public switch. The admin's own gate, independent of `mode`. */
-  readonly switchable: boolean
+  /** Never true any more: the public switch was removed. */
+  readonly switchable: false
   /**
    * Emit both palettes into the stylesheet.
    *
-   * Needed whenever either side can be reached at runtime — because the OS asks
-   * for it (`auto`) or because the visitor may choose. A fixed mode with the
-   * switch off carries one palette and nothing else, which is the cheapest
-   * stylesheet and the right default for a site that wants one look.
+   * Needed only when either side can be reached at runtime, which now means
+   * `auto` alone. A fixed mode carries one palette and nothing else, which is
+   * the cheapest stylesheet and the right shape for a site that wants one look.
    */
   readonly bothPalettes: boolean
 }
@@ -110,8 +113,14 @@ export function resolveAppearance(config: AppearanceConfig, edited: ThemeColors)
     config,
     light: editedIsDark ? lightPreset.colors : edited,
     dark: editedIsDark ? edited : darkPreset.colors,
-    switchable: config.allowVisitorChoice,
-    bothPalettes: config.mode === 'auto' || config.allowVisitorChoice,
+    switchable: false,
+    // 'auto' needs both palettes to follow the OS, and 'dark' needs both because
+    // `dualThemeStyleSheet` writes the dark side as an override block keyed on
+    // `[data-theme="dark"]` — the attribute the root layout sets for this mode.
+    // Narrow this to `=== 'auto'` and "Luôn tối" emits light variables under a
+    // dark attribute: light canvas behind everything styled `[data-ground=dark]`.
+    // Only 'light' is genuinely one palette.
+    bothPalettes: config.mode !== 'light',
   }
 }
 
@@ -129,21 +138,26 @@ export function isDark(colors: ThemeColors): boolean {
 /**
  * Runs before first paint, from a blocking inline script in `<head>`.
  *
- * Without it a visitor who chose dark gets one frame of light while React
- * hydrates — the flash every theme switcher is judged by. It reads only
- * localStorage and a media query, touches nothing else, and is small enough that
- * blocking on it costs less than the reflow it prevents.
+ * Still blocking even though nobody chooses a theme any more: on `auto` the
+ * answer comes from `prefers-color-scheme`, which the server cannot know, so
+ * without this a visitor on a dark machine gets one frame of light. It reads one
+ * media query, touches nothing else, and costs less than the reflow it prevents.
+ *
+ * It also DELETES the old stored choice. Until the switch was removed this
+ * script preferred localStorage over the admin's setting, so anyone who ever
+ * pressed the toggle would be pinned to that palette for good and the admin's
+ * `mode` would silently do nothing on their machine. Removing the key on every
+ * load is the only way that state ever goes away — the key is gone from the rest
+ * of the codebase and this line can be dropped once the visitors have.
  *
  * It also sets `color-scheme` so form controls, scrollbars and the caret follow
  * the theme; CSS alone cannot reach those.
  */
 export function themeBootScript(mode: AppearanceMode): string {
   return `(function(){try{
-var m=${JSON.stringify(mode)},k=${JSON.stringify(THEME_STORAGE_KEY)};
-var s=null;try{s=localStorage.getItem(k)}catch(e){}
-var t = s==='dark'||s==='light' ? s
-      : m==='auto' ? (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')
-      : m;
+var m=${JSON.stringify(mode)};
+try{localStorage.removeItem(${JSON.stringify(THEME_STORAGE_KEY)})}catch(e){}
+var t = m==='auto' ? (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light') : m;
 var r=document.documentElement;
 r.setAttribute('data-theme',t);
 r.setAttribute('data-ground',t==='dark'?'dark':'light');

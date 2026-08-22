@@ -10,7 +10,17 @@ import { useRef } from 'react'
 import type { RefObject } from 'react'
 import type { RevealVariant } from '@/types/content'
 import { motionFlag, useMotionStore } from '@/lib/motion'
-import { DISTANCE, DURATION, EASE, SCROLL, STAGGER, delayOf, dist, dur } from './config'
+import {
+  DISTANCE,
+  DURATION,
+  EASE,
+  SCROLL,
+  SCROLL_REVEAL_DISABLED,
+  STAGGER,
+  delayOf,
+  dist,
+  dur,
+} from './config'
 import { gsap, ScrollTrigger, registerGsap } from './gsap'
 import { markReady, revealFromVars, revealTargets, revealToVars, useIsoLayoutEffect } from './internal'
 
@@ -56,7 +66,9 @@ export function useReveal(ref: RefObject<HTMLElement | null>, opts: RevealOption
     // answer to the admin's parallax switch, not just the master one.
     // `motionFlag` checks `enabled` and reduced motion ahead of either flag.
     const flag = variant === 'revealParallax' ? 'parallax' : 'enabled'
-    if (!motionFlag(config, systemReduced, flag)) {
+    // The kill-switch takes the same exit as "motion off": it is the one branch
+    // that already leaves the element visible and un-styled.
+    if (SCROLL_REVEAL_DISABLED || !motionFlag(config, systemReduced, flag)) {
       /*
         `markReady` alone is not enough, and the gap left a whole stagger group
         permanently invisible.

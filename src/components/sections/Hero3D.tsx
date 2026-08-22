@@ -69,7 +69,15 @@ export function Hero3D({ section, data }: HomeSectionProps) {
   const cta = sectionCta(content, { label: 'Xem dự án', href: '/projects' })
   const scrollLabel = sectionText(content, 'scrollLabel', 'Cuộn')
 
-  const cover = project?.cover ?? scene?.sourceImage ?? null
+  /*
+   * A picture chosen in the admin outranks everything: the project's cover, the
+   * scene's source still, and the 3D scene itself. Letting the scene keep
+   * playing over it would make the field look broken — the editor picked a
+   * photograph precisely to stop the heuristic choosing for them.
+   */
+  const authored = data.hero.authoredImage
+  const cover = authored ?? project?.cover ?? scene?.sourceImage ?? null
+  const showScene = authored === null && scene !== null && scene.mode !== 'NONE'
   const meta = [project?.location, formatArea(project?.area ?? null), project?.year?.toString()]
     .filter((value): value is string => Boolean(value))
     .join(' · ')
@@ -86,7 +94,7 @@ export function Hero3D({ section, data }: HomeSectionProps) {
       <style>{KEYFRAMES}</style>
 
       <div className="absolute inset-0" aria-hidden="true">
-        {scene !== null && scene.mode !== 'NONE' ? (
+        {showScene ? (
           <InteriorScene
             config={scene}
             progressRef={progress}
@@ -115,10 +123,18 @@ export function Hero3D({ section, data }: HomeSectionProps) {
         <div className="absolute inset-x-0 bottom-0 h-[46%]" style={SCRIM_B} />
       </div>
 
+      {/*
+        The only description a screen reader gets of this frame, so it has to
+        describe the frame that is actually there: naming the project would
+        describe a build nobody is looking at, and "dựng cảnh" would promise a
+        3D scene that an authored photograph replaced.
+      */}
       <p className="sr-only">
-        {project
-          ? `Dựng cảnh nội thất dự án ${project.title}${project.location ? `, ${project.location}` : ''}.`
-          : 'Hình ảnh không gian nội thất do GuHomes thực hiện.'}
+        {authored
+          ? (authored.alt ?? 'Ảnh không gian nội thất do GuHomes thực hiện.')
+          : project
+            ? `Dựng cảnh nội thất dự án ${project.title}${project.location ? `, ${project.location}` : ''}.`
+            : 'Hình ảnh không gian nội thất do GuHomes thực hiện.'}
       </p>
 
       <div className="relative z-10 flex h-full flex-col justify-between u-gutter pt-[clamp(6.5rem,16vh,11rem)] pb-[clamp(1.75rem,5vh,3.5rem)]">
@@ -126,7 +142,13 @@ export function Hero3D({ section, data }: HomeSectionProps) {
           <Label tone="light" rule>
             {eyebrow}
           </Label>
-          {project ? (
+          {/*
+            The credit belongs to the picture, not to the slot. Once an editor
+            chooses their own photograph, the project behind it is no longer what
+            anyone is looking at — printing its name, floor area and year over a
+            different room would credit the wrong build.
+          */}
+          {project && authored === null ? (
             // On a phone the full credit wraps to two lines and crowds the top
             // of the frame, so the small screen gets the project's name alone.
             <Label tone="light" className="text-canvas/55">

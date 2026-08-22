@@ -161,16 +161,24 @@ export function DragList<T>({
               if (disabled) return
               const target = event.target
               if (target instanceof Element && target.closest(INTERACTIVE)) return
+              event.stopPropagation()
               setArmedKey(key)
             }}
             onPointerUp={() => setArmedKey(null)}
             onDragStart={(event: DragEvent<HTMLLIElement>) => {
+              // A DragList inside a DragList — stops inside a homepage block —
+              // would otherwise hand every one of these events to the outer list
+              // as it bubbles: grabbing a stop would arm the block list too, and
+              // a drop that landed a few pixels outside the inner row would
+              // reorder the homepage instead of the stops.
+              event.stopPropagation()
               event.dataTransfer.effectAllowed = 'move'
               event.dataTransfer.setData('text/plain', key)
               setDragIndex(index)
             }}
             onDragOver={(event: DragEvent<HTMLLIElement>) => {
               if (dragIndex === null) return
+              event.stopPropagation()
               event.preventDefault()
               event.dataTransfer.dropEffect = 'move'
               const rect = event.currentTarget.getBoundingClientRect()
@@ -180,6 +188,7 @@ export function DragList<T>({
             onDrop={(event: DragEvent<HTMLLIElement>) => {
               event.preventDefault()
               if (dragIndex === null) return
+              event.stopPropagation()
               const target = overAfter ? index + 1 : index
               move(dragIndex, dragIndex < target ? target - 1 : target)
             }}

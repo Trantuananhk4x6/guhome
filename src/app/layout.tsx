@@ -166,9 +166,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const resolved = resolveAppearance(appearance, theme.colors)
 
   /*
-    The server does not choose the palette — it ships both and lets a selector
-    decide. `prefers-color-scheme` is only knowable in the browser, and a
-    visitor's choice has to survive a page they have not requested yet.
+    On `auto` the server does not choose the palette — it ships both and lets a
+    selector decide, because `prefers-color-scheme` is only knowable in the
+    browser. On a fixed mode it ships one and the question never arises.
 
     `suppressHydrationWarning` on <html> is required and not a shortcut: the boot
     script below writes `data-theme` and `data-ground` before React hydrates, so
@@ -184,10 +184,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     >
       <head>
         {/*
-          Blocking, and deliberately so: without it a visitor who chose dark gets
-          one frame of light while React hydrates — the flash every theme
-          switcher is judged by. It reads localStorage and one media query, and
-          costs less than the reflow it prevents.
+          Blocking, and deliberately so: on `auto` the palette comes from the
+          machine's `prefers-color-scheme`, which the server cannot know, so
+          without this a visitor on a dark machine gets one frame of light. One
+          media query, and it costs less than the reflow it prevents.
         */}
         <script dangerouslySetInnerHTML={{ __html: themeBootScript(appearance.mode) }} />
       </head>

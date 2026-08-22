@@ -40,6 +40,19 @@ export interface SiblingProjectOption {
   status: PublishStatus
 }
 
+/**
+ * One row of the `styles` taxonomy, as the project picker needs it.
+ *
+ * Deliberately narrower than `StyleItem`: the picker shows a name and its Latin
+ * subtitle, nothing else, so a cover `MediaRef` never has to cross to the client.
+ */
+export interface StyleOption {
+  id: string
+  slug: string
+  name: string
+  nameEn: string | null
+}
+
 export interface SceneOption {
   id: string
   /** Display label — falls back to the project title, then to a placeholder. */
@@ -74,6 +87,14 @@ export interface ProjectEditorSnapshot {
   duration: string
   style: string
   services: string[]
+  /**
+   * Styles from the `styles` taxonomy already attached to this project.
+   *
+   * Optional because the page may not have loaded them: `undefined` means "not
+   * known yet" and makes the picker fetch them itself, while an array — even an
+   * empty one — is taken as the truth and saved as-is.
+   */
+  styleIds?: readonly string[]
   seoTitle: string
   seoDescription: string
   updatedAt: string
@@ -100,6 +121,8 @@ export interface ProjectDraft {
   duration: string
   style: string
   services: string[]
+  /** `undefined` until loaded — the action then leaves the attachments alone. */
+  styleIds?: string[]
   seoTitle: string
   seoDescription: string
 }
@@ -123,9 +146,31 @@ export function toProjectDraft(snapshot: ProjectEditorSnapshot): ProjectDraft {
     duration: snapshot.duration,
     style: snapshot.style,
     services: snapshot.services,
+    // Copied, not aliased: the picker mutates the draft's array and must never
+    // write through to the snapshot the SaveBar compares against.
+    ...(snapshot.styleIds ? { styleIds: [...snapshot.styleIds] } : {}),
     seoTitle: snapshot.seoTitle,
     seoDescription: snapshot.seoDescription,
   }
+}
+
+export const MAX_PROJECT_STYLES = 24
+
+/**
+ * The picker's list as the action wants it: uuids only, no duplicates, capped
+ * at what `setProjectStyles` accepts. Anything else is dropped rather than
+ * reported — the ids come from a checkbox list, so a bad one is a bug, not a
+ * typo the editor could fix.
+ */
+export function normalizeStyleIds(ids: readonly string[]): string[] {
+  const out: string[] = []
+  for (const id of ids) {
+    const value = id.trim()
+    if (!isUuid(value) || out.includes(value)) continue
+    if (out.length >= MAX_PROJECT_STYLES) break
+    out.push(value)
+  }
+  return out
 }
 
 export const PROJECT_STATUS_OPTIONS: readonly { value: PublishStatus; label: string }[] = [

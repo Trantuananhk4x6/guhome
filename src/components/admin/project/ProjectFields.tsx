@@ -8,9 +8,13 @@
  * `fieldErrors` key lands on the right control without translation.
  */
 
+import { usePathname } from 'next/navigation'
+import { useEffect, useMemo, useState } from 'react'
+
 import { AdminPanel, TagsField, ToggleRow } from '@/components/admin/site/Fields'
 import { MediaField } from '@/components/admin/site/MediaField'
 import {
+  AdminCheckbox,
   AdminField,
   AdminSelectField,
   AdminTextareaField,
@@ -18,14 +22,23 @@ import {
   FormRow,
 } from '@/components/admin/FormRow'
 import { slugify } from '@/lib/utils'
+import { listProjectStyleOptions } from '@/server/actions/projects'
+import { readProjectStyleIds } from '@/server/actions/styles'
 import type { MediaRef } from '@/types/content'
 
 import {
+  MAX_PROJECT_STYLES,
   PROJECT_STATUS_OPTIONS,
+  isUuid,
+  normalizeStyleIds,
   type CategoryOption,
   type ProjectDraft,
+  type StyleOption,
 } from './contracts'
 import type { MediaIndex } from './Pickers'
+
+/** `/admin/projects/<uuid>` — the id the page is editing, when there is one. */
+const PROJECT_ROUTE = /\/admin\/projects\/([^/?#]+)/
 
 export interface ProjectFieldsProps {
   value: ProjectDraft
@@ -34,6 +47,10 @@ export interface ProjectFieldsProps {
   media: MediaIndex
   onMediaResolved: (items: readonly MediaRef[]) => void
   fieldErrors: Readonly<Record<string, string>>
+  /** Taxonomy for the style picker. Omitted — it fetches its own. */
+  styles?: readonly StyleOption[]
+  /** Project being edited. Omitted — it reads the id off the route. */
+  projectId?: string
 }
 
 export function ProjectFields({
@@ -43,9 +60,84 @@ export function ProjectFields({
   media,
   onMediaResolved,
   fieldErrors,
+  styles,
+  projectId,
 }: ProjectFieldsProps) {
   const error = (key: string): string | null => fieldErrors[key] ?? null
   const cover = value.coverMediaId ? (media[value.coverMediaId] ?? null) : null
+
+  /* ------------------------------ style picker ------------------------------ */
+
+  const pathname = usePathname() ?? ''
+  const editingId = useMemo(() => {
+    if (projectId && isUuid(projectId)) return projectId
+    const match = PROJECT_ROUTE.exec(pathname)
+    const candidate = match?.[1] ?? ''
+    return isUuid(candidate) ? candidate : null
+  }, [projectId, pathname])
+
+  // `null` until the fallback fetch lands; a `styles` prop always wins over it.
+  const [fetchedStyles, setFetchedStyles] = useState<readonly StyleOption[] | null>(null)
+  const styleOptions = styles ?? fetchedStyles ?? []
+  const [styleNotice, setStyleNotice] = useState<string | null>(null)
+  // What the project wears *on disk*. The draft stays `undefined` until the
+  // editor actually touches a checkbox, so simply opening the page never counts
+  // as a change and a save never rewrites attachments nobody edited.
+  const [attached, setAttached] = useState<readonly string[]>(value.styleIds ?? [])
+  /**
+   * `false` only while the attachments are still in flight.
+   *
+   * The options and the attachments arrive on two separate requests, and the
+   * options usually win. Ticking a box in that gap would make the draft own a
+   * selection built from an empty starting set — and `setProjectStyles` rewrites
+   * the join table wholesale, so saving would silently drop every style the
+   * project already wore. Cheaper to hold the boxes for a moment.
+   */
+  const [attachedReady, setAttachedReady] = useState(
+    () => editingId === null || value.styleIds !== undefined,
+  )
+
+  useEffect(() => {
+    if (styles) return
+    let alive = true
+    void (async () => {
+      const result = await listProjectStyleOptions()
+      if (!alive) return
+      if (result.ok) setFetchedStyles(result.data)
+      else setStyleNotice(result.error)
+    })()
+    return () => {
+      alive = false
+    }
+  }, [styles])
+
+  useEffect(() => {
+    if (value.styleIds !== undefined || editingId === null) return
+    let alive = true
+    void (async () => {
+      const result = await readProjectStyleIds(editingId)
+      if (!alive) return
+      if (result.ok) setAttached(result.data)
+      // Released either way: a failed read must not leave the picker inert.
+      setAttachedReady(true)
+    })()
+    return () => {
+      alive = false
+    }
+    // Only ever runs for the first load: once the editor picks anything,
+    // `value.styleIds` owns the selection and this must not overwrite it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editingId])
+
+  const selectedStyles = value.styleIds ?? attached
+  const styleError = error('styleIds')
+
+  const toggleStyle = (id: string, checked: boolean): void => {
+    const next = checked
+      ? [...selectedStyles, id]
+      : selectedStyles.filter((current) => current !== id)
+    onChange({ styleIds: normalizeStyleIds(next) })
+  }
 
   return (
     <div className="flex flex-col gap-8">
@@ -149,6 +241,42 @@ export function ProjectFields({
               onChange={(event) => onChange({ style: event.target.value })}
             />
           </FormGrid>
+
+          <FormRow
+            label="Phong cách (thư viện)"
+            hint={
+              styleNotice ??
+              `Chọn một hoặc nhiều phong cách từ trang Phong cách. Đây là bộ lọc của trang dự án — khác với ô “Phong cách” ở trên, vốn là chữ biên tập hiện trong bảng thông tin. Tối đa ${MAX_PROJECT_STYLES} mục.`
+            }
+            error={styleError}
+            group
+          >
+            {styleOptions.length === 0 ? (
+              <p className="border border-dashed border-line px-4 py-6 text-center font-body text-[0.8125rem] leading-6 text-muted">
+                Chưa có phong cách nào đang bật. Tạo ở trang Phong cách rồi quay lại đây.
+              </p>
+            ) : (
+              <div className="grid gap-x-6 border border-line px-4 py-3 sm:grid-cols-2">
+                {styleOptions.map((option) => {
+                  const checked = selectedStyles.includes(option.id)
+                  return (
+                    <AdminCheckbox
+                      key={option.id}
+                      checked={checked}
+                      // A full list stays browsable; only unchecked rows lock.
+                      disabled={
+                        !attachedReady ||
+                        (!checked && selectedStyles.length >= MAX_PROJECT_STYLES)
+                      }
+                      label={option.name}
+                      hint={option.nameEn ?? undefined}
+                      onChange={(event) => toggleStyle(option.id, event.target.checked)}
+                    />
+                  )
+                })}
+              </div>
+            )}
+          </FormRow>
 
           <FormGrid cols={3}>
             <AdminField

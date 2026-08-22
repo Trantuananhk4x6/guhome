@@ -38,6 +38,8 @@ import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 
+import { projectsHref } from './StyleFilter'
+
 export interface CategoryOption {
   slug: string
   name: string
@@ -51,6 +53,15 @@ export interface CategoryFilterProps {
   active: string | null
   /** Total across every category, printed against "Tất cả". */
   total?: number
+  /**
+   * The style filter currently in force, carried through every link here.
+   *
+   * Without it the two filters fight: the counts printed beside each category
+   * are counted within the active style, but the link dropped `?style=` — so a
+   * chip reading "CĂN HỘ (3)" opened a page of forty-one. They compose now, and
+   * "Tất cả" clears the category alone rather than both.
+   */
+  style?: string | null
   className?: string
 }
 
@@ -102,7 +113,13 @@ function Row({
   )
 }
 
-export function CategoryFilter({ categories, active, total, className }: CategoryFilterProps) {
+export function CategoryFilter({
+  categories,
+  active,
+  total,
+  style = null,
+  className,
+}: CategoryFilterProps) {
   return (
     <nav aria-label="Lọc dự án theo hạng mục" className={className}>
       <ul
@@ -111,12 +128,17 @@ export function CategoryFilter({ categories, active, total, className }: Categor
           'lg:flex-col lg:flex-nowrap lg:items-stretch lg:gap-x-0 lg:gap-y-0 lg:pb-0',
         )}
       >
-        <Row href="/projects" name="Tất cả" count={total} isActive={active === null} />
+        <Row
+          href={projectsHref({ style })}
+          name="Tất cả"
+          count={total}
+          isActive={active === null}
+        />
 
         {categories.map((category) => (
           <Row
             key={category.slug}
-            href={{ pathname: '/projects', query: { category: category.slug } }}
+            href={projectsHref({ category: category.slug, style })}
             name={category.name}
             count={category.count}
             isActive={active === category.slug}

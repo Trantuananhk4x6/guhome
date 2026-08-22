@@ -9,6 +9,7 @@
 import type {
   ArticleSummary,
   HomepageSection,
+  ImmersiveStop,
   MaterialItem,
   MediaRef,
   ProjectSummary,
@@ -22,6 +23,16 @@ export interface HomeSceneSlot {
   scene: SceneConfig | null
   /** Ordered stills, used for the degraded (no-WebGL / small screen) sequence. */
   gallery: MediaRef[]
+  /**
+   * Stops the admin authored for this band, media already resolved. Empty means
+   * nothing is authored and the band falls back to `gallery`.
+   */
+  stops: ImmersiveStop[]
+  /**
+   * A picture the editor chose for this slot, outranking whatever the project
+   * heuristic would have found. `null` leaves the old behaviour alone.
+   */
+  authoredImage: MediaRef | null
 }
 
 export interface HomeData {
@@ -53,8 +64,8 @@ export interface HomeSectionProps {
 
 /** Empty payload — lets the page render even when the database is unreachable. */
 export const EMPTY_HOME_DATA: HomeData = {
-  hero: { project: null, scene: null, gallery: [] },
-  immersive: { project: null, scene: null, gallery: [] },
+  hero: { project: null, scene: null, gallery: [], stops: [], authoredImage: null },
+  immersive: { project: null, scene: null, gallery: [], stops: [], authoredImage: null },
   featured: [],
   services: [],
   articles: [],

@@ -16,8 +16,10 @@ import { and, asc, desc, eq, ilike, inArray, or, sql, type SQL } from 'drizzle-o
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 
+import type { StyleOption } from '@/components/admin/project/contracts'
 import { toMediaRef } from '@/lib/media'
 import { slugify } from '@/lib/utils'
+import { setProjectStyles } from '@/server/actions/styles'
 import { requireUser } from '@/server/auth'
 import { db } from '@/server/db'
 import {
@@ -29,6 +31,7 @@ import {
   revisions,
   type ProjectRow,
 } from '@/server/db/schema'
+import { getPublishedStyles } from '@/server/queries/styles'
 import type { MediaKind, MediaRef, ProjectBlockType, PublishStatus } from '@/types/content'
 
 /* ------------------------------- result shape ------------------------------ */
@@ -136,6 +139,21 @@ function revalidateProject(...slugs: readonly (string | null | undefined)[]): vo
   revalidatePath('/admin/projects')
 }
 
+/**
+ * Writes the style taxonomy links for a project that has just been saved.
+ *
+ * The join table belongs to `actions/styles`, so this delegates rather than
+ * touching `project_styles` itself — one place decides what a valid attachment
+ * is. `undefined` means the form never loaded the attachments and must not be
+ * allowed to clear them.
+ */
+async function attachStyles(projectId: string, styleIds: readonly string[] | undefined): Promise<string | null> {
+  if (!styleIds) return null
+  const result = await setProjectStyles(projectId, [...styleIds])
+  if (result.ok) return null
+  return result.error
+}
+
 /** First free slug of the form `base`, `base-2`, `base-3`… */
 async function uniqueSlug(base: string, excludeId?: string): Promise<string> {
   const root = slugify(base) || 'du-an'
@@ -197,6 +215,10 @@ const projectFormSchema = z
     duration: trimmed(80).default(''),
     style: trimmed(120).default(''),
     services: z.array(z.string().trim().min(1).max(80)).max(24).default([]),
+    // Left optional on purpose: a form that never loaded the attachments (the
+    // create form, an older client) sends nothing and the join table is not
+    // touched. An array — empty included — is taken as the whole truth.
+    styleIds: z.array(z.string().trim().max(64)).max(24, 'Tối đa 24 phong cách cho một dự án.').optional(),
     featured: z.boolean().default(false),
     status: z.enum(['draft', 'published', 'archived']),
     seoTitle: trimmed(180).default(''),
@@ -216,6 +238,13 @@ const projectFormSchema = z
     }
     if (value.coverMediaId && value.coverMediaId.length > 0 && !isUuid(value.coverMediaId)) {
       ctx.addIssue({ code: 'custom', path: ['coverMediaId'], message: 'Ảnh bìa không hợp lệ.' })
+    }
+    if (value.styleIds) {
+      value.styleIds.forEach((styleId, index) => {
+        if (!isUuid(styleId)) {
+          ctx.addIssue({ code: 'custom', path: ['styleIds', index], message: 'Phong cách không hợp lệ.' })
+        }
+      })
     }
     if (value.year.length > 0) {
       const year = Number(value.year)
@@ -384,6 +413,8 @@ export async function createProject(input: ProjectFormInput): Promise<ActionResu
   const row = inserted[0]
   if (!row) return failure('Không tạo được dự án.')
 
+  const styleError = await attachStyles(row.id, value.styleIds)
+
   await writeRevision({
     userId: session.userId,
     entityId: row.id,
@@ -398,6 +429,9 @@ export async function createProject(input: ProjectFormInput): Promise<ActionResu
   })
 
   revalidateProject(row.slug)
+  // The row is already in: report the attachment failure rather than the whole
+  // save, so the editor retries the styles instead of creating a second project.
+  if (styleError) return failure(`Đã tạo dự án nhưng chưa gán được phong cách. ${styleError}`)
   return { ok: true, data: { id: row.id, slug: row.slug, status: row.status } }
 }
 
@@ -461,6 +495,8 @@ export async function updateProject(
   const row = updated[0]
   if (!row) return failure('Không lưu được dự án.')
 
+  const styleError = await attachStyles(row.id, value.styleIds)
+
   await writeRevision({
     userId: session.userId,
     entityId: row.id,
@@ -476,6 +512,7 @@ export async function updateProject(
 
   revalidateProject(row.slug, existing.slug)
   revalidatePath(`/admin/projects/${row.id}`)
+  if (styleError) return failure(`Đã lưu dự án nhưng chưa gán được phong cách. ${styleError}`)
   return { ok: true, data: { id: row.id, slug: row.slug, status: row.status } }
 }
 
@@ -949,4 +986,29 @@ export async function reorderMedia(input: {
 
   revalidateProject(projectRows[0]?.slug)
   return { ok: true, data: { count: mediaIds.length } }
+}
+
+/* --------------------------------- styles ---------------------------------- */
+
+/**
+ * The style taxonomy for the picker on the project editor.
+ *
+ * A read, but exposed as an action: `@/server/queries/styles` is server-only and
+ * the picker lives in a client component, so this is its only door. Disabled
+ * styles are left out on purpose — an editor cannot attach a style that would
+ * never show on the public site.
+ */
+export async function listProjectStyleOptions(): Promise<ActionResult<StyleOption[]>> {
+  await requireUser()
+
+  try {
+    const items = await getPublishedStyles()
+    return {
+      ok: true,
+      data: items.map((item) => ({ id: item.id, slug: item.slug, name: item.name, nameEn: item.nameEn })),
+    }
+  } catch (error) {
+    console.error('[actions/projects] listProjectStyleOptions failed', error)
+    return failure('Không đọc được danh sách phong cách.')
+  }
 }

@@ -469,11 +469,15 @@
     );
   }
 
-  /* Applied by animation utilities before GSAP takes over, so nothing flashes
-     unstyled when JS is still loading. */
-  [data-reveal]:not([data-reveal-ready]) {
-    opacity: 0;
-  }
+  /*
+    This used to hold `[data-reveal]:not([data-reveal-ready]) { opacity: 0 }`, so
+    nothing flashed unstyled while GSAP was still loading. Scroll reveals are off
+    now (SCROLL_REVEAL_DISABLED in @/animations/config), which leaves the rule
+    with nothing to hide for and one way to fail: any `data-reveal` element that
+    never reaches `markReady` — a nested one whose hook lives on an ancestor, say
+    — would stay invisible forever. The markup keeps its attributes so the
+    reveals can be switched back on; the safety net simply stops being needed.
+  */
 
   [data-split-line] {
     display: block;

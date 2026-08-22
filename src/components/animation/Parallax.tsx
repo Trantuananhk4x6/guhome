@@ -16,7 +16,7 @@
 
 import { useRef } from 'react'
 import type { CSSProperties, JSX, ReactNode } from 'react'
-import { DISTANCE } from '@/animations/config'
+import { DISTANCE, SCROLL_REVEAL_DISABLED } from '@/animations/config'
 import { useParallax } from '@/animations/image'
 import { cn } from '@/lib/utils'
 
@@ -39,8 +39,10 @@ export function Parallax(props: ParallaxProps): JSX.Element {
   useParallax(ref, { strength, axis, scrub })
 
   // Worst-case travel is ±(DISTANCE.parallax * strength) / 2; the intensity dial
-  // can only shrink it, so this bleed is always enough.
-  const bleed = Math.ceil((DISTANCE.parallax * Math.abs(strength)) / 2) + 2
+  // can only shrink it, so this bleed is always enough. With the drift switched
+  // off the layer never moves, and a bleed that stays would just push the media
+  // off-centre and crop it — so it collapses to a flush inset.
+  const bleed = SCROLL_REVEAL_DISABLED ? 0 : Math.ceil((DISTANCE.parallax * Math.abs(strength)) / 2) + 2
   const inset: CSSProperties =
     axis === 'y'
       ? { top: -bleed, bottom: -bleed, left: 0, right: 0 }
@@ -51,7 +53,8 @@ export function Parallax(props: ParallaxProps): JSX.Element {
       <div
         data-reveal-media=""
         className={cn('absolute', innerClassName)}
-        style={{ ...inset, willChange: 'transform' }}
+        // No drift means no reason to ask the compositor for its own layer.
+        style={SCROLL_REVEAL_DISABLED ? inset : { ...inset, willChange: 'transform' }}
       >
         {children}
       </div>

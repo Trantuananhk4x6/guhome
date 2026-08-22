@@ -1,5 +1,3 @@
-import type { ReactNode } from 'react'
-
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -15,12 +13,6 @@ export interface FooterProps {
   brand: BrandConfig
   /** Resolved URL of the horizontal lockup, or null to set the name in type. */
   logo?: string | null
-  /**
-   * The visitor's light/dark switch, or null when the admin has turned the
-   * choice off. Passed in rather than imported so the footer stays a server
-   * component and the client boundary is exactly one control wide.
-   */
-  themeToggle?: ReactNode
 }
 
 /**
@@ -43,7 +35,7 @@ export interface FooterProps {
  * out. Nothing is hidden and nothing is dropped; the copy that reads on a
  * desktop reads on a phone.
  */
-export function Footer({ nav, brand, logo = null, themeToggle = null }: FooterProps) {
+export function Footer({ nav, brand, logo = null }: FooterProps) {
   const year = new Date().getFullYear()
   const { home, lead, rest, contact } = groupNav(nav)
   const tel = `tel:${brand.phone.replace(/\s+/g, '')}`
@@ -200,12 +192,9 @@ export function Footer({ nav, brand, logo = null, themeToggle = null }: FooterPr
         </section>
 
         <div className="flex flex-col gap-3 border-t border-canvas/12 pt-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-            <p className="u-label text-canvas/40">
-              © {year} {brand.companyName}
-            </p>
-            {themeToggle}
-          </div>
+          <p className="u-label text-canvas/40">
+            © {year} {brand.companyName}
+          </p>
           {/* A whole sentence in uppercase Vietnamese is unreadable at 11px — the marks
               collide with the cap line. Sentence case, one step down in size instead. */}
           <p className="text-[0.8125rem] leading-relaxed text-canvas/40">

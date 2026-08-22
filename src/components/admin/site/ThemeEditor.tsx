@@ -138,7 +138,7 @@ export function ThemeEditor({
           <AdminPanel
             eyebrow="Appearance"
             title="Nền sáng hay tối"
-            description="Chọn mặc định cho khách mở trang lần đầu, và có cho khách tự đổi hay không. Chọn 'Tự động' thì trang theo thiết lập sáng/tối trên máy của họ."
+            description="Bảng màu khách nhìn thấy do bạn quyết định ở đây — trang công khai không còn nút đổi sáng/tối. Chọn 'Tự động' thì trang theo thiết lập sáng/tối trên máy của khách."
           >
             <div className="flex flex-col gap-7">
               <div className="grid gap-3 sm:grid-cols-3">
@@ -164,13 +164,6 @@ export function ThemeEditor({
                   )
                 })}
               </div>
-
-              <ToggleRow
-                label="Cho khách tự đổi sáng/tối"
-                note="Hiện một nút ba trạng thái ở chân trang: Sáng · Tối · Theo máy. Tắt đi thì mọi khách đều thấy đúng bảng màu bạn chọn ở trên."
-                checked={appearance.allowVisitorChoice}
-                onChange={(next) => setAppearance((a) => ({ ...a, allowVisitorChoice: next }))}
-              />
 
               <div className="grid gap-7 sm:grid-cols-2">
                 <Field label="Bảng dùng khi sáng">

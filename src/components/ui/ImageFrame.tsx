@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useRef, type ReactNode, type RefObject } from 'react'
 
 import { useImageReveal } from '@/animations/image'
+import { mediaUrl } from '@/lib/media'
 import { cn } from '@/lib/utils'
 import type { MediaRef, RevealVariant } from '@/types/content'
 
@@ -91,7 +92,15 @@ export function ImageFrame({
 
       {media ? (
         <Image
-          src={media.url}
+          /*
+           * `media.url` is a base key — `/media/<folder>/<index>` — not a file.
+           * The pipeline writes `<index>-<width>.webp` beside it, so handing the
+           * bare stem to next/image asks the server for something that was never
+           * written and every frame here 404s. `mediaUrl` picks a derivative and
+           * leaves refs that already carry an extension alone, which is what
+           * `ProjectFigure` has always done.
+           */
+          src={mediaUrl(media, media.width ?? 1600)}
           alt={alt ?? media.alt ?? ''}
           {...(intrinsic
             ? { width: media.width ?? 1600, height: media.height ?? 1067 }

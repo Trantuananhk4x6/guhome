@@ -16,19 +16,30 @@ import {
   media,
   projectBlocks,
   projectMedia,
+  projectStyles,
   projects,
+  styles,
   type MediaRow,
   type ProjectBlockRow,
   type ProjectRow,
 } from '@/server/db/schema'
-import type { ProjectBlock, ProjectDetail, ProjectSummary, SceneMode } from '@/types/content'
+import type {
+  ProjectBlock,
+  ProjectDetail,
+  ProjectSummary,
+  SceneMode,
+  StyleItem,
+} from '@/types/content'
 
 import { getMediaMap } from './media'
 import { getSceneForProject, getSceneModesByProject, readAllSceneModes } from './scenes'
+import { getStylesForProjects } from './styles'
 
 export interface ProjectListOptions {
   limit?: number
   categorySlug?: string
+  /** Second taxonomy: `styles.slug`, as `/projects?style=…` sends it. */
+  styleSlug?: string
   featured?: boolean
 }
 
@@ -116,6 +127,24 @@ function publishedOrder(): SQL {
   return desc(sql`coalesce(${projects.publishedAt}, ${projects.createdAt})`)
 }
 
+/**
+ * "Wears this style", as a subquery rather than a join.
+ *
+ * `project_styles` is many-to-many, so joining it into the listing would return
+ * a project once per style it wears — duplicated cards, a wrong `limit`, and a
+ * `getPublishedIndex` that no longer holds one row per project. `exists` filters
+ * without touching the shape of the result.
+ */
+function styleFilter(styleSlug: string): SQL {
+  return sql`exists (
+    select 1 from ${projectStyles}
+    join ${styles} on ${styles.id} = ${projectStyles.styleId}
+    where ${projectStyles.projectId} = ${projects.id}
+      and ${styles.slug} = ${styleSlug}
+      and ${styles.enabled} = true
+  )`
+}
+
 /** Pure: everything it needs is already in hand. */
 function toSummary(
   fields: ProjectSummaryFields,
@@ -188,10 +217,12 @@ async function readPublishedProjects(
   limit: number,
   categorySlug: string,
   featured: 'any' | 'yes' | 'no',
+  styleSlug = '',
 ): Promise<ProjectSummary[]> {
   const filters: SQL[] = [publishedFilter()]
   if (categorySlug.length > 0) filters.push(eq(categories.slug, categorySlug))
   if (featured !== 'any') filters.push(eq(projects.featured, featured === 'yes'))
+  if (styleSlug.length > 0) filters.push(styleFilter(styleSlug))
 
   const query = db
     .select(summarySelection)
@@ -214,7 +245,12 @@ const loadPublishedProjects = cache(readPublishedProjects)
 
 export function getPublishedProjects(options: ProjectListOptions = {}): Promise<ProjectSummary[]> {
   const featured = options.featured === undefined ? 'any' : options.featured ? 'yes' : 'no'
-  return loadPublishedProjects(options.limit ?? 0, options.categorySlug ?? '', featured)
+  return loadPublishedProjects(
+    options.limit ?? 0,
+    options.categorySlug ?? '',
+    featured,
+    options.styleSlug ?? '',
+  )
 }
 
 /**
@@ -396,6 +432,28 @@ export const getRelatedProjects = cache(
     return toSummaries(rows)
   },
 )
+
+/* ---------------------------------- styles --------------------------------- */
+
+/**
+ * The styles worn by each project of a list, keyed by project id.
+ *
+ * A second statement on purpose. `project_styles` is many-to-many, so folding it
+ * into the listing's join would multiply the rows — see `styleFilter()` — and a
+ * `ProjectSummary` has no `styles` field to receive them anyway. One grouped
+ * read for the whole page, and the grid looks each card's styles up by id.
+ */
+export function getStylesForProjectList(
+  summaries: readonly ProjectSummary[],
+): Promise<Map<string, StyleItem[]>> {
+  return getStylesForProjects(summaries.map((summary) => summary.id))
+}
+
+/** The styles of one project, in author order — for the detail page. */
+export async function getProjectStyles(projectId: string): Promise<StyleItem[]> {
+  const map = await getStylesForProjects([projectId])
+  return map.get(projectId) ?? []
+}
 
 /** Ids of projects referenced by a RELATED block, resolved in the given order. */
 export async function getProjectsByIds(ids: readonly string[]): Promise<ProjectSummary[]> {

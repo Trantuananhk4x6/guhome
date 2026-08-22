@@ -11,7 +11,7 @@
 import type { RefObject } from 'react'
 import type { RevealVariant } from '@/types/content'
 import { motionFlag, useMotionStore } from '@/lib/motion'
-import { DISTANCE, DURATION, EASE, SCROLL, delayOf, dist, dur } from './config'
+import { DISTANCE, DURATION, EASE, SCROLL, SCROLL_REVEAL_DISABLED, delayOf, dist, dur } from './config'
 import { gsap, registerGsap } from './gsap'
 import { markReady, mediaTarget, revealFromVars, revealToVars, useIsoLayoutEffect } from './internal'
 
@@ -47,7 +47,9 @@ export function useImageReveal(ref: RefObject<HTMLElement | null>, opts: ImageRe
 
     const media = mediaTarget(el)
 
-    if (!motionFlag(config, systemReduced, 'imageReveal')) {
+    // Must return ahead of the `gsap.set` overscale below — otherwise the media
+    // stays parked at 1.12 with no timeline left to scale it back down.
+    if (SCROLL_REVEAL_DISABLED || !motionFlag(config, systemReduced, 'imageReveal')) {
       markReady(el, media)
       return
     }
@@ -137,7 +139,7 @@ export function useParallax(ref: RefObject<HTMLElement | null>, opts: ParallaxOp
 
     const media = mediaTarget(el)
 
-    if (!motionFlag(config, systemReduced, 'parallax')) {
+    if (SCROLL_REVEAL_DISABLED || !motionFlag(config, systemReduced, 'parallax')) {
       markReady(el, media)
       return
     }

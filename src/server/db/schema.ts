@@ -330,6 +330,58 @@ export const materials = pgTable(
   (t) => [uniqueIndex('materials_slug_key').on(t.slug)],
 )
 
+/* --------------------------------- styles ---------------------------------- */
+
+/**
+ * Design styles — the second taxonomy over projects, beside `categories`.
+ *
+ * Its own table rather than a third `category_kind`: a category is a project's
+ * single bucket (`projects.category_id`), while a style is many-to-many — one
+ * apartment is both Tối giản and Japandi — and it carries a cover image and a
+ * bilingual name that a category has no business growing. `categories_slug_key`
+ * is also global, so a style named `luxury` would collide across taxonomies.
+ *
+ * `projects.style` (free text) stays put: it is authored copy on the project
+ * sheet, not a taxonomy, and is displayed verbatim by ProjectInfo.
+ */
+export const styles = pgTable(
+  'styles',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    slug: text('slug').notNull(),
+    name: text('name').notNull(),
+    /** Latin subtitle — "Modern Classic" under "Tân cổ điển". Optional. */
+    nameEn: text('name_en'),
+    tagline: text('tagline'),
+    description: text('description'),
+    coverMediaId: uuid('cover_media_id').references(() => media.id, { onDelete: 'set null' }),
+    seo: jsonb('seo').$type<SeoMeta>(),
+    order: integer('order').notNull().default(0),
+    enabled: boolean('enabled').notNull().default(true),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [uniqueIndex('styles_slug_key').on(t.slug), index('styles_order_idx').on(t.order)],
+)
+
+/** Join table: a project wears several styles, a style covers several projects. */
+export const projectStyles = pgTable(
+  'project_styles',
+  {
+    projectId: uuid('project_id')
+      .notNull()
+      .references(() => projects.id, { onDelete: 'cascade' }),
+    styleId: uuid('style_id')
+      .notNull()
+      .references(() => styles.id, { onDelete: 'cascade' }),
+    order: integer('order').notNull().default(0),
+  },
+  (t) => [
+    uniqueIndex('project_styles_pair_key').on(t.projectId, t.styleId),
+    index('project_styles_style_idx').on(t.styleId),
+  ],
+)
+
 /* ------------------------- theme / homepage / nav -------------------------- */
 
 export const themeSettings = pgTable('theme_settings', {
@@ -450,6 +502,7 @@ export const projectsRelations = relations(projects, ({ one, many }) => ({
   gallery: many(projectMedia),
   blocks: many(projectBlocks),
   scenes: many(scenes),
+  styles: many(projectStyles),
 }))
 
 export const projectMediaRelations = relations(projectMedia, ({ one }) => ({
@@ -478,6 +531,16 @@ export const categoriesRelations = relations(categories, ({ many }) => ({
   projects: many(projects),
 }))
 
+export const stylesRelations = relations(styles, ({ one, many }) => ({
+  cover: one(media, { fields: [styles.coverMediaId], references: [media.id] }),
+  projects: many(projectStyles),
+}))
+
+export const projectStylesRelations = relations(projectStyles, ({ one }) => ({
+  project: one(projects, { fields: [projectStyles.projectId], references: [projects.id] }),
+  style: one(styles, { fields: [projectStyles.styleId], references: [styles.id] }),
+}))
+
 export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(sessions),
 }))
@@ -497,6 +560,8 @@ export type ArticleRow = typeof articles.$inferSelect
 export type ServiceRow = typeof services.$inferSelect
 export type MaterialRow = typeof materials.$inferSelect
 export type CategoryRow = typeof categories.$inferSelect
+export type StyleRow = typeof styles.$inferSelect
+export type ProjectStyleRow = typeof projectStyles.$inferSelect
 export type ThemeRow = typeof themeSettings.$inferSelect
 export type HomepageSectionRow = typeof homepageSections.$inferSelect
 export type NavigationRow = typeof navigation.$inferSelect

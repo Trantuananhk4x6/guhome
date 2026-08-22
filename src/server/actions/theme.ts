@@ -97,7 +97,13 @@ const appearanceSchema = z.object({
   mode: z.enum(['light', 'dark', 'auto']),
   lightPreset: z.string().min(1).max(48),
   darkPreset: z.string().min(1).max(48),
-  allowVisitorChoice: z.boolean(),
+  // The public switch is gone, so this is accepted and thrown away rather than
+  // rejected: a tab opened before the deploy still posts it, and failing that
+  // save would lose the palette the admin actually came here to change.
+  allowVisitorChoice: z
+    .boolean()
+    .optional()
+    .transform(() => false as const),
 })
 
 const themeSchema = z.object({

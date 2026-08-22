@@ -1,14 +1,23 @@
 import type { Metadata } from 'next'
 
-import { EMPTY_HOME_DATA, SECTION_COMPONENTS, type HomeData } from '@/components/sections'
+import {
+  EMPTY_HOME_DATA,
+  SECTION_COMPONENTS,
+  sectionOptionalText,
+  sectionStops,
+  type HomeData,
+} from '@/components/sections'
 import { getPublishedArticles } from '@/server/queries/articles'
+import { getMediaMap } from '@/server/queries/media'
 import { getProjectBySlug, getPublishedProjects } from '@/server/queries/projects'
 import { getSceneForProject } from '@/server/queries/scenes'
 import { getHomepageSections, getMaterials, getServices } from '@/server/queries/site'
 import type {
   ArticleSummary,
   HomepageSection,
+  ImmersiveStop,
   MaterialItem,
+  MediaRef,
   ProjectSummary,
   ServiceItem,
 } from '@/types/content'
@@ -39,7 +48,22 @@ async function safe<T>(run: () => Promise<T>, fallback: T): Promise<T> {
   }
 }
 
-async function loadHomeData(): Promise<HomeData> {
+/**
+ * The homepage sections are read before the data, because the IMMERSIVE band's
+ * `content` decides *which* project it stages and *which* photographs it stops
+ * on — both were chosen by a heuristic here until now, which is why the admin's
+ * project picker for that band had no effect on anything.
+ */
+async function loadHomeData(sections: readonly HomepageSection[]): Promise<HomeData> {
+  const immersiveContent = sections.find((section) => section.key === 'IMMERSIVE_PROJECT')?.content ?? {}
+  const authoredStops = sectionStops(immersiveContent, 'stops')
+  const pinnedId = sectionOptionalText(immersiveContent, 'featuredProjectId')
+
+  // Same story for the opening screen: it staged whichever project the heuristic
+  // below happened to reach for, and no field anywhere could say otherwise.
+  const heroContent = sections.find((section) => section.key === 'HERO')?.content ?? {}
+  const heroMediaId = sectionOptionalText(heroContent, 'heroMediaId')
+
   const [projects, services, articles, materials] = await Promise.all([
     safe<ProjectSummary[]>(() => getPublishedProjects(), []),
     safe<ServiceItem[]>(() => getServices(), []),
@@ -69,21 +93,49 @@ async function loadHomeData(): Promise<HomeData> {
    */
   const showcase = pool.slice(0, 7)
 
+  // An editor's choice outranks every heuristic below it — and it is picked
+  // first so the hero can step aside instead of claiming the same project.
+  const pinnedChoice = pinnedId ? (projects.find((project) => project.id === pinnedId) ?? null) : null
+
   // The hero and the pinned section each want a project with a real scene, and
   // they should not be the same project when the library allows a second one.
-  const heroProject = showcase.find((project) => project.sceneMode !== 'NONE') ?? showcase[0] ?? null
+  const heroProject =
+    showcase.find((project) => project.sceneMode !== 'NONE' && project.id !== pinnedChoice?.id) ??
+    showcase.find((project) => project.id !== pinnedChoice?.id) ??
+    showcase[0] ??
+    null
   const immersiveProject =
+    pinnedChoice ??
     showcase.find((project) => project.sceneMode !== 'NONE' && project.id !== heroProject?.id) ??
     showcase.find((project) => project.id !== heroProject?.id) ??
     heroProject
 
-  const [heroScene, immersiveScene, immersiveDetail] = await Promise.all([
+  const [heroScene, immersiveScene, immersiveDetail, stopMedia] = await Promise.all([
     heroProject ? safe(() => getSceneForProject(heroProject.id), null) : null,
     immersiveProject ? safe(() => getSceneForProject(immersiveProject.id), null) : null,
     immersiveProject ? safe(() => getProjectBySlug(immersiveProject.slug), null) : null,
+    authoredStops.length > 0 || heroMediaId
+      ? safe(
+          () =>
+            getMediaMap([
+              ...authoredStops.map((stop) => stop.mediaId),
+              ...(heroMediaId ? [heroMediaId] : []),
+            ]),
+          new Map<string, MediaRef>(),
+        )
+      : new Map<string, MediaRef>(),
   ])
 
   const gallery = immersiveDetail?.gallery ?? []
+
+  // A stop whose photograph was deleted from the library keeps its place in the
+  // sequence with `media: null` rather than silently renumbering the band.
+  const immersiveStops: ImmersiveStop[] = authoredStops.map((stop) => ({
+    id: stop.id,
+    label: stop.label,
+    caption: stop.caption,
+    media: stopMedia.get(stop.mediaId) ?? null,
+  }))
 
   /*
    * ONE PHOTOGRAPH, ONE PLACE ON THE PAGE.
@@ -131,8 +183,20 @@ async function loadHomeData(): Promise<HomeData> {
   const studioImage = studioSource?.cover ?? gallery[1] ?? null
 
   return {
-    hero: { project: heroProject, scene: heroScene, gallery: [] },
-    immersive: { project: immersiveProject, scene: immersiveScene, gallery },
+    hero: {
+      project: heroProject,
+      scene: heroScene,
+      gallery: [],
+      stops: [],
+      authoredImage: heroMediaId ? (stopMedia.get(heroMediaId) ?? null) : null,
+    },
+    immersive: {
+      project: immersiveProject,
+      scene: immersiveScene,
+      gallery,
+      stops: immersiveStops,
+      authoredImage: null,
+    },
     featured,
     services,
     articles,
@@ -151,10 +215,8 @@ async function loadHomeData(): Promise<HomeData> {
 }
 
 export default async function HomePage() {
-  const [sections, data] = await Promise.all([
-    safe<HomepageSection[]>(() => getHomepageSections(), []),
-    loadHomeData(),
-  ])
+  const sections = await safe<HomepageSection[]>(() => getHomepageSections(), [])
+  const data = await loadHomeData(sections)
 
   const ordered = sections.filter((section) => section.enabled).sort((a, b) => a.order - b.order)
 

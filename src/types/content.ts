@@ -95,6 +95,39 @@ export interface MaterialItem {
   order: number
 }
 
+/**
+ * A design style — the second taxonomy over projects, many-to-many.
+ *
+ * `count` is the number of published projects wearing the style; it is filled in
+ * by the listing queries and left at 0 by anything that does not need it.
+ */
+export interface StyleItem {
+  id: string
+  slug: string
+  name: string
+  /** Latin subtitle — "Modern Classic" under "Tân cổ điển". */
+  nameEn: string | null
+  tagline: string | null
+  description: string | null
+  cover: MediaRef | null
+  order: number
+  count: number
+}
+
+/**
+ * One stop of the homepage IMMERSIVE_PROJECT band, authored in the admin.
+ *
+ * Stops used to be inferred: four labels from a `stages` string array that no
+ * form ever showed, over whichever gallery frames a heuristic picked. An
+ * authored stop names its own picture, so the band stops guessing.
+ */
+export interface ImmersiveStop {
+  id: string
+  label: string
+  caption: string | null
+  media: MediaRef | null
+}
+
 export interface NavItem {
   id: string
   label: string

@@ -15,6 +15,13 @@
       "when": 1787279296465,
       "tag": "0001_sharp_sumo",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1787385856101,
+      "tag": "0002_freezing_king_cobra",
+      "breakpoints": true
     }
   ]
 }

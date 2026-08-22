@@ -2,14 +2,15 @@
 
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore, type PointerEvent as ReactPointerEvent } from 'react'
 
-import { useCameraScroll } from '@/animations/camera'
-import { registerGsap, ScrollTrigger } from '@/animations/gsap'
+import { DURATION, EASE } from '@/animations/config'
+import { gsap, registerGsap, ScrollTrigger } from '@/animations/gsap'
 import { useImageReveal } from '@/animations/image'
 import { useReveal } from '@/animations/reveal'
 import { Button } from '@/components/ui/Button'
 import { Label } from '@/components/ui/Label'
+import { ArrowLeftIcon, ArrowRightIcon } from '@/components/ui/icons'
 import { useReducedMotion } from '@/lib/motion'
 import { supportsWebGL } from '@/lib/three/capability'
 import { clamp, cn, formatArea, pad2 } from '@/lib/utils'
@@ -25,8 +26,29 @@ const InteriorScene = dynamic(
   { ssr: false },
 )
 
-/** At most this many stops, however many photographs the project turns out to have. */
-const MAX_STAGES = 4
+/**
+ * A ceiling on the stops an editor may author, not a fixed count: the band no
+ * longer holds exactly four. Twelve is well past any sequence a reader will sit
+ * through and stops a mis-paste of a hundred rows from becoming the homepage.
+ */
+const MAX_STOPS = 12
+
+/**
+ * The gallery fallback keeps its old length. It exists so the live homepage does
+ * not go blank before anything is authored, and its four differently shaped
+ * stills are a composition — widening it would silently redesign that band.
+ */
+const LEGACY_STOPS = 4
+
+/** Horizontal travel that counts as "next stop", in CSS pixels. */
+const DRAG_STEP = 60
+
+/** A stop as the band renders it, whoever it came from. */
+interface Stop {
+  key: string
+  label: string
+  media: MediaRef | null
+}
 
 /**
  * WHAT A STOP IS ALLOWED TO BE CALLED.
@@ -108,6 +130,40 @@ function ProjectFacts({ project, tone }: { project: ProjectSummary; tone: 'light
         </div>
       ))}
     </dl>
+  )
+}
+
+/**
+ * One step of the sequence. Disabled at the ends rather than hidden: a control
+ * that disappears at stop 01 moves the counter sideways, which reads as the
+ * panel reflowing instead of as the start of a run.
+ */
+function StopButton({
+  side,
+  disabled,
+  onClick,
+}: {
+  side: 'prev' | 'next'
+  disabled: boolean
+  onClick: () => void
+}) {
+  const Icon = side === 'prev' ? ArrowLeftIcon : ArrowRightIcon
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={side === 'prev' ? 'Điểm dừng trước' : 'Điểm dừng kế tiếp'}
+      className={cn(
+        'flex size-10 items-center justify-center rounded-full border border-canvas/25 text-canvas outline-offset-4 transition-all duration-500 ease-editorial',
+        disabled
+          ? 'cursor-default border-canvas/10 text-canvas/25'
+          : 'hover:border-accent-soft hover:text-accent-soft',
+      )}
+    >
+      <Icon className="text-base" />
+    </button>
   )
 }
 
@@ -209,23 +265,23 @@ function InsetStill({ caption, media, index, alt }: StillProps) {
 
 /**
  * Depth: the site's one camera-driven moment, at viewport four rather than
- * viewport nine. The pinned path is a sticky 100svh scene scrubbed 0 → 1 with
- * the stage captions crossfading and the project's facts resolving at the end;
+ * viewport nine. The staged path is a single 100svh scene the reader steps
+ * through — arrows or a sideways drag move the camera 0 → 1 between stops, the
+ * captions crossfade, and the project's facts resolve on the last stop;
  * reduced motion, a narrow screen or no WebGL gets a stacked sequence of
  * differently shaped stills instead — no pinning, no WebGL, and no four
  * identical full-bleed frames.
  */
 export function ImmersiveProject({ section, data }: HomeSectionProps) {
-  const { project, scene, gallery } = data.immersive
+  const { project, scene, gallery, stops: authoredStops } = data.immersive
 
   const sectionRef = useRef<HTMLElement>(null)
   const barRef = useRef<HTMLSpanElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
-  const progress = useRef(0)
+  const progressRef = useRef(0)
+  const dragOriginRef = useRef<number | null>(null)
 
   const [stage, setStage] = useState(0)
-  const [resolved, setResolved] = useState(false)
-  const [inView, setInView] = useState(false)
 
   const reduced = useReducedMotion()
   const hasScene = scene !== null && scene.mode !== 'NONE'
@@ -237,33 +293,14 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
   const wide = useSyncExternalStore(subscribeWide, readWide, () => false)
   const pinned = hasScene && !reduced && wide
 
-  // The two paths land deliberately close (2.2 viewports pinned, ~2.4 stacked)
-  // and never identical to the pixel, so the upgrade still moves every trigger
-  // below this band and the page has to be re-measured.
+  // One screen pinned, ~2.4 stacked: the upgrade still moves every trigger below
+  // this band, so the page has to be re-measured when the path flips.
   useEffect(() => {
     registerGsap()
     ScrollTrigger.refresh()
   }, [pinned])
 
-  // 220vh outer, 100vh sticky inner: `top top` → `bottom bottom` is exactly the
-  // 120vh the sticky panel spends pinned, so progress maps 0 → 1 across it.
-  useCameraScroll({
-    sectionRef,
-    progress,
-    sensitivity: scene && scene.scrollSensitivity > 0 ? scene.scrollSensitivity : 1,
-  })
   useReveal(headerRef, { variant: 'revealUp' })
-
-  useEffect(() => {
-    const el = sectionRef.current
-    if (!el || !pinned) return
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0]
-      setInView(entry ? entry.isIntersecting : false)
-    })
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [pinned])
 
   const { content } = section
   const eyebrow = sectionText(content, 'label', 'Immersive')
@@ -271,56 +308,116 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
   const body = sectionText(
     content,
     'body',
-    'Cuộn để đi xuyên qua căn nhà — từ mặt tiền, qua tiền sảnh, tới chỗ ngồi quen thuộc và những chi tiết vật liệu ở cự ly gần.',
+    // Not "cuộn để đi xuyên qua căn nhà" any more: the wheel scrolls past this
+    // band now, and the copy must not instruct a gesture that does nothing.
+    'Đi qua từng điểm dừng của căn nhà — từ mặt tiền, qua tiền sảnh, tới chỗ ngồi quen thuộc và những chi tiết vật liệu ở cự ly gần.',
   )
-  /*
-   * The stops follow the photographs, not a constant. A project with two frames
-   * gets two stops — the old code mapped a fixed four names over
-   * `gallery[i] ?? cover` and printed the *same* photograph four times under
-   * four different room names when the gallery was short.
-   */
-  const authored = sectionList(content, 'stages', [])
-  const frames = gallery.length > 0 ? gallery.slice(0, MAX_STAGES) : []
-  const stageCount = Math.max(1, Math.min(MAX_STAGES, frames.length > 0 ? frames.length : 1))
   const place = project ? placeLine(project) : ''
-  const stages: string[] = Array.from(
-    { length: stageCount },
-    (_, index) => authored[index] ?? frames[index]?.caption ?? place,
-  )
-  // Four identical labels are not four stops: when nothing distinguishes them,
+
+  /*
+   * Two sources, in preference order. What an editor authored in the admin wins:
+   * it is the only channel where a photograph and the words under it were chosen
+   * together. Failing that, the old gallery path — the stops follow the
+   * photographs, not a constant, so a project with two frames gets two stops.
+   */
+  const legacyLabels = sectionList(content, 'stages', [])
+  const legacyFrames = gallery.slice(0, LEGACY_STOPS)
+  const legacyCount = Math.max(1, legacyFrames.length)
+  const stops: Stop[] =
+    authoredStops.length > 0
+      ? authoredStops.slice(0, MAX_STOPS).map((stop) => ({
+          key: stop.id,
+          // An unnamed stop is not captioned by its position — same rule as
+          // below: the photograph's own caption, then the project's place line.
+          label: stop.label.length > 0 ? stop.label : (stop.caption ?? stop.media?.caption ?? place),
+          media: stop.media,
+        }))
+      : Array.from({ length: legacyCount }, (_, index) => ({
+          key: legacyFrames[index]?.id ?? `stop-${index}`,
+          label: legacyLabels[index] ?? legacyFrames[index]?.caption ?? place,
+          media: legacyFrames[index] ?? null,
+        }))
+
+  const stopCount = stops.length
+  // `stage` survives a shrinking sequence — an editor deleting stops in the
+  // admin must not leave the band pointing past its own last frame.
+  const current = Math.min(stage, stopCount - 1)
+  const resolved = current === stopCount - 1
+  // Identical labels are not distinct stops: when nothing distinguishes them,
   // the pinned path holds one line instead of cross-fading a word into itself.
-  const namedStops = new Set(stages).size > 1
+  const namedStops = new Set(stops.map((stop) => stop.label)).size > 1
 
-  // Scroll progress is read in rAF and written straight to the DOM — no state per frame.
+  const step = (delta: number): void => {
+    setStage((value) => clamp(Math.min(value, stopCount - 1) + delta, 0, stopCount - 1))
+  }
+
+  /*
+   * THE CAMERA FOLLOWS THE STOP, NOT THE SCROLLBAR.
+   *
+   * This band used to be a 220vh section holding a sticky screen, so the reader
+   * pushed 120vh of scroll — over a thousand pixels on a laptop — past a panel
+   * that never moved before the page continued. That is the "cuộn mãi không
+   * xuống được" complaint, and it is bought with the reader's patience for four
+   * captions. The band is one screen tall now, the wheel scrolls straight
+   * through it, and the stop advances by button or by drag instead.
+   *
+   * With the scroll range gone there is no scrubbed progress, so `stage` is the
+   * source of truth and the scene's 0 → 1 is tweened to match — the ease is what
+   * keeps the camera feeling filmed rather than teleported.
+   */
   useEffect(() => {
-    if (!pinned || !inView) return
-    let frame = 0
-    let lastStage = -1
-    let lastResolved = false
+    if (!pinned) return
+    registerGsap()
 
-    const tick = (): void => {
-      const value = clamp(progress.current, 0, 1)
-      const bar = barRef.current
-      if (bar) bar.style.transform = `scaleX(${value})`
+    const target = stopCount > 1 ? clamp(stage, 0, stopCount - 1) / (stopCount - 1) : 1
+    const proxy = { value: progressRef.current }
+    const tween = gsap.to(proxy, {
+      value: target,
+      duration: DURATION.slow,
+      ease: EASE.inOut,
+      onUpdate: () => {
+        const value = clamp(proxy.value, 0, 1)
+        progressRef.current = value
+        const bar = barRef.current
+        if (bar) bar.style.transform = `scaleX(${value})`
+      },
+    })
 
-      const next = Math.min(stageCount - 1, Math.floor(value * stageCount))
-      if (next !== lastStage) {
-        lastStage = next
-        setStage(next)
-      }
-
-      const isResolved = value > 0.84
-      if (isResolved !== lastResolved) {
-        lastResolved = isResolved
-        setResolved(isResolved)
-      }
-
-      frame = window.requestAnimationFrame(tick)
+    return () => {
+      tween.kill()
     }
+  }, [pinned, stage, stopCount, progressRef])
 
-    frame = window.requestAnimationFrame(tick)
-    return () => window.cancelAnimationFrame(frame)
-  }, [pinned, inView, stageCount])
+  /*
+   * Drag the stops sideways. Vertical scroll is untouched — `touch-action:
+   * pan-y` hands the browser every vertical gesture, and nothing here listens to
+   * the wheel, so Lenis keeps scrolling the page through this band.
+   */
+  const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>): void => {
+    // A press that starts on the project link or a button is a press on that
+    // control; capturing it here would retarget its click to this container.
+    if (event.target instanceof Element && event.target.closest('a,button')) return
+    dragOriginRef.current = event.clientX
+    event.currentTarget.setPointerCapture(event.pointerId)
+  }
+
+  const onPointerMove = (event: ReactPointerEvent<HTMLDivElement>): void => {
+    const origin = dragOriginRef.current
+    if (origin === null) return
+    const dx = event.clientX - origin
+    if (Math.abs(dx) < DRAG_STEP) return
+    // Re-anchor rather than accumulate, so a long drag walks stop by stop.
+    dragOriginRef.current = event.clientX
+    step(dx < 0 ? 1 : -1)
+  }
+
+  const onPointerEnd = (event: ReactPointerEvent<HTMLDivElement>): void => {
+    if (dragOriginRef.current === null) return
+    dragOriginRef.current = null
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
+    }
+  }
 
   if (!project) return null
 
@@ -328,17 +425,17 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
   const href = `/projects/${project.slug}`
 
   if (!pinned || scene === null) {
-    const stills = stages.map((_, index) => frames[index] ?? cover)
+    const stills = stops.map((stop) => stop.media ?? cover)
     // The photograph's own alt text first: it is written per project and it is
     // true. The old line pasted the invented stage name into the accessible
     // name too, so a screen reader heard NGOẠI THẤT for the same sofa.
     const altOf = (index: number): string =>
-      stills[index]?.alt ?? `${project.title} — ${stages[index] ?? place}`
+      stills[index]?.alt ?? `${project.title} — ${stops[index]?.label ?? place}`
     // Unnamed stops say the true line once and then let the ordinal carry the
     // sequence. Printing "Tầng tiếp khách nhà phố" under all four frames is
     // accurate and still reads as a component repeating itself.
     const captionOf = (index: number): string =>
-      namedStops || index === 0 ? (stages[index] ?? '') : ''
+      namedStops || index === 0 ? (stops[index]?.label ?? '') : ''
 
     return (
       <section
@@ -427,17 +524,25 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
     <section
       ref={sectionRef}
       data-home-section="IMMERSIVE_PROJECT"
-      // 220vh, not 260: four stages across 120vh of pinned scroll is 30vh each.
-      // At 40vh the reader pushed 400px to advance one caption, which reads as an
-      // unresponsive page rather than a slow camera — and it made this section
-      // and FEATURED the same length, which is the plateau the score breaks.
-      className="relative h-[220vh] bg-espresso text-canvas"
+      // Exactly one screen. The band held 220vh so a sticky panel could be
+      // scrubbed through 120vh of scroll it never moved for; the stops are
+      // driven by the controls below now, so the wheel goes straight past.
+      className="relative h-[100svh] bg-espresso text-canvas"
     >
-      <div className="sticky top-0 flex h-[100svh] w-full flex-col justify-between overflow-hidden">
+      <div
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerEnd}
+        onPointerCancel={onPointerEnd}
+        // `pan-y` leaves every vertical gesture to the browser: the drag takes
+        // the horizontal axis and nothing else.
+        style={{ touchAction: 'pan-y' }}
+        className="flex h-full w-full cursor-grab flex-col justify-between overflow-hidden active:cursor-grabbing"
+      >
         <div className="absolute inset-0" aria-hidden="true">
           <InteriorScene
             config={scene}
-            progressRef={progress}
+            progressRef={progressRef}
             mode="scroll"
             fallbackImage={cover}
             className="absolute inset-0 h-full w-full"
@@ -449,8 +554,8 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
 
         <p className="sr-only">
           {namedStops
-            ? `Chuỗi cảnh dựng 3D dự án ${project.title}: ${stages.join(', ')}.`
-            : `Chuỗi ${stageCount} cảnh dựng 3D dự án ${project.title} — ${place}.`}
+            ? `Chuỗi cảnh dựng 3D dự án ${project.title}: ${stops.map((stop) => stop.label).join(', ')}.`
+            : `Chuỗi ${stopCount} cảnh dựng 3D dự án ${project.title} — ${place}.`}
         </p>
 
         <div className="relative z-10 u-gutter flex items-start justify-between gap-8 pt-[clamp(5rem,12vh,8rem)]">
@@ -462,7 +567,7 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
               className={cn(
                 DISPLAY_SM,
                 'max-w-[14ch] text-canvas transition-opacity duration-[900ms] ease-editorial',
-                stage === 0 ? 'opacity-100' : 'opacity-0',
+                current === 0 ? 'opacity-100' : 'opacity-0',
               )}
             >
               {headingLines.map((line) => (
@@ -472,9 +577,24 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
               ))}
             </h2>
           </div>
-          <Label tone="light" className="shrink-0 text-canvas/55">
-            {`${pad2(Math.min(stage + 1, stageCount))} / ${pad2(stageCount)}`}
-          </Label>
+
+          {/* The counter and the two controls read as one instrument: the
+              numbers are what the arrows move. */}
+          <div className="flex shrink-0 items-center gap-4">
+            <StopButton
+              side="prev"
+              disabled={current === 0}
+              onClick={() => step(-1)}
+            />
+            <Label tone="light" className="shrink-0 text-canvas/55">
+              {`${pad2(current + 1)} / ${pad2(stopCount)}`}
+            </Label>
+            <StopButton
+              side="next"
+              disabled={current === stopCount - 1}
+              onClick={() => step(1)}
+            />
+          </div>
         </div>
 
         <div className="relative z-10 u-gutter flex flex-col gap-8 pb-[clamp(2rem,6vh,4rem)]">
@@ -482,19 +602,19 @@ export function ImmersiveProject({ section, data }: HomeSectionProps) {
               into an identical copy of itself reads as a stuck animation, and
               four `key={caption}` siblings would collide besides. */}
           <div className="relative h-[clamp(3rem,7vw,5.5rem)]">
-            {(namedStops ? stages : stages.slice(0, 1)).map((caption, index) => (
+            {(namedStops ? stops : stops.slice(0, 1)).map((stop, index) => (
               <span
-                key={`${index}-${caption}`}
-                aria-hidden={!namedStops || index === stage ? undefined : 'true'}
+                key={`${index}-${stop.key}`}
+                aria-hidden={!namedStops || index === current ? undefined : 'true'}
                 className={cn(
                   DISPLAY_SM,
                   'absolute inset-x-0 bottom-0 block text-canvas transition-all duration-[900ms] ease-editorial',
-                  !namedStops || index === stage
+                  !namedStops || index === current
                     ? 'translate-y-0 opacity-100'
                     : 'translate-y-3 opacity-0',
                 )}
               >
-                {caption}
+                {stop.label}
               </span>
             ))}
           </div>

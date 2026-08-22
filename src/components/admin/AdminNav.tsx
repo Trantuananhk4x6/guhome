@@ -21,6 +21,7 @@ export interface AdminNavItem {
 export const ADMIN_NAV: readonly AdminNavItem[] = [
   { href: '/admin', label: 'Dashboard', hint: 'Overview', exact: true },
   { href: '/admin/projects', label: 'Dự án', hint: 'Projects' },
+  { href: '/admin/styles', label: 'Phong cách', hint: 'Styles' },
   { href: '/admin/articles', label: 'Bài viết', hint: 'Journal' },
   { href: '/admin/media', label: 'Media', hint: 'Library' },
   { href: '/admin/3d-assets', label: '3D Assets', hint: 'Scenes' },

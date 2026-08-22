@@ -3,23 +3,31 @@ import type { NavItem } from '@/types/content'
 /**
  * Used when `getNavigation()` returns nothing (fresh database, seed not run).
  * The admin navigation editor is the source of truth once rows exist.
+ *
+ * `/phong-cach` sits directly after `/projects` because it is the second way
+ * into the same work — a visitor who arrives asking for "Indochine" rather than
+ * for "căn hộ" needs a door, and a route with no menu entry is a route nobody
+ * finds. It is a fallback, not a fixture: once navigation rows exist the admin
+ * editor decides, and the row must be added there too.
  */
 export const FALLBACK_HEADER_NAV: NavItem[] = [
   { id: 'fallback-home', label: 'Trang chủ', href: '/', order: 0 },
   { id: 'fallback-projects', label: 'Dự án', href: '/projects', order: 1 },
-  { id: 'fallback-studio', label: 'Studio', href: '/studio', order: 2 },
-  { id: 'fallback-services', label: 'Dịch vụ', href: '/services', order: 3 },
-  { id: 'fallback-journal', label: 'Bài viết', href: '/journal', order: 4 },
-  { id: 'fallback-contact', label: 'Liên hệ', href: '/contact', order: 5 },
+  { id: 'fallback-styles', label: 'Phong cách', href: '/phong-cach', order: 2 },
+  { id: 'fallback-studio', label: 'Studio', href: '/studio', order: 3 },
+  { id: 'fallback-services', label: 'Dịch vụ', href: '/services', order: 4 },
+  { id: 'fallback-journal', label: 'Bài viết', href: '/journal', order: 5 },
+  { id: 'fallback-contact', label: 'Liên hệ', href: '/contact', order: 6 },
 ]
 
 export const FALLBACK_FOOTER_NAV: NavItem[] = [
   { id: 'fallback-f-home', label: 'Trang chủ', href: '/', order: 0 },
   { id: 'fallback-f-projects', label: 'Dự án', href: '/projects', order: 1 },
-  { id: 'fallback-f-studio', label: 'Studio', href: '/studio', order: 2 },
-  { id: 'fallback-f-services', label: 'Dịch vụ', href: '/services', order: 3 },
-  { id: 'fallback-f-journal', label: 'Bài viết', href: '/journal', order: 4 },
-  { id: 'fallback-f-contact', label: 'Liên hệ', href: '/contact', order: 5 },
+  { id: 'fallback-f-styles', label: 'Phong cách', href: '/phong-cach', order: 2 },
+  { id: 'fallback-f-studio', label: 'Studio', href: '/studio', order: 3 },
+  { id: 'fallback-f-services', label: 'Dịch vụ', href: '/services', order: 4 },
+  { id: 'fallback-f-journal', label: 'Bài viết', href: '/journal', order: 5 },
+  { id: 'fallback-f-contact', label: 'Liên hệ', href: '/contact', order: 6 },
 ]
 
 export function withFallbackNav(items: NavItem[], fallback: NavItem[]): NavItem[] {

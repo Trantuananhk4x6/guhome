@@ -129,3 +129,40 @@ export function sectionStats(
   }
   return [...fallback]
 }
+
+/** One authored stop of the immersive band, before its media id is resolved. */
+export interface SectionStop {
+  id: string
+  label: string
+  caption: string | null
+  mediaId: string
+}
+
+/**
+ * `{ stops: [{ id, label, caption?, mediaId }] }` — the immersive band's stops.
+ *
+ * A stop without a photograph is not a stop: the band shows one frame per stop,
+ * so an entry missing `mediaId` is dropped rather than rendered as a blank
+ * panel. The empty array is meaningful — it means "nothing authored yet", and
+ * the band falls back to the project's gallery.
+ */
+export function sectionStops(content: SectionContent, key: string): SectionStop[] {
+  const value = content[key]
+  if (!Array.isArray(value)) return []
+
+  const stops: SectionStop[] = []
+  for (const entry of value) {
+    if (typeof entry !== 'object' || entry === null) continue
+    const record = entry as Record<string, unknown>
+    const mediaId = trimmed(record.mediaId)
+    if (!mediaId) continue
+    stops.push({
+      // The media id is a serviceable React key when the admin never wrote one.
+      id: trimmed(record.id) ?? mediaId,
+      label: trimmed(record.label) ?? '',
+      caption: trimmed(record.caption),
+      mediaId,
+    })
+  }
+  return stops
+}

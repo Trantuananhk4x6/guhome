@@ -22,15 +22,20 @@ import { Select } from '@/components/ui/Select'
 import { Textarea } from '@/components/ui/Textarea'
 import { cn, pad2 } from '@/lib/utils'
 import { saveHomepage } from '@/server/actions/homepage'
-import type { HomepageSection, HomepageSectionKey } from '@/types/content'
+import type { HomepageSection, HomepageSectionKey, MediaRef } from '@/types/content'
 
 import {
   draftFromContent,
   homepageSectionMeta,
   mergeHomepageContent,
+  STOPS_MAX,
+  STOP_CAPTION_MAX,
+  STOP_LABEL_MAX,
   type HomepageContentDraft,
+  type StopDraft,
 } from './contracts'
 import { AdminPanel, StatusPill } from './Fields'
+import { MediaField } from './MediaField'
 import { useActionRunner, useEditorDraft } from './useEditorState'
 
 export interface HomepageProjectOption {
@@ -50,6 +55,21 @@ interface SectionDraft {
 export interface HomepageBuilderProps {
   initial: HomepageSection[]
   projects: HomepageProjectOption[]
+  /**
+   * Assets already referenced by a section, so a saved stop shows its thumbnail
+   * before anyone opens the picker. Optional: without it the rows still edit
+   * fine, they just start blank until a picture is chosen again.
+   */
+  mediaIndex?: Record<string, MediaRef>
+}
+
+/**
+ * A fresh stop. The id only ever serves as a list key, so a uuid is enough —
+ * and it is generated here, in an event handler, never during a render that the
+ * server also performs.
+ */
+function newStop(): StopDraft {
+  return { id: crypto.randomUUID(), label: '', caption: '', mediaId: '' }
 }
 
 function toDrafts(sections: readonly HomepageSection[]): SectionDraft[] {
@@ -61,11 +81,13 @@ function toDrafts(sections: readonly HomepageSection[]): SectionDraft[] {
   }))
 }
 
-export function HomepageBuilder({ initial, projects }: HomepageBuilderProps) {
+export function HomepageBuilder({ initial, projects, mediaIndex: initialMedia }: HomepageBuilderProps) {
   const router = useRouter()
   const draft = useEditorDraft<SectionDraft[]>(toDrafts(initial))
   const runner = useActionRunner()
   const [open, setOpen] = useState<string | null>(initial[0]?.key ?? null)
+  // Grows as assets are picked, so a thumbnail survives until the page reloads.
+  const [mediaIndex, setMediaIndex] = useState<Record<string, MediaRef>>(initialMedia ?? {})
 
   const sections = draft.value
   const enabledCount = sections.filter((section) => section.enabled).length
@@ -80,6 +102,31 @@ export function HomepageBuilder({ initial, projects }: HomepageBuilderProps) {
         section.key === key ? { ...section, content: { ...section.content, ...patch } } : section,
       ),
     )
+  }
+
+  const updateStops = (
+    key: HomepageSectionKey,
+    change: (stops: readonly StopDraft[]) => StopDraft[],
+  ): void => {
+    draft.set((current) =>
+      current.map((section) =>
+        section.key === key
+          ? { ...section, content: { ...section.content, stops: change(section.content.stops) } }
+          : section,
+      ),
+    )
+  }
+
+  const chooseStopMedia = (key: HomepageSectionKey, id: string, media: MediaRef | null): void => {
+    if (media) setMediaIndex((current) => ({ ...current, [media.id]: media }))
+    updateStops(key, (stops) =>
+      stops.map((stop) => (stop.id === id ? { ...stop, mediaId: media?.id ?? '' } : stop)),
+    )
+  }
+
+  const chooseHeroMedia = (key: HomepageSectionKey, media: MediaRef | null): void => {
+    if (media) setMediaIndex((current) => ({ ...current, [media.id]: media }))
+    updateContent(key, { heroMediaId: media?.id ?? '' })
   }
 
   const handleSave = (): void => {
@@ -227,6 +274,25 @@ export function HomepageBuilder({ initial, projects }: HomepageBuilderProps) {
                       </div>
                     ) : null}
 
+                    {meta.fields.includes('heroMedia') ? (
+                      <MediaField
+                        label="Ảnh mở đầu"
+                        chooseLabel="Chọn ảnh"
+                        hint={
+                          section.content.heroMediaId.length > 0 &&
+                          mediaIndex[section.content.heroMediaId] === undefined
+                            ? 'Ảnh đã lưu chưa tải được để xem trước — chọn lại nếu muốn đổi.'
+                            : 'Bỏ trống thì màn hình mở đầu tự lấy cảnh của dự án tiêu biểu. Chọn ảnh ở đây là ảnh đó thắng.'
+                        }
+                        value={
+                          section.content.heroMediaId.length > 0
+                            ? (mediaIndex[section.content.heroMediaId] ?? null)
+                            : null
+                        }
+                        onChange={(media) => chooseHeroMedia(section.key, media)}
+                      />
+                    ) : null}
+
                     {meta.fields.includes('featuredProject') ? (
                       <Field
                         label="Dự án dựng 3D"
@@ -256,6 +322,113 @@ export function HomepageBuilder({ initial, projects }: HomepageBuilderProps) {
                           }}
                         />
                       </Field>
+                    ) : null}
+
+                    {meta.fields.includes('stops') ? (
+                      <div className="flex flex-col gap-4 border-t border-line pt-7">
+                        <div className="flex items-baseline justify-between gap-4">
+                          <span className="u-label text-ink">Điểm dừng</span>
+                          <span className="font-body text-[0.75rem] tabular-nums text-muted">
+                            {section.content.stops.length}/{STOPS_MAX}
+                          </span>
+                        </div>
+                        <p className="text-[0.75rem] leading-relaxed text-muted">
+                          Mỗi điểm dừng là một khung cảnh khi cuộn qua khối 3D. Kéo tay nắm để đổi thứ tự.
+                          Điểm dừng chưa chọn ảnh sẽ không được lưu.
+                        </p>
+
+                        <DragList
+                          items={section.content.stops}
+                          label={`Điểm dừng của khối ${meta.label}`}
+                          getKey={(stop) => stop.id}
+                          onReorder={(next) => updateStops(section.key, () => next)}
+                          empty={
+                            <p className="font-body text-[0.8125rem] text-muted">
+                              Chưa có điểm dừng nào.
+                            </p>
+                          }
+                          renderItem={(stop, stopIndex, context) => (
+                            <div className="flex flex-col gap-5 border border-line bg-surface px-4 py-4">
+                              <div className="flex items-center gap-3">
+                                {context.handle}
+                                <span className="u-label text-accent">{pad2(stopIndex + 1)}</span>
+                                <span className="flex-1" />
+                                <Button
+                                  type="button"
+                                  variant="underline"
+                                  size="sm"
+                                  onClick={() =>
+                                    updateStops(section.key, (stops) =>
+                                      stops.filter((item) => item.id !== stop.id),
+                                    )
+                                  }
+                                >
+                                  Xoá
+                                </Button>
+                              </div>
+
+                              <div className="grid gap-5 sm:grid-cols-2">
+                                <div className="flex flex-col gap-5">
+                                  <Field label="Nhãn">
+                                    <Input
+                                      value={stop.label}
+                                      maxLength={STOP_LABEL_MAX}
+                                      placeholder="Phòng khách"
+                                      onChange={(event) => {
+                                        const label = event.target.value
+                                        updateStops(section.key, (stops) =>
+                                          stops.map((item) =>
+                                            item.id === stop.id ? { ...item, label } : item,
+                                          ),
+                                        )
+                                      }}
+                                    />
+                                  </Field>
+                                  <Field label="Chú thích" hint="Không bắt buộc — một dòng mô tả ngắn.">
+                                    <Input
+                                      value={stop.caption}
+                                      maxLength={STOP_CAPTION_MAX}
+                                      placeholder="Ánh sáng chiều qua rèm vải thô"
+                                      onChange={(event) => {
+                                        const caption = event.target.value
+                                        updateStops(section.key, (stops) =>
+                                          stops.map((item) =>
+                                            item.id === stop.id ? { ...item, caption } : item,
+                                          ),
+                                        )
+                                      }}
+                                    />
+                                  </Field>
+                                </div>
+
+                                <MediaField
+                                  label="Ảnh điểm dừng"
+                                  chooseLabel="Chọn ảnh"
+                                  hint={
+                                    stop.mediaId.length > 0 && mediaIndex[stop.mediaId] === undefined
+                                      ? 'Ảnh đã lưu chưa tải được để xem trước — chọn lại nếu muốn đổi.'
+                                      : undefined
+                                  }
+                                  value={stop.mediaId.length > 0 ? (mediaIndex[stop.mediaId] ?? null) : null}
+                                  onChange={(media) => chooseStopMedia(section.key, stop.id, media)}
+                                />
+                              </div>
+                            </div>
+                          )}
+                        />
+
+                        <div>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            disabled={section.content.stops.length >= STOPS_MAX}
+                            onClick={() => updateStops(section.key, (stops) => [...stops, newStop()])}
+                          >
+                            Thêm điểm dừng
+                          </Button>
+                        </div>
+                      </div>
                     ) : null}
                   </div>
                 ) : null}

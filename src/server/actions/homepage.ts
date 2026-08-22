@@ -13,7 +13,12 @@ import { z } from 'zod'
 import { requireUser } from '@/server/auth'
 import { db } from '@/server/db'
 import { auditLogs, homepageSections } from '@/server/db/schema'
-import type { ActionResult } from '@/components/admin/site/contracts'
+import {
+  STOPS_MAX,
+  STOP_CAPTION_MAX,
+  STOP_LABEL_MAX,
+  type ActionResult,
+} from '@/components/admin/site/contracts'
 
 /* -------------------------------- validation ------------------------------- */
 
@@ -28,8 +33,23 @@ const sectionKey = z.enum([
   'CTA',
 ])
 
+/**
+ * One immersive stop. This is the only part of `content` with a shape the
+ * server insists on, because the homepage renders it directly: a stop with no
+ * picture would pin the scroll on an empty frame.
+ */
+const stopSchema = z.object({
+  id: z.string().min(1).max(64),
+  label: z.string().max(STOP_LABEL_MAX, `Nhãn điểm dừng tối đa ${STOP_LABEL_MAX} ký tự.`),
+  caption: z.string().max(STOP_CAPTION_MAX, `Chú thích tối đa ${STOP_CAPTION_MAX} ký tự.`).optional(),
+  mediaId: z.string().min(1, 'Điểm dừng chưa chọn ảnh.').max(128),
+})
+
 /** `content` is section-shaped free-form JSON; only its envelope is validated. */
-const contentSchema = z.record(z.string(), z.unknown())
+const contentSchema = z.looseObject({
+  stops: z.array(stopSchema).max(STOPS_MAX, `Tối đa ${STOPS_MAX} điểm dừng.`).optional(),
+  heroMediaId: z.string().trim().max(64).optional(),
+})
 
 const sectionSchema = z.object({
   key: sectionKey,

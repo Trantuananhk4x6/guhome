@@ -12,9 +12,11 @@
 
 import { and, asc, eq, ilike, or, sql, type SQL } from 'drizzle-orm'
 
+import type { StyleOption } from '@/components/admin/project/contracts'
 import { db } from '@/server/db'
 import { categories, projects } from '@/server/db/schema'
 import { getMediaMap } from '@/server/queries/media'
+import { getPublishedStyles, getStyleIdsForProject } from '@/server/queries/styles'
 import type { MediaRef, PublishStatus } from '@/types/content'
 
 export interface AdminProjectRow {
@@ -224,3 +226,32 @@ export async function listProjectCategories(): Promise<ProjectCategoryOption[]> 
     return []
   }
 }
+
+/* ---------------------------------- styles --------------------------------- */
+
+/**
+ * The style taxonomy a project can be filed under, for the picker on the editor.
+ *
+ * Read through `@/server/queries/styles` rather than off the table: that module
+ * already resolves covers and swallows its own errors, and going around it would
+ * be a second opinion on what an enabled style is.
+ */
+export async function listStyleOptions(): Promise<StyleOption[]> {
+  const items = await getPublishedStyles()
+  return items.map((item) => ({ id: item.id, slug: item.slug, name: item.name, nameEn: item.nameEn }))
+}
+
+/**
+ * Styles already attached to a project, in join order — the initial value the
+ * editor hands to the picker so it does not have to fetch them from the client.
+ */
+export async function listProjectStyleIds(projectId: string): Promise<string[]> {
+  try {
+    return await getStyleIdsForProject(projectId)
+  } catch (error) {
+    console.error('[admin/projects] listProjectStyleIds failed', error)
+    return []
+  }
+}
+
+export type { StyleOption }

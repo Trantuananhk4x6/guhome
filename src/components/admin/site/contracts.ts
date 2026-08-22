@@ -113,6 +113,8 @@ export type HomepageFieldKey =
   | 'cta'
   | 'featuredProject'
   | 'itemCount'
+  | 'stops'
+  | 'heroMedia'
 
 export interface HomepageSectionMeta {
   key: HomepageSectionKey
@@ -132,7 +134,7 @@ export const HOMEPAGE_SECTION_META: readonly HomepageSectionMeta[] = [
     en: 'Hero',
     label: 'Mở đầu',
     note: 'Màn hình đầu tiên — tên studio, câu định vị, nút dẫn vào dự án.',
-    fields: ['eyebrow', 'heading', 'body', 'cta'],
+    fields: ['eyebrow', 'heading', 'body', 'cta', 'heroMedia'],
   },
   {
     key: 'FEATURED_PROJECTS',
@@ -165,8 +167,8 @@ export const HOMEPAGE_SECTION_META: readonly HomepageSectionMeta[] = [
     key: 'IMMERSIVE_PROJECT',
     en: 'Immersive',
     label: 'Không gian 3D',
-    note: 'Một dự án được dựng cảnh 3D toàn màn hình.',
-    fields: ['eyebrow', 'heading', 'body', 'cta', 'featuredProject'],
+    note: 'Một dự án được dựng cảnh 3D toàn màn hình, đi qua từng điểm dừng khi cuộn.',
+    fields: ['eyebrow', 'heading', 'body', 'cta', 'featuredProject', 'stops'],
   },
   {
     key: 'PHILOSOPHY',
@@ -202,6 +204,23 @@ export function homepageSectionMeta(key: HomepageSectionKey): HomepageSectionMet
   return { key, en: key, label: key, note: '', fields: ['eyebrow', 'heading', 'body'] }
 }
 
+/**
+ * One stop of the immersive block. `id` never reaches the database as anything
+ * but a key — it exists so the drag list keeps a stable identity per row while
+ * the label and the picture are still being edited.
+ */
+export interface StopDraft {
+  id: string
+  label: string
+  caption: string
+  mediaId: string
+}
+
+/** Ceilings mirrored by the server action, so the form can stop before a save. */
+export const STOPS_MAX = 12
+export const STOP_LABEL_MAX = 80
+export const STOP_CAPTION_MAX = 200
+
 /** The editable shape behind a homepage section's opaque `content` JSON. */
 export interface HomepageContentDraft {
   eyebrow: string
@@ -211,6 +230,9 @@ export interface HomepageContentDraft {
   ctaHref: string
   featuredProjectId: string
   itemCount: number
+  stops: StopDraft[]
+  /** Empty string means "let the hero keep choosing its own picture". */
+  heroMediaId: string
 }
 
 export const EMPTY_HOMEPAGE_CONTENT: HomepageContentDraft = {
@@ -221,6 +243,8 @@ export const EMPTY_HOMEPAGE_CONTENT: HomepageContentDraft = {
   ctaHref: '',
   featuredProjectId: '',
   itemCount: 0,
+  stops: [],
+  heroMediaId: '',
 }
 
 function readString(source: Record<string, unknown>, ...keys: readonly string[]): string {
@@ -248,6 +272,50 @@ function readNumber(source: Record<string, unknown>, ...keys: readonly string[])
   return 0
 }
 
+function readField(source: Record<string, unknown>, key: string): string {
+  const value = source[key]
+  return typeof value === 'string' ? value : ''
+}
+
+/**
+ * The stops of the immersive block, from either spelling.
+ *
+ * `stops` is the shape the editor owns; `stages` is what the block used before
+ * it — a bare array of labels whose pictures were guessed from the project
+ * gallery. Reading both means an old row keeps its wording and only needs a
+ * picture chosen.
+ *
+ * Ids are derived from the position rather than generated, because this runs on
+ * the server as well as in the browser and a fresh uuid per render would give
+ * the two passes different keys.
+ */
+function readStops(source: Record<string, unknown>): StopDraft[] {
+  const raw = source['stops'] ?? source['stages']
+  if (!Array.isArray(raw)) return []
+
+  const out: StopDraft[] = []
+  for (const [index, entry] of raw.entries()) {
+    if (out.length >= STOPS_MAX) break
+
+    if (typeof entry === 'string') {
+      if (entry.trim().length === 0) continue
+      out.push({ id: `stop-${index}`, label: entry, caption: '', mediaId: '' })
+      continue
+    }
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) continue
+
+    const row = entry as Record<string, unknown>
+    const id = readField(row, 'id')
+    out.push({
+      id: id.length > 0 ? id : `stop-${index}`,
+      label: readField(row, 'label'),
+      caption: readField(row, 'caption'),
+      mediaId: readField(row, 'mediaId'),
+    })
+  }
+  return out
+}
+
 /**
  * Read a section's stored JSON into the editor draft, tolerating every key
  * spelling the section components have used (`label`/`eyebrow`,
@@ -262,6 +330,8 @@ export function draftFromContent(content: Record<string, unknown>): HomepageCont
     ctaHref: readString(content, 'ctaHref', 'href') || readNested(content, 'cta', 'href'),
     featuredProjectId: readString(content, 'featuredProjectId', 'projectId'),
     itemCount: readNumber(content, 'itemCount', 'limit', 'count'),
+    stops: readStops(content),
+    heroMediaId: readString(content, 'heroMediaId'),
   }
 }
 
@@ -316,6 +386,29 @@ export function contentFromDraft(
     out['limit'] = draft.itemCount
   }
 
+  const heroMediaId = draft.heroMediaId.trim()
+  if (has('heroMedia') && heroMediaId.length > 0) {
+    out['heroMediaId'] = heroMediaId
+  }
+
+  if (has('stops')) {
+    // A stop without a picture has nothing to show, so it never reaches the JSON.
+    const stops = draft.stops
+      .filter((stop) => stop.mediaId.trim().length > 0)
+      .slice(0, STOPS_MAX)
+      .map((stop) => {
+        const row: Record<string, unknown> = {
+          id: stop.id,
+          label: stop.label.trim().slice(0, STOP_LABEL_MAX),
+          mediaId: stop.mediaId.trim(),
+        }
+        const caption = stop.caption.trim().slice(0, STOP_CAPTION_MAX)
+        if (caption.length > 0) row['caption'] = caption
+        return row
+      })
+    if (stops.length > 0) out['stops'] = stops
+  }
+
   return out
 }
 
@@ -338,6 +431,13 @@ const MANAGED_CONTENT_KEYS: readonly string[] = [
   'itemCount',
   'limit',
   'count',
+  'stops',
+  // The old label-only spelling: dropped on save so a merge cannot resurrect
+  // stops the editor has just deleted.
+  'stages',
+  // Managed so that clearing the hero picture actually clears it — otherwise the
+  // merge would hand the old id straight back.
+  'heroMediaId',
 ]
 
 /**
@@ -349,11 +449,27 @@ export function mergeHomepageContent(
   draft: HomepageContentDraft,
   fields: readonly HomepageFieldKey[],
 ): Record<string, unknown> {
+  const written = contentFromDraft(draft, fields)
+
   const kept: Record<string, unknown> = {}
   for (const [key, value] of Object.entries(original)) {
     if (!MANAGED_CONTENT_KEYS.includes(key)) kept[key] = value
   }
-  return { ...kept, ...contentFromDraft(draft, fields) }
+
+  /*
+   * `stages` is managed, so it is normally dropped — otherwise a merge would
+   * resurrect stops the editor just deleted. But a row that still holds the old
+   * spelling has labels and no pictures, and a stop without a picture never
+   * survives `contentFromDraft`. Dropping it then would delete four authored
+   * labels the moment someone saved an unrelated block, without ever showing
+   * them the form that owns them. Hold the old wording until real stops replace
+   * it.
+   */
+  if (!('stops' in written) && 'stages' in original) {
+    kept['stages'] = original['stages']
+  }
+
+  return { ...kept, ...written }
 }
 
 /* -------------------------------- navigation -------------------------------- */

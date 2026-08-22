@@ -94,6 +94,23 @@ export const SCROLL = {
   refreshDebounce: 180,
 } as const
 
+/**
+ * Master kill-switch for the scroll-driven entrance effects — `useReveal` (both
+ * its entrance and `revealParallax` flavours), `useTextReveal`, `useImageReveal`
+ * and `useParallax`.
+ *
+ * On at the project owner's request: every one of those hooks builds a
+ * ScrollTrigger per element, and on content-heavy pages the accumulated
+ * scrub/refresh work is what makes the scroll stutter. Flip this back to `false`
+ * and the whole vocabulary returns — the hooks still run, still mark their
+ * elements ready, and still carry their markup attributes, so nothing else has
+ * to change.
+ *
+ * Deliberately NOT covering Lenis smooth scroll, hover motion, page transitions
+ * or the scroll-driven 3D camera — those stay live.
+ */
+export const SCROLL_REVEAL_DISABLED = true
+
 export interface ScrollTriggerish {
   trigger: Element
   start?: string

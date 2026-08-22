@@ -10,7 +10,7 @@
 
 import type { RefObject } from 'react'
 import { motionFlag, useMotionStore } from '@/lib/motion'
-import { DISTANCE, DURATION, EASE, SCROLL, STAGGER, delayOf, dur } from './config'
+import { DISTANCE, DURATION, EASE, SCROLL, SCROLL_REVEAL_DISABLED, STAGGER, delayOf, dur } from './config'
 import { gsap, SplitText, registerGsap } from './gsap'
 import { markReady, revealFromVars, revealToVars, useIsoLayoutEffect, whenFontsReady } from './internal'
 
@@ -38,7 +38,10 @@ export function useTextReveal(ref: RefObject<HTMLElement | null>, opts: TextReve
     if (!el) return
     registerGsap()
 
-    if (!motionFlag(config, systemReduced, 'textReveal')) {
+    // Returning here — before SplitText — is the point: a split that ran would
+    // leave `.an-split-line` wrappers behind, and those break the leading of
+    // accented Vietnamese copy even with every tween gone.
+    if (SCROLL_REVEAL_DISABLED || !motionFlag(config, systemReduced, 'textReveal')) {
       markReady(el)
       return
     }

@@ -1,50 +1,56 @@
 'use client'
 
 /**
- * Pinned horizontal rail for the project index.
+ * A horizontally scrollable strip — plain, native, and the same on every screen.
  *
- * Desktop: the section pins and the track slides left for exactly as far as it
- * overflows. Below 1024px the rail degrades to an ordinary swipeable strip —
- * same markup, no pinning, no transforms.
+ * This used to pin the section and scrub the track sideways with GSAP
+ * (`useHorizontalScroll`). That made the wheel drive the rail instead of the
+ * page: the footer was unreachable until the whole run had gone by. The pin is
+ * gone. The section is now an `overflow-x-auto` box, so the wheel scrolls the
+ * document straight past it and the horizontal axis is browsed on purpose —
+ * see `useRelatedRail` for the step buttons, keyboard and drag that go with it.
+ *
+ * The caller owns the interaction: pass `scrollerRef` and spread whatever
+ * handlers it needs onto the section through `...rest`.
  *
  * ```tsx
- * <HorizontalScroll trackClassName="gap-8 px-(--spacing-gutter)">
+ * <HorizontalScroll scrollerRef={ref} trackClassName="gap-8 px-(--spacing-gutter)" {...railProps}>
  *   {projects.map(p => <ProjectCard key={p.id} project={p} />)}
  * </HorizontalScroll>
  * ```
  */
 
-import { useRef } from 'react'
-import type { JSX, ReactNode } from 'react'
-import { useHorizontalScroll } from '@/animations/projects'
+import type { ComponentPropsWithoutRef, JSX, ReactNode, Ref } from 'react'
 import { cn } from '@/lib/utils'
 
-export interface HorizontalScrollProps {
+export interface HorizontalScrollProps extends Omit<ComponentPropsWithoutRef<'section'>, 'children'> {
   children: ReactNode
-  className?: string
   trackClassName?: string
-  /** extra scroll distance past the end of the track, in px */
-  endPadding?: number
-  /** seconds of scrub catch-up */
-  scrub?: boolean | number
-  'aria-label'?: string
+  /** The scroll box itself — the element whose `scrollLeft` the caller drives. */
+  scrollerRef?: Ref<HTMLElement>
 }
 
 export function HorizontalScroll(props: HorizontalScrollProps): JSX.Element {
-  const { children, className, trackClassName, endPadding, scrub, 'aria-label': ariaLabel } = props
-
-  const sectionRef = useRef<HTMLElement>(null)
-  const trackRef = useRef<HTMLDivElement>(null)
-  useHorizontalScroll(sectionRef, trackRef, { endPadding, scrub })
+  const { children, className, trackClassName, scrollerRef, ...rest } = props
 
   return (
     <section
-      ref={sectionRef}
-      aria-label={ariaLabel}
+      ref={scrollerRef}
       data-horizontal-section=""
-      className={cn('relative overflow-x-auto lg:overflow-hidden', className)}
+      className={cn(
+        // No `lg:overflow-hidden`: the track is `w-max`, so hiding the overflow
+        // on desktop clips every card past the fold with no way to reach them.
+        // `overscroll-x-contain` keeps the end of the run from turning into a
+        // browser back-gesture; the vertical axis stays with the page.
+        'relative overflow-x-auto overflow-y-hidden overscroll-x-contain',
+        // The strip is driven by buttons, keys and drag, so the scrollbar is
+        // one more horizontal line across an editorial layout for no gain.
+        '[scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
+        className,
+      )}
+      {...rest}
     >
-      <div ref={trackRef} data-horizontal-track="" className={cn('flex w-max flex-nowrap', trackClassName)}>
+      <div data-horizontal-track="" className={cn('flex w-max flex-nowrap', trackClassName)}>
         {children}
       </div>
     </section>
