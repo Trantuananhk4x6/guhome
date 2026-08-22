@@ -161,7 +161,7 @@ export default async function ContactPage() {
               {/* Named, not implied. The caption says which project this is and
                   links to it, so the frame is never read as the studio's room. */}
               <Label rule>Công trình</Label>
-              <p className="mt-7 font-display text-[1.5rem] leading-[1.2] font-normal text-ink sm:text-[1.75rem]">
+              <p className="mt-7 font-display text-[1.5rem] leading-[1.38] font-normal text-ink sm:text-[1.75rem]">
                 {showcase.title}
               </p>
               {showcase.subtitle ? (
@@ -199,7 +199,7 @@ export default async function ContactPage() {
               */}
               <address className="mt-8 border border-line border-t-2 border-t-accent bg-surface px-6 py-8 not-italic sm:px-8 sm:py-9">
                 <Label>Địa chỉ studio</Label>
-                <p className="mt-4 font-display text-[1.75rem] leading-[1.15] font-normal text-ink sm:text-[2.125rem]">
+                <p className="mt-4 font-display text-[1.75rem] leading-[1.38] font-normal text-ink sm:text-[2.125rem]">
                   {addressStreet}
                   {addressArea ? (
                     <>

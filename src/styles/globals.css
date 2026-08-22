@@ -350,10 +350,24 @@
     font-family: var(--font-display);
     font-size: calc(clamp(2.625rem, 7vw, 8rem) * var(--display-scale));
     font-weight: 500;
-    /* 1.04 is the floor, not a preference: Vietnamese stacks marks above AND
-       below the x-height (ế, ộ, ữ, ậ). Tighter and the dấu of one line touches
-       the baseline of the one above. */
-    line-height: 1.04;
+    /*
+      THE DISPLAY LEADING FLOOR — measured, and shared by all three steps below.
+
+      In Playfair Display a stacked Vietnamese mark — the ấ of "gỗ vẫn còn ấm" —
+      carries ink to 1.07em above its baseline, half again the 0.711em cap
+      height, while a descending g on the line above reaches 0.188em below its
+      own. Two lines therefore need 1.258em between baselines *merely to stop
+      touching*, and 1.38 is that floor plus enough daylight to survive the densest pair on the site.
+
+      This file used to say 1.04 was the floor. It was not: it overlapped by
+      0.218em — 28px at the size the hero renders — and only looked survivable
+      while headings happened to put their tall marks where the line above had a
+      space. Set from the ink, it holds for whatever an editor types.
+
+      Latin-only leading would be tighter and prettier. This is a Vietnamese
+      site; the marks are not optional.
+    */
+    line-height: 1.38;
     letter-spacing: -0.024em;
   }
 
@@ -363,7 +377,9 @@
     font-family: var(--font-display);
     font-size: calc(clamp(1.875rem, 4.4vw, 5rem) * var(--display-scale));
     font-weight: 500;
-    line-height: 1.04;
+    /* The floor documented on `.u-display-lg`. Was 1.04 — one pixel of daylight
+       under "Công trình nhỏ nhất / là mười hai mét vuông." */
+    line-height: 1.38;
     letter-spacing: -0.02em;
   }
 
@@ -373,7 +389,9 @@
     font-family: var(--font-display);
     font-size: calc(clamp(1.375rem, 2.75vw, 2.75rem) * var(--display-scale));
     font-weight: 500;
-    line-height: 1.14;
+    /* The floor documented on `.u-display-lg`. Was 1.14 — four pixels under a
+       two-line article title like "Chọn gỗ óc chó cho / khí hậu Sài Gòn". */
+    line-height: 1.38;
     letter-spacing: -0.012em;
   }
 

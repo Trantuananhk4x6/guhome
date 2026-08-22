@@ -54,7 +54,11 @@ export function Footer({ nav, brand, logo = null }: FooterProps) {
             <Label rule tone="light">
               Trước khi nhắn
             </Label>
-            <h2 className="max-w-[26ch] font-display text-[clamp(1.75rem,3.1vw,2.75rem)] leading-[1.14] text-canvas">
+            {/* 1.38 is the measured Vietnamese floor documented on `.u-display-lg`
+                in globals.css. At 1.14 this heading genuinely overlapped: "hướng
+                nắng, mặt bằng bàn / giao và ngày bạn cần dọn" crossed by 7px, and
+                this copy is the densest pair on the site — it sets the floor. */}
+            <h2 className="max-w-[26ch] font-display text-[clamp(1.75rem,3.1vw,2.75rem)] leading-[1.38] text-canvas">
               {/* The compound must not break: "hướng" alone at a line end reads as a different word. */}
               {'Bắt đầu bằng ba thứ: hướng nắng, mặt bằng bàn giao và ngày bạn cần dọn vào.'}
             </h2>
