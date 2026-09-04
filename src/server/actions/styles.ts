@@ -90,7 +90,16 @@ async function writeAudit(entry: {
   }
 }
 
-/** Public surfaces a style change is visible on, plus the admin list. */
+/**
+ * Public surfaces a style change is visible on, plus the admin list.
+ *
+ * The named slugs are rebuilt individually, and the route pattern rebuilds the
+ * rest. Passing slugs alone is not enough: a caller that renames or reorders
+ * cannot always name every page whose contents moved, and one that forgets to
+ * pass them at all — as `setProjectStyles` did — leaves the style's own page
+ * insisting it has no work while the index counts it. The pattern form is the
+ * backstop; the explicit slugs stay because they are precise and free.
+ */
 function revalidateStyle(...slugs: readonly (string | null | undefined)[]): void {
   revalidatePath('/')
   revalidatePath('/projects')
@@ -98,6 +107,10 @@ function revalidateStyle(...slugs: readonly (string | null | undefined)[]): void
   for (const slug of slugs) {
     if (slug) revalidatePath(`/phong-cach/${slug}`)
   }
+  // Both spellings: the route lives in the `(site)` group, and the grouped form
+  // is what the docs use for a page inside one.
+  revalidatePath('/phong-cach/[slug]', 'page')
+  revalidatePath('/(site)/phong-cach/[slug]', 'page')
   revalidatePath('/admin/styles')
 }
 
