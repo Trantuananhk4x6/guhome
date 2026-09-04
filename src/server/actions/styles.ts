@@ -378,12 +378,29 @@ export async function setProjectStyles(
     if (!wanted.includes(styleId)) wanted.push(styleId)
   }
 
+  /*
+   * Both sides of the change need their page rebuilt, so the slugs are read
+   * before the write: the styles this project joins, and the ones it leaves. A
+   * style that just lost its last project is exactly as stale as one that
+   * gained its first, and neither slug can be recovered afterwards — the join
+   * rows are gone by then.
+   */
+  const previousSlugs = (
+    await db
+      .select({ slug: styles.slug })
+      .from(projectStyles)
+      .innerJoin(styles, eq(styles.id, projectStyles.styleId))
+      .where(eq(projectStyles.projectId, project.id))
+  ).map((row) => row.slug)
+
+  let wantedSlugs: string[] = []
   if (wanted.length > 0) {
     const known = await db
-      .select({ id: styles.id })
+      .select({ id: styles.id, slug: styles.slug })
       .from(styles)
       .where(inArray(styles.id, wanted))
     if (known.length !== wanted.length) return failure('Có phong cách không còn tồn tại.')
+    wantedSlugs = known.map((row) => row.slug)
   }
 
   try {
@@ -409,7 +426,10 @@ export async function setProjectStyles(
     meta: { projectSlug: project.slug, styleIds: wanted },
   })
 
-  revalidateStyle()
+  // Called with no slugs, this rebuilt /phong-cach — which is why the card read
+  // "1 công trình" — while /phong-cach/<slug> kept serving the page it had
+  // built when the style was empty.
+  revalidateStyle(...new Set([...previousSlugs, ...wantedSlugs]))
   revalidatePath(`/projects/${project.slug}`)
   revalidatePath(`/admin/projects/${project.id}`)
   return { ok: true, data: { count: wanted.length } }
