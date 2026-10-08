@@ -77,6 +77,9 @@ import { PrivateEstateDigitalButlerPortal } from '@/components/tools/PrivateEsta
 import { AntiqueLibraryAndCartographyVault } from '@/components/studio/AntiqueLibraryAndCartographyVault'
 import { ArtisanHorologyGrandfatherClockVault } from '@/components/studio/ArtisanHorologyGrandfatherClockVault'
 import { ArtisanShanTuyetTeaSanctuary } from '@/components/tools/ArtisanShanTuyetTeaSanctuary'
+import { ArtisanBatTrangBrickWineCellarVault } from '@/components/studio/ArtisanBatTrangBrickWineCellarVault'
+import { ArtisanTeppanyakiChefTableVault } from '@/components/studio/ArtisanTeppanyakiChefTableVault'
+import { ArtisanHinokiVolcanicSaunaSanctuary } from '@/components/tools/ArtisanHinokiVolcanicSaunaSanctuary'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -963,6 +966,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan shan tuyet tea sanctuary & zisha pottery pavilion - */}
       <ArtisanShanTuyetTeaSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan bat trang brick wine cellar breathing vault ------- */}
+      <ArtisanBatTrangBrickWineCellarVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan teppanyaki chef table 25mm steel & plasma downdraft - */}
+      <ArtisanTeppanyakiChefTableVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan hinoki volcanic stone bio-sauna sanctuary --------- */}
+      <ArtisanHinokiVolcanicSaunaSanctuary className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

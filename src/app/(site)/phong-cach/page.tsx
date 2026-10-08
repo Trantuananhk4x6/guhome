@@ -54,6 +54,8 @@ import { SaigonRooftopStargazingObservatory } from '@/components/studio/SaigonRo
 import { BespokeOlfactoryFragranceAtelier } from '@/components/studio/BespokeOlfactoryFragranceAtelier'
 import { AntiqueLibraryAndCartographyVault } from '@/components/studio/AntiqueLibraryAndCartographyVault'
 import { ArtisanHorologyGrandfatherClockVault } from '@/components/studio/ArtisanHorologyGrandfatherClockVault'
+import { ArtisanBatTrangBrickWineCellarVault } from '@/components/studio/ArtisanBatTrangBrickWineCellarVault'
+import { ArtisanTeppanyakiChefTableVault } from '@/components/studio/ArtisanTeppanyakiChefTableVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -278,6 +280,12 @@ export default async function StylesPage() {
 
       {/* Artisan Haute Horology Grandfather Clock 432Hz Vault */}
       <ArtisanHorologyGrandfatherClockVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bat Trang Brick Wine Cellar Breathing Vault */}
+      <ArtisanBatTrangBrickWineCellarVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Teppanyaki Chef Table 25mm Steel & Plasma Downdraft */}
+      <ArtisanTeppanyakiChefTableVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -39,6 +39,8 @@ import { BespokeOlfactoryFragranceAtelier } from '@/components/studio/BespokeOlf
 import { PrivateEstateDigitalButlerPortal } from '@/components/tools/PrivateEstateDigitalButlerPortal'
 import { ArtisanHorologyGrandfatherClockVault } from '@/components/studio/ArtisanHorologyGrandfatherClockVault'
 import { ArtisanShanTuyetTeaSanctuary } from '@/components/tools/ArtisanShanTuyetTeaSanctuary'
+import { ArtisanTeppanyakiChefTableVault } from '@/components/studio/ArtisanTeppanyakiChefTableVault'
+import { ArtisanHinokiVolcanicSaunaSanctuary } from '@/components/tools/ArtisanHinokiVolcanicSaunaSanctuary'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -196,6 +198,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Shan Tuyet Tea Sanctuary & Zisha Pottery Pavilion */}
       <ArtisanShanTuyetTeaSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Teppanyaki Chef Table 25mm Steel & Plasma Downdraft */}
+      <ArtisanTeppanyakiChefTableVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Hinoki Volcanic Stone Bio-Sauna Sanctuary */}
+      <ArtisanHinokiVolcanicSaunaSanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

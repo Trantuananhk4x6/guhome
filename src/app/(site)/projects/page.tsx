@@ -101,6 +101,7 @@ import { SaigonBespokeInfinityPoolLab } from '@/components/studio/SaigonBespokeI
 import { SaigonBiophilicGreenWallAtelier } from '@/components/studio/SaigonBiophilicGreenWallAtelier'
 import { SaigonRooftopStargazingObservatory } from '@/components/studio/SaigonRooftopStargazingObservatory'
 import { AntiqueLibraryAndCartographyVault } from '@/components/studio/AntiqueLibraryAndCartographyVault'
+import { ArtisanBatTrangBrickWineCellarVault } from '@/components/studio/ArtisanBatTrangBrickWineCellarVault'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -674,6 +675,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Antique Rare Library & Cartography Preservation Vault */}
           <AntiqueLibraryAndCartographyVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Artisan Bat Trang Brick Wine Cellar Breathing Vault */}
+          <ArtisanBatTrangBrickWineCellarVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>
