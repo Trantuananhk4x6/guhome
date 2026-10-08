@@ -557,3 +557,78 @@
     transform: scale(1);
   }
 }
+
+/*
+ * ============================================================================
+ * PRINT MEDIA OPTIMIZATION — High-End A4 Architectural Dossier Output
+ * ============================================================================
+ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm 10mm 12mm;
+  }
+
+  html,
+  body {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    color: #111111 !important;
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Completely hide all screen-only chrome, docks, nav, footers and widgets */
+  header,
+  footer,
+  nav,
+  aside,
+  button,
+  input,
+  textarea,
+  select,
+  [role='dialog'],
+  [aria-label='Thanh liên hệ nhanh'],
+  [aria-label='Con trỏ tuỳ chỉnh'],
+  #scroll-progress,
+  .no-print,
+  .print\:hidden {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Force display of print dossiers and print-only blocks */
+  .print\:block {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .print\:flex {
+    display: flex !important;
+    visibility: visible !important;
+  }
+
+  .print\:grid {
+    display: grid !important;
+    visibility: visible !important;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Strip shadows and animations for crisp laser printing */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    transition: none !important;
+    animation: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+

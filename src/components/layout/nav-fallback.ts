@@ -14,20 +14,22 @@ export const FALLBACK_HEADER_NAV: NavItem[] = [
   { id: 'fallback-home', label: 'Trang chủ', href: '/', order: 0 },
   { id: 'fallback-projects', label: 'Dự án', href: '/projects', order: 1 },
   { id: 'fallback-styles', label: 'Phong cách', href: '/phong-cach', order: 2 },
-  { id: 'fallback-studio', label: 'Studio', href: '/studio', order: 3 },
-  { id: 'fallback-services', label: 'Dịch vụ', href: '/services', order: 4 },
-  { id: 'fallback-journal', label: 'Bài viết', href: '/journal', order: 5 },
-  { id: 'fallback-contact', label: 'Liên hệ', href: '/contact', order: 6 },
+  { id: 'fallback-khu-vuc', label: 'Khu vực TP.HCM', href: '/khu-vuc', order: 3 },
+  { id: 'fallback-du-toan', label: 'Dự toán chi phí', href: '/du-toan-chi-phi', order: 4 },
+  { id: 'fallback-studio', label: 'Studio', href: '/studio', order: 5 },
+  { id: 'fallback-journal', label: 'Bài viết', href: '/journal', order: 6 },
+  { id: 'fallback-contact', label: 'Liên hệ', href: '/contact', order: 7 },
 ]
 
 export const FALLBACK_FOOTER_NAV: NavItem[] = [
   { id: 'fallback-f-home', label: 'Trang chủ', href: '/', order: 0 },
   { id: 'fallback-f-projects', label: 'Dự án', href: '/projects', order: 1 },
   { id: 'fallback-f-styles', label: 'Phong cách', href: '/phong-cach', order: 2 },
-  { id: 'fallback-f-studio', label: 'Studio', href: '/studio', order: 3 },
-  { id: 'fallback-f-services', label: 'Dịch vụ', href: '/services', order: 4 },
-  { id: 'fallback-f-journal', label: 'Bài viết', href: '/journal', order: 5 },
-  { id: 'fallback-f-contact', label: 'Liên hệ', href: '/contact', order: 6 },
+  { id: 'fallback-f-khu-vuc', label: 'Khu vực TP.HCM', href: '/khu-vuc', order: 3 },
+  { id: 'fallback-f-du-toan', label: 'Dự toán chi phí', href: '/du-toan-chi-phi', order: 4 },
+  { id: 'fallback-f-studio', label: 'Studio', href: '/studio', order: 5 },
+  { id: 'fallback-f-journal', label: 'Bài viết', href: '/journal', order: 6 },
+  { id: 'fallback-f-contact', label: 'Liên hệ', href: '/contact', order: 7 },
 ]
 
 export function withFallbackNav(items: NavItem[], fallback: NavItem[]): NavItem[] {

@@ -8,6 +8,7 @@ import { LightboxProvider } from '@/components/layout/LightboxModal'
 import { QuickQuoteProvider } from '@/components/layout/QuickQuoteModal'
 import { ScrollProgress } from '@/components/layout/ScrollProgress'
 import { SocialModal } from '@/components/layout/SocialModal'
+import { TactileSampleBoxModal } from '@/components/layout/TactileSampleBoxModal'
 import { FloatingContactDock } from '@/components/layout/FloatingContactDock'
 import { mediaUrl } from '@/lib/media'
 import { buildOrganizationJsonLd, buildWebsiteJsonLd, jsonLdScript } from '@/lib/seo'
@@ -62,6 +63,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
 
           <Footer nav={withFallbackNav(footerNav, FALLBACK_FOOTER_NAV)} brand={theme.brand} logo={logo} />
           <SocialModal />
+          <TactileSampleBoxModal />
           <FloatingContactDock />
         </div>
       </QuickQuoteProvider>

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { submitContact } from '@/server/actions/contact'
 import { Label } from '@/components/ui/Label'
 import { useToast } from '@/components/ui/Toast'
-import { ArrowUpRightIcon, CheckIcon } from '@/components/ui/icons'
+import { ArrowUpRightIcon, CheckIcon, PrinterIcon } from '@/components/ui/icons'
 import { cn } from '@/lib/utils'
 
 export type FinishPackage = 'standard' | 'bespoke'
@@ -246,9 +246,9 @@ export function SpatialBudgetCalculator() {
     <section
       id="du-toan-khong-gian"
       data-home-section="SPATIAL_CALCULATOR"
-      className="u-gutter relative isolate bg-surface py-[clamp(4.5rem,10vh,8rem)] text-ink overflow-hidden border-t border-line/60"
+      className="u-gutter relative isolate bg-surface py-[clamp(4.5rem,10vh,8rem)] text-ink overflow-hidden border-t border-line/60 print:py-0 print:border-none print:bg-white"
     >
-      <div className="mx-auto w-full max-w-[110rem] relative z-10">
+      <div className="mx-auto w-full max-w-[110rem] relative z-10 print:hidden">
         {/* Section Heading */}
         <div className="max-w-3xl mb-12">
           <Label rule tone="accent">
@@ -415,8 +415,19 @@ export function SpatialBudgetCalculator() {
 
               {/* Total Estimated Cost Header */}
               <div className="border-b border-canvas/15 pb-6">
-                <div className="text-xs font-mono uppercase tracking-wider text-accent-soft">
-                  Tổng ngân sách dự toán ước tính
+                <div className="flex items-center justify-between gap-2">
+                  <div className="text-xs font-mono uppercase tracking-wider text-accent-soft">
+                    Tổng ngân sách dự toán ước tính
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-canvas/20 bg-canvas/10 hover:bg-canvas/20 text-canvas text-[11px] font-mono transition-colors"
+                    title="Xuất Hồ Sơ & In Dự Toán Kiến Trúc (A4 Dossier)"
+                  >
+                    <PrinterIcon className="text-xs" />
+                    <span>In A4 Dossier</span>
+                  </button>
                 </div>
                 <div className="mt-2 flex items-baseline gap-2">
                   <span className="font-display text-3xl sm:text-5xl font-medium text-canvas">
@@ -510,6 +521,16 @@ export function SpatialBudgetCalculator() {
                     <ArrowUpRightIcon className="text-sm" />
                   </button>
 
+                  {/* 1-Click Print A4 Dossier Button */}
+                  <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-accent/40 bg-accent/20 text-accent-soft hover:bg-accent/30 hover:text-canvas text-xs font-mono transition-colors min-h-[44px]"
+                  >
+                    <PrinterIcon className="text-sm" />
+                    <span>Xuất Hồ Sơ & In Dự Toán Kiến Trúc (A4 Dossier)</span>
+                  </button>
+
                   {/* 1-Click Zalo Button */}
                   <a
                     href={buildZaloLink()}
@@ -535,6 +556,158 @@ export function SpatialBudgetCalculator() {
           </div>
         </div>
       </div>
+
+      {/* ---------------------------------------------------------------------- */}
+      {/* PRINT-ONLY A4 ARCHITECTURAL DOSSIER — GUHOMES STUDIO BESPOKE EDITION   */}
+      {/* ---------------------------------------------------------------------- */}
+      <div className="hidden print:block w-full max-w-none m-0 p-0 text-[#111111] bg-white print-avoid-break font-sans text-[10pt] leading-normal">
+        {/* Header / Letterhead */}
+        <div className="border-b-2 border-[#111111] pb-4 flex items-start justify-between">
+          <div>
+            <div className="font-serif text-2xl font-bold tracking-tight text-[#111111] uppercase">
+              GuHomes Studio
+            </div>
+            <div className="text-xs font-semibold tracking-wider text-[#555555] uppercase mt-0.5">
+              Xưởng Mộc May Đo Nội Thất Cao Cấp TP. Hồ Chí Minh
+            </div>
+            <div className="text-[9pt] text-[#666666] mt-1 space-y-0.5">
+              <p>Xưởng chế tác: Phường Thạnh Xuân, Quận 12, TP.HCM (Quy mô 1.200m²)</p>
+              <p>Hotline KTS Trưởng: 0368 757 916 • Email: guhomesvn@gmail.com • Web: guhomes.vn</p>
+            </div>
+          </div>
+
+          <div className="text-right flex flex-col items-end">
+            <div className="px-3 py-1 bg-[#f4f1ea] border border-[#d7d0c2] text-[#8a5d3b] font-mono text-[9pt] font-semibold uppercase tracking-wider rounded">
+              Hồ Sơ Dự Toán Kiến Trúc
+            </div>
+            <p className="text-[8.5pt] font-mono text-[#555555] mt-2">MÃ: GH-EST-{totalArea}-{new Date().getFullYear()}</p>
+            <p className="text-[8.5pt] text-[#555555]">Ngày lập: {new Date().toLocaleDateString('vi-VN')}</p>
+          </div>
+        </div>
+
+        {/* Title Bar */}
+        <div className="my-4 text-center border-b border-[#e5e5e5] pb-3">
+          <h1 className="font-serif text-xl font-bold uppercase tracking-tight text-[#111111]">
+            Bảng Bóc Tách Dự Toán Không Gian & Quy Cách Vật Liệu May Đo
+          </h1>
+          <p className="text-[9pt] text-[#666666] italic mt-0.5">
+            Dự toán được tính toán dựa trên giải pháp thích ứng vi khí hậu Sài Gòn & quy chuẩn mộng gỗ xưởng Thạnh Xuân
+          </p>
+        </div>
+
+        {/* Client & Project Overview Box */}
+        <div className="grid grid-cols-2 gap-4 p-3 bg-[#faf9f6] border border-[#e5e5e5] rounded text-[9pt] mb-4">
+          <div>
+            <p><strong className="text-[#111111]">Chủ Đầu Tư:</strong> {fullName || 'Quý Khách Hàng / Gia Chủ'}</p>
+            <p className="mt-1"><strong className="text-[#111111]">Số Điện Thoại / Zalo:</strong> {phone || '(Đăng ký trực tiếp với KTS)'}</p>
+            <p className="mt-1"><strong className="text-[#111111]">Địa Điểm Thực Hiện:</strong> TP. Hồ Chí Minh & Các Khu Đô Thị Vệ Tinh</p>
+          </div>
+          <div>
+            <p><strong className="text-[#111111]">Tổng Diện Tích Thi Công:</strong> <span className="font-bold text-[#8a5d3b]">{totalArea} m²</span></p>
+            <p className="mt-1"><strong className="text-[#111111]">Gói Chế Tác:</strong> <span className="font-semibold">{selectedPackage === 'bespoke' ? 'Thượng Lưu Độc Bản (Bespoke - Gỗ Óc Chó FAS & Đá Travertine)' : 'Tiêu Chuẩn Chuẩn Gu (Cốt Chống Ẩm & Veneer Sồi)'}</span></p>
+            <p className="mt-1"><strong className="text-[#111111]">Thời Gian Gia Công Xưởng:</strong> 30 – 45 ngày làm việc</p>
+          </div>
+        </div>
+
+        {/* Detailed Room Breakdown Table */}
+        <table className="w-full border-collapse border border-[#111111] text-[8.5pt] mb-4">
+          <thead>
+            <tr className="bg-[#111111] text-white">
+              <th className="border border-[#111111] p-1.5 text-center w-8">STT</th>
+              <th className="border border-[#111111] p-1.5 text-left w-44">Không Gian / Hạng Mục</th>
+              <th className="border border-[#111111] p-1.5 text-center w-16">Diện Tích</th>
+              <th className="border border-[#111111] p-1.5 text-left">Quy Cách Kỹ Thuật & Vật Liệu May Đo</th>
+              <th className="border border-[#111111] p-1.5 text-right w-24">Định Mức (Tr/m²)</th>
+              <th className="border border-[#111111] p-1.5 text-right w-28">Thành Tiền (Triệu)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {roomBreakdowns.map((item, idx) => (
+              <tr key={item.room.id} className={idx % 2 === 1 ? 'bg-[#faf9f6]' : 'bg-white'}>
+                <td className="border border-[#d7d0c2] p-1.5 text-center font-mono">{idx + 1}</td>
+                <td className="border border-[#d7d0c2] p-1.5">
+                  <strong className="text-[#111111] block">{item.room.name}</strong>
+                  <span className="text-[7.5pt] text-[#777777] italic">{item.room.tag}</span>
+                </td>
+                <td className="border border-[#d7d0c2] p-1.5 text-center font-mono">~{item.area} m²</td>
+                <td className="border border-[#d7d0c2] p-1.5 text-[8pt] text-[#444444]">
+                  {item.room.highlights.join(' • ')}
+                </td>
+                <td className="border border-[#d7d0c2] p-1.5 text-right font-mono">
+                  {selectedPackage === 'bespoke' ? item.room.baseCostPerM2Bespoke : item.room.baseCostPerM2Standard} Tr
+                </td>
+                <td className="border border-[#d7d0c2] p-1.5 text-right font-mono font-bold text-[#111111]">
+                  {item.costMillions.toLocaleString('vi-VN')} Tr
+                </td>
+              </tr>
+            ))}
+            <tr className="bg-[#f4f1ea] font-bold text-[#111111]">
+              <td colSpan={5} className="border border-[#111111] p-2 text-right uppercase tracking-wider text-[9pt]">
+                TỔNG NGÂN SÁCH DỰ TOÁN ƯỚC TÍNH:
+              </td>
+              <td className="border border-[#111111] p-2 text-right font-mono text-[10pt] text-[#8a5d3b]">
+                ~{totalMillions.toLocaleString('vi-VN')} Triệu VNĐ
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        {/* Cost Allocation Chart for Print */}
+        <div className="grid grid-cols-3 gap-3 p-3 border border-[#d7d0c2] rounded bg-[#faf9f6] text-[8.5pt] mb-4">
+          <div className="p-2 border-r border-[#e5e5e5]">
+            <p className="font-semibold text-[#8a5d3b] uppercase text-[8pt]">1. Cải Tạo Thô & Vi Khí Hậu (28%)</p>
+            <p className="text-[10pt] font-bold font-mono mt-0.5 text-[#111111]">~{renovationCost.toLocaleString('vi-VN')} Triệu</p>
+            <p className="text-[7.5pt] text-[#666666] mt-0.5 leading-tight">Cán nền phẳng, chống ẩm tường, giải pháp đối lưu gió và giấu miệng điều hòa.</p>
+          </div>
+          <div className="p-2 border-r border-[#e5e5e5]">
+            <p className="font-semibold text-[#8a5d3b] uppercase text-[8pt]">2. Nội Thất Xưởng May Đo GuHomes (48%)</p>
+            <p className="text-[10pt] font-bold font-mono mt-0.5 text-[#8a5d3b]">~{bespokeCarpentryCost.toLocaleString('vi-VN')} Triệu</p>
+            <p className="text-[7.5pt] text-[#666666] mt-0.5 leading-tight">100% gỗ óc chó FAS / sồi tự nhiên sấy EMC 10–12%, mộng âm dương, lau dầu Osmo Đức.</p>
+          </div>
+          <div className="p-2">
+            <p className="font-semibold text-[#8a5d3b] uppercase text-[8pt]">3. Thiết Bị & Phụ Kiện Cao Cấp (24%)</p>
+            <p className="text-[10pt] font-bold font-mono mt-0.5 text-[#111111]">~{equipmentCost.toLocaleString('vi-VN')} Triệu</p>
+            <p className="text-[7.5pt] text-[#666666] mt-0.5 leading-tight">Ray trượt Blum Tip-On, bản lề giảm chấn inox 304, hệ thống LED 2700K âm đợt gỗ.</p>
+          </div>
+        </div>
+
+        {/* Quiet Luxury & Warranties Box */}
+        <div className="border border-[#d7d0c2] p-3 rounded text-[8pt] text-[#444444] mb-6">
+          <p className="font-semibold uppercase tracking-wider text-[#111111] mb-1.5 text-[8.5pt]">
+            Cam Kết Chất Lượng & Chính Sách Bảo Hành GuHomes:
+          </p>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+            <p>✓ <strong>Minh bạch chi phí:</strong> Nói giá trước khi vẽ, không phát sinh chi phí ẩn ngoài hợp đồng.</p>
+            <p>✓ <strong>Độ ẩm vi khí hậu:</strong> Gỗ tự nhiên sấy chân không đạt chuẩn EMC 10–12% thích ứng Sài Gòn.</p>
+            <p>✓ <strong>An toàn sức khỏe:</strong> 100% dầu hữu cơ Osmo (CHLB Đức) 0% VOC độc hại, để gỗ thở tự nhiên.</p>
+            <p>✓ <strong>Bảo hành vượt trội:</strong> Bảo hành kết cấu 05 năm, bảo trì định kỳ 06 tháng/lần, hỗ trợ trọn đời.</p>
+          </div>
+        </div>
+
+        {/* Signature & Stamp Section */}
+        <div className="grid grid-cols-2 gap-8 text-[9pt] pt-4 border-t border-[#111111]">
+          <div className="text-center">
+            <p className="font-bold uppercase text-[#111111]">ĐẠI DIỆN GUHOMES STUDIO</p>
+            <p className="text-[8pt] text-[#666666] italic">Kiến Trúc Sư Trưởng phụ trách đồ án</p>
+            <div className="h-20 flex items-center justify-center">
+              <span className="font-serif italic text-[#8a5d3b] text-base border-b border-[#8a5d3b] px-4 py-1">
+                KTS. Trưởng GuHomes
+              </span>
+            </div>
+            <p className="font-semibold text-[#111111]">Hotline: 0368 757 916</p>
+          </div>
+
+          <div className="text-center">
+            <p className="font-bold uppercase text-[#111111]">ĐẠI DIỆN CHỦ ĐẦU TƯ / GIA CHỦ</p>
+            <p className="text-[8pt] text-[#666666] italic">Ký xác nhận phương án sơ bộ</p>
+            <div className="h-20 flex items-center justify-center">
+              <span className="text-[#aaaaaa] italic text-xs">(Ký và ghi rõ họ tên)</span>
+            </div>
+            <p className="font-semibold text-[#111111]">{fullName || 'Quý Khách Hàng'}</p>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }
+

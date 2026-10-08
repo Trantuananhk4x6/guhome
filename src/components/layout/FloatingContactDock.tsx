@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSocialModalStore } from '@/lib/social'
 import { useQuickQuote } from '@/components/layout/QuickQuoteModal'
+import { useTactileSampleBoxStore } from '@/lib/tactile-sample-box'
 import { ArrowUpRightIcon, CheckIcon, CloseIcon } from '@/components/ui/icons'
 import { SensorySoundscape } from '@/components/ui/SensorySoundscape'
 import { cn } from '@/lib/utils'
@@ -13,6 +14,7 @@ export function FloatingContactDock() {
   const [isExpanded, setIsExpanded] = useState(false)
   const { openModal } = useSocialModalStore()
   const { openQuoteModal } = useQuickQuote()
+  const { openModal: openTactileModal } = useTactileSampleBoxStore()
 
   return (
     <aside aria-label="Thanh liên hệ nhanh" className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[90] flex flex-col items-end gap-2.5 sm:gap-3 print:hidden">
@@ -57,7 +59,24 @@ export function FloatingContactDock() {
               </span>
             </button>
 
-            {/* 2. Chat Zalo trực tiếp KTS */}
+            {/* 2. Nhận Hộp Mẫu Xúc Giác Tại Nhà */}
+            <button
+              type="button"
+              onClick={() => {
+                setIsExpanded(false)
+                openTactileModal()
+              }}
+              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-surface/95 px-4 py-2 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent">
+                Nhận Hộp Mẫu Xúc Giác
+              </span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/20 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-xs">
+                🪵
+              </span>
+            </button>
+
+            {/* 3. Chat Zalo trực tiếp KTS */}
             <a
               href="https://zalo.me/0368757916"
               target="_blank"
