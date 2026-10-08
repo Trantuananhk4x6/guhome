@@ -10,6 +10,7 @@ import {
 } from '@/components/sections'
 import { StyleExplorer } from '@/components/sections/StyleExplorer'
 import { WorkflowSection } from '@/components/sections/WorkflowSection'
+import { GuHomesMarketingTrustPledge } from '@/components/sections/GuHomesMarketingTrustPledge'
 import { MissionVisionSection } from '@/components/sections/MissionVisionSection'
 import { QuickConsultFormSection } from '@/components/sections/QuickConsultFormSection'
 import { TactileMaterialLab } from '@/components/sections/TactileMaterialLab'
@@ -255,6 +256,7 @@ export default async function HomePage() {
             {section.key === 'SERVICES' && (
               <>
                 <WorkflowSection />
+                <GuHomesMarketingTrustPledge />
                 <TactileMaterialLab />
                 <SpatialBudgetCalculator />
                 <StyleQuizSection />

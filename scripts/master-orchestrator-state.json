@@ -288,8 +288,14 @@
       "title": "Đài Thiên Văn Mái Kính, Phòng Đàn Hạc Mạ Vàng & Hũ Trà Đồng Dát Vàng",
       "sentAt": "2026-10-08T16:23:08.283Z",
       "completedAt": "2026-10-08T16:29:10.000Z"
+    },
+    {
+      "directiveId": "dir-49-sprint-51-violin-teaocean-silvercutlery",
+      "title": "Phòng Thính Âm Vĩ Cầm, Vọng Lâu Trà Ven Sông & Bộ Dao Thìa Bạc 925",
+      "sentAt": "2026-10-08T16:29:40.733Z",
+      "completedAt": "2026-10-08T16:37:00.000Z"
     }
   ],
-  "lastDispatchedAt": 1791476950000,
+  "lastDispatchedAt": 1791477420000,
   "activeDirective": null
 }
