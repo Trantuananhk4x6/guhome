@@ -138,6 +138,8 @@ import { SaigonAcousticBalalaikaSanctuarySalon } from '@/components/studio/Saigo
 import { SaigonMonolithicBiotiteGraniteFireplaceLounge } from '@/components/studio/SaigonMonolithicBiotiteGraniteFireplaceLounge'
 import { SaigonAcousticMandolinSanctuarySalon } from '@/components/studio/SaigonAcousticMandolinSanctuarySalon'
 import { SaigonCanalSideGlassBottomKoiCourtyard } from '@/components/studio/SaigonCanalSideGlassBottomKoiCourtyard'
+import { SaigonAcousticTambourineSanctuarySalon } from '@/components/studio/SaigonAcousticTambourineSanctuarySalon'
+import { SaigonRiversideTerracedHerbalOrchardPavilion } from '@/components/studio/SaigonRiversideTerracedHerbalOrchardPavilion'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -616,6 +618,12 @@ export default async function StylesPage() {
 
       {/* Saigon Canal-Side Glass-Bottom Koi Courtyard */}
       <SaigonCanalSideGlassBottomKoiCourtyard className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Tambourine Sanctuary Salon */}
+      <SaigonAcousticTambourineSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Riverside Terraced Herbal Orchard Pavilion */}
+      <SaigonRiversideTerracedHerbalOrchardPavilion className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

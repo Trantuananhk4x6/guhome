@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 85,
+  "currentDirectiveIndex": 102,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -512,14 +512,116 @@
       "atStep": 8205
     },
     {
-      "directiveId": "dir-72-sprint-74-mandolin-glasskoi-jewelrychest",
-      "title": "Thính Phòng Mandolin Vòm Bách Xanh, Hồ Cá Koi Đáy Kính Xuyên Tầng & Tráp Trang Sức Sừng Trâu Cẩn Xà Cừ",
-      "sentAt": "2026-10-08T18:43:08.350Z",
-      "completedAt": "2026-10-08T18:49:05.000Z",
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-08T18:50:12.802Z",
+      "atStep": 8231
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-08T18:53:56.244Z",
+      "atStep": 8303
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-08T18:54:39.561Z",
+      "atStep": 8315
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T18:55:52.695Z",
+      "atStep": 8333
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T18:56:23.649Z",
+      "atStep": 8337
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T18:56:54.612Z",
+      "atStep": 8341
+    },
+    {
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-08T18:57:25.323Z",
+      "atStep": 8345
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-08T18:57:56.132Z",
+      "atStep": 8349
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-08T18:59:38.523Z",
+      "atStep": 8382
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T19:00:12.163Z",
+      "atStep": 8386
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T19:01:04.392Z",
+      "atStep": 8390
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T19:02:19.591Z",
+      "atStep": 8394
+    },
+    {
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-08T19:03:03.816Z",
+      "atStep": 8398
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-08T19:03:37.795Z",
+      "atStep": 8402
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-08T19:04:09.970Z",
+      "atStep": 8406
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T19:04:42.326Z",
+      "atStep": 8410
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T19:05:31.323Z",
+      "atStep": 8414
+    },
+    {
+      "directiveId": "dir-73-sprint-75-tambourine-herbalorchard-silveragarwoodcaddy",
+      "title": "Thính Phòng Tambourine Vòm Pơ-Mu, Vườn Dược Liệu Bậc Thang Ven Sông & Hũ Trà Bạc Trầm Hương",
+      "sentAt": "2026-10-08T18:50:00.000Z",
+      "completedAt": "2026-10-08T19:06:00.000Z",
       "status": "COMPLETED_100_PERCENT_QA",
-      "commitMessage": "feat(sprint-74): add SaigonAcousticMandolinSanctuarySalon, SaigonCanalSideGlassBottomKoiCourtyard, and ArtisanHornMotherOfPearlJewelryChestAtelier with 100% SEO pass",
-      "atStep": 8206
+      "commitMessage": "feat(sprint-75): add SaigonAcousticTambourineSanctuarySalon, SaigonRiversideTerracedHerbalOrchardPavilion, and ArtisanImperialSilverAgarwoodTeaCaddyAtelier with 100% SEO pass",
+      "atStep": 8415
     }
   ],
-  "lastDispatchedAt": 1791485345000
+  "lastDispatchedAt": 1791486331323
 }

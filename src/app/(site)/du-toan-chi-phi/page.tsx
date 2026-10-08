@@ -123,6 +123,8 @@ import { SaigonMonolithicBiotiteGraniteFireplaceLounge } from '@/components/stud
 import { ArtisanGoldLeafLacquerTeaTrayAtelier } from '@/components/tools/ArtisanGoldLeafLacquerTeaTrayAtelier'
 import { SaigonCanalSideGlassBottomKoiCourtyard } from '@/components/studio/SaigonCanalSideGlassBottomKoiCourtyard'
 import { ArtisanHornMotherOfPearlJewelryChestAtelier } from '@/components/tools/ArtisanHornMotherOfPearlJewelryChestAtelier'
+import { SaigonRiversideTerracedHerbalOrchardPavilion } from '@/components/studio/SaigonRiversideTerracedHerbalOrchardPavilion'
+import { ArtisanImperialSilverAgarwoodTeaCaddyAtelier } from '@/components/tools/ArtisanImperialSilverAgarwoodTeaCaddyAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -533,6 +535,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Horn Mother-of-Pearl Jewelry Chest Atelier */}
       <ArtisanHornMotherOfPearlJewelryChestAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Riverside Terraced Herbal Orchard Pavilion */}
+      <SaigonRiversideTerracedHerbalOrchardPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Imperial Silver Agarwood Tea Caddy Atelier */}
+      <ArtisanImperialSilverAgarwoodTeaCaddyAtelier className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

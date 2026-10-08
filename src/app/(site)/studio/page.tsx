@@ -203,6 +203,9 @@ import { ArtisanGoldLeafLacquerTeaTrayAtelier } from '@/components/tools/Artisan
 import { SaigonAcousticMandolinSanctuarySalon } from '@/components/studio/SaigonAcousticMandolinSanctuarySalon'
 import { SaigonCanalSideGlassBottomKoiCourtyard } from '@/components/studio/SaigonCanalSideGlassBottomKoiCourtyard'
 import { ArtisanHornMotherOfPearlJewelryChestAtelier } from '@/components/tools/ArtisanHornMotherOfPearlJewelryChestAtelier'
+import { SaigonAcousticTambourineSanctuarySalon } from '@/components/studio/SaigonAcousticTambourineSanctuarySalon'
+import { SaigonRiversideTerracedHerbalOrchardPavilion } from '@/components/studio/SaigonRiversideTerracedHerbalOrchardPavilion'
+import { ArtisanImperialSilverAgarwoodTeaCaddyAtelier } from '@/components/tools/ArtisanImperialSilverAgarwoodTeaCaddyAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1467,6 +1470,15 @@ export default async function StudioPage() {
 
       {/* ---------------- horn mother-of-pearl jewelry chest atelier -------------- */}
       <ArtisanHornMotherOfPearlJewelryChestAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- acoustic tambourine sanctuary salon -------------------- */}
+      <SaigonAcousticTambourineSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- terraced herbal orchard pavilion ------------------------ */}
+      <SaigonRiversideTerracedHerbalOrchardPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- imperial silver agarwood tea caddy atelier -------------- */}
+      <ArtisanImperialSilverAgarwoodTeaCaddyAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
