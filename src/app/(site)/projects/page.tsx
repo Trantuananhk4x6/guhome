@@ -193,6 +193,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestAtelier } from '@
 import { SaigonCanalSideAncientCypressTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientCypressTeaBonsaiPavilion'
 import { BespokeImperialKynamAndSilverChasedIncenseVault } from '@/components/studio/BespokeImperialKynamAndSilverChasedIncenseVault'
 import { ArtisanHandmadeGoldFiligreeAndRosewoodPaperweightBarAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndRosewoodPaperweightBarAtelier'
+import { SaigonCanalSideAncientSandstoneLotusMoatPavilion } from '@/components/studio/SaigonCanalSideAncientSandstoneLotusMoatPavilion'
+import { BespokeImperialKynamAndGoldRepousseTeaChestVault } from '@/components/studio/BespokeImperialKynamAndGoldRepousseTeaChestVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeWaterDropperStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeWaterDropperStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1043,6 +1046,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Artisan Gold Filigree & Rosewood Paperweight Bar Atelier */}
           <ArtisanHandmadeGoldFiligreeAndRosewoodPaperweightBarAtelier />
+
+          {/* Saigon Canal Side Ancient Sandstone Lotus Moat Pavilion */}
+          <SaigonCanalSideAncientSandstoneLotusMoatPavilion />
+
+          {/* Bespoke Imperial Kynam & Gold Repousse Tea Chest Vault */}
+          <BespokeImperialKynamAndGoldRepousseTeaChestVault />
+
+          {/* Artisan Gold Filigree & Jade Water Dropper Studio */}
+          <ArtisanHandmadeGoldFiligreeAndJadeWaterDropperStudio />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
