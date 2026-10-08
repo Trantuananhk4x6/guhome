@@ -17,6 +17,9 @@ import { TactileMaterialLab } from '@/components/sections/TactileMaterialLab'
 import { TactileMoodboardStudio } from '@/components/studio/TactileMoodboardStudio'
 import { MicroclimateSimulator } from '@/components/sections/MicroclimateSimulator'
 import { WoodshopTourSection } from '@/components/studio/WoodshopTourSection'
+import { ConstructionTimelineDiary } from '@/components/projects/ConstructionTimelineDiary'
+import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesSection'
+import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvisory'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -718,11 +721,20 @@ export default async function StudioPage() {
       {/* -------------------- tactile moodboard studio --------------------------- */}
       <TactileMoodboardStudio className="mt-[var(--spacing-section)]" />
 
+      {/* -------------------- tropical weather advisory -------------------------- */}
+      <TropicalWeatherAdvisory className="mt-[var(--spacing-section)]" />
+
       {/* ----------------------- microclimate simulator -------------------------- */}
       <MicroclimateSimulator />
 
       {/* --------------------------- woodshop tour ------------------------------- */}
       <WoodshopTourSection />
+
+      {/* ---------------------- construction timeline diary ----------------------- */}
+      <ConstructionTimelineDiary className="mt-[var(--spacing-section)]" />
+
+      {/* ----------------------- client chronicles section ----------------------- */}
+      <ClientChroniclesSection className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

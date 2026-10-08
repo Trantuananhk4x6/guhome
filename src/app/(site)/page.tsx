@@ -17,6 +17,7 @@ import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { SpatialBudgetCalculator } from '@/components/sections/SpatialBudgetCalculator'
 import { MicroclimateSimulator } from '@/components/sections/MicroclimateSimulator'
+import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesSection'
 import { getPublishedArticles } from '@/server/queries/articles'
 import { getMediaMap } from '@/server/queries/media'
 import { getProjectBySlug, getPublishedProjects } from '@/server/queries/projects'
@@ -257,6 +258,7 @@ export default async function HomePage() {
                 <TactileMaterialLab />
                 <SpatialBudgetCalculator />
                 <StyleQuizSection />
+                <ClientChroniclesSection />
               </>
             )}
             {section.key === 'PHILOSOPHY' && <QuickConsultFormSection />}

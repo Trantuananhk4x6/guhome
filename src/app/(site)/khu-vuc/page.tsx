@@ -4,6 +4,7 @@ import { buildBreadcrumbJsonLd, buildMetadata, jsonLdScript } from '@/lib/seo'
 import { DISTRICT_LIST } from '@/data/saigonDistricts'
 import { ArrowUpRightIcon } from '@/components/ui/icons'
 import { ProjectSpatialMap } from '@/components/projects/ProjectSpatialMap'
+import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvisory'
 
 export const revalidate = 3600
 
@@ -145,6 +146,11 @@ export default function SaigonDistrictsPage() {
               </div>
             </article>
           ))}
+        </div>
+
+        {/* Tropical Weather & Microclimate Advisory */}
+        <div className="mt-16">
+          <TropicalWeatherAdvisory className="rounded-3xl border border-line" />
         </div>
 
         {/* Bottom Editorial Callout */}

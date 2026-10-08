@@ -16,6 +16,7 @@ import { ContactForm } from './_components/ContactForm'
 import { Reveal, TextReveal } from './_components/motion'
 import { OpenSocialModalButton, SocialTrigger } from '@/components/layout/SocialTrigger'
 import { VipBookingCalendar } from '@/components/consultation/VipBookingCalendar'
+import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesSection'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -300,6 +301,9 @@ export default async function ContactPage() {
 
       {/* VIP 1-1 Consultation Booking with Lead Architect */}
       <VipBookingCalendar className="mt-[var(--spacing-section)]" />
+
+      {/* Real-life Client Chronicles & Testimonials */}
+      <ClientChroniclesSection className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

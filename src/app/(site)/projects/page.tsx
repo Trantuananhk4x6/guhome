@@ -72,6 +72,7 @@ import { ProjectIndex } from '@/components/projects/ProjectIndex'
 import { ProjectLead } from '@/components/projects/ProjectLead'
 import { LookbookClimateFilter } from '@/components/projects/LookbookClimateFilter'
 import { ProjectsViewSwitcher } from '@/components/projects/ProjectsViewSwitcher'
+import { ConstructionTimelineDiary } from '@/components/projects/ConstructionTimelineDiary'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -558,6 +559,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           className="mt-[clamp(3.5rem,9vh,7rem)]"
         />
       )}
+
+          {/* Construction Timeline Diary */}
+          <ConstructionTimelineDiary className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

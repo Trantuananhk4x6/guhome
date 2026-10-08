@@ -26,6 +26,7 @@ import { Button } from '@/components/ui/Button'
 import { ImageFrame } from '@/components/ui/ImageFrame'
 import { Label } from '@/components/ui/Label'
 import { TactileMoodboardStudio } from '@/components/studio/TactileMoodboardStudio'
+import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvisory'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -166,6 +167,9 @@ export default async function StylesPage() {
 
       {/* Tactile Moodboard & Acoustics Studio */}
       <TactileMoodboardStudio className="mt-[var(--spacing-section)]" />
+
+      {/* Tropical Weather & Microclimate Advisory */}
+      <TropicalWeatherAdvisory className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
