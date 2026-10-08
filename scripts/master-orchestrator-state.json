@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 124,
+  "currentDirectiveIndex": 127,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -744,7 +744,25 @@
       "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
       "sentAt": "2026-10-08T20:23:58.163Z",
       "atStep": 10281
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T20:24:58.929Z",
+      "atStep": 10295
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T20:25:29.515Z",
+      "atStep": 10299
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T20:26:01.032Z",
+      "atStep": 10303
     }
   ],
-  "lastDispatchedAt": 1791491038163
+  "lastDispatchedAt": 1791491161032
 }
