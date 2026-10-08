@@ -39,6 +39,8 @@ import { BespokeFurnitureCustomizer } from '@/components/tools/BespokeFurnitureC
 import { LightingAtelierCustomizer } from '@/components/studio/LightingAtelierCustomizer'
 import { NaturalStoneQuarryAtlas } from '@/components/studio/NaturalStoneQuarryAtlas'
 import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualVault'
+import { TactileTextileDraperyLab } from '@/components/studio/TactileTextileDraperyLab'
+import { SubfloorAcousticMoistureShield } from '@/components/studio/SubfloorAcousticMoistureShield'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -811,6 +813,12 @@ export default async function StudioPage() {
 
       {/* ---------------- key handover ritual & warranty vault ------------------- */}
       <KeyHandoverRitualVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- tactile textile & tropical drapery lab ----------------- */}
+      <TactileTextileDraperyLab className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- subfloor acoustic & moisture shield -------------------- */}
+      <SubfloorAcousticMoistureShield className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

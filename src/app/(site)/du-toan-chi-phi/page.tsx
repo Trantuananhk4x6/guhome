@@ -15,6 +15,8 @@ import { BespokeFurnitureCustomizer } from '@/components/tools/BespokeFurnitureC
 import { VipConciergePortal } from '@/components/consultation/VipConciergePortal'
 import { LightingAtelierCustomizer } from '@/components/studio/LightingAtelierCustomizer'
 import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualVault'
+import { SubfloorAcousticMoistureShield } from '@/components/studio/SubfloorAcousticMoistureShield'
+import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -100,6 +102,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Handover Ritual & Digital Warranty Vault */}
       <KeyHandoverRitualVault className="mt-[var(--spacing-section)]" />
+
+      {/* Subfloor Acoustic & Moisture Shield System */}
+      <SubfloorAcousticMoistureShield className="mt-[var(--spacing-section)]" />
+
+      {/* Estate Renovation Diagnostic & Cost Estimator */}
+      <EstateRenovationDiagnostic className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

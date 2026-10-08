@@ -21,6 +21,7 @@ import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesS
 import { DigitalHandoverVault } from '@/components/services/DigitalHandoverVault'
 import { ContractorComparisonMatrix } from '@/components/sections/ContractorComparisonMatrix'
 import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualVault'
+import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -320,6 +321,9 @@ export default async function ContactPage() {
 
       {/* Handover Ceremony & Key Handover Ritual Vault */}
       <KeyHandoverRitualVault className="mt-[var(--spacing-section)]" />
+
+      {/* Estate Renovation Diagnostic & Cost Estimator */}
+      <EstateRenovationDiagnostic className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

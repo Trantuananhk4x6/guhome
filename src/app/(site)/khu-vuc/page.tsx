@@ -10,6 +10,7 @@ import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiComp
 import { TropicalHvacAirflowSimulator } from '@/components/tools/TropicalHvacAirflowSimulator'
 import { RiverBreezeAerodynamicsLab } from '@/components/studio/RiverBreezeAerodynamicsLab'
 import { NaturalStoneQuarryAtlas } from '@/components/studio/NaturalStoneQuarryAtlas'
+import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
 
 export const revalidate = 3600
 
@@ -181,6 +182,11 @@ export default function SaigonDistrictsPage() {
         {/* Natural Stone Quarry & Bookmatch Atlas */}
         <div className="mt-16">
           <NaturalStoneQuarryAtlas className="rounded-3xl border border-line" />
+        </div>
+
+        {/* Estate Renovation Diagnostic & Cost Estimator */}
+        <div className="mt-16">
+          <EstateRenovationDiagnostic className="rounded-3xl border border-line" />
         </div>
 
         {/* Bottom Editorial Callout */}

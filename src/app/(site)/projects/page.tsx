@@ -82,6 +82,8 @@ import { TropicalPatinaLab } from '@/components/studio/TropicalPatinaLab'
 import { RiverBreezeAerodynamicsLab } from '@/components/studio/RiverBreezeAerodynamicsLab'
 import { KilnMoistureDiary } from '@/components/studio/KilnMoistureDiary'
 import { NaturalStoneQuarryAtlas } from '@/components/studio/NaturalStoneQuarryAtlas'
+import { TactileTextileDraperyLab } from '@/components/studio/TactileTextileDraperyLab'
+import { SubfloorAcousticMoistureShield } from '@/components/studio/SubfloorAcousticMoistureShield'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -598,6 +600,12 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Natural Stone Quarry & Bookmatch Atlas */}
           <NaturalStoneQuarryAtlas className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Tactile Textile & Tropical Drapery Lab */}
+          <TactileTextileDraperyLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Subfloor Acoustic & Moisture Shield System */}
+          <SubfloorAcousticMoistureShield className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>
