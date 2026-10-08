@@ -57,6 +57,7 @@ import { ArtisanBronzeWindGongSanctuaryAtelier } from '@/components/tools/Artisa
 import { ArtisanBronzeIncenseSealSanctuary } from '@/components/tools/ArtisanBronzeIncenseSealSanctuary'
 import { ArtisanBronzeIncenseFurnaceVault } from '@/components/tools/ArtisanBronzeIncenseFurnaceVault'
 import { ArtisanHandmadeDamascusCleaverCulinaryAtelier } from '@/components/tools/ArtisanHandmadeDamascusCleaverCulinaryAtelier'
+import { ArtisanImperialSilverChasedTeapotAtelier } from '@/components/tools/ArtisanImperialSilverChasedTeapotAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -464,6 +465,9 @@ export default async function ContactPage() {
 
       {/* Artisan Handmade Damascus Cleaver Culinary Atelier */}
       <ArtisanHandmadeDamascusCleaverCulinaryAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Imperial Silver Chased Teapot Atelier */}
+      <ArtisanImperialSilverChasedTeapotAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

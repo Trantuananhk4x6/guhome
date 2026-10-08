@@ -85,6 +85,8 @@ import { SaigonRiversideHerbalSteamPavilion } from '@/components/studio/SaigonRi
 import { ArtisanBronzeIncenseFurnaceVault } from '@/components/tools/ArtisanBronzeIncenseFurnaceVault'
 import { ArtisanGiaDinhCeramicKilnCourtyardSanctuary } from '@/components/studio/ArtisanGiaDinhCeramicKilnCourtyardSanctuary'
 import { ArtisanHandmadeDamascusCleaverCulinaryAtelier } from '@/components/tools/ArtisanHandmadeDamascusCleaverCulinaryAtelier'
+import { SaigonHeritageAncientBrickCourtyardPavilion } from '@/components/studio/SaigonHeritageAncientBrickCourtyardPavilion'
+import { ArtisanImperialSilverChasedTeapotAtelier } from '@/components/tools/ArtisanImperialSilverChasedTeapotAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -380,6 +382,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Handmade Damascus Cleaver Culinary Atelier */}
       <ArtisanHandmadeDamascusCleaverCulinaryAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Heritage Ancient Brick Courtyard Pavilion */}
+      <SaigonHeritageAncientBrickCourtyardPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Imperial Silver Chased Teapot Atelier */}
+      <ArtisanImperialSilverChasedTeapotAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

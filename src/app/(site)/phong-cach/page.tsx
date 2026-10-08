@@ -100,6 +100,8 @@ import { SaigonAcousticGuqinSanctuaryPavilion } from '@/components/studio/Saigon
 import { SaigonRiversideHerbalSteamPavilion } from '@/components/studio/SaigonRiversideHerbalSteamPavilion'
 import { SaigonHarpsichordClavecinSanctuary } from '@/components/studio/SaigonHarpsichordClavecinSanctuary'
 import { ArtisanGiaDinhCeramicKilnCourtyardSanctuary } from '@/components/studio/ArtisanGiaDinhCeramicKilnCourtyardSanctuary'
+import { SaigonAcousticHarpSalonSanctuary } from '@/components/studio/SaigonAcousticHarpSalonSanctuary'
+import { SaigonHeritageAncientBrickCourtyardPavilion } from '@/components/studio/SaigonHeritageAncientBrickCourtyardPavilion'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -462,6 +464,12 @@ export default async function StylesPage() {
 
       {/* Artisan Gia Dinh Ceramic Kiln Courtyard Sanctuary */}
       <ArtisanGiaDinhCeramicKilnCourtyardSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Harp Salon Sanctuary */}
+      <SaigonAcousticHarpSalonSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Heritage Ancient Brick Courtyard Pavilion */}
+      <SaigonHeritageAncientBrickCourtyardPavilion className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

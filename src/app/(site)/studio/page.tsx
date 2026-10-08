@@ -146,6 +146,9 @@ import { ArtisanBronzeIncenseFurnaceVault } from '@/components/tools/ArtisanBron
 import { SaigonHarpsichordClavecinSanctuary } from '@/components/studio/SaigonHarpsichordClavecinSanctuary'
 import { ArtisanGiaDinhCeramicKilnCourtyardSanctuary } from '@/components/studio/ArtisanGiaDinhCeramicKilnCourtyardSanctuary'
 import { ArtisanHandmadeDamascusCleaverCulinaryAtelier } from '@/components/tools/ArtisanHandmadeDamascusCleaverCulinaryAtelier'
+import { SaigonAcousticHarpSalonSanctuary } from '@/components/studio/SaigonAcousticHarpSalonSanctuary'
+import { SaigonHeritageAncientBrickCourtyardPavilion } from '@/components/studio/SaigonHeritageAncientBrickCourtyardPavilion'
+import { ArtisanImperialSilverChasedTeapotAtelier } from '@/components/tools/ArtisanImperialSilverChasedTeapotAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1239,6 +1242,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan handmade damascus cleaver culinary atelier ------ */}
       <ArtisanHandmadeDamascusCleaverCulinaryAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon acoustic harp salon sanctuary ------------------- */}
+      <SaigonAcousticHarpSalonSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon heritage ancient brick courtyard pavilion ------- */}
+      <SaigonHeritageAncientBrickCourtyardPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan imperial silver chased teapot atelier ----------- */}
+      <ArtisanImperialSilverChasedTeapotAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
