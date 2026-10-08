@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 41,
+  "currentDirectiveIndex": 42,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -248,54 +248,11 @@
       "atStep": 4429
     },
     {
-      "directiveId": "dir-42-sprint-44-map-onsen-herbgarden",
-      "title": "Thư Viện Bản Đồ Hàng Hải Cổ, Bồn Sục Onsen Gỗ Hinoki & Vườn Dược Liệu Trong Nhà",
-      "sentAt": "2026-10-08T15:51:25.572Z",
-      "completedAt": "2026-10-08T15:56:00.000Z"
-    },
-    {
-      "directiveId": "dir-43-sprint-45-stainedglass-grandpiano-bonsai",
-      "title": "Vòm Kính Màu Giếng Trời, Phòng Đại Dương Cầm Gỗ Mun & Bonsai Đồng Thác Nước",
-      "sentAt": "2026-10-08T15:56:15.523Z",
-      "completedAt": "2026-10-08T16:00:00.000Z"
-    },
-    {
-      "directiveId": "dir-44-sprint-46-starlight-lacquer-tatami",
-      "title": "Trần Sao Sợi Quang Bầu Trời Đêm, Xưởng Sơn Mài Cẩn Trứng & Trà Thất Chiếu Cói",
-      "sentAt": "2026-10-08T16:00:54.405Z",
-      "completedAt": "2026-10-08T16:05:00.000Z"
-    },
-    {
-      "directiveId": "dir-45-sprint-47-cello-kusaritoi-goldcalligraphy",
-      "title": "Phòng Thính Âm Cello, Màn Mưa Xích Đồng Kusari-Toi & Tủ Thư Pháp Dát Vàng",
-      "sentAt": "2026-10-08T16:05:34.573Z",
-      "completedAt": "2026-10-08T16:09:30.000Z"
-    },
-    {
-      "directiveId": "dir-46-sprint-48-parfum-daybed-incense",
-      "title": "Xưởng Điều Hương Haute Parfumerie, Giường Nghỉ Treo & Lư Đồng Xông Trầm",
-      "sentAt": "2026-10-08T16:09:57.469Z",
-      "completedAt": "2026-10-08T16:17:00.000Z"
-    },
-    {
-      "directiveId": "dir-47-sprint-49-terrarium-turntable-planter",
-      "title": "Nhà Kính Kiểng Lá Nhiệt Đới, Mâm Đĩa Than Đệm Từ Trường & Chậu Gốm Phù Sa",
-      "sentAt": "2026-10-08T16:17:29.454Z",
-      "completedAt": "2026-10-08T16:22:20.000Z"
-    },
-    {
-      "directiveId": "dir-48-sprint-50-observatory-harp-teacanister",
-      "title": "Đài Thiên Văn Mái Kính, Phòng Đàn Hạc Mạ Vàng & Hũ Trà Đồng Dát Vàng",
-      "sentAt": "2026-10-08T16:23:08.283Z",
-      "completedAt": "2026-10-08T16:29:10.000Z"
-    },
-    {
-      "directiveId": "dir-49-sprint-51-violin-teaocean-silvercutlery",
-      "title": "Phòng Thính Âm Vĩ Cầm, Vọng Lâu Trà Ven Sông & Bộ Dao Thìa Bạc 925",
-      "sentAt": "2026-10-08T16:29:40.733Z",
-      "completedAt": "2026-10-08T16:37:00.000Z"
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T16:41:27.622Z",
+      "atStep": 5578
     }
   ],
-  "lastDispatchedAt": 1791477420000,
-  "activeDirective": null
+  "lastDispatchedAt": 1791477687622
 }

@@ -77,6 +77,8 @@ import { SaigonAcousticHarpSanctuarySalon } from '@/components/studio/SaigonAcou
 import { ArtisanGoldLeafTeaCanisterAtelier } from '@/components/tools/ArtisanGoldLeafTeaCanisterAtelier'
 import { SaigonRiversideSunsetTeaObservatory } from '@/components/studio/SaigonRiversideSunsetTeaObservatory'
 import { ArtisanBespokeSilverCutleryVault } from '@/components/tools/ArtisanBespokeSilverCutleryVault'
+import { SaigonArtisanBespokeLoomSilkPavilion } from '@/components/studio/SaigonArtisanBespokeLoomSilkPavilion'
+import { ArtisanBronzeWindGongSanctuaryAtelier } from '@/components/tools/ArtisanBronzeWindGongSanctuaryAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -348,6 +350,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Bespoke Silver Cutlery Vault */}
       <ArtisanBespokeSilverCutleryVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Artisan Bespoke Loom Silk Pavilion */}
+      <SaigonArtisanBespokeLoomSilkPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bronze Wind Gong Sanctuary Atelier */}
+      <ArtisanBronzeWindGongSanctuaryAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
