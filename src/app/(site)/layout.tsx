@@ -4,6 +4,8 @@ import { CustomCursor } from '@/components/layout/CustomCursor'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { FALLBACK_FOOTER_NAV, FALLBACK_HEADER_NAV, withFallbackNav } from '@/components/layout/nav-fallback'
+import { LightboxProvider } from '@/components/layout/LightboxModal'
+import { QuickQuoteProvider } from '@/components/layout/QuickQuoteModal'
 import { ScrollProgress } from '@/components/layout/ScrollProgress'
 import { SocialModal } from '@/components/layout/SocialModal'
 import { mediaUrl } from '@/lib/media'
@@ -28,25 +30,29 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
   const logo = logoMedia ? mediaUrl(logoMedia, 512) : null
 
   return (
-    <div className="relative flex min-h-screen flex-col">
-      <ScrollProgress />
-      <CustomCursor />
+    <LightboxProvider>
+      <QuickQuoteProvider>
+        <div className="relative flex min-h-screen flex-col">
+          <ScrollProgress />
+          <CustomCursor />
 
-      <a
-        href="#main"
-        className="u-label sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-6 focus-visible:top-6 focus-visible:z-[300] focus-visible:bg-ink focus-visible:px-5 focus-visible:py-3 focus-visible:text-canvas"
-      >
-        Tới nội dung chính
-      </a>
+          <a
+            href="#main"
+            className="u-label sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-6 focus-visible:top-6 focus-visible:z-[300] focus-visible:bg-ink focus-visible:px-5 focus-visible:py-3 focus-visible:text-canvas"
+          >
+            Tới nội dung chính
+          </a>
 
-      <Header nav={withFallbackNav(headerNav, FALLBACK_HEADER_NAV)} brand={theme.brand} logo={logo} />
+          <Header nav={withFallbackNav(headerNav, FALLBACK_HEADER_NAV)} brand={theme.brand} logo={logo} />
 
-      <main id="main" className="flex-1">
-        {children}
-      </main>
+          <main id="main" className="flex-1">
+            {children}
+          </main>
 
-      <Footer nav={withFallbackNav(footerNav, FALLBACK_FOOTER_NAV)} brand={theme.brand} logo={logo} />
-      <SocialModal />
-    </div>
+          <Footer nav={withFallbackNav(footerNav, FALLBACK_FOOTER_NAV)} brand={theme.brand} logo={logo} />
+          <SocialModal />
+        </div>
+      </QuickQuoteProvider>
+    </LightboxProvider>
   )
 }

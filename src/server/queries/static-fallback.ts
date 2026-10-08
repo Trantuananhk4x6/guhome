@@ -1,7 +1,18 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import type { MediaRef, ProjectBlock, ProjectDetail, ProjectSummary, SceneMode } from '@/types/content'
+import type {
+  ArticleDetail,
+  ArticleSummary,
+  MaterialItem,
+  MediaRef,
+  ProjectBlock,
+  ProjectDetail,
+  ProjectSummary,
+  RichTextDoc,
+  SceneMode,
+  ServiceItem,
+} from '@/types/content'
 
 export interface ProjectListOptions {
   limit?: number
@@ -85,9 +96,10 @@ function getManifestByFolder(): Map<string, ManifestEntry[]> {
 }
 
 function entryToMediaRef(entry: ManifestEntry, alt: string): MediaRef {
+  const url = entry.storageKey.startsWith('/media/') ? entry.storageKey : `/media/${entry.storageKey}`
   return {
     id: entry.storageKey,
-    url: entry.storageKey,
+    url,
     kind: 'image',
     width: entry.width,
     height: entry.height,
@@ -95,6 +107,46 @@ function entryToMediaRef(entry: ManifestEntry, alt: string): MediaRef {
     alt,
     caption: null,
   }
+}
+
+let cachedManifestEntries: Map<string, ManifestEntry> | null = null
+
+function getManifestEntries(): Map<string, ManifestEntry> {
+  if (cachedManifestEntries) return cachedManifestEntries
+  const map = new Map<string, ManifestEntry>()
+  try {
+    const manifestPath = path.resolve(process.cwd(), 'public/media/manifest.json')
+    if (fs.existsSync(manifestPath)) {
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as Record<string, ManifestEntry>
+      for (const [key, entry] of Object.entries(manifest)) {
+        map.set(key, entry)
+        if (entry.storageKey) {
+          map.set(entry.storageKey, entry)
+          map.set(`/media/${entry.storageKey}`, entry)
+        }
+      }
+    }
+  } catch (err) {
+    console.error('[static-fallback] Failed to load manifest entries', err)
+  }
+  cachedManifestEntries = map
+  return map
+}
+
+export function getStaticMediaById(id: string): MediaRef | null {
+  const map = getManifestEntries()
+  const entry = map.get(id)
+  if (!entry) return null
+  return entryToMediaRef(entry, 'GuHomes Architecture')
+}
+
+export function getStaticMediaMap(ids: readonly string[]): Map<string, MediaRef> {
+  const res = new Map<string, MediaRef>()
+  for (const id of ids) {
+    const ref = getStaticMediaById(id)
+    if (ref) res.set(id, ref)
+  }
+  return res
 }
 
 function loadAllRawProjects(): RawProject[] {
@@ -228,3 +280,150 @@ export function getStaticProjectDetail(slug: string): ProjectDetail | null {
     sceneMode: raw.sceneMode ?? 'NONE',
   }
 }
+
+interface RawSiteData {
+  services?: Array<{
+    slug: string
+    indexLabel: string
+    title: string
+    summary: string | null
+    description: string | null
+  }>
+  materials?: Array<{
+    slug: string
+    name: string
+    description: string | null
+  }>
+  articles?: Array<{
+    slug: string
+    title: string
+    excerpt: string | null
+    tags: string[]
+    content: RichTextDoc
+  }>
+}
+
+let cachedSiteData: RawSiteData | null = null
+
+function loadSiteData(): RawSiteData {
+  if (cachedSiteData) return cachedSiteData
+  try {
+    const siteJsonPath = path.resolve(process.cwd(), 'src/data/content/site.json')
+    if (fs.existsSync(siteJsonPath)) {
+      cachedSiteData = JSON.parse(fs.readFileSync(siteJsonPath, 'utf8')) as RawSiteData
+      return cachedSiteData
+    }
+  } catch (err) {
+    console.error('[static-fallback] Failed to parse site.json', err)
+  }
+  return {}
+}
+
+const SERVICE_COVERS = [
+  'ben-kia-song/0', // 01 Thiết kế nội thất (The Opera Metropole)
+  'anh-khoa/0', // 02 Thiết kế kiến trúc (Wabi Sabi Duplex)
+  'bong-go-sam/0', // 03 Thiết kế & thi công (The Global City)
+  'chi-quynh-anh/0', // 04 Cải tạo (Luxury Apartment)
+  'bep-ben-khom-truc/0', // 05 Đồ nội thất may đo (Kitchen & Bespoke Joinery)
+]
+
+export function getStaticServices(): ServiceItem[] {
+  const site = loadSiteData()
+  const list = site.services ?? []
+  return list.map((s, idx) => {
+    const coverKey = SERVICE_COVERS[idx % SERVICE_COVERS.length]
+    const cover = coverKey ? getStaticMediaById(coverKey) : null
+    return {
+      id: s.slug,
+      slug: s.slug,
+      indexLabel: s.indexLabel || `0${idx + 1}`,
+      title: s.title,
+      summary: s.summary,
+      description: s.description,
+      cover,
+      order: idx,
+    }
+  })
+}
+
+export function getStaticServiceBySlug(slug: string): ServiceItem | null {
+  const all = getStaticServices()
+  return all.find((item) => item.slug === slug) ?? null
+}
+
+const MATERIAL_COVERS = [
+  'nha-pho-4-oc-cho-phong-khach/7', // Gỗ
+  'anh-kim-van-da/0', // Đá
+  'ben-kia-song/2', // Marble
+  'anh-khoa/2', // Kim loại
+  'chi-quynh-anh/2', // Vải
+  'ben-kia-song/4', // Kính
+]
+
+export function getStaticMaterials(): MaterialItem[] {
+  const site = loadSiteData()
+  const list = site.materials ?? []
+  return list.map((m, idx) => {
+    const coverKey = MATERIAL_COVERS[idx % MATERIAL_COVERS.length]
+    const media = coverKey ? getStaticMediaById(coverKey) : null
+    return {
+      id: m.slug,
+      slug: m.slug,
+      name: m.name,
+      description: m.description,
+      media,
+      order: idx,
+    }
+  })
+}
+
+export function getStaticArticles(options?: { limit?: number; tag?: string }): ArticleSummary[] {
+  const site = loadSiteData()
+  let list = site.articles ?? []
+  if (options?.tag) {
+    list = list.filter((a) => a.tags?.includes(options.tag!))
+  }
+  if (options?.limit && options.limit > 0) {
+    list = list.slice(0, options.limit)
+  }
+  return list.map((a, idx) => {
+    const coverKey = MATERIAL_COVERS[idx % MATERIAL_COVERS.length]
+    const cover = coverKey ? getStaticMediaById(coverKey) : null
+    return {
+      id: a.slug,
+      slug: a.slug,
+      title: a.title,
+      excerpt: a.excerpt,
+      cover,
+      publishedAt: new Date(),
+      tags: a.tags ?? [],
+      readingMinutes: 5 + idx,
+    }
+  })
+}
+
+export function getStaticArticleDetail(slug: string): ArticleDetail | null {
+  const site = loadSiteData()
+  const article = (site.articles ?? []).find((a) => a.slug === slug)
+  if (!article) return null
+  const coverKey = MATERIAL_COVERS[0]
+  const cover = coverKey ? getStaticMediaById(coverKey) : null
+  return {
+    id: article.slug,
+    slug: article.slug,
+    title: article.title,
+    excerpt: article.excerpt,
+    cover,
+    publishedAt: new Date(),
+    tags: article.tags ?? [],
+    readingMinutes: 6,
+    content: article.content,
+    status: 'published',
+    authorName: 'GuHomes Editorial',
+    seo: {
+      title: article.title,
+      description: article.excerpt ?? undefined,
+    },
+  }
+}
+

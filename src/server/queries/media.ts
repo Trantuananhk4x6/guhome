@@ -42,6 +42,8 @@ function uniqueIds(ids: readonly MaybeId[]): string[] {
   return Array.from(set).sort()
 }
 
+import { getStaticMediaMap } from './static-fallback'
+
 /**
  * `cache()` memoises on argument identity, so the id list is flattened to a
  * stable string key before it is handed over.
@@ -49,8 +51,26 @@ function uniqueIds(ids: readonly MaybeId[]): string[] {
 const loadMediaMap = cache(async (key: string): Promise<Map<string, MediaRef>> => {
   if (key.length === 0) return new Map<string, MediaRef>()
   const ids = key.split(',')
-  const rows = await db.select().from(media).where(inArray(media.id, ids))
-  return new Map(rows.map((row) => [row.id, toMediaRef(row)]))
+  const resultMap = new Map<string, MediaRef>()
+
+  try {
+    const rows = await db.select().from(media).where(inArray(media.id, ids))
+    for (const row of rows) {
+      resultMap.set(row.id, toMediaRef(row))
+    }
+  } catch {
+    // Database offline or query timeout, use static manifest fallback
+  }
+
+  const missing = ids.filter((id) => !resultMap.has(id))
+  if (missing.length > 0) {
+    const staticMap = getStaticMediaMap(missing)
+    for (const [id, ref] of staticMap.entries()) {
+      resultMap.set(id, ref)
+    }
+  }
+
+  return resultMap
 })
 
 /** Resolve many ids at once. Accepts nullable ids for convenience. */

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Fragment } from 'react'
 
 import {
   EMPTY_HOME_DATA,
@@ -7,6 +8,8 @@ import {
   sectionStops,
   type HomeData,
 } from '@/components/sections'
+import { StyleExplorer } from '@/components/sections/StyleExplorer'
+import { WorkflowSection } from '@/components/sections/WorkflowSection'
 import { getPublishedArticles } from '@/server/queries/articles'
 import { getMediaMap } from '@/server/queries/media'
 import { getProjectBySlug, getPublishedProjects } from '@/server/queries/projects'
@@ -224,7 +227,15 @@ export default async function HomePage() {
     <>
       {ordered.map((section) => {
         const Section = SECTION_COMPONENTS[section.key]
-        return <Section key={section.id} section={section} data={data} />
+        if (!Section) return null
+
+        return (
+          <Fragment key={section.id}>
+            <Section section={section} data={data} />
+            {section.key === 'FEATURED_PROJECTS' && <StyleExplorer />}
+            {section.key === 'SERVICES' && <WorkflowSection />}
+          </Fragment>
+        )
       })}
     </>
   )

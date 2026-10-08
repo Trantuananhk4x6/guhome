@@ -12,6 +12,7 @@ import { articles, users, type ArticleRow } from '@/server/db/schema'
 import type { ArticleDetail, ArticleSummary } from '@/types/content'
 
 import { getMediaMap } from './media'
+import { getStaticArticleDetail, getStaticArticles } from './static-fallback'
 
 export interface ArticleListOptions {
   limit?: number
@@ -49,18 +50,25 @@ async function toSummaries(rows: readonly ArticleRow[]): Promise<ArticleSummary[
 
 const loadPublishedArticles = cache(
   async (limit: number, offset: number, tag: string): Promise<ArticleSummary[]> => {
-    const filters: SQL[] = [publishedFilter()]
-    if (tag.length > 0) filters.push(sql`${tag} = any(${articles.tags})`)
+    try {
+      const filters: SQL[] = [publishedFilter()]
+      if (tag.length > 0) filters.push(sql`${tag} = any(${articles.tags})`)
 
-    const query = db
-      .select()
-      .from(articles)
-      .where(and(...filters))
-      .orderBy(publishedOrder(), asc(articles.title))
-      .offset(offset)
+      const query = db
+        .select()
+        .from(articles)
+        .where(and(...filters))
+        .orderBy(publishedOrder(), asc(articles.title))
+        .offset(offset)
 
-    const rows = limit > 0 ? await query.limit(limit) : await query
-    return toSummaries(rows)
+      const rows = limit > 0 ? await query.limit(limit) : await query
+      if (rows && rows.length > 0) {
+        return await toSummaries(rows)
+      }
+    } catch {
+      // Database offline, use static articles
+    }
+    return getStaticArticles({ limit: limit > 0 ? limit : undefined, tag: tag || undefined })
   },
 )
 
@@ -69,36 +77,48 @@ export function getPublishedArticles(options: ArticleListOptions = {}): Promise<
 }
 
 export const getArticleBySlug = cache(async (slug: string): Promise<ArticleDetail | null> => {
-  const rows = await db
-    .select({ article: articles, authorName: users.name })
-    .from(articles)
-    .leftJoin(users, eq(articles.authorId, users.id))
-    .where(and(eq(articles.slug, slug), publishedFilter()))
-    .limit(1)
+  try {
+    const rows = await db
+      .select({ article: articles, authorName: users.name })
+      .from(articles)
+      .leftJoin(users, eq(articles.authorId, users.id))
+      .where(and(eq(articles.slug, slug), publishedFilter()))
+      .limit(1)
 
-  const row = rows[0]
-  if (!row) return null
+    const row = rows[0]
+    if (row) {
+      const article = row.article
+      const mediaMap = await getMediaMap([article.coverMediaId])
+      const cover = article.coverMediaId ? (mediaMap.get(article.coverMediaId) ?? null) : null
 
-  const article = row.article
-  const mediaMap = await getMediaMap([article.coverMediaId])
-  const cover = article.coverMediaId ? (mediaMap.get(article.coverMediaId) ?? null) : null
-
-  return {
-    ...toSummary(article, cover),
-    content: article.content,
-    status: article.status,
-    authorName: row.authorName,
-    seo: article.seo ?? null,
+      return {
+        ...toSummary(article, cover),
+        content: article.content,
+        status: article.status,
+        authorName: row.authorName,
+        seo: article.seo ?? null,
+      }
+    }
+  } catch {
+    // Database offline, use static article detail
   }
+  return getStaticArticleDetail(slug)
 })
 
 export const getAllArticleSlugs = cache(async (): Promise<string[]> => {
-  const rows = await db
-    .select({ slug: articles.slug })
-    .from(articles)
-    .where(publishedFilter())
-    .orderBy(publishedOrder())
-  return rows.map((row) => row.slug)
+  try {
+    const rows = await db
+      .select({ slug: articles.slug })
+      .from(articles)
+      .where(publishedFilter())
+      .orderBy(publishedOrder())
+    if (rows && rows.length > 0) {
+      return rows.map((row) => row.slug)
+    }
+  } catch {
+    // Database offline, use static article slugs
+  }
+  return getStaticArticles().map((a) => a.slug)
 })
 
 /** Other published articles, newest first — the "đọc thêm" rail. */

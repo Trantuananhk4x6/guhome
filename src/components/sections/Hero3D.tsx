@@ -14,6 +14,7 @@ import { SectionImage } from './SectionImage'
 import { DISPLAY_LG, SCRIM_B, SCRIM_T } from './composition'
 import { sectionCta, sectionLines, sectionText } from './content'
 import type { HomeSectionProps } from './types'
+import { QuickQuoteButton } from '@/components/layout/QuickQuoteTrigger'
 
 /** three/R3F never touches the server bundle. */
 const InteriorScene = dynamic(
@@ -139,9 +140,15 @@ export function Hero3D({ section, data }: HomeSectionProps) {
 
       <div className="relative z-10 flex h-full flex-col justify-between u-gutter pt-[clamp(6.5rem,16vh,11rem)] pb-[clamp(1.75rem,5vh,3.5rem)]">
         <div className="flex flex-wrap items-center justify-between gap-6">
-          <Label tone="light" rule>
-            {eyebrow}
-          </Label>
+          <div className="flex items-center gap-4">
+            <Label tone="light" rule>
+              {eyebrow}
+            </Label>
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-accent/35 text-[11px] font-mono text-accent-soft">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+              <span>105+ Công Trình Thực Tế · Chuẩn Gu 1:1</span>
+            </div>
+          </div>
           {/*
             The credit belongs to the picture, not to the slot. Once an editor
             chooses their own photograph, the project behind it is no longer what
@@ -169,13 +176,16 @@ export function Hero3D({ section, data }: HomeSectionProps) {
         <div
           ref={footRef}
           data-reveal
-          className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between md:gap-16"
+          className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-16"
         >
-          <div className="flex max-w-[42ch] flex-col items-start gap-7">
+          <div className="flex max-w-[46ch] flex-col items-start gap-6">
             <p className="u-body-lg text-canvas/75">{body}</p>
-            <Button href={cta.href} variant="underline" tone="light" withArrow>
-              {cta.label}
-            </Button>
+            <div className="flex flex-wrap items-center gap-4 pt-1">
+              <QuickQuoteButton label="Nhận dự toán & Tư vấn VIP" variant="gold" />
+              <Button href={cta.href} variant="underline" tone="light" withArrow>
+                {cta.label}
+              </Button>
+            </div>
           </div>
 
           <div className="flex items-center gap-4" aria-hidden="true">

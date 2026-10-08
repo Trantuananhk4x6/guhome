@@ -83,8 +83,11 @@ export function pickMediaWidth(requested: number | undefined, intrinsic: number 
  */
 function derivativeBase(m: MediaRef): string | null {
   if (!DERIVATIVE_KINDS.includes(m.kind)) return null
-  const base = m.url.trim()
+  let base = m.url.trim()
   if (base.length === 0) return null
+  if (!base.startsWith('/media/') && !base.startsWith('http') && !base.startsWith('/')) {
+    base = `/media/${base}`
+  }
   const stem = baseOf(base)
   // Unchanged *and* already a file: something like `recon/<job>/depth.png`.
   if (stem === base && isConcreteFile(base)) return null

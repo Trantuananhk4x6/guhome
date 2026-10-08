@@ -33,6 +33,7 @@ import type {
 } from '@/types/content'
 
 import { getMediaMap } from './media'
+import { getStaticMaterials, getStaticServiceBySlug, getStaticServices } from './static-fallback'
 
 export type NavLocation = 'header' | 'footer'
 
@@ -216,7 +217,7 @@ export const getServices = cache(async (): Promise<ServiceItem[]> => {
         .from(services)
         .where(eq(services.enabled, true))
         .orderBy(asc(services.order), asc(services.title))
-      if (rows.length === 0) return []
+      if (rows.length === 0) return getStaticServices()
 
       const mediaMap = await getMediaMap(rows.map((row) => row.coverMediaId))
       return rows.map((row) => ({
@@ -230,13 +231,13 @@ export const getServices = cache(async (): Promise<ServiceItem[]> => {
         order: row.order,
       }))
     },
-    [],
+    getStaticServices(),
   )
 })
 
 export const getServiceBySlug = cache(async (slug: string): Promise<ServiceItem | null> => {
   const all = await getServices()
-  return all.find((service) => service.slug === slug) ?? null
+  return all.find((service) => service.slug === slug) ?? getStaticServiceBySlug(slug)
 })
 
 export const getMaterials = cache(async (): Promise<MaterialItem[]> => {
@@ -248,7 +249,7 @@ export const getMaterials = cache(async (): Promise<MaterialItem[]> => {
         .from(materials)
         .where(eq(materials.enabled, true))
         .orderBy(asc(materials.order), asc(materials.name))
-      if (rows.length === 0) return []
+      if (rows.length === 0) return getStaticMaterials()
 
       const mediaMap = await getMediaMap(rows.map((row) => row.mediaId))
       return rows.map((row) => ({
@@ -260,7 +261,7 @@ export const getMaterials = cache(async (): Promise<MaterialItem[]> => {
         order: row.order,
       }))
     },
-    [],
+    getStaticMaterials(),
   )
 })
 
