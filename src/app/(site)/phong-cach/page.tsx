@@ -172,6 +172,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier } from '@/componen
 import { SaigonCanalSideAncientJackfruitWoodBonsaiSanctuary } from '@/components/studio/SaigonCanalSideAncientJackfruitWoodBonsaiSanctuary'
 import { BespokeImperialKynamIncenseAltarAndBrassVault } from '@/components/studio/BespokeImperialKynamIncenseAltarAndBrassVault'
 import { ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier } from '@/components/tools/ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier'
+import { SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary } from '@/components/studio/SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary'
+import { BespokeImperialKynamAndGoldLeafScentVault } from '@/components/studio/BespokeImperialKynamAndGoldLeafScentVault'
+import { ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier } from '@/components/tools/ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -752,6 +755,15 @@ export default async function StylesPage() {
 
       {/* Artisan Gold Leaf Ebony Tea Box Atelier */}
       <ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier />
+
+      {/* Saigon Canal Side Ancient Rosewood Bonsai Water Feature Sanctuary */}
+      <SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary />
+
+      {/* Bespoke Imperial Kynam & Gold Leaf Scent Vault */}
+      <BespokeImperialKynamAndGoldLeafScentVault />
+
+      {/* Artisan Gold Leaf Ebony Calligraphy Brush Atelier */}
+      <ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

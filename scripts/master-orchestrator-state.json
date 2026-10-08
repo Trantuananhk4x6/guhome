@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 178,
+  "currentDirectiveIndex": 180,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -1068,7 +1068,19 @@
       "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
       "sentAt": "2026-10-08T21:32:10.471Z",
       "atStep": 11632
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T21:33:42.267Z",
+      "atStep": 11658
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T21:37:36.077Z",
+      "atStep": 11762
     }
   ],
-  "lastDispatchedAt": 1791495130471
+  "lastDispatchedAt": 1791495456077
 }

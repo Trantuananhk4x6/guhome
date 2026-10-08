@@ -244,6 +244,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier } from '@/componen
 import { SaigonCanalSideAncientJackfruitWoodBonsaiSanctuary } from '@/components/studio/SaigonCanalSideAncientJackfruitWoodBonsaiSanctuary'
 import { BespokeImperialKynamIncenseAltarAndBrassVault } from '@/components/studio/BespokeImperialKynamIncenseAltarAndBrassVault'
 import { ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier } from '@/components/tools/ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier'
+import { SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary } from '@/components/studio/SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary'
+import { BespokeImperialKynamAndGoldLeafScentVault } from '@/components/studio/BespokeImperialKynamAndGoldLeafScentVault'
+import { ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier } from '@/components/tools/ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1625,6 +1628,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan gold leaf ebony tea box atelier ----------------- */}
       <ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier />
+
+      {/* ---------------- saigon canal-side ancient rosewood bonsai water feature sanctuary */}
+      <SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary />
+
+      {/* ---------------- bespoke imperial kynam & gold leaf scent vault --------- */}
+      <BespokeImperialKynamAndGoldLeafScentVault />
+
+      {/* ---------------- artisan gold leaf ebony calligraphy brush atelier ------ */}
+      <ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />
