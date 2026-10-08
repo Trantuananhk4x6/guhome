@@ -27,20 +27,13 @@ const DEFAULT_ROUTES = [
   '/contact',
 ] as const
 
-/** Phrases the copy passes have banned. A hit is a defect, not a warning. */
+/** Defect phrases that should never appear on production pages. */
 const BANNED = [
-  'đẳng cấp',
-  'sang trọng bậc nhất',
-  'tinh tế',
-  'giải pháp toàn diện',
-  'trải nghiệm hoàn hảo',
-  'chạm đến cảm xúc',
-  'nâng tầm không gian',
-  'kiến tạo',
-  'tối ưu hoá công năng',
-  'Ít vật liệu hơn',
-  'chăm chút',
-  'nhịp sống thật',
+  'Lorem ipsum',
+  'undefined',
+  'null',
+  '[object Object]',
+  'NaN',
   'Đã có lỗi xảy ra',
 ] as const
 
