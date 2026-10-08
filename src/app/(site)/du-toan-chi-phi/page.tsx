@@ -190,6 +190,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier } fr
 import { SaigonCanalSideAncientHingedEbonyTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedEbonyTeaBonsaiPavilion'
 import { BespokeImperialKynamAndGoldRepousseIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldRepousseIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio'
+import { SaigonCanalSideAncientHingedAgarwoodTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedAgarwoodTeaBonsaiPavilion'
+import { BespokeImperialKynamAndGoldFiligreeIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestStudio'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -801,6 +804,15 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Gold Filigree & Onyx Calligraphy Paperweight Studio */}
       <ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio />
+
+      {/* Saigon Canal Side Ancient Hinged Agarwood Tea Bonsai Pavilion */}
+      <SaigonCanalSideAncientHingedAgarwoodTeaBonsaiPavilion />
+
+      {/* Bespoke Imperial Kynam & Gold Filigree Incense Burner Vault */}
+      <BespokeImperialKynamAndGoldFiligreeIncenseBurnerVault />
+
+      {/* Artisan Gold Filigree & Jade Brush Rest Studio */}
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestStudio />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
