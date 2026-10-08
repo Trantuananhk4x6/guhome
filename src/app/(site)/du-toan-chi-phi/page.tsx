@@ -133,6 +133,9 @@ import { SaigonCanalSideFloatingOrchidSanctuaryPavilion } from '@/components/stu
 import { ArtisanGoldDamasceneEbonyGuanGongStatueAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyGuanGongStatueAtelier'
 import { SaigonRiverfrontGlassFloorObservatoryPavilion } from '@/components/studio/SaigonRiverfrontGlassFloorObservatoryPavilion'
 import { ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier } from '@/components/tools/ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier'
+import { SaigonAcousticDjembeSanctuarySalon } from '@/components/studio/SaigonAcousticDjembeSanctuarySalon'
+import { SaigonCanalSideFloatingTeakMeditationDock } from '@/components/studio/SaigonCanalSideFloatingTeakMeditationDock'
+import { ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier } from '@/components/tools/ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -573,6 +576,15 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Silver Inlaid Agarwood Maitreya Statue Atelier */}
       <ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier />
+
+      {/* Saigon Acoustic Djembe Sanctuary Salon */}
+      <SaigonAcousticDjembeSanctuarySalon />
+
+      {/* Saigon Canal Side Floating Teak Meditation Dock */}
+      <SaigonCanalSideFloatingTeakMeditationDock />
+
+      {/* Artisan Gold Leaf Damascene Ebony Bodhidharma Statue */}
+      <ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

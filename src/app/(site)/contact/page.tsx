@@ -81,6 +81,9 @@ import { ArtisanGoldDamasceneEbonyTobaccoPipeAtelier } from '@/components/tools/
 import { ArtisanMotherOfPearlInlaidEbonyChessboardAtelier } from '@/components/tools/ArtisanMotherOfPearlInlaidEbonyChessboardAtelier'
 import { ArtisanGoldDamasceneEbonyGuanGongStatueAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyGuanGongStatueAtelier'
 import { ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier } from '@/components/tools/ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier'
+import { SaigonAcousticDjembeSanctuarySalon } from '@/components/studio/SaigonAcousticDjembeSanctuarySalon'
+import { SaigonCanalSideFloatingTeakMeditationDock } from '@/components/studio/SaigonCanalSideFloatingTeakMeditationDock'
+import { ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier } from '@/components/tools/ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -560,6 +563,15 @@ export default async function ContactPage() {
 
       {/* Artisan Silver Inlaid Agarwood Maitreya Statue Atelier */}
       <ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier />
+
+      {/* Saigon Acoustic Djembe Sanctuary Salon */}
+      <SaigonAcousticDjembeSanctuarySalon />
+
+      {/* Saigon Canal Side Floating Teak Meditation Dock */}
+      <SaigonCanalSideFloatingTeakMeditationDock />
+
+      {/* Artisan Gold Leaf Damascene Ebony Bodhidharma Statue */}
+      <ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier />
     </div>
   )
 }

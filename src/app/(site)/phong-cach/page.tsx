@@ -148,6 +148,9 @@ import { SaigonAcousticMaracasSanctuarySalon } from '@/components/studio/SaigonA
 import { SaigonCanalSideFloatingOrchidSanctuaryPavilion } from '@/components/studio/SaigonCanalSideFloatingOrchidSanctuaryPavilion'
 import { SaigonAcousticBongosSanctuarySalon } from '@/components/studio/SaigonAcousticBongosSanctuarySalon'
 import { SaigonRiverfrontGlassFloorObservatoryPavilion } from '@/components/studio/SaigonRiverfrontGlassFloorObservatoryPavilion'
+import { SaigonAcousticDjembeSanctuarySalon } from '@/components/studio/SaigonAcousticDjembeSanctuarySalon'
+import { SaigonCanalSideFloatingTeakMeditationDock } from '@/components/studio/SaigonCanalSideFloatingTeakMeditationDock'
+import { ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier } from '@/components/tools/ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -656,6 +659,15 @@ export default async function StylesPage() {
 
       {/* Saigon Riverfront Glass Floor Observatory Pavilion */}
       <SaigonRiverfrontGlassFloorObservatoryPavilion />
+
+      {/* Saigon Acoustic Djembe Sanctuary Salon */}
+      <SaigonAcousticDjembeSanctuarySalon />
+
+      {/* Saigon Canal Side Floating Teak Meditation Dock */}
+      <SaigonCanalSideFloatingTeakMeditationDock />
+
+      {/* Artisan Gold Leaf Damascene Ebony Bodhidharma Statue */}
+      <ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

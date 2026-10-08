@@ -220,6 +220,9 @@ import { SaigonRiverfrontGlassFloorObservatoryPavilion } from '@/components/stud
 import { ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier } from '@/components/tools/ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
+import { SaigonAcousticDjembeSanctuarySalon } from '@/components/studio/SaigonAcousticDjembeSanctuarySalon'
+import { SaigonCanalSideFloatingTeakMeditationDock } from '@/components/studio/SaigonCanalSideFloatingTeakMeditationDock'
+import { ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier } from '@/components/tools/ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1529,6 +1532,15 @@ export default async function StudioPage() {
 
       {/* ---------------- silver inlaid agarwood maitreya statue atelier -------- */}
       <ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier />
+
+      {/* ---------------- acoustic djembe sanctuary salon ----------------------- */}
+      <SaigonAcousticDjembeSanctuarySalon />
+
+      {/* ---------------- canal side floating teak meditation dock -------------- */}
+      <SaigonCanalSideFloatingTeakMeditationDock />
+
+      {/* ---------------- gold leaf damascene ebony bodhidharma statue ---------- */}
+      <ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />

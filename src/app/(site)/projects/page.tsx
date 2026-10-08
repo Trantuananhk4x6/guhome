@@ -148,6 +148,9 @@ import { SaigonAcousticCajonSanctuarySalon } from '@/components/studio/SaigonAco
 import { SaigonAcousticCastanetsSanctuarySalon } from '@/components/studio/SaigonAcousticCastanetsSanctuarySalon'
 import { SaigonAcousticMaracasSanctuarySalon } from '@/components/studio/SaigonAcousticMaracasSanctuarySalon'
 import { SaigonAcousticBongosSanctuarySalon } from '@/components/studio/SaigonAcousticBongosSanctuarySalon'
+import { SaigonAcousticDjembeSanctuarySalon } from '@/components/studio/SaigonAcousticDjembeSanctuarySalon'
+import { SaigonCanalSideFloatingTeakMeditationDock } from '@/components/studio/SaigonCanalSideFloatingTeakMeditationDock'
+import { ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier } from '@/components/tools/ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -863,6 +866,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Acoustic Bongos Sanctuary Salon */}
           <SaigonAcousticBongosSanctuarySalon />
+
+          {/* Saigon Acoustic Djembe Sanctuary Salon */}
+          <SaigonAcousticDjembeSanctuarySalon />
+
+          {/* Saigon Canal Side Floating Teak Meditation Dock */}
+          <SaigonCanalSideFloatingTeakMeditationDock />
+
+          {/* Artisan Gold Leaf Damascene Ebony Bodhidharma Statue */}
+          <ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
