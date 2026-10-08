@@ -154,6 +154,9 @@ import { ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier } from '@/com
 import { SaigonCanalSideAncientTeakwoodBonsaiMoatPavilion } from '@/components/studio/SaigonCanalSideAncientTeakwoodBonsaiMoatPavilion'
 import { BespokeImperialAgarwoodAndBrassScentAltarVault } from '@/components/studio/BespokeImperialAgarwoodAndBrassScentAltarVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier'
+import { SaigonCanalSideAncientJackfruitWoodBonsaiSanctuary } from '@/components/studio/SaigonCanalSideAncientJackfruitWoodBonsaiSanctuary'
+import { BespokeImperialKynamIncenseAltarAndBrassVault } from '@/components/studio/BespokeImperialKynamIncenseAltarAndBrassVault'
+import { ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier } from '@/components/tools/ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -657,6 +660,15 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Gold Filigree & Jade Snuff Bottle Atelier */}
       <ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier />
+
+      {/* Saigon Canal Side Ancient Jackfruit Wood Bonsai Sanctuary */}
+      <SaigonCanalSideAncientJackfruitWoodBonsaiSanctuary />
+
+      {/* Bespoke Imperial Kynam Incense Altar & Brass Vault */}
+      <BespokeImperialKynamIncenseAltarAndBrassVault />
+
+      {/* Artisan Gold Leaf Ebony Tea Box Atelier */}
+      <ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

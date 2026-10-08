@@ -216,7 +216,7 @@ the scroll indicator at `:163-168` (a "Cuộn" label plus a hairline whose 6 px 
 shared `Header` mounted in `src/app/(site)/layout.tsx:31`, which a visitor cannot tell apart:
 measured on `/` at scroll 0 the header is `position: fixed`, `top: 0`, background
 `rgba(0, 0, 0, 0)`, `data-mode="dark"` (inverted by `data-hero-tone="dark"` at `Hero3D.tsx:88`),
-carrying `AN ATELIER · Dự án · Studio · Dịch vụ · Ghi chép · Liên hệ · Đặt hẹn tư vấn`.
+carrying `GUHOMES · Dự án · Studio · Dịch vụ · Ghi chép · Liên hệ · Đặt hẹn tư vấn`.
 
 Never-empty guarantee: without a scene or WebGL, `:102-110` runs a 28 s ken-burns on the cover photo,
 and `InteriorScene` itself shows the still until `ready` (`:258` `showPhoto`).

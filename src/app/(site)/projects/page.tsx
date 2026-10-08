@@ -169,6 +169,9 @@ import { ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier } from '@/com
 import { SaigonCanalSideAncientTeakwoodBonsaiMoatPavilion } from '@/components/studio/SaigonCanalSideAncientTeakwoodBonsaiMoatPavilion'
 import { BespokeImperialAgarwoodAndBrassScentAltarVault } from '@/components/studio/BespokeImperialAgarwoodAndBrassScentAltarVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier'
+import { SaigonCanalSideAncientJackfruitWoodBonsaiSanctuary } from '@/components/studio/SaigonCanalSideAncientJackfruitWoodBonsaiSanctuary'
+import { BespokeImperialKynamIncenseAltarAndBrassVault } from '@/components/studio/BespokeImperialKynamIncenseAltarAndBrassVault'
+import { ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier } from '@/components/tools/ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -947,6 +950,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Artisan Gold Filigree & Jade Snuff Bottle Atelier */}
           <ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier />
+
+          {/* Saigon Canal Side Ancient Jackfruit Wood Bonsai Sanctuary */}
+          <SaigonCanalSideAncientJackfruitWoodBonsaiSanctuary />
+
+          {/* Bespoke Imperial Kynam Incense Altar & Brass Vault */}
+          <BespokeImperialKynamIncenseAltarAndBrassVault />
+
+          {/* Artisan Gold Leaf Ebony Tea Box Atelier */}
+          <ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
