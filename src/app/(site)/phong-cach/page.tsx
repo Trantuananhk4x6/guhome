@@ -33,6 +33,7 @@ import { AcousticDampeningSimulator } from '@/components/studio/AcousticDampenin
 import { TropicalPatinaLab } from '@/components/studio/TropicalPatinaLab'
 import { SmartHomeQuietSanctuary } from '@/components/sections/SmartHomeQuietSanctuary'
 import { BespokeFurnitureCustomizer } from '@/components/tools/BespokeFurnitureCustomizer'
+import { LightingAtelierCustomizer } from '@/components/studio/LightingAtelierCustomizer'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -194,6 +195,9 @@ export default async function StylesPage() {
 
       {/* Bespoke Handcrafted Furniture Customizer */}
       <BespokeFurnitureCustomizer className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Lighting Atelier Customizer */}
+      <LightingAtelierCustomizer className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

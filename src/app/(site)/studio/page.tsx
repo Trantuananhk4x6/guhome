@@ -36,6 +36,9 @@ import { SmartHomeQuietSanctuary } from '@/components/sections/SmartHomeQuietSan
 import { RiverBreezeAerodynamicsLab } from '@/components/studio/RiverBreezeAerodynamicsLab'
 import { KilnMoistureDiary } from '@/components/studio/KilnMoistureDiary'
 import { BespokeFurnitureCustomizer } from '@/components/tools/BespokeFurnitureCustomizer'
+import { LightingAtelierCustomizer } from '@/components/studio/LightingAtelierCustomizer'
+import { NaturalStoneQuarryAtlas } from '@/components/studio/NaturalStoneQuarryAtlas'
+import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -799,6 +802,15 @@ export default async function StudioPage() {
 
       {/* --------------------- vip concierge access portal ----------------------- */}
       <VipConciergePortal className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- bespoke lighting atelier customizer ------------------ */}
+      <LightingAtelierCustomizer className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- natural stone quarry & bookmatch atlas ----------------- */}
+      <NaturalStoneQuarryAtlas className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- key handover ritual & warranty vault ------------------- */}
+      <KeyHandoverRitualVault className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

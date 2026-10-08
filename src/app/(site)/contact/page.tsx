@@ -20,6 +20,7 @@ import { VipConciergePortal } from '@/components/consultation/VipConciergePortal
 import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesSection'
 import { DigitalHandoverVault } from '@/components/services/DigitalHandoverVault'
 import { ContractorComparisonMatrix } from '@/components/sections/ContractorComparisonMatrix'
+import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -316,6 +317,9 @@ export default async function ContactPage() {
 
       {/* Digital Handover & Warranty Vault */}
       <DigitalHandoverVault className="mt-[var(--spacing-section)]" />
+
+      {/* Handover Ceremony & Key Handover Ritual Vault */}
+      <KeyHandoverRitualVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

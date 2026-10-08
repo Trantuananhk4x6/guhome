@@ -9,6 +9,7 @@ import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatC
 import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiCompass'
 import { TropicalHvacAirflowSimulator } from '@/components/tools/TropicalHvacAirflowSimulator'
 import { RiverBreezeAerodynamicsLab } from '@/components/studio/RiverBreezeAerodynamicsLab'
+import { NaturalStoneQuarryAtlas } from '@/components/studio/NaturalStoneQuarryAtlas'
 
 export const revalidate = 3600
 
@@ -175,6 +176,11 @@ export default function SaigonDistrictsPage() {
         {/* Saigon River Breeze & Aerodynamics Cooling Lab */}
         <div className="mt-16">
           <RiverBreezeAerodynamicsLab className="rounded-3xl border border-line" />
+        </div>
+
+        {/* Natural Stone Quarry & Bookmatch Atlas */}
+        <div className="mt-16">
+          <NaturalStoneQuarryAtlas className="rounded-3xl border border-line" />
         </div>
 
         {/* Bottom Editorial Callout */}

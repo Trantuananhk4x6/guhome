@@ -13,6 +13,8 @@ import { SmartHomeQuietSanctuary } from '@/components/sections/SmartHomeQuietSan
 import { KilnMoistureDiary } from '@/components/studio/KilnMoistureDiary'
 import { BespokeFurnitureCustomizer } from '@/components/tools/BespokeFurnitureCustomizer'
 import { VipConciergePortal } from '@/components/consultation/VipConciergePortal'
+import { LightingAtelierCustomizer } from '@/components/studio/LightingAtelierCustomizer'
+import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualVault'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -92,6 +94,12 @@ export default function DuToanChiPhiPage() {
 
       {/* VIP Concierge Access Portal & Digital VIP Card */}
       <VipConciergePortal className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Handcrafted Lighting Atelier Customizer */}
+      <LightingAtelierCustomizer className="mt-[var(--spacing-section)]" />
+
+      {/* Handover Ritual & Digital Warranty Vault */}
+      <KeyHandoverRitualVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

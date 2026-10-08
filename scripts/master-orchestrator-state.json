@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 8,
+  "currentDirectiveIndex": 13,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -48,13 +48,43 @@
       "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
       "sentAt": "2026-10-08T14:05:51.003Z",
       "atStep": 2207
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-08T14:07:11.421Z",
+      "atStep": 2237
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-08T14:08:01.754Z",
+      "atStep": 2259
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T14:10:34.386Z",
+      "atStep": 2311
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T14:11:04.779Z",
+      "atStep": 2320
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T14:11:35.002Z",
+      "atStep": 2328
+    },
+    {
+      "directiveId": "dir-17-sprint-19-lighting-stone-handover-ritual",
+      "title": "Xưởng Đèn Thủ Công GuHomes Atelier, Bản Đồ Mỏ Đá Ghép Vân Bookmatch & Nghi Thức Bàn Giao Hộp Mộc Hoàng Kim",
+      "sentAt": "2026-10-08T14:11:45.000Z",
+      "atStep": 2340
     }
   ],
-  "lastDispatchedAt": 1791468378271,
-  "activeDirective": {
-    "directiveId": "dir-17-sprint-19-lighting-stone-handover-ritual",
-    "title": "Xưởng Đèn Thủ Công GuHomes Atelier, Bản Đồ Mỏ Đá Ghép Vân Bookmatch & Nghi Thức Bàn Giao Hộp Mộc Hoàng Kim",
-    "sentAt": "2026-10-08T14:06:18.270Z",
-    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
-  }
+  "lastDispatchedAt": 1791468705000
 }
