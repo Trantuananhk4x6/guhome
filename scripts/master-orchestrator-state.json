@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 154,
+  "currentDirectiveIndex": 161,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -924,7 +924,49 @@
       "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
       "sentAt": "2026-10-08T21:00:16.950Z",
       "atStep": 10951
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T21:01:27.865Z",
+      "atStep": 10967
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T21:02:09.030Z",
+      "atStep": 10973
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T21:02:40.418Z",
+      "atStep": 10977
+    },
+    {
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-08T21:03:43.315Z",
+      "atStep": 10996
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-08T21:07:26.387Z",
+      "atStep": 11106
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-08T21:07:57.047Z",
+      "atStep": 11110
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T21:08:27.878Z",
+      "atStep": 11114
     }
   ],
-  "lastDispatchedAt": 1791493216950
+  "lastDispatchedAt": 1791493707878
 }

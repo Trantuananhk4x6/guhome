@@ -160,6 +160,9 @@ import { ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier } from '@/componen
 import { SaigonRiversideHydroponicAromaticHerbSanctuary } from '@/components/studio/SaigonRiversideHydroponicAromaticHerbSanctuary'
 import { BespokePetrifiedWoodAndBrassWineBarTastingLounge } from '@/components/studio/BespokePetrifiedWoodAndBrassWineBarTastingLounge'
 import { ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier } from '@/components/tools/ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier'
+import { SaigonBreezeBambooWindChimeSanctuarySalon } from '@/components/studio/SaigonBreezeBambooWindChimeSanctuarySalon'
+import { BespokeSmokedOakZenTeaHouseAndTatamiSanctuary } from '@/components/studio/BespokeSmokedOakZenTeaHouseAndTatamiSanctuary'
+import { ArtisanSilverInlaidAgarwoodCalligraphyBrushVault } from '@/components/tools/ArtisanSilverInlaidAgarwoodCalligraphyBrushVault'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -704,6 +707,15 @@ export default async function StylesPage() {
 
       {/* Artisan Vietnamese Imperial Silk & Ebony Folding Screen Atelier */}
       <ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier />
+
+      {/* Saigon Breeze Bamboo Wind Chime Sanctuary Salon */}
+      <SaigonBreezeBambooWindChimeSanctuarySalon />
+
+      {/* Bespoke Smoked Oak Zen Tea House & Tatami Sanctuary */}
+      <BespokeSmokedOakZenTeaHouseAndTatamiSanctuary />
+
+      {/* Artisan Silver Inlaid Agarwood Calligraphy Brush Vault */}
+      <ArtisanSilverInlaidAgarwoodCalligraphyBrushVault />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

@@ -232,6 +232,9 @@ import { ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier } from '@/componen
 import { SaigonRiversideHydroponicAromaticHerbSanctuary } from '@/components/studio/SaigonRiversideHydroponicAromaticHerbSanctuary'
 import { BespokePetrifiedWoodAndBrassWineBarTastingLounge } from '@/components/studio/BespokePetrifiedWoodAndBrassWineBarTastingLounge'
 import { ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier } from '@/components/tools/ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier'
+import { SaigonBreezeBambooWindChimeSanctuarySalon } from '@/components/studio/SaigonBreezeBambooWindChimeSanctuarySalon'
+import { BespokeSmokedOakZenTeaHouseAndTatamiSanctuary } from '@/components/studio/BespokeSmokedOakZenTeaHouseAndTatamiSanctuary'
+import { ArtisanSilverInlaidAgarwoodCalligraphyBrushVault } from '@/components/tools/ArtisanSilverInlaidAgarwoodCalligraphyBrushVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1577,6 +1580,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan silk & ebony folding screen atelier ------------ */}
       <ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier />
+
+      {/* ---------------- saigon breeze bamboo wind chime sanctuary salon -------- */}
+      <SaigonBreezeBambooWindChimeSanctuarySalon />
+
+      {/* ---------------- bespoke smoked oak zen tea house & tatami sanctuary ---- */}
+      <BespokeSmokedOakZenTeaHouseAndTatamiSanctuary />
+
+      {/* ---------------- artisan silver inlaid agarwood calligraphy vault ------- */}
+      <ArtisanSilverInlaidAgarwoodCalligraphyBrushVault />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />
