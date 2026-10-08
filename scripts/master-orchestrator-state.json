@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 14,
+  "currentDirectiveIndex": 8,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -32,100 +32,29 @@
       "atStep": 805
     },
     {
-      "directiveId": "dir-6-sprint-8-lookbook-blueprint-geo",
-      "title": "Bộ sưu tập Lookbook 2026, Bản vẽ Blueprint tương tác & Saigon Local Entity GEO",
-      "sentAt": "2026-10-08T13:05:30.000Z",
-      "atStep": 922,
-      "commit": "85093d3",
-      "result": "100% routes passed, 148 static & dynamic pages built"
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T14:01:56.426Z",
+      "atStep": 2111
     },
     {
-      "directiveId": "dir-7-sprint-9-virtual-tour-soundscape-districts",
-      "title": "360 Spatial Panorama Virtual Tour, Quiet Luxury Sensory Soundscape & Saigon District Real Estate Hubs",
-      "sentAt": "2026-10-08T13:10:25.000Z",
-      "atStep": 1015,
-      "commit": "633a4d4",
-      "result": "100% routes passed, 153 static & dynamic pages built"
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T14:03:47.136Z",
+      "atStep": 2173
     },
     {
-      "directiveId": "dir-8-sprint-10-woodshop-print-dossier-sample-box",
-      "title": "Xưởng Mộc Thạnh Xuân 1.200m², Hồ Sơ Dự Toán In Ấn A4 & Hộp Mẫu Vật Liệu Xúc Giác",
-      "sentAt": "2026-10-08T13:16:12.000Z",
-      "atStep": 1151,
-      "commit": "d393c5d",
-      "result": "TypeScript 0 errors, 153 static & dynamic pages built, A4 print dossier engine active, TactileSampleBox modal live"
-    },
-    {
-      "directiveId": "dir-9-sprint-11-spatial-map-moodboard-vip-booking",
-      "title": "Bản Đồ Dự Án Không Gian Sài Gòn, Phòng Thí Nghiệm Tactile Moodboard & Đặt Lịch VIP KTS Trưởng",
-      "sentAt": "2026-10-08T13:23:25.000Z",
-      "completedAt": "2026-10-08T13:28:00.000Z",
-      "commit": "a85cb1d",
-      "result": "TypeScript 0 errors, 153 static & dynamic pages built, ProjectSpatialMap & ProjectsViewSwitcher active, TactileMoodboardStudio live, VipBookingCalendar active"
-    },
-    {
-      "directiveId": "dir-10-sprint-12-timeline-chronicles-weather-advisory",
-      "title": "Nhật Ký Thi Công Kiến Trúc 75 Ngày, Biên Niên Sử Gia Chủ Sài Gòn & Bộ Cố Vấn Thời Tiết Vi Khí Hậu",
-      "sentAt": "2026-10-08T13:28:30.000Z",
-      "completedAt": "2026-10-08T13:33:00.000Z",
-      "commit": "78b8f69",
-      "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, ConstructionTimelineDiary, ClientChroniclesSection, and TropicalWeatherAdvisory fully active across /projects, /studio, /contact, /khu-vuc, /phong-cach, and /"
-    },
-    {
-      "directiveId": "dir-11-sprint-13-lighting-lab-joinery-norms",
-      "title": "Phòng Thí Nghiệm Ánh Sáng Architectural Lighting Lab, Khám Phá Mộng Gỗ May Đo Thạnh Xuân & 10 Quy Chuẩn Thi Công Thép",
-      "sentAt": "2026-10-08T13:34:07.000Z",
-      "completedAt": "2026-10-08T13:38:00.000Z",
-      "commit": "bb3d7cb",
-      "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, ArchitecturalLightingLab, WoodJoineryExplorer, and TenEngineeringNormsSection fully active across /studio, /phong-cach, /projects, and /du-toan-chi-phi"
-    },
-    {
-      "directiveId": "dir-12-sprint-14-solar-heat-cad-vault",
-      "title": "Bộ Tính Toán Bức Xạ Nắng Tây Western Solar Calculator, Thư Viện Bản Vẽ Mặt Cắt Kỹ Thuật & Cổng Bảo Hành Gỗ Mộc Digital Vault",
-      "sentAt": "2026-10-08T13:38:39.000Z",
-      "completedAt": "2026-10-08T13:42:30.000Z",
-      "commit": "c2548ed",
-      "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, WesternSolarHeatCalculator, ArchitecturalDetailViewer, and DigitalHandoverVault fully active across /khu-vuc, /du-toan-chi-phi, /projects, /studio, and /contact"
-    },
-    {
-      "directiveId": "dir-13-sprint-15-bespoke-cabinetry-curved-audit",
-      "title": "Bộ Sưu Tập Tủ May Đo Thửa Riêng Bespoke Cabinetry, Hệ Bào Tay Mộc Mặt Cong Curved Carpentry & Bảng Đối Chiếu Năng Lực Thực Lực",
-      "sentAt": "2026-10-08T13:43:14.000Z",
-      "completedAt": "2026-10-08T13:47:00.000Z",
-      "commit": "8851f93",
-      "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, BespokeCabinetryStudio, CurvedWoodCraftLab, and ContractorComparisonMatrix fully active across /studio, /phong-cach, /du-toan-chi-phi, /projects, and /contact"
-    },
-    {
-      "directiveId": "dir-14-sprint-16-fengshui-acoustic-concierge",
-      "title": "La Bàn Phong Thủy Vi Khí Hậu Sài Gòn, Phòng Thử Nghiệm Tiêu Âm RT60 & Cổng Dịch Vụ Thượng Khách VIP Concierge",
-      "sentAt": "2026-10-08T13:47:45.076Z",
-      "completedAt": "2026-10-08T13:54:30.000Z",
-      "commit": "6be4879",
-      "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, TropicalFengShuiCompass, AcousticDampeningSimulator, and VipConciergePortal fully active across /khu-vuc, /studio, /du-toan-chi-phi, /projects, /phong-cach, and /contact"
-    },
-    {
-      "directiveId": "dir-15-sprint-17-tropical-patina-hvac-smart-home",
-      "title": "Phòng Thí Nghiệm Lão Hóa Mộc Tự Nhiên Patina, Điều Hòa VRV Vi Khí Hậu Chống Đọng Sương & Chuẩn Nhà Thông Minh Tĩnh Lặng KNX",
-      "sentAt": "2026-10-08T13:54:43.199Z",
-      "completedAt": "2026-10-08T14:00:00.000Z",
-      "commit": "988064e",
-      "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, TropicalPatinaLab, TropicalHvacAirflowSimulator, and SmartHomeQuietSanctuary fully active across /studio, /phong-cach, /projects, /khu-vuc, and /du-toan-chi-phi"
-    }
-    },
-    {
-      "directiveId": "dir-16-sprint-18-river-breeze-kiln-bespoke-furniture",
-      "title": "Khí Động Học Gió Sông Sài Gòn, Nhật Ký Sấy Chân Không Mộc Thạnh Xuân & Bộ Tùy Biến Đồ Rời May Đo Độc Bản",
-      "sentAt": "2026-10-08T14:00:59.899Z",
-      "completedAt": "2026-10-08T14:06:00.000Z",
-      "commit": "0938416",
-      "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, RiverBreezeAerodynamicsLab, KilnMoistureDiary, and BespokeFurnitureCustomizer fully active across /studio, /khu-vuc, /projects, /du-toan-chi-phi, and /phong-cach"
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-08T14:05:51.003Z",
+      "atStep": 2207
     }
   ],
+  "lastDispatchedAt": 1791468378271,
   "activeDirective": {
-    "directiveId": "dir-17-sprint-19-stone-quarry-lighting-atelier-handover",
-    "title": "Bản Đồ Mỏ Khai Thác Đá Tự Nhiên Xúc Giác, Xưởng Đèn Thủ Công GuHomes Lighting Atelier & Nghi Thức Bàn Giao Chìa Khóa Hộp Gỗ Hoàng Kim",
-    "sentAt": "2026-10-08T14:06:30.000Z",
+    "directiveId": "dir-17-sprint-19-lighting-stone-handover-ritual",
+    "title": "Xưởng Đèn Thủ Công GuHomes Atelier, Bản Đồ Mỏ Đá Ghép Vân Bookmatch & Nghi Thức Bàn Giao Hộp Mộc Hoàng Kim",
+    "sentAt": "2026-10-08T14:06:18.270Z",
     "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
-  },
-  "lastDispatchedAt": 1791468390000
+  }
 }
