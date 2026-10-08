@@ -258,13 +258,14 @@
       "title": "Vườn Tường Đứng Thủy Canh, Bồn Tắm Đá Khối & Hồ Sơ Hoàn Công Bìa Da A3",
       "sentAt": "2026-10-08T14:56:30.890Z",
       "completedAt": "2026-10-08T15:00:25.000Z"
+    },
+    {
+      "directiveId": "dir-29-sprint-31-observatory-fragrance-butler",
+      "title": "Đài Quan Sát Thiên Văn Mái Kính, Xưởng Hương Không Gian & Ứng Dụng Quản Gia Số Dinh Thự",
+      "sentAt": "2026-10-08T15:00:58.495Z",
+      "completedAt": "2026-10-08T15:04:30.000Z"
     }
   ],
-  "lastDispatchedAt": 1791471390891,
-  "activeDirective": {
-    "directiveId": "dir-28-sprint-30-greenwall-stonebasin-dossier",
-    "title": "Vườn Tường Đứng Thủy Canh, Bồn Tắm Đá Khối & Hồ Sơ Hoàn Công Bìa Da A3",
-    "sentAt": "2026-10-08T14:56:30.890Z",
-    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
-  }
+  "lastDispatchedAt": 1791471658496,
+  "activeDirective": null
 }

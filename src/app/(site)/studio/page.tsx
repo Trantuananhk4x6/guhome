@@ -71,6 +71,9 @@ import { PrivateYachtBerthAndHelipadConcierge } from '@/components/tools/Private
 import { SaigonBiophilicGreenWallAtelier } from '@/components/studio/SaigonBiophilicGreenWallAtelier'
 import { ArtisanHandCastBronzeBasinVault } from '@/components/studio/ArtisanHandCastBronzeBasinVault'
 import { MasterArchitecturalDossierArchive } from '@/components/tools/MasterArchitecturalDossierArchive'
+import { SaigonRooftopStargazingObservatory } from '@/components/studio/SaigonRooftopStargazingObservatory'
+import { BespokeOlfactoryFragranceAtelier } from '@/components/studio/BespokeOlfactoryFragranceAtelier'
+import { PrivateEstateDigitalButlerPortal } from '@/components/tools/PrivateEstateDigitalButlerPortal'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -939,6 +942,15 @@ export default async function StudioPage() {
 
       {/* ---------------- master architectural dossier archive A3 leather folio ---- */}
       <MasterArchitecturalDossierArchive className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon rooftop stargazing glass observatory -------------- */}
+      <SaigonRooftopStargazingObservatory className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- bespoke olfactory cold-air nebulization fragrance atelier - */}
+      <BespokeOlfactoryFragranceAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- private estate digital butler local edge portal ----------- */}
+      <PrivateEstateDigitalButlerPortal className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

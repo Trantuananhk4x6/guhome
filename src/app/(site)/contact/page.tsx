@@ -32,6 +32,7 @@ import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchi
 import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugStudio'
 import { PrivateYachtBerthAndHelipadConcierge } from '@/components/tools/PrivateYachtBerthAndHelipadConcierge'
 import { MasterArchitecturalDossierArchive } from '@/components/tools/MasterArchitecturalDossierArchive'
+import { PrivateEstateDigitalButlerPortal } from '@/components/tools/PrivateEstateDigitalButlerPortal'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -364,6 +365,9 @@ export default async function ContactPage() {
 
       {/* Master Architectural Dossier Archive A3 Leather Folio */}
       <MasterArchitecturalDossierArchive className="mt-[var(--spacing-section)]" />
+
+      {/* Private Estate Digital Butler Local Edge Portal */}
+      <PrivateEstateDigitalButlerPortal className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

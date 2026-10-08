@@ -35,6 +35,8 @@ import { HandCarvedStoneFireplaceVault } from '@/components/studio/HandCarvedSto
 import { PrivateYachtBerthAndHelipadConcierge } from '@/components/tools/PrivateYachtBerthAndHelipadConcierge'
 import { ArtisanHandCastBronzeBasinVault } from '@/components/studio/ArtisanHandCastBronzeBasinVault'
 import { MasterArchitecturalDossierArchive } from '@/components/tools/MasterArchitecturalDossierArchive'
+import { BespokeOlfactoryFragranceAtelier } from '@/components/studio/BespokeOlfactoryFragranceAtelier'
+import { PrivateEstateDigitalButlerPortal } from '@/components/tools/PrivateEstateDigitalButlerPortal'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -180,6 +182,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Master Architectural Dossier Archive A3 Leather Folio */}
       <MasterArchitecturalDossierArchive className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Olfactory Cold-Air Nebulization Fragrance Atelier */}
+      <BespokeOlfactoryFragranceAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Private Estate Digital Butler Local Edge Portal */}
+      <PrivateEstateDigitalButlerPortal className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

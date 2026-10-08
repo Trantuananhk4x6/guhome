@@ -50,6 +50,8 @@ import { SaigonBespokeInfinityPoolLab } from '@/components/studio/SaigonBespokeI
 import { HandCarvedStoneFireplaceVault } from '@/components/studio/HandCarvedStoneFireplaceVault'
 import { SaigonBiophilicGreenWallAtelier } from '@/components/studio/SaigonBiophilicGreenWallAtelier'
 import { ArtisanHandCastBronzeBasinVault } from '@/components/studio/ArtisanHandCastBronzeBasinVault'
+import { SaigonRooftopStargazingObservatory } from '@/components/studio/SaigonRooftopStargazingObservatory'
+import { BespokeOlfactoryFragranceAtelier } from '@/components/studio/BespokeOlfactoryFragranceAtelier'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -262,6 +264,12 @@ export default async function StylesPage() {
 
       {/* Artisan Hand-carved Basalt Stone & Bronze Basin Vault */}
       <ArtisanHandCastBronzeBasinVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Rooftop Stargazing Glass Observatory */}
+      <SaigonRooftopStargazingObservatory className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Olfactory Cold-Air Nebulization Fragrance Atelier */}
+      <BespokeOlfactoryFragranceAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
