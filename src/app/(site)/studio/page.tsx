@@ -137,6 +137,9 @@ import { ArtisanBespokeSilverCutleryVault } from '@/components/tools/ArtisanBesp
 import { SaigonAcousticFluteSanctuaryPavilion } from '@/components/studio/SaigonAcousticFluteSanctuaryPavilion'
 import { SaigonArtisanBespokeLoomSilkPavilion } from '@/components/studio/SaigonArtisanBespokeLoomSilkPavilion'
 import { ArtisanBronzeWindGongSanctuaryAtelier } from '@/components/tools/ArtisanBronzeWindGongSanctuaryAtelier'
+import { SaigonAcousticKotoSanctuarySalon } from '@/components/studio/SaigonAcousticKotoSanctuarySalon'
+import { SaigonRiversideTeaRoastingAtelier } from '@/components/studio/SaigonRiversideTeaRoastingAtelier'
+import { ArtisanBronzeIncenseSealSanctuary } from '@/components/tools/ArtisanBronzeIncenseSealSanctuary'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1203,6 +1206,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan bronze wind gong sanctuary atelier --------------- */}
       <ArtisanBronzeWindGongSanctuaryAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon acoustic koto sanctuary salon -------------------- */}
+      <SaigonAcousticKotoSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon riverside tea roasting atelier -------------------- */}
+      <SaigonRiversideTeaRoastingAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan bronze incense seal sanctuary ------------------- */}
+      <ArtisanBronzeIncenseSealSanctuary className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

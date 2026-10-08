@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 42,
+  "currentDirectiveIndex": 43,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -252,7 +252,14 @@
       "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
       "sentAt": "2026-10-08T16:41:27.622Z",
       "atStep": 5578
+    },
+    {
+      "directiveId": "dir-51-sprint-53-koto-tearoast-incenseseal",
+      "title": "Phòng Đàn Tranh Gỗ Hông, Xưởng Sao Chè Chảo Gang & Khuôn Triện Hương Trầm",
+      "sentAt": "2026-10-08T16:42:00.000Z",
+      "completedAt": "2026-10-08T16:45:45.000Z"
     }
   ],
-  "lastDispatchedAt": 1791477687622
+  "lastDispatchedAt": 1791477945000,
+  "activeDirective": null
 }
