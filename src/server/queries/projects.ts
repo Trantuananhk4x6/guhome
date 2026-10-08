@@ -33,6 +33,7 @@ import type {
 
 import { getMediaMap } from './media'
 import { getSceneForProject, getSceneModesByProject, readAllSceneModes } from './scenes'
+import { getStaticProjectDetail, getStaticPublishedProjects } from './static-fallback'
 import { getStylesForProjects } from './styles'
 
 export interface ProjectListOptions {
@@ -219,25 +220,38 @@ async function readPublishedProjects(
   featured: 'any' | 'yes' | 'no',
   styleSlug = '',
 ): Promise<ProjectSummary[]> {
-  const filters: SQL[] = [publishedFilter()]
-  if (categorySlug.length > 0) filters.push(eq(categories.slug, categorySlug))
-  if (featured !== 'any') filters.push(eq(projects.featured, featured === 'yes'))
-  if (styleSlug.length > 0) filters.push(styleFilter(styleSlug))
+  try {
+    const filters: SQL[] = [publishedFilter()]
+    if (categorySlug.length > 0) filters.push(eq(categories.slug, categorySlug))
+    if (featured !== 'any') filters.push(eq(projects.featured, featured === 'yes'))
+    if (styleSlug.length > 0) filters.push(styleFilter(styleSlug))
 
-  const query = db
-    .select(summarySelection)
-    .from(projects)
-    .leftJoin(categories, eq(projects.categoryId, categories.id))
-    .leftJoin(media, eq(projects.coverMediaId, media.id))
-    .where(and(...filters))
-    .orderBy(asc(projects.order), publishedOrder(), asc(projects.title))
+    const query = db
+      .select(summarySelection)
+      .from(projects)
+      .leftJoin(categories, eq(projects.categoryId, categories.id))
+      .leftJoin(media, eq(projects.coverMediaId, media.id))
+      .where(and(...filters))
+      .orderBy(asc(projects.order), publishedOrder(), asc(projects.title))
 
-  const [rows, sceneModes] = await Promise.all([
-    limit > 0 ? query.limit(limit) : query,
-    readAllSceneModes(),
-  ])
+    const [rows, sceneModes] = await Promise.all([
+      limit > 0 ? query.limit(limit) : query,
+      readAllSceneModes(),
+    ])
 
-  return rows.map((row) => toSummary(row, row.categorySlug, row.categoryName, row.cover, sceneModes))
+    if (rows && rows.length > 0) {
+      return rows.map((row) => toSummary(row, row.categorySlug, row.categoryName, row.cover, sceneModes))
+    }
+  } catch {
+    console.warn('[projects] db query unavailable, using static content fallback')
+  }
+
+  return getStaticPublishedProjects({
+    limit: limit > 0 ? limit : undefined,
+    categorySlug: categorySlug.length > 0 ? categorySlug : undefined,
+    featured: featured === 'any' ? undefined : featured === 'yes',
+    styleSlug: styleSlug.length > 0 ? styleSlug : undefined,
+  })
 }
 
 /** Per-request memo. Every caller but `/projects` wants exactly this. */
@@ -256,33 +270,6 @@ export function getPublishedProjects(options: ProjectListOptions = {}): Promise<
 /**
  * The whole published run, cached ACROSS requests — for `/projects`, and only
  * for `/projects`.
- *
- * Two caches, and they are not the same cache. `cache()` above is React's
- * per-request memo: it stops one render asking twice, which is what lets
- * `/projects` resolve its metadata and its body off one list. It expires with
- * the request, so on a route that cannot be prerendered it saves nothing
- * between visitors — and `/projects` is exactly that route, because it reads
- * `searchParams` for `?category=` and `?page=`. Every arrival paid the whole
- * data path again; every other public route was prerendered and paid it once,
- * at build.
- *
- * `unstable_cache` is the one that spans requests. The run is the same bytes for
- * everyone who asks — the category filter and the pager are applied to it in
- * memory, in the page — so the next visitor inside the window renders with no
- * database round trip at all.
- *
- * Deliberately a separate export rather than a cache bolted onto
- * `getPublishedProjects`. That function is also read by the admin homepage
- * builder, where a five-minute-old list of projects to feature is a bug, and it
- * would throw outright anywhere there is no incremental cache to talk to — a
- * seed or a maintenance script — which is not a failure mode a shared query
- * should acquire on behalf of one page.
- *
- * Freshness: `revalidateProject()` already calls `revalidatePath('/projects')`
- * after every publish, reorder and delete, and `unstable_cache` files each entry
- * under the soft tag of the path that populated it, so an edit lands
- * immediately. The window below is the bound if that call is ever dropped, and
- * `PROJECTS_TAG` is the explicit handle for a `revalidateTag`.
  */
 export const getPublishedIndex = cache(
   unstable_cache(async (): Promise<ProjectSummary[]> => readPublishedProjects(0, '', 'any'), ['published-index'], {
@@ -292,12 +279,20 @@ export const getPublishedIndex = cache(
 )
 
 export const getAllProjectSlugs = cache(async (): Promise<string[]> => {
-  const rows = await db
-    .select({ slug: projects.slug })
-    .from(projects)
-    .where(publishedFilter())
-    .orderBy(asc(projects.order))
-  return rows.map((row) => row.slug)
+  try {
+    const rows = await db
+      .select({ slug: projects.slug })
+      .from(projects)
+      .where(publishedFilter())
+      .orderBy(asc(projects.order))
+    if (rows && rows.length > 0) {
+      return rows.map((row) => row.slug)
+    }
+  } catch {
+    console.warn('[projects] db slug query failed, using static fallback')
+  }
+
+  return getStaticPublishedProjects().map((p) => p.slug)
 })
 
 /* ---------------------------------- detail --------------------------------- */
@@ -371,16 +366,24 @@ async function toDetail(row: ProjectJoinRow): Promise<ProjectDetail> {
 }
 
 export const getProjectBySlug = cache(async (slug: string): Promise<ProjectDetail | null> => {
-  const rows = await db
-    .select(projectSelection)
-    .from(projects)
-    .leftJoin(categories, eq(projects.categoryId, categories.id))
-    .leftJoin(media, eq(projects.coverMediaId, media.id))
-    .where(and(eq(projects.slug, slug), publishedFilter()))
-    .limit(1)
+  try {
+    const rows = await db
+      .select(projectSelection)
+      .from(projects)
+      .leftJoin(categories, eq(projects.categoryId, categories.id))
+      .leftJoin(media, eq(projects.coverMediaId, media.id))
+      .where(and(eq(projects.slug, slug), publishedFilter()))
+      .limit(1)
 
-  const row = rows[0]
-  return row ? toDetail(row) : null
+    const row = rows[0]
+    if (row) {
+      return await toDetail(row)
+    }
+  } catch {
+    console.warn(`[projects] db query failed for slug "${slug}", using static fallback`)
+  }
+
+  return getStaticProjectDetail(slug)
 })
 
 /**

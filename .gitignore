@@ -20,3 +20,8 @@ docs/survey-shots/
 
 # Scratch space for the measuring scripts (perf.ts, verify-3d.ts).
 .tmp/
+
+# Raw image sources (processed into public/media)
+FILE CÔNG TRÌNH GU BUILDING/
+.agents/
+

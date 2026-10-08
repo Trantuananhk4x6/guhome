@@ -14,6 +14,7 @@ import type { ProjectSummary } from '@/types/content'
 
 import { ContactForm } from './_components/ContactForm'
 import { Reveal, TextReveal } from './_components/motion'
+import { OpenSocialModalButton, SocialTrigger } from '@/components/layout/SocialTrigger'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -260,20 +261,22 @@ export default async function ContactPage() {
 
                 {brand.social.length > 0 ? (
                   <Detail label="Theo dõi">
-                    <ul className="flex flex-wrap gap-x-8 gap-y-3">
-                      {brand.social.map((item) => (
-                        <li key={item.href}>
-                          <a
-                            href={item.href}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            className="u-label text-ink transition-colors duration-500 ease-editorial hover:text-accent"
-                          >
-                            {item.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="flex flex-col gap-3">
+                      <ul className="flex flex-wrap gap-x-8 gap-y-3">
+                        {brand.social.map((item) => (
+                          <li key={item.href}>
+                            <SocialTrigger
+                              label={item.label}
+                              href={item.href}
+                              className="u-label text-ink transition-colors duration-500 ease-editorial hover:text-accent"
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="pt-1">
+                        <OpenSocialModalButton className="text-accent hover:text-ink text-[0.8125rem]" />
+                      </div>
+                    </div>
                   </Detail>
                 ) : null}
               </div>

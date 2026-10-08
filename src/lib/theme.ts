@@ -134,10 +134,11 @@ export const DEFAULT_BRAND: BrandConfig = {
   phone: '0368 757 916',
   address: '14 Đường 41, Phường An Khánh, TP. Hồ Chí Minh',
   social: [
-    { label: 'Instagram', href: 'https://www.instagram.com/guhomes.vn' },
-    { label: 'Behance', href: 'https://www.behance.net/guhomes' },
-    { label: 'Pinterest', href: 'https://www.pinterest.com/guhomes' },
-    { label: 'Facebook', href: 'https://www.facebook.com/guhomes.vn' },
+    { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61594054897878' },
+    { label: 'Zalo', href: 'https://zalo.me/0368757916' },
+    { label: 'YouTube', href: 'https://www.youtube.com/@guconcept' },
+    { label: 'Instagram', href: 'https://www.instagram.com/guconcept.vn' },
+    { label: 'TikTok', href: 'https://www.tiktok.com/@guconcept' },
   ],
 }
 

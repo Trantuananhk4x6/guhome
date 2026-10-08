@@ -29,8 +29,8 @@ import type { HomeSectionProps } from './types'
  * city) and stops.
  */
 const BODY_FALLBACK: readonly string[] = [
-  'Studio làm nội thất và kiến trúc ở TP. Hồ Chí Minh. Gần như toàn bộ công trình nằm trong thành phố, nên tuần nào cũng có người của studio đứng ở công trường.',
-  'Mỗi căn bắt đầu bằng một buổi đo và một buổi ngồi nghe. Bảng vật liệu chốt sau hai buổi đó.',
+  'GuHomes là đơn vị chuyên sâu về thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu tại TP. Hồ Chí Minh. Chúng tôi kiên định theo đuổi sự tận tâm chân thành, quy trình minh bạch rõ ràng và sở hữu xưởng gia công mộc trực tiếp tại Quận 12.',
+  'Mỗi ngôi nhà bắt đầu bằng một buổi đo hiện trạng và một buổi ngồi lắng nghe nếp sống thật của gia đình. Studio nhận tối đa mười hai công trình một năm để cùng một người theo suốt từ ngày đầu đến lúc trao chìa khóa.',
 ]
 
 /**
@@ -167,9 +167,17 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
 
         {/* Row two of the left column: the action sits on the portrait's bottom
             edge at desktop, and follows the copy on a phone. */}
-        <div className="col-span-12 lg:col-span-3 lg:col-start-1 lg:row-start-2 lg:self-end">
-          <Button href="/studio" variant="underline" withArrow>
+        <div className="col-span-12 flex flex-wrap items-center gap-x-5 gap-y-3 lg:col-span-7 lg:col-start-1 lg:row-start-2 lg:self-end">
+          <Button href="/studio" variant="underline" withArrow className="font-medium text-ink hover:text-accent transition-colors">
             {cta}
+          </Button>
+          <span aria-hidden="true" className="hidden sm:inline text-line text-xs font-mono">/</span>
+          <Button href="/studio#tam-nhin-su-menh" variant="underline" className="text-muted hover:text-accent transition-colors">
+            Tầm nhìn & Sứ mệnh
+          </Button>
+          <span aria-hidden="true" className="hidden sm:inline text-line text-xs font-mono">/</span>
+          <Button href="/studio#gia-tri-cot-loi" variant="underline" className="text-muted hover:text-accent transition-colors">
+            Giá trị cốt lõi
           </Button>
         </div>
 

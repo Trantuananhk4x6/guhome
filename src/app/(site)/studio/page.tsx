@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 
 import { Button } from '@/components/ui/Button'
+import { CheckIcon } from '@/components/ui/icons'
 import { Label } from '@/components/ui/Label'
 import { Rule } from '@/components/ui/Rule'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { buildMetadata } from '@/lib/seo'
-import { pad2 } from '@/lib/utils'
+import { cn, pad2 } from '@/lib/utils'
 import { getPublishedProjects } from '@/server/queries/projects'
 import { getMaterials } from '@/server/queries/site'
 import type { ProjectSummary } from '@/types/content'
@@ -24,9 +25,87 @@ export const metadata: Metadata = buildMetadata({
 
 const FACTS: readonly { label: string; value: string }[] = [
   { label: 'Thành lập', value: '2016' },
-  { label: 'Địa bàn', value: 'TP. Hồ Chí Minh, và đi tỉnh khi công trình đáng để đi' },
-  { label: 'Thường làm', value: 'Căn hộ bàn giao thô, nhà phố, quán ăn và spa' },
-  { label: 'Nhịp làm việc', value: 'Mười hai công trình một năm, hết chỗ thì hẹn sang năm' },
+  { label: 'Địa bàn', value: 'TP. Hồ Chí Minh, và các tỉnh thành khi công trình đủ duyên' },
+  { label: 'Chuyên sâu', value: 'Thiết kế, thi công & sản xuất nội thất trọn gói theo yêu cầu' },
+  { label: 'Nhịp làm việc', value: 'Mười hai công trình một năm — đủ để KTS có mặt tại công trường mỗi tuần' },
+]
+
+interface Pillar {
+  badge: string
+  title: string
+  lead: string
+  body: string
+  commitments: readonly string[]
+}
+
+const VISION_DATA: Pillar = {
+  badge: 'Tầm nhìn dài hạn',
+  title: 'Trở thành studio kiến trúc – nội thất trọn gói biểu tượng tại Việt Nam.',
+  lead: 'Tiên phong định hình chuẩn mực không gian sống nguyên bản: mỗi ngôi nhà là một thực thể độc bản, hòa quyện vi khí hậu nhiệt đới, lưu giữ nếp sống riêng ("đúng Gu") và trường tồn cùng năm tháng.',
+  body: 'GuHomes không đo lường sự thành công bằng số lượng công trình trải dài khắp thành phố, mà bằng chiều sâu cảm xúc trong từng mét vuông được tạo tác. Chúng tôi kiên định theo đuổi con đường thủ công chuẩn mực: nơi thẩm mỹ không lấn át con người, nơi vật liệu mộc được thở cùng khí trời, và nơi mỗi góc nhà trở thành chốn neo đậu bình yên, cùng gia đình đi qua bao biến chuyển của cuộc đời một cách thanh lịch và ấm áp.',
+  commitments: [
+    'Thiết kế "may đo" cá nhân hóa — tôn trọng thói quen sinh hoạt và nếp sống thật của từng thành viên',
+    'Thích ứng vi khí hậu Sài Gòn: đón gió đối lưu tự nhiên, lấy sáng thông minh và chống ẩm bền bỉ',
+    'Mô hình trọn gói khép kín: từ ý niệm kiến trúc đến xưởng mộc gia công trực tiếp tại Quận 12',
+  ],
+}
+
+const MISSION_DATA: Pillar = {
+  badge: 'Sứ mệnh phụng sự',
+  title: 'Kiến tạo không gian, nâng tầm phong cách sống.',
+  lead: 'Chuyên sâu thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu của khách hàng — bằng sự tận tâm chân thành, quy trình minh bạch rõ ràng và kỷ luật công trường nghiêm cẩn.',
+  body: 'Sứ mệnh của GuHomes là hiện thực hóa trọn vẹn giấc mơ tổ ấm của gia chủ, giải phóng bạn khỏi mọi âu lo, căng thẳng và sự bất an thường trực trong hành trình xây dựng. Bằng xưởng gia công mộc trực tiếp, quy trình khép kín rõ ràng từ bản vẽ ý niệm đến ngày lắp đặt hoàn thiện, và sự tận tâm nghiêm cẩn với từng mối ghép, chúng tôi trao gửi một không gian sống đủ ấm cúng để trở về, đủ tĩnh lặng để lắng nghe chính mình, và đủ tinh tế để tự hào đón tiếp người thân quý.',
+  commitments: [
+    'Dự toán minh bạch tuyệt đối — nói giá trước khi vẽ, không chi phí ẩn, không phát sinh bất ngờ',
+    'Kiểm soát chất lượng đồng bộ từ xưởng sản xuất đến hiện trường lắp đặt ngoài thực tế',
+    'Cùng một người đồng hành: từ buổi lắng nghe đầu tiên đến ngày trao chìa khóa vào tay gia chủ',
+  ],
+}
+
+interface CoreValue {
+  number: string
+  tag: string
+  title: string
+  subtitle: string
+  body: string
+}
+
+const CORE_VALUES: readonly CoreValue[] = [
+  {
+    number: '01',
+    tag: 'Tâm & Tín',
+    title: 'Chữ Tín Làm Đầu',
+    subtitle: 'Nói thật, làm thật và chịu trách nhiệm đến cùng.',
+    body: 'Chữ Tín là sinh mệnh của GuHomes. Giữa một thị trường nhiều lời hứa hoa mỹ, chúng tôi chọn minh bạch từng con số dự toán ngay từ buổi đầu, không giấu chi phí và không vẽ thêm thứ không phục vụ đời sống gia chủ. Đã cam kết loại gỗ, loại đá nào thì nhập đúng loại đá đó; đã hẹn ngày dọn vào thì không để gia chủ phải chờ. Sự trung thực với vật liệu và trách nhiệm trọn vẹn là lời hứa danh dự của người làm nghề.',
+  },
+  {
+    number: '02',
+    tag: 'Độc bản',
+    title: 'Đúng "Gu" Bản Sắc',
+    subtitle: 'May đo theo nếp sống thật, không sao chép khuôn mẫu có sẵn.',
+    body: 'Không có căn nhà thứ hai giống căn nhà của bạn. GuHomes không áp đặt cái tôi của kiến trúc sư lên người ở, mà kiên nhẫn ngồi nghe bạn kể về thói quen sinh hoạt: bữa tối thích quây quần ở bàn ăn hay ăn vội ở đảo bếp, ai là người về sau cùng bật ngọn đèn nào, thói quen đọc sách bên bậu cửa sổ. Chúng tôi chép lại và chuyển hóa những điều thầm kín ấy thành ngôn ngữ hình khối, ánh sáng và vật liệu riêng biệt của riêng bạn.',
+  },
+  {
+    number: '03',
+    tag: 'Kỷ luật & Xưởng mộc',
+    title: 'Chuẩn Mực & Tỉ Mỉ',
+    subtitle: 'Vẽ tới chỗ người thợ không còn phải đoán; gia công sắc nét từng milimet.',
+    body: 'Một bộ hồ sơ kỹ thuật chi tiết tiết kiệm nhiều tiền hơn mọi cuộc mặc cả với thợ thầu. Tại GuHomes, từng khe co ngót gỗ, đường chỉ ron đá, đến hướng vân khi ghép hai tấm ván đều được quy định chặt chẽ trên bản vẽ. Cùng với xưởng sản xuất nội thất trực tiếp với đội ngũ thợ lành nghề, chúng tôi kiểm soát chất lượng từ phôi gỗ đến lớp hoàn thiện, để sản phẩm ngoài đời thực luôn sắc sảo, đằm thắm và tinh tế hơn cả phối cảnh 3D.',
+  },
+  {
+    number: '04',
+    tag: 'Thấu hiểu bản địa',
+    title: 'Bền Vững Nhiệt Đới',
+    subtitle: 'Thiết kế thích ứng với nắng gắt và độ ẩm 80% của Sài Gòn.',
+    body: 'Độ ẩm 75–80% quanh năm và những cơn mưa rào bất chợt là người thầy khắt khe nhất của studio. GuHomes ưu tiên những vật liệu có lỗ thở tự nhiên: đá travertine, gỗ tự nhiên lau dầu, vữa vôi thủ công, đồng thau mộc — những chất liệu không sợ thời tiết mà càng đi qua năm tháng, càng trầm tích vẻ đẹp của sự phong sương và ấm áp.',
+  },
+  {
+    number: '05',
+    tag: 'Trọng tâm duy nhất',
+    title: 'Your Success, Our Focus',
+    subtitle: 'Sự an tâm và nụ cười của bạn là đích đến cuối cùng.',
+    body: '"Cùng một người từ buổi gặp đầu đến khi tháo giàn giáo." Người ngồi lắng nghe những băn khoăn của bạn hôm đầu cũng là người leo giàn giáo kiểm tra mối nối vào tháng thứ tám, không qua bất kỳ khâu trung gian nào để câu bạn dặn rơi mất dọc đường. Sự bình yên và nụ cười hài lòng khi bạn mở cánh cửa bước vào tổ ấm mới chính là thành công trọn vẹn nhất của GuHomes.',
+  },
 ]
 
 const PHILOSOPHY: readonly string[] = [
@@ -136,14 +215,24 @@ const FALLBACK_MATERIALS: readonly { name: string; description: string }[] = [
 
 /* ---------------------------------- page ---------------------------------- */
 
-function captionFor(project: ProjectSummary): string {
+function captionFor(project?: ProjectSummary): string {
+  if (!project) return ''
   return [project.title, project.location].filter((part): part is string => Boolean(part)).join(' · ')
 }
 
+function withTimeout<T>(promise: Promise<T>, ms: number, fallback: T): Promise<T> {
+  return Promise.race([
+    promise.catch(() => fallback),
+    new Promise<T>((resolve) => setTimeout(() => resolve(fallback), ms)),
+  ])
+}
+
 export default async function StudioPage() {
-  const featured = await getPublishedProjects({ featured: true, limit: 6 })
-  const projects = featured.length > 0 ? featured : await getPublishedProjects({ limit: 6 })
-  const materials = await getMaterials()
+  const [featured, materials] = await Promise.all([
+    withTimeout(getPublishedProjects({ featured: true, limit: 6 }), 1500, [] as ProjectSummary[]),
+    withTimeout(getMaterials(), 1500, []),
+  ])
+  const projects = featured
 
   const hero = projects[0]
   const portrait = projects[1]
@@ -254,6 +343,203 @@ export default async function StudioPage() {
         </div>
       </section>
 
+      {/* --------------------------- vision & mission ---------------------------- */}
+      <section id="tam-nhin-su-menh" className="u-gutter mt-[var(--spacing-section)]">
+        <div className="mx-auto w-full max-w-[110rem]">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Tầm nhìn & Sứ mệnh"
+              index={2}
+              title="Kiến tạo không gian, nâng tầm phong cách sống."
+              lead="Kế thừa nền tảng xây dựng và sản xuất nội thất trọn gói từ năm 2016, GuHomes xác lập một định hướng kiên định: mỗi ngôi nhà là một giải pháp không gian toàn diện, tối ưu hóa công năng, thích ứng vi khí hậu bản địa và cá nhân hóa thẩm mỹ ('đúng Gu') cho từng gia chủ."
+            />
+          </Reveal>
+
+          <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-14">
+            {/* Tầm nhìn (Vision) Card - Warm Architectural Paper Monograph */}
+            <Reveal delay={0.08} className="group relative flex flex-col justify-between overflow-hidden border border-line bg-surface p-8 sm:p-12 transition-all duration-500 hover:border-accent hover:shadow-[0_20px_50px_rgba(160,119,83,0.12)]">
+              {/* Architectural Precision Corner Brackets */}
+              <div aria-hidden="true" className="pointer-events-none absolute top-0 left-0 h-4 w-4 border-t-2 border-l-2 border-accent/40 transition-colors duration-500 group-hover:border-accent" />
+              <div aria-hidden="true" className="pointer-events-none absolute top-0 right-0 h-4 w-4 border-t-2 border-r-2 border-accent/40 transition-colors duration-500 group-hover:border-accent" />
+              <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 h-4 w-4 border-b-2 border-l-2 border-accent/40 transition-colors duration-500 group-hover:border-accent" />
+              <div aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 h-4 w-4 border-b-2 border-r-2 border-accent/40 transition-colors duration-500 group-hover:border-accent" />
+
+              {/* Architectural Monogram Watermark */}
+              <span aria-hidden="true" className="pointer-events-none absolute -right-4 -bottom-6 select-none font-display text-[7.5rem] font-bold tracking-tighter text-ink/[0.03] transition-all duration-700 group-hover:text-accent/[0.07] group-hover:scale-105">
+                VISION
+              </span>
+
+              <div className="relative z-10">
+                <div className="flex items-center justify-between border-b border-line pb-4">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3.5 py-1 text-[0.75rem] font-medium tracking-wide text-accent uppercase">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                    {VISION_DATA.badge}
+                  </span>
+                  <span className="font-mono text-[0.8125rem] text-muted">01 / 02</span>
+                </div>
+                <h3 className="mt-6 font-display text-[1.625rem] font-normal leading-[1.3] text-ink sm:text-[1.875rem] transition-colors duration-300 group-hover:text-accent">
+                  {VISION_DATA.title}
+                </h3>
+                <p className="mt-4 font-body text-[1rem] font-medium leading-[1.75] text-ink/90">
+                  {VISION_DATA.lead}
+                </p>
+                <p className="mt-4 font-body text-[0.9375rem] leading-[1.85] text-ink/75">
+                  {VISION_DATA.body}
+                </p>
+              </div>
+
+              <div className="relative z-10 mt-8 border-t border-line pt-6">
+                <span className="u-label text-muted">Trọng tâm định hướng:</span>
+                <ul className="mt-4 flex flex-col gap-3">
+                  {VISION_DATA.commitments.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3 font-body text-[0.875rem] text-ink/80 transition-colors duration-300 hover:text-ink">
+                      <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent shadow-xs">
+                        <CheckIcon className="h-3 w-3" />
+                      </span>
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+
+            {/* Sứ mệnh (Mission) Card - Deep Espresso Lacquer High-Contrast */}
+            <Reveal delay={0.16} className="group relative flex flex-col justify-between overflow-hidden border border-line bg-espresso text-canvas p-8 sm:p-12 transition-all duration-500 hover:border-accent-soft hover:shadow-[0_20px_50px_rgba(19,18,16,0.25)]">
+              {/* Architectural Precision Corner Brackets in Gold */}
+              <div aria-hidden="true" className="pointer-events-none absolute top-0 left-0 h-4 w-4 border-t-2 border-l-2 border-accent-soft/40 transition-colors duration-500 group-hover:border-accent-soft" />
+              <div aria-hidden="true" className="pointer-events-none absolute top-0 right-0 h-4 w-4 border-t-2 border-r-2 border-accent-soft/40 transition-colors duration-500 group-hover:border-accent-soft" />
+              <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 h-4 w-4 border-b-2 border-l-2 border-accent-soft/40 transition-colors duration-500 group-hover:border-accent-soft" />
+              <div aria-hidden="true" className="pointer-events-none absolute bottom-0 right-0 h-4 w-4 border-b-2 border-r-2 border-accent-soft/40 transition-colors duration-500 group-hover:border-accent-soft" />
+
+              {/* Architectural Monogram Watermark */}
+              <span aria-hidden="true" className="pointer-events-none absolute -right-4 -bottom-6 select-none font-display text-[7.5rem] font-bold tracking-tighter text-canvas/[0.03] transition-all duration-700 group-hover:text-accent-soft/[0.08] group-hover:scale-105">
+                MISSION
+              </span>
+
+              <div className="relative z-10">
+                <div className="flex items-center justify-between border-b border-canvas/15 pb-4">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-accent-soft/40 bg-accent/20 px-3.5 py-1 text-[0.75rem] font-medium tracking-wide text-accent-soft uppercase">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent-soft animate-pulse" />
+                    {MISSION_DATA.badge}
+                  </span>
+                  <span className="font-mono text-[0.8125rem] text-canvas/50">02 / 02</span>
+                </div>
+                <h3 className="mt-6 font-display text-[1.625rem] font-normal leading-[1.3] text-canvas sm:text-[1.875rem] transition-colors duration-300 group-hover:text-accent-soft">
+                  {MISSION_DATA.title}
+                </h3>
+                <p className="mt-4 font-body text-[1rem] font-medium leading-[1.75] text-canvas/90">
+                  {MISSION_DATA.lead}
+                </p>
+                <p className="mt-4 font-body text-[0.9375rem] leading-[1.85] text-canvas/70">
+                  {MISSION_DATA.body}
+                </p>
+              </div>
+
+              <div className="relative z-10 mt-8 border-t border-canvas/15 pt-6">
+                <span className="u-label text-canvas/50">Cam kết hành động:</span>
+                <ul className="mt-4 flex flex-col gap-3">
+                  {MISSION_DATA.commitments.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3 font-body text-[0.875rem] text-canvas/85 transition-colors duration-300 hover:text-canvas">
+                      <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/30 text-accent-soft shadow-xs">
+                        <CheckIcon className="h-3 w-3" />
+                      </span>
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------------------- core values -------------------------------- */}
+      <section id="gia-tri-cot-loi" className="u-gutter mt-[var(--spacing-section)]">
+        <div className="mx-auto w-full max-w-[110rem]">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Giá trị cốt lõi"
+              index={3}
+              title={`"Your Success, Our Focus" — Năm điều giữ chúng tôi đi đúng hướng.`}
+              lead="Văn hóa doanh nghiệp của GuHomes được xây dựng trên nền tảng chữ TÍN và triết lý lấy sự an tâm, hạnh phúc của gia chủ làm trọng tâm duy nhất. Đây là năm chuẩn mực chúng tôi dùng để soi chiếu trong từng bản vẽ, từng buổi duyệt vật liệu và từng giờ có mặt tại công trường."
+            />
+          </Reveal>
+
+          <Reveal stagger={0.08} className="mt-16">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {CORE_VALUES.map((val) => {
+                const isHero = val.number === '05'
+                return (
+                  <div
+                    key={val.number}
+                    data-reveal-item
+                    className={cn(
+                      'group relative flex flex-col justify-between overflow-hidden border border-line bg-surface p-8 transition-all duration-500 hover:border-accent hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/5',
+                      isHero
+                        ? 'border-accent/40 bg-gradient-to-br from-surface via-surface to-surface-alt lg:col-span-2'
+                        : 'lg:col-span-1',
+                    )}
+                  >
+                    {/* Top Accent Gradient Line on Hover */}
+                    <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-accent via-accent-soft to-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+                    {/* Watermark Number */}
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute right-6 top-3 select-none font-display text-[5.5rem] font-bold leading-none text-ink/[0.04] transition-all duration-700 group-hover:text-accent/[0.12] group-hover:translate-x-1 group-hover:-translate-y-1"
+                    >
+                      {val.number}
+                    </span>
+
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between border-b border-line pb-4">
+                        <span className="font-mono text-[0.875rem] font-semibold text-accent">{val.number}</span>
+                        <span className="rounded-full border border-line bg-canvas/70 px-3 py-1 font-mono text-[0.6875rem] font-medium tracking-wider text-muted group-hover:border-accent/40 group-hover:text-accent transition-colors duration-300">
+                          {val.tag}
+                        </span>
+                      </div>
+
+                      <div className={cn(isHero && 'lg:grid lg:grid-cols-12 lg:gap-8')}>
+                        <div className={cn(isHero ? 'lg:col-span-5' : 'w-full')}>
+                          <h3 className="mt-5 font-display text-[1.375rem] font-normal text-ink group-hover:text-accent transition-colors duration-300">
+                            {val.title}
+                          </h3>
+
+                          <p className="mt-2 font-body text-[0.875rem] font-medium leading-relaxed text-ink/85">
+                            {val.subtitle}
+                          </p>
+
+                          {isHero ? (
+                            <div className="mt-4 hidden lg:inline-flex items-center gap-2 rounded-sm border border-accent/30 bg-accent/10 px-3 py-1 text-[0.6875rem] font-medium uppercase tracking-wider text-accent">
+                              <span>★ Triết lý nền tảng GuHomes</span>
+                            </div>
+                          ) : null}
+                        </div>
+
+                        <div className={cn(isHero ? 'lg:col-span-7' : 'w-full')}>
+                          <p className="mt-4 font-body text-[0.875rem] leading-[1.8] text-muted group-hover:text-ink/80 transition-colors duration-300">
+                            {val.body}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="relative z-10 mt-6 flex items-center justify-between border-t border-line/60 pt-3">
+                      <span className="u-label text-[0.6875rem] text-accent/70 tracking-widest uppercase">
+                        GuHomes Standard
+                      </span>
+                      <span className="text-[0.6875rem] font-mono text-muted/60">
+                        Pillar {val.number}
+                      </span>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* --------------------------------- quote --------------------------------- */}
       <section className="mt-[var(--spacing-section)] bg-espresso py-[calc(var(--spacing-section)*0.85)] text-canvas">
         <div className="u-gutter">
@@ -287,7 +573,7 @@ export default async function StudioPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Quy trình"
-              index={2}
+              index={4}
               title="Bốn giai đoạn, và chỗ hay hỏng của từng giai đoạn."
               lead="Một căn hộ đi hết bốn giai đoạn này mất khoảng bảy tháng; nhà phố có phần xây thô thì gần gấp đôi. Con số ấy chúng tôi nói ngay từ buổi đầu, kể cả khi nghe xong bạn đổi ý."
             />
@@ -344,7 +630,7 @@ export default async function StudioPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Nguyên tắc"
-              index={3}
+              index={5}
               title="Sáu điều studio tự buộc vào mình."
               lead="Cả sáu đều trói chúng tôi chặt hơn trói bạn, và viết ra là để bạn có cái mà chỉ vào."
             />
@@ -374,7 +660,7 @@ export default async function StudioPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Vật liệu"
-              index={4}
+              index={6}
               title="Bảng vật liệu của studio hẹp đi theo từng năm."
               lead="Mỗi lần gạch một dòng khỏi bảng là một lần đã có công trình phải sửa. Thứ không trụ nổi qua mùa mưa thì gạch; nhà cung cấp lặng lẽ đổi công thức mà không báo thì cũng gạch. Những gì còn lại đã ở với chúng tôi đủ lâu để dám ký vào tờ bảo hành."
             />

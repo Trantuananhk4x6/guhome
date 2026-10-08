@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import type { BrandConfig, NavItem } from '@/types/content'
 
 import { groupNav } from './nav-fallback'
+import { OpenSocialModalButton, SocialTrigger } from './SocialTrigger'
 
 export interface FooterProps {
   nav: NavItem[]
@@ -181,17 +182,17 @@ export function Footer({ nav, brand, logo = null }: FooterProps) {
             <ul className="flex flex-col gap-3">
               {brand.social.map((social) => (
                 <li key={social.label}>
-                  <a
+                  <SocialTrigger
+                    label={social.label}
                     href={social.href}
-                    target="_blank"
-                    rel="noreferrer noopener"
                     className="text-[0.9375rem] text-canvas/60 transition-colors duration-500 hover:text-accent-soft"
-                  >
-                    {social.label}
-                  </a>
+                  />
                 </li>
               ))}
             </ul>
+            <div className="pt-2">
+              <OpenSocialModalButton />
+            </div>
           </div>
         </section>
 

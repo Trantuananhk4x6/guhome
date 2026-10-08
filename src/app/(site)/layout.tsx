@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { FALLBACK_FOOTER_NAV, FALLBACK_HEADER_NAV, withFallbackNav } from '@/components/layout/nav-fallback'
 import { ScrollProgress } from '@/components/layout/ScrollProgress'
+import { SocialModal } from '@/components/layout/SocialModal'
 import { mediaUrl } from '@/lib/media'
 import { getMediaMap } from '@/server/queries/media'
 import { getNavigation, getThemeSettings } from '@/server/queries/site'
@@ -45,6 +46,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
       </main>
 
       <Footer nav={withFallbackNav(footerNav, FALLBACK_FOOTER_NAV)} brand={theme.brand} logo={logo} />
+      <SocialModal />
     </div>
   )
 }

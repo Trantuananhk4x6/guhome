@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils'
 import type { BrandConfig, NavItem } from '@/types/content'
 
 import { groupNav, isLeadProjects } from './nav-fallback'
+import { useSocialModalStore } from '@/lib/social'
 
 export interface MobileMenuProps {
   id: string
@@ -246,18 +247,37 @@ export function MobileMenu({ id, open, onClose, nav, brand, logo = null }: Mobil
             {/* Four labels are 309px of type in a 335px row at 390 wide, so a single
                 line always drops one name onto a second row. Two columns on purpose. */}
             {brand.social.length > 0 ? (
-              <div className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-canvas/12 pt-6">
-                {brand.social.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="u-label w-fit text-canvas/55 transition-colors duration-300 hover:text-accent-soft"
-                  >
-                    {social.label}
-                  </a>
-                ))}
+              <div className="flex flex-col gap-3 border-t border-canvas/12 pt-6">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+                  {brand.social.map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      onClick={(e) => {
+                        if (!e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+                          e.preventDefault()
+                          onClose()
+                          useSocialModalStore.getState().openModal(social.label)
+                        }
+                      }}
+                      className="u-label w-fit text-canvas/60 transition-colors duration-300 hover:text-accent-soft"
+                    >
+                      {social.label}
+                    </a>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose()
+                    useSocialModalStore.getState().openModal()
+                  }}
+                  className="u-label text-left text-[0.75rem] text-accent-soft hover:text-canvas transition-colors duration-300 pt-1"
+                >
+                  Xem thông tin mạng xã hội & QR →
+                </button>
               </div>
             ) : null}
           </div>
