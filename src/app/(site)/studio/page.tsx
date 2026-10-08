@@ -20,6 +20,9 @@ import { WoodshopTourSection } from '@/components/studio/WoodshopTourSection'
 import { ConstructionTimelineDiary } from '@/components/projects/ConstructionTimelineDiary'
 import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesSection'
 import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvisory'
+import { ArchitecturalLightingLab } from '@/components/studio/ArchitecturalLightingLab'
+import { WoodJoineryExplorer } from '@/components/studio/WoodJoineryExplorer'
+import { TenEngineeringNormsSection } from '@/components/sections/TenEngineeringNormsSection'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -721,6 +724,9 @@ export default async function StudioPage() {
       {/* -------------------- tactile moodboard studio --------------------------- */}
       <TactileMoodboardStudio className="mt-[var(--spacing-section)]" />
 
+      {/* ----------------- architectural optical lighting lab -------------------- */}
+      <ArchitecturalLightingLab className="mt-[var(--spacing-section)]" />
+
       {/* -------------------- tropical weather advisory -------------------------- */}
       <TropicalWeatherAdvisory className="mt-[var(--spacing-section)]" />
 
@@ -730,8 +736,14 @@ export default async function StudioPage() {
       {/* --------------------------- woodshop tour ------------------------------- */}
       <WoodshopTourSection />
 
+      {/* ----------------------- wood joinery explorer --------------------------- */}
+      <WoodJoineryExplorer className="mt-[var(--spacing-section)]" />
+
       {/* ---------------------- construction timeline diary ----------------------- */}
       <ConstructionTimelineDiary className="mt-[var(--spacing-section)]" />
+
+      {/* -------------------- 10 engineering norms manifesto -------------------- */}
+      <TenEngineeringNormsSection className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------- client chronicles section ----------------------- */}
       <ClientChroniclesSection className="mt-[var(--spacing-section)]" />

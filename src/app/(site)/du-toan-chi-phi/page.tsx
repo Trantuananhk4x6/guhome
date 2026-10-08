@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SpatialBudgetCalculator } from '@/components/sections/SpatialBudgetCalculator'
 import { TactileMaterialLab } from '@/components/sections/TactileMaterialLab'
+import { TenEngineeringNormsSection } from '@/components/sections/TenEngineeringNormsSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -48,6 +49,9 @@ export default function DuToanChiPhiPage() {
       <div className="mt-[var(--spacing-section)]">
         <TactileMaterialLab />
       </div>
+
+      {/* 10 Engineering Norms Manifesto */}
+      <TenEngineeringNormsSection className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

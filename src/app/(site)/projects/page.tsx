@@ -73,6 +73,7 @@ import { ProjectLead } from '@/components/projects/ProjectLead'
 import { LookbookClimateFilter } from '@/components/projects/LookbookClimateFilter'
 import { ProjectsViewSwitcher } from '@/components/projects/ProjectsViewSwitcher'
 import { ConstructionTimelineDiary } from '@/components/projects/ConstructionTimelineDiary'
+import { WoodJoineryExplorer } from '@/components/studio/WoodJoineryExplorer'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -562,6 +563,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Construction Timeline Diary */}
           <ConstructionTimelineDiary className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Bespoke Traditional Wood Joinery Systems Explorer */}
+          <WoodJoineryExplorer className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>
