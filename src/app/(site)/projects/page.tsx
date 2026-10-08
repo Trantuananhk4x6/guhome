@@ -134,6 +134,7 @@ import { SaigonAcousticHarpsichordSanctuarySalon } from '@/components/studio/Sai
 import { SaigonZenKaresansuiGardenSanctuary } from '@/components/studio/SaigonZenKaresansuiGardenSanctuary'
 import { SaigonAcousticAccordionAndMusicBoxSanctuary } from '@/components/studio/SaigonAcousticAccordionAndMusicBoxSanctuary'
 import { SaigonAcousticOudSanctuarySalon } from '@/components/studio/SaigonAcousticOudSanctuarySalon'
+import { SaigonAcousticKlongPutSanctuaryPavilion } from '@/components/studio/SaigonAcousticKlongPutSanctuaryPavilion'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -807,6 +808,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Acoustic Oud Sanctuary Salon */}
           <SaigonAcousticOudSanctuarySalon className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Acoustic Klong Put Sanctuary Pavilion */}
+          <SaigonAcousticKlongPutSanctuaryPavilion className="mt-[clamp(4.5rem,10vh,8rem)]" />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />

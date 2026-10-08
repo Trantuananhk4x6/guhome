@@ -105,6 +105,8 @@ import { SaigonSunkenBonsaiAtriumSanctuary } from '@/components/studio/SaigonSun
 import { ArtisanPureSilverAgarwoodSnuffBottleAtelier } from '@/components/tools/ArtisanPureSilverAgarwoodSnuffBottleAtelier'
 import { SaigonVolcanicSlateMineralPoolPavilion } from '@/components/studio/SaigonVolcanicSlateMineralPoolPavilion'
 import { ArtisanDuanniZishaTeapotAtelier } from '@/components/tools/ArtisanDuanniZishaTeapotAtelier'
+import { SaigonSkyJungleBiofilterConservatory } from '@/components/studio/SaigonSkyJungleBiofilterConservatory'
+import { ArtisanRattanSilverWineSetVault } from '@/components/tools/ArtisanRattanSilverWineSetVault'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -461,6 +463,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Duanni Zisha Teapot Atelier */}
       <ArtisanDuanniZishaTeapotAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Sky Jungle Biofilter Conservatory */}
+      <SaigonSkyJungleBiofilterConservatory className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Rattan Silver Wine Set Vault */}
+      <ArtisanRattanSilverWineSetVault className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

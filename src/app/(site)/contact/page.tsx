@@ -67,6 +67,7 @@ import { ArtisanMotherOfPearlJewelryCasketAtelier } from '@/components/tools/Art
 import { ArtisanRattanCoreLacquerTeaCaddyAtelier } from '@/components/tools/ArtisanRattanCoreLacquerTeaCaddyAtelier'
 import { ArtisanPureSilverAgarwoodSnuffBottleAtelier } from '@/components/tools/ArtisanPureSilverAgarwoodSnuffBottleAtelier'
 import { ArtisanDuanniZishaTeapotAtelier } from '@/components/tools/ArtisanDuanniZishaTeapotAtelier'
+import { ArtisanRattanSilverWineSetVault } from '@/components/tools/ArtisanRattanSilverWineSetVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -504,6 +505,9 @@ export default async function ContactPage() {
 
       {/* Artisan Duanni Zisha Teapot Atelier */}
       <ArtisanDuanniZishaTeapotAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Rattan Silver Wine Set Vault */}
+      <ArtisanRattanSilverWineSetVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
