@@ -116,6 +116,9 @@ import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/Arti
 import { SaigonStainedGlassAtriumDomeSanctuary } from '@/components/studio/SaigonStainedGlassAtriumDomeSanctuary'
 import { SaigonAcousticPianoGrandSalon } from '@/components/studio/SaigonAcousticPianoGrandSalon'
 import { ArtisanBronzeBonsaiWaterFeatureAtelier } from '@/components/tools/ArtisanBronzeBonsaiWaterFeatureAtelier'
+import { SaigonStarlightFiberOpticCeilingVault } from '@/components/studio/SaigonStarlightFiberOpticCeilingVault'
+import { SaigonArtisanLacquerwareGallerySanctuary } from '@/components/studio/SaigonArtisanLacquerwareGallerySanctuary'
+import { ArtisanJapaneseTatamiChashitsuTeaAtelier } from '@/components/tools/ArtisanJapaneseTatamiChashitsuTeaAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1119,6 +1122,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan bronze bonsai water feature waterfall atelier ----- */}
       <ArtisanBronzeBonsaiWaterFeatureAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon starlight fiber optic ceiling vault 1600 stars ----- */}
+      <SaigonStarlightFiberOpticCeilingVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon artisan lacquerware gallery 18 steps sanctuary ---- */}
+      <SaigonArtisanLacquerwareGallerySanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan japanese tatami chashitsu dinh yen tea atelier ---- */}
+      <ArtisanJapaneseTatamiChashitsuTeaAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

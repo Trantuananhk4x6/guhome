@@ -47,6 +47,7 @@ import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangr
 import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhiskyLibraryAndCaskVault'
 import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/ArtisanIndoorMedicinalHerbGardenAtelier'
 import { ArtisanBronzeBonsaiWaterFeatureAtelier } from '@/components/tools/ArtisanBronzeBonsaiWaterFeatureAtelier'
+import { ArtisanJapaneseTatamiChashitsuTeaAtelier } from '@/components/tools/ArtisanJapaneseTatamiChashitsuTeaAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -424,6 +425,9 @@ export default async function ContactPage() {
 
       {/* Artisan Bronze Bonsai Water Feature Waterfall Atelier */}
       <ArtisanBronzeBonsaiWaterFeatureAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Japanese Tatami Chashitsu Dinh Yen Tea Atelier */}
+      <ArtisanJapaneseTatamiChashitsuTeaAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

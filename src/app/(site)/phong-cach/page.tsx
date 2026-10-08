@@ -80,6 +80,8 @@ import { SaigonMaritimeAntiqueMapLibraryVault } from '@/components/studio/Saigon
 import { ArtisanHinokiHydrotherapyOnsenVault } from '@/components/studio/ArtisanHinokiHydrotherapyOnsenVault'
 import { SaigonStainedGlassAtriumDomeSanctuary } from '@/components/studio/SaigonStainedGlassAtriumDomeSanctuary'
 import { SaigonAcousticPianoGrandSalon } from '@/components/studio/SaigonAcousticPianoGrandSalon'
+import { SaigonStarlightFiberOpticCeilingVault } from '@/components/studio/SaigonStarlightFiberOpticCeilingVault'
+import { SaigonArtisanLacquerwareGallerySanctuary } from '@/components/studio/SaigonArtisanLacquerwareGallerySanctuary'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -382,6 +384,12 @@ export default async function StylesPage() {
 
       {/* Saigon Acoustic Piano Grand Salon Steinway Mun Wood */}
       <SaigonAcousticPianoGrandSalon className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Starlight Fiber Optic Ceiling Vault 1600 Stars */}
+      <SaigonStarlightFiberOpticCeilingVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Artisan Lacquerware Gallery 18 Steps Sanctuary */}
+      <SaigonArtisanLacquerwareGallerySanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

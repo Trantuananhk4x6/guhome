@@ -65,6 +65,8 @@ import { ArtisanHinokiHydrotherapyOnsenVault } from '@/components/studio/Artisan
 import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/ArtisanIndoorMedicinalHerbGardenAtelier'
 import { SaigonAcousticPianoGrandSalon } from '@/components/studio/SaigonAcousticPianoGrandSalon'
 import { ArtisanBronzeBonsaiWaterFeatureAtelier } from '@/components/tools/ArtisanBronzeBonsaiWaterFeatureAtelier'
+import { SaigonArtisanLacquerwareGallerySanctuary } from '@/components/studio/SaigonArtisanLacquerwareGallerySanctuary'
+import { ArtisanJapaneseTatamiChashitsuTeaAtelier } from '@/components/tools/ArtisanJapaneseTatamiChashitsuTeaAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -300,6 +302,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Bronze Bonsai Water Feature Waterfall Atelier */}
       <ArtisanBronzeBonsaiWaterFeatureAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Artisan Lacquerware Gallery 18 Steps Sanctuary */}
+      <SaigonArtisanLacquerwareGallerySanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Japanese Tatami Chashitsu Dinh Yen Tea Atelier */}
+      <ArtisanJapaneseTatamiChashitsuTeaAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
