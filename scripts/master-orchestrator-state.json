@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 114,
+  "currentDirectiveIndex": 115,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -684,7 +684,13 @@
       "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
       "sentAt": "2026-10-08T20:07:50.979Z",
       "atStep": 9933
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T20:11:02.891Z",
+      "atStep": 10006
     }
   ],
-  "lastDispatchedAt": 1791490070979
+  "lastDispatchedAt": 1791490262891
 }
