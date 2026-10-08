@@ -400,5 +400,11 @@
       "commitMessage": "feat(sprint-67): add SaigonAcousticYangqinSanctuaryPavilion, SaigonBioNaturalEcoPoolSanctuary, and ArtisanHoangDanBrassInlayTeaTrayVault with 100% SEO pass"
     }
   ],
-  "lastDispatchedAt": 1791482640000
+  "lastDispatchedAt": 1791482642000,
+  "activeDirective": {
+    "directiveId": "dir-66-sprint-68-erhu-wildorchid-honeybowl",
+    "title": "Phòng Đàn Nhị Gỗ Mun, Vườn Địa Lan Phong Sương & Chén Trà Men Mật Ong",
+    "sentAt": "2026-10-08T18:04:02.000Z",
+    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
+  }
 }
