@@ -95,6 +95,9 @@ import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotani
 import { SaigonAudiophileVinylSanctuary } from '@/components/studio/SaigonAudiophileVinylSanctuary'
 import { SaigonRiversideOutdoorFirePitVault } from '@/components/studio/SaigonRiversideOutdoorFirePitVault'
 import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/PrivateHimalayanSaltCaveWellnessVault'
+import { SaigonFloatingOrchidAtelier } from '@/components/studio/SaigonFloatingOrchidAtelier'
+import { ArtisanSunkenKoiAquariumVault } from '@/components/studio/ArtisanSunkenKoiAquariumVault'
+import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbleSundialGardenVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1035,6 +1038,15 @@ export default async function StudioPage() {
 
       {/* ---------------- private himalayan salt cave halotherapy wellness vault -- */}
       <PrivateHimalayanSaltCaveWellnessVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon floating orchid zero-gravity cable atelier ------- */}
+      <SaigonFloatingOrchidAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan sunken koi aquarium walk-on glass 32mm vault ---- */}
+      <ArtisanSunkenKoiAquariumVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan marble sundial yen bai 10.7769N garden vault ---- */}
+      <ArtisanMarbleSundialGardenVault className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

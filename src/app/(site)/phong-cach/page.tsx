@@ -66,6 +66,8 @@ import { ArtisanHelicalRibbonStaircaseVault } from '@/components/studio/ArtisanH
 import { CollectorAutomotiveCleanroomVault } from '@/components/studio/CollectorAutomotiveCleanroomVault'
 import { SaigonAudiophileVinylSanctuary } from '@/components/studio/SaigonAudiophileVinylSanctuary'
 import { SaigonRiversideOutdoorFirePitVault } from '@/components/studio/SaigonRiversideOutdoorFirePitVault'
+import { SaigonFloatingOrchidAtelier } from '@/components/studio/SaigonFloatingOrchidAtelier'
+import { ArtisanSunkenKoiAquariumVault } from '@/components/studio/ArtisanSunkenKoiAquariumVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -326,6 +328,12 @@ export default async function StylesPage() {
 
       {/* Saigon Riverside Outdoor Fire Pit Sunken Lounge Vault */}
       <SaigonRiversideOutdoorFirePitVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Floating Orchid Zero-Gravity Cable Atelier */}
+      <SaigonFloatingOrchidAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Sunken Koi Aquarium Walk-On Glass 32mm Vault */}
+      <ArtisanSunkenKoiAquariumVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

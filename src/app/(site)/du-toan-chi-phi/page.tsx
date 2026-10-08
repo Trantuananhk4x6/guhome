@@ -51,6 +51,8 @@ import { CollectorAutomotiveCleanroomVault } from '@/components/studio/Collector
 import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotanicalCurtainAtelier'
 import { SaigonRiversideOutdoorFirePitVault } from '@/components/studio/SaigonRiversideOutdoorFirePitVault'
 import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/PrivateHimalayanSaltCaveWellnessVault'
+import { ArtisanSunkenKoiAquariumVault } from '@/components/studio/ArtisanSunkenKoiAquariumVault'
+import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbleSundialGardenVault'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -244,6 +246,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Private Himalayan Salt Cave Halotherapy Wellness Vault */}
       <PrivateHimalayanSaltCaveWellnessVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Sunken Koi Aquarium Walk-On Glass 32mm Vault */}
+      <ArtisanSunkenKoiAquariumVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Marble Sundial Yen Bai 10.7769N Garden Vault */}
+      <ArtisanMarbleSundialGardenVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

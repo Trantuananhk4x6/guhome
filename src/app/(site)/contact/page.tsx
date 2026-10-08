@@ -40,6 +40,7 @@ import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/Rive
 import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamilySanctuaryPanicRoom'
 import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotanicalCurtainAtelier'
 import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/PrivateHimalayanSaltCaveWellnessVault'
+import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbleSundialGardenVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -396,6 +397,9 @@ export default async function ContactPage() {
 
       {/* Private Himalayan Salt Cave Halotherapy Wellness Vault */}
       <PrivateHimalayanSaltCaveWellnessVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Marble Sundial Yen Bai 10.7769N Garden Vault */}
+      <ArtisanMarbleSundialGardenVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
