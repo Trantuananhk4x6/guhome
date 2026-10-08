@@ -100,7 +100,7 @@ const QUESTIONS: readonly QuizQuestion[] = [
       },
       {
         id: 'q3-b',
-        label: 'Căn hộ 2–3 phòng ngủ / Nhà phố (80m² – 160m²)',
+        label: 'Căn hộ 2-3 phòng ngủ / Nhà phố (80m² - 160m²)',
         description: 'Cân bằng giữa không gian sinh hoạt chung rộng mở và phòng ngủ riêng tư sâu lắng.',
         stylePoints: { wabiSabi: 2, japandi: 2, modernLuxury: 2, contemporary: 2 },
       },
@@ -167,7 +167,11 @@ const STYLE_RESULTS: Record<string, StyleResult> = {
   },
 }
 
-export function StyleQuizSection() {
+export interface StyleQuizSectionProps {
+  className?: string
+}
+
+export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [result, setResult] = useState<StyleResult | null>(null)
@@ -219,7 +223,10 @@ export function StyleQuizSection() {
     <section
       id="la-ban-tim-gu"
       data-home-section="STYLE_QUIZ"
-      className="u-gutter relative isolate bg-canvas py-[clamp(4.5rem,10vh,8rem)] text-ink overflow-hidden border-t border-line/60"
+      className={cn(
+        'u-gutter relative isolate bg-canvas py-[clamp(4.5rem,10vh,8rem)] text-ink overflow-hidden border-t border-line/60',
+        className
+      )}
     >
       <div className="mx-auto w-full max-w-[100rem] relative z-10">
         {/* Section Heading */}

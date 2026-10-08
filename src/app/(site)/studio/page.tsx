@@ -167,6 +167,9 @@ import { ArtisanHandmadeCloisonneEnamelTeaSetAtelier } from '@/components/tools/
 import { SaigonAcousticHarpsichordSanctuarySalon } from '@/components/studio/SaigonAcousticHarpsichordSanctuarySalon'
 import { SaigonTranslucentOnyxWaterfallSanctuary } from '@/components/studio/SaigonTranslucentOnyxWaterfallSanctuary'
 import { ArtisanMotherOfPearlJewelryCasketAtelier } from '@/components/tools/ArtisanMotherOfPearlJewelryCasketAtelier'
+import { SaigonZenKaresansuiGardenSanctuary } from '@/components/studio/SaigonZenKaresansuiGardenSanctuary'
+import { SaigonAcousticTraditionalLuteSanctuary } from '@/components/studio/SaigonAcousticTraditionalLuteSanctuary'
+import { ArtisanRattanCoreLacquerTeaCaddyAtelier } from '@/components/tools/ArtisanRattanCoreLacquerTeaCaddyAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1323,6 +1326,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan mother of pearl jewelry casket atelier ---------- */}
       <ArtisanMotherOfPearlJewelryCasketAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- zen karesansui garden sanctuary ------------------------- */}
+      <SaigonZenKaresansuiGardenSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- acoustic traditional lute sanctuary -------------------- */}
+      <SaigonAcousticTraditionalLuteSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan rattan core lacquer tea caddy atelier ----------- */}
+      <ArtisanRattanCoreLacquerTeaCaddyAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

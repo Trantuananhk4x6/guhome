@@ -131,6 +131,8 @@ import { SaigonAcousticLithophoneSanctuary } from '@/components/studio/SaigonAco
 import { SaigonAcousticGlassArmonicaSanctuary } from '@/components/studio/SaigonAcousticGlassArmonicaSanctuary'
 import { SaigonAcousticThereminSanctuary } from '@/components/studio/SaigonAcousticThereminSanctuary'
 import { SaigonAcousticHarpsichordSanctuarySalon } from '@/components/studio/SaigonAcousticHarpsichordSanctuarySalon'
+import { SaigonZenKaresansuiGardenSanctuary } from '@/components/studio/SaigonZenKaresansuiGardenSanctuary'
+import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -794,6 +796,12 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Acoustic Harpsichord Sanctuary Salon */}
           <SaigonAcousticHarpsichordSanctuarySalon className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Zen Karesansui Garden Sanctuary */}
+          <SaigonZenKaresansuiGardenSanctuary className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Bespoke Spatial Lookbook Showcase */}
+          <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

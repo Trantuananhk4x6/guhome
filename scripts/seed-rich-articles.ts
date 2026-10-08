@@ -67,7 +67,7 @@ async function run() {
   console.log('Theme settings updated successfully!')
 
   // Rich articles to upsert
-  const newArticles = [
+  const newArticles: ArticleSeedItem[] = [
     {
       slug: 'thiet-ke-noi-that-penthouse-the-opera-metropole',
       title: 'Thiết kế nội thất Penthouse The Opera Metropole: Đối thoại cùng dòng sông Sài Gòn và ánh sáng đương đại',

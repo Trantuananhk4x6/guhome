@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 48,
+  "currentDirectiveIndex": 49,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -290,12 +290,11 @@
       "atStep": 6669
     },
     {
-      "directiveId": "dir-60-sprint-62-harpsichord-onyxwaterfall-jewelrycasket",
-      "title": "Phòng Clavecin Baroque, Thác Đá Onyx Xuyên Sáng & Hộp Trang Sức Hoàng Đàn Khảm Ốc",
-      "completedAt": "2026-10-08T17:30:30.000Z",
-      "status": "COMPLETED_100_PERCENT",
-      "commitMessage": "feat(sprint-62): add SaigonAcousticHarpsichordSanctuarySalon, SaigonTranslucentOnyxWaterfallSanctuary, and ArtisanMotherOfPearlJewelryCasketAtelier with 100% SEO pass"
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T17:36:20.763Z",
+      "atStep": 6849
     }
   ],
-  "lastDispatchedAt": 1791480630000
+  "lastDispatchedAt": 1791480980763
 }

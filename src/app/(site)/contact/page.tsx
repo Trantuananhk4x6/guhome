@@ -64,6 +64,7 @@ import { ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier } from '@/component
 import { ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier } from '@/components/tools/ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier'
 import { ArtisanHandmadeCloisonneEnamelTeaSetAtelier } from '@/components/tools/ArtisanHandmadeCloisonneEnamelTeaSetAtelier'
 import { ArtisanMotherOfPearlJewelryCasketAtelier } from '@/components/tools/ArtisanMotherOfPearlJewelryCasketAtelier'
+import { ArtisanRattanCoreLacquerTeaCaddyAtelier } from '@/components/tools/ArtisanRattanCoreLacquerTeaCaddyAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -492,6 +493,9 @@ export default async function ContactPage() {
 
       {/* Artisan Mother Of Pearl Jewelry Casket Atelier */}
       <ArtisanMotherOfPearlJewelryCasketAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Rattan Core Lacquer Tea Caddy Atelier */}
+      <ArtisanRattanCoreLacquerTeaCaddyAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

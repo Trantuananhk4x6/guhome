@@ -99,6 +99,9 @@ import { ArtisanSaigonMonolithicQuartzCrystalWaterfallVault } from '@/components
 import { ArtisanHandmadeCloisonneEnamelTeaSetAtelier } from '@/components/tools/ArtisanHandmadeCloisonneEnamelTeaSetAtelier'
 import { SaigonTranslucentOnyxWaterfallSanctuary } from '@/components/studio/SaigonTranslucentOnyxWaterfallSanctuary'
 import { ArtisanMotherOfPearlJewelryCasketAtelier } from '@/components/tools/ArtisanMotherOfPearlJewelryCasketAtelier'
+import { SaigonAcousticTraditionalLuteSanctuary } from '@/components/studio/SaigonAcousticTraditionalLuteSanctuary'
+import { ArtisanRattanCoreLacquerTeaCaddyAtelier } from '@/components/tools/ArtisanRattanCoreLacquerTeaCaddyAtelier'
+import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -436,6 +439,15 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Mother Of Pearl Jewelry Casket Atelier */}
       <ArtisanMotherOfPearlJewelryCasketAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Traditional Lute Sanctuary */}
+      <SaigonAcousticTraditionalLuteSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Rattan Core Lacquer Tea Caddy Atelier */}
+      <ArtisanRattanCoreLacquerTeaCaddyAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Style Quiz: Tìm Phong Cách Của Bạn */}
+      <StyleQuizSection className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

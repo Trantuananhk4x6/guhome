@@ -114,6 +114,10 @@ import { SaigonAcousticThereminSanctuary } from '@/components/studio/SaigonAcous
 import { ArtisanSaigonMonolithicQuartzCrystalWaterfallVault } from '@/components/studio/ArtisanSaigonMonolithicQuartzCrystalWaterfallVault'
 import { SaigonAcousticHarpsichordSanctuarySalon } from '@/components/studio/SaigonAcousticHarpsichordSanctuarySalon'
 import { SaigonTranslucentOnyxWaterfallSanctuary } from '@/components/studio/SaigonTranslucentOnyxWaterfallSanctuary'
+import { SaigonZenKaresansuiGardenSanctuary } from '@/components/studio/SaigonZenKaresansuiGardenSanctuary'
+import { SaigonAcousticTraditionalLuteSanctuary } from '@/components/studio/SaigonAcousticTraditionalLuteSanctuary'
+import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
+import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -518,6 +522,18 @@ export default async function StylesPage() {
 
       {/* Saigon Translucent Onyx Waterfall Sanctuary */}
       <SaigonTranslucentOnyxWaterfallSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Zen Karesansui Garden Sanctuary */}
+      <SaigonZenKaresansuiGardenSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Traditional Lute Sanctuary */}
+      <SaigonAcousticTraditionalLuteSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Style Quiz: Tìm Phong Cách Của Bạn */}
+      <StyleQuizSection className="mt-[var(--spacing-section)]" />
+
+      {/* Lookbook Không Gian Cao Cấp 2026 */}
+      <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
