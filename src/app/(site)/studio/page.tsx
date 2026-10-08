@@ -274,6 +274,9 @@ import { ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier } from 
 import { SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion'
 import { BespokeImperialKynamAndGoldFiligreeTeaCanisterVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTeaCanisterVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier'
+import { SaigonCanalSideAncientHingedEbonyTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedEbonyTeaBonsaiPavilion'
+import { BespokeImperialKynamAndGoldRepousseIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldRepousseIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1745,6 +1748,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan gold filigree & jade paperweight bar atelier ----- */}
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier />
+
+      {/* ---------------- saigon canal-side ancient hinged ebony tea bonsai pavilion */}
+      <SaigonCanalSideAncientHingedEbonyTeaBonsaiPavilion />
+
+      {/* ---------------- bespoke imperial kynam & gold repousse incense burner vault */}
+      <BespokeImperialKynamAndGoldRepousseIncenseBurnerVault />
+
+      {/* ---------------- artisan gold filigree & onyx calligraphy paperweight studio */}
+      <ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />

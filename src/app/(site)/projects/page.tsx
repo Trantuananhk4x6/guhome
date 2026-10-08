@@ -202,6 +202,9 @@ import { ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier } from 
 import { SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion'
 import { BespokeImperialKynamAndGoldFiligreeTeaCanisterVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTeaCanisterVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier'
+import { SaigonCanalSideAncientHingedEbonyTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedEbonyTeaBonsaiPavilion'
+import { BespokeImperialKynamAndGoldRepousseIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldRepousseIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1079,6 +1082,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Artisan Gold Filigree & Jade Paperweight Bar Atelier */}
           <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier />
+
+          {/* Saigon Canal Side Ancient Hinged Ebony Tea Bonsai Pavilion */}
+          <SaigonCanalSideAncientHingedEbonyTeaBonsaiPavilion />
+
+          {/* Bespoke Imperial Kynam & Gold Repousse Incense Burner Vault */}
+          <BespokeImperialKynamAndGoldRepousseIncenseBurnerVault />
+
+          {/* Artisan Gold Filigree & Onyx Calligraphy Paperweight Studio */}
+          <ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
