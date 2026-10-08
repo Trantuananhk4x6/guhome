@@ -151,6 +151,9 @@ import { SaigonRiverfrontGlassFloorObservatoryPavilion } from '@/components/stud
 import { SaigonAcousticDjembeSanctuarySalon } from '@/components/studio/SaigonAcousticDjembeSanctuarySalon'
 import { SaigonCanalSideFloatingTeakMeditationDock } from '@/components/studio/SaigonCanalSideFloatingTeakMeditationDock'
 import { ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier } from '@/components/tools/ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier'
+import { SaigonMonsoonRainChamberHydroAcousticPavilion } from '@/components/studio/SaigonMonsoonRainChamberHydroAcousticPavilion'
+import { BespokeSmokedOakAromaCigarLoungeAndWhiskyVault } from '@/components/studio/BespokeSmokedOakAromaCigarLoungeAndWhiskyVault'
+import { ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier } from '@/components/tools/ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -668,6 +671,15 @@ export default async function StylesPage() {
 
       {/* Artisan Gold Leaf Damascene Ebony Bodhidharma Statue */}
       <ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier />
+
+      {/* Saigon Monsoon Rain Chamber Hydro-Acoustic Pavilion */}
+      <SaigonMonsoonRainChamberHydroAcousticPavilion />
+
+      {/* Bespoke Smoked Oak Aroma Cigar Lounge & Whisky Vault */}
+      <BespokeSmokedOakAromaCigarLoungeAndWhiskyVault />
+
+      {/* Imperial Vietnamese Mother Of Pearl Rosewood Cabinet Atelier */}
+      <ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

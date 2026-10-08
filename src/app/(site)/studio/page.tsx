@@ -223,6 +223,9 @@ import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { SaigonAcousticDjembeSanctuarySalon } from '@/components/studio/SaigonAcousticDjembeSanctuarySalon'
 import { SaigonCanalSideFloatingTeakMeditationDock } from '@/components/studio/SaigonCanalSideFloatingTeakMeditationDock'
 import { ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier } from '@/components/tools/ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier'
+import { SaigonMonsoonRainChamberHydroAcousticPavilion } from '@/components/studio/SaigonMonsoonRainChamberHydroAcousticPavilion'
+import { BespokeSmokedOakAromaCigarLoungeAndWhiskyVault } from '@/components/studio/BespokeSmokedOakAromaCigarLoungeAndWhiskyVault'
+import { ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier } from '@/components/tools/ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1541,6 +1544,15 @@ export default async function StudioPage() {
 
       {/* ---------------- gold leaf damascene ebony bodhidharma statue ---------- */}
       <ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier />
+
+      {/* ---------------- saigon monsoon rain chamber hydro-acoustic pavilion --- */}
+      <SaigonMonsoonRainChamberHydroAcousticPavilion />
+
+      {/* ---------------- bespoke smoked oak cigar lounge & whisky vault --------- */}
+      <BespokeSmokedOakAromaCigarLoungeAndWhiskyVault />
+
+      {/* ---------------- imperial mother of pearl rosewood cabinet atelier ----- */}
+      <ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />
