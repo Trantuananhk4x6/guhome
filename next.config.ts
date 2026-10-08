@@ -36,7 +36,20 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@react-three/drei', 'gsap'],
   },
-  serverExternalPackages: ['sharp'],
+  async redirects() {
+    return [
+      {
+        source: '/styles',
+        destination: '/phong-cach',
+        permanent: true,
+      },
+      {
+        source: '/styles/:slug*',
+        destination: '/phong-cach/:slug*',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig
