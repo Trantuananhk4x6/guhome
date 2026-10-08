@@ -218,6 +218,8 @@ import { ArtisanGoldDamasceneEbonyGuanGongStatueAtelier } from '@/components/too
 import { SaigonAcousticBongosSanctuarySalon } from '@/components/studio/SaigonAcousticBongosSanctuarySalon'
 import { SaigonRiverfrontGlassFloorObservatoryPavilion } from '@/components/studio/SaigonRiverfrontGlassFloorObservatoryPavilion'
 import { ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier } from '@/components/tools/ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier'
+import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
+import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1527,6 +1529,12 @@ export default async function StudioPage() {
 
       {/* ---------------- silver inlaid agarwood maitreya statue atelier -------- */}
       <ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier />
+
+      {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
+      <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- style quiz: tim phong cach cua ban -------------------- */}
+      <StyleQuizSection className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
