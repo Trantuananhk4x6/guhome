@@ -98,6 +98,9 @@ import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/Privat
 import { SaigonFloatingOrchidAtelier } from '@/components/studio/SaigonFloatingOrchidAtelier'
 import { ArtisanSunkenKoiAquariumVault } from '@/components/studio/ArtisanSunkenKoiAquariumVault'
 import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbleSundialGardenVault'
+import { SaigonAgarwoodTeaBespokeVault } from '@/components/studio/SaigonAgarwoodTeaBespokeVault'
+import { PrivateSaltwaterNanoReefSanctuary } from '@/components/studio/PrivateSaltwaterNanoReefSanctuary'
+import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/ArtisanDamascusSteelChefKnifeAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1047,6 +1050,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan marble sundial yen bai 10.7769N garden vault ---- */}
       <ArtisanMarbleSundialGardenVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon agarwood tea bespoke vault nero marquina 5 temp ---- */}
+      <SaigonAgarwoodTeaBespokeVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- private saltwater nano reef sanctuary 19mm low-iron ------- */}
+      <PrivateSaltwaterNanoReefSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan damascus steel chef knife 128 layers atelier ------ */}
+      <ArtisanDamascusSteelChefKnifeAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

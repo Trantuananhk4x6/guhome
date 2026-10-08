@@ -53,6 +53,8 @@ import { SaigonRiversideOutdoorFirePitVault } from '@/components/studio/SaigonRi
 import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/PrivateHimalayanSaltCaveWellnessVault'
 import { ArtisanSunkenKoiAquariumVault } from '@/components/studio/ArtisanSunkenKoiAquariumVault'
 import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbleSundialGardenVault'
+import { PrivateSaltwaterNanoReefSanctuary } from '@/components/studio/PrivateSaltwaterNanoReefSanctuary'
+import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/ArtisanDamascusSteelChefKnifeAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -252,6 +254,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Marble Sundial Yen Bai 10.7769N Garden Vault */}
       <ArtisanMarbleSundialGardenVault className="mt-[var(--spacing-section)]" />
+
+      {/* Private Saltwater Nano Reef Sanctuary 19mm Low-Iron */}
+      <PrivateSaltwaterNanoReefSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Damascus Steel Chef Knife 128 Layers Atelier */}
+      <ArtisanDamascusSteelChefKnifeAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

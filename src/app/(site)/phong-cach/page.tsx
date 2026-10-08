@@ -68,6 +68,8 @@ import { SaigonAudiophileVinylSanctuary } from '@/components/studio/SaigonAudiop
 import { SaigonRiversideOutdoorFirePitVault } from '@/components/studio/SaigonRiversideOutdoorFirePitVault'
 import { SaigonFloatingOrchidAtelier } from '@/components/studio/SaigonFloatingOrchidAtelier'
 import { ArtisanSunkenKoiAquariumVault } from '@/components/studio/ArtisanSunkenKoiAquariumVault'
+import { SaigonAgarwoodTeaBespokeVault } from '@/components/studio/SaigonAgarwoodTeaBespokeVault'
+import { PrivateSaltwaterNanoReefSanctuary } from '@/components/studio/PrivateSaltwaterNanoReefSanctuary'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -334,6 +336,12 @@ export default async function StylesPage() {
 
       {/* Artisan Sunken Koi Aquarium Walk-On Glass 32mm Vault */}
       <ArtisanSunkenKoiAquariumVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Agarwood Tea Bespoke Vault Nero Marquina 5 Temp */}
+      <SaigonAgarwoodTeaBespokeVault className="mt-[var(--spacing-section)]" />
+
+      {/* Private Saltwater Nano Reef Sanctuary 19mm Low-Iron */}
+      <PrivateSaltwaterNanoReefSanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

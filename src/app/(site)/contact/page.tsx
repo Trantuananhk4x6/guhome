@@ -41,6 +41,7 @@ import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamil
 import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotanicalCurtainAtelier'
 import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/PrivateHimalayanSaltCaveWellnessVault'
 import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbleSundialGardenVault'
+import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/ArtisanDamascusSteelChefKnifeAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -400,6 +401,9 @@ export default async function ContactPage() {
 
       {/* Artisan Marble Sundial Yen Bai 10.7769N Garden Vault */}
       <ArtisanMarbleSundialGardenVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Damascus Steel Chef Knife 128 Layers Atelier */}
+      <ArtisanDamascusSteelChefKnifeAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

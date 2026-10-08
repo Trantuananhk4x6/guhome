@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 40,
+  "currentDirectiveIndex": 41,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -312,7 +312,14 @@
       "title": "Vườn Lan Treo Không Trọng Lực, Bể Cá Koi Âm Sàn & Đồng Hồ Mặt Trời Đá Cẩm Thạch",
       "sentAt": "2026-10-08T15:30:34.064Z",
       "completedAt": "2026-10-08T15:34:00.000Z"
+    },
+    {
+      "directiveId": "dir-38-sprint-40-agarwood-reef-damascus",
+      "title": "Bàn Trà Trầm Hương, Bể San Hô Đại Dương & Xưởng Dao Thép Damascus",
+      "sentAt": "2026-10-08T15:34:21.617Z",
+      "completedAt": "2026-10-08T15:38:15.000Z"
     }
   ],
-  "lastDispatchedAt": 1791472996786
+  "lastDispatchedAt": 1791472996786,
+  "activeDirective": null
 }
