@@ -52,6 +52,7 @@ import { ArtisanGoldLeafCalligraphyCabinetryAtelier } from '@/components/tools/A
 import { ArtisanBronzeIncenseBurnerAtelier } from '@/components/tools/ArtisanBronzeIncenseBurnerAtelier'
 import { ArtisanHandmadeTerracottaPlanterAtelier } from '@/components/tools/ArtisanHandmadeTerracottaPlanterAtelier'
 import { ArtisanGoldLeafTeaCanisterAtelier } from '@/components/tools/ArtisanGoldLeafTeaCanisterAtelier'
+import { ArtisanBespokeSilverCutleryVault } from '@/components/tools/ArtisanBespokeSilverCutleryVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -444,6 +445,9 @@ export default async function ContactPage() {
 
       {/* Artisan Gold Leaf Tea Canister Atelier */}
       <ArtisanGoldLeafTeaCanisterAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bespoke Silver Cutlery Vault */}
+      <ArtisanBespokeSilverCutleryVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

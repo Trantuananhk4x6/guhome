@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useSocialModalStore } from '@/lib/social'
 import { useQuickQuote } from '@/components/layout/QuickQuoteModal'
 import { useTactileSampleBoxStore } from '@/lib/tactile-sample-box'
-import { ArrowUpRightIcon, CheckIcon, CloseIcon } from '@/components/ui/icons'
 import { SensorySoundscape } from '@/components/ui/SensorySoundscape'
 import { cn } from '@/lib/utils'
 

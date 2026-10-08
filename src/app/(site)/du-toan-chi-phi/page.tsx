@@ -75,6 +75,8 @@ import { SaigonBespokeAudiophileTurntableVault } from '@/components/studio/Saigo
 import { ArtisanHandmadeTerracottaPlanterAtelier } from '@/components/tools/ArtisanHandmadeTerracottaPlanterAtelier'
 import { SaigonAcousticHarpSanctuarySalon } from '@/components/studio/SaigonAcousticHarpSanctuarySalon'
 import { ArtisanGoldLeafTeaCanisterAtelier } from '@/components/tools/ArtisanGoldLeafTeaCanisterAtelier'
+import { SaigonRiversideSunsetTeaObservatory } from '@/components/studio/SaigonRiversideSunsetTeaObservatory'
+import { ArtisanBespokeSilverCutleryVault } from '@/components/tools/ArtisanBespokeSilverCutleryVault'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -340,6 +342,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Gold Leaf Tea Canister Atelier */}
       <ArtisanGoldLeafTeaCanisterAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Riverside Sunset Tea Observatory */}
+      <SaigonRiversideSunsetTeaObservatory className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bespoke Silver Cutlery Vault */}
+      <ArtisanBespokeSilverCutleryVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

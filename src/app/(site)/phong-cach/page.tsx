@@ -90,6 +90,8 @@ import { SaigonStainedGlassTerrariumConservatory } from '@/components/studio/Sai
 import { SaigonBespokeAudiophileTurntableVault } from '@/components/studio/SaigonBespokeAudiophileTurntableVault'
 import { SaigonAstronomyObservatoryRetractableDomeVault } from '@/components/studio/SaigonAstronomyObservatoryRetractableDomeVault'
 import { SaigonAcousticHarpSanctuarySalon } from '@/components/studio/SaigonAcousticHarpSanctuarySalon'
+import { SaigonAcousticViolinSanctuaryVault } from '@/components/studio/SaigonAcousticViolinSanctuaryVault'
+import { SaigonRiversideSunsetTeaObservatory } from '@/components/studio/SaigonRiversideSunsetTeaObservatory'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -422,6 +424,12 @@ export default async function StylesPage() {
 
       {/* Saigon Acoustic Harp Sanctuary Salon */}
       <SaigonAcousticHarpSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Violin Sanctuary Vault */}
+      <SaigonAcousticViolinSanctuaryVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Riverside Sunset Tea Observatory */}
+      <SaigonRiversideSunsetTeaObservatory className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
