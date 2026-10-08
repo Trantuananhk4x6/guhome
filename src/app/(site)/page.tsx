@@ -38,7 +38,7 @@ export const revalidate = 300
 
 /**
  * Both of these were pass-1 strings that three copy passes were commissioned to
- * kill and never reached, because they live here rather than in the seeded data —
+ * kill and never reached, because they live here rather than in the seeded data:
  * so the rejected slogan stayed on the browser tab and the rejected directory
  * line stayed under every search result for the front page.
  */
@@ -63,7 +63,7 @@ async function safe<T>(run: () => Promise<T>, fallback: T): Promise<T> {
 /**
  * The homepage sections are read before the data, because the IMMERSIVE band's
  * `content` decides *which* project it stages and *which* photographs it stops
- * on — both were chosen by a heuristic here until now, which is why the admin's
+ * on - both were chosen by a heuristic here until now, which is why the admin's
  * project picker for that band had no effect on anything.
  */
 async function loadHomeData(sections: readonly HomepageSection[]): Promise<HomeData> {
@@ -99,13 +99,13 @@ async function loadHomeData(sections: readonly HomepageSection[]): Promise<HomeD
 
   /*
    * SEVEN, NOT FIVE. The hero and the pinned band are both drawn from this
-   * slice, and both are then *withheld* from the FEATURED band below — a
+   * slice, and both are then *withheld* from the FEATURED band below - a
    * five-deep slice therefore leaves that band three projects for five slots.
    * Seven is five slots plus the two the page spends above them.
    */
   const showcase = pool.slice(0, 7)
 
-  // An editor's choice outranks every heuristic below it — and it is picked
+  // An editor's choice outranks every heuristic below it - and it is picked
   // first so the hero can step aside instead of claiming the same project.
   const pinnedChoice = pinnedId ? (projects.find((project) => project.id === pinnedId) ?? null) : null
 
@@ -152,8 +152,8 @@ async function loadHomeData(sections: readonly HomepageSection[]): Promise<HomeD
   /*
    * ONE PHOTOGRAPH, ONE PLACE ON THE PAGE.
    *
-   * Every band below used to index independently — `showcase` for the featured
-   * band, `rest[0..2]` for the studio, philosophy and closing frames — so
+   * Every band below used to index independently - `showcase` for the featured
+   * band, `rest[0..2]` for the studio, philosophy and closing frames - so
    * nothing stopped two of them landing on the same project. Two did: the hero
    * and FEATURED slot 01 were both `showcase[0]`, and FEATURED slot 02 and
    * IMMERSIVE still 01 were both the pinned project's cover. A visitor met the
@@ -161,8 +161,8 @@ async function loadHomeData(sections: readonly HomepageSection[]): Promise<HomeD
    * 1485 of them.
    *
    * So allocation is a single pass with a ledger. Every band asks `claim` for
-   * projects nobody has spoken for yet, in preference order — the featured pool
-   * first, then the rest of the library — and a project handed out once is never
+   * projects nobody has spoken for yet, in preference order - the featured pool
+   * first, then the rest of the library - and a project handed out once is never
    * handed out again on this page.
    */
   const spokenFor = new Set<string>()
