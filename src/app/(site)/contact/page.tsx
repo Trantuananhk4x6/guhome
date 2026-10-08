@@ -75,6 +75,7 @@ import { ArtisanSilverChasedArecaNutCasketAtelier } from '@/components/tools/Art
 import { ArtisanHandmadeHornSnuffBottleVault } from '@/components/tools/ArtisanHandmadeHornSnuffBottleVault'
 import { ArtisanHandmadeCloisonneIncenseBurnerVault } from '@/components/tools/ArtisanHandmadeCloisonneIncenseBurnerVault'
 import { ArtisanGoldLeafLacquerTeaTrayAtelier } from '@/components/tools/ArtisanGoldLeafLacquerTeaTrayAtelier'
+import { ArtisanHornMotherOfPearlJewelryChestAtelier } from '@/components/tools/ArtisanHornMotherOfPearlJewelryChestAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -536,6 +537,9 @@ export default async function ContactPage() {
 
       {/* Artisan Gold Leaf Lacquer Tea Tray Atelier */}
       <ArtisanGoldLeafLacquerTeaTrayAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Horn Mother-of-Pearl Jewelry Chest Atelier */}
+      <ArtisanHornMotherOfPearlJewelryChestAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

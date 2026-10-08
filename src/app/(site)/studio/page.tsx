@@ -200,6 +200,9 @@ import { ArtisanHandmadeCloisonneIncenseBurnerVault } from '@/components/tools/A
 import { SaigonAcousticBalalaikaSanctuarySalon } from '@/components/studio/SaigonAcousticBalalaikaSanctuarySalon'
 import { SaigonMonolithicBiotiteGraniteFireplaceLounge } from '@/components/studio/SaigonMonolithicBiotiteGraniteFireplaceLounge'
 import { ArtisanGoldLeafLacquerTeaTrayAtelier } from '@/components/tools/ArtisanGoldLeafLacquerTeaTrayAtelier'
+import { SaigonAcousticMandolinSanctuarySalon } from '@/components/studio/SaigonAcousticMandolinSanctuarySalon'
+import { SaigonCanalSideGlassBottomKoiCourtyard } from '@/components/studio/SaigonCanalSideGlassBottomKoiCourtyard'
+import { ArtisanHornMotherOfPearlJewelryChestAtelier } from '@/components/tools/ArtisanHornMotherOfPearlJewelryChestAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1455,6 +1458,15 @@ export default async function StudioPage() {
 
       {/* ---------------- gold leaf lacquer tea tray atelier ---------------------- */}
       <ArtisanGoldLeafLacquerTeaTrayAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- acoustic mandolin sanctuary salon ----------------------- */}
+      <SaigonAcousticMandolinSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- glass-bottom koi courtyard ------------------------------ */}
+      <SaigonCanalSideGlassBottomKoiCourtyard className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- horn mother-of-pearl jewelry chest atelier -------------- */}
+      <ArtisanHornMotherOfPearlJewelryChestAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 82,
+  "currentDirectiveIndex": 85,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -494,14 +494,32 @@
       "atStep": 8046
     },
     {
-      "directiveId": "dir-71-sprint-73-balalaika-biotite-goldleaftray",
-      "title": "Phòng Thính Âm Đàn Balalaika Vòm Vân Sam, Sảnh Sưởi Đá Hoa Cương Biotite & Khay Trà Sơn Mài Thếp Vàng",
-      "sentAt": "2026-10-08T18:34:40.000Z",
-      "completedAt": "2026-10-08T18:42:25.000Z",
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T18:47:19.257Z",
+      "atStep": 8197
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T18:48:00.285Z",
+      "atStep": 8201
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T18:48:50.417Z",
+      "atStep": 8205
+    },
+    {
+      "directiveId": "dir-72-sprint-74-mandolin-glasskoi-jewelrychest",
+      "title": "Thính Phòng Mandolin Vòm Bách Xanh, Hồ Cá Koi Đáy Kính Xuyên Tầng & Tráp Trang Sức Sừng Trâu Cẩn Xà Cừ",
+      "sentAt": "2026-10-08T18:43:08.350Z",
+      "completedAt": "2026-10-08T18:49:05.000Z",
       "status": "COMPLETED_100_PERCENT_QA",
-      "commitMessage": "feat(sprint-73): add SaigonAcousticBalalaikaSanctuarySalon, SaigonMonolithicBiotiteGraniteFireplaceLounge, and ArtisanGoldLeafLacquerTeaTrayAtelier with 100% SEO pass",
-      "atStep": 8070
+      "commitMessage": "feat(sprint-74): add SaigonAcousticMandolinSanctuarySalon, SaigonCanalSideGlassBottomKoiCourtyard, and ArtisanHornMotherOfPearlJewelryChestAtelier with 100% SEO pass",
+      "atStep": 8206
     }
   ],
-  "lastDispatchedAt": 1791484823162
+  "lastDispatchedAt": 1791485345000
 }

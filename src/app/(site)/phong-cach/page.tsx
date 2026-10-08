@@ -136,6 +136,8 @@ import { SaigonAcousticSitarSanctuarySalon } from '@/components/studio/SaigonAco
 import { SaigonHeritageTerracottaTileCourtyardPavilion } from '@/components/studio/SaigonHeritageTerracottaTileCourtyardPavilion'
 import { SaigonAcousticBalalaikaSanctuarySalon } from '@/components/studio/SaigonAcousticBalalaikaSanctuarySalon'
 import { SaigonMonolithicBiotiteGraniteFireplaceLounge } from '@/components/studio/SaigonMonolithicBiotiteGraniteFireplaceLounge'
+import { SaigonAcousticMandolinSanctuarySalon } from '@/components/studio/SaigonAcousticMandolinSanctuarySalon'
+import { SaigonCanalSideGlassBottomKoiCourtyard } from '@/components/studio/SaigonCanalSideGlassBottomKoiCourtyard'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -608,6 +610,12 @@ export default async function StylesPage() {
 
       {/* Saigon Monolithic Biotite Granite Fireplace Lounge */}
       <SaigonMonolithicBiotiteGraniteFireplaceLounge className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Mandolin Sanctuary Salon */}
+      <SaigonAcousticMandolinSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Canal-Side Glass-Bottom Koi Courtyard */}
+      <SaigonCanalSideGlassBottomKoiCourtyard className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

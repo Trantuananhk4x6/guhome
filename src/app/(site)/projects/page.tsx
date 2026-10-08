@@ -142,6 +142,7 @@ import { SaigonBespokeBambooMarimbaAcousticSanctuary } from '@/components/studio
 import { SaigonBespokeDanBauMonochordSanctuary } from '@/components/studio/SaigonBespokeDanBauMonochordSanctuary'
 import { SaigonAcousticSitarSanctuarySalon } from '@/components/studio/SaigonAcousticSitarSanctuarySalon'
 import { SaigonAcousticBalalaikaSanctuarySalon } from '@/components/studio/SaigonAcousticBalalaikaSanctuarySalon'
+import { SaigonAcousticMandolinSanctuarySalon } from '@/components/studio/SaigonAcousticMandolinSanctuarySalon'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -839,6 +840,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Acoustic Balalaika Sanctuary Salon */}
           <SaigonAcousticBalalaikaSanctuarySalon className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Acoustic Mandolin Sanctuary Salon */}
+          <SaigonAcousticMandolinSanctuarySalon className="mt-[clamp(4.5rem,10vh,8rem)]" />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />

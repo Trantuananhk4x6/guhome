@@ -121,6 +121,8 @@ import { SaigonHeritageTerracottaTileCourtyardPavilion } from '@/components/stud
 import { ArtisanHandmadeCloisonneIncenseBurnerVault } from '@/components/tools/ArtisanHandmadeCloisonneIncenseBurnerVault'
 import { SaigonMonolithicBiotiteGraniteFireplaceLounge } from '@/components/studio/SaigonMonolithicBiotiteGraniteFireplaceLounge'
 import { ArtisanGoldLeafLacquerTeaTrayAtelier } from '@/components/tools/ArtisanGoldLeafLacquerTeaTrayAtelier'
+import { SaigonCanalSideGlassBottomKoiCourtyard } from '@/components/studio/SaigonCanalSideGlassBottomKoiCourtyard'
+import { ArtisanHornMotherOfPearlJewelryChestAtelier } from '@/components/tools/ArtisanHornMotherOfPearlJewelryChestAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -525,6 +527,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Gold Leaf Lacquer Tea Tray Atelier */}
       <ArtisanGoldLeafLacquerTeaTrayAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Canal-Side Glass-Bottom Koi Courtyard */}
+      <SaigonCanalSideGlassBottomKoiCourtyard className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Horn Mother-of-Pearl Jewelry Chest Atelier */}
+      <ArtisanHornMotherOfPearlJewelryChestAtelier className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
