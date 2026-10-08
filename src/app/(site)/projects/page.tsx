@@ -112,6 +112,7 @@ import { SaigonAgarwoodTeaBespokeVault } from '@/components/studio/SaigonAgarwoo
 import { SaigonCalocedrusHomeCinemaSanctuary } from '@/components/studio/SaigonCalocedrusHomeCinemaSanctuary'
 import { SaigonClepsydraWaterClockVault } from '@/components/studio/SaigonClepsydraWaterClockVault'
 import { SaigonMekongBiotopeAquariumVault } from '@/components/studio/SaigonMekongBiotopeAquariumVault'
+import { SaigonMaritimeAntiqueMapLibraryVault } from '@/components/studio/SaigonMaritimeAntiqueMapLibraryVault'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -718,6 +719,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Mekong Biotope Aquarium Hopea Driftwood Vault */}
           <SaigonMekongBiotopeAquariumVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Maritime Antique Map Library Artglass UV99 Vault */}
+          <SaigonMaritimeAntiqueMapLibraryVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

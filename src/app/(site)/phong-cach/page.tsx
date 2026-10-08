@@ -76,6 +76,8 @@ import { SaigonClepsydraWaterClockVault } from '@/components/studio/SaigonClepsy
 import { HorologyTimepieceAndCigarVault } from '@/components/studio/HorologyTimepieceAndCigarVault'
 import { SaigonMekongBiotopeAquariumVault } from '@/components/studio/SaigonMekongBiotopeAquariumVault'
 import { ArtisanBaccaratCrystalChandelierAtelier } from '@/components/studio/ArtisanBaccaratCrystalChandelierAtelier'
+import { SaigonMaritimeAntiqueMapLibraryVault } from '@/components/studio/SaigonMaritimeAntiqueMapLibraryVault'
+import { ArtisanHinokiHydrotherapyOnsenVault } from '@/components/studio/ArtisanHinokiHydrotherapyOnsenVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -366,6 +368,12 @@ export default async function StylesPage() {
 
       {/* Artisan Baccarat Crystal Chandelier Winch Atelier */}
       <ArtisanBaccaratCrystalChandelierAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Maritime Antique Map Library Artglass UV99 Vault */}
+      <SaigonMaritimeAntiqueMapLibraryVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Hinoki Hydrotherapy Onsen 250y Vault */}
+      <ArtisanHinokiHydrotherapyOnsenVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

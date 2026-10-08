@@ -61,6 +61,8 @@ import { HorologyTimepieceAndCigarVault } from '@/components/studio/HorologyTime
 import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangroveBoutiqueEcologyLab'
 import { ArtisanBaccaratCrystalChandelierAtelier } from '@/components/studio/ArtisanBaccaratCrystalChandelierAtelier'
 import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhiskyLibraryAndCaskVault'
+import { ArtisanHinokiHydrotherapyOnsenVault } from '@/components/studio/ArtisanHinokiHydrotherapyOnsenVault'
+import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/ArtisanIndoorMedicinalHerbGardenAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -284,6 +286,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Private Whisky Library American Oak Cask Vault */}
       <PrivateWhiskyLibraryAndCaskVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Hinoki Hydrotherapy Onsen 250y Vault */}
+      <ArtisanHinokiHydrotherapyOnsenVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Indoor Medicinal Herb Garden Bat Trang Atelier */}
+      <ArtisanIndoorMedicinalHerbGardenAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

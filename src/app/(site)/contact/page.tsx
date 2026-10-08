@@ -45,6 +45,7 @@ import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/Artisan
 import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/ArtisanRiverPebbleAcupressureWalkway'
 import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangroveBoutiqueEcologyLab'
 import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhiskyLibraryAndCaskVault'
+import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/ArtisanIndoorMedicinalHerbGardenAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -416,6 +417,9 @@ export default async function ContactPage() {
 
       {/* Private Whisky Library American Oak Cask Vault */}
       <PrivateWhiskyLibraryAndCaskVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Indoor Medicinal Herb Garden Bat Trang Atelier */}
+      <ArtisanIndoorMedicinalHerbGardenAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 44,
+  "currentDirectiveIndex": 41,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -242,102 +242,18 @@
       "atStep": 3081
     },
     {
-      "directiveId": "dir-26-sprint-28-teak-cinema-rug",
-      "title": "Sàn Gỗ Teak Sân Thượng, Phòng Chiếu Phim Dolby Atmos & Thảm Tơ Sen Dệt Tay",
-      "sentAt": "2026-10-08T14:48:57.000Z",
-      "completedAt": "2026-10-08T14:52:15.000Z"
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T15:51:13.514Z",
+      "atStep": 4429
     },
     {
-      "directiveId": "dir-27-sprint-29-pool-fireplace-yacht",
-      "title": "Hồ Bơi Vô Cực Điện Phân Nước Mặn, Lò Sưởi Hơi Nước Đá Khối & Bến Du Thuyền Ven Sông",
-      "sentAt": "2026-10-08T14:52:37.433Z",
-      "completedAt": "2026-10-08T14:55:50.000Z"
-    },
-    {
-      "directiveId": "dir-28-sprint-30-greenwall-stonebasin-dossier",
-      "title": "Vườn Tường Đứng Thủy Canh, Bồn Tắm Đá Khối & Hồ Sơ Hoàn Công Bìa Da A3",
-      "sentAt": "2026-10-08T14:56:30.890Z",
-      "completedAt": "2026-10-08T15:00:25.000Z"
-    },
-    {
-      "directiveId": "dir-29-sprint-31-observatory-fragrance-butler",
-      "title": "Đài Quan Sát Thiên Văn Mái Kính, Xưởng Hương Không Gian & Ứng Dụng Quản Gia Số Dinh Thự",
-      "sentAt": "2026-10-08T15:00:58.495Z",
-      "completedAt": "2026-10-08T15:04:30.000Z"
-    },
-    {
-      "directiveId": "dir-30-sprint-32-library-clock-teasanctuary",
-      "title": "Thư Viện Sách Cổ Kiểm Soát Độ Ẩm, Đồng Hồ Cơ Khí & Thánh Địa Trà Đạo Shan Tuyết",
-      "sentAt": "2026-10-08T15:05:23.609Z",
-      "completedAt": "2026-10-08T15:08:00.000Z"
-    },
-    {
-      "directiveId": "dir-31-sprint-33-winecellar-teppanyaki-sauna",
-      "title": "Hầm Rượu Vòm Gạch Bát Tràng, Bếp Teppanyaki Nghệ Nhân & Phòng Xông Hơi Hinoki Đá Núi Lửa",
-      "sentAt": "2026-10-08T15:08:38.594Z",
-      "completedAt": "2026-10-08T15:11:30.000Z"
-    },
-    {
-      "directiveId": "dir-32-sprint-34-parquet-calacatta-zenyoga",
-      "title": "Sàn Gỗ Mộng Cổ Thụ, Đảo Bếp Calacatta Khối & Phòng Thiền Đón Bình Minh Sông",
-      "sentAt": "2026-10-08T15:11:43.165Z",
-      "completedAt": "2026-10-08T15:15:00.000Z"
-    },
-    {
-      "directiveId": "dir-33-sprint-35-museumart-hourglass-cigarlounge",
-      "title": "Phòng Tranh Bảo Tàng Kính Quang Học, Đồng Hồ Cát Thạch Anh & Cigar Lounge Ven Sông",
-      "sentAt": "2026-10-08T15:15:56.989Z",
-      "completedAt": "2026-10-08T15:19:00.000Z"
-    },
-    {
-      "directiveId": "dir-34-sprint-36-windchime-coldplunge-panicroom",
-      "title": "Chuông Gió Đồng Cổ, Bồn Cold Plunge Đá Bazan & Phòng An Toàn Panic Room",
-      "sentAt": "2026-10-08T15:19:14.087Z",
-      "completedAt": "2026-10-08T15:23:00.000Z"
-    },
-    {
-      "directiveId": "dir-35-sprint-37-ribbonstair-autocleanroom-curtain",
-      "title": "Cầu Thang Xoắn Ribbon, Hầm Siêu Xe Áp Suất Dương & Xưởng Rèm Tơ Tằm",
-      "sentAt": "2026-10-08T15:23:16.786Z",
-      "completedAt": "2026-10-08T15:27:00.000Z"
-    },
-    {
-      "directiveId": "dir-36-sprint-38-vinyl-firepit-saltcave",
-      "title": "Phòng Thư Viện Đĩa Than Hi-End, Bồn Lửa Đá Nguyên Khối & Hầm Muối Himalaya",
-      "sentAt": "2026-10-08T15:27:04.108Z",
-      "completedAt": "2026-10-08T15:30:00.000Z"
-    },
-    {
-      "directiveId": "dir-37-sprint-39-orchid-koi-sundial",
-      "title": "Vườn Lan Treo Không Trọng Lực, Bể Cá Koi Âm Sàn & Đồng Hồ Mặt Trời Đá Cẩm Thạch",
-      "sentAt": "2026-10-08T15:30:34.064Z",
-      "completedAt": "2026-10-08T15:34:00.000Z"
-    },
-    {
-      "directiveId": "dir-38-sprint-40-agarwood-reef-damascus",
-      "title": "Bàn Trà Trầm Hương, Bể San Hô Đại Dương & Xưởng Dao Thép Damascus",
-      "sentAt": "2026-10-08T15:34:21.617Z",
-      "completedAt": "2026-10-08T15:38:15.000Z"
-    },
-    {
-      "directiveId": "dir-39-sprint-41-cinema-chess-pebblewalkway",
-      "title": "Phòng Chiếu Phim Gỗ Bách Xanh, Bàn Cờ Mun Khảm Ốc & Lối Sỏi Bấm Huyệt Tây Nguyên",
-      "sentAt": "2026-10-08T15:38:46.927Z",
-      "completedAt": "2026-10-08T15:42:30.000Z"
-    },
-    {
-      "directiveId": "dir-40-sprint-42-clepsydra-tourbillon-mangrove",
-      "title": "Đồng Hồ Nước Clepsydra, Tủ Bảo Tồn Tourbillon & Tiểu Cảnh Rừng Ngập Mặn",
-      "sentAt": "2026-10-08T15:43:03.821Z",
-      "completedAt": "2026-10-08T15:46:40.000Z"
-    },
-    {
-      "directiveId": "dir-41-sprint-43-mekong-chandelier-whisky",
-      "title": "Thủy Sinh Biotope Mê Kông, Đèn Chùm Pha Lê Thông Tầng & Hầm Ủ Whisky Thùng Sồi",
-      "sentAt": "2026-10-08T15:47:11.050Z",
-      "completedAt": "2026-10-08T15:50:50.000Z"
+      "directiveId": "dir-42-sprint-44-map-onsen-herbgarden",
+      "title": "Thư Viện Bản Đồ Hàng Hải Cổ, Bồn Sục Onsen Gỗ Hinoki & Vườn Dược Liệu Trong Nhà",
+      "sentAt": "2026-10-08T15:51:25.572Z",
+      "completedAt": "2026-10-08T15:56:00.000Z"
     }
   ],
-  "lastDispatchedAt": 1791472996786,
+  "lastDispatchedAt": 1791474673514,
   "activeDirective": null
 }

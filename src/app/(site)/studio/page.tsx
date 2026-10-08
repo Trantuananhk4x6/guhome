@@ -110,6 +110,9 @@ import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangr
 import { SaigonMekongBiotopeAquariumVault } from '@/components/studio/SaigonMekongBiotopeAquariumVault'
 import { ArtisanBaccaratCrystalChandelierAtelier } from '@/components/studio/ArtisanBaccaratCrystalChandelierAtelier'
 import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhiskyLibraryAndCaskVault'
+import { SaigonMaritimeAntiqueMapLibraryVault } from '@/components/studio/SaigonMaritimeAntiqueMapLibraryVault'
+import { ArtisanHinokiHydrotherapyOnsenVault } from '@/components/studio/ArtisanHinokiHydrotherapyOnsenVault'
+import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/ArtisanIndoorMedicinalHerbGardenAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1095,6 +1098,15 @@ export default async function StudioPage() {
 
       {/* ---------------- private whisky library american oak cask vault ------------ */}
       <PrivateWhiskyLibraryAndCaskVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon maritime antique map library artglass uv99 vault --- */}
+      <SaigonMaritimeAntiqueMapLibraryVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan hinoki hydrotherapy onsen 250y vault -------------- */}
+      <ArtisanHinokiHydrotherapyOnsenVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan indoor medicinal herb garden bat trang atelier ---- */}
+      <ArtisanIndoorMedicinalHerbGardenAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
