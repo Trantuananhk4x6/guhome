@@ -89,29 +89,31 @@ export function QuickConsultFormSection() {
             </div>
 
             {/* Direct Quick Contact Buttons */}
-            <div className="mt-6 flex flex-wrap items-center gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-3.5">
               <a
                 href="https://zalo.me/0368757916"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-canvas/20 bg-canvas/10 px-5 py-2.5 text-[0.875rem] font-medium text-canvas transition-all duration-300 hover:border-accent-soft hover:bg-canvas/20 hover:text-accent-soft active:scale-95"
+                className="inline-flex min-h-[44px] items-center gap-2.5 rounded-full border border-[#0068FF]/50 bg-canvas/10 px-5 py-2.5 text-[0.875rem] font-medium text-canvas backdrop-blur-md shadow-[0_4px_16px_rgba(0,104,255,0.15)] transition-all duration-300 hover:border-[#0068FF] hover:bg-[#0068FF]/20 hover:text-white hover:scale-[1.02] active:scale-95"
               >
-                <span>Nhắn tin Zalo với KTS</span>
-                <span className="text-xs">↗</span>
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#0068FF] text-[10px] font-bold text-white">Z</span>
+                <span>Nhắn Zalo KTS Trưởng</span>
+                <span className="text-xs text-canvas/60">↗</span>
               </a>
 
               <a
                 href="tel:0368757916"
-                className="inline-flex min-h-[44px] items-center gap-2 text-[0.875rem] text-canvas/70 transition-colors hover:text-accent-soft active:scale-95"
+                className="inline-flex min-h-[44px] items-center gap-2.5 rounded-full border border-accent/40 bg-gradient-to-r from-canvas/10 via-canvas/15 to-accent/15 px-5 py-2.5 text-[0.875rem] font-medium text-canvas backdrop-blur-md shadow-[0_4px_16px_rgba(197,168,128,0.18)] transition-all duration-300 hover:border-accent hover:bg-canvas/20 hover:text-accent-soft hover:scale-[1.02] active:scale-95"
               >
-                <span>Hotline: <strong>0368 757 916</strong></span>
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] text-espresso font-bold">☎</span>
+                <span>Hotline: <strong className="font-mono text-accent-soft">0368 757 916</strong></span>
               </a>
             </div>
           </div>
 
           {/* Right Column: Interactive Consultation Form */}
           <div className="lg:col-span-7">
-            <div className="relative overflow-hidden border border-canvas/20 bg-surface/10 p-5 sm:p-8 lg:p-10 backdrop-blur-md shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl border border-accent/30 bg-surface/10 p-5 sm:p-8 lg:p-10 backdrop-blur-xl shadow-[0_24px_60px_rgba(0,0,0,0.45),0_0_30px_rgba(197,168,128,0.12)]">
               {/* Corner accents */}
               <div aria-hidden="true" className="pointer-events-none absolute top-0 left-0 h-3 w-3 border-t border-l border-accent" />
               <div aria-hidden="true" className="pointer-events-none absolute top-0 right-0 h-3 w-3 border-t border-r border-accent" />

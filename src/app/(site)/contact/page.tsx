@@ -78,6 +78,7 @@ import { ArtisanGoldLeafLacquerTeaTrayAtelier } from '@/components/tools/Artisan
 import { ArtisanHornMotherOfPearlJewelryChestAtelier } from '@/components/tools/ArtisanHornMotherOfPearlJewelryChestAtelier'
 import { ArtisanImperialSilverAgarwoodTeaCaddyAtelier } from '@/components/tools/ArtisanImperialSilverAgarwoodTeaCaddyAtelier'
 import { ArtisanGoldDamasceneEbonyTobaccoPipeAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyTobaccoPipeAtelier'
+import { ArtisanMotherOfPearlInlaidEbonyChessboardAtelier } from '@/components/tools/ArtisanMotherOfPearlInlaidEbonyChessboardAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -103,7 +104,7 @@ function Detail({ label, children }: DetailProps) {
 /**
  * THE ONE PHOTOGRAPH ON THIS PAGE.
  *
- * /contact was the only public route carrying no picture of the work at all —
+ * /contact was the only public route carrying no picture of the work at all -
  * 2,607px on desktop whose three `<img>` elements were the header logo, its
  * duplicate and the footer logo. On a site whose whole argument is 1,485 of the
  * studio's own photographs, the page where a visitor decides to write showed
@@ -111,7 +112,7 @@ function Detail({ label, children }: DetailProps) {
  *
  * No slug is named here. The band takes the first project the studio itself
  * ordered to the front of its featured list whose cover is a wide frame big
- * enough to fill a band — so it follows the admin's own ordering and needs no
+ * enough to fill a band - so it follows the admin's own ordering and needs no
  * editing when the catalogue changes. It is captioned with the project it
  * belongs to and links there, the way the STUDIO band captions its borrowed
  * photograph: this is a photograph *of a project*, and it must never be
@@ -548,6 +549,9 @@ export default async function ContactPage() {
 
       {/* Artisan Gold Damascene Ebony Tobacco Pipe Atelier */}
       <ArtisanGoldDamasceneEbonyTobaccoPipeAtelier />
+
+      {/* Artisan Mother-Of-Pearl Inlaid Ebony Chessboard Atelier */}
+      <ArtisanMotherOfPearlInlaidEbonyChessboardAtelier />
     </div>
   )
 }

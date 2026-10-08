@@ -1,16 +1,16 @@
 /**
- * /projects — the editorial index.
+ * /projects - the editorial index.
  *
  * Server component, no three.js on this route (ARCHITECTURE §8): the index is
  * the fastest page on the site and stays that way. Both filters are plain
- * queries — `?category=` and `?style=` — so every filtered view is shareable and
+ * queries - `?category=` and `?style=` - so every filtered view is shareable and
  * crawlable, and the two COMPOSE: `?category=can-ho&style=toi-gian` is one
  * address, reachable by two clicks, and either chip drops only its own
  * parameter. `projectsHref()` in `StyleFilter` is the one place that shape is
  * written, so the filters and the pager cannot disagree about it.
  *
  * THE TWO TAXONOMIES DO NOT COME FROM THE SAME PLACE, AND THAT IS DELIBERATE.
- * Categories are the fixed five of `CATEGORY_SEEDS` — a shape of building, which
+ * Categories are the fixed five of `CATEGORY_SEEDS` - a shape of building, which
  * the studio does not add to. Styles are read from the database on every
  * arrival, because the studio configures them in /admin and a style that exists
  * in the admin screen but not on this filter is exactly the failure this page
@@ -19,7 +19,7 @@
  * COMPOSITION. The masthead is a band, not a stack. The heading, its lead
  * paragraph and the two filters occupy a four-column rail; the first project
  * fills the seven columns beside it and runs off the right edge of the screen.
- * That is what puts work inside the arrival screen — the previous stack pushed
+ * That is what puts work inside the arrival screen - the previous stack pushed
  * the first photograph to y=813 on a 1000px viewport and left a 176px empty
  * band under the filter bar, which was the defect the audit reported.
  *
@@ -27,33 +27,33 @@
  * per-category figures are counted from it, and the active filters are applied
  * in memory. `getPublishedIndex` is already ordered, so the filtered view keeps
  * the editor's ordering without a second round trip. The style membership map is
- * a single grouped read, and only when a filter is actually engaged — an
+ * a single grouped read, and only when a filter is actually engaged - an
  * unfiltered arrival, which is most of them, still pays exactly what it did
  * before styles existed.
  *
  * THE FIGURES ARE WHAT A CLICK WOULD GIVE YOU. Each category figure counts the
  * run with the ACTIVE STYLE still applied, and each style figure counts it with
- * the active category still applied, because the two filters compose — a chip
+ * the active category still applied, because the two filters compose - a chip
  * printing a number you cannot reach is worse than a chip printing none.
  *
  * AND IT IS THE ONE PUBLIC ROUTE THAT CANNOT BE PRERENDERED. The filters and
  * `?page=` are read from `searchParams`, which is a dynamic API, so unlike `/`,
- * `/studio`, `/journal`, `/contact` and every project page — all of which are
- * built once and served from disk — this HTML is composed on every arrival. It
+ * `/studio`, `/journal`, `/contact` and every project page - all of which are
+ * built once and served from disk - this HTML is composed on every arrival. It
  * was measured at 1730 ms to DOMContentLoaded against 57 ms for `/studio`, and
  * all of the difference was the server: the browser had nothing to do but wait
- * for the document. `getPublishedIndex` is the answer to that — the same run,
- * cached across requests rather than merely across one — and the reason this
+ * for the document. `getPublishedIndex` is the answer to that - the same run,
+ * cached across requests rather than merely across one - and the reason this
  * page calls it instead of `getPublishedProjects`, which the prerendered routes
  * use and which has no business carrying a cross-request cache for them.
  *
  * IT IS PAGED, AND THAT IS THE POINT. The index used to render all 105 projects
- * into one document: 34,244px on a 1600×1000 desktop, 35,604px at 390 wide —
+ * into one document: 34,244px on a 1600×1000 desktop, 35,604px at 390 wide -
  * about 34 and 42 screens (docs/ui-after/measurements.json). It is also the
  * destination of the site's primary call to action, so the one page the studio
  * most needs a visitor to read was the one page a visitor could not get through.
  *
- * Twenty-four to a page, as `?page=N` — the same plain-link contract as the
+ * Twenty-four to a page, as `?page=N` - the same plain-link contract as the
  * filters, so every page of the catalogue is linkable and crawlable and the back
  * button works. The masthead is unchanged on every page: the rail, then that
  * page's first project on the seven columns beside it, then the rest of the page
@@ -145,6 +145,7 @@ import { SaigonAcousticBalalaikaSanctuarySalon } from '@/components/studio/Saigo
 import { SaigonAcousticMandolinSanctuarySalon } from '@/components/studio/SaigonAcousticMandolinSanctuarySalon'
 import { SaigonAcousticTambourineSanctuarySalon } from '@/components/studio/SaigonAcousticTambourineSanctuarySalon'
 import { SaigonAcousticCajonSanctuarySalon } from '@/components/studio/SaigonAcousticCajonSanctuarySalon'
+import { SaigonAcousticCastanetsSanctuarySalon } from '@/components/studio/SaigonAcousticCastanetsSanctuarySalon'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -170,7 +171,7 @@ const CATEGORIES = CATEGORY_SEEDS.map((category) => ({ slug: category.slug, name
  *
  * Measured rather than picked: the whole run costs ~329px per project on the
  * 1600 desktop and ~342px on a 390 phone, so twenty-four is a page of roughly
- * nine desktop screens and eleven phone screens — a long editorial index, which
+ * nine desktop screens and eleven phone screens - a long editorial index, which
  * is what this is, rather than a document you scroll for two minutes. It also
  * divides the catalogue into five pages today and keeps the largest single
  * category (CĂN HỘ, 41) to two.
@@ -182,7 +183,7 @@ function firstParam(raw: string | string[] | undefined): string | null {
   return typeof value === 'string' && value.length > 0 ? value : null
 }
 
-/** Only the fixed taxonomy is honoured — an unknown slug falls back to "all". */
+/** Only the fixed taxonomy is honoured - an unknown slug falls back to "all". */
 function resolveCategory(params: SearchParams): string | null {
   const value = firstParam(params.category)
   if (value === null) return null
@@ -197,7 +198,7 @@ function resolveStyle(params: SearchParams, styles: readonly StyleItem[]): strin
 }
 
 /**
- * `?page=` as an integer ≥ 1. Anything else — a word, a negative, a decimal —
+ * `?page=` as an integer ≥ 1. Anything else - a word, a negative, a decimal -
  * is page one rather than a 404: a mistyped parameter should still show the
  * index, and the page is clamped to the run's real length afterwards.
  */
@@ -263,8 +264,8 @@ interface IndexView {
 /**
  * The whole reading of one request, resolved once.
  *
- * `generateMetadata` and the render both need the same filtered run — the
- * canonical must never point at a page that does not exist — and every query
+ * `generateMetadata` and the render both need the same filtered run - the
+ * canonical must never point at a page that does not exist - and every query
  * underneath is `cache()`d for the request, so asking twice costs one round trip.
  */
 async function readView(params: SearchParams): Promise<IndexView> {
@@ -286,7 +287,7 @@ async function readView(params: SearchParams): Promise<IndexView> {
   const wearsStyle = (project: ProjectSummary, slug: string): boolean =>
     (membership.get(project.id) ?? []).some((item) => item.slug === slug)
 
-  // Each list is the run with the OTHER filter applied — that is what makes the
+  // Each list is the run with the OTHER filter applied - that is what makes the
   // figures on each control the figures a click would actually produce.
   const byStyle = style ? all.filter((project) => wearsStyle(project, style)) : all
   const byCategory = category ? all.filter((project) => project.categorySlug === category) : all
@@ -851,6 +852,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Acoustic Cajon Sanctuary Salon */}
           <SaigonAcousticCajonSanctuarySalon />
+
+          {/* Saigon Acoustic Castanets Sanctuary Salon */}
+          <SaigonAcousticCastanetsSanctuarySalon />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />

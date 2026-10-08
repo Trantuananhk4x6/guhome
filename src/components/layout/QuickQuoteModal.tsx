@@ -150,7 +150,7 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeQuoteModal}
-              className="fixed inset-0 bg-black/80 backdrop-blur-xl"
+              className="fixed inset-0 bg-espresso/85 backdrop-blur-2xl"
             />
 
             {/* Modal Dialog Card */}
@@ -158,8 +158,8 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
               initial={{ opacity: 0, scale: 0.94, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 12 }}
-              transition={{ type: 'spring', damping: 28, stiffness: 320 }}
-              className="relative w-full max-w-2xl bg-espresso text-canvas rounded-2xl border border-accent/40 shadow-[0_24px_60px_rgba(0,0,0,0.85)] p-5 sm:p-8 z-10 overflow-hidden my-6"
+              transition={{ type: 'spring', damping: 28, stiffness: 320, mass: 0.85 }}
+              className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto overscroll-contain bg-espresso text-canvas rounded-2xl sm:rounded-3xl border border-accent/40 shadow-[0_24px_70px_rgba(0,0,0,0.85),0_0_35px_rgba(197,168,128,0.15)] p-5 sm:p-8 z-10 my-4 sm:my-6"
               onClick={(e: React.MouseEvent) => e.stopPropagation()}
             >
               {/* Subtle top gold accent glow */}

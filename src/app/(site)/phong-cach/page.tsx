@@ -1,20 +1,20 @@
 /**
- * /phong-cach — the studio's styles, as a page you can actually enter.
+ * /phong-cach - the studio's styles, as a page you can actually enter.
  *
  * A style is the second taxonomy over the work, beside the category: a category
  * says what kind of building it is, a style says how it is spoken. Visitors ask
- * for the second one by name — "tôi thích Indochine", "làm kiểu tối giản được
- * không" — so it deserves an address rather than a menu label.
+ * for the second one by name - "tôi thích Indochine", "làm kiểu tối giản được
+ * không" - so it deserves an address rather than a menu label.
  *
  * EVERY STYLE HERE IS A LINK. That is the whole point of the route. The grid
  * reads off `getPublishedStyles()`, so what the studio configures in
  * /admin/styles is what a visitor sees, and each card leads to a real page of
- * real projects — never a button that goes nowhere.
+ * real projects - never a button that goes nowhere.
  *
  * Revalidated hourly: a style added or renamed in the admin lands without a
  * deploy, and the read is cheap enough that an hour of staleness is the only
  * cost. A database with no styles in it renders the empty state below rather
- * than a broken grid — `getPublishedStyles()` answers `[]` on a failed read, so
+ * than a broken grid - `getPublishedStyles()` answers `[]` on a failed read, so
  * this page is safe before the migration has even run.
  */
 
@@ -142,6 +142,8 @@ import { SaigonAcousticTambourineSanctuarySalon } from '@/components/studio/Saig
 import { SaigonRiversideTerracedHerbalOrchardPavilion } from '@/components/studio/SaigonRiversideTerracedHerbalOrchardPavilion'
 import { SaigonAcousticCajonSanctuarySalon } from '@/components/studio/SaigonAcousticCajonSanctuarySalon'
 import { SaigonCanalSideFloatingBambooTeaPavilion } from '@/components/studio/SaigonCanalSideFloatingBambooTeaPavilion'
+import { SaigonAcousticCastanetsSanctuarySalon } from '@/components/studio/SaigonAcousticCastanetsSanctuarySalon'
+import { SaigonRiversideCantileveredBonsaiPavilion } from '@/components/studio/SaigonRiversideCantileveredBonsaiPavilion'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -164,7 +166,7 @@ function countLabel(style: StyleItem): string {
 
 /**
  * The heading counts the styles out loud, and how many there are is the admin's
- * to decide — so the number has to be read, not written into the sentence. Nine
+ * to decide - so the number has to be read, not written into the sentence. Nine
  * is where this started; five would have made the page say something untrue.
  */
 const VI_NUMERALS = [
@@ -202,8 +204,8 @@ function StyleCard({ style, index }: { style: StyleItem; index: number }) {
             <h2 className="u-display-sm text-ink ease-editorial transition-colors duration-500 group-hover/style:text-accent">
               {style.name}
             </h2>
-            {/* The English name is how half the briefs arrive — "Modern Luxury",
-                "Japandi" — so it is set as a label under the Vietnamese one
+            {/* The English name is how half the briefs arrive - "Modern Luxury",
+                "Japandi" - so it is set as a label under the Vietnamese one
                 rather than dropped or promoted. */}
             {style.nameEn ? <p className="u-label mt-2">{style.nameEn}</p> : null}
           </div>
@@ -632,6 +634,12 @@ export default async function StylesPage() {
 
       {/* Saigon Canal-Side Floating Bamboo Tea Pavilion */}
       <SaigonCanalSideFloatingBambooTeaPavilion />
+
+      {/* Saigon Acoustic Castanets Sanctuary Salon */}
+      <SaigonAcousticCastanetsSanctuarySalon />
+
+      {/* Saigon Riverside Cantilevered Bonsai Pavilion */}
+      <SaigonRiversideCantileveredBonsaiPavilion />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

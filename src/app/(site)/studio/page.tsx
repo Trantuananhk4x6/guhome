@@ -209,6 +209,9 @@ import { ArtisanImperialSilverAgarwoodTeaCaddyAtelier } from '@/components/tools
 import { SaigonAcousticCajonSanctuarySalon } from '@/components/studio/SaigonAcousticCajonSanctuarySalon'
 import { SaigonCanalSideFloatingBambooTeaPavilion } from '@/components/studio/SaigonCanalSideFloatingBambooTeaPavilion'
 import { ArtisanGoldDamasceneEbonyTobaccoPipeAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyTobaccoPipeAtelier'
+import { SaigonAcousticCastanetsSanctuarySalon } from '@/components/studio/SaigonAcousticCastanetsSanctuarySalon'
+import { SaigonRiversideCantileveredBonsaiPavilion } from '@/components/studio/SaigonRiversideCantileveredBonsaiPavilion'
+import { ArtisanMotherOfPearlInlaidEbonyChessboardAtelier } from '@/components/tools/ArtisanMotherOfPearlInlaidEbonyChessboardAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1491,6 +1494,15 @@ export default async function StudioPage() {
 
       {/* ---------------- gold damascene ebony tobacco pipe atelier ------------- */}
       <ArtisanGoldDamasceneEbonyTobaccoPipeAtelier />
+
+      {/* ---------------- acoustic castanets sanctuary salon --------------------- */}
+      <SaigonAcousticCastanetsSanctuarySalon />
+
+      {/* ---------------- cantilevered bonsai pavilion --------------------------- */}
+      <SaigonRiversideCantileveredBonsaiPavilion />
+
+      {/* ---------------- mop inlaid ebony chessboard atelier ------------------- */}
+      <ArtisanMotherOfPearlInlaidEbonyChessboardAtelier />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

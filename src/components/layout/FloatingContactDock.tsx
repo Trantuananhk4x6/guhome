@@ -15,7 +15,7 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.04,
+      staggerChildren: 0.045,
       delayChildren: 0.02,
     },
   },
@@ -29,17 +29,17 @@ const containerVariants: Variants = {
 }
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 16, scale: 0.94 },
+  hidden: { opacity: 0, y: 14, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { type: 'spring' as const, damping: 24, stiffness: 360 },
+    transition: { type: 'spring' as const, damping: 26, stiffness: 380, mass: 0.8 },
   },
   exit: {
     opacity: 0,
-    y: 12,
-    scale: 0.94,
+    y: 10,
+    scale: 0.95,
     transition: { duration: 0.15 },
   },
 }
@@ -70,7 +70,7 @@ export function FloatingContactDock() {
               <Link
                 href="/du-toan-chi-phi"
                 onClick={() => setIsExpanded(false)}
-                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/80 bg-surface/95 px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition-all duration-300 hover:border-accent/70 hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.2)] hover:scale-[1.02] active:scale-[0.98]"
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/80 bg-surface/95 px-4 py-2.5 shadow-[0_10px_32px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition-all duration-300 hover:border-accent/70 hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.22)] hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent transition-colors">
                   Bóc tách chi phí theo phòng
@@ -81,7 +81,7 @@ export function FloatingContactDock() {
               </Link>
             </motion.div>
 
-            {/* 1. Nhận báo giá nhanh */}
+            {/* 1. Nhận báo giá nhanh 15 phút */}
             <motion.div variants={itemVariants}>
               <button
                 type="button"
@@ -89,7 +89,7 @@ export function FloatingContactDock() {
                   setIsExpanded(false)
                   openQuoteModal()
                 }}
-                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-surface/95 px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.2)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/50 bg-gradient-to-r from-surface/95 via-surface/98 to-accent/15 px-4 py-2.5 shadow-[0_10px_32px_rgba(0,0,0,0.16),0_0_18px_rgba(197,168,128,0.2),inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.32)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               >
                 <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent transition-colors">
                   Dự toán chi phí 15 phút
@@ -108,7 +108,7 @@ export function FloatingContactDock() {
                   setIsExpanded(false)
                   openTactileModal()
                 }}
-                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-surface/95 px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.2)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-surface/95 px-4 py-2.5 shadow-[0_10px_32px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.22)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               >
                 <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent transition-colors">
                   Nhận Hộp Mẫu Xúc Giác
@@ -125,12 +125,12 @@ export function FloatingContactDock() {
                 href="https://zalo.me/0368757916"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/80 bg-surface/95 px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition-all duration-300 hover:border-[#0068FF]/70 hover:bg-canvas hover:shadow-[0_12px_36px_rgba(0,104,255,0.15)] hover:scale-[1.02] active:scale-[0.98]"
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-[#0068FF]/40 bg-surface/95 px-4 py-2.5 shadow-[0_10px_32px_rgba(0,0,0,0.16),0_0_16px_rgba(0,104,255,0.15),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition-all duration-300 hover:border-[#0068FF] hover:bg-canvas hover:shadow-[0_12px_36px_rgba(0,104,255,0.25)] hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-[#0068FF] transition-colors">
                   Nhắn Zalo KTS Trưởng
                 </span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0068FF]/15 text-[#0068FF] group-hover:bg-[#0068FF] group-hover:text-white transition-colors text-xs font-bold font-mono">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0068FF] text-white transition-colors text-xs font-bold font-mono shadow-xs">
                   Zalo
                 </span>
               </a>
@@ -140,12 +140,12 @@ export function FloatingContactDock() {
             <motion.div variants={itemVariants}>
               <a
                 href="tel:0368757916"
-                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/80 bg-surface/95 px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.2)] hover:scale-[1.02] active:scale-[0.98]"
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-gradient-to-r from-surface/95 via-surface/98 to-accent/15 px-4 py-2.5 shadow-[0_10px_32px_rgba(0,0,0,0.16),0_0_18px_rgba(197,168,128,0.22),inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-[0_12px_38px_rgba(197,168,128,0.35)] hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent transition-colors">
                   Gọi 0368 757 916
                 </span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-xs">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-canvas group-hover:bg-accent-soft transition-colors text-xs shadow-xs">
                   <PhoneIcon className="h-4 w-4" />
                 </span>
               </a>
@@ -159,7 +159,7 @@ export function FloatingContactDock() {
                   setIsExpanded(false)
                   openModal()
                 }}
-                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-espresso px-4 py-2.5 text-canvas shadow-[0_8px_30px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-300 hover:border-accent hover:bg-ink hover:shadow-[0_12px_36px_rgba(197,168,128,0.25)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-espresso px-4 py-2.5 text-canvas shadow-[0_10px_32px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-300 hover:border-accent hover:bg-ink hover:shadow-[0_12px_36px_rgba(197,168,128,0.25)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               >
                 <span className="font-body text-[0.8125rem] font-medium text-accent-soft group-hover:text-canvas transition-colors">
                   Mạng xã hội & Mã QR
@@ -174,7 +174,7 @@ export function FloatingContactDock() {
       </AnimatePresence>
 
       {/* Floating Action Row: Sensory Soundscape + Main Trigger */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 max-w-[calc(100vw-2rem)] justify-end">
         <SensorySoundscape />
 
         {/* Main Floating Trigger Button */}
@@ -183,7 +183,7 @@ export function FloatingContactDock() {
           onClick={() => setIsExpanded((prev) => !prev)}
           aria-label={isExpanded ? 'Đóng menu kết nối' : 'Mở menu kết nối nhanh cùng GuHomes'}
           className={cn(
-            'relative flex h-14 min-h-[44px] items-center gap-3 rounded-full border px-5 shadow-[0_12px_40px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-300 ease-editorial shrink-0 active:scale-95 cursor-pointer ring-1',
+            'relative flex h-14 min-h-[44px] items-center gap-3 rounded-full border px-5 shadow-[0_12px_40px_rgba(0,0,0,0.45),0_0_24px_rgba(197,168,128,0.2),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-300 ease-editorial shrink-0 active:scale-95 cursor-pointer ring-1',
             isExpanded
               ? 'border-accent bg-espresso text-canvas ring-accent/30 shadow-accent/20'
               : 'border-accent/40 bg-espresso/95 text-canvas hover:border-accent hover:bg-espresso hover:scale-105 backdrop-blur-md ring-accent/20',
@@ -204,3 +204,4 @@ export function FloatingContactDock() {
     </aside>
   )
 }
+
