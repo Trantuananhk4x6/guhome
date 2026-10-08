@@ -19,7 +19,20 @@ interface ArticleSeedItem {
     title: string
     description: string
   }
-  content: RichTextDoc
+  content: {
+    nodes: Array<
+      | { type: 'heading'; level: 2 | 3 | 4; text: string }
+      | { type: 'paragraph'; text: string }
+      | { type: 'image'; mediaId: string; caption?: string }
+      | { type: 'gallery'; mediaIds: string[] }
+      | { type: 'video'; mediaId: string }
+      | { type: 'quote'; text: string; attribution?: string }
+      | { type: 'list'; ordered: boolean; items: string[] }
+      | { type: 'projectRef'; projectId: string }
+      | { type: 'divider' }
+      | Record<string, unknown>
+    >
+  }
 }
 
 const here = dirname(fileURLToPath(import.meta.url))
@@ -527,7 +540,7 @@ async function run() {
         tags: art.tags,
         readingMinutes: art.readingMinutes,
         seo: art.seo,
-        content: art.content,
+        content: art.content as unknown as RichTextDoc,
         publishedAt: art.publishedAt,
         updatedAt: new Date(),
       }).where(eq(schema.articles.slug, art.slug))
@@ -544,7 +557,7 @@ async function run() {
         tags: art.tags,
         readingMinutes: art.readingMinutes,
         seo: art.seo,
-        content: art.content,
+        content: art.content as unknown as RichTextDoc,
         publishedAt: art.publishedAt,
       })
     }

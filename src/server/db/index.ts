@@ -26,6 +26,23 @@ const dbHost = new URL(connectionString).hostname
 if (LOCAL_DB_HOSTS.has(dbHost)) {
   const proxyPort = process.env.NEON_HTTP_PROXY_PORT ?? '4444'
   neonConfig.fetchEndpoint = `http://${dbHost}:${proxyPort}/sql`
+} else {
+  // Wrap neon HTTP queries with retry logic to withstand high concurrency and transient network hiccups during static site generation
+  const nativeFetch = globalThis.fetch
+  if (typeof nativeFetch === 'function') {
+    neonConfig.fetchFunction = async (input: RequestInfo | URL, init?: RequestInit) => {
+      let attempts = 0
+      while (true) {
+        try {
+          return await nativeFetch(input, init)
+        } catch (err) {
+          attempts++
+          if (attempts >= 4) throw err
+          await new Promise((resolve) => setTimeout(resolve, 300 * attempts))
+        }
+      }
+    }
+  }
 }
 
 const sql = neon(connectionString)

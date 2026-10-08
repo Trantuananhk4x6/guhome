@@ -262,6 +262,9 @@ import { ArtisanHandmadeGoldFiligreeAndEbonyCalligraphySealAtelier } from '@/com
 import { SaigonCanalSideAncientTeakwoodLotusPondTeaPavilion } from '@/components/studio/SaigonCanalSideAncientTeakwoodLotusPondTeaPavilion'
 import { BespokeImperialKynamAndGoldInlaidIncenseChestVault } from '@/components/studio/BespokeImperialKynamAndGoldInlaidIncenseChestVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestAtelier'
+import { SaigonCanalSideAncientCypressTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientCypressTeaBonsaiPavilion'
+import { BespokeImperialKynamAndSilverChasedIncenseVault } from '@/components/studio/BespokeImperialKynamAndSilverChasedIncenseVault'
+import { ArtisanHandmadeGoldFiligreeAndRosewoodPaperweightBarAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndRosewoodPaperweightBarAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1697,6 +1700,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan gold filigree & jade brush rest atelier --------- */}
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestAtelier />
+
+      {/* ---------------- saigon canal-side ancient cypress tea bonsai pavilion --- */}
+      <SaigonCanalSideAncientCypressTeaBonsaiPavilion />
+
+      {/* ---------------- bespoke imperial kynam & silver chased incense vault ---- */}
+      <BespokeImperialKynamAndSilverChasedIncenseVault />
+
+      {/* ---------------- artisan gold filigree & rosewood paperweight bar atelier - */}
+      <ArtisanHandmadeGoldFiligreeAndRosewoodPaperweightBarAtelier />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />
