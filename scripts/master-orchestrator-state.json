@@ -102,7 +102,6 @@
       "completedAt": "2026-10-08T13:54:30.000Z",
       "commit": "6be4879",
       "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, TropicalFengShuiCompass, AcousticDampeningSimulator, and VipConciergePortal fully active across /khu-vuc, /studio, /du-toan-chi-phi, /projects, /phong-cach, and /contact"
-    }
     },
     {
       "directiveId": "dir-15-sprint-17-tropical-patina-hvac-smart-home",
@@ -114,10 +113,10 @@
     }
   ],
   "activeDirective": {
-    "directiveId": "dir-16-sprint-18-lighting-atelier-natural-stone-handover",
-    "title": "Xưởng Chế Tác Đèn Thủ Công GuHomes Lighting Atelier, Bản Đồ Mỏ Đá Tự Nhiên Xúc Giác & Nghi Thức Bàn Giao Chìa Khóa Hộp Gỗ Hoàng Kim",
-    "sentAt": "2026-10-08T14:00:30.000Z",
+    "directiveId": "dir-16-sprint-18-river-breeze-kiln-bespoke-furniture",
+    "title": "Khí Động Học Gió Sông Sài Gòn, Nhật Ký Sấy Chân Không Mộc Thạnh Xuân & Bộ Tùy Biến Đồ Rời May Đo Độc Bản",
+    "sentAt": "2026-10-08T14:00:59.899Z",
     "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
   },
-  "lastDispatchedAt": 1791468030000
+  "lastDispatchedAt": 1791468059899
 }
