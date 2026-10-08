@@ -212,6 +212,9 @@ import { ArtisanGoldDamasceneEbonyTobaccoPipeAtelier } from '@/components/tools/
 import { SaigonAcousticCastanetsSanctuarySalon } from '@/components/studio/SaigonAcousticCastanetsSanctuarySalon'
 import { SaigonRiversideCantileveredBonsaiPavilion } from '@/components/studio/SaigonRiversideCantileveredBonsaiPavilion'
 import { ArtisanMotherOfPearlInlaidEbonyChessboardAtelier } from '@/components/tools/ArtisanMotherOfPearlInlaidEbonyChessboardAtelier'
+import { SaigonAcousticMaracasSanctuarySalon } from '@/components/studio/SaigonAcousticMaracasSanctuarySalon'
+import { SaigonCanalSideFloatingOrchidSanctuaryPavilion } from '@/components/studio/SaigonCanalSideFloatingOrchidSanctuaryPavilion'
+import { ArtisanGoldDamasceneEbonyGuanGongStatueAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyGuanGongStatueAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1503,6 +1506,15 @@ export default async function StudioPage() {
 
       {/* ---------------- mop inlaid ebony chessboard atelier ------------------- */}
       <ArtisanMotherOfPearlInlaidEbonyChessboardAtelier />
+
+      {/* ---------------- acoustic maracas sanctuary salon ----------------------- */}
+      <SaigonAcousticMaracasSanctuarySalon />
+
+      {/* ---------------- canal side floating orchid pavilion -------------------- */}
+      <SaigonCanalSideFloatingOrchidSanctuaryPavilion />
+
+      {/* ---------------- gold damascene guan gong statue atelier ---------------- */}
+      <ArtisanGoldDamasceneEbonyGuanGongStatueAtelier />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

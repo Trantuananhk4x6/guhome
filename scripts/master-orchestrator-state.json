@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 107,
+  "currentDirectiveIndex": 109,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -642,7 +642,25 @@
       "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
       "sentAt": "2026-10-08T19:37:57.915Z",
       "atStep": 9231
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T19:42:31.675Z",
+      "atStep": 9302
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T19:48:56.506Z",
+      "atStep": 9453
+    },
+    {
+      "directiveId": "dir-78-sprint-78-maracas-floatingorchid-guangongstatue",
+      "title": "Thính Phòng Maracas Bầu Khô, Thủy Đình Vườn Lan Treo & Tượng Quan Công Mun Sừng Nạm Vàng Damascene",
+      "sentAt": "2026-10-08T19:51:10.000Z",
+      "atStep": 9515
     }
   ],
-  "lastDispatchedAt": 1791488277915
+  "lastDispatchedAt": 1791489070000
 }

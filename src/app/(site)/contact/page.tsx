@@ -79,6 +79,7 @@ import { ArtisanHornMotherOfPearlJewelryChestAtelier } from '@/components/tools/
 import { ArtisanImperialSilverAgarwoodTeaCaddyAtelier } from '@/components/tools/ArtisanImperialSilverAgarwoodTeaCaddyAtelier'
 import { ArtisanGoldDamasceneEbonyTobaccoPipeAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyTobaccoPipeAtelier'
 import { ArtisanMotherOfPearlInlaidEbonyChessboardAtelier } from '@/components/tools/ArtisanMotherOfPearlInlaidEbonyChessboardAtelier'
+import { ArtisanGoldDamasceneEbonyGuanGongStatueAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyGuanGongStatueAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -552,6 +553,9 @@ export default async function ContactPage() {
 
       {/* Artisan Mother-Of-Pearl Inlaid Ebony Chessboard Atelier */}
       <ArtisanMotherOfPearlInlaidEbonyChessboardAtelier />
+
+      {/* Artisan Gold Damascene Ebony Guan Gong Statue Atelier */}
+      <ArtisanGoldDamasceneEbonyGuanGongStatueAtelier />
     </div>
   )
 }

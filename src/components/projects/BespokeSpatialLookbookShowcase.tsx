@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -8,6 +8,21 @@ import { useQuickQuote } from '@/components/layout/QuickQuoteModal'
 import { Label } from '@/components/ui/Label'
 import { ArrowUpRightIcon, CheckIcon } from '@/components/ui/icons'
 import { cn } from '@/lib/utils'
+
+interface TactileMaterial {
+  name: string
+  source: string
+  finish: string
+  tactileFeel: string
+  climateRole: string
+  hex: string
+}
+
+interface ClimateMetric {
+  title: string
+  value: string
+  detail: string
+}
 
 interface LookbookItem {
   id: string
@@ -21,7 +36,10 @@ interface LookbookItem {
   humidityControl: string
   image: string
   imageAlt: string
-  palette: { name: string; hex: string; desc: string }[]
+  soundscapeName: string
+  soundscapeFreq: number
+  tactileMaterials: TactileMaterial[]
+  climateMetrics: ClimateMetric[]
   specs: { label: string; value: string }[]
   quoteStyle: string
 }
@@ -33,21 +51,50 @@ const LOOKBOOKS: LookbookItem[] = [
     subtitle: 'Đối thoại cùng mặt trời lặn bên sông Sài Gòn',
     location: 'Bán đảo Thủ Thiêm, TP. Thủ Đức',
     area: '345 m² · Duplex 2 tầng thông tầng 7.2m',
-    climateChallenge: 'Độ ẩm 78% quanh năm, bức xạ nhiệt mặt trời lặn hướng Tây nung nóng vách kính tới 48°C lúc 15:30.',
+    climateChallenge: 'Độ ẩm 78% quanh năm, bức xạ nhiệt mặt trời lặn hướng Tây nung nóng vách kính tới 48°C lúc 15:30 chiều.',
     solution: 'Hệ lam xoay gỗ Teak rừng sấy chân không kết hợp mành tre hun khói và khe lấy gió vi khí hậu sông, hạ nhiệt tự nhiên.',
     tempReduction: '-6.5°C',
     humidityControl: '55% RH',
     image: '/media/ben-kia-song/12-1600.webp',
     imageAlt: 'Penthouse The Opera Metropole Thủ Thiêm thiết kế nội thất vi khí hậu GuHomes',
-    palette: [
-      { name: 'Gỗ Teak Miệt Vườn', hex: '#8B5A2B', desc: 'Chống ẩm 78%, tinh dầu kháng mốc tự nhiên' },
-      { name: 'Đá Travertine Ý', hex: '#D2B48C', desc: 'Bề mặt thở nano, tản nhiệt đối lưu' },
-      { name: 'Vữa Vôi Hàu Tự Nhiên', hex: '#EAE6DF', desc: 'Hút ẩm mùa mưa, nhả ẩm mùa khô' },
+    soundscapeName: 'Gió Sông & Sóng Nước Bán Đảo',
+    soundscapeFreq: 432,
+    tactileMaterials: [
+      {
+        name: 'Gỗ Teak Miệt Vườn Sấy Chân Không',
+        source: 'Vườn cây lâm nghiệp bền vững, hoàn thiện tại Xưởng Thạnh Xuân 1.200m²',
+        finish: 'Lau dầu thực vật gốc nước Osmo Đức 3 lớp',
+        tactileFeel: 'Ấm áp, mịn màng vân thớ chìm, thoang thoảng mùi tinh dầu tự nhiên',
+        climateRole: 'Kháng ẩm 78%, chống cong vênh biên độ nhiệt cao',
+        hex: '#8B5A2B',
+      },
+      {
+        name: 'Đá Travertine Navona Ý',
+        source: 'Mỏ đá tự nhiên Tivoli, cắt CNC và mài mờ thủ công',
+        finish: 'Bề mặt mài mờ vân mây (Honed), lỗ rỗng thở nano giữ ẩm mát',
+        tactileFeel: 'Mát lạnh dịu nhẹ, xúc giác đá trầm tích tự nhiên',
+        climateRole: 'Hấp thu nhiệt chậm, tản nhiệt đối lưu làm mát sàn',
+        hex: '#D2B48C',
+      },
+      {
+        name: 'Vữa Vôi Vỏ Hàu Sông Sài Gòn',
+        source: 'Tro vỏ hàu Cần Giờ ủ men vi sinh và bột đá thạch anh',
+        finish: 'Gạt tay mộc mạc phong cách Venetian Stucco',
+        tactileFeel: 'Mịn xốp như đá phấn, tán xạ ánh sáng mềm mại',
+        climateRole: 'Hút ẩm mùa mưa, nhả ẩm mùa khô, khử khuẩn không khí',
+        hex: '#EAE6DF',
+      },
+    ],
+    climateMetrics: [
+      { title: 'Tốc độ gió đối lưu', value: '1.2 m/s', detail: 'Hút gió sông mát qua hành lang gió tự nhiên' },
+      { title: 'Bức xạ nhiệt cản phá', value: '82%', detail: 'Hệ lam Teak thông minh tự điều hướng nắng' },
+      { title: 'Tĩnh âm salon chính', value: '26 dBA', detail: 'Vách tiêu âm rãnh Fibonacci cách ly tiếng ồn đô thị' },
+      { title: 'Tiết kiệm điện điều hòa', value: '38%', detail: 'Nhờ lớp đệm vi khí hậu hạ nhiệt 6.5°C' },
     ],
     specs: [
-      { label: 'Hướng công trình', value: 'Tây Nam (View trực diện sông)' },
-      { label: 'Thời gian thi công', value: '95 ngày may đo trọn gói' },
-      { label: 'Vật liệu chủ đạo', value: 'Teak FAS, Travertine, Khung nhôm Anode' },
+      { label: 'Hướng công trình', value: 'Tây Nam (View trực diện sông Sài Gòn)' },
+      { label: 'Thời gian thi công', value: '95 ngày may đo trọn gói tại xưởng Thạnh Xuân' },
+      { label: 'Vật liệu chủ đạo', value: 'Teak FAS, Travertine, Khung nhôm Anode champagne' },
       { label: 'Âm học thính phòng', value: 'Vòm parabol RT60 = 0.32s' },
     ],
     quoteStyle: 'modern-luxury',
@@ -59,19 +106,48 @@ const LOOKBOOKS: LookbookItem[] = [
     location: 'Đỗ Xuân Hợp, Phường An Phú, TP. Thủ Đức',
     area: '520 m² · Dinh thự 4 tầng mặt tiền kênh đào',
     climateChallenge: 'Gió nóng khô rát đường nhựa đô thị, ô nhiễm bụi mịn PM2.5 và tiếng ồn giao thông giờ cao điểm.',
-    solution: 'Sân trong vách thác nước đá ngọc Onyx vàng mật ong xuyên sáng LED kết hợp bể ngâm bazan lục lăng ion âm.',
+    solution: 'Sân trong vách thác nước đá ngọc Onyx vàng mật ong xuyên sáng LED kết hợp bể ngâm bazan lục lăng ion âm thanh lọc.',
     tempReduction: '-4.8°C',
     humidityControl: '52% RH',
     image: '/media/nha-pho-hien-dai-nha-pho-1-mat-tien/1-1200.webp',
     imageAlt: 'Dinh thự The Global City nội thất mộc đá ngọc GuHomes',
-    palette: [
-      { name: 'Đá Ngọc Onyx Vàng', hex: '#C5A880', desc: 'Xuyên sáng LED 2700K, phát quang tinh thể' },
-      { name: 'Bazan Đắk Nông', hex: '#3E3D39', desc: 'Khoét rỗng nguyên khối, ion âm thanh lọc' },
-      { name: 'Gỗ Sao Cát Ghe Bầu', hex: '#654321', desc: 'Gỗ sông trăm tuổi, kháng nứt tuyệt đối' },
+    soundscapeName: 'Thác Nước Onyx Tĩnh Âm Kênh Đào',
+    soundscapeFreq: 528,
+    tactileMaterials: [
+      {
+        name: 'Đá Ngọc Onyx Vàng Mật Ong',
+        source: 'Phiến đá ngọc xuyên sáng tự nhiên, ghép vân đối xứng Bookmatch',
+        finish: 'Mài bóng quang học, tích hợp LED viền 2700K',
+        tactileFeel: 'Mịn như ngọc bích, phản quang ánh sáng dịu mắt',
+        climateRole: 'Cân bằng trường năng lượng, tạo điểm sáng không toả nhiệt',
+        hex: '#C5A880',
+      },
+      {
+        name: 'Đá Bazan Đắk Nông Nguyên Khối',
+        source: 'Đá núi lửa vùng cao nguyên Tây Nguyên khai thác hợp chuẩn',
+        finish: 'Đẽo tay sần tự nhiên kết hợp xẻ rãnh thoát nước',
+        tactileFeel: 'Thô ráp nguyên thủy, lưu giữ độ ẩm mát lạnh',
+        climateRole: 'Phát tán ion âm theo màn sương nước, giữ mát sân trong',
+        hex: '#3E3D39',
+      },
+      {
+        name: 'Gỗ Sao Cát Ghe Bầu Trăm Tuổi',
+        source: 'Gỗ tái chế từ thân ghe bầu Nam Bộ ngâm nước sông nhiều thập kỷ',
+        finish: 'Đánh cước sắt nổi vân tôm, giữ lớp patina cổ kính',
+        tactileFeel: 'Đậm đà dấu ấn thời gian, chắc nịch như đá hóa thạch',
+        climateRole: 'Kháng nước mặn và ẩm tuyệt đối, 0 cong vênh',
+        hex: '#654321',
+      },
+    ],
+    climateMetrics: [
+      { title: 'Mật độ hạt bụi PM2.5', value: '< 10 µg/m³', detail: 'Màn nước ion âm lọc bụi mịn tự nhiên' },
+      { title: 'Tĩnh âm thác nước', value: '18 dBA', detail: 'Âm thanh róc rách tần số chữa lành 528Hz' },
+      { title: 'Độ ẩm vi mô ổn định', value: '52% RH', detail: 'Ngăn khô rát điều hòa cho gia đình' },
+      { title: 'Chỉ số hoàn màu ánh sáng', value: 'CRI 98', detail: 'Ánh sáng phản chiếu qua ngọc Onyx ấm cúng' },
     ],
     specs: [
-      { label: 'Hướng công trình', value: 'Đông Nam (Đón gió kênh đào)' },
-      { label: 'Thời gian thi công', value: '120 ngày may đo độc bản' },
+      { label: 'Hướng công trình', value: 'Đông Nam (Đón gió kênh đào mát lành)' },
+      { label: 'Thời gian thi công', value: '120 ngày may đo độc bản tại xưởng Thạnh Xuân' },
       { label: 'Vật liệu chủ đạo', value: 'Onyx Iran, Bazan Gia Lai, Gỗ Sao Cát' },
       { label: 'Tĩnh âm vi mô', value: '< 18 dBA thác nước êm đềm' },
     ],
@@ -89,14 +165,43 @@ const LOOKBOOKS: LookbookItem[] = [
     humidityControl: '50% RH',
     image: '/media/chung-cu-1-2-ngu/0-1600.webp',
     imageAlt: 'Biệt thự đảo Ecopark SwanBay kiến trúc vi khí hậu GuHomes',
-    palette: [
-      { name: 'Ngói Âm Dương Chợ Lớn', hex: '#4A6B56', desc: 'Men xanh lý Cây Mai, cách nhiệt 4 tầng' },
-      { name: 'Gỗ Dổi Sấy Chân Không', hex: '#A07855', desc: 'Kháng cong vênh, hương thơm tự nhiên' },
-      { name: 'Đá Ong Xám Bến Nghé', hex: '#696969', desc: 'Hút nước ngầm, làm mát sàn hiên' },
+    soundscapeName: 'Chuông Gió Gốm & Gió Vườn Đảo',
+    soundscapeFreq: 396,
+    tactileMaterials: [
+      {
+        name: 'Ngói Âm Dương Men Xanh Lý Cây Mai',
+        source: 'Lò gốm thủ công Chợ Lớn nung củi truyền thống 1.250°C',
+        finish: 'Men xanh ngọc rạn tự nhiên, chống bám rêu phong',
+        tactileFeel: 'Mát láng bề mặt men, gân cốt đất nung xốp giữ nhiệt tốt',
+        climateRole: 'Tản 85% nhiệt mặt trời, bảo vệ lớp kết cấu mái vòm',
+        hex: '#4A6B56',
+      },
+      {
+        name: 'Gỗ Dổi Vàng Sấy Chân Không',
+        source: 'Gỗ rừng trồng tuyển chọn, sấy đạt ẩm 10% tại Thạnh Xuân',
+        finish: 'Lau sáp ong tự nhiên giữ trọn mùi thơm thanh khiết',
+        tactileFeel: 'Mịn màng, ấm tay, ánh vàng óng ánh khi có nắng xiên',
+        climateRole: 'Tự điều tiết ẩm phòng ngủ, xua đuổi côn trùng tự nhiên',
+        hex: '#A07855',
+      },
+      {
+        name: 'Đá Ong Xám Bến Nghé Cổ',
+        source: 'Đá ong tổ ong tự nhiên cắt lát dày 30mm',
+        finish: 'Bề mặt lỗ rỗng nguyên bản xịt áp lực cao',
+        tactileFeel: 'Thô ráp mát lành, thấm nước nhanh tức thì',
+        climateRole: 'Hút nước mưa thoát ẩm cực nhanh, chống trơn trượt sân vườn',
+        hex: '#696969',
+      },
+    ],
+    climateMetrics: [
+      { title: 'Lưu lượng gió mát', value: '2.400 m³/h', detail: 'Hệ mái vòm kéo gió sông đối lưu tự nhiên' },
+      { title: 'Nhiệt độ mặt sàn hiên', value: '27.5°C', detail: 'Đá ong xám giữ mát dưới nắng trưa 36°C' },
+      { title: 'Kháng nấm mốc phòng', value: '100%', detail: 'Gỗ Dổi sấy chân không ngậm sáp ong tự nhiên' },
+      { title: 'Thời gian thi công mái', value: '35 ngày', detail: 'Lắp ráp mộng gỗ truyền thống tại công trình' },
     ],
     specs: [
-      { label: 'Hướng công trình', value: 'Nam - Đông Nam (3 mặt thoáng)' },
-      { label: 'Thời gian thi công', value: '110 ngày may đo thủ công' },
+      { label: 'Hướng công trình', value: 'Nam · Đông Nam (3 mặt tiếp giáp mặt nước)' },
+      { label: 'Thời gian thi công', value: '110 ngày may đo thủ công tại xưởng Thạnh Xuân' },
       { label: 'Vật liệu chủ đạo', value: 'Gỗ Dổi, Ngói men Chợ Lớn, Đá ong xám' },
       { label: 'Thính âm salon', value: 'Phòng hòa tấu Harpsichord RT60 0.34s' },
     ],
@@ -104,11 +209,87 @@ const LOOKBOOKS: LookbookItem[] = [
   },
 ]
 
+type ActiveTab = 'overview' | 'tactile' | 'climate'
+
 export function BespokeSpatialLookbookShowcase({ className }: { className?: string }) {
   const [selectedId, setSelectedId] = useState('metropole')
+  const [activeTab, setActiveTab] = useState<ActiveTab>('overview')
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false)
+  const audioContextRef = useRef<AudioContext | null>(null)
+  const oscillatorRef = useRef<OscillatorNode | null>(null)
+  const gainNodeRef = useRef<GainNode | null>(null)
   const { openQuoteModal } = useQuickQuote()
 
   const currentLookbook = LOOKBOOKS.find((l) => l.id === selectedId) ?? LOOKBOOKS[0]!
+
+  // Dọn dẹp âm thanh khi unmount hoặc đổi công trình
+  useEffect(() => {
+    return () => {
+      stopAudio()
+    }
+  }, [selectedId])
+
+  const stopAudio = () => {
+    if (oscillatorRef.current) {
+      try {
+        oscillatorRef.current.stop()
+        oscillatorRef.current.disconnect()
+      } catch {
+        // bỏ qua nếu đã stop
+      }
+      oscillatorRef.current = null
+    }
+    if (gainNodeRef.current) {
+      gainNodeRef.current.disconnect()
+      gainNodeRef.current = null
+    }
+    if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+      audioContextRef.current.close().catch(() => {})
+      audioContextRef.current = null
+    }
+    setIsPlayingAudio(false)
+  }
+
+  const toggleSoundscape = async () => {
+    if (isPlayingAudio) {
+      stopAudio()
+      return
+    }
+
+    try {
+      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
+      const ctx = new AudioCtx()
+      audioContextRef.current = ctx
+
+      // Sóng sin tần số hài hòa mô phỏng trường âm vi khí hậu
+      const osc = ctx.createOscillator()
+      const gain = ctx.createGain()
+      osc.type = 'sine'
+      osc.frequency.setValueAtTime(currentLookbook.soundscapeFreq, ctx.currentTime)
+
+      // Điều chế dao động nhẹ tạo cảm giác gió sông / sóng nước
+      const lfo = ctx.createOscillator()
+      const lfoGain = ctx.createGain()
+      lfo.frequency.setValueAtTime(0.2, ctx.currentTime)
+      lfoGain.gain.setValueAtTime(15, ctx.currentTime)
+      lfo.connect(osc.frequency)
+      lfo.start()
+
+      // Làm êm âm lượng
+      gain.gain.setValueAtTime(0, ctx.currentTime)
+      gain.gain.linearRampToValueAtTime(0.04, ctx.currentTime + 1.2)
+
+      osc.connect(gain)
+      gain.connect(ctx.destination)
+
+      osc.start()
+      oscillatorRef.current = osc
+      gainNodeRef.current = gain
+      setIsPlayingAudio(true)
+    } catch {
+      setIsPlayingAudio(false)
+    }
+  }
 
   return (
     <section
@@ -138,7 +319,10 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
                 <button
                   key={lb.id}
                   type="button"
-                  onClick={() => setSelectedId(lb.id)}
+                  onClick={() => {
+                    setSelectedId(lb.id)
+                    stopAudio()
+                  }}
                   className={cn(
                     'group relative flex min-h-[44px] items-center gap-2.5 rounded-full border px-5 py-2.5 font-body text-xs sm:text-sm font-medium transition-all duration-300 active:scale-95 cursor-pointer',
                     isActive
@@ -147,26 +331,84 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
                   )}
                 >
                   <span className={cn('h-2 w-2 rounded-full', isActive ? 'bg-accent animate-pulse' : 'bg-line')} />
-                  <span>{lb.title.split(' ')[0]} {lb.title.split(' ')[1]}</span>
+                  <span>{lb.title.replace('Penthouse ', '').replace('Dinh Thự ', '').replace('Biệt Thự Đảo ', '')}</span>
                 </button>
               )
             })}
           </div>
         </div>
 
+        {/* View Mode Switcher Subtabs */}
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-b border-line/60 pb-4">
+          <div className="flex items-center gap-2 bg-canvas/80 p-1 rounded-xl border border-line">
+            <button
+              type="button"
+              onClick={() => setActiveTab('overview')}
+              className={cn(
+                'min-h-[38px] px-4 py-1.5 rounded-lg text-xs font-mono transition-all',
+                activeTab === 'overview'
+                  ? 'bg-espresso text-canvas font-medium shadow-xs'
+                  : 'text-muted hover:text-ink',
+              )}
+            >
+              1. Tổng Quan Không Gian
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('tactile')}
+              className={cn(
+                'min-h-[38px] px-4 py-1.5 rounded-lg text-xs font-mono transition-all',
+                activeTab === 'tactile'
+                  ? 'bg-espresso text-canvas font-medium shadow-xs'
+                  : 'text-muted hover:text-ink',
+              )}
+            >
+              2. Bóc Tách Xúc Giác Vật Liệu
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('climate')}
+              className={cn(
+                'min-h-[38px] px-4 py-1.5 rounded-lg text-xs font-mono transition-all',
+                activeTab === 'climate'
+                  ? 'bg-espresso text-canvas font-medium shadow-xs'
+                  : 'text-muted hover:text-ink',
+              )}
+            >
+              3. Mặt Cắt Vi Khí Hậu
+            </button>
+          </div>
+
+          {/* Soundscape Interactive Player */}
+          <button
+            type="button"
+            onClick={toggleSoundscape}
+            className={cn(
+              'min-h-[40px] px-4 py-2 rounded-full border text-xs font-mono flex items-center gap-2.5 transition-all cursor-pointer',
+              isPlayingAudio
+                ? 'border-accent bg-accent/15 text-accent shadow-sm animate-pulse'
+                : 'border-line bg-canvas hover:border-accent/40 text-muted hover:text-ink',
+            )}
+            title="Nghe mô phỏng âm học môi trường vi khí hậu"
+          >
+            <span className={cn('h-2 w-2 rounded-full', isPlayingAudio ? 'bg-accent' : 'bg-line')} />
+            <span>{isPlayingAudio ? 'Đang phát trường âm: ' : 'Mô phỏng âm học: '} {currentLookbook.soundscapeName} ({currentLookbook.soundscapeFreq}Hz)</span>
+          </button>
+        </div>
+
         {/* Dynamic Lookbook Content Showcase */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentLookbook.id}
+            key={`${currentLookbook.id}-${activeTab}`}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-14 items-start"
+            className="mt-8 grid gap-10 lg:grid-cols-12 lg:gap-14 items-start"
           >
-            {/* Left 7 Cols: Image & Spatial Blueprint Visual */}
+            {/* Left 7 Cols: Image & Visual Representation */}
             <div className="lg:col-span-7 flex flex-col gap-6">
-              <div className="relative aspect-[16/10] w-full overflow-hidden border border-line bg-surface shadow-2xl group">
+              <div className="relative aspect-[16/10] w-full overflow-hidden border border-line bg-surface shadow-2xl group rounded-2xl">
                 <Image
                   src={currentLookbook.image}
                   alt={currentLookbook.imageAlt}
@@ -175,7 +417,7 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
                   className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-105"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-espresso/85 via-espresso/20 to-transparent" />
 
                 {/* Overlaid Badges */}
                 <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-4">
@@ -204,10 +446,10 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
               {/* Material Swatches Palette Bar */}
               <div className="p-5 rounded-xl border border-line bg-surface/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <span className="font-mono text-xs uppercase tracking-wider text-muted shrink-0">
-                  Bảng Vật Liệu Bản Địa:
+                  Bảng Màu & Cảm Quan Vật Liệu:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full sm:w-auto flex-1 sm:justify-end">
-                  {currentLookbook.palette.map((p, idx) => (
+                  {currentLookbook.tactileMaterials.map((p, idx) => (
                     <div key={idx} className="flex items-center gap-2.5 p-2 rounded-lg bg-canvas border border-line/60">
                       <span
                         className="h-6 w-6 rounded-full border border-black/10 shrink-0 shadow-xs"
@@ -215,7 +457,7 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
                       />
                       <div className="flex flex-col min-w-0">
                         <span className="text-xs font-medium text-ink truncate">{p.name}</span>
-                        <span className="text-[10px] text-muted truncate">{p.desc}</span>
+                        <span className="text-[10px] text-muted truncate">{p.finish}</span>
                       </div>
                     </div>
                   ))}
@@ -223,7 +465,7 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
               </div>
             </div>
 
-            {/* Right 5 Cols: Technical Breakdown & Action */}
+            {/* Right 5 Cols: Tab-dependent Deep Breakdown */}
             <div className="lg:col-span-5 flex flex-col gap-6">
               {/* Header Info */}
               <div className="flex flex-col gap-2">
@@ -237,40 +479,113 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
                 </h4>
               </div>
 
-              {/* Climate Challenge & Tailored Solution Card */}
-              <div className="flex flex-col gap-4 rounded-xl border border-line bg-canvas p-6 shadow-sm">
-                <div className="flex flex-col gap-1.5">
-                  <span className="font-mono text-xs uppercase tracking-wider text-red-700/80 flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-red-600" />
-                    Thách thức vi khí hậu thực tế:
-                  </span>
-                  <p className="font-body text-sm text-ink/80 leading-relaxed">
-                    {currentLookbook.climateChallenge}
-                  </p>
-                </div>
+              {/* Tab 1: Overview */}
+              {activeTab === 'overview' && (
+                <div className="flex flex-col gap-4">
+                  {/* Climate Challenge & Solution Card */}
+                  <div className="flex flex-col gap-4 rounded-xl border border-line bg-canvas p-6 shadow-sm">
+                    <div className="flex flex-col gap-1.5">
+                      <span className="font-mono text-xs uppercase tracking-wider text-red-700/80 flex items-center gap-1.5">
+                        <span className="h-1.5 w-1.5 rounded-full bg-red-600" />
+                        Thách thức vi khí hậu thực tế:
+                      </span>
+                      <p className="font-body text-sm text-ink/80 leading-relaxed">
+                        {currentLookbook.climateChallenge}
+                      </p>
+                    </div>
 
-                <div className="h-[1px] w-full bg-line" />
+                    <div className="h-[1px] w-full bg-line" />
 
-                <div className="flex flex-col gap-1.5">
-                  <span className="font-mono text-xs uppercase tracking-wider text-accent flex items-center gap-1.5">
-                    <CheckIcon className="h-3.5 w-3.5 text-accent" />
-                    Giải pháp may đo GuHomes:
-                  </span>
-                  <p className="font-body text-sm text-ink/90 font-medium leading-relaxed">
-                    {currentLookbook.solution}
-                  </p>
-                </div>
-              </div>
-
-              {/* Technical Specifications Grid */}
-              <div className="grid grid-cols-2 gap-3">
-                {currentLookbook.specs.map((s, idx) => (
-                  <div key={idx} className="p-3.5 rounded-lg border border-line/70 bg-surface/60 flex flex-col gap-1">
-                    <span className="font-mono text-[11px] uppercase tracking-wider text-muted">{s.label}</span>
-                    <span className="font-body text-xs font-medium text-ink">{s.value}</span>
+                    <div className="flex flex-col gap-1.5">
+                      <span className="font-mono text-xs uppercase tracking-wider text-accent flex items-center gap-1.5">
+                        <CheckIcon className="h-3.5 w-3.5 text-accent" />
+                        Giải pháp may đo GuHomes:
+                      </span>
+                      <p className="font-body text-sm text-ink/90 font-medium leading-relaxed">
+                        {currentLookbook.solution}
+                      </p>
+                    </div>
                   </div>
-                ))}
-              </div>
+
+                  {/* Technical Specifications Grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    {currentLookbook.specs.map((s, idx) => (
+                      <div key={idx} className="p-3.5 rounded-lg border border-line/70 bg-surface/60 flex flex-col gap-1">
+                        <span className="font-mono text-[11px] uppercase tracking-wider text-muted">{s.label}</span>
+                        <span className="font-body text-xs font-medium text-ink">{s.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 2: Tactile Material Breakdown */}
+              {activeTab === 'tactile' && (
+                <div className="flex flex-col gap-3.5">
+                  <div className="rounded-xl border border-line bg-canvas p-4 text-xs font-body text-ink/80 leading-relaxed">
+                    Tất cả phôi gỗ, phiến đá và vữa khoáng đều được gia công hoàn thiện tại <strong className="text-ink">Xưởng mộc Thạnh Xuân 1.200m²</strong> để kiểm soát dung sai dưới 0.5mm và tối ưu hóa phản xạ ánh sáng tự nhiên.
+                  </div>
+
+                  {currentLookbook.tactileMaterials.map((mat, idx) => (
+                    <div key={idx} className="p-4 rounded-xl border border-line bg-canvas shadow-xs flex flex-col gap-2">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="h-3.5 w-3.5 rounded-full border border-black/10" style={{ backgroundColor: mat.hex }} />
+                          <h5 className="font-body text-sm font-semibold text-ink">{mat.name}</h5>
+                        </div>
+                        <span className="text-[10px] font-mono text-muted uppercase">Mã VL 0{idx + 1}</span>
+                      </div>
+
+                      <div className="grid grid-cols-1 gap-1.5 pt-1 text-xs text-ink/80">
+                        <div>
+                          <span className="text-muted">Cảm quan xúc giác: </span>
+                          <span className="font-medium text-ink">{mat.tactileFeel}</span>
+                        </div>
+                        <div>
+                          <span className="text-muted">Xử lý hoàn thiện: </span>
+                          <span>{mat.finish}</span>
+                        </div>
+                        <div>
+                          <span className="text-muted">Vai trò vi khí hậu: </span>
+                          <span className="text-accent font-medium">{mat.climateRole}</span>
+                        </div>
+                        <div className="text-[11px] text-muted italic pt-1">
+                          Nguồn gốc: {mat.source}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Tab 3: Climate Aerodynamics & Cross Section */}
+              {activeTab === 'climate' && (
+                <div className="flex flex-col gap-4">
+                  <div className="rounded-xl border border-accent/30 bg-espresso text-canvas p-5 shadow-md">
+                    <span className="font-mono text-xs uppercase tracking-wider text-accent-soft block mb-1">
+                      Mô hình đối lưu & khí động học nhiệt đới
+                    </span>
+                    <p className="font-body text-xs sm:text-sm text-canvas/85 leading-relaxed">
+                      Ứng dụng chênh lệch áp suất nhiệt độ giữa mặt đất và tầng cao, kết hợp lớp đệm gió sông Sài Gòn để tạo luồng khí đối lưu 24/7 mà không phụ thuộc hoàn toàn vào hệ thống HVAC.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {currentLookbook.climateMetrics.map((metric, idx) => (
+                      <div key={idx} className="p-4 rounded-xl border border-line bg-canvas shadow-xs flex flex-col gap-1.5">
+                        <span className="font-mono text-xs text-muted uppercase tracking-wider">{metric.title}</span>
+                        <span className="font-display text-2xl font-medium text-accent">{metric.value}</span>
+                        <span className="text-xs text-ink/75 leading-relaxed">{metric.detail}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-4 rounded-xl border border-line bg-surface/70 text-xs text-ink/80 flex items-center gap-3">
+                    <div className="h-2 w-2 rounded-full bg-emerald-600 shrink-0" />
+                    <span>Hệ cảm biến IoT giám sát nhiệt ẩm vi mô liên tục báo về ứng dụng gia chủ GuHomes.</span>
+                  </div>
+                </div>
+              )}
 
               {/* CTA Action Row */}
               <div className="pt-2 flex flex-col sm:flex-row items-center gap-4">

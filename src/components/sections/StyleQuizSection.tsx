@@ -20,6 +20,7 @@ interface QuizQuestion {
       modernLuxury: number
       japandi: number
       contemporary: number
+      indochine: number
     }
   }[]
 }
@@ -28,31 +29,37 @@ const QUESTIONS: readonly QuizQuestion[] = [
   {
     id: 1,
     title: 'Cảm xúc nào bạn mong muốn nhất khi mở cửa bước về nhà?',
-    subtitle: 'Hãy lắng nghe cảm giác đầu tiên của bạn sau một ngày dài làm việc.',
+    subtitle: 'Hãy lắng nghe cảm giác đầu tiên của bạn sau một ngày dài làm việc ngoài phố thị.',
     options: [
       {
         id: 'q1-a',
         label: 'Sự tĩnh lặng nguyên sơ, trút bỏ mọi âu lo',
         description: 'Vách tường vữa vôi loang mờ, mùi gỗ ấm và ánh sáng gián tiếp êm dịu vỗ về tâm trí.',
-        stylePoints: { wabiSabi: 3, japandi: 1, modernLuxury: 0, contemporary: 0 },
+        stylePoints: { wabiSabi: 3, japandi: 1, modernLuxury: 0, contemporary: 0, indochine: 1 },
       },
       {
         id: 'q1-b',
         label: 'Sang trọng chuẩn mực, chỉn chu từng đường nét',
         description: 'Mặt đá tự nhiên bóng mờ, kim loại mạ satin sắc sảo và sự ngăn nắp tuyệt đối.',
-        stylePoints: { wabiSabi: 0, japandi: 0, modernLuxury: 3, contemporary: 1 },
+        stylePoints: { wabiSabi: 0, japandi: 0, modernLuxury: 3, contemporary: 1, indochine: 0 },
       },
       {
         id: 'q1-c',
         label: 'Ấm áp, mộc mạc và ngập tràn ánh nắng',
         description: 'Chất liệu gỗ sáng màu, nệm vải lanh mềm mại và sự thông thoáng gắn kết gia đình.',
-        stylePoints: { wabiSabi: 1, japandi: 3, modernLuxury: 0, contemporary: 0 },
+        stylePoints: { wabiSabi: 1, japandi: 3, modernLuxury: 0, contemporary: 0, indochine: 0 },
       },
       {
         id: 'q1-d',
-        label: 'Tự do, phóng khoáng và mang đậm dấu ấn cá nhân',
+        label: 'Tự do, phóng khoáng và mang đậm dấu ấn nghệ thuật',
         description: 'Không gian mở liên hoàn, đối thoại cùng cảnh quan sông nước và tác phẩm nghệ thuật.',
-        stylePoints: { wabiSabi: 0, japandi: 0, modernLuxury: 1, contemporary: 3 },
+        stylePoints: { wabiSabi: 0, japandi: 0, modernLuxury: 1, contemporary: 3, indochine: 0 },
+      },
+      {
+        id: 'q1-e',
+        label: 'Hoài niệm sâu lắng, thanh lịch di sản Á Đông',
+        description: 'Vòm cửa cong mềm mại, gạch bông thủ công mát lạnh và hương gỗ cổ kính xoa dịu tâm hồn.',
+        stylePoints: { wabiSabi: 1, japandi: 0, modernLuxury: 0, contemporary: 0, indochine: 3 },
       },
     ],
   },
@@ -63,27 +70,27 @@ const QUESTIONS: readonly QuizQuestion[] = [
     options: [
       {
         id: 'q2-a',
-        label: 'Thưởng trà, đọc sách và tận hưởng khoảng lặng riêng tư',
-        description: 'Cần một góc ban công lộng gió hoặc bục trà thất thiền định bên cửa sổ.',
-        stylePoints: { wabiSabi: 3, japandi: 2, modernLuxury: 0, contemporary: 0 },
+        label: 'Thưởng trà, thiền định và tận hưởng khoảng lặng riêng tư',
+        description: 'Cần một góc ban công lộng gió hoặc bục trà thất thiền định bên khung cửa sổ mát mẻ.',
+        stylePoints: { wabiSabi: 3, japandi: 2, modernLuxury: 0, contemporary: 0, indochine: 2 },
       },
       {
         id: 'q2-b',
         label: 'Đón tiếp bạn bè quý, tiệc tối ẩm thực và thưởng rượu',
-        description: 'Đảo bếp đá cẩm thạch rộng lớn, tủ rượu âm kính và hệ thống âm thanh đa vùng.',
-        stylePoints: { wabiSabi: 0, japandi: 0, modernLuxury: 3, contemporary: 2 },
+        description: 'Đảo bếp đá cẩm thạch rộng lớn, tủ rượu âm kính và hệ thống âm thanh đa vùng chuẩn mực.',
+        stylePoints: { wabiSabi: 0, japandi: 0, modernLuxury: 3, contemporary: 2, indochine: 0 },
       },
       {
         id: 'q2-c',
         label: 'Quây quần sinh hoạt chung bên con nhỏ và người thân',
-        description: 'Bàn ăn gỗ lớn trung tâm, sàn nhà phẳng an toàn, góc chơi sáng tạo cho trẻ.',
-        stylePoints: { wabiSabi: 1, japandi: 3, modernLuxury: 0, contemporary: 0 },
+        description: 'Bàn ăn gỗ lớn trung tâm, sàn nhà phẳng an toàn, góc chơi sáng tạo cho trẻ nhỏ.',
+        stylePoints: { wabiSabi: 1, japandi: 3, modernLuxury: 0, contemporary: 0, indochine: 1 },
       },
       {
         id: 'q2-d',
         label: 'Làm việc sáng tạo kết hợp thư giãn linh hoạt',
         description: 'Bàn làm việc nhìn ra thành phố, ánh sáng công năng chuẩn và kết nối thiên nhiên.',
-        stylePoints: { wabiSabi: 0, japandi: 1, modernLuxury: 1, contemporary: 3 },
+        stylePoints: { wabiSabi: 0, japandi: 1, modernLuxury: 1, contemporary: 3, indochine: 0 },
       },
     ],
   },
@@ -96,19 +103,50 @@ const QUESTIONS: readonly QuizQuestion[] = [
         id: 'q3-a',
         label: 'Căn hộ tiêu chuẩn (Dưới 80m²)',
         description: 'Tối ưu hóa từng centimet với hệ tủ may đo giấu kín công năng thông minh.',
-        stylePoints: { wabiSabi: 1, japandi: 3, modernLuxury: 1, contemporary: 1 },
+        stylePoints: { wabiSabi: 1, japandi: 3, modernLuxury: 1, contemporary: 1, indochine: 1 },
       },
       {
         id: 'q3-b',
-        label: 'Căn hộ 2-3 phòng ngủ / Nhà phố (80m² - 160m²)',
+        label: 'Căn hộ 2-3 phòng ngủ hoặc Nhà phố (80m² - 160m²)',
         description: 'Cân bằng giữa không gian sinh hoạt chung rộng mở và phòng ngủ riêng tư sâu lắng.',
-        stylePoints: { wabiSabi: 2, japandi: 2, modernLuxury: 2, contemporary: 2 },
+        stylePoints: { wabiSabi: 2, japandi: 2, modernLuxury: 2, contemporary: 2, indochine: 2 },
       },
       {
         id: 'q3-c',
-        label: 'Duplex / Penthouse / Biệt thự (Trên 160m²)',
-        description: 'Khoảng thông tầng tráng lệ, vật liệu nguyên khối và sân vườn nhiệt đới riêng.',
-        stylePoints: { wabiSabi: 3, japandi: 0, modernLuxury: 3, contemporary: 3 },
+        label: 'Duplex, Penthouse hoặc Biệt thự (Trên 160m²)',
+        description: 'Khoảng thông tầng tráng lệ, vật liệu nguyên khối và sân vườn nhiệt đới riêng biệt.',
+        stylePoints: { wabiSabi: 3, japandi: 0, modernLuxury: 3, contemporary: 3, indochine: 3 },
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: 'Thách thức vi khí hậu nhiệt đới nào bạn ưu tiên giải quyết nhất?',
+    subtitle: 'Đặc thù khí hậu Sài Gòn nắng gắt mưa nhiều đòi hỏi giải pháp thụ động từ kiến trúc.',
+    options: [
+      {
+        id: 'q4-a',
+        label: 'Khắc chế nắng gắt hướng Tây nung nóng vách kính và sàn',
+        description: 'Cần hệ lam gỗ tự nhiên xoay góc cản 80% bức xạ nhiệt và giảm tải điện năng điều hòa.',
+        stylePoints: { wabiSabi: 2, japandi: 1, modernLuxury: 3, contemporary: 2, indochine: 1 },
+      },
+      {
+        id: 'q4-b',
+        label: 'Cân bằng độ ẩm mùa mưa 78-85% RH, ngăn chặn ẩm mốc',
+        description: 'Ứng dụng vữa vôi khoáng tự nhiên, gỗ sấy chân không và lớp phủ sáp ong thở hai chiều.',
+        stylePoints: { wabiSabi: 3, japandi: 2, modernLuxury: 1, contemporary: 1, indochine: 3 },
+      },
+      {
+        id: 'q4-c',
+        label: 'Đón trọn gió mát đối lưu sông Sài Gòn và hành lang xanh',
+        description: 'Thiết kế trục thông gió xuyên phòng, cửa chớp nan gỗ truyền thống và hồ cảnh điều hòa.',
+        stylePoints: { wabiSabi: 2, japandi: 3, modernLuxury: 1, contemporary: 2, indochine: 3 },
+      },
+      {
+        id: 'q4-d',
+        label: 'Cách ly tiếng ồn giao thông đô thị và bụi mịn PM2.5',
+        description: 'Kính Low-E đa lớp, hệ rãnh tiêu âm âm học thính phòng và thác nước ion âm làm mát không khí.',
+        stylePoints: { wabiSabi: 1, japandi: 1, modernLuxury: 3, contemporary: 3, indochine: 1 },
       },
     ],
   },
@@ -122,6 +160,7 @@ interface StyleResult {
   materials: string[]
   quoteStyleKey: string
   palette: string[]
+  climateHighlight: string
 }
 
 const STYLE_RESULTS: Record<string, StyleResult> = {
@@ -134,6 +173,7 @@ const STYLE_RESULTS: Record<string, StyleResult> = {
     materials: ['Sơn vôi khoáng Ý Calce', 'Đá Travertine xẻ sọc', 'Gỗ óc chó lau dầu Osmo', 'Gốm mộc Bát Tràng'],
     quoteStyleKey: 'wabi-sabi',
     palette: ['#EAE5DA', '#A07753', '#78736A', '#3E2D21'],
+    climateHighlight: 'Vữa vôi và đá xẻ thở hai chiều giúp hút ẩm dư thừa mùa mưa và hạ nhiệt 4.5°C tự nhiên.',
   },
   modernLuxury: {
     code: 'modern-luxury',
@@ -144,16 +184,18 @@ const STYLE_RESULTS: Record<string, StyleResult> = {
     materials: ['Đá Marble Calacatta', 'Đồng thau xước satin', 'Gỗ sồi đen mờ', 'Kính tôi cường lực siêu trong'],
     quoteStyleKey: 'modern-luxury',
     palette: ['#1C1B18', '#A07753', '#DCD5C7', '#C7A57C'],
+    climateHighlight: 'Khung nhôm Anode champagne kết hợp kính hộp Low-E 3 lớp triệt tiêu bức xạ nhiệt hướng Tây.',
   },
   japandi: {
     code: 'japandi',
     title: 'Japandi Ấm Cúng & Gắn Kết',
     subtitle: 'Giao thoa giữa nét tối giản Bắc Âu và chiều sâu mộc mạc Nhật Bản',
     philosophy:
-      'Ngôi nhà ngập tràn ánh nắng và gió tự nhiên, là chốn trở về ấm cúng cho mọi thế hệ trong gia đình. Nội thất đường nét thanh thoát, vật liệu gỗ sáng màu kết hợp vải lanh bỉ và nan gỗ thông thoáng.',
+      'Ngôi nhà ngập tràn ánh nắng và gió tự nhiên, là chốn trở về ấm cúng cho mọi thế hệ trong gia đình. Nội thất đường nét thanh thoát, vật liệu gỗ sáng màu kết hợp vải lanh Bỉ và nan gỗ thông thoáng.',
     materials: ['Gỗ sồi trắng tự nhiên', 'Vải lanh Bỉ dệt thô', 'Nan gỗ thông đối lưu', 'Vữa vôi mờ mịn'],
     quoteStyleKey: 'japandi',
     palette: ['#F4F1EA', '#C7A57C', '#B2ABA0', '#5A4231'],
+    climateHighlight: 'Nan chớp gỗ thông kéo gió đối lưu tự nhiên liên tục, giữ phòng khô ráo không ẩm bí.',
   },
   contemporary: {
     code: 'contemporary',
@@ -164,6 +206,18 @@ const STYLE_RESULTS: Record<string, StyleResult> = {
     materials: ['Bê tông vi sinh Microcement', 'Kính gợn sóng Fluted Moru', 'Gỗ óc chó nguyên khối', 'Thép đen đúc mỏng'],
     quoteStyleKey: 'modern-luxury',
     palette: ['#131210', '#8A8277', '#A07753', '#ECE8DF'],
+    climateHighlight: 'Mặt bằng mở liên thông tối ưu luồng gió sông Sài Gòn, kết hợp kính tán xạ giảm chói.',
+  },
+  indochine: {
+    code: 'indochine',
+    title: 'Indochine Tropical Heritage Di Sản',
+    subtitle: 'Bản hòa ca giữa nét thanh lịch Pháp cổ và chiều sâu văn hóa bản địa Nam Bộ',
+    philosophy:
+      'Không gian đậm chất thơ với những đường cong vòm duyên dáng, sàn gạch bông xi măng mát rượi dưới chân, chất gỗ Gõ Đỏ Lào bóng mờ và quạt trần cánh gỗ lá sen ve vuốt từng làn gió mát.',
+    materials: ['Gỗ Gõ Đỏ Lào tiện thủ công', 'Gạch bông xi măng cổ điển', 'Mây đan mắt cáo tự nhiên', 'Gốm men xanh lý Cây Mai'],
+    quoteStyleKey: 'indochine',
+    palette: ['#2F3E34', '#C9A063', '#E8DFD0', '#5C3826'],
+    climateHighlight: 'Hệ cửa chớp gỗ kết hợp gạch hoa gió đón luồng khí mát tầng thấp và đẩy khí nóng lên cao.',
   },
 }
 
@@ -184,8 +238,8 @@ export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
     if (currentStep < QUESTIONS.length - 1) {
       setCurrentStep((prev) => prev + 1)
     } else {
-      // Calculate winner
-      const scores = { wabiSabi: 0, modernLuxury: 0, japandi: 0, contemporary: 0 }
+      // Tính điểm tìm phong cách chiến thắng
+      const scores = { wabiSabi: 0, modernLuxury: 0, japandi: 0, contemporary: 0, indochine: 0 }
       for (const q of QUESTIONS) {
         const selectedId = nextAnswers[q.id]
         const opt = q.options.find((o) => o.id === selectedId)
@@ -194,6 +248,7 @@ export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
           scores.modernLuxury += opt.stylePoints.modernLuxury
           scores.japandi += opt.stylePoints.japandi
           scores.contemporary += opt.stylePoints.contemporary
+          scores.indochine += opt.stylePoints.indochine
         }
       }
 
@@ -232,13 +287,13 @@ export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <Label rule tone="accent">
-            Trắc Nghiệm Bản Sắc Thẩm Mỹ
+            Trắc Nghiệm Bản Sắc Thẩm Mỹ & Vi Khí Hậu
           </Label>
           <h2 className="mt-4 font-display text-[clamp(2rem,3.8vw,3.25rem)] font-normal leading-[1.25]">
             La Bàn Tìm Đúng "Gu" Của Bạn.
           </h2>
           <p className="mt-3 text-sm sm:text-base text-muted leading-relaxed">
-            Chỉ với 3 câu hỏi trực giác, hãy để KTS GuHomes giúp bạn định hình phong cách kiến trúc hòa hợp nhất với nếp sống và khí hậu tổ ấm của bạn.
+            Chỉ với 4 câu hỏi trực giác, hãy để KTS GuHomes giúp bạn định hình phong cách kiến trúc hòa hợp nhất với nếp sống và điều kiện nhiệt đới Sài Gòn.
           </p>
         </div>
 
@@ -296,7 +351,7 @@ export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
                         type="button"
                         onClick={() => handleSelectOption(activeQuestion.id, opt.id)}
                         className={cn(
-                          'group flex flex-col items-start rounded-xl border p-4 sm:p-5 text-left transition-all duration-300 min-h-[56px] hover:border-accent hover:bg-canvas hover:shadow-md',
+                          'group flex flex-col items-start rounded-xl border p-4 sm:p-5 text-left transition-all duration-300 min-h-[56px] hover:border-accent hover:bg-canvas hover:shadow-md cursor-pointer',
                           isChosen
                             ? 'border-accent bg-canvas shadow-md'
                             : 'border-line/80 bg-canvas/60',
@@ -327,7 +382,7 @@ export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
                 className="rounded-3xl border border-accent/40 bg-espresso text-canvas p-7 sm:p-12 shadow-2xl overflow-hidden relative"
               >
                 {/* Subtle Glow Accent */}
-                <div aria-hidden="true" className="absolute top-0 right-0 h-40 w-40 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
+                <div aria-hidden="true" className="absolute top-0 right-0 h-48 w-48 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
 
                 {/* Result Tag */}
                 <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/15 px-4 py-1.5 text-xs font-mono uppercase tracking-widest text-accent-soft mb-6">
@@ -341,14 +396,23 @@ export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
                   "{result.subtitle}"
                 </p>
 
-                <p className="mt-6 text-sm sm:text-base text-canvas/75 leading-relaxed border-t border-canvas/15 pt-6">
+                <p className="mt-6 text-sm sm:text-base text-canvas/80 leading-relaxed border-t border-canvas/15 pt-6">
                   {result.philosophy}
                 </p>
 
+                {/* Microclimate Highlight Card */}
+                <div className="mt-6 p-4 rounded-xl border border-accent/30 bg-canvas/10 text-xs sm:text-sm text-canvas/90 flex items-start gap-3">
+                  <CheckIcon className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold text-accent block mb-0.5">Điểm nhấn vi khí hậu tối ưu:</span>
+                    <span>{result.climateHighlight}</span>
+                  </div>
+                </div>
+
                 {/* Proposed Material Palette */}
-                <div className="mt-8 border-t border-canvas/15 pt-6">
+                <div className="mt-6 border-t border-canvas/15 pt-6">
                   <div className="text-xs font-mono uppercase tracking-wider text-canvas/60 mb-3">
-                    Bảng vật liệu kiến trúc đề xuất:
+                    Bảng vật liệu kiến trúc đề xuất (Gia công tại Xưởng Thạnh Xuân 1.200m²):
                   </div>
                   <div className="flex flex-wrap gap-2.5">
                     {result.materials.map((m) => (
@@ -366,11 +430,11 @@ export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
                 {/* Color Scheme Palette Preview */}
                 <div className="mt-6 flex items-center gap-3">
                   <span className="text-xs font-mono text-canvas/50">Dải màu chủ đạo:</span>
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-2">
                     {result.palette.map((color, idx) => (
                       <span
                         key={idx}
-                        className="h-5 w-8 rounded border border-canvas/20 shadow-sm"
+                        className="h-6 w-9 rounded-md border border-canvas/30 shadow-sm"
                         style={{ backgroundColor: color }}
                         title={color}
                       />
@@ -383,16 +447,16 @@ export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
                   <button
                     type="button"
                     onClick={() => openQuoteModal(result.quoteStyleKey)}
-                    className="flex-1 inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-accent hover:bg-accent-soft text-espresso font-medium text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_8px_25px_rgba(197,168,128,0.35)] min-h-[48px]"
+                    className="flex-1 inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-accent hover:bg-accent-soft text-espresso font-medium text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_8px_25px_rgba(197,168,128,0.35)] min-h-[48px] cursor-pointer"
                   >
-                    <span>Nhận Bản Dự Toán & Mặt Bằng 3D Mẫu Cho Phong Cách Này</span>
+                    <span>Nhận Bản Dự Toán & Mặt Bằng 3D Cho Phong Cách Này</span>
                     <ArrowUpRightIcon className="text-base" />
                   </button>
 
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="inline-flex items-center justify-center px-6 py-3.5 rounded-full border border-canvas/20 bg-canvas/5 text-canvas/75 hover:text-canvas hover:bg-canvas/10 text-xs font-mono transition-colors min-h-[48px]"
+                    className="inline-flex items-center justify-center px-6 py-3.5 rounded-full border border-canvas/20 bg-canvas/5 text-canvas/75 hover:text-canvas hover:bg-canvas/10 text-xs font-mono transition-colors min-h-[48px] cursor-pointer"
                   >
                     ↺ Làm lại trắc nghiệm
                   </button>

@@ -144,6 +144,8 @@ import { SaigonAcousticCajonSanctuarySalon } from '@/components/studio/SaigonAco
 import { SaigonCanalSideFloatingBambooTeaPavilion } from '@/components/studio/SaigonCanalSideFloatingBambooTeaPavilion'
 import { SaigonAcousticCastanetsSanctuarySalon } from '@/components/studio/SaigonAcousticCastanetsSanctuarySalon'
 import { SaigonRiversideCantileveredBonsaiPavilion } from '@/components/studio/SaigonRiversideCantileveredBonsaiPavilion'
+import { SaigonAcousticMaracasSanctuarySalon } from '@/components/studio/SaigonAcousticMaracasSanctuarySalon'
+import { SaigonCanalSideFloatingOrchidSanctuaryPavilion } from '@/components/studio/SaigonCanalSideFloatingOrchidSanctuaryPavilion'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -640,6 +642,12 @@ export default async function StylesPage() {
 
       {/* Saigon Riverside Cantilevered Bonsai Pavilion */}
       <SaigonRiversideCantileveredBonsaiPavilion />
+
+      {/* Saigon Acoustic Maracas Sanctuary Salon */}
+      <SaigonAcousticMaracasSanctuarySalon />
+
+      {/* Saigon Canal Side Floating Orchid Sanctuary Pavilion */}
+      <SaigonCanalSideFloatingOrchidSanctuaryPavilion />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
