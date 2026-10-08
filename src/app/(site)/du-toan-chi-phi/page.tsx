@@ -29,6 +29,8 @@ import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPas
 import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhiteGloveMovingAudit'
 import { HandcraftedLacquerArtisanAtelier } from '@/components/studio/HandcraftedLacquerArtisanAtelier'
 import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchiveVault'
+import { BespokeAcousticHomeCinemaLab } from '@/components/studio/BespokeAcousticHomeCinemaLab'
+import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugStudio'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -156,6 +158,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Private Family Archive Vault 1000C Fireproof */}
       <PrivateFamilyArchiveVault className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Acoustic Home Cinema Lab THX & Dolby Atmos */}
+      <BespokeAcousticHomeCinemaLab className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Handmade Lotus Silk & Wool Rug Studio */}
+      <ArtisanHandmadeRugStudio className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

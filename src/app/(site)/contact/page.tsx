@@ -29,6 +29,7 @@ import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudi
 import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPassport'
 import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhiteGloveMovingAudit'
 import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchiveVault'
+import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugStudio'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -352,6 +353,9 @@ export default async function ContactPage() {
 
       {/* Private Family Archive Vault 1000C Fireproof */}
       <PrivateFamilyArchiveVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Handmade Lotus Silk & Wool Rug Studio */}
+      <ArtisanHandmadeRugStudio className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

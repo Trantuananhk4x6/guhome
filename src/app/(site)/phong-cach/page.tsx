@@ -44,6 +44,8 @@ import { SaigonCourtyardAtriumLab } from '@/components/studio/SaigonCourtyardAtr
 import { ArtisanBespokeJoineryVault } from '@/components/studio/ArtisanBespokeJoineryVault'
 import { SaigonMonsoonRainwaterHarvestLab } from '@/components/studio/SaigonMonsoonRainwaterHarvestLab'
 import { HandcraftedLacquerArtisanAtelier } from '@/components/studio/HandcraftedLacquerArtisanAtelier'
+import { SaigonBespokeTeakDeckingPavilion } from '@/components/studio/SaigonBespokeTeakDeckingPavilion'
+import { BespokeAcousticHomeCinemaLab } from '@/components/studio/BespokeAcousticHomeCinemaLab'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -238,6 +240,12 @@ export default async function StylesPage() {
 
       {/* Handcrafted Lacquer Artisan Atelier Bát Tràng x Thạnh Xuân */}
       <HandcraftedLacquerArtisanAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Bespoke Teak Decking & Outdoor Pavilion */}
+      <SaigonBespokeTeakDeckingPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Acoustic Home Cinema Lab THX & Dolby Atmos */}
+      <BespokeAcousticHomeCinemaLab className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

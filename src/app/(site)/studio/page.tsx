@@ -62,6 +62,9 @@ import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhit
 import { SaigonMonsoonRainwaterHarvestLab } from '@/components/studio/SaigonMonsoonRainwaterHarvestLab'
 import { HandcraftedLacquerArtisanAtelier } from '@/components/studio/HandcraftedLacquerArtisanAtelier'
 import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchiveVault'
+import { SaigonBespokeTeakDeckingPavilion } from '@/components/studio/SaigonBespokeTeakDeckingPavilion'
+import { BespokeAcousticHomeCinemaLab } from '@/components/studio/BespokeAcousticHomeCinemaLab'
+import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugStudio'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -903,6 +906,15 @@ export default async function StudioPage() {
 
       {/* ---------------- private family archive vault 1000C fireproof ------------- */}
       <PrivateFamilyArchiveVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon bespoke teak decking & outdoor pavilion ----------- */}
+      <SaigonBespokeTeakDeckingPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- bespoke acoustic home cinema lab THX & dolby atmos ------- */}
+      <BespokeAcousticHomeCinemaLab className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan handmade lotus silk & wool rug studio ------------ */}
+      <ArtisanHandmadeRugStudio className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

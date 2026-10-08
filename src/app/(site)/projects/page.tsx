@@ -96,6 +96,7 @@ import { BespokeWalkInWardrobeVault } from '@/components/studio/BespokeWalkInWar
 import { ArtisanBespokeJoineryVault } from '@/components/studio/ArtisanBespokeJoineryVault'
 import { SaigonBreezeMicroclimateCurator } from '@/components/studio/SaigonBreezeMicroclimateCurator'
 import { SaigonMonsoonRainwaterHarvestLab } from '@/components/studio/SaigonMonsoonRainwaterHarvestLab'
+import { SaigonBespokeTeakDeckingPavilion } from '@/components/studio/SaigonBespokeTeakDeckingPavilion'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -654,6 +655,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Monsoon Rainwater Harvest & Passive Rooftop Mist Cooling */}
           <SaigonMonsoonRainwaterHarvestLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Bespoke Teak Decking & Outdoor Pavilion */}
+          <SaigonBespokeTeakDeckingPavilion className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>
