@@ -13,6 +13,7 @@ import type { ProjectSummary } from '@/types/content'
 
 import { ImageFrame } from './_components/ImageFrame'
 import { Reveal, TextReveal } from './_components/motion'
+import { TactileMaterialLab } from '@/components/sections/TactileMaterialLab'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -707,6 +708,9 @@ export default async function StudioPage() {
           )}
         </div>
       </section>
+
+      {/* --------------------------- tactile material lab ------------------------ */}
+      <TactileMaterialLab />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

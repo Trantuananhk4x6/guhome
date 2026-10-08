@@ -12,6 +12,9 @@ import { StyleExplorer } from '@/components/sections/StyleExplorer'
 import { WorkflowSection } from '@/components/sections/WorkflowSection'
 import { MissionVisionSection } from '@/components/sections/MissionVisionSection'
 import { QuickConsultFormSection } from '@/components/sections/QuickConsultFormSection'
+import { TactileMaterialLab } from '@/components/sections/TactileMaterialLab'
+import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection'
+import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { getPublishedArticles } from '@/server/queries/articles'
 import { getMediaMap } from '@/server/queries/media'
 import { getProjectBySlug, getPublishedProjects } from '@/server/queries/projects'
@@ -234,9 +237,20 @@ export default async function HomePage() {
         return (
           <Fragment key={section.id}>
             <Section section={section} data={data} />
-            {section.key === 'FEATURED_PROJECTS' && <StyleExplorer />}
+            {section.key === 'FEATURED_PROJECTS' && (
+              <>
+                <StyleExplorer />
+                <BeforeAfterSection />
+              </>
+            )}
             {section.key === 'STUDIO' && <MissionVisionSection />}
-            {section.key === 'SERVICES' && <WorkflowSection />}
+            {section.key === 'SERVICES' && (
+              <>
+                <WorkflowSection />
+                <TactileMaterialLab />
+                <StyleQuizSection />
+              </>
+            )}
             {section.key === 'PHILOSOPHY' && <QuickConsultFormSection />}
           </Fragment>
         )

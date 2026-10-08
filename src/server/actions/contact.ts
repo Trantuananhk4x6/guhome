@@ -23,6 +23,7 @@ import {
 import { serverEnv } from '@/lib/env'
 import { db } from '@/server/db'
 import { analyticsEvents, contactRequests } from '@/server/db/schema'
+import { dispatchLeadNotification } from '@/server/notifications/leadWebhook'
 
 export type ContactField = 'name' | 'email' | 'phone' | 'projectType' | 'budget' | 'message'
 
@@ -201,6 +202,20 @@ export async function submitContact(
     } catch (error) {
       console.error('[actions/contact] analytics write failed', error)
     }
+
+    // Instant Architect Webhook notification (non-blocking)
+    dispatchLeadNotification({
+      id: requestId,
+      name: data.name,
+      email: data.email,
+      phone: data.phone.length > 0 ? data.phone : null,
+      projectType: labelFor(PROJECT_TYPES, data.projectType),
+      budget: data.budget.length > 0 ? labelFor(BUDGET_RANGES, data.budget) : null,
+      message: data.message,
+      source,
+    }).catch((err) => {
+      console.warn('[actions/contact] webhook alert error:', err)
+    })
 
     return { ok: true, fieldErrors: {} }
   } catch (error) {
