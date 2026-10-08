@@ -81,7 +81,7 @@ export default async function JournalPage() {
       {/* --------------------------------- header -------------------------------- */}
       <section className="u-gutter pt-[calc(var(--spacing-section)*0.75)]">
         <div className="mx-auto w-full max-w-[100rem]">
-          <Label rule index="—">
+          <Label rule index="-">
             Bài viết
           </Label>
 
@@ -92,7 +92,7 @@ export default async function JournalPage() {
           <Reveal delay={0.15} className="mt-12">
             <p className="u-body-lg max-w-[52ch]">
               Chúng tôi viết khi có thứ gì đó đáng ghi lại, nên trang này không dài thêm mỗi tuần.
-              Phần lớn những gì ở đây bắt đầu từ một lần làm sai — có bài bắt đầu từ một cái đảo bếp
+              Phần lớn những gì ở đây bắt đầu từ một lần làm sai - có bài bắt đầu từ một cái đảo bếp
               tính hụt bốn phân, phát hiện ra lúc tấm đá đã cắt xong và xưởng thì đã nghỉ Tết. Sai
               thì nhớ rất lâu. Viết ra rồi thì đỡ phải nhớ.
             </p>

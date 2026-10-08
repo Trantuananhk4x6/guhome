@@ -23,7 +23,7 @@ const GUARANTEES: readonly GuaranteeItem[] = [
     id: 'no-cost-overrun',
     code: '01',
     title: 'Không Phát Sinh Chi Phí 0%',
-    tagline: 'Minh bạch từng milimet vật tư — Chốt giá trước khi khởi công.',
+    tagline: 'Minh bạch từng milimet vật tư - Chốt giá trước khi khởi công.',
     description:
       'Hồ sơ bóc tách khối lượng dự toán (BOQ) của GuHomes chi tiết tới từng bản lề giảm chấn, từng mét ray trượt và từng mét vuông đá. Khi bản vẽ thi công đã được gia chủ duyệt, ngân sách là bất di bất dịch.',
     legalCommitment:
@@ -46,8 +46,8 @@ const GUARANTEES: readonly GuaranteeItem[] = [
   {
     id: 'no-subcontracting',
     code: '03',
-    title: 'Không Bán Thầu — Không Trung Gian',
-    tagline: 'Xưởng mộc 1.200m² trực thuộc — KTS Trưởng giám sát hiện trường.',
+    title: 'Không Bán Thầu - Không Trung Gian',
+    tagline: 'Xưởng mộc 1.200m² trực thuộc - KTS Trưởng giám sát hiện trường.',
     description:
       'Tuyệt đối không chuyển nhượng thầu phụ kiếm chênh lệch. Toàn bộ hệ tủ, đảo bếp, vách ốp được sản xuất tại xưởng mộc GuHomes tại Thạnh Xuân, Quận 12 bởi đội ngũ thợ lành nghề gắn bó trên 8 năm.',
     legalCommitment:
@@ -120,7 +120,7 @@ export function GuHomesMarketingTrustPledge({ className }: { className?: string 
             </h2>
             <p className="mt-4 font-body text-base leading-relaxed text-ink/75 sm:text-lg">
               Làm nhà là cột mốc lớn của một đời người. Thấu hiểu những trăn trở về chi phí phát sinh,
-              tiến độ chậm trễ và nỗi sợ vật tư giả, GuHomes thiết lập bộ cam kết thép bằng văn bản pháp lý —
+              tiến độ chậm trễ và nỗi sợ vật tư giả, GuHomes thiết lập bộ cam kết thép bằng văn bản pháp lý -
               để mỗi bước chân bạn về tổ ấm mới luôn tràn đầy niềm an tâm tuyệt đối.
             </p>
           </div>

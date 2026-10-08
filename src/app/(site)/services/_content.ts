@@ -154,7 +154,7 @@ export const FALLBACK_SERVICES: readonly ServiceItem[] = [
     'kien-truc-cai-tao',
     'Kiến trúc & cải tạo',
     'Mở lại một ô cửa, bỏ một bức tường, trả ánh sáng về chỗ nó nên tới.',
-    'Sau lớp tường cũ hiếm khi có đúng thứ ghi trong bản vẽ hoàn công. Chúng tôi mở vài lỗ thăm dò trước khi vẽ nét đầu tiên, đo độ ẩm chân tường, dò lại đường điện — rồi vẫn ghi vào hồ sơ một danh mục phát sinh lường trước được, vì luôn còn thứ chưa lường hết.\n\nKết luận thường làm chủ nhà hơi hụt hẫng. Một căn hộ mười năm tuổi phần lớn chỉ cần dỡ hai bức tường, kéo lại đường điện và làm mới ánh sáng là rộng hẳn ra. Phạm vi chúng tôi đề xuất vì thế hay nhỏ hơn phạm vi bạn đang hình dung.',
+    'Sau lớp tường cũ hiếm khi có đúng thứ ghi trong bản vẽ hoàn công. Chúng tôi mở vài lỗ thăm dò trước khi vẽ nét đầu tiên, đo độ ẩm chân tường, dò lại đường điện - rồi vẫn ghi vào hồ sơ một danh mục phát sinh lường trước được, vì luôn còn thứ chưa lường hết.\n\nKết luận thường làm chủ nhà hơi hụt hẫng. Một căn hộ mười năm tuổi phần lớn chỉ cần dỡ hai bức tường, kéo lại đường điện và làm mới ánh sáng là rộng hẳn ra. Phạm vi chúng tôi đề xuất vì thế hay nhỏ hơn phạm vi bạn đang hình dung.',
   ),
   fallback(
     3,

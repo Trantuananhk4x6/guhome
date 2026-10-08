@@ -149,7 +149,7 @@ export default async function ContactPage() {
     getThemeSettings(),
     // One unreachable table must not blank the page a client writes from.
     getPublishedProjects({ featured: true, limit: 8 }).catch((error: unknown) => {
-      console.error('[contact] project query failed — the band will be omitted', error)
+      console.error('[contact] project query failed - the band will be omitted', error)
       return [] as ProjectSummary[]
     }),
   ])
@@ -178,7 +178,7 @@ export default async function ContactPage() {
     <div className="pb-[var(--spacing-section)]">
       <section className="u-gutter pt-[calc(var(--spacing-section)*0.75)]">
         <div className="mx-auto w-full max-w-[100rem]">
-          <Label rule index="—">
+          <Label rule index="-">
             Liên hệ
           </Label>
 
@@ -309,7 +309,7 @@ export default async function ContactPage() {
                 {/* The number itself now lives in the card above; repeating it here
                     would give the same page two competing places to tap. */}
                 <Detail label="Giờ làm việc">
-                  <p>Thứ Hai – thứ Sáu, 9:00–18:00. Thứ Bảy theo hẹn.</p>
+                  <p>Thứ Hai - thứ Sáu, 9:00 - 18:00. Thứ Bảy theo hẹn.</p>
                   <p className="mt-2 text-muted">Ngoài giờ đó thì nhắn tin nhanh hơn gọi.</p>
                 </Detail>
 

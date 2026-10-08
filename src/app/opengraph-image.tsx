@@ -12,7 +12,7 @@ import { SITE_NAME, SITE_TAGLINE } from '@/lib/seo'
  * to typeset here; the declared serif stack is a hint only.
  */
 
-export const alt = `${SITE_NAME} — ${SITE_TAGLINE}`
+export const alt = `${SITE_NAME} · ${SITE_TAGLINE}`
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 

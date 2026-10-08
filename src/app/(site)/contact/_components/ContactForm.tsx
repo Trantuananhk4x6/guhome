@@ -158,9 +158,9 @@ export function ContactForm({ email }: { email: string }) {
         <div role="alert" className="border-l border-accent pl-4">
           <p className="font-body text-[0.8125rem] leading-relaxed text-accent">
             {missing.length === 1
-              ? `Thư chưa đi được. Còn một mục cần bạn xem lại — ${missing.join('')} — và lý do nằm ngay dưới ô đó.`
+              ? `Thư chưa đi được. Còn một mục cần bạn xem lại: ${missing.join('')}, và lý do nằm ngay dưới ô đó.`
               : missing.length > 1
-                ? `Thư chưa đi được. Còn ${missing.length} mục cần bạn xem lại — ${missing.join(', ')} — và lý do nằm ngay dưới từng ô.`
+                ? `Thư chưa đi được. Còn ${missing.length} mục cần bạn xem lại: ${missing.join(', ')}, và lý do nằm ngay dưới từng ô.`
                 : 'Thư chưa đi được, và lần này là lỗi của chúng tôi, không phải của những gì bạn vừa viết.'}
           </p>
           {missing.length === 0 ? (
@@ -170,7 +170,7 @@ export function ContactForm({ email }: { email: string }) {
               <a href={`mailto:${email}`} className="text-ink underline underline-offset-4">
                 {email}
               </a>
-              {' '}— đường đó không đi qua form nên chắc chắn tới.
+              {' '}- đường đó không đi qua form nên chắc chắn tới.
             </p>
           ) : null}
         </div>

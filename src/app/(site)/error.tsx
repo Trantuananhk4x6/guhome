@@ -20,7 +20,7 @@ export default function SiteError({
   return (
     <section className="u-gutter flex min-h-[72vh] items-center py-[calc(var(--spacing-section)*0.75)]">
       <div className="mx-auto w-full max-w-[100rem]">
-        <Label rule index="—" tone="accent">
+        <Label rule index="-" tone="accent">
           Sự cố
         </Label>
 

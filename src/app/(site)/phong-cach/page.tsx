@@ -154,7 +154,7 @@ export const revalidate = 3600
 export const metadata: Metadata = buildMetadata({
   title: 'Phong cách',
   description:
-    'Những cách nói của cùng một studio — Hiện đại, Tân cổ điển, Tối giản, Indochine, Bắc Âu, Nhật Bản và hơn thế. Mỗi phong cách dẫn tới những công trình GuHomes đã hoàn thiện theo lối đó.',
+    'Những cách nói của cùng một studio - Hiện đại, Tân cổ điển, Tối giản, Indochine, Bắc Âu, Nhật Bản và hơn thế. Mỗi phong cách dẫn tới những công trình GuHomes đã hoàn thiện theo lối đó.',
   path: '/phong-cach',
 })
 
@@ -229,7 +229,7 @@ export default async function StylesPage() {
     <div className="bg-canvas pb-[var(--spacing-section)]">
       <section className="u-gutter pt-[calc(var(--spacing-section)*0.75)]">
         <div className="mx-auto w-full max-w-[100rem]">
-          <Label as="p" rule index="—">
+          <Label as="p" rule index="-">
             Phong cách
           </Label>
 
@@ -243,7 +243,7 @@ export default async function StylesPage() {
             <p className="u-body-lg max-w-[52ch]">
               Phong cách không phải bộ sưu tập đồ đạc, mà là cách một căn nhà chọn ánh sáng, tỉ lệ và
               vật liệu. Chọn một lối bên dưới để xem những công trình chúng tôi đã hoàn thiện theo lối
-              đó — hoặc mang câu chuyện của bạn tới, rồi hai bên cùng tìm ra lối phù hợp.
+              đó - hoặc mang câu chuyện của bạn tới, rồi hai bên cùng tìm ra lối phù hợp.
             </p>
           </Reveal>
         </div>

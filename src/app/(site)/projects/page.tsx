@@ -402,7 +402,7 @@ function FilteredPager({
         <p className="u-label">
           Trang {pad2(page)} / {pad2(pages)}
           <span className="text-muted/60"> · </span>
-          {pad2(from)}–{pad2(from + showing - 1)} trong {total} dự án
+          {pad2(from)}-{pad2(from + showing - 1)} trong {total} dự án
         </p>
 
         <div className="flex items-baseline justify-between gap-6 md:justify-end md:gap-10">
@@ -479,15 +479,15 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const named = [view.categoryName, view.styleName].filter(
     (part): part is string => part !== null,
   )
-  const base = named.length > 0 ? `${named.join(' · ')} — Dự án` : 'Dự án'
+  const base = named.length > 0 ? `${named.join(' · ')} - Dự án` : 'Dự án'
 
   const description =
     named.length > 0
-      ? `Tuyển tập ${named.join(' · ').toLowerCase()} do GuHomes thiết kế và giám sát thi công — vật liệu thật, ánh sáng thật, tỉ lệ được cân nhắc từng centimet.`
+      ? `Tuyển tập ${named.join(' · ').toLowerCase()} do GuHomes thiết kế và giám sát thi công - vật liệu thật, ánh sáng thật, tỉ lệ được cân nhắc từng centimet.`
       : 'Tuyển tập các không gian nội thất do GuHomes thiết kế: căn hộ, nhà phố, biệt thự, thương mại và những không gian chuyên biệt.'
 
   return buildMetadata({
-    title: page > 1 ? `${base} — Trang ${page}/${pages}` : base,
+    title: page > 1 ? `${base} - Trang ${page}/${pages}` : base,
     description,
     path: canonicalPath(view.category, view.style, view.typology, view.climate, page),
     type: 'website',
@@ -529,7 +529,7 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
             <p className="u-body-lg mt-7 max-w-[42ch]">
               Mỗi công trình bắt đầu từ một câu hỏi về cách sống, rồi mới đến vật liệu và tỉ lệ. Dưới đây là
-              những không gian GuHomes đã hoàn thiện — sắp xếp theo thứ tự chúng tôi muốn bạn đọc.
+              những không gian GuHomes đã hoàn thiện - sắp xếp theo thứ tự chúng tôi muốn bạn đọc.
             </p>
 
             <div className="mt-9 lg:mt-auto lg:pt-14">

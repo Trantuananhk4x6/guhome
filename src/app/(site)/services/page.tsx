@@ -40,7 +40,7 @@ export default async function ServicesPage() {
       {/* --------------------------------- header -------------------------------- */}
       <section className="u-gutter pt-[calc(var(--spacing-section)*0.75)]">
         <div className="mx-auto w-full max-w-[110rem]">
-          <Label rule index="—">
+          <Label rule index="-">
             Dịch vụ
           </Label>
 
@@ -100,7 +100,7 @@ export default async function ServicesPage() {
                   <div className="lg:sticky lg:top-32">
                     <ImageFrame
                       media={coverFor(service, i)}
-                      alt={service.cover?.alt ?? `${service.title} — GuHomes`}
+                      alt={service.cover?.alt ?? `${service.title} - GuHomes`}
                       ratio="aspect-[4/5]"
                       sizes="(min-width: 1024px) 38vw, 100vw"
                       width={1200}

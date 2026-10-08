@@ -43,11 +43,11 @@ export const revalidate = 300
  * line stayed under every search result for the front page.
  */
 export const metadata: Metadata = {
-  // `absolute` opts out of the root layout's `%s · GuHomes` template — otherwise the
-  // home page prints the brand twice ("GuHomes — … · GuHomes").
-  title: { absolute: 'GuHomes — Nội thất và kiến trúc cho khí hậu Sài Gòn' },
+  // `absolute` opts out of the root layout's `%s · GuHomes` template - otherwise the
+  // home page prints the brand twice ("GuHomes - … · GuHomes").
+  title: { absolute: 'GuHomes - Nội thất và kiến trúc cho khí hậu Sài Gòn' },
   description:
-    'Studio nội thất và kiến trúc tại TP. Hồ Chí Minh. Chúng tôi thiết kế cho độ ẩm 75–80% quanh năm, cho nắng chiều đổ vào một mặt thoáng duy nhất, và cho con hẻm quyết định món đồ nào vào được tới cửa.',
+    'Studio nội thất và kiến trúc tại TP. Hồ Chí Minh. Chúng tôi thiết kế cho độ ẩm 75-80% quanh năm, cho nắng chiều đổ vào một mặt thoáng duy nhất, và cho con hẻm quyết định món đồ nào vào được tới cửa.',
 }
 
 /** Never let one unreachable table blank the homepage. */
@@ -55,7 +55,7 @@ async function safe<T>(run: () => Promise<T>, fallback: T): Promise<T> {
   try {
     return await run()
   } catch (error) {
-    console.error('[home] query failed — falling back', error)
+    console.error('[home] query failed - falling back', error)
     return fallback
   }
 }
@@ -216,7 +216,7 @@ async function loadHomeData(sections: readonly HomepageSection[]): Promise<HomeD
     studioImage,
     studioImageCaption:
       studioSource && studioSource.cover
-        ? [studioSource.title, studioSource.location].filter(Boolean).join(' — ')
+        ? [studioSource.title, studioSource.location].filter(Boolean).join(' - ')
         : null,
     // `claim` only runs when the material has no photograph of its own, so a
     // project is never spent on a band that was not going to show it.

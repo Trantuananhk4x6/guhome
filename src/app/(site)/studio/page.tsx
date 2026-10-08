@@ -439,7 +439,7 @@ export default async function StudioPage() {
       {/* ---------------------------------- hero --------------------------------- */}
       <section className="u-gutter pt-[calc(var(--spacing-section)*0.75)]">
         <div className="mx-auto w-full max-w-[110rem]">
-          <Label rule index="—">
+          <Label rule index="-">
             Studio
           </Label>
 
@@ -482,7 +482,7 @@ export default async function StudioPage() {
           <div className="mx-auto w-full max-w-[110rem]">
             <ImageFrame
               media={hero.cover}
-              alt={hero.cover?.alt ?? `${hero.title} — không gian do GuHomes thiết kế`}
+              alt={hero.cover?.alt ?? `${hero.title} - không gian do GuHomes thiết kế`}
               ratio="aspect-[16/9]"
               sizes="(min-width: 1024px) 92vw, 100vw"
               width={2400}
@@ -510,7 +510,7 @@ export default async function StudioPage() {
               {portrait ? (
                 <ImageFrame
                   media={portrait.cover}
-                  alt={portrait.cover?.alt ?? `${portrait.title} — chi tiết nội thất`}
+                  alt={portrait.cover?.alt ?? `${portrait.title} - chi tiết nội thất`}
                   ratio="aspect-[3/4]"
                   sizes="(min-width: 1024px) 38vw, 100vw"
                   width={1200}
@@ -656,7 +656,7 @@ export default async function StudioPage() {
             <SectionHeading
               eyebrow="Giá trị cốt lõi"
               index={3}
-              title={`"Your Success, Our Focus" — Năm điều giữ chúng tôi đi đúng hướng.`}
+              title={`"Your Success, Our Focus" - Năm điều giữ chúng tôi đi đúng hướng.`}
               lead="Văn hóa doanh nghiệp của GuHomes được xây dựng trên nền tảng chữ TÍN và triết lý lấy sự an tâm, hạnh phúc của gia chủ làm trọng tâm duy nhất. Đây là năm chuẩn mực chúng tôi dùng để soi chiếu trong từng bản vẽ, từng buổi duyệt vật liệu và từng giờ có mặt tại công trường."
             />
           </Reveal>
@@ -810,7 +810,7 @@ export default async function StudioPage() {
           <div className="mx-auto w-full max-w-[110rem]">
             <ImageFrame
               media={wide.cover}
-              alt={wide.cover?.alt ?? `${wide.title} — công trình hoàn thiện`}
+              alt={wide.cover?.alt ?? `${wide.title} - công trình hoàn thiện`}
               ratio="aspect-[21/9]"
               sizes="(min-width: 1024px) 92vw, 100vw"
               width={2400}

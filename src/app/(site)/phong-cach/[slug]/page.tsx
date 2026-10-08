@@ -49,7 +49,7 @@ function paragraphs(description: string | null): string[] {
 }
 
 function fallbackDescription(style: StyleItem): string {
-  return `Những công trình GuHomes thiết kế theo phong cách ${style.name.toLowerCase()} — vật liệu, ánh sáng và tỉ lệ được chọn cho khí hậu và cách sống ở Sài Gòn.`
+  return `Những công trình GuHomes thiết kế theo phong cách ${style.name.toLowerCase()} - vật liệu, ánh sáng và tỉ lệ được chọn cho khí hậu và cách sống ở Sài Gòn.`
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return buildMetadata({
-    title: style.nameEn ? `${style.name} — ${style.nameEn}` : style.name,
+    title: style.nameEn ? `${style.name} · ${style.nameEn}` : style.name,
     description: style.tagline ?? paragraphs(style.description)[0] ?? fallbackDescription(style),
     path: `/phong-cach/${style.slug}`,
     image: style.cover,
