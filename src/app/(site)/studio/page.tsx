@@ -295,6 +295,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyInkRestBarStudio } from '@
 import { SaigonCanalSideAncientHingedCedarLotusMoatTeaPavilion } from '@/components/studio/SaigonCanalSideAncientHingedCedarLotusMoatTeaPavilion'
 import { BespokeImperialKynamAndGoldFiligreeDragonIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushWasherStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushWasherStudio'
+import { SaigonCanalSideAncientHingedRosewoodLotusMoatTeaPavilion } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodLotusMoatTeaPavilion'
+import { BespokeImperialKynamAndGoldFiligreeTurtleIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTurtleIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarStudio'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1809,6 +1812,11 @@ export default async function StudioPage() {
       <SaigonCanalSideAncientHingedCedarLotusMoatTeaPavilion />
       <BespokeImperialKynamAndGoldFiligreeDragonIncenseBurnerVault />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushWasherStudio />
+
+      {/* ---------------- sprint 105 masterpieces ---------------------------- */}
+      <SaigonCanalSideAncientHingedRosewoodLotusMoatTeaPavilion />
+      <BespokeImperialKynamAndGoldFiligreeTurtleIncenseBurnerVault />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarStudio />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />

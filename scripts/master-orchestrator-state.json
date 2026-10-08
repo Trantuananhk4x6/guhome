@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 249,
+  "currentDirectiveIndex": 252,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -1494,7 +1494,25 @@
       "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
       "sentAt": "2026-10-08T23:22:12.171Z",
       "atStep": 14017
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-08T23:25:55.861Z",
+      "atStep": 14101
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T23:26:37.234Z",
+      "atStep": 14108
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T23:27:08.073Z",
+      "atStep": 14112
     }
   ],
-  "lastDispatchedAt": 1791501732171
+  "lastDispatchedAt": 1791502028074
 }
