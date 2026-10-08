@@ -10,6 +10,8 @@ import {
 } from '@/components/sections'
 import { StyleExplorer } from '@/components/sections/StyleExplorer'
 import { WorkflowSection } from '@/components/sections/WorkflowSection'
+import { MissionVisionSection } from '@/components/sections/MissionVisionSection'
+import { QuickConsultFormSection } from '@/components/sections/QuickConsultFormSection'
 import { getPublishedArticles } from '@/server/queries/articles'
 import { getMediaMap } from '@/server/queries/media'
 import { getProjectBySlug, getPublishedProjects } from '@/server/queries/projects'
@@ -233,7 +235,9 @@ export default async function HomePage() {
           <Fragment key={section.id}>
             <Section section={section} data={data} />
             {section.key === 'FEATURED_PROJECTS' && <StyleExplorer />}
+            {section.key === 'STUDIO' && <MissionVisionSection />}
             {section.key === 'SERVICES' && <WorkflowSection />}
+            {section.key === 'PHILOSOPHY' && <QuickConsultFormSection />}
           </Fragment>
         )
       })}

@@ -152,8 +152,8 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-canvas/80">Hotline Kỹ Thuật 24/7:</span>
-                      <a href="tel:0901234567" className="text-accent-soft font-mono font-medium hover:underline">
-                        090 123 4567
+                      <a href="tel:0368757916" className="text-accent-soft font-mono font-medium hover:underline">
+                        0368 757 916
                       </a>
                     </div>
                   </div>

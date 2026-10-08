@@ -113,6 +113,44 @@ export const SOCIAL_CHANNELS: readonly SocialChannel[] = [
     ],
     qrType: 'general',
   },
+  {
+    id: 'behance',
+    label: 'Behance',
+    name: 'GuHomes Portfolio & Architecture',
+    handle: 'behance.net/guhomes',
+    href: 'https://www.behance.net/guhomes',
+    badge: 'Hồ sơ thiết kế quốc tế',
+    summary:
+      'Hồ sơ đồ án kiến trúc và thiết kế nội thất hoàn chỉnh: bản vẽ kỹ thuật chi tiết, concept 3D và câu chuyện tạo tác không gian.',
+    description:
+      'Trang trưng bày các đồ án tiêu biểu của GuHomes dành cho giới chuyên môn kiến trúc và các gia chủ yêu cầu tiêu chuẩn thẩm mỹ cao. Nơi thể hiện mạch lạc sự phát triển ý niệm từ những nét phác thảo tay đầu tiên đến hồ sơ thi công chi tiết và không gian thực tế sau hoàn thiện.',
+    actionLabel: 'Xem hồ sơ Behance',
+    highlights: [
+      'Bộ sưu tập đồ án kiến trúc & nội thất hoàn chỉnh với độ phân giải cao',
+      'Bản vẽ kỹ thuật chi tiết cấu tạo mộc, mặt bằng công năng và bố trí ánh sáng',
+      'Các dự án biệt thự, penthouse và không gian thương mại độc bản',
+    ],
+    qrType: 'general',
+  },
+  {
+    id: 'pinterest',
+    label: 'Pinterest',
+    name: 'GuHomes Visual Moodboards',
+    handle: 'pinterest.com/guhomes',
+    href: 'https://www.pinterest.com/guhomes',
+    badge: 'Cảm hứng thị giác',
+    summary:
+      'Bộ sưu tập bảng tâm trạng (Moodboard), phối màu và chi tiết vật liệu mộc dành cho tổ ấm hiện đại.',
+    description:
+      'Kho tàng cảm hứng thị giác được KTS GuHomes tuyển lựa kỹ càng: từ sự tương phản giữa đá travertine và gỗ óc chó, cách xếp lớp ánh sáng ấm 2700K, đến các chi tiết tay nắm đồng thau và rèm lanh mộc mạc. Nơi gia chủ dễ dàng tìm thấy "Gu" sống của chính mình.',
+    actionLabel: 'Xem bảng cảm hứng Pinterest',
+    highlights: [
+      'Hàng trăm bảng Moodboard vật liệu & cách phối màu theo từng phong cách',
+      'Gợi ý cách bố trí góc làm việc, phòng ngủ yên tĩnh và bếp mở ấm cúng',
+      'Cập nhật xu hướng kiến trúc vi khí hậu và vật liệu bền vững mới nhất',
+    ],
+    qrType: 'general',
+  },
 ]
 
 interface SocialModalState {

@@ -8,7 +8,9 @@ import { LightboxProvider } from '@/components/layout/LightboxModal'
 import { QuickQuoteProvider } from '@/components/layout/QuickQuoteModal'
 import { ScrollProgress } from '@/components/layout/ScrollProgress'
 import { SocialModal } from '@/components/layout/SocialModal'
+import { FloatingContactDock } from '@/components/layout/FloatingContactDock'
 import { mediaUrl } from '@/lib/media'
+import { buildOrganizationJsonLd, buildWebsiteJsonLd, jsonLdScript } from '@/lib/seo'
 import { getMediaMap } from '@/server/queries/media'
 import { getNavigation, getThemeSettings } from '@/server/queries/site'
 
@@ -29,9 +31,18 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
     : null
   const logo = logoMedia ? mediaUrl(logoMedia, 512) : null
 
+  const orgJsonLd = buildOrganizationJsonLd(theme)
+  const webSiteJsonLd = buildWebsiteJsonLd()
+
   return (
     <LightboxProvider>
       <QuickQuoteProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLdScript([orgJsonLd, webSiteJsonLd]),
+          }}
+        />
         <div className="relative flex min-h-screen flex-col">
           <ScrollProgress />
           <CustomCursor />
@@ -51,6 +62,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
 
           <Footer nav={withFallbackNav(footerNav, FALLBACK_FOOTER_NAV)} brand={theme.brand} logo={logo} />
           <SocialModal />
+          <FloatingContactDock />
         </div>
       </QuickQuoteProvider>
     </LightboxProvider>

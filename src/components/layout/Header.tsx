@@ -14,6 +14,7 @@ import type { BrandConfig, NavItem } from '@/types/content'
 
 import { MobileMenu } from './MobileMenu'
 import { groupNav } from './nav-fallback'
+import { useSocialModalStore } from '@/lib/social'
 
 export interface HeaderProps {
   nav: NavItem[]
@@ -559,6 +560,16 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
                   {contact.label}
                 </Button>
                 </span>
+
+                <button
+                  type="button"
+                  onClick={() => useSocialModalStore.getState().openModal()}
+                  className="ml-4 u-label inline-flex items-center gap-1.5 text-current opacity-75 hover:opacity-100 transition-opacity cursor-pointer text-[0.6875rem] uppercase tracking-wider"
+                  title="Xem các kênh mạng xã hội chính thức & quét mã QR"
+                >
+                  <span>Mạng xã hội & QR</span>
+                  <span className="text-accent text-[0.625rem]">↗</span>
+                </button>
               </div>
             ) : null}
 
