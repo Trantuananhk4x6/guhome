@@ -109,6 +109,8 @@ import { SaigonSkyJungleBiofilterConservatory } from '@/components/studio/Saigon
 import { ArtisanRattanSilverWineSetVault } from '@/components/tools/ArtisanRattanSilverWineSetVault'
 import { SaigonBioNaturalEcoPoolSanctuary } from '@/components/studio/SaigonBioNaturalEcoPoolSanctuary'
 import { ArtisanHoangDanBrassInlayTeaTrayVault } from '@/components/tools/ArtisanHoangDanBrassInlayTeaTrayVault'
+import { SaigonWildOrchidMicroclimatePavilion } from '@/components/studio/SaigonWildOrchidMicroclimatePavilion'
+import { ArtisanBatTrangHoneyGlazeTeaBowlVault } from '@/components/tools/ArtisanBatTrangHoneyGlazeTeaBowlVault'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -477,6 +479,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Hoang Dan Brass Inlay Tea Tray Vault */}
       <ArtisanHoangDanBrassInlayTeaTrayVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Wild Orchid Microclimate Pavilion */}
+      <SaigonWildOrchidMicroclimatePavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bat Trang Honey Glaze Tea Bowl Vault */}
+      <ArtisanBatTrangHoneyGlazeTeaBowlVault className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

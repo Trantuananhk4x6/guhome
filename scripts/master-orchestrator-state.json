@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 65,
+  "currentDirectiveIndex": 68,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -392,19 +392,23 @@
       "atStep": 7413
     },
     {
-      "directiveId": "dir-65-sprint-67-yangqin-ecopool-hoangdantray",
-      "title": "Phòng Tam Thập Lục Gỗ Hương, Hồ Bơi Sinh Thái & Khay Trà Hoàng Đàn",
-      "sentAt": "2026-10-08T17:58:16.000Z",
-      "completedAt": "2026-10-08T18:04:00.000Z",
-      "status": "COMPLETED_100_PERCENT_QA",
-      "commitMessage": "feat(sprint-67): add SaigonAcousticYangqinSanctuaryPavilion, SaigonBioNaturalEcoPoolSanctuary, and ArtisanHoangDanBrassInlayTeaTrayVault with 100% SEO pass"
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T18:05:24.142Z",
+      "atStep": 7456
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T18:06:04.649Z",
+      "atStep": 7466
+    },
+    {
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-08T18:07:47.527Z",
+      "atStep": 7498
     }
   ],
-  "lastDispatchedAt": 1791482642000,
-  "activeDirective": {
-    "directiveId": "dir-66-sprint-68-erhu-wildorchid-honeybowl",
-    "title": "Phòng Đàn Nhị Gỗ Mun, Vườn Địa Lan Phong Sương & Chén Trà Men Mật Ong",
-    "sentAt": "2026-10-08T18:04:02.000Z",
-    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
-  }
+  "lastDispatchedAt": 1791482867527
 }

@@ -57,7 +57,7 @@ QUY CHUẨN XÁC THỰC BẮT BUỘC TRƯỚC KHI BÁO CÁO:
 `;
 
 async function dispatchSprint69() {
-  console.log(`[Master Orchestrator] Dispatching Sprint 69 to Agent \${TARGET_ID}...`);
+  console.log(`[Master Orchestrator] Dispatching Sprint 69 to Agent ${TARGET_ID}...`);
 
   let state = { completedDirectives: [], currentDirectiveIndex: 0 };
   if (fs.existsSync(STATE_PATH)) {
