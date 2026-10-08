@@ -280,6 +280,9 @@ import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio } from '
 import { SaigonCanalSideAncientHingedAgarwoodTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedAgarwoodTeaBonsaiPavilion'
 import { BespokeImperialKynamAndGoldFiligreeIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestStudio'
+import { SaigonCanalSideCentennialTeakAndLotusMoatPavilion } from '@/components/studio/SaigonCanalSideCentennialTeakAndLotusMoatPavilion'
+import { BespokeCentennialImperialKynamAndGoldRepousseVault } from '@/components/studio/BespokeCentennialImperialKynamAndGoldRepousseVault'
+import { ArtisanCentennialGoldFiligreeAndJadeImperialSealStudio } from '@/components/tools/ArtisanCentennialGoldFiligreeAndJadeImperialSealStudio'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1769,6 +1772,11 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan gold filigree & jade brush rest studio ------------ */}
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestStudio />
+
+      {/* ---------------- centennial sprint 100 masterpieces ------------------ */}
+      <SaigonCanalSideCentennialTeakAndLotusMoatPavilion />
+      <BespokeCentennialImperialKynamAndGoldRepousseVault />
+      <ArtisanCentennialGoldFiligreeAndJadeImperialSealStudio />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />

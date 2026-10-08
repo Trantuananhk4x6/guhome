@@ -208,6 +208,9 @@ import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyPaperweightStudio } from '
 import { SaigonCanalSideAncientHingedAgarwoodTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedAgarwoodTeaBonsaiPavilion'
 import { BespokeImperialKynamAndGoldFiligreeIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestStudio'
+import { SaigonCanalSideCentennialTeakAndLotusMoatPavilion } from '@/components/studio/SaigonCanalSideCentennialTeakAndLotusMoatPavilion'
+import { BespokeCentennialImperialKynamAndGoldRepousseVault } from '@/components/studio/BespokeCentennialImperialKynamAndGoldRepousseVault'
+import { ArtisanCentennialGoldFiligreeAndJadeImperialSealStudio } from '@/components/tools/ArtisanCentennialGoldFiligreeAndJadeImperialSealStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -896,6 +899,11 @@ export default async function StylesPage() {
 
       {/* Artisan Gold Filigree & Jade Brush Rest Studio */}
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestStudio />
+
+      {/* Centennial Sprint 100 Masterpieces */}
+      <SaigonCanalSideCentennialTeakAndLotusMoatPavilion />
+      <BespokeCentennialImperialKynamAndGoldRepousseVault />
+      <ArtisanCentennialGoldFiligreeAndJadeImperialSealStudio />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
