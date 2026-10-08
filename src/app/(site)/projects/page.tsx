@@ -163,6 +163,9 @@ import { ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier } from '@/com
 import { SaigonBreezeBambooWindChimeSanctuarySalon } from '@/components/studio/SaigonBreezeBambooWindChimeSanctuarySalon'
 import { BespokeSmokedOakZenTeaHouseAndTatamiSanctuary } from '@/components/studio/BespokeSmokedOakZenTeaHouseAndTatamiSanctuary'
 import { ArtisanSilverInlaidAgarwoodCalligraphyBrushVault } from '@/components/tools/ArtisanSilverInlaidAgarwoodCalligraphyBrushVault'
+import { SaigonCanalSideFloatingLotusTeaPavilion } from '@/components/studio/SaigonCanalSideFloatingLotusTeaPavilion'
+import { BespokeSmokedAgarwoodAndOnyxMeditationVault } from '@/components/studio/BespokeSmokedAgarwoodAndOnyxMeditationVault'
+import { ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier } from '@/components/tools/ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -923,6 +926,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Artisan Silver Inlaid Agarwood Calligraphy Brush Vault */}
           <ArtisanSilverInlaidAgarwoodCalligraphyBrushVault />
+
+          {/* Saigon Canal Side Floating Lotus Tea Pavilion */}
+          <SaigonCanalSideFloatingLotusTeaPavilion />
+
+          {/* Bespoke Smoked Agarwood & Onyx Meditation Vault */}
+          <BespokeSmokedAgarwoodAndOnyxMeditationVault />
+
+          {/* Artisan Tortoiseshell & Gold Calligraphy Case Atelier */}
+          <ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
