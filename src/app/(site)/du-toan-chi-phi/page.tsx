@@ -115,6 +115,8 @@ import { SaigonCanalSideMangroveCharcoalCourtyard } from '@/components/studio/Sa
 import { ArtisanSilverInlaidEbonyChopsticksAtelier } from '@/components/tools/ArtisanSilverInlaidEbonyChopsticksAtelier'
 import { SaigonBespokeLotusLeafPondTeaPavilion } from '@/components/studio/SaigonBespokeLotusLeafPondTeaPavilion'
 import { ArtisanSilverChasedArecaNutCasketAtelier } from '@/components/tools/ArtisanSilverChasedArecaNutCasketAtelier'
+import { SaigonCanalSideAncientWellCourtyardSanctuary } from '@/components/studio/SaigonCanalSideAncientWellCourtyardSanctuary'
+import { ArtisanHandmadeHornSnuffBottleVault } from '@/components/tools/ArtisanHandmadeHornSnuffBottleVault'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -501,6 +503,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Silver Chased Areca Nut Casket Atelier */}
       <ArtisanSilverChasedArecaNutCasketAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Canal-Side Ancient Well Courtyard Sanctuary */}
+      <SaigonCanalSideAncientWellCourtyardSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Handmade Horn Snuff Bottle Vault */}
+      <ArtisanHandmadeHornSnuffBottleVault className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
