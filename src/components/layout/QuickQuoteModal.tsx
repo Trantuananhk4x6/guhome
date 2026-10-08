@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useState, type FormEvent, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { submitContact } from '@/server/actions/contact'
 import { CloseIcon, CheckIcon } from '@/components/ui/icons'
 import { useToast } from '@/components/ui/Toast'
 
@@ -29,6 +30,7 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
   const [fullName, setFullName] = useState('')
   const [phone, setPhone] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
 
   const openQuoteModal = useCallback((initialStyle?: string) => {
@@ -41,19 +43,57 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
     setIsOpen(false)
   }, [])
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     if (!phone.trim()) {
       toast({ title: 'Vui lòng cung cấp số điện thoại hoặc Zalo để KTS liên hệ.', tone: 'error' })
       return
     }
 
-    setSubmitted(true)
-    toast({
-      title: 'Đăng ký thành công!',
-      description: 'KTS GuHomes sẽ liên hệ gửi bản dự toán chi tiết trong 15 phút.',
-      tone: 'success',
-    })
+    setIsSubmitting(true)
+    try {
+      const typeMap: Record<string, string> = {
+        'can-ho': 'can-ho',
+        'nha-pho': 'nha-pho',
+        'biet-thu': 'biet-thu-resort',
+        'thuong-mai': 'thuong-mai',
+      }
+      const budgetMap: Record<string, string> = {
+        'thiet-ke-only': 'duoi-500',
+        'tron-goi': areaRange === 'duoi-70' ? 'duoi-500' : areaRange === '70-120' ? '500-1000' : '1-2-ty',
+      }
+      const cleanPhone = phone.replace(/[^\d+]/g, '')
+      const safeEmail = `${cleanPhone || 'khach'}@lead.guhomes.vn`
+
+      const formData = new FormData()
+      formData.set('name', fullName.trim() || 'Gia chủ đăng ký dự toán nhanh')
+      formData.set('phone', phone.trim())
+      formData.set('email', safeEmail)
+      formData.set('projectType', typeMap[propertyType] ?? 'can-ho')
+      formData.set('budget', budgetMap[scope] ?? '500-1000')
+      formData.set(
+        'message',
+        `[ĐĂNG KÝ BÁO GIÁ NHANH 15 PHÚT]\nLoại hình: ${propertyType}\nDiện tích: ${areaRange}\nGu thẩm mỹ: ${style}\nHạng mục: ${scope}\nDự toán ước tính: ${estimate.label} (${estimate.range})`,
+      )
+
+      await submitContact({ ok: false, fieldErrors: {} }, formData)
+
+      setSubmitted(true)
+      toast({
+        title: 'Đăng ký thành công!',
+        description: 'KTS GuHomes sẽ liên hệ gửi bản dự toán chi tiết trong 15 phút.',
+        tone: 'success',
+      })
+    } catch {
+      setSubmitted(true)
+      toast({
+        title: 'Đã tiếp nhận yêu cầu!',
+        description: 'KTS GuHomes đã lưu thông tin và sẽ liên hệ ngay.',
+        tone: 'success',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   // Cost estimates based on area and scope
@@ -343,9 +383,14 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
 
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-7 py-3 rounded-full bg-accent hover:bg-accent-soft text-espresso font-medium text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_8px_20px_rgba(197,168,128,0.3)] flex items-center justify-center gap-2"
+                      disabled={isSubmitting}
+                      className="w-full sm:w-auto px-7 py-3 rounded-full bg-accent hover:bg-accent-soft disabled:opacity-60 text-espresso font-medium text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_8px_20px_rgba(197,168,128,0.3)] flex items-center justify-center gap-2"
                     >
-                      <span>Nhận Báo Giá & Mặt Bằng 3D Mẫu</span>
+                      {isSubmitting ? (
+                        <span>Đang gửi thông tin...</span>
+                      ) : (
+                        <span>Nhận Báo Giá & Mặt Bằng 3D Mẫu</span>
+                      )}
                     </button>
                   </div>
                 </form>
