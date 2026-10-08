@@ -118,6 +118,8 @@ import { SaigonZenKaresansuiGardenSanctuary } from '@/components/studio/SaigonZe
 import { SaigonAcousticTraditionalLuteSanctuary } from '@/components/studio/SaigonAcousticTraditionalLuteSanctuary'
 import { SaigonAcousticAccordionAndMusicBoxSanctuary } from '@/components/studio/SaigonAcousticAccordionAndMusicBoxSanctuary'
 import { SaigonSunkenBonsaiAtriumSanctuary } from '@/components/studio/SaigonSunkenBonsaiAtriumSanctuary'
+import { SaigonAcousticOudSanctuarySalon } from '@/components/studio/SaigonAcousticOudSanctuarySalon'
+import { SaigonVolcanicSlateMineralPoolPavilion } from '@/components/studio/SaigonVolcanicSlateMineralPoolPavilion'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -536,6 +538,12 @@ export default async function StylesPage() {
 
       {/* Saigon Sunken Bonsai Atrium Sanctuary */}
       <SaigonSunkenBonsaiAtriumSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Oud Sanctuary Salon */}
+      <SaigonAcousticOudSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Volcanic Slate Mineral Pool Pavilion */}
+      <SaigonVolcanicSlateMineralPoolPavilion className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

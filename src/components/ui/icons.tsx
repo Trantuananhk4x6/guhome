@@ -115,6 +115,31 @@ export function PhoneIcon(props: IconProps) {
   )
 }
 
+export function BoltIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+    </Svg>
+  )
+}
+
+export function BoxIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+      <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" />
+    </Svg>
+  )
+}
+
+export function ChatIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+    </Svg>
+  )
+}
+
 export function PrinterIcon(props: IconProps) {
   return (
     <Svg {...props}>
@@ -125,4 +150,10 @@ export function PrinterIcon(props: IconProps) {
   )
 }
 
-
+export function QrIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M3 3h6v6H3zM15 3h6v6h-6zM3 15h6v6H3zM15 15h2v2h-2zM19 15h2v2h-2zM15 19h2v2h-2zM19 19h2v2h-2z" />
+    </Svg>
+  )
+}

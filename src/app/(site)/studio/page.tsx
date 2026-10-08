@@ -173,6 +173,9 @@ import { ArtisanRattanCoreLacquerTeaCaddyAtelier } from '@/components/tools/Arti
 import { SaigonAcousticAccordionAndMusicBoxSanctuary } from '@/components/studio/SaigonAcousticAccordionAndMusicBoxSanctuary'
 import { SaigonSunkenBonsaiAtriumSanctuary } from '@/components/studio/SaigonSunkenBonsaiAtriumSanctuary'
 import { ArtisanPureSilverAgarwoodSnuffBottleAtelier } from '@/components/tools/ArtisanPureSilverAgarwoodSnuffBottleAtelier'
+import { SaigonAcousticOudSanctuarySalon } from '@/components/studio/SaigonAcousticOudSanctuarySalon'
+import { SaigonVolcanicSlateMineralPoolPavilion } from '@/components/studio/SaigonVolcanicSlateMineralPoolPavilion'
+import { ArtisanDuanniZishaTeapotAtelier } from '@/components/tools/ArtisanDuanniZishaTeapotAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1347,6 +1350,15 @@ export default async function StudioPage() {
 
       {/* ---------------- pure silver agarwood snuff bottle atelier --------------- */}
       <ArtisanPureSilverAgarwoodSnuffBottleAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- acoustic oud sanctuary salon --------------------------- */}
+      <SaigonAcousticOudSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- volcanic slate mineral pool pavilion ------------------- */}
+      <SaigonVolcanicSlateMineralPoolPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- duanni zisha teapot atelier ---------------------------- */}
+      <ArtisanDuanniZishaTeapotAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

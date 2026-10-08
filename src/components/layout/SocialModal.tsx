@@ -188,10 +188,10 @@ export function SocialModal() {
               Công ty TNHH Kiến Trúc & Xây Dựng GuHomes
             </span>
             <span>Trụ sở: 14 Đường 41, Phường An Khánh, TP. Hồ Chí Minh</span>
-            <span>Xưởng sản xuất: Thạnh Xuân, Quận 12, TP. Hồ Chí Minh</span>
+            <span>Xưởng mộc may đo: Thạnh Xuân, Quận 12 (1.200m²), TP. Hồ Chí Minh</span>
           </div>
           <div className="text-left md:text-right">
-            <span className="italic font-display text-ink/75">&ldquo;Your Success, Our Focus&rdquo;</span>
+            <span className="italic font-display text-ink/75">&ldquo;Tận Tâm Trọn Vẹn&rdquo;</span>
             <p className="mt-0.5 text-accent font-medium">Kiến tạo không gian, nâng tầm phong cách sống.</p>
           </div>
         </div>

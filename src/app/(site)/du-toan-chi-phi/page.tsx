@@ -103,6 +103,8 @@ import { SaigonAcousticTraditionalLuteSanctuary } from '@/components/studio/Saig
 import { ArtisanRattanCoreLacquerTeaCaddyAtelier } from '@/components/tools/ArtisanRattanCoreLacquerTeaCaddyAtelier'
 import { SaigonSunkenBonsaiAtriumSanctuary } from '@/components/studio/SaigonSunkenBonsaiAtriumSanctuary'
 import { ArtisanPureSilverAgarwoodSnuffBottleAtelier } from '@/components/tools/ArtisanPureSilverAgarwoodSnuffBottleAtelier'
+import { SaigonVolcanicSlateMineralPoolPavilion } from '@/components/studio/SaigonVolcanicSlateMineralPoolPavilion'
+import { ArtisanDuanniZishaTeapotAtelier } from '@/components/tools/ArtisanDuanniZishaTeapotAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -453,6 +455,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Pure Silver Agarwood Snuff Bottle Atelier */}
       <ArtisanPureSilverAgarwoodSnuffBottleAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Volcanic Slate Mineral Pool Pavilion */}
+      <SaigonVolcanicSlateMineralPoolPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Duanni Zisha Teapot Atelier */}
+      <ArtisanDuanniZishaTeapotAtelier className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

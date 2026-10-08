@@ -265,7 +265,7 @@ export function QuickConsultFormSection() {
                       type="submit"
                       disabled={isPending}
                       className={cn(
-                        'group inline-flex min-h-[48px] items-center justify-center gap-3 border border-accent bg-accent px-8 py-3.5 font-body text-[0.9375rem] font-medium text-canvas transition-all duration-300 hover:border-accent-soft hover:bg-accent-soft hover:shadow-lg disabled:opacity-50 cursor-pointer active:scale-[0.98]',
+                        'group inline-flex min-h-[48px] items-center justify-center gap-3 border border-accent bg-accent px-8 py-3.5 font-body text-[0.9375rem] font-semibold text-espresso transition-all duration-300 hover:border-accent-soft hover:bg-accent-soft hover:shadow-lg disabled:opacity-50 cursor-pointer active:scale-[0.98]',
                       )}
                     >
                       <span>{isPending ? 'Đang gửi thông tin...' : 'Gửi yêu cầu nhận dự toán'}</span>
