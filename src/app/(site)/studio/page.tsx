@@ -24,6 +24,9 @@ import { ArchitecturalLightingLab } from '@/components/studio/ArchitecturalLight
 import { WoodJoineryExplorer } from '@/components/studio/WoodJoineryExplorer'
 import { TenEngineeringNormsSection } from '@/components/sections/TenEngineeringNormsSection'
 import { ArchitecturalDetailViewer } from '@/components/projects/ArchitecturalDetailViewer'
+import { BespokeCabinetryStudio } from '@/components/studio/BespokeCabinetryStudio'
+import { CurvedWoodCraftLab } from '@/components/studio/CurvedWoodCraftLab'
+import { ContractorComparisonMatrix } from '@/components/sections/ContractorComparisonMatrix'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -737,8 +740,14 @@ export default async function StudioPage() {
       {/* --------------------------- woodshop tour ------------------------------- */}
       <WoodshopTourSection />
 
+      {/* -------------------- bespoke cabinetry studio --------------------------- */}
+      <BespokeCabinetryStudio className="mt-[var(--spacing-section)]" />
+
       {/* ----------------------- wood joinery explorer --------------------------- */}
       <WoodJoineryExplorer className="mt-[var(--spacing-section)]" />
+
+      {/* --------------------- curved wood craft lab ----------------------------- */}
+      <CurvedWoodCraftLab className="mt-[var(--spacing-section)]" />
 
       {/* ---------------------- construction timeline diary ----------------------- */}
       <ConstructionTimelineDiary className="mt-[var(--spacing-section)]" />
@@ -748,6 +757,9 @@ export default async function StudioPage() {
 
       {/* ------------ architectural technical cross-section viewer --------------- */}
       <ArchitecturalDetailViewer className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- contractor capability comparison matrix ---------------- */}
+      <ContractorComparisonMatrix className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------- client chronicles section ----------------------- */}
       <ClientChroniclesSection className="mt-[var(--spacing-section)]" />

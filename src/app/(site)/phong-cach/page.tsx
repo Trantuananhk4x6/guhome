@@ -28,6 +28,7 @@ import { Label } from '@/components/ui/Label'
 import { TactileMoodboardStudio } from '@/components/studio/TactileMoodboardStudio'
 import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvisory'
 import { ArchitecturalLightingLab } from '@/components/studio/ArchitecturalLightingLab'
+import { BespokeCabinetryStudio } from '@/components/studio/BespokeCabinetryStudio'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -174,6 +175,9 @@ export default async function StylesPage() {
 
       {/* Architectural Optical Lighting Lab */}
       <ArchitecturalLightingLab className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Cabinetry & Millwork Studio */}
+      <BespokeCabinetryStudio className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

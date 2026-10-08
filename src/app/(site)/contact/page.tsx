@@ -18,6 +18,7 @@ import { OpenSocialModalButton, SocialTrigger } from '@/components/layout/Social
 import { VipBookingCalendar } from '@/components/consultation/VipBookingCalendar'
 import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesSection'
 import { DigitalHandoverVault } from '@/components/services/DigitalHandoverVault'
+import { ContractorComparisonMatrix } from '@/components/sections/ContractorComparisonMatrix'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -305,6 +306,9 @@ export default async function ContactPage() {
 
       {/* Real-life Client Chronicles & Testimonials */}
       <ClientChroniclesSection className="mt-[var(--spacing-section)]" />
+
+      {/* Contractor Capability & Truth Comparison Matrix */}
+      <ContractorComparisonMatrix className="mt-[var(--spacing-section)]" />
 
       {/* Digital Handover & Warranty Vault */}
       <DigitalHandoverVault className="mt-[var(--spacing-section)]" />

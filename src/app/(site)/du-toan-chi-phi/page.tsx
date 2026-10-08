@@ -5,6 +5,8 @@ import { TactileMaterialLab } from '@/components/sections/TactileMaterialLab'
 import { TenEngineeringNormsSection } from '@/components/sections/TenEngineeringNormsSection'
 import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatCalculator'
 import { DigitalHandoverVault } from '@/components/services/DigitalHandoverVault'
+import { BespokeCabinetryStudio } from '@/components/studio/BespokeCabinetryStudio'
+import { ContractorComparisonMatrix } from '@/components/sections/ContractorComparisonMatrix'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -47,6 +49,9 @@ export default function DuToanChiPhiPage() {
       {/* Main Interactive Spatial Budget Calculator */}
       <SpatialBudgetCalculator />
 
+      {/* Bespoke Millwork & Cabinetry Studio */}
+      <BespokeCabinetryStudio className="mt-[var(--spacing-section)]" />
+
       {/* Material Exploration */}
       <div className="mt-[var(--spacing-section)]">
         <TactileMaterialLab />
@@ -54,6 +59,9 @@ export default function DuToanChiPhiPage() {
 
       {/* 10 Engineering Norms Manifesto */}
       <TenEngineeringNormsSection className="mt-[var(--spacing-section)]" />
+
+      {/* Contractor Capability & Truth Comparison Matrix */}
+      <ContractorComparisonMatrix className="mt-[var(--spacing-section)]" />
 
       {/* Western Solar Heat Radiation Calculator */}
       <WesternSolarHeatCalculator className="mt-[var(--spacing-section)]" />

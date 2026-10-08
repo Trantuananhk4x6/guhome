@@ -74,6 +74,7 @@ import { LookbookClimateFilter } from '@/components/projects/LookbookClimateFilt
 import { ProjectsViewSwitcher } from '@/components/projects/ProjectsViewSwitcher'
 import { ConstructionTimelineDiary } from '@/components/projects/ConstructionTimelineDiary'
 import { WoodJoineryExplorer } from '@/components/studio/WoodJoineryExplorer'
+import { CurvedWoodCraftLab } from '@/components/studio/CurvedWoodCraftLab'
 import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatCalculator'
 import { ArchitecturalDetailViewer } from '@/components/projects/ArchitecturalDetailViewer'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
@@ -568,6 +569,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Bespoke Traditional Wood Joinery Systems Explorer */}
           <WoodJoineryExplorer className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Organic Curved Wood Craft & Curvature Lab */}
+          <CurvedWoodCraftLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
 
           {/* Western Solar Heat Radiation Calculator */}
           <WesternSolarHeatCalculator className="mt-[clamp(4.5rem,10vh,8rem)]" />

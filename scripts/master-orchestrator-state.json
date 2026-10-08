@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 13,
+  "currentDirectiveIndex": 14,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -86,8 +86,16 @@
       "completedAt": "2026-10-08T13:42:30.000Z",
       "commit": "c2548ed",
       "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, WesternSolarHeatCalculator, ArchitecturalDetailViewer, and DigitalHandoverVault fully active across /khu-vuc, /du-toan-chi-phi, /projects, /studio, and /contact"
+    },
+    {
+      "directiveId": "dir-13-sprint-15-bespoke-cabinetry-curved-audit",
+      "title": "Bộ Sưu Tập Tủ May Đo Thửa Riêng Bespoke Cabinetry, Hệ Bào Tay Mộc Mặt Cong Curved Carpentry & Bảng Đối Chiếu Năng Lực Thực Lực",
+      "sentAt": "2026-10-08T13:43:14.000Z",
+      "completedAt": "2026-10-08T13:47:00.000Z",
+      "commit": "pending",
+      "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, BespokeCabinetryStudio, CurvedWoodCraftLab, and ContractorComparisonMatrix fully active across /studio, /phong-cach, /du-toan-chi-phi, /projects, and /contact"
     }
   ],
   "activeDirective": null,
-  "lastDispatchedAt": 1791466950000
+  "lastDispatchedAt": 1791467220000
 }
