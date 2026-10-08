@@ -80,6 +80,7 @@ import { ArtisanImperialSilverAgarwoodTeaCaddyAtelier } from '@/components/tools
 import { ArtisanGoldDamasceneEbonyTobaccoPipeAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyTobaccoPipeAtelier'
 import { ArtisanMotherOfPearlInlaidEbonyChessboardAtelier } from '@/components/tools/ArtisanMotherOfPearlInlaidEbonyChessboardAtelier'
 import { ArtisanGoldDamasceneEbonyGuanGongStatueAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyGuanGongStatueAtelier'
+import { ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier } from '@/components/tools/ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -556,6 +557,9 @@ export default async function ContactPage() {
 
       {/* Artisan Gold Damascene Ebony Guan Gong Statue Atelier */}
       <ArtisanGoldDamasceneEbonyGuanGongStatueAtelier />
+
+      {/* Artisan Silver Inlaid Agarwood Maitreya Statue Atelier */}
+      <ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier />
     </div>
   )
 }

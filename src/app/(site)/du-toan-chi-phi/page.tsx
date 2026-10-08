@@ -131,6 +131,8 @@ import { SaigonRiversideCantileveredBonsaiPavilion } from '@/components/studio/S
 import { ArtisanMotherOfPearlInlaidEbonyChessboardAtelier } from '@/components/tools/ArtisanMotherOfPearlInlaidEbonyChessboardAtelier'
 import { SaigonCanalSideFloatingOrchidSanctuaryPavilion } from '@/components/studio/SaigonCanalSideFloatingOrchidSanctuaryPavilion'
 import { ArtisanGoldDamasceneEbonyGuanGongStatueAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyGuanGongStatueAtelier'
+import { SaigonRiverfrontGlassFloorObservatoryPavilion } from '@/components/studio/SaigonRiverfrontGlassFloorObservatoryPavilion'
+import { ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier } from '@/components/tools/ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -565,6 +567,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Gold Damascene Ebony Guan Gong Statue Atelier */}
       <ArtisanGoldDamasceneEbonyGuanGongStatueAtelier />
+
+      {/* Saigon Riverfront Glass Floor Observatory Pavilion */}
+      <SaigonRiverfrontGlassFloorObservatoryPavilion />
+
+      {/* Artisan Silver Inlaid Agarwood Maitreya Statue Atelier */}
+      <ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

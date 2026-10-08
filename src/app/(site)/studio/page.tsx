@@ -215,6 +215,9 @@ import { ArtisanMotherOfPearlInlaidEbonyChessboardAtelier } from '@/components/t
 import { SaigonAcousticMaracasSanctuarySalon } from '@/components/studio/SaigonAcousticMaracasSanctuarySalon'
 import { SaigonCanalSideFloatingOrchidSanctuaryPavilion } from '@/components/studio/SaigonCanalSideFloatingOrchidSanctuaryPavilion'
 import { ArtisanGoldDamasceneEbonyGuanGongStatueAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyGuanGongStatueAtelier'
+import { SaigonAcousticBongosSanctuarySalon } from '@/components/studio/SaigonAcousticBongosSanctuarySalon'
+import { SaigonRiverfrontGlassFloorObservatoryPavilion } from '@/components/studio/SaigonRiverfrontGlassFloorObservatoryPavilion'
+import { ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier } from '@/components/tools/ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1515,6 +1518,15 @@ export default async function StudioPage() {
 
       {/* ---------------- gold damascene guan gong statue atelier ---------------- */}
       <ArtisanGoldDamasceneEbonyGuanGongStatueAtelier />
+
+      {/* ---------------- acoustic bongos sanctuary salon ----------------------- */}
+      <SaigonAcousticBongosSanctuarySalon />
+
+      {/* ---------------- riverfront glass floor observatory pavilion ----------- */}
+      <SaigonRiverfrontGlassFloorObservatoryPavilion />
+
+      {/* ---------------- silver inlaid agarwood maitreya statue atelier -------- */}
+      <ArtisanSilverInlaidAgarwoodMaitreyaStatueAtelier />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
