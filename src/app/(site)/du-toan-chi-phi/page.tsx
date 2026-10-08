@@ -49,6 +49,8 @@ import { ArtisanBasaltColdPlungeVault } from '@/components/studio/ArtisanBasaltC
 import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamilySanctuaryPanicRoom'
 import { CollectorAutomotiveCleanroomVault } from '@/components/studio/CollectorAutomotiveCleanroomVault'
 import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotanicalCurtainAtelier'
+import { SaigonRiversideOutdoorFirePitVault } from '@/components/studio/SaigonRiversideOutdoorFirePitVault'
+import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/PrivateHimalayanSaltCaveWellnessVault'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -236,6 +238,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Botanical Silk Curtain Atelier 6m Somfy */}
       <ArtisanBotanicalCurtainAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Riverside Outdoor Fire Pit Sunken Lounge Vault */}
+      <SaigonRiversideOutdoorFirePitVault className="mt-[var(--spacing-section)]" />
+
+      {/* Private Himalayan Salt Cave Halotherapy Wellness Vault */}
+      <PrivateHimalayanSaltCaveWellnessVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

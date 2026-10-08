@@ -39,6 +39,7 @@ import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZe
 import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/RiversideCigarLoungeAndHumidorSanctuary'
 import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamilySanctuaryPanicRoom'
 import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotanicalCurtainAtelier'
+import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/PrivateHimalayanSaltCaveWellnessVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -392,6 +393,9 @@ export default async function ContactPage() {
 
       {/* Artisan Botanical Silk Curtain Atelier 6m Somfy */}
       <ArtisanBotanicalCurtainAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Private Himalayan Salt Cave Halotherapy Wellness Vault */}
+      <PrivateHimalayanSaltCaveWellnessVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

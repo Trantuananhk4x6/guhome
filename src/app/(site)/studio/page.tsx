@@ -92,6 +92,9 @@ import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamil
 import { ArtisanHelicalRibbonStaircaseVault } from '@/components/studio/ArtisanHelicalRibbonStaircaseVault'
 import { CollectorAutomotiveCleanroomVault } from '@/components/studio/CollectorAutomotiveCleanroomVault'
 import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotanicalCurtainAtelier'
+import { SaigonAudiophileVinylSanctuary } from '@/components/studio/SaigonAudiophileVinylSanctuary'
+import { SaigonRiversideOutdoorFirePitVault } from '@/components/studio/SaigonRiversideOutdoorFirePitVault'
+import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/PrivateHimalayanSaltCaveWellnessVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1023,6 +1026,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan botanical silk curtain atelier 6m somfy --------- */}
       <ArtisanBotanicalCurtainAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon audiophile vinyl sanctuary RT60 0.35s vault ------ */}
+      <SaigonAudiophileVinylSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon riverside outdoor fire pit sunken lounge vault ---- */}
+      <SaigonRiversideOutdoorFirePitVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- private himalayan salt cave halotherapy wellness vault -- */}
+      <PrivateHimalayanSaltCaveWellnessVault className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

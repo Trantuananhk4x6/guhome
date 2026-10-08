@@ -64,6 +64,8 @@ import { SaigonBreezeWindChimeArtisanAtelier } from '@/components/studio/SaigonB
 import { ArtisanBasaltColdPlungeVault } from '@/components/studio/ArtisanBasaltColdPlungeVault'
 import { ArtisanHelicalRibbonStaircaseVault } from '@/components/studio/ArtisanHelicalRibbonStaircaseVault'
 import { CollectorAutomotiveCleanroomVault } from '@/components/studio/CollectorAutomotiveCleanroomVault'
+import { SaigonAudiophileVinylSanctuary } from '@/components/studio/SaigonAudiophileVinylSanctuary'
+import { SaigonRiversideOutdoorFirePitVault } from '@/components/studio/SaigonRiversideOutdoorFirePitVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -318,6 +320,12 @@ export default async function StylesPage() {
 
       {/* Collector Automotive Cleanroom +20Pa Barrisol Vault */}
       <CollectorAutomotiveCleanroomVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Audiophile Vinyl Sanctuary RT60 0.35s Vault */}
+      <SaigonAudiophileVinylSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Riverside Outdoor Fire Pit Sunken Lounge Vault */}
+      <SaigonRiversideOutdoorFirePitVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
