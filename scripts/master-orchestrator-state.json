@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 17,
+  "currentDirectiveIndex": 21,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -104,17 +104,29 @@
       "atStep": 2465
     },
     {
-      "directiveId": "dir-19-sprint-21-tea-chef-island-cashflow",
-      "title": "Phòng Thưởng Trà Tịnh Tâm, Kỹ Nghệ Đảo Bếp Khối Đá Chef Island & Bảng Tiến Độ Dòng Tiền 6 Đợt Minh Bạch",
-      "sentAt": "2026-10-08T14:22:30.000Z",
-      "atStep": 2480
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T14:23:48.316Z",
+      "atStep": 2496
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T14:25:48.791Z",
+      "atStep": 2538
+    },
+    {
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-08T14:27:49.465Z",
+      "atStep": 2557
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-08T14:28:19.712Z",
+      "atStep": 2565
     }
   ],
-  "lastDispatchedAt": 1791469373523,
-  "activeDirective": {
-    "directiveId": "dir-20-sprint-22-hardware-biophilic-timber-care",
-    "title": "Phòng Thí Nghiệm Kim Khí Đồng Mộc May Đo, Cảnh Quan Sinh Thái Nhiệt Đới Biophilic & Cổng Dưỡng Gỗ Tận Gia VIP Care",
-    "sentAt": "2026-10-08T14:22:53.523Z",
-    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
-  }
+  "lastDispatchedAt": 1791469699712
 }

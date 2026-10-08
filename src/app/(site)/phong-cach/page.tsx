@@ -36,6 +36,7 @@ import { BespokeFurnitureCustomizer } from '@/components/tools/BespokeFurnitureC
 import { LightingAtelierCustomizer } from '@/components/studio/LightingAtelierCustomizer'
 import { TactileTextileDraperyLab } from '@/components/studio/TactileTextileDraperyLab'
 import { TeaSanctuaryPavilion } from '@/components/studio/TeaSanctuaryPavilion'
+import { TactileHardwareAtelier } from '@/components/studio/TactileHardwareAtelier'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -206,6 +207,9 @@ export default async function StylesPage() {
 
       {/* Tea Sanctuary & Meditation Pavilion */}
       <TeaSanctuaryPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Tactile Architectural Hardware Atelier */}
+      <TactileHardwareAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

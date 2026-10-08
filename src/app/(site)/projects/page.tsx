@@ -86,6 +86,8 @@ import { TactileTextileDraperyLab } from '@/components/studio/TactileTextileDrap
 import { SubfloorAcousticMoistureShield } from '@/components/studio/SubfloorAcousticMoistureShield'
 import { TeaSanctuaryPavilion } from '@/components/studio/TeaSanctuaryPavilion'
 import { ChefIslandPlumbingVault } from '@/components/studio/ChefIslandPlumbingVault'
+import { TactileHardwareAtelier } from '@/components/studio/TactileHardwareAtelier'
+import { TropicalBonsaiEcologyLab } from '@/components/studio/TropicalBonsaiEcologyLab'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -614,6 +616,12 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Chef Island Monolithic Stone & MEP Plumbing Vault */}
           <ChefIslandPlumbingVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Bespoke Tactile Architectural Hardware Atelier */}
+          <TactileHardwareAtelier className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Biophilic Tropical Bonsai & Ecology Lab */}
+          <TropicalBonsaiEcologyLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

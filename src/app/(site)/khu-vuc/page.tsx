@@ -11,6 +11,7 @@ import { TropicalHvacAirflowSimulator } from '@/components/tools/TropicalHvacAir
 import { RiverBreezeAerodynamicsLab } from '@/components/studio/RiverBreezeAerodynamicsLab'
 import { NaturalStoneQuarryAtlas } from '@/components/studio/NaturalStoneQuarryAtlas'
 import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
+import { TropicalBonsaiEcologyLab } from '@/components/studio/TropicalBonsaiEcologyLab'
 
 export const revalidate = 3600
 
@@ -187,6 +188,11 @@ export default function SaigonDistrictsPage() {
         {/* Estate Renovation Diagnostic & Cost Estimator */}
         <div className="mt-16">
           <EstateRenovationDiagnostic className="rounded-3xl border border-line" />
+        </div>
+
+        {/* Biophilic Tropical Bonsai & Ecology Lab */}
+        <div className="mt-16">
+          <TropicalBonsaiEcologyLab className="rounded-3xl border border-line" />
         </div>
 
         {/* Bottom Editorial Callout */}

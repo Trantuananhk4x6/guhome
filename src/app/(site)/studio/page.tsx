@@ -44,6 +44,9 @@ import { SubfloorAcousticMoistureShield } from '@/components/studio/SubfloorAcou
 import { TeaSanctuaryPavilion } from '@/components/studio/TeaSanctuaryPavilion'
 import { ChefIslandPlumbingVault } from '@/components/studio/ChefIslandPlumbingVault'
 import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestoneScheduler'
+import { TactileHardwareAtelier } from '@/components/studio/TactileHardwareAtelier'
+import { TropicalBonsaiEcologyLab } from '@/components/studio/TropicalBonsaiEcologyLab'
+import { BespokeTimberCareVault } from '@/components/tools/BespokeTimberCareVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -831,6 +834,15 @@ export default async function StudioPage() {
 
       {/* ---------------- cashflow milestones & verification scheduler ------------ */}
       <CashflowMilestoneScheduler className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- bespoke tactile architectural hardware ----------------- */}
+      <TactileHardwareAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- biophilic tropical bonsai & ecology lab ---------------- */}
+      <TropicalBonsaiEcologyLab className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- bespoke timber care & VIP maintenance vault ----------- */}
+      <BespokeTimberCareVault className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

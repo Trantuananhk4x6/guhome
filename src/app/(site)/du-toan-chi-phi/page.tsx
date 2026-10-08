@@ -19,6 +19,7 @@ import { SubfloorAcousticMoistureShield } from '@/components/studio/SubfloorAcou
 import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
 import { ChefIslandPlumbingVault } from '@/components/studio/ChefIslandPlumbingVault'
 import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestoneScheduler'
+import { BespokeTimberCareVault } from '@/components/tools/BespokeTimberCareVault'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -116,6 +117,9 @@ export default function DuToanChiPhiPage() {
 
       {/* Cashflow Milestones & 6-Stage Verification Scheduler */}
       <CashflowMilestoneScheduler className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Timber Care & White-Glove VIP Maintenance Vault */}
+      <BespokeTimberCareVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

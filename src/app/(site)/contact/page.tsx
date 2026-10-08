@@ -23,6 +23,7 @@ import { ContractorComparisonMatrix } from '@/components/sections/ContractorComp
 import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualVault'
 import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
 import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestoneScheduler'
+import { BespokeTimberCareVault } from '@/components/tools/BespokeTimberCareVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -328,6 +329,9 @@ export default async function ContactPage() {
 
       {/* Cashflow Milestones & 6-Stage Verification Scheduler */}
       <CashflowMilestoneScheduler className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Timber Care & White-Glove VIP Maintenance Vault */}
+      <BespokeTimberCareVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
