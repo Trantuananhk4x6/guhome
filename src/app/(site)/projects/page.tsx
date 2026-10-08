@@ -105,6 +105,7 @@ import { ArtisanBatTrangBrickWineCellarVault } from '@/components/studio/Artisan
 import { ArtisanLiveEdgeParquetFlooringVault } from '@/components/studio/ArtisanLiveEdgeParquetFlooringVault'
 import { PrivateArtCollectionMuseumVault } from '@/components/studio/PrivateArtCollectionMuseumVault'
 import { SaigonBreezeWindChimeArtisanAtelier } from '@/components/studio/SaigonBreezeWindChimeArtisanAtelier'
+import { ArtisanHelicalRibbonStaircaseVault } from '@/components/studio/ArtisanHelicalRibbonStaircaseVault'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -690,6 +691,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Breeze Pentatonic Bronze Wind Chime Atelier */}
           <SaigonBreezeWindChimeArtisanAtelier className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Artisan Helical Ribbon Staircase White Oak Vault */}
+          <ArtisanHelicalRibbonStaircaseVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

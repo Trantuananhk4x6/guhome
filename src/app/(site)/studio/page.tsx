@@ -89,6 +89,9 @@ import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/Rive
 import { SaigonBreezeWindChimeArtisanAtelier } from '@/components/studio/SaigonBreezeWindChimeArtisanAtelier'
 import { ArtisanBasaltColdPlungeVault } from '@/components/studio/ArtisanBasaltColdPlungeVault'
 import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamilySanctuaryPanicRoom'
+import { ArtisanHelicalRibbonStaircaseVault } from '@/components/studio/ArtisanHelicalRibbonStaircaseVault'
+import { CollectorAutomotiveCleanroomVault } from '@/components/studio/CollectorAutomotiveCleanroomVault'
+import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotanicalCurtainAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1011,6 +1014,15 @@ export default async function StudioPage() {
 
       {/* ---------------- private family sanctuary panic room 72h CBRN ------------ */}
       <PrivateFamilySanctuaryPanicRoom className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan helical ribbon staircase white oak vault --------- */}
+      <ArtisanHelicalRibbonStaircaseVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- collector automotive cleanroom +20Pa barrisol vault ----- */}
+      <CollectorAutomotiveCleanroomVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan botanical silk curtain atelier 6m somfy --------- */}
+      <ArtisanBotanicalCurtainAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

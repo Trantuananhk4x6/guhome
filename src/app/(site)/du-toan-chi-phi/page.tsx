@@ -47,6 +47,8 @@ import { ArtisanQuartzHourglassVault } from '@/components/studio/ArtisanQuartzHo
 import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/RiversideCigarLoungeAndHumidorSanctuary'
 import { ArtisanBasaltColdPlungeVault } from '@/components/studio/ArtisanBasaltColdPlungeVault'
 import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamilySanctuaryPanicRoom'
+import { CollectorAutomotiveCleanroomVault } from '@/components/studio/CollectorAutomotiveCleanroomVault'
+import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotanicalCurtainAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -228,6 +230,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Private Family Sanctuary Panic Room 72h CBRN */}
       <PrivateFamilySanctuaryPanicRoom className="mt-[var(--spacing-section)]" />
+
+      {/* Collector Automotive Cleanroom +20Pa Barrisol Vault */}
+      <CollectorAutomotiveCleanroomVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Botanical Silk Curtain Atelier 6m Somfy */}
+      <ArtisanBotanicalCurtainAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

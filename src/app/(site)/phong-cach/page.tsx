@@ -62,6 +62,8 @@ import { PrivateArtCollectionMuseumVault } from '@/components/studio/PrivateArtC
 import { ArtisanQuartzHourglassVault } from '@/components/studio/ArtisanQuartzHourglassVault'
 import { SaigonBreezeWindChimeArtisanAtelier } from '@/components/studio/SaigonBreezeWindChimeArtisanAtelier'
 import { ArtisanBasaltColdPlungeVault } from '@/components/studio/ArtisanBasaltColdPlungeVault'
+import { ArtisanHelicalRibbonStaircaseVault } from '@/components/studio/ArtisanHelicalRibbonStaircaseVault'
+import { CollectorAutomotiveCleanroomVault } from '@/components/studio/CollectorAutomotiveCleanroomVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -310,6 +312,12 @@ export default async function StylesPage() {
 
       {/* Artisan Basalt Cold Plunge 3C Monolith Vault */}
       <ArtisanBasaltColdPlungeVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Helical Ribbon Staircase White Oak Vault */}
+      <ArtisanHelicalRibbonStaircaseVault className="mt-[var(--spacing-section)]" />
+
+      {/* Collector Automotive Cleanroom +20Pa Barrisol Vault */}
+      <CollectorAutomotiveCleanroomVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -38,6 +38,7 @@ import { ArtisanHinokiVolcanicSaunaSanctuary } from '@/components/tools/ArtisanH
 import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZenYogaPavilion'
 import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/RiversideCigarLoungeAndHumidorSanctuary'
 import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamilySanctuaryPanicRoom'
+import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotanicalCurtainAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -388,6 +389,9 @@ export default async function ContactPage() {
 
       {/* Private Family Sanctuary Panic Room 72h CBRN */}
       <PrivateFamilySanctuaryPanicRoom className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Botanical Silk Curtain Atelier 6m Somfy */}
+      <ArtisanBotanicalCurtainAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
