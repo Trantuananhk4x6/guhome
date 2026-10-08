@@ -64,7 +64,7 @@ export function MissionVisionSection() {
               </div>
 
               <h3 className="mt-6 font-display text-[1.5rem] font-normal leading-[1.3] text-ink sm:text-[1.75rem] transition-colors duration-300 group-hover:text-accent">
-                Trở thành studio kiến trúc - nội thất trọn gói biểu tượng tại Việt Nam.
+                Trở thành studio kiến trúc và nội thất may đo biểu tượng tại Việt Nam.
               </h3>
 
               <p className="mt-4 font-body text-[0.9375rem] font-medium leading-relaxed text-ink/85">
@@ -82,7 +82,7 @@ export function MissionVisionSection() {
                     <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
                       <CheckIcon className="h-2.5 w-2.5" />
                     </span>
-                    <span>Thiết kế &ldquo;may đo&rdquo; cá nhân hóa - tôn trọng thói quen sinh hoạt thật của gia chủ</span>
+                    <span>Thiết kế &ldquo;may đo&rdquo; cá nhân hóa: Tôn trọng thói quen sinh hoạt và nếp sống thật của gia chủ</span>
                   </li>
                   <li className="flex items-start gap-2.5 text-[0.875rem] text-ink/80">
                     <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
@@ -134,7 +134,7 @@ export function MissionVisionSection() {
               </h3>
 
               <p className="mt-4 font-body text-[0.9375rem] font-medium leading-relaxed text-ink/85">
-                Chuyên sâu thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu của khách hàng - bằng sự tận tâm chân thành, quy trình minh bạch rõ ràng và kỷ luật công trường nghiêm cẩn.
+                Chuyên sâu thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu của khách hàng: Bằng sự tận tâm chân thành, quy trình minh bạch rõ ràng và kỷ luật công trường nghiêm cẩn.
               </p>
 
               <p className="mt-3 font-body text-[0.875rem] leading-relaxed text-ink/70">
@@ -148,7 +148,7 @@ export function MissionVisionSection() {
                     <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
                       <CheckIcon className="h-2.5 w-2.5" />
                     </span>
-                    <span>Dự toán minh bạch tuyệt đối - bóc tách khối lượng trước khi vẽ, không chi phí ẩn, không phát sinh</span>
+                    <span>Dự toán minh bạch tuyệt đối: Bóc tách khối lượng trước khi vẽ, không chi phí ẩn, không phát sinh</span>
                   </li>
                   <li className="flex items-start gap-2.5 text-[0.875rem] text-ink/80">
                     <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
@@ -236,7 +236,7 @@ export function MissionVisionSection() {
                 <h4 className="mt-3 font-display text-[1.25rem] text-ink">Bền Vững Nhiệt Đới</h4>
                 <p className="mt-2 text-xs font-medium text-accent">Thích ứng nắng gắt và độ ẩm 80% của Sài Gòn.</p>
                 <p className="mt-3 text-[0.8125rem] leading-relaxed text-ink/75">
-                  Ưu tiên vật liệu có lỗ thở tự nhiên: đá travertine, gỗ tự nhiên lau dầu, vữa vôi thủ công - những chất liệu càng đi qua thời gian, càng trầm tích vẻ đẹp phong sương và ấm áp.
+                  Ưu tiên vật liệu có lỗ thở tự nhiên: Đá travertine, gỗ tự nhiên lau dầu thực vật, vữa vôi thủ công. Những chất liệu càng đi qua thời gian, càng trầm tích vẻ đẹp phong sương và ấm áp.
                 </p>
               </div>
             </div>

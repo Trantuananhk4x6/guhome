@@ -44,7 +44,7 @@ export function Philosophy({ section, data }: HomeSectionProps) {
   const body = sectionText(
     content,
     'body',
-    'Chúng tôi giữ bảng vật liệu ngắn và để ánh sáng làm phần còn lại. Một mặt đá honed, một tấm gỗ sồi lau dầu, một khoảng tường trống - đủ để căn phòng thay đổi theo giờ trong ngày mà không cần thêm gì.',
+    'Chúng tôi giữ bảng vật liệu ngắn và để ánh sáng làm phần còn lại. Một mặt đá honed, một tấm gỗ sồi lau dầu, một khoảng tường trống: Đủ để căn phòng thay đổi theo giờ trong ngày mà không cần thêm gì.',
   )
 
   const material = data.materials[0] ?? null

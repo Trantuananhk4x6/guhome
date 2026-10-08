@@ -33,7 +33,7 @@ export const COMPARISON_PILLARS: ComparisonPillar[] = [
     marketStandard: {
       heading: 'Thuê khoán xưởng gia công ngoài hoặc thầu phụ trung gian',
       details: 'Công ty thiết kế chỉ vẽ 3D rồi bán thầu lại cho xưởng tự phát; KTS không thể kiểm soát chất lượng mộc thực địa.',
-      danger: 'Bị đội giá 20–30% hoặc thầu phụ tráo đổi vật tư kém phẩm chất.',
+      danger: 'Bị đội giá 20-30% hoặc thầu phụ tráo đổi vật tư kém phẩm chất.',
     },
     whyItMatters: 'Khách hàng có thể trực tiếp ghé xưởng xem mộc thô trước khi sơn phủ, an tâm tuyệt đối về chất lượng.',
   },
@@ -41,12 +41,12 @@ export const COMPARISON_PILLARS: ComparisonPillar[] = [
     number: '02',
     title: 'Quy Trình Kiểm Soát Độ Ẩm Gỗ (EMC)',
     guHomesSpec: {
-      heading: 'Lò sấy chân không đạt chuẩn EMC 10%–12% cân bằng vi khí hậu TP.HCM',
+      heading: 'Lò sấy chân không đạt chuẩn EMC 10%-12% cân bằng vi khí hậu TP.HCM',
       details: 'Đo kiểm độ ẩm từng thanh gỗ bằng máy sóng điện từ Wagner Meters Orion 950 trước khi tiến hành cắt mộng.',
-      badge: 'Chuẩn EMC 10–12% Nhiệt Đới',
+      badge: 'Chuẩn EMC 10-12% Nhiệt Đới',
     },
     marketStandard: {
-      heading: 'Dùng gỗ phơi khô tự nhiên hoặc sấy qua loa độ ẩm 18%–22%',
+      heading: 'Dùng gỗ phơi khô tự nhiên hoặc sấy qua loa độ ẩm 18%-22%',
       details: 'Gỗ còn chứa nhiều nước bên trong thớ, thi công nhanh để lấy tiền ứng mà không quan tâm độ co rút vật liệu.',
       danger: 'Sau 6 tháng chạy điều hòa liên tục, gỗ bị rút nước co ngót, nứt toác mặt bàn và kẹt cánh tủ.',
     },

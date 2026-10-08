@@ -229,7 +229,7 @@ const FACTS: readonly { label: string; value: string }[] = [
   { label: 'Thành lập', value: '2016' },
   { label: 'Địa bàn', value: 'TP. Hồ Chí Minh, và các tỉnh thành khi công trình đủ duyên' },
   { label: 'Chuyên sâu', value: 'Thiết kế, thi công & sản xuất nội thất trọn gói theo yêu cầu' },
-  { label: 'Nhịp làm việc', value: 'Mười hai công trình một năm - đủ để KTS có mặt tại công trường mỗi tuần' },
+  { label: 'Nhịp làm việc', value: 'Mười hai công trình một năm: Đủ để KTS có mặt tại công trường mỗi tuần' },
 ]
 
 interface Pillar {
@@ -242,11 +242,11 @@ interface Pillar {
 
 const VISION_DATA: Pillar = {
   badge: 'Tầm nhìn dài hạn',
-  title: 'Trở thành studio kiến trúc - nội thất trọn gói biểu tượng tại Việt Nam.',
+  title: 'Trở thành studio kiến trúc và nội thất may đo biểu tượng tại Việt Nam.',
   lead: 'Tiên phong định hình chuẩn mực không gian sống nguyên bản: mỗi ngôi nhà là một thực thể độc bản, hòa quyện vi khí hậu nhiệt đới, lưu giữ nếp sống riêng ("đúng Gu") và trường tồn cùng năm tháng.',
   body: 'GuHomes không đo lường sự thành công bằng số lượng công trình trải dài khắp thành phố, mà bằng chiều sâu cảm xúc trong từng mét vuông được tạo tác. Chúng tôi kiên định theo đuổi con đường thủ công chuẩn mực: nơi thẩm mỹ không lấn át con người, nơi vật liệu mộc được thở cùng khí trời, và nơi mỗi góc nhà trở thành chốn neo đậu bình yên, cùng gia đình đi qua bao biến chuyển của cuộc đời một cách thanh lịch và ấm áp.',
   commitments: [
-    'Thiết kế "may đo" cá nhân hóa - tôn trọng thói quen sinh hoạt và nếp sống thật của từng thành viên',
+    'Thiết kế "may đo" cá nhân hóa: Tôn trọng thói quen sinh hoạt và nếp sống thật của từng thành viên',
     'Thích ứng vi khí hậu Sài Gòn: đón gió đối lưu tự nhiên, lấy sáng thông minh và chống ẩm bền bỉ',
     'Mô hình trọn gói khép kín: từ ý niệm kiến trúc đến xưởng mộc gia công trực tiếp 1.200m² tại Thạnh Xuân, Quận 12',
   ],
@@ -255,10 +255,10 @@ const VISION_DATA: Pillar = {
 const MISSION_DATA: Pillar = {
   badge: 'Sứ mệnh phụng sự',
   title: 'Kiến tạo không gian, nâng tầm phong cách sống.',
-  lead: 'Chuyên sâu thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu của khách hàng - bằng sự tận tâm chân thành, quy trình minh bạch rõ ràng và kỷ luật công trường nghiêm cẩn.',
+  lead: 'Chuyên sâu thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu của khách hàng: Bằng sự tận tâm chân thành, quy trình minh bạch rõ ràng và kỷ luật công trường nghiêm cẩn.',
   body: 'Sứ mệnh của GuHomes là hiện thực hóa trọn vẹn giấc mơ tổ ấm của gia chủ, giải phóng bạn khỏi mọi âu lo, căng thẳng và sự bất an thường trực trong hành trình xây dựng. Bằng xưởng gia công mộc trực tiếp 1.200m² tại Thạnh Xuân, Quận 12, quy trình khép kín rõ ràng từ bản vẽ ý niệm đến ngày lắp đặt hoàn thiện, và sự tận tâm nghiêm cẩn với từng mối ghép mộng gỗ, chúng tôi trao gửi một không gian sống đủ ấm cúng để trở về, đủ tĩnh lặng để lắng nghe chính mình, và đủ tinh tế để tự hào đón tiếp người thân quý.',
   commitments: [
-    'Dự toán minh bạch tuyệt đối - bóc tách khối lượng trước khi vẽ, không chi phí ẩn, không phát sinh bất ngờ',
+    'Dự toán minh bạch tuyệt đối: Bóc tách khối lượng trước khi vẽ, không chi phí ẩn, không phát sinh bất ngờ',
     'Kiểm soát chất lượng đồng bộ từ xưởng sản xuất đến hiện trường lắp đặt ngoài thực tế',
     'Cùng một người đồng hành: từ buổi lắng nghe đầu tiên đến ngày trao chìa khóa vào tay gia chủ',
   ],
@@ -299,7 +299,7 @@ const CORE_VALUES: readonly CoreValue[] = [
     tag: 'Thấu hiểu bản địa',
     title: 'Bền Vững Nhiệt Đới',
     subtitle: 'Thiết kế thích ứng với nắng gắt và độ ẩm 80% của Sài Gòn.',
-    body: 'Độ ẩm 75-80% quanh năm và những cơn mưa rào bất chợt là người thầy khắt khe nhất của studio. GuHomes ưu tiên những vật liệu có lỗ thở tự nhiên: đá travertine, gỗ tự nhiên sấy tiêu chuẩn 10-12% lau dầu thực vật, vữa vôi thủ công, đồng thau mộc - những chất liệu không sợ thời tiết mà càng đi qua năm tháng, càng trầm tích vẻ đẹp của sự phong sương và ấm áp.',
+    body: 'Độ ẩm 75-80% quanh năm và những cơn mưa rào bất chợt là người thầy khắt khe nhất của studio. GuHomes ưu tiên những vật liệu có lỗ thở tự nhiên: Đá travertine, gỗ tự nhiên sấy tiêu chuẩn 10-12% lau dầu thực vật, vữa vôi thủ công, đồng thau mộc. Những chất liệu không sợ thời tiết mà càng đi qua năm tháng, càng trầm tích vẻ đẹp của sự phong sương và ấm áp.',
   },
   {
     number: '05',
@@ -314,7 +314,7 @@ const PHILOSOPHY: readonly string[] = [
   'Một chiều tháng Sáu, mưa xuống ngay lúc đang đo dở, và trong mười phút cả căn hộ đổi màu. Ánh sáng ngoài trời rút về một thứ xám phẳng lì, không còn cái bóng đổ nào để giấu đi thứ gì. Mảng vữa nào loang thì lúc ấy hiện ra hết. Chúng tôi hay đợi cho tạnh rồi mới đo tiếp, vì mười phút đó nói được nhiều hơn cả buổi sáng hôm trước.',
   'Có một cái mùi mà căn hộ nào ở đây đóng cửa một tuần cũng có. Nó bám vào rèm trước, rồi mới tới lớp giấy lót trong ngăn kéo. Vì cái mùi ấy mà studio không đóng tủ áo kín bưng bao giờ, và phòng tắm trong hồ sơ của chúng tôi luôn có một khe thông hơi nào đó, giấu sau nan gỗ nếu cần. Sàn thì có tiếng của nó. Gạch bóng khuếch đại từng bước chân; gỗ nuốt bớt đi. Không ai đưa chuyện ấy vào bản yêu cầu thiết kế, và ai cũng nhận ra nó trong tuần đầu tiên dọn vào.',
   'Một mảng tường không treo gì không phải là chỗ chưa làm xong. Ở lần duyệt cuối, thứ bị gạch khỏi bản vẽ bao giờ cũng nhiều hơn thứ được thêm vào.',
-  'Nhưng phần khó nhất nằm ở những câu không có trong bảng khảo sát nào. Ai là người về sau cùng, và người đó bật ngọn đèn nào trước tiên. Bữa tối ăn ở bàn, hay ăn đứng ở đảo bếp vì đứng thì nhanh hơn và không ai phải dọn. Cánh cửa nào trong nhà chưa bao giờ có ai đóng. Một ngôi nhà tốt không bắt người ở học lại cách sống của chính mình, nên chúng tôi hỏi hết trong buổi đầu và chép lại gần như nguyên văn - nhất là những chỗ hai vợ chồng trả lời khác nhau.',
+  'Nhưng phần khó nhất nằm ở những câu không có trong bảng khảo sát nào. Ai là người về sau cùng, và người đó bật ngọn đèn nào trước tiên. Bữa tối ăn ở bàn, hay ăn đứng ở đảo bếp vì đứng thì nhanh hơn và không ai phải dọn. Cánh cửa nào trong nhà chưa bao giờ có ai đóng. Một ngôi nhà tốt không bắt người ở học lại cách sống của chính mình, nên chúng tôi hỏi hết trong buổi đầu và chép lại gần như nguyên văn, nhất là những chỗ hai vợ chồng trả lời khác nhau.',
 ]
 
 interface ProcessStep {

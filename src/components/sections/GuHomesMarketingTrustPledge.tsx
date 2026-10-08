@@ -23,7 +23,7 @@ const GUARANTEES: readonly GuaranteeItem[] = [
     id: 'no-cost-overrun',
     code: '01',
     title: 'Không Phát Sinh Chi Phí 0%',
-    tagline: 'Minh bạch từng milimet vật tư - Chốt giá trước khi khởi công.',
+    tagline: 'Minh bạch từng milimet vật tư · Chốt giá trước khi khởi công.',
     description:
       'Hồ sơ bóc tách khối lượng dự toán (BOQ) của GuHomes chi tiết tới từng bản lề giảm chấn, từng mét ray trượt và từng mét vuông đá. Khi bản vẽ thi công đã được gia chủ duyệt, ngân sách là bất di bất dịch.',
     legalCommitment:
@@ -46,8 +46,8 @@ const GUARANTEES: readonly GuaranteeItem[] = [
   {
     id: 'no-subcontracting',
     code: '03',
-    title: 'Không Bán Thầu - Không Trung Gian',
-    tagline: 'Xưởng mộc 1.200m² trực thuộc - KTS Trưởng giám sát hiện trường.',
+    title: 'Không Bán Thầu · Không Trung Gian',
+    tagline: 'Xưởng mộc 1.200m² trực thuộc · KTS Trưởng giám sát hiện trường.',
     description:
       'Tuyệt đối không chuyển nhượng thầu phụ kiếm chênh lệch. Toàn bộ hệ tủ, đảo bếp, vách ốp được sản xuất tại xưởng mộc GuHomes tại Thạnh Xuân, Quận 12 bởi đội ngũ thợ lành nghề gắn bó trên 8 năm.',
     legalCommitment:
