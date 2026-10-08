@@ -229,6 +229,9 @@ import { ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier } from '@/compone
 import { SaigonBreezeTeakwoodWindLouverCourtyardPavilion } from '@/components/studio/SaigonBreezeTeakwoodWindLouverCourtyardPavilion'
 import { BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault } from '@/components/studio/BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault'
 import { ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier } from '@/components/tools/ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier'
+import { SaigonRiversideHydroponicAromaticHerbSanctuary } from '@/components/studio/SaigonRiversideHydroponicAromaticHerbSanctuary'
+import { BespokePetrifiedWoodAndBrassWineBarTastingLounge } from '@/components/studio/BespokePetrifiedWoodAndBrassWineBarTastingLounge'
+import { ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier } from '@/components/tools/ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1565,6 +1568,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan handmade horn & gold-inlaid grooming chest ----- */}
       <ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier />
+
+      {/* ---------------- saigon riverside hydroponic aromatic herb sanctuary ---- */}
+      <SaigonRiversideHydroponicAromaticHerbSanctuary />
+
+      {/* ---------------- bespoke petrified wood & brass wine bar tasting lounge - */}
+      <BespokePetrifiedWoodAndBrassWineBarTastingLounge />
+
+      {/* ---------------- artisan silk & ebony folding screen atelier ------------ */}
+      <ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />

@@ -142,6 +142,9 @@ import { ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier } from '@/compone
 import { SaigonBreezeTeakwoodWindLouverCourtyardPavilion } from '@/components/studio/SaigonBreezeTeakwoodWindLouverCourtyardPavilion'
 import { BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault } from '@/components/studio/BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault'
 import { ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier } from '@/components/tools/ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier'
+import { SaigonRiversideHydroponicAromaticHerbSanctuary } from '@/components/studio/SaigonRiversideHydroponicAromaticHerbSanctuary'
+import { BespokePetrifiedWoodAndBrassWineBarTastingLounge } from '@/components/studio/BespokePetrifiedWoodAndBrassWineBarTastingLounge'
+import { ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier } from '@/components/tools/ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -609,6 +612,15 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Handmade Horn & Gold-Inlaid Grooming Chest Atelier */}
       <ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier />
+
+      {/* Saigon Riverside Hydroponic Aromatic Herb Sanctuary */}
+      <SaigonRiversideHydroponicAromaticHerbSanctuary />
+
+      {/* Bespoke Petrified Wood & Brass Wine Bar Tasting Lounge */}
+      <BespokePetrifiedWoodAndBrassWineBarTastingLounge />
+
+      {/* Artisan Vietnamese Imperial Silk & Ebony Folding Screen Atelier */}
+      <ArtisanVietnameseImperialSilkAndEbonyFoldingScreenAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
