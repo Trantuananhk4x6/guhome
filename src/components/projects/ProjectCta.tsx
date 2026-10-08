@@ -11,6 +11,7 @@ import { useRef } from 'react'
 import { useReveal } from '@/animations/reveal'
 import { useTextReveal } from '@/animations/text'
 import { Button } from '@/components/ui/Button'
+import { useQuickQuote } from '@/components/layout/QuickQuoteModal'
 import { cn } from '@/lib/utils'
 
 import { DISPLAY_LG } from './composition'
@@ -33,6 +34,8 @@ export function ProjectCta({
   const headingRef = useRef<HTMLHeadingElement>(null)
   const bodyRef = useRef<HTMLDivElement>(null)
 
+  const { openQuoteModal } = useQuickQuote()
+
   useTextReveal(headingRef, { by: 'line' })
   useReveal(bodyRef, { variant: 'revealUp', delay: 0.3, stagger: 0.08 })
 
@@ -51,10 +54,18 @@ export function ProjectCta({
               {body}
             </p>
           ) : null}
-          <div data-reveal data-reveal-item>
+          <div data-reveal data-reveal-item className="flex flex-wrap items-center gap-4">
             <Button href={href} variant="ghost" tone="light" size="lg" withArrow>
               {buttonLabel}
             </Button>
+            <button
+              type="button"
+              onClick={() => openQuoteModal()}
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-accent-soft/40 bg-accent/20 px-6 py-2.5 font-display text-sm font-medium text-accent-soft backdrop-blur-md transition-all duration-300 hover:bg-accent hover:text-canvas hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+            >
+              <span>Dự toán không gian tương tự</span>
+              <span className="text-xs">⚡</span>
+            </button>
           </div>
         </div>
       </div>
