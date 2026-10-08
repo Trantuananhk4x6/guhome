@@ -57,7 +57,7 @@ QUY CHUẨN XÁC THỰC BẮT BUỘC TRƯỚC KHI BÁO CÁO:
 `;
 
 async function dispatchSprint63() {
-  console.log(\`[Master Orchestrator] Dispatching Sprint 63 to Agent \${TARGET_ID}...\`);
+  console.log(`[Master Orchestrator] Dispatching Sprint 63 to Agent ${TARGET_ID}...`);
 
   let state = {};
   if (fs.existsSync(STATE_PATH)) {
@@ -85,7 +85,7 @@ async function dispatchSprint63() {
   ], { stdio: 'inherit', shell: true });
 
   proc.on('close', (code) => {
-    console.log(\`[Master Orchestrator] Language server send-message exited with code: \${code}\`);
+    console.log(`[Master Orchestrator] Language server send-message exited with code: ${code}`);
   });
 }
 

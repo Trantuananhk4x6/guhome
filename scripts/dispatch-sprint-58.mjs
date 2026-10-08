@@ -54,10 +54,10 @@ QUY CHUẨN XÁC THỰC BẮT BUỘC TRƯỚC KHI BÁO CÁO:
 3. Production Build: Chạy 'npm run build' exit code 0.
 4. Cập nhật scripts/master-orchestrator-state.json và commit git trên nhánh enhaceta:
    'feat(sprint-58): add SaigonAcousticCimbalomSalonSanctuary, ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary, and ArtisanHandmadeHornAndTortoiseshellCombAtelier with 100% SEO pass'
-\`;
+`;
 
 async function dispatchSprint58() {
-  console.log(\`[Master Orchestrator] Dispatching Sprint 58 to Agent \${TARGET_ID}...\`);
+  console.log(`[Master Orchestrator] Dispatching Sprint 58 to Agent ${TARGET_ID}...`);
 
   let state = {};
   if (fs.existsSync(STATE_PATH)) {
@@ -85,7 +85,7 @@ async function dispatchSprint58() {
   ], { stdio: 'inherit', shell: true });
 
   proc.on('close', (code) => {
-    console.log(\`[Master Orchestrator] Language server send-message exited with code: \${code}\`);
+    console.log(`[Master Orchestrator] Language server send-message exited with code: ${code}`);
   });
 }
 
