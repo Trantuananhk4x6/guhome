@@ -175,6 +175,9 @@ import { ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier } from '@/components/tools/Ar
 import { SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary } from '@/components/studio/SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary'
 import { BespokeImperialKynamAndGoldLeafScentVault } from '@/components/studio/BespokeImperialKynamAndGoldLeafScentVault'
 import { ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier } from '@/components/tools/ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier'
+import { SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion } from '@/components/studio/SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion'
+import { BespokeImperialKynamAndSilverFiligreeScentChamber } from '@/components/studio/BespokeImperialKynamAndSilverFiligreeScentChamber'
+import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -971,6 +974,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Artisan Gold Leaf Ebony Calligraphy Brush Atelier */}
           <ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier />
+
+          {/* Saigon Riverfront Ancient Dalbergia Tea Bonsai Pavilion */}
+          <SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion />
+
+          {/* Bespoke Imperial Kynam & Silver Filigree Scent Chamber */}
+          <BespokeImperialKynamAndSilverFiligreeScentChamber />
+
+          {/* Artisan Gold Filigree & Onyx Calligraphy Inkstone Atelier */}
+          <ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />

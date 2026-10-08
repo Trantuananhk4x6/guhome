@@ -175,6 +175,9 @@ import { ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier } from '@/components/tools/Ar
 import { SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary } from '@/components/studio/SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary'
 import { BespokeImperialKynamAndGoldLeafScentVault } from '@/components/studio/BespokeImperialKynamAndGoldLeafScentVault'
 import { ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier } from '@/components/tools/ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier'
+import { SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion } from '@/components/studio/SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion'
+import { BespokeImperialKynamAndSilverFiligreeScentChamber } from '@/components/studio/BespokeImperialKynamAndSilverFiligreeScentChamber'
+import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -764,6 +767,15 @@ export default async function StylesPage() {
 
       {/* Artisan Gold Leaf Ebony Calligraphy Brush Atelier */}
       <ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier />
+
+      {/* Saigon Riverfront Ancient Dalbergia Tea Bonsai Pavilion */}
+      <SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion />
+
+      {/* Bespoke Imperial Kynam & Silver Filigree Scent Chamber */}
+      <BespokeImperialKynamAndSilverFiligreeScentChamber />
+
+      {/* Artisan Gold Filigree & Onyx Calligraphy Inkstone Atelier */}
+      <ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

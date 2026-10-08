@@ -247,6 +247,9 @@ import { ArtisanHandmadeGoldLeafEbonyTeaBoxAtelier } from '@/components/tools/Ar
 import { SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary } from '@/components/studio/SaigonCanalSideAncientRosewoodBonsaiWaterFeatureSanctuary'
 import { BespokeImperialKynamAndGoldLeafScentVault } from '@/components/studio/BespokeImperialKynamAndGoldLeafScentVault'
 import { ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier } from '@/components/tools/ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier'
+import { SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion } from '@/components/studio/SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion'
+import { BespokeImperialKynamAndSilverFiligreeScentChamber } from '@/components/studio/BespokeImperialKynamAndSilverFiligreeScentChamber'
+import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1637,6 +1640,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan gold leaf ebony calligraphy brush atelier ------ */}
       <ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier />
+
+      {/* ---------------- saigon riverfront ancient dalbergia tea bonsai pavilion */}
+      <SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion />
+
+      {/* ---------------- bespoke imperial kynam & silver filigree scent chamber -- */}
+      <BespokeImperialKynamAndSilverFiligreeScentChamber />
+
+      {/* ---------------- artisan gold filigree & onyx calligraphy inkstone atelier */}
+      <ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />
