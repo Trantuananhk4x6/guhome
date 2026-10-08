@@ -116,6 +116,8 @@ import { SaigonAcousticHarpsichordSanctuarySalon } from '@/components/studio/Sai
 import { SaigonTranslucentOnyxWaterfallSanctuary } from '@/components/studio/SaigonTranslucentOnyxWaterfallSanctuary'
 import { SaigonZenKaresansuiGardenSanctuary } from '@/components/studio/SaigonZenKaresansuiGardenSanctuary'
 import { SaigonAcousticTraditionalLuteSanctuary } from '@/components/studio/SaigonAcousticTraditionalLuteSanctuary'
+import { SaigonAcousticAccordionAndMusicBoxSanctuary } from '@/components/studio/SaigonAcousticAccordionAndMusicBoxSanctuary'
+import { SaigonSunkenBonsaiAtriumSanctuary } from '@/components/studio/SaigonSunkenBonsaiAtriumSanctuary'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -310,7 +312,7 @@ export default async function StylesPage() {
       {/* Saigon Monsoon Rainwater Harvest & Passive Rooftop Mist Cooling */}
       <SaigonMonsoonRainwaterHarvestLab className="mt-[var(--spacing-section)]" />
 
-      {/* Handcrafted Lacquer Artisan Atelier Bát Tràng x Thạnh Xuân */}
+      {/* Handcrafted Lacquer Artisan Studio Bát Tràng x Thạnh Xuân */}
       <HandcraftedLacquerArtisanAtelier className="mt-[var(--spacing-section)]" />
 
       {/* Saigon Bespoke Teak Decking & Outdoor Pavilion */}
@@ -528,6 +530,12 @@ export default async function StylesPage() {
 
       {/* Saigon Acoustic Traditional Lute Sanctuary */}
       <SaigonAcousticTraditionalLuteSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Accordion And Music Box Sanctuary */}
+      <SaigonAcousticAccordionAndMusicBoxSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Sunken Bonsai Atrium Sanctuary */}
+      <SaigonSunkenBonsaiAtriumSanctuary className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

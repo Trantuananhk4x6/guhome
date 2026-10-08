@@ -170,6 +170,9 @@ import { ArtisanMotherOfPearlJewelryCasketAtelier } from '@/components/tools/Art
 import { SaigonZenKaresansuiGardenSanctuary } from '@/components/studio/SaigonZenKaresansuiGardenSanctuary'
 import { SaigonAcousticTraditionalLuteSanctuary } from '@/components/studio/SaigonAcousticTraditionalLuteSanctuary'
 import { ArtisanRattanCoreLacquerTeaCaddyAtelier } from '@/components/tools/ArtisanRattanCoreLacquerTeaCaddyAtelier'
+import { SaigonAcousticAccordionAndMusicBoxSanctuary } from '@/components/studio/SaigonAcousticAccordionAndMusicBoxSanctuary'
+import { SaigonSunkenBonsaiAtriumSanctuary } from '@/components/studio/SaigonSunkenBonsaiAtriumSanctuary'
+import { ArtisanPureSilverAgarwoodSnuffBottleAtelier } from '@/components/tools/ArtisanPureSilverAgarwoodSnuffBottleAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -184,7 +187,7 @@ const FACTS: readonly { label: string; value: string }[] = [
   { label: 'Thành lập', value: '2016' },
   { label: 'Địa bàn', value: 'TP. Hồ Chí Minh, và các tỉnh thành khi công trình đủ duyên' },
   { label: 'Chuyên sâu', value: 'Thiết kế, thi công & sản xuất nội thất trọn gói theo yêu cầu' },
-  { label: 'Nhịp làm việc', value: 'Mười hai công trình một năm — đủ để KTS có mặt tại công trường mỗi tuần' },
+  { label: 'Nhịp làm việc', value: 'Mười hai công trình một năm - đủ để KTS có mặt tại công trường mỗi tuần' },
 ]
 
 interface Pillar {
@@ -197,23 +200,23 @@ interface Pillar {
 
 const VISION_DATA: Pillar = {
   badge: 'Tầm nhìn dài hạn',
-  title: 'Trở thành studio kiến trúc – nội thất trọn gói biểu tượng tại Việt Nam.',
+  title: 'Trở thành studio kiến trúc - nội thất trọn gói biểu tượng tại Việt Nam.',
   lead: 'Tiên phong định hình chuẩn mực không gian sống nguyên bản: mỗi ngôi nhà là một thực thể độc bản, hòa quyện vi khí hậu nhiệt đới, lưu giữ nếp sống riêng ("đúng Gu") và trường tồn cùng năm tháng.',
   body: 'GuHomes không đo lường sự thành công bằng số lượng công trình trải dài khắp thành phố, mà bằng chiều sâu cảm xúc trong từng mét vuông được tạo tác. Chúng tôi kiên định theo đuổi con đường thủ công chuẩn mực: nơi thẩm mỹ không lấn át con người, nơi vật liệu mộc được thở cùng khí trời, và nơi mỗi góc nhà trở thành chốn neo đậu bình yên, cùng gia đình đi qua bao biến chuyển của cuộc đời một cách thanh lịch và ấm áp.',
   commitments: [
-    'Thiết kế "may đo" cá nhân hóa — tôn trọng thói quen sinh hoạt và nếp sống thật của từng thành viên',
+    'Thiết kế "may đo" cá nhân hóa - tôn trọng thói quen sinh hoạt và nếp sống thật của từng thành viên',
     'Thích ứng vi khí hậu Sài Gòn: đón gió đối lưu tự nhiên, lấy sáng thông minh và chống ẩm bền bỉ',
-    'Mô hình trọn gói khép kín: từ ý niệm kiến trúc đến xưởng mộc gia công trực tiếp tại Quận 12',
+    'Mô hình trọn gói khép kín: từ ý niệm kiến trúc đến xưởng mộc gia công trực tiếp 1.200m² tại Thạnh Xuân, Quận 12',
   ],
 }
 
 const MISSION_DATA: Pillar = {
   badge: 'Sứ mệnh phụng sự',
   title: 'Kiến tạo không gian, nâng tầm phong cách sống.',
-  lead: 'Chuyên sâu thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu của khách hàng — bằng sự tận tâm chân thành, quy trình minh bạch rõ ràng và kỷ luật công trường nghiêm cẩn.',
-  body: 'Sứ mệnh của GuHomes là hiện thực hóa trọn vẹn giấc mơ tổ ấm của gia chủ, giải phóng bạn khỏi mọi âu lo, căng thẳng và sự bất an thường trực trong hành trình xây dựng. Bằng xưởng gia công mộc trực tiếp, quy trình khép kín rõ ràng từ bản vẽ ý niệm đến ngày lắp đặt hoàn thiện, và sự tận tâm nghiêm cẩn với từng mối ghép, chúng tôi trao gửi một không gian sống đủ ấm cúng để trở về, đủ tĩnh lặng để lắng nghe chính mình, và đủ tinh tế để tự hào đón tiếp người thân quý.',
+  lead: 'Chuyên sâu thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu của khách hàng - bằng sự tận tâm chân thành, quy trình minh bạch rõ ràng và kỷ luật công trường nghiêm cẩn.',
+  body: 'Sứ mệnh của GuHomes là hiện thực hóa trọn vẹn giấc mơ tổ ấm của gia chủ, giải phóng bạn khỏi mọi âu lo, căng thẳng và sự bất an thường trực trong hành trình xây dựng. Bằng xưởng gia công mộc trực tiếp 1.200m² tại Thạnh Xuân, Quận 12, quy trình khép kín rõ ràng từ bản vẽ ý niệm đến ngày lắp đặt hoàn thiện, và sự tận tâm nghiêm cẩn với từng mối ghép mộng gỗ, chúng tôi trao gửi một không gian sống đủ ấm cúng để trở về, đủ tĩnh lặng để lắng nghe chính mình, và đủ tinh tế để tự hào đón tiếp người thân quý.',
   commitments: [
-    'Dự toán minh bạch tuyệt đối — nói giá trước khi vẽ, không chi phí ẩn, không phát sinh bất ngờ',
+    'Dự toán minh bạch tuyệt đối - bóc tách khối lượng trước khi vẽ, không chi phí ẩn, không phát sinh bất ngờ',
     'Kiểm soát chất lượng đồng bộ từ xưởng sản xuất đến hiện trường lắp đặt ngoài thực tế',
     'Cùng một người đồng hành: từ buổi lắng nghe đầu tiên đến ngày trao chìa khóa vào tay gia chủ',
   ],
@@ -247,21 +250,21 @@ const CORE_VALUES: readonly CoreValue[] = [
     tag: 'Kỷ luật & Xưởng mộc',
     title: 'Chuẩn Mực & Tỉ Mỉ',
     subtitle: 'Vẽ tới chỗ người thợ không còn phải đoán; gia công sắc nét từng milimet.',
-    body: 'Một bộ hồ sơ kỹ thuật chi tiết tiết kiệm nhiều tiền hơn mọi cuộc mặc cả với thợ thầu. Tại GuHomes, từng khe co ngót gỗ, đường chỉ ron đá, đến hướng vân khi ghép hai tấm ván đều được quy định chặt chẽ trên bản vẽ. Cùng với xưởng sản xuất nội thất trực tiếp với đội ngũ thợ lành nghề, chúng tôi kiểm soát chất lượng từ phôi gỗ đến lớp hoàn thiện, để sản phẩm ngoài đời thực luôn sắc sảo, đằm thắm và tinh tế hơn cả phối cảnh 3D.',
+    body: 'Một bộ hồ sơ kỹ thuật chi tiết tiết kiệm nhiều tiền hơn mọi cuộc mặc cả với thợ thầu. Tại GuHomes, từng khe co ngót gỗ óc chó tự nhiên, đường chỉ ron đá 2mm, đến hướng vân khi ghép hai tấm ván đều được quy định chặt chẽ trên bản vẽ. Cùng với xưởng sản xuất nội thất 1.200m² tại Thạnh Xuân, Quận 12 với đội ngũ thợ lành nghề, chúng tôi kiểm soát chất lượng từ phôi gỗ đến lớp dầu lau Osmo hoàn thiện, để sản phẩm ngoài đời thực luôn sắc sảo, đằm thắm và tinh tế hơn cả phối cảnh 3D.',
   },
   {
     number: '04',
     tag: 'Thấu hiểu bản địa',
     title: 'Bền Vững Nhiệt Đới',
     subtitle: 'Thiết kế thích ứng với nắng gắt và độ ẩm 80% của Sài Gòn.',
-    body: 'Độ ẩm 75–80% quanh năm và những cơn mưa rào bất chợt là người thầy khắt khe nhất của studio. GuHomes ưu tiên những vật liệu có lỗ thở tự nhiên: đá travertine, gỗ tự nhiên lau dầu, vữa vôi thủ công, đồng thau mộc — những chất liệu không sợ thời tiết mà càng đi qua năm tháng, càng trầm tích vẻ đẹp của sự phong sương và ấm áp.',
+    body: 'Độ ẩm 75-80% quanh năm và những cơn mưa rào bất chợt là người thầy khắt khe nhất của studio. GuHomes ưu tiên những vật liệu có lỗ thở tự nhiên: đá travertine, gỗ tự nhiên sấy tiêu chuẩn 10-12% lau dầu thực vật, vữa vôi thủ công, đồng thau mộc - những chất liệu không sợ thời tiết mà càng đi qua năm tháng, càng trầm tích vẻ đẹp của sự phong sương và ấm áp.',
   },
   {
     number: '05',
     tag: 'Trọng tâm duy nhất',
-    title: 'Your Success, Our Focus',
-    subtitle: 'Sự an tâm và nụ cười của bạn là đích đến cuối cùng.',
-    body: '"Cùng một người từ buổi gặp đầu đến khi tháo giàn giáo." Người ngồi lắng nghe những băn khoăn của bạn hôm đầu cũng là người leo giàn giáo kiểm tra mối nối vào tháng thứ tám, không qua bất kỳ khâu trung gian nào để câu bạn dặn rơi mất dọc đường. Sự bình yên và nụ cười hài lòng khi bạn mở cánh cửa bước vào tổ ấm mới chính là thành công trọn vẹn nhất của GuHomes.',
+    title: 'Tận Tâm Trọn Vẹn',
+    subtitle: 'Sự an tâm và nếp nhà bình an của bạn là đích đến cuối cùng.',
+    body: '"Cùng một người từ buổi gặp đầu đến khi tháo giàn giáo." Người ngồi lắng nghe những băn khoăn của bạn hôm đầu cũng là người leo giàn giáo kiểm tra khe co ngót, mối nối gỗ vào tháng thứ tám, không qua bất kỳ khâu trung gian nào để câu bạn dặn rơi mất dọc đường. Sự bình yên và nụ cười mãn nguyện khi bạn mở cánh cửa bước vào tổ ấm đúng Gu chính là thành công trọn vẹn nhất của GuHomes.',
   },
 ]
 
@@ -269,7 +272,7 @@ const PHILOSOPHY: readonly string[] = [
   'Một chiều tháng Sáu, mưa xuống ngay lúc đang đo dở, và trong mười phút cả căn hộ đổi màu. Ánh sáng ngoài trời rút về một thứ xám phẳng lì, không còn cái bóng đổ nào để giấu đi thứ gì. Mảng vữa nào loang thì lúc ấy hiện ra hết. Chúng tôi hay đợi cho tạnh rồi mới đo tiếp, vì mười phút đó nói được nhiều hơn cả buổi sáng hôm trước.',
   'Có một cái mùi mà căn hộ nào ở đây đóng cửa một tuần cũng có. Nó bám vào rèm trước, rồi mới tới lớp giấy lót trong ngăn kéo. Vì cái mùi ấy mà studio không đóng tủ áo kín bưng bao giờ, và phòng tắm trong hồ sơ của chúng tôi luôn có một khe thông hơi nào đó, giấu sau nan gỗ nếu cần. Sàn thì có tiếng của nó. Gạch bóng khuếch đại từng bước chân; gỗ nuốt bớt đi. Không ai đưa chuyện ấy vào bản yêu cầu thiết kế, và ai cũng nhận ra nó trong tuần đầu tiên dọn vào.',
   'Một mảng tường không treo gì không phải là chỗ chưa làm xong. Ở lần duyệt cuối, thứ bị gạch khỏi bản vẽ bao giờ cũng nhiều hơn thứ được thêm vào.',
-  'Nhưng phần khó nhất nằm ở những câu không có trong bảng khảo sát nào. Ai là người về sau cùng, và người đó bật ngọn đèn nào trước tiên. Bữa tối ăn ở bàn, hay ăn đứng ở đảo bếp vì đứng thì nhanh hơn và không ai phải dọn. Cánh cửa nào trong nhà chưa bao giờ có ai đóng. Một ngôi nhà tốt không bắt người ở học lại cách sống của chính mình, nên chúng tôi hỏi hết trong buổi đầu và chép lại gần như nguyên văn — nhất là những chỗ hai vợ chồng trả lời khác nhau.',
+  'Nhưng phần khó nhất nằm ở những câu không có trong bảng khảo sát nào. Ai là người về sau cùng, và người đó bật ngọn đèn nào trước tiên. Bữa tối ăn ở bàn, hay ăn đứng ở đảo bếp vì đứng thì nhanh hơn và không ai phải dọn. Cánh cửa nào trong nhà chưa bao giờ có ai đóng. Một ngôi nhà tốt không bắt người ở học lại cách sống của chính mình, nên chúng tôi hỏi hết trong buổi đầu và chép lại gần như nguyên văn - nhất là những chỗ hai vợ chồng trả lời khác nhau.',
 ]
 
 interface ProcessStep {
@@ -282,25 +285,25 @@ interface ProcessStep {
 const PROCESS: readonly ProcessStep[] = [
   {
     title: 'Lắng nghe',
-    duration: '2–3 tuần',
+    duration: '2-3 tuần',
     body: 'Buổi đầu thường có một khoảng lặng, và nó luôn rơi đúng lúc hỏi về tiền. Gia chủ nhìn đi chỗ khác, rồi đưa ra một con số tròn trịa mà chính họ cũng biết là chưa thật. Chúng tôi không ép. Nhưng ngân sách nói càng muộn thì càng phải vẽ lại nhiều, nên đến cuối buổi thế nào cũng có người hỏi lại, nhẹ hơn. Hai tiếng còn lại trôi đi trong thước dây và máy đo laser, trừ một quãng chúng tôi chỉ ngồi im nghe hai vợ chồng cãi nhau rất lịch sự về chuyện có nên bỏ cái bồn tắm. Quãng đó thường có ích hơn phần đo đạc.',
     output: 'Bản đo hiện trạng · một trang tóm tắt đề bài · khung ngân sách tách theo hạng mục.',
   },
   {
     title: 'Phác thảo',
-    duration: '3–4 tuần',
+    duration: '3-4 tuần',
     body: 'Hai phương án mặt bằng, không bao giờ ba. Ba phương án nghĩa là chưa cái nào đủ chắc, và nó đẩy phần khó nhất sang cho bạn. Cùng với bản vẽ là một hộp mẫu thật, mang tới chính căn phòng sẽ dùng nó, vào buổi chiều. Miếng laminate cầm trên tay dưới nắng bốn giờ có màu khác hẳn nó trên màn hình, và khác cả chính nó dưới đèn showroom. Bếp thì phải chốt ngay trong giai đoạn này. Dời cái bồn rửa đi bốn mươi phân thôi là đường nước dưới sàn lẫn ống hút mùi trên trần đều phải vẽ lại, mà động tới ống hút mùi thì kéo theo cả trần thạch cao.',
     output: 'Hai mặt bằng bố trí · hộp mẫu vật liệu để lại nhà bạn.',
   },
   {
     title: 'Chi tiết',
-    duration: '4–6 tuần',
+    duration: '4-6 tuần',
     body: 'Đây là giai đoạn hồ sơ dày lên và tiến độ chậm lại. Bản vẽ đi tới mức người thợ không còn phải đoán gì nữa; khe hở giữa hai cánh tủ được ghi thành một con số, và hướng vân khi ghép hai tấm gỗ cũng được vẽ ra. Rồi tới đoạn phải chờ. Vữa trát tay cần chừng một tháng mới ngừng co ngót, và một mã veneer hết lô là cả bảng vật liệu phải mở ra xem lại. Không ai sai cả. Nhưng lịch vẫn lùi, nên chúng tôi nói trước những chỗ ấy ngay từ bây giờ, để đến lúc đó bạn khỏi phải ngồi nghe một lời giải thích.',
     output: 'Hồ sơ thi công nội thất · shop drawing cho từng hạng mục khó · bảng vật tư có mã hàng.',
   },
   {
     title: 'Ra công trường',
-    duration: '4–7 tháng',
+    duration: '4-7 tháng',
     body: 'Bốn đến bảy tháng ấy phần lớn là bụi và tiếng máy cắt vọng lên từ tầng dưới. Chúng tôi có mặt mỗi tuần một buổi, và cả ngày vào những hôm mà làm sai thì không sửa lại được. Rồi đến ngày cuối, và ngày cuối không giống bất kỳ ngày nào trước nó. Sáng hôm ấy chúng tôi đến sớm, tắt hết đèn trần, rồi ngồi đợi tới sáu giờ chiều mới bật lại từng ngọn một, chỉnh độ mở của rèm cho đến khi căn phòng đứng yên. Gia chủ vào sau đó chừng mười lăm phút. Họ thường không nói gì trong hai phút đầu, và chúng tôi đã học được cách đứng im trong hai phút đó.',
     output: 'Biên bản nghiệm thu có ảnh · một buổi styling · sổ tay bảo trì cho từng loại vật liệu · số điện thoại của người thợ đã đi phần điện.',
   },
@@ -1006,7 +1009,7 @@ export default async function StudioPage() {
       {/* ---------------- saigon monsoon rainwater harvest & passive cooling lab --- */}
       <SaigonMonsoonRainwaterHarvestLab className="mt-[var(--spacing-section)]" />
 
-      {/* ---------------- handcrafted lacquer artisan atelier bát tràng x thạnh xuân */}
+      {/* ---------------- handcrafted lacquer artisan studio bát tràng x thạnh xuân */}
       <HandcraftedLacquerArtisanAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ---------------- private family archive vault 1000C fireproof ------------- */}
@@ -1335,6 +1338,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan rattan core lacquer tea caddy atelier ----------- */}
       <ArtisanRattanCoreLacquerTeaCaddyAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- acoustic accordion and music box sanctuary ------------- */}
+      <SaigonAcousticAccordionAndMusicBoxSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- sunken bonsai atrium sanctuary -------------------------- */}
+      <SaigonSunkenBonsaiAtriumSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- pure silver agarwood snuff bottle atelier --------------- */}
+      <ArtisanPureSilverAgarwoodSnuffBottleAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

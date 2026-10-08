@@ -101,6 +101,8 @@ import { SaigonTranslucentOnyxWaterfallSanctuary } from '@/components/studio/Sai
 import { ArtisanMotherOfPearlJewelryCasketAtelier } from '@/components/tools/ArtisanMotherOfPearlJewelryCasketAtelier'
 import { SaigonAcousticTraditionalLuteSanctuary } from '@/components/studio/SaigonAcousticTraditionalLuteSanctuary'
 import { ArtisanRattanCoreLacquerTeaCaddyAtelier } from '@/components/tools/ArtisanRattanCoreLacquerTeaCaddyAtelier'
+import { SaigonSunkenBonsaiAtriumSanctuary } from '@/components/studio/SaigonSunkenBonsaiAtriumSanctuary'
+import { ArtisanPureSilverAgarwoodSnuffBottleAtelier } from '@/components/tools/ArtisanPureSilverAgarwoodSnuffBottleAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -224,7 +226,7 @@ export default function DuToanChiPhiPage() {
       {/* Concierge White-Glove Moving & Installation Audit */}
       <ConciergeWhiteGloveMovingAudit className="mt-[var(--spacing-section)]" />
 
-      {/* Handcrafted Lacquer Artisan Atelier Bát Tràng x Thạnh Xuân */}
+      {/* Handcrafted Lacquer Artisan Studio Bát Tràng x Thạnh Xuân */}
       <HandcraftedLacquerArtisanAtelier className="mt-[var(--spacing-section)]" />
 
       {/* Private Family Archive Vault 1000C Fireproof */}
@@ -445,6 +447,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Rattan Core Lacquer Tea Caddy Atelier */}
       <ArtisanRattanCoreLacquerTeaCaddyAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Sunken Bonsai Atrium Sanctuary */}
+      <SaigonSunkenBonsaiAtriumSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Pure Silver Agarwood Snuff Bottle Atelier */}
+      <ArtisanPureSilverAgarwoodSnuffBottleAtelier className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

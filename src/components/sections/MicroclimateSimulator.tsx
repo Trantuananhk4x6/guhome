@@ -45,7 +45,7 @@ const ORIENTATIONS: Record<Orientation, OrientationData> = {
   west: {
     id: 'west',
     title: 'Hướng Tây & Tây Nam',
-    subtitle: 'Nắng xế chiều gay gắt — Tích nhiệt bức xạ mặt dựng kính',
+    subtitle: 'Nắng xế chiều gay gắt - Tích nhiệt bức xạ mặt dựng kính',
     compassAngle: '240°',
     climatePhenomenon:
       'Từ 13:00 đến 17:30, nắng chiều Sài Gòn nung đốt trực diện vào các mảng kính lớn. Nếu không xử lý đúng, nhiệt độ phòng có thể vọt lên 38°C, biến căn nhà thành chiếc lò hấp và máy lạnh phải chạy quá tải.',
@@ -87,7 +87,7 @@ const ORIENTATIONS: Record<Orientation, OrientationData> = {
   south: {
     id: 'south',
     title: 'Hướng Nam & Đông Nam',
-    subtitle: 'Đón gió sông Sài Gòn — Độ ẩm không khí cao vượt 80%',
+    subtitle: 'Đón gió sông Sài Gòn - Độ ẩm không khí cao vượt 80%',
     compassAngle: '150°',
     climatePhenomenon:
       'Hướng đón gió mát lành nhất thành phố, nhưng mùa mưa kéo dài mang theo hơi nước đậm đặc từ sông Sài Gòn và rừng ngập mặn Cần Giờ. Độ ẩm cao là kẻ thù số một gây mốc bề mặt gỗ và phồng rộp sàn ván.',
@@ -129,7 +129,7 @@ const ORIENTATIONS: Record<Orientation, OrientationData> = {
   east: {
     id: 'east',
     title: 'Hướng Đông & Đông Bắc',
-    subtitle: 'Nắng sớm trong trẻo — Cần tối ưu ánh sáng tự nhiên dịu mắt',
+    subtitle: 'Nắng sớm trong trẻo - Cần tối ưu ánh sáng tự nhiên dịu mắt',
     compassAngle: '60°',
     climatePhenomenon:
       'Ánh nắng ban mai nhẹ nhàng chiếu xiên vào căn phòng từ 6:00 đến 10:30. Thách thức là điều tiết nguồn sáng không gây chói lóa lên màn hình làm việc, đồng thời dẫn ánh sáng sâu vào các khu vực hành lang bên trong.',

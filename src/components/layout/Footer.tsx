@@ -104,7 +104,7 @@ export function Footer({ nav, brand, logo = null }: FooterProps) {
           <div className="col-span-2 flex flex-col gap-6 md:col-span-5">
             <Link
               href={home?.href ?? '/'}
-              aria-label={`${brand.companyName} — ${home?.label ?? 'Trang chủ'}`}
+              aria-label={`${brand.companyName} - ${home?.label ?? 'Trang chủ'}`}
               className="group flex flex-col gap-3 self-start"
             >
               {/*
@@ -131,7 +131,7 @@ export function Footer({ nav, brand, logo = null }: FooterProps) {
               Mỗi công trình chúng tôi khoá bảng vật liệu ở khoảng bốn thứ, rồi làm thật kỹ từng thứ một.
             </p>
             <p className="max-w-[44ch] text-[0.9375rem] leading-relaxed text-canvas/55">
-              Còn lại là chuyện độ ẩm 75–80% quanh năm và bề rộng con hẻm trước nhà — nó quyết định cái tủ nào khiêng
+              Còn lại là chuyện độ ẩm 75-80% quanh năm và bề rộng con hẻm trước nhà - nó quyết định cái tủ nào khiêng
               vào được.
             </p>
           </div>

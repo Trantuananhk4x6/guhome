@@ -64,7 +64,7 @@ export function MissionVisionSection() {
               </div>
 
               <h3 className="mt-6 font-display text-[1.5rem] font-normal leading-[1.3] text-ink sm:text-[1.75rem] transition-colors duration-300 group-hover:text-accent">
-                Trở thành studio kiến trúc – nội thất trọn gói biểu tượng tại Việt Nam.
+                Trở thành studio kiến trúc - nội thất trọn gói biểu tượng tại Việt Nam.
               </h3>
 
               <p className="mt-4 font-body text-[0.9375rem] font-medium leading-relaxed text-ink/85">
@@ -82,7 +82,7 @@ export function MissionVisionSection() {
                     <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
                       <CheckIcon className="h-2.5 w-2.5" />
                     </span>
-                    <span>Thiết kế &ldquo;may đo&rdquo; cá nhân hóa — tôn trọng thói quen sinh hoạt thật của gia chủ</span>
+                    <span>Thiết kế &ldquo;may đo&rdquo; cá nhân hóa - tôn trọng thói quen sinh hoạt thật của gia chủ</span>
                   </li>
                   <li className="flex items-start gap-2.5 text-[0.875rem] text-ink/80">
                     <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
@@ -94,7 +94,7 @@ export function MissionVisionSection() {
                     <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
                       <CheckIcon className="h-2.5 w-2.5" />
                     </span>
-                    <span>Mô hình trọn gói khép kín: từ ý niệm kiến trúc đến xưởng mộc gia công trực tiếp Quận 12</span>
+                    <span>Mô hình trọn gói khép kín: từ ý niệm kiến trúc đến xưởng mộc gia công trực tiếp 1.200m² tại Thạnh Xuân, Quận 12</span>
                   </li>
                 </ul>
               </div>
@@ -134,11 +134,11 @@ export function MissionVisionSection() {
               </h3>
 
               <p className="mt-4 font-body text-[0.9375rem] font-medium leading-relaxed text-ink/85">
-                Chuyên sâu thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu của khách hàng — bằng sự tận tâm chân thành, quy trình minh bạch rõ ràng và kỷ luật công trường nghiêm cẩn.
+                Chuyên sâu thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu của khách hàng - bằng sự tận tâm chân thành, quy trình minh bạch rõ ràng và kỷ luật công trường nghiêm cẩn.
               </p>
 
               <p className="mt-3 font-body text-[0.875rem] leading-relaxed text-ink/70">
-                Sứ mệnh của GuHomes là hiện thực hóa trọn vẹn giấc mơ tổ ấm của gia chủ, giải phóng bạn khỏi mọi âu lo, căng thẳng và sự bất an thường trực trong hành trình xây dựng. Bằng xưởng gia công mộc trực tiếp và quy trình khép kín, chúng tôi trao gửi một không gian đủ ấm để trở về.
+                Sứ mệnh của GuHomes là hiện thực hóa trọn vẹn giấc mơ tổ ấm của gia chủ, giải phóng bạn khỏi mọi âu lo, căng thẳng và sự bất an thường trực trong hành trình xây dựng. Bằng xưởng gia công mộc trực tiếp 1.200m² tại Thạnh Xuân, Quận 12 và quy trình khép kín, chúng tôi trao gửi một không gian đủ ấm để trở về.
               </p>
 
               <div className="mt-8 border-t border-line/80 pt-6">
@@ -148,7 +148,7 @@ export function MissionVisionSection() {
                     <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
                       <CheckIcon className="h-2.5 w-2.5" />
                     </span>
-                    <span>Dự toán minh bạch tuyệt đối — nói giá trước khi vẽ, không chi phí ẩn, không phát sinh</span>
+                    <span>Dự toán minh bạch tuyệt đối - bóc tách khối lượng trước khi vẽ, không chi phí ẩn, không phát sinh</span>
                   </li>
                   <li className="flex items-start gap-2.5 text-[0.875rem] text-ink/80">
                     <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
@@ -221,7 +221,7 @@ export function MissionVisionSection() {
                 <h4 className="mt-3 font-display text-[1.25rem] text-ink">Chuẩn Mực & Tỉ Mỉ</h4>
                 <p className="mt-2 text-xs font-medium text-accent">Bản vẽ chi tiết 1:5; gia công sắc nét từng milimet.</p>
                 <p className="mt-3 text-[0.8125rem] leading-relaxed text-ink/75">
-                  Từng khe co ngót, đường chỉ ron đá đến hướng vân gỗ ghép đều quy định rõ trên bản vẽ. Xưởng mộc trực tiếp tại Quận 12 giúp kiểm soát chất lượng từ phôi gỗ đến lớp hoàn thiện.
+                  Từng khe co ngót gỗ óc chó tự nhiên, đường chỉ ron đá 2mm đến hướng vân gỗ ghép đều quy định rõ trên bản vẽ. Xưởng mộc 1.200m² tại Thạnh Xuân, Quận 12 giúp kiểm soát chất lượng từ phôi gỗ đến lớp dầu lau Osmo hoàn thiện.
                 </p>
               </div>
             </div>
@@ -236,7 +236,7 @@ export function MissionVisionSection() {
                 <h4 className="mt-3 font-display text-[1.25rem] text-ink">Bền Vững Nhiệt Đới</h4>
                 <p className="mt-2 text-xs font-medium text-accent">Thích ứng nắng gắt và độ ẩm 80% của Sài Gòn.</p>
                 <p className="mt-3 text-[0.8125rem] leading-relaxed text-ink/75">
-                  Ưu tiên vật liệu có lỗ thở tự nhiên: đá travertine, gỗ tự nhiên lau dầu, vữa vôi thủ công — những chất liệu càng đi qua thời gian, càng trầm tích vẻ đẹp phong sương và ấm áp.
+                  Ưu tiên vật liệu có lỗ thở tự nhiên: đá travertine, gỗ tự nhiên lau dầu, vữa vôi thủ công - những chất liệu càng đi qua thời gian, càng trầm tích vẻ đẹp phong sương và ấm áp.
                 </p>
               </div>
             </div>

@@ -49,7 +49,7 @@ async function run() {
       tagline: 'Kiến tạo không gian, nâng tầm phong cách sống',
       logoMediaId: '19348918-93fc-4192-b899-19c38c78a92b',
       faviconMediaId: '6e07cb2e-61db-4c80-949c-0d57644233fa',
-      email: 'studio@guhomes.vn',
+      email: 'guhomesvn@gmail.com',
       phone: '0368 757 916',
       address: '14 Đường 41, Phường An Khánh, TP. Thủ Đức, TP. Hồ Chí Minh (Xưởng mộc: Thạnh Xuân, Quận 12)',
       social: [

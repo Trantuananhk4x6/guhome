@@ -38,7 +38,7 @@ const STYLE_TABS: StyleTab[] = [
     projectsHref: '/projects?style=wabi-sabi',
     featuredProjects: [
       {
-        name: 'Duplex Wabi Sabi — Anh Khoa',
+        name: 'Duplex Wabi Sabi - Anh Khoa',
         location: 'Quận 2, TP. Hồ Chí Minh',
         area: '240 m²',
         imageUrl: '/media/anh-khoa/0-1200.webp',
@@ -71,7 +71,7 @@ const STYLE_TABS: StyleTab[] = [
     projectsHref: '/projects?style=modern-luxury',
     featuredProjects: [
       {
-        name: 'The Opera Metropole — Anh Vũ',
+        name: 'The Opera Metropole - Anh Vũ',
         location: 'Thủ Thiêm, TP. Thủ Đức',
         area: '185 m²',
         imageUrl: '/media/ben-kia-song/0-1200.webp',
@@ -85,7 +85,7 @@ const STYLE_TABS: StyleTab[] = [
         tag: 'Đá Marble Calacatta',
       },
       {
-        name: 'Căn Hộ Luxury — Chị Quỳnh Anh',
+        name: 'Căn Hộ Luxury - Chị Quỳnh Anh',
         location: 'Quận 7, TP. Hồ Chí Minh',
         area: '142 m²',
         imageUrl: '/media/chi-quynh-anh/0-1200.webp',
@@ -104,7 +104,7 @@ const STYLE_TABS: StyleTab[] = [
     projectsHref: '/projects?category=can-ho',
     featuredProjects: [
       {
-        name: 'Minimalist 3PN — Không Gian Thoáng',
+        name: 'Minimalist 3PN - Không Gian Thoáng',
         location: 'Bình Thạnh, TP. Hồ Chí Minh',
         area: '118 m²',
         imageUrl: '/media/an-huong-tram/0-1200.webp',
@@ -118,7 +118,7 @@ const STYLE_TABS: StyleTab[] = [
         tag: 'Ánh sáng tự nhiên',
       },
       {
-        name: 'Phòng Bếp Minimalist — Đảo Bếp 92cm',
+        name: 'Phòng Bếp Minimalist - Đảo Bếp 92cm',
         location: 'Quận 10, TP. Hồ Chí Minh',
         area: '76 m²',
         imageUrl: '/media/bep-ben-khom-truc/0-1200.webp',
@@ -173,7 +173,7 @@ export function StyleExplorer() {
       alt: p.name,
       caption: `${p.name} · ${p.location} (${p.area})`,
     }))
-    openLightbox(images, idx, `${activeTab.name} — GuHomes`)
+    openLightbox(images, idx, `${activeTab.name} - GuHomes`)
   }
 
   return (

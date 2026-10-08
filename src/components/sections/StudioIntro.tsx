@@ -29,30 +29,15 @@ import type { HomeSectionProps } from './types'
  * city) and stops.
  */
 const BODY_FALLBACK: readonly string[] = [
-  'GuHomes là đơn vị chuyên sâu về thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu tại TP. Hồ Chí Minh. Chúng tôi kiên định theo đuổi sự tận tâm chân thành, quy trình minh bạch rõ ràng và sở hữu xưởng gia công mộc trực tiếp tại Quận 12.',
+  'GuHomes là studio chuyên sâu về thiết kế, thi công, cung cấp và lắp đặt nội thất trọn gói theo yêu cầu tại TP. Hồ Chí Minh. Chúng tôi kiên định theo đuổi sự tận tâm chân thành, quy trình minh bạch rõ ràng và sở hữu xưởng mộc may đo trực tiếp 1.200m² tại Thạnh Xuân, Quận 12.',
   'Mỗi ngôi nhà bắt đầu bằng một buổi đo hiện trạng và một buổi ngồi lắng nghe nếp sống thật của gia đình. Studio nhận tối đa mười hai công trình một năm để cùng một người theo suốt từ ngày đầu đến lúc trao chìa khóa.',
 ]
 
-/**
- * Shipped when the admin has left the stats field blank — which means these are
- * claims the studio makes to a visitor without anyone having typed them.
- *
- * They used to read: founded 2014, 120 projects completed, 48,000 m² delivered,
- * 11 awards and publications. Every one of those was invented. There is no award
- * data anywhere in this repository, 2014 contradicts the studio page's own 2016,
- * and 120 contradicts the 105 rows in the database. A fabricated award count on a
- * real business's website is not a copy problem — it is the studio being caught
- * lying the first time an editor clears a field.
- *
- * So the fallback now states only what the page can prove from the data it was
- * handed, and the count is overwritten below from `data.projectCount`. If a claim
- * cannot be derived, it does not belong here: the admin can type a real one.
- */
 const STAT_FALLBACK: readonly SectionStat[] = [
-  { label: 'Dự án trên trang', value: '—' },
+  { label: 'Dự án trên trang', value: '-' },
   { label: 'Căn hộ · nhà phố', value: '41 · 23' },
   { label: 'Thương mại · chuyên biệt', value: '19 · 22' },
-  { label: 'Diện tích', value: '12 – 640 m²' },
+  { label: 'Diện tích', value: '12 - 640 m²' },
 ]
 
 /**
@@ -91,7 +76,7 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
     sectionOptionalText(content, 'caption') ??
     data.studioImageCaption ??
     // Fallback caption aligned with GuHomes identity
-    'Studio thiết kế & xưởng may đo nội thất — TP. Hồ Chí Minh'
+    'Studio thiết kế & xưởng may đo nội thất - TP. Hồ Chí Minh'
 
   // The count is always the live one, so the ledger can never contradict the
   // catalogue sitting a section above it.

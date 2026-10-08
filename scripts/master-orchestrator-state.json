@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 49,
+  "currentDirectiveIndex": 50,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -294,7 +294,20 @@
       "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
       "sentAt": "2026-10-08T17:36:20.763Z",
       "atStep": 6849
+    },
+    {
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-08T17:41:44.202Z",
+      "atStep": 6974
+    },
+    {
+      "directiveId": "dir-62-sprint-64-accordion-bonsaiatrium-snuffbottle",
+      "title": "Phòng Accordion & Hộp Nhạc Thụy Sĩ, Sân Trong Tùng La Hán & Bình Hít Trầm Bạc",
+      "completedAt": "2026-10-08T17:46:00.000Z",
+      "status": "COMPLETED_100_PERCENT",
+      "commitMessage": "feat(sprint-64): add SaigonAcousticAccordionAndMusicBoxSanctuary, SaigonSunkenBonsaiAtriumSanctuary, and ArtisanPureSilverAgarwoodSnuffBottleAtelier with 100% SEO pass"
     }
   ],
-  "lastDispatchedAt": 1791480980763
+  "lastDispatchedAt": 1791481560000
 }

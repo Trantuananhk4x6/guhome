@@ -103,7 +103,7 @@ export const ENGINEERING_NORMS: EngineeringNorm[] = [
   {
     id: 'norm-07',
     number: '07',
-    title: 'Vật Liệu Xúc Giác Thuần Khiết 0% VOC — Dầu Osmo CHLB Đức',
+    title: 'Vật Liệu Xúc Giác Thuần Khiết 0% VOC - Dầu Osmo CHLB Đức',
     shortTitle: 'Dầu Osmo & Vôi Calce 0% VOC',
     category: 'finishing-lighting',
     categoryLabel: 'Hoàn Thiện & Ánh Sáng',
