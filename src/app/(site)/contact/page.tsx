@@ -46,6 +46,7 @@ import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/Artisan
 import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangroveBoutiqueEcologyLab'
 import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhiskyLibraryAndCaskVault'
 import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/ArtisanIndoorMedicinalHerbGardenAtelier'
+import { ArtisanBronzeBonsaiWaterFeatureAtelier } from '@/components/tools/ArtisanBronzeBonsaiWaterFeatureAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -420,6 +421,9 @@ export default async function ContactPage() {
 
       {/* Artisan Indoor Medicinal Herb Garden Bat Trang Atelier */}
       <ArtisanIndoorMedicinalHerbGardenAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bronze Bonsai Water Feature Waterfall Atelier */}
+      <ArtisanBronzeBonsaiWaterFeatureAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

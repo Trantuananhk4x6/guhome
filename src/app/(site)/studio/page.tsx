@@ -113,6 +113,9 @@ import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhis
 import { SaigonMaritimeAntiqueMapLibraryVault } from '@/components/studio/SaigonMaritimeAntiqueMapLibraryVault'
 import { ArtisanHinokiHydrotherapyOnsenVault } from '@/components/studio/ArtisanHinokiHydrotherapyOnsenVault'
 import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/ArtisanIndoorMedicinalHerbGardenAtelier'
+import { SaigonStainedGlassAtriumDomeSanctuary } from '@/components/studio/SaigonStainedGlassAtriumDomeSanctuary'
+import { SaigonAcousticPianoGrandSalon } from '@/components/studio/SaigonAcousticPianoGrandSalon'
+import { ArtisanBronzeBonsaiWaterFeatureAtelier } from '@/components/tools/ArtisanBronzeBonsaiWaterFeatureAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1107,6 +1110,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan indoor medicinal herb garden bat trang atelier ---- */}
       <ArtisanIndoorMedicinalHerbGardenAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon stained glass atrium dome art nouveau sanctuary ---- */}
+      <SaigonStainedGlassAtriumDomeSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon acoustic piano grand salon steinway mun wood ------- */}
+      <SaigonAcousticPianoGrandSalon className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan bronze bonsai water feature waterfall atelier ----- */}
+      <ArtisanBronzeBonsaiWaterFeatureAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

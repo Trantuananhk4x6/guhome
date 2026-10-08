@@ -63,6 +63,8 @@ import { ArtisanBaccaratCrystalChandelierAtelier } from '@/components/studio/Art
 import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhiskyLibraryAndCaskVault'
 import { ArtisanHinokiHydrotherapyOnsenVault } from '@/components/studio/ArtisanHinokiHydrotherapyOnsenVault'
 import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/ArtisanIndoorMedicinalHerbGardenAtelier'
+import { SaigonAcousticPianoGrandSalon } from '@/components/studio/SaigonAcousticPianoGrandSalon'
+import { ArtisanBronzeBonsaiWaterFeatureAtelier } from '@/components/tools/ArtisanBronzeBonsaiWaterFeatureAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -292,6 +294,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Indoor Medicinal Herb Garden Bat Trang Atelier */}
       <ArtisanIndoorMedicinalHerbGardenAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Piano Grand Salon Steinway Mun Wood */}
+      <SaigonAcousticPianoGrandSalon className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bronze Bonsai Water Feature Waterfall Atelier */}
+      <ArtisanBronzeBonsaiWaterFeatureAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -78,6 +78,8 @@ import { SaigonMekongBiotopeAquariumVault } from '@/components/studio/SaigonMeko
 import { ArtisanBaccaratCrystalChandelierAtelier } from '@/components/studio/ArtisanBaccaratCrystalChandelierAtelier'
 import { SaigonMaritimeAntiqueMapLibraryVault } from '@/components/studio/SaigonMaritimeAntiqueMapLibraryVault'
 import { ArtisanHinokiHydrotherapyOnsenVault } from '@/components/studio/ArtisanHinokiHydrotherapyOnsenVault'
+import { SaigonStainedGlassAtriumDomeSanctuary } from '@/components/studio/SaigonStainedGlassAtriumDomeSanctuary'
+import { SaigonAcousticPianoGrandSalon } from '@/components/studio/SaigonAcousticPianoGrandSalon'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -374,6 +376,12 @@ export default async function StylesPage() {
 
       {/* Artisan Hinoki Hydrotherapy Onsen 250y Vault */}
       <ArtisanHinokiHydrotherapyOnsenVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Stained Glass Atrium Dome Art Nouveau Sanctuary */}
+      <SaigonStainedGlassAtriumDomeSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Piano Grand Salon Steinway Mun Wood */}
+      <SaigonAcousticPianoGrandSalon className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

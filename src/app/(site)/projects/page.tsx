@@ -113,6 +113,7 @@ import { SaigonCalocedrusHomeCinemaSanctuary } from '@/components/studio/SaigonC
 import { SaigonClepsydraWaterClockVault } from '@/components/studio/SaigonClepsydraWaterClockVault'
 import { SaigonMekongBiotopeAquariumVault } from '@/components/studio/SaigonMekongBiotopeAquariumVault'
 import { SaigonMaritimeAntiqueMapLibraryVault } from '@/components/studio/SaigonMaritimeAntiqueMapLibraryVault'
+import { SaigonStainedGlassAtriumDomeSanctuary } from '@/components/studio/SaigonStainedGlassAtriumDomeSanctuary'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -722,6 +723,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Maritime Antique Map Library Artglass UV99 Vault */}
           <SaigonMaritimeAntiqueMapLibraryVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Stained Glass Atrium Dome Art Nouveau Sanctuary */}
+          <SaigonStainedGlassAtriumDomeSanctuary className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>
