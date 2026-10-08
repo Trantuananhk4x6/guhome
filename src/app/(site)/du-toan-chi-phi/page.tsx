@@ -113,6 +113,8 @@ import { SaigonWildOrchidMicroclimatePavilion } from '@/components/studio/Saigon
 import { ArtisanBatTrangHoneyGlazeTeaBowlVault } from '@/components/tools/ArtisanBatTrangHoneyGlazeTeaBowlVault'
 import { SaigonCanalSideMangroveCharcoalCourtyard } from '@/components/studio/SaigonCanalSideMangroveCharcoalCourtyard'
 import { ArtisanSilverInlaidEbonyChopsticksAtelier } from '@/components/tools/ArtisanSilverInlaidEbonyChopsticksAtelier'
+import { SaigonBespokeLotusLeafPondTeaPavilion } from '@/components/studio/SaigonBespokeLotusLeafPondTeaPavilion'
+import { ArtisanSilverChasedArecaNutCasketAtelier } from '@/components/tools/ArtisanSilverChasedArecaNutCasketAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -493,6 +495,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Silver Inlaid Ebony Chopsticks Atelier */}
       <ArtisanSilverInlaidEbonyChopsticksAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Bespoke Lotus Leaf Pond Tea Pavilion */}
+      <SaigonBespokeLotusLeafPondTeaPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Silver Chased Areca Nut Casket Atelier */}
+      <ArtisanSilverChasedArecaNutCasketAtelier className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

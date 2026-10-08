@@ -71,6 +71,7 @@ import { ArtisanRattanSilverWineSetVault } from '@/components/tools/ArtisanRatta
 import { ArtisanHoangDanBrassInlayTeaTrayVault } from '@/components/tools/ArtisanHoangDanBrassInlayTeaTrayVault'
 import { ArtisanBatTrangHoneyGlazeTeaBowlVault } from '@/components/tools/ArtisanBatTrangHoneyGlazeTeaBowlVault'
 import { ArtisanSilverInlaidEbonyChopsticksAtelier } from '@/components/tools/ArtisanSilverInlaidEbonyChopsticksAtelier'
+import { ArtisanSilverChasedArecaNutCasketAtelier } from '@/components/tools/ArtisanSilverChasedArecaNutCasketAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -520,6 +521,9 @@ export default async function ContactPage() {
 
       {/* Artisan Silver Inlaid Ebony Chopsticks Atelier */}
       <ArtisanSilverInlaidEbonyChopsticksAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Silver Chased Areca Nut Casket Atelier */}
+      <ArtisanSilverChasedArecaNutCasketAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

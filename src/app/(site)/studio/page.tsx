@@ -188,6 +188,9 @@ import { ArtisanBatTrangHoneyGlazeTeaBowlVault } from '@/components/tools/Artisa
 import { SaigonBespokePipaLuteSanctuaryPavilion } from '@/components/studio/SaigonBespokePipaLuteSanctuaryPavilion'
 import { SaigonCanalSideMangroveCharcoalCourtyard } from '@/components/studio/SaigonCanalSideMangroveCharcoalCourtyard'
 import { ArtisanSilverInlaidEbonyChopsticksAtelier } from '@/components/tools/ArtisanSilverInlaidEbonyChopsticksAtelier'
+import { SaigonBespokeBambooMarimbaAcousticSanctuary } from '@/components/studio/SaigonBespokeBambooMarimbaAcousticSanctuary'
+import { SaigonBespokeLotusLeafPondTeaPavilion } from '@/components/studio/SaigonBespokeLotusLeafPondTeaPavilion'
+import { ArtisanSilverChasedArecaNutCasketAtelier } from '@/components/tools/ArtisanSilverChasedArecaNutCasketAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1407,6 +1410,15 @@ export default async function StudioPage() {
 
       {/* ---------------- silver inlaid ebony chopsticks atelier ------------------ */}
       <ArtisanSilverInlaidEbonyChopsticksAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- bespoke bamboo marimba acoustic sanctuary --------------- */}
+      <SaigonBespokeBambooMarimbaAcousticSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- bespoke lotus leaf pond tea pavilion -------------------- */}
+      <SaigonBespokeLotusLeafPondTeaPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- silver chased areca nut casket atelier ------------------ */}
+      <ArtisanSilverChasedArecaNutCasketAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

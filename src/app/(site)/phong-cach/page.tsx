@@ -128,6 +128,8 @@ import { SaigonAcousticErhuSanctuarySalon } from '@/components/studio/SaigonAcou
 import { SaigonWildOrchidMicroclimatePavilion } from '@/components/studio/SaigonWildOrchidMicroclimatePavilion'
 import { SaigonBespokePipaLuteSanctuaryPavilion } from '@/components/studio/SaigonBespokePipaLuteSanctuaryPavilion'
 import { SaigonCanalSideMangroveCharcoalCourtyard } from '@/components/studio/SaigonCanalSideMangroveCharcoalCourtyard'
+import { SaigonBespokeBambooMarimbaAcousticSanctuary } from '@/components/studio/SaigonBespokeBambooMarimbaAcousticSanctuary'
+import { SaigonBespokeLotusLeafPondTeaPavilion } from '@/components/studio/SaigonBespokeLotusLeafPondTeaPavilion'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -576,6 +578,12 @@ export default async function StylesPage() {
 
       {/* Saigon Canal-Side Mangrove Charcoal Courtyard */}
       <SaigonCanalSideMangroveCharcoalCourtyard className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Bespoke Bamboo Marimba Acoustic Sanctuary */}
+      <SaigonBespokeBambooMarimbaAcousticSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Bespoke Lotus Leaf Pond Tea Pavilion */}
+      <SaigonBespokeLotusLeafPondTeaPavilion className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
