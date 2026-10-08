@@ -444,7 +444,19 @@
       "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
       "sentAt": "2026-10-08T18:19:47.384Z",
       "atStep": 7730
+    },
+    {
+      "directiveId": "dir-68-sprint-70-marimba-lotus-arecanut",
+      "title": "Phòng hòa tấu đàn T'rưng ống nứa, Vọng trà hồ sen Đồng Tháp & Tráp trầu cau hoàng gia",
+      "sentAt": "2026-10-08T18:21:00.000Z",
+      "atStep": 7750
     }
   ],
-  "lastDispatchedAt": 1791483587384
+  "lastDispatchedAt": 1791483693460,
+  "activeDirective": {
+    "directiveId": "dir-69-sprint-71-danbau-ancientwell-hornsnuff",
+    "title": "Phòng Đàn Bầu Bồi Âm, Giếng Cổ Chợ Quán & Bình Thuốc Hít Sừng Hổ Phách",
+    "sentAt": "2026-10-08T18:21:33.459Z",
+    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
+  }
 }
