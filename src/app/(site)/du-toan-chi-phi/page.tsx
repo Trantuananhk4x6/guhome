@@ -163,6 +163,9 @@ import { ArtisanHandmadeGoldLeafEbonyCalligraphyBrushAtelier } from '@/component
 import { SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion } from '@/components/studio/SaigonRiverfrontAncientDalbergiaTeaBonsaiPavilion'
 import { BespokeImperialKynamAndSilverFiligreeScentChamber } from '@/components/studio/BespokeImperialKynamAndSilverFiligreeScentChamber'
 import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier'
+import { SaigonCanalSideAncientSandalwoodTeaPavilion } from '@/components/studio/SaigonCanalSideAncientSandalwoodTeaPavilion'
+import { BespokeImperialKynamAndGoldInlaidTeaChestVault } from '@/components/studio/BespokeImperialKynamAndGoldInlaidTeaChestVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyWaterDropperAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyWaterDropperAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -693,6 +696,15 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Gold Filigree & Onyx Calligraphy Inkstone Atelier */}
       <ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier />
+
+      {/* Saigon Canal Side Ancient Sandalwood Tea Pavilion */}
+      <SaigonCanalSideAncientSandalwoodTeaPavilion />
+
+      {/* Bespoke Imperial Kynam & Gold Inlaid Tea Chest Vault */}
+      <BespokeImperialKynamAndGoldInlaidTeaChestVault />
+
+      {/* Artisan Gold Filigree & Jade Water Dropper Atelier */}
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyWaterDropperAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
