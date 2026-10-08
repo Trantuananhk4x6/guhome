@@ -60,6 +60,7 @@ import { ArtisanHandmadeDamascusCleaverCulinaryAtelier } from '@/components/tool
 import { ArtisanImperialSilverChasedTeapotAtelier } from '@/components/tools/ArtisanImperialSilverChasedTeapotAtelier'
 import { ArtisanGoldFiligreeJewelryAndCasketAtelier } from '@/components/tools/ArtisanGoldFiligreeJewelryAndCasketAtelier'
 import { ArtisanHandmadeHornAndTortoiseshellCombAtelier } from '@/components/tools/ArtisanHandmadeHornAndTortoiseshellCombAtelier'
+import { ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier } from '@/components/tools/ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -476,6 +477,9 @@ export default async function ContactPage() {
 
       {/* Artisan Handmade Horn And Tortoiseshell Comb Atelier */}
       <ArtisanHandmadeHornAndTortoiseshellCombAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Handmade Lacquer And Silver Inlay Brush Set Atelier */}
+      <ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

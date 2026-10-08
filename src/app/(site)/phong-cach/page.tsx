@@ -106,6 +106,8 @@ import { SaigonAcousticPipeOrganAtriumVault } from '@/components/studio/SaigonAc
 import { ArtisanSaigonRiverboatWoodCraftSanctuary } from '@/components/studio/ArtisanSaigonRiverboatWoodCraftSanctuary'
 import { SaigonAcousticCimbalomSalonSanctuary } from '@/components/studio/SaigonAcousticCimbalomSalonSanctuary'
 import { ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary } from '@/components/studio/ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary'
+import { SaigonAcousticLithophoneSanctuary } from '@/components/studio/SaigonAcousticLithophoneSanctuary'
+import { ArtisanSaigonMonolithicBasaltOutdoorPlungePool } from '@/components/studio/ArtisanSaigonMonolithicBasaltOutdoorPlungePool'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -486,6 +488,12 @@ export default async function StylesPage() {
 
       {/* Artisan Saigon Monolithic Granite Water Feature Sanctuary */}
       <ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Lithophone Sanctuary */}
+      <SaigonAcousticLithophoneSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Saigon Monolithic Basalt Outdoor Plunge Pool */}
+      <ArtisanSaigonMonolithicBasaltOutdoorPlungePool className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

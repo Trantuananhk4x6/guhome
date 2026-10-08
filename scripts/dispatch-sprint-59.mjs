@@ -7,7 +7,7 @@ const LANGUAGE_SERVER_EXE = 'C:\\Users\\Admin\\AppData\\Local\\Programs\\antigra
 const STATE_PATH = path.resolve('scripts/master-orchestrator-state.json');
 
 const SPRINT_59_DIRECTIVE = `[MASTER ORCHESTRATOR DIRECTIVE - SPRINT 59: PHÒNG HÒA ÂM ĐÀN ĐÁ TÂY NGUYÊN, BỂ NGÂM LẠNH ĐÁ BAZAN CỘT & BỘ BÚT LÔNG SƠN MÀI CẨN BẠC]
-KTS Trưởng kiêm Kỹ sư trưởng GuHomes (Session \${TARGET_ID}):
+KTS Trưởng kiêm Kỹ sư trưởng GuHomes (Session ${TARGET_ID}):
 
 Master Orchestrator cùng Elite QA tiếp tục mở rộng chuỗi sáng tạo nghệ thuật cao cấp với Sprint 59:
 "PHÒNG HÒA ÂM ĐÀN ĐÁ TÂY NGUYÊN, BỂ NGÂM LẠNH ĐÁ BAZAN CỘT & BỘ BÚT LÔNG SƠN MÀI CẨN BẠC"
@@ -54,10 +54,10 @@ QUY CHUẨN XÁC THỰC BẮT BUỘC TRƯỚC KHI BÁO CÁO:
 3. Production Build: Chạy 'npm run build' exit code 0.
 4. Cập nhật scripts/master-orchestrator-state.json và commit git trên nhánh enhaceta:
    'feat(sprint-59): add SaigonAcousticLithophoneSanctuary, ArtisanSaigonMonolithicBasaltOutdoorPlungePool, and ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier with 100% SEO pass'
-\`;
+`;
 
 async function dispatchSprint59() {
-  console.log(\`[Master Orchestrator] Dispatching Sprint 59 to Agent \${TARGET_ID}...\`);
+  console.log(`[Master Orchestrator] Dispatching Sprint 59 to Agent ${TARGET_ID}...`);
 
   let state = {};
   if (fs.existsSync(STATE_PATH)) {
@@ -85,7 +85,7 @@ async function dispatchSprint59() {
   ], { stdio: 'inherit', shell: true });
 
   proc.on('close', (code) => {
-    console.log(\`[Master Orchestrator] Language server send-message exited with code: \${code}\`);
+    console.log(`[Master Orchestrator] Language server send-message exited with code: ${code}`);
   });
 }
 

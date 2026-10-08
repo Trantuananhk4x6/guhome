@@ -155,6 +155,9 @@ import { ArtisanGoldFiligreeJewelryAndCasketAtelier } from '@/components/tools/A
 import { SaigonAcousticCimbalomSalonSanctuary } from '@/components/studio/SaigonAcousticCimbalomSalonSanctuary'
 import { ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary } from '@/components/studio/ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary'
 import { ArtisanHandmadeHornAndTortoiseshellCombAtelier } from '@/components/tools/ArtisanHandmadeHornAndTortoiseshellCombAtelier'
+import { SaigonAcousticLithophoneSanctuary } from '@/components/studio/SaigonAcousticLithophoneSanctuary'
+import { ArtisanSaigonMonolithicBasaltOutdoorPlungePool } from '@/components/studio/ArtisanSaigonMonolithicBasaltOutdoorPlungePool'
+import { ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier } from '@/components/tools/ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1275,6 +1278,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan handmade horn and tortoiseshell comb atelier ---- */}
       <ArtisanHandmadeHornAndTortoiseshellCombAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon acoustic lithophone sanctuary -------------------- */}
+      <SaigonAcousticLithophoneSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan saigon monolithic basalt outdoor plunge pool ---- */}
+      <ArtisanSaigonMonolithicBasaltOutdoorPlungePool className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan handmade lacquer and silver inlay brush set atelier */}
+      <ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
