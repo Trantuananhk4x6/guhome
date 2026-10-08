@@ -1,0 +1,21 @@
+{
+  "currentSprintIndex": 3,
+  "completedSprints": [
+    {
+      "id": "sprint-1-articles-db",
+      "completedAt": "2026-10-08T12:44:00.000Z",
+      "notes": "17 bài viết kiến trúc nội thất đỉnh cao chuẩn Quiet Luxury đã được nạp vào Neon DB."
+    },
+    {
+      "id": "sprint-2-quote-social-modal",
+      "completedAt": "2026-10-08T12:44:30.000Z",
+      "notes": "Tích hợp FloatingContactDock, QuickQuoteModal kết nối submitContact action và SocialModal 7 kênh."
+    },
+    {
+      "id": "sprint-3-homepage-brand-refresh",
+      "completedAt": "2026-10-08T12:45:00.000Z",
+      "notes": "Bổ sung MissionVisionSection và QuickConsultFormSection vào Trang chủ."
+    }
+  ],
+  "lastUpdated": 1791463480000
+}
