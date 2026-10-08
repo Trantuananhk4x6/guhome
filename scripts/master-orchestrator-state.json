@@ -86,5 +86,11 @@
       "atStep": 2340
     }
   ],
-  "lastDispatchedAt": 1791468705000
+  "lastDispatchedAt": 1791468745806,
+  "activeDirective": {
+    "directiveId": "dir-18-sprint-20-textiles-subfloor-renovation",
+    "title": "Phòng Thí Nghiệm Vải Dệt Xúc Giác Nhiệt Đới, Công Nghệ Sàn Gỗ 5 Tầng Âm Thổ & Bộ Chẩn Đoán Cải Tạo Quiet Luxury",
+    "sentAt": "2026-10-08T14:12:25.806Z",
+    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
+  }
 }
