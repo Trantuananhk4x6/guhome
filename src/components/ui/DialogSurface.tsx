@@ -65,7 +65,7 @@ export default function DialogSurface({
         >
           <motion.div
             aria-hidden="true"
-            className="absolute inset-0 bg-espresso/80 backdrop-blur-md"
+            className="absolute inset-0 bg-espresso/85 backdrop-blur-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -87,7 +87,7 @@ export default function DialogSurface({
             exit={{ opacity: 0, y: reduced ? 0 : 16 }}
             transition={{ duration, ease: [0.22, 1, 0.36, 1] }}
             className={cn(
-              'relative max-h-[85vh] w-full overflow-y-auto rounded-none border border-line bg-canvas p-5 sm:p-8 md:p-12 shadow-[0_24px_60px_rgba(0,0,0,0.35),0_1px_0_rgba(255,255,255,0.08)_inset]',
+              'relative max-h-[85vh] w-full overflow-y-auto rounded-xl sm:rounded-2xl border border-line bg-canvas p-5 sm:p-8 md:p-12 shadow-[0_24px_70px_rgba(0,0,0,0.45),0_0_32px_rgba(197,168,128,0.12),0_1px_0_rgba(255,255,255,0.08)_inset]',
               SIZES[size],
               className,
             )}
