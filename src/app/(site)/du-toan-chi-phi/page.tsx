@@ -151,6 +151,9 @@ import { ArtisanSilverInlaidAgarwoodCalligraphyBrushVault } from '@/components/t
 import { SaigonCanalSideFloatingLotusTeaPavilion } from '@/components/studio/SaigonCanalSideFloatingLotusTeaPavilion'
 import { BespokeSmokedAgarwoodAndOnyxMeditationVault } from '@/components/studio/BespokeSmokedAgarwoodAndOnyxMeditationVault'
 import { ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier } from '@/components/tools/ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier'
+import { SaigonCanalSideAncientTeakwoodBonsaiMoatPavilion } from '@/components/studio/SaigonCanalSideAncientTeakwoodBonsaiMoatPavilion'
+import { BespokeImperialAgarwoodAndBrassScentAltarVault } from '@/components/studio/BespokeImperialAgarwoodAndBrassScentAltarVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -645,6 +648,15 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Tortoiseshell & Gold Calligraphy Case Atelier */}
       <ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier />
+
+      {/* Saigon Canal Side Ancient Teakwood Bonsai Moat Pavilion */}
+      <SaigonCanalSideAncientTeakwoodBonsaiMoatPavilion />
+
+      {/* Bespoke Imperial Agarwood & Brass Scent Altar Vault */}
+      <BespokeImperialAgarwoodAndBrassScentAltarVault />
+
+      {/* Artisan Gold Filigree & Jade Snuff Bottle Atelier */}
+      <ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

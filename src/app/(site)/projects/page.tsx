@@ -166,6 +166,9 @@ import { ArtisanSilverInlaidAgarwoodCalligraphyBrushVault } from '@/components/t
 import { SaigonCanalSideFloatingLotusTeaPavilion } from '@/components/studio/SaigonCanalSideFloatingLotusTeaPavilion'
 import { BespokeSmokedAgarwoodAndOnyxMeditationVault } from '@/components/studio/BespokeSmokedAgarwoodAndOnyxMeditationVault'
 import { ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier } from '@/components/tools/ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier'
+import { SaigonCanalSideAncientTeakwoodBonsaiMoatPavilion } from '@/components/studio/SaigonCanalSideAncientTeakwoodBonsaiMoatPavilion'
+import { BespokeImperialAgarwoodAndBrassScentAltarVault } from '@/components/studio/BespokeImperialAgarwoodAndBrassScentAltarVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -935,6 +938,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Artisan Tortoiseshell & Gold Calligraphy Case Atelier */}
           <ArtisanHandmadeTortoiseshellAndGoldCalligraphyCaseAtelier />
+
+          {/* Saigon Canal Side Ancient Teakwood Bonsai Moat Pavilion */}
+          <SaigonCanalSideAncientTeakwoodBonsaiMoatPavilion />
+
+          {/* Bespoke Imperial Agarwood & Brass Scent Altar Vault */}
+          <BespokeImperialAgarwoodAndBrassScentAltarVault />
+
+          {/* Artisan Gold Filigree & Jade Snuff Bottle Atelier */}
+          <ArtisanHandmadeGoldFiligreeAndJadeSnuffBottleAtelier />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
