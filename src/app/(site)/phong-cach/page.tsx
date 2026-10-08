@@ -184,6 +184,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyWaterDropperAtelier } from
 import { SaigonCanalSideAncientHingedTeakLouverTeaPavilion } from '@/components/studio/SaigonCanalSideAncientHingedTeakLouverTeaPavilion'
 import { BespokeImperialKynamAndGoldLeafScentCasketVault } from '@/components/studio/BespokeImperialKynamAndGoldLeafScentCasketVault'
 import { ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyRulerAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyRulerAtelier'
+import { SaigonCanalSideAncientRosewoodMoatTeaPavilion } from '@/components/studio/SaigonCanalSideAncientRosewoodMoatTeaPavilion'
+import { BespokeImperialKynamAndSilverFiligreeIncenseVault } from '@/components/studio/BespokeImperialKynamAndSilverFiligreeIncenseVault'
+import { ArtisanHandmadeGoldFiligreeAndEbonyCalligraphySealAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndEbonyCalligraphySealAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -800,6 +803,15 @@ export default async function StylesPage() {
 
       {/* Artisan Gold Filigree & Rosewood Ruler Atelier */}
       <ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyRulerAtelier />
+
+      {/* Saigon Canal Side Ancient Rosewood Moat Tea Pavilion */}
+      <SaigonCanalSideAncientRosewoodMoatTeaPavilion />
+
+      {/* Bespoke Imperial Kynam & Silver Filigree Incense Vault */}
+      <BespokeImperialKynamAndSilverFiligreeIncenseVault />
+
+      {/* Artisan Gold Filigree & Ebony Calligraphy Seal Atelier */}
+      <ArtisanHandmadeGoldFiligreeAndEbonyCalligraphySealAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
