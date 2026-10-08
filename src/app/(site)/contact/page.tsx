@@ -43,6 +43,7 @@ import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/Privat
 import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbleSundialGardenVault'
 import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/ArtisanDamascusSteelChefKnifeAtelier'
 import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/ArtisanRiverPebbleAcupressureWalkway'
+import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangroveBoutiqueEcologyLab'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -408,6 +409,9 @@ export default async function ContactPage() {
 
       {/* Artisan River Pebble Acupressure Infrared Walkway */}
       <ArtisanRiverPebbleAcupressureWalkway className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Mangrove Boutique Ecology Atrium Tidal Lab */}
+      <SaigonMangroveBoutiqueEcologyLab className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

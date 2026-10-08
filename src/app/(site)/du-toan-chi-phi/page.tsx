@@ -57,6 +57,8 @@ import { PrivateSaltwaterNanoReefSanctuary } from '@/components/studio/PrivateSa
 import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/ArtisanDamascusSteelChefKnifeAtelier'
 import { ArtisanMotherOfPearlChessPavilion } from '@/components/studio/ArtisanMotherOfPearlChessPavilion'
 import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/ArtisanRiverPebbleAcupressureWalkway'
+import { HorologyTimepieceAndCigarVault } from '@/components/studio/HorologyTimepieceAndCigarVault'
+import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangroveBoutiqueEcologyLab'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -268,6 +270,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan River Pebble Acupressure Infrared Walkway */}
       <ArtisanRiverPebbleAcupressureWalkway className="mt-[var(--spacing-section)]" />
+
+      {/* Horology Timepiece Tourbillon & Cigar Spanish Cedar Vault */}
+      <HorologyTimepieceAndCigarVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Mangrove Boutique Ecology Atrium Tidal Lab */}
+      <SaigonMangroveBoutiqueEcologyLab className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

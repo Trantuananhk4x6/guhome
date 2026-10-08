@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 42,
+  "currentDirectiveIndex": 43,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -324,6 +324,12 @@
       "title": "Phòng Chiếu Phim Gỗ Bách Xanh, Bàn Cờ Mun Khảm Ốc & Lối Sỏi Bấm Huyệt Tây Nguyên",
       "sentAt": "2026-10-08T15:38:46.927Z",
       "completedAt": "2026-10-08T15:42:30.000Z"
+    },
+    {
+      "directiveId": "dir-40-sprint-42-clepsydra-tourbillon-mangrove",
+      "title": "Đồng Hồ Nước Clepsydra, Tủ Bảo Tồn Tourbillon & Tiểu Cảnh Rừng Ngập Mặn",
+      "sentAt": "2026-10-08T15:43:03.821Z",
+      "completedAt": "2026-10-08T15:46:40.000Z"
     }
   ],
   "lastDispatchedAt": 1791472996786,

@@ -72,6 +72,8 @@ import { SaigonAgarwoodTeaBespokeVault } from '@/components/studio/SaigonAgarwoo
 import { PrivateSaltwaterNanoReefSanctuary } from '@/components/studio/PrivateSaltwaterNanoReefSanctuary'
 import { SaigonCalocedrusHomeCinemaSanctuary } from '@/components/studio/SaigonCalocedrusHomeCinemaSanctuary'
 import { ArtisanMotherOfPearlChessPavilion } from '@/components/studio/ArtisanMotherOfPearlChessPavilion'
+import { SaigonClepsydraWaterClockVault } from '@/components/studio/SaigonClepsydraWaterClockVault'
+import { HorologyTimepieceAndCigarVault } from '@/components/studio/HorologyTimepieceAndCigarVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -350,6 +352,12 @@ export default async function StylesPage() {
 
       {/* Artisan Mother of Pearl Mun Wood Chess Pavilion */}
       <ArtisanMotherOfPearlChessPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Clepsydra Water Clock Borosilicate 1Hz Vault */}
+      <SaigonClepsydraWaterClockVault className="mt-[var(--spacing-section)]" />
+
+      {/* Horology Timepiece Tourbillon & Cigar Spanish Cedar Vault */}
+      <HorologyTimepieceAndCigarVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

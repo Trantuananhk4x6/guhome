@@ -104,6 +104,9 @@ import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/Artisan
 import { SaigonCalocedrusHomeCinemaSanctuary } from '@/components/studio/SaigonCalocedrusHomeCinemaSanctuary'
 import { ArtisanMotherOfPearlChessPavilion } from '@/components/studio/ArtisanMotherOfPearlChessPavilion'
 import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/ArtisanRiverPebbleAcupressureWalkway'
+import { SaigonClepsydraWaterClockVault } from '@/components/studio/SaigonClepsydraWaterClockVault'
+import { HorologyTimepieceAndCigarVault } from '@/components/studio/HorologyTimepieceAndCigarVault'
+import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangroveBoutiqueEcologyLab'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1071,6 +1074,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan river pebble acupressure infrared walkway --------- */}
       <ArtisanRiverPebbleAcupressureWalkway className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon clepsydra water clock borosilicate 1hz vault ------- */}
+      <SaigonClepsydraWaterClockVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- horology timepiece tourbillon & cigar spanish cedar vault -- */}
+      <HorologyTimepieceAndCigarVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon mangrove boutique ecology atrium tidal lab --------- */}
+      <SaigonMangroveBoutiqueEcologyLab className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
