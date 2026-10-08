@@ -84,6 +84,8 @@ import { SaigonStarlightFiberOpticCeilingVault } from '@/components/studio/Saigo
 import { SaigonArtisanLacquerwareGallerySanctuary } from '@/components/studio/SaigonArtisanLacquerwareGallerySanctuary'
 import { SaigonAcousticCelloListeningVault } from '@/components/studio/SaigonAcousticCelloListeningVault'
 import { SaigonRainwaterCascadeAtriumSanctuary } from '@/components/studio/SaigonRainwaterCascadeAtriumSanctuary'
+import { SaigonArtisanBespokeParfumVault } from '@/components/studio/SaigonArtisanBespokeParfumVault'
+import { SaigonFloatingInfinityDaybedPavilion } from '@/components/studio/SaigonFloatingInfinityDaybedPavilion'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -398,6 +400,12 @@ export default async function StylesPage() {
 
       {/* Saigon Rainwater Cascade Atrium Kusari Toi Sanctuary */}
       <SaigonRainwaterCascadeAtriumSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Artisan Bespoke Parfum Vault */}
+      <SaigonArtisanBespokeParfumVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Floating Infinity Daybed Pavilion */}
+      <SaigonFloatingInfinityDaybedPavilion className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

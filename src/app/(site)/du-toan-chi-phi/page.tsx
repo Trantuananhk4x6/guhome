@@ -69,6 +69,8 @@ import { SaigonArtisanLacquerwareGallerySanctuary } from '@/components/studio/Sa
 import { ArtisanJapaneseTatamiChashitsuTeaAtelier } from '@/components/tools/ArtisanJapaneseTatamiChashitsuTeaAtelier'
 import { SaigonRainwaterCascadeAtriumSanctuary } from '@/components/studio/SaigonRainwaterCascadeAtriumSanctuary'
 import { ArtisanGoldLeafCalligraphyCabinetryAtelier } from '@/components/tools/ArtisanGoldLeafCalligraphyCabinetryAtelier'
+import { SaigonFloatingInfinityDaybedPavilion } from '@/components/studio/SaigonFloatingInfinityDaybedPavilion'
+import { ArtisanBronzeIncenseBurnerAtelier } from '@/components/tools/ArtisanBronzeIncenseBurnerAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -316,6 +318,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Gold Leaf Calligraphy Cabinetry Atelier */}
       <ArtisanGoldLeafCalligraphyCabinetryAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Floating Infinity Daybed 600kg Pavilion */}
+      <SaigonFloatingInfinityDaybedPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bronze Incense Burner Atelier */}
+      <ArtisanBronzeIncenseBurnerAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -49,6 +49,7 @@ import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/Arti
 import { ArtisanBronzeBonsaiWaterFeatureAtelier } from '@/components/tools/ArtisanBronzeBonsaiWaterFeatureAtelier'
 import { ArtisanJapaneseTatamiChashitsuTeaAtelier } from '@/components/tools/ArtisanJapaneseTatamiChashitsuTeaAtelier'
 import { ArtisanGoldLeafCalligraphyCabinetryAtelier } from '@/components/tools/ArtisanGoldLeafCalligraphyCabinetryAtelier'
+import { ArtisanBronzeIncenseBurnerAtelier } from '@/components/tools/ArtisanBronzeIncenseBurnerAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -432,6 +433,9 @@ export default async function ContactPage() {
 
       {/* Artisan Gold Leaf Calligraphy Cabinetry Atelier */}
       <ArtisanGoldLeafCalligraphyCabinetryAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bronze Incense Burner Atelier */}
+      <ArtisanBronzeIncenseBurnerAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

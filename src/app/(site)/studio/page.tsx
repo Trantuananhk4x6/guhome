@@ -122,6 +122,9 @@ import { ArtisanJapaneseTatamiChashitsuTeaAtelier } from '@/components/tools/Art
 import { SaigonAcousticCelloListeningVault } from '@/components/studio/SaigonAcousticCelloListeningVault'
 import { SaigonRainwaterCascadeAtriumSanctuary } from '@/components/studio/SaigonRainwaterCascadeAtriumSanctuary'
 import { ArtisanGoldLeafCalligraphyCabinetryAtelier } from '@/components/tools/ArtisanGoldLeafCalligraphyCabinetryAtelier'
+import { SaigonArtisanBespokeParfumVault } from '@/components/studio/SaigonArtisanBespokeParfumVault'
+import { SaigonFloatingInfinityDaybedPavilion } from '@/components/studio/SaigonFloatingInfinityDaybedPavilion'
+import { ArtisanBronzeIncenseBurnerAtelier } from '@/components/tools/ArtisanBronzeIncenseBurnerAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1143,6 +1146,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan gold leaf calligraphy cabinetry atelier ---------- */}
       <ArtisanGoldLeafCalligraphyCabinetryAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon artisan bespoke parfum vault --------------------- */}
+      <SaigonArtisanBespokeParfumVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon floating infinity daybed pavilion ---------------- */}
+      <SaigonFloatingInfinityDaybedPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan bronze incense burner atelier ------------------- */}
+      <ArtisanBronzeIncenseBurnerAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
