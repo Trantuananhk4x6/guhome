@@ -112,6 +112,8 @@ import { SaigonAcousticGlassArmonicaSanctuary } from '@/components/studio/Saigon
 import { ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary } from '@/components/studio/ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary'
 import { SaigonAcousticThereminSanctuary } from '@/components/studio/SaigonAcousticThereminSanctuary'
 import { ArtisanSaigonMonolithicQuartzCrystalWaterfallVault } from '@/components/studio/ArtisanSaigonMonolithicQuartzCrystalWaterfallVault'
+import { SaigonAcousticHarpsichordSanctuarySalon } from '@/components/studio/SaigonAcousticHarpsichordSanctuarySalon'
+import { SaigonTranslucentOnyxWaterfallSanctuary } from '@/components/studio/SaigonTranslucentOnyxWaterfallSanctuary'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -510,6 +512,12 @@ export default async function StylesPage() {
 
       {/* Artisan Saigon Monolithic Quartz Crystal Waterfall Vault */}
       <ArtisanSaigonMonolithicQuartzCrystalWaterfallVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Harpsichord Sanctuary Salon */}
+      <SaigonAcousticHarpsichordSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Translucent Onyx Waterfall Sanctuary */}
+      <SaigonTranslucentOnyxWaterfallSanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

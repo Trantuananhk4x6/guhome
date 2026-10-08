@@ -97,6 +97,8 @@ import { ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary } from '@/compone
 import { ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier } from '@/components/tools/ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier'
 import { ArtisanSaigonMonolithicQuartzCrystalWaterfallVault } from '@/components/studio/ArtisanSaigonMonolithicQuartzCrystalWaterfallVault'
 import { ArtisanHandmadeCloisonneEnamelTeaSetAtelier } from '@/components/tools/ArtisanHandmadeCloisonneEnamelTeaSetAtelier'
+import { SaigonTranslucentOnyxWaterfallSanctuary } from '@/components/studio/SaigonTranslucentOnyxWaterfallSanctuary'
+import { ArtisanMotherOfPearlJewelryCasketAtelier } from '@/components/tools/ArtisanMotherOfPearlJewelryCasketAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -428,6 +430,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Handmade Cloisonne Enamel Tea Set Atelier */}
       <ArtisanHandmadeCloisonneEnamelTeaSetAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Translucent Onyx Waterfall Sanctuary */}
+      <SaigonTranslucentOnyxWaterfallSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Mother Of Pearl Jewelry Casket Atelier */}
+      <ArtisanMotherOfPearlJewelryCasketAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

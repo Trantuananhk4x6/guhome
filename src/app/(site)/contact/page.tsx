@@ -63,6 +63,7 @@ import { ArtisanHandmadeHornAndTortoiseshellCombAtelier } from '@/components/too
 import { ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier } from '@/components/tools/ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier'
 import { ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier } from '@/components/tools/ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier'
 import { ArtisanHandmadeCloisonneEnamelTeaSetAtelier } from '@/components/tools/ArtisanHandmadeCloisonneEnamelTeaSetAtelier'
+import { ArtisanMotherOfPearlJewelryCasketAtelier } from '@/components/tools/ArtisanMotherOfPearlJewelryCasketAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -488,6 +489,9 @@ export default async function ContactPage() {
 
       {/* Artisan Handmade Cloisonne Enamel Tea Set Atelier */}
       <ArtisanHandmadeCloisonneEnamelTeaSetAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Mother Of Pearl Jewelry Casket Atelier */}
+      <ArtisanMotherOfPearlJewelryCasketAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
