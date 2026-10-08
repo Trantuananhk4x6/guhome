@@ -111,6 +111,8 @@ import { SaigonBioNaturalEcoPoolSanctuary } from '@/components/studio/SaigonBioN
 import { ArtisanHoangDanBrassInlayTeaTrayVault } from '@/components/tools/ArtisanHoangDanBrassInlayTeaTrayVault'
 import { SaigonWildOrchidMicroclimatePavilion } from '@/components/studio/SaigonWildOrchidMicroclimatePavilion'
 import { ArtisanBatTrangHoneyGlazeTeaBowlVault } from '@/components/tools/ArtisanBatTrangHoneyGlazeTeaBowlVault'
+import { SaigonCanalSideMangroveCharcoalCourtyard } from '@/components/studio/SaigonCanalSideMangroveCharcoalCourtyard'
+import { ArtisanSilverInlaidEbonyChopsticksAtelier } from '@/components/tools/ArtisanSilverInlaidEbonyChopsticksAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -485,6 +487,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Bat Trang Honey Glaze Tea Bowl Vault */}
       <ArtisanBatTrangHoneyGlazeTeaBowlVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Canal-Side Mangrove Charcoal Courtyard */}
+      <SaigonCanalSideMangroveCharcoalCourtyard className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Silver Inlaid Ebony Chopsticks Atelier */}
+      <ArtisanSilverInlaidEbonyChopsticksAtelier className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

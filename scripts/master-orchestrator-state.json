@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 68,
+  "currentDirectiveIndex": 70,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -408,7 +408,19 @@
       "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
       "sentAt": "2026-10-08T18:07:47.527Z",
       "atStep": 7498
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-08T18:12:10.863Z",
+      "atStep": 7592
+    },
+    {
+      "directiveId": "dir-67-sprint-69-pipa-charcoal-chopsticks",
+      "title": "Thính phòng Tỳ Bà Mun Sọc Huỳnh Đường, Sân trong Than Đước Cần Giờ & Đôi Đũa Ngự Dụng Mun Sừng",
+      "sentAt": "2026-10-08T18:14:00.000Z",
+      "atStep": 7650
     }
   ],
-  "lastDispatchedAt": 1791482867527
+  "lastDispatchedAt": 1791483240000
 }

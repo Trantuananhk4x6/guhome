@@ -70,6 +70,7 @@ import { ArtisanDuanniZishaTeapotAtelier } from '@/components/tools/ArtisanDuann
 import { ArtisanRattanSilverWineSetVault } from '@/components/tools/ArtisanRattanSilverWineSetVault'
 import { ArtisanHoangDanBrassInlayTeaTrayVault } from '@/components/tools/ArtisanHoangDanBrassInlayTeaTrayVault'
 import { ArtisanBatTrangHoneyGlazeTeaBowlVault } from '@/components/tools/ArtisanBatTrangHoneyGlazeTeaBowlVault'
+import { ArtisanSilverInlaidEbonyChopsticksAtelier } from '@/components/tools/ArtisanSilverInlaidEbonyChopsticksAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -516,6 +517,9 @@ export default async function ContactPage() {
 
       {/* Artisan Bat Trang Honey Glaze Tea Bowl Vault */}
       <ArtisanBatTrangHoneyGlazeTeaBowlVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Silver Inlaid Ebony Chopsticks Atelier */}
+      <ArtisanSilverInlaidEbonyChopsticksAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

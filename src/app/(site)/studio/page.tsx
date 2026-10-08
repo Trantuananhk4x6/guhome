@@ -185,6 +185,9 @@ import { ArtisanHoangDanBrassInlayTeaTrayVault } from '@/components/tools/Artisa
 import { SaigonAcousticErhuSanctuarySalon } from '@/components/studio/SaigonAcousticErhuSanctuarySalon'
 import { SaigonWildOrchidMicroclimatePavilion } from '@/components/studio/SaigonWildOrchidMicroclimatePavilion'
 import { ArtisanBatTrangHoneyGlazeTeaBowlVault } from '@/components/tools/ArtisanBatTrangHoneyGlazeTeaBowlVault'
+import { SaigonBespokePipaLuteSanctuaryPavilion } from '@/components/studio/SaigonBespokePipaLuteSanctuaryPavilion'
+import { SaigonCanalSideMangroveCharcoalCourtyard } from '@/components/studio/SaigonCanalSideMangroveCharcoalCourtyard'
+import { ArtisanSilverInlaidEbonyChopsticksAtelier } from '@/components/tools/ArtisanSilverInlaidEbonyChopsticksAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1395,6 +1398,15 @@ export default async function StudioPage() {
 
       {/* ---------------- bat trang honey glaze tea bowl vault -------------------- */}
       <ArtisanBatTrangHoneyGlazeTeaBowlVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- bespoke pipa lute sanctuary pavilion -------------------- */}
+      <SaigonBespokePipaLuteSanctuaryPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- canal-side mangrove charcoal courtyard ------------------ */}
+      <SaigonCanalSideMangroveCharcoalCourtyard className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- silver inlaid ebony chopsticks atelier ------------------ */}
+      <ArtisanSilverInlaidEbonyChopsticksAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

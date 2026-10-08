@@ -126,6 +126,8 @@ import { SaigonAcousticYangqinSanctuaryPavilion } from '@/components/studio/Saig
 import { SaigonBioNaturalEcoPoolSanctuary } from '@/components/studio/SaigonBioNaturalEcoPoolSanctuary'
 import { SaigonAcousticErhuSanctuarySalon } from '@/components/studio/SaigonAcousticErhuSanctuarySalon'
 import { SaigonWildOrchidMicroclimatePavilion } from '@/components/studio/SaigonWildOrchidMicroclimatePavilion'
+import { SaigonBespokePipaLuteSanctuaryPavilion } from '@/components/studio/SaigonBespokePipaLuteSanctuaryPavilion'
+import { SaigonCanalSideMangroveCharcoalCourtyard } from '@/components/studio/SaigonCanalSideMangroveCharcoalCourtyard'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -568,6 +570,12 @@ export default async function StylesPage() {
 
       {/* Saigon Wild Orchid Microclimate Pavilion */}
       <SaigonWildOrchidMicroclimatePavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Bespoke Pipa Lute Sanctuary Pavilion */}
+      <SaigonBespokePipaLuteSanctuaryPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Canal-Side Mangrove Charcoal Courtyard */}
+      <SaigonCanalSideMangroveCharcoalCourtyard className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
