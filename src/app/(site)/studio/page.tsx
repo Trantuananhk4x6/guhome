@@ -226,6 +226,9 @@ import { ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier } from '@/compone
 import { SaigonMonsoonRainChamberHydroAcousticPavilion } from '@/components/studio/SaigonMonsoonRainChamberHydroAcousticPavilion'
 import { BespokeSmokedOakAromaCigarLoungeAndWhiskyVault } from '@/components/studio/BespokeSmokedOakAromaCigarLoungeAndWhiskyVault'
 import { ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier } from '@/components/tools/ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier'
+import { SaigonBreezeTeakwoodWindLouverCourtyardPavilion } from '@/components/studio/SaigonBreezeTeakwoodWindLouverCourtyardPavilion'
+import { BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault } from '@/components/studio/BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault'
+import { ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier } from '@/components/tools/ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1553,6 +1556,15 @@ export default async function StudioPage() {
 
       {/* ---------------- imperial mother of pearl rosewood cabinet atelier ----- */}
       <ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier />
+
+      {/* ---------------- saigon breeze teakwood wind louver courtyard pavilion -- */}
+      <SaigonBreezeTeakwoodWindLouverCourtyardPavilion />
+
+      {/* ---------------- bespoke imperial agarwood & gold leaf incense shrine --- */}
+      <BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault />
+
+      {/* ---------------- artisan handmade horn & gold-inlaid grooming chest ----- */}
+      <ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />

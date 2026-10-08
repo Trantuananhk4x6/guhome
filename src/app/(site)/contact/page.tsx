@@ -87,6 +87,9 @@ import { ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier } from '@/compone
 import { SaigonMonsoonRainChamberHydroAcousticPavilion } from '@/components/studio/SaigonMonsoonRainChamberHydroAcousticPavilion'
 import { BespokeSmokedOakAromaCigarLoungeAndWhiskyVault } from '@/components/studio/BespokeSmokedOakAromaCigarLoungeAndWhiskyVault'
 import { ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier } from '@/components/tools/ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier'
+import { SaigonBreezeTeakwoodWindLouverCourtyardPavilion } from '@/components/studio/SaigonBreezeTeakwoodWindLouverCourtyardPavilion'
+import { BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault } from '@/components/studio/BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault'
+import { ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier } from '@/components/tools/ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -584,6 +587,15 @@ export default async function ContactPage() {
 
       {/* Imperial Vietnamese Mother Of Pearl Rosewood Cabinet Atelier */}
       <ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier />
+
+      {/* Saigon Breeze Teakwood Wind Louver Courtyard Pavilion */}
+      <SaigonBreezeTeakwoodWindLouverCourtyardPavilion />
+
+      {/* Bespoke Imperial Agarwood & Gold Leaf Incense Shrine Vault */}
+      <BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault />
+
+      {/* Artisan Handmade Horn & Gold-Inlaid Grooming Chest Atelier */}
+      <ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier />
     </div>
   )
 }

@@ -154,6 +154,9 @@ import { ArtisanGoldLeafDamasceneEbonyBodhidharmaStatueAtelier } from '@/compone
 import { SaigonMonsoonRainChamberHydroAcousticPavilion } from '@/components/studio/SaigonMonsoonRainChamberHydroAcousticPavilion'
 import { BespokeSmokedOakAromaCigarLoungeAndWhiskyVault } from '@/components/studio/BespokeSmokedOakAromaCigarLoungeAndWhiskyVault'
 import { ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier } from '@/components/tools/ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier'
+import { SaigonBreezeTeakwoodWindLouverCourtyardPavilion } from '@/components/studio/SaigonBreezeTeakwoodWindLouverCourtyardPavilion'
+import { BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault } from '@/components/studio/BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault'
+import { ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier } from '@/components/tools/ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -887,6 +890,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Imperial Vietnamese Mother Of Pearl Rosewood Cabinet Atelier */}
           <ImperialVietnameseMotherOfPearlRosewoodCabinetAtelier />
+
+          {/* Saigon Breeze Teakwood Wind Louver Courtyard Pavilion */}
+          <SaigonBreezeTeakwoodWindLouverCourtyardPavilion />
+
+          {/* Bespoke Imperial Agarwood & Gold Leaf Incense Shrine Vault */}
+          <BespokeImperialAgarwoodAndGoldLeafIncenseShrineVault />
+
+          {/* Artisan Handmade Horn & Gold-Inlaid Grooming Chest Atelier */}
+          <ArtisanHandmadeHornAndGoldInlaidGroomingChestAtelier />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
