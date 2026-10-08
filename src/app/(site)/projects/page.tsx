@@ -109,6 +109,7 @@ import { ArtisanHelicalRibbonStaircaseVault } from '@/components/studio/ArtisanH
 import { SaigonAudiophileVinylSanctuary } from '@/components/studio/SaigonAudiophileVinylSanctuary'
 import { SaigonFloatingOrchidAtelier } from '@/components/studio/SaigonFloatingOrchidAtelier'
 import { SaigonAgarwoodTeaBespokeVault } from '@/components/studio/SaigonAgarwoodTeaBespokeVault'
+import { SaigonCalocedrusHomeCinemaSanctuary } from '@/components/studio/SaigonCalocedrusHomeCinemaSanctuary'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -706,6 +707,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Agarwood Tea Bespoke Vault Nero Marquina 5 Temp */}
           <SaigonAgarwoodTeaBespokeVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Calocedrus Home Cinema Dolby Atmos 9.4.6 Sanctuary */}
+          <SaigonCalocedrusHomeCinemaSanctuary className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

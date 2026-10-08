@@ -55,6 +55,8 @@ import { ArtisanSunkenKoiAquariumVault } from '@/components/studio/ArtisanSunken
 import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbleSundialGardenVault'
 import { PrivateSaltwaterNanoReefSanctuary } from '@/components/studio/PrivateSaltwaterNanoReefSanctuary'
 import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/ArtisanDamascusSteelChefKnifeAtelier'
+import { ArtisanMotherOfPearlChessPavilion } from '@/components/studio/ArtisanMotherOfPearlChessPavilion'
+import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/ArtisanRiverPebbleAcupressureWalkway'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -260,6 +262,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Damascus Steel Chef Knife 128 Layers Atelier */}
       <ArtisanDamascusSteelChefKnifeAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Mother of Pearl Mun Wood Chess Pavilion */}
+      <ArtisanMotherOfPearlChessPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan River Pebble Acupressure Infrared Walkway */}
+      <ArtisanRiverPebbleAcupressureWalkway className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -101,6 +101,9 @@ import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbl
 import { SaigonAgarwoodTeaBespokeVault } from '@/components/studio/SaigonAgarwoodTeaBespokeVault'
 import { PrivateSaltwaterNanoReefSanctuary } from '@/components/studio/PrivateSaltwaterNanoReefSanctuary'
 import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/ArtisanDamascusSteelChefKnifeAtelier'
+import { SaigonCalocedrusHomeCinemaSanctuary } from '@/components/studio/SaigonCalocedrusHomeCinemaSanctuary'
+import { ArtisanMotherOfPearlChessPavilion } from '@/components/studio/ArtisanMotherOfPearlChessPavilion'
+import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/ArtisanRiverPebbleAcupressureWalkway'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1059,6 +1062,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan damascus steel chef knife 128 layers atelier ------ */}
       <ArtisanDamascusSteelChefKnifeAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon calocedrus home cinema dolby atmos 9.4.6 sanctuary - */}
+      <SaigonCalocedrusHomeCinemaSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan mother of pearl mun wood chess pavilion ----------- */}
+      <ArtisanMotherOfPearlChessPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan river pebble acupressure infrared walkway --------- */}
+      <ArtisanRiverPebbleAcupressureWalkway className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

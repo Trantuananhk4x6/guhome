@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 41,
+  "currentDirectiveIndex": 42,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -318,6 +318,12 @@
       "title": "Bàn Trà Trầm Hương, Bể San Hô Đại Dương & Xưởng Dao Thép Damascus",
       "sentAt": "2026-10-08T15:34:21.617Z",
       "completedAt": "2026-10-08T15:38:15.000Z"
+    },
+    {
+      "directiveId": "dir-39-sprint-41-cinema-chess-pebblewalkway",
+      "title": "Phòng Chiếu Phim Gỗ Bách Xanh, Bàn Cờ Mun Khảm Ốc & Lối Sỏi Bấm Huyệt Tây Nguyên",
+      "sentAt": "2026-10-08T15:38:46.927Z",
+      "completedAt": "2026-10-08T15:42:30.000Z"
     }
   ],
   "lastDispatchedAt": 1791472996786,

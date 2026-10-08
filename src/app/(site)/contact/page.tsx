@@ -42,6 +42,7 @@ import { ArtisanBotanicalCurtainAtelier } from '@/components/tools/ArtisanBotani
 import { PrivateHimalayanSaltCaveWellnessVault } from '@/components/tools/PrivateHimalayanSaltCaveWellnessVault'
 import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbleSundialGardenVault'
 import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/ArtisanDamascusSteelChefKnifeAtelier'
+import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/ArtisanRiverPebbleAcupressureWalkway'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -404,6 +405,9 @@ export default async function ContactPage() {
 
       {/* Artisan Damascus Steel Chef Knife 128 Layers Atelier */}
       <ArtisanDamascusSteelChefKnifeAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan River Pebble Acupressure Infrared Walkway */}
+      <ArtisanRiverPebbleAcupressureWalkway className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

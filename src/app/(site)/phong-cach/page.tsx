@@ -70,6 +70,8 @@ import { SaigonFloatingOrchidAtelier } from '@/components/studio/SaigonFloatingO
 import { ArtisanSunkenKoiAquariumVault } from '@/components/studio/ArtisanSunkenKoiAquariumVault'
 import { SaigonAgarwoodTeaBespokeVault } from '@/components/studio/SaigonAgarwoodTeaBespokeVault'
 import { PrivateSaltwaterNanoReefSanctuary } from '@/components/studio/PrivateSaltwaterNanoReefSanctuary'
+import { SaigonCalocedrusHomeCinemaSanctuary } from '@/components/studio/SaigonCalocedrusHomeCinemaSanctuary'
+import { ArtisanMotherOfPearlChessPavilion } from '@/components/studio/ArtisanMotherOfPearlChessPavilion'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -342,6 +344,12 @@ export default async function StylesPage() {
 
       {/* Private Saltwater Nano Reef Sanctuary 19mm Low-Iron */}
       <PrivateSaltwaterNanoReefSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Calocedrus Home Cinema Dolby Atmos 9.4.6 Sanctuary */}
+      <SaigonCalocedrusHomeCinemaSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Mother of Pearl Mun Wood Chess Pavilion */}
+      <ArtisanMotherOfPearlChessPavilion className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
