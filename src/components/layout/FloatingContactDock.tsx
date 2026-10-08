@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSocialModalStore } from '@/lib/social'
 import { useQuickQuote } from '@/components/layout/QuickQuoteModal'
@@ -24,6 +25,20 @@ export function FloatingContactDock() {
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
             className="flex flex-col items-end gap-2.5"
           >
+            {/* 0. Bóc tách chi phí theo phòng */}
+            <Link
+              href="/du-toan-chi-phi"
+              onClick={() => setIsExpanded(false)}
+              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/90 bg-surface/95 px-4 py-2 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent">
+                Bóc tách chi phí theo phòng
+              </span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-xs font-mono">
+                m²
+              </span>
+            </Link>
+
             {/* 1. Nhận báo giá nhanh */}
             <button
               type="button"

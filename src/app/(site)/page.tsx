@@ -15,6 +15,8 @@ import { QuickConsultFormSection } from '@/components/sections/QuickConsultFormS
 import { TactileMaterialLab } from '@/components/sections/TactileMaterialLab'
 import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
+import { SpatialBudgetCalculator } from '@/components/sections/SpatialBudgetCalculator'
+import { MicroclimateSimulator } from '@/components/sections/MicroclimateSimulator'
 import { getPublishedArticles } from '@/server/queries/articles'
 import { getMediaMap } from '@/server/queries/media'
 import { getProjectBySlug, getPublishedProjects } from '@/server/queries/projects'
@@ -243,11 +245,17 @@ export default async function HomePage() {
                 <BeforeAfterSection />
               </>
             )}
-            {section.key === 'STUDIO' && <MissionVisionSection />}
+            {section.key === 'STUDIO' && (
+              <>
+                <MissionVisionSection />
+                <MicroclimateSimulator />
+              </>
+            )}
             {section.key === 'SERVICES' && (
               <>
                 <WorkflowSection />
                 <TactileMaterialLab />
+                <SpatialBudgetCalculator />
                 <StyleQuizSection />
               </>
             )}
