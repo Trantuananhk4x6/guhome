@@ -68,6 +68,9 @@ import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugS
 import { SaigonBespokeInfinityPoolLab } from '@/components/studio/SaigonBespokeInfinityPoolLab'
 import { HandCarvedStoneFireplaceVault } from '@/components/studio/HandCarvedStoneFireplaceVault'
 import { PrivateYachtBerthAndHelipadConcierge } from '@/components/tools/PrivateYachtBerthAndHelipadConcierge'
+import { SaigonBiophilicGreenWallAtelier } from '@/components/studio/SaigonBiophilicGreenWallAtelier'
+import { ArtisanHandCastBronzeBasinVault } from '@/components/studio/ArtisanHandCastBronzeBasinVault'
+import { MasterArchitecturalDossierArchive } from '@/components/tools/MasterArchitecturalDossierArchive'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -927,6 +930,15 @@ export default async function StudioPage() {
 
       {/* ---------------- private yacht berth & sky helipad concierge -------------- */}
       <PrivateYachtBerthAndHelipadConcierge className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon biophilic vertical green wall hydroponic atelier --- */}
+      <SaigonBiophilicGreenWallAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan hand-carved basalt stone & bronze basin vault ---- */}
+      <ArtisanHandCastBronzeBasinVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- master architectural dossier archive A3 leather folio ---- */}
+      <MasterArchitecturalDossierArchive className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

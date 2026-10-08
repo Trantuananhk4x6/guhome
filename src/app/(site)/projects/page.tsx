@@ -98,6 +98,7 @@ import { SaigonBreezeMicroclimateCurator } from '@/components/studio/SaigonBreez
 import { SaigonMonsoonRainwaterHarvestLab } from '@/components/studio/SaigonMonsoonRainwaterHarvestLab'
 import { SaigonBespokeTeakDeckingPavilion } from '@/components/studio/SaigonBespokeTeakDeckingPavilion'
 import { SaigonBespokeInfinityPoolLab } from '@/components/studio/SaigonBespokeInfinityPoolLab'
+import { SaigonBiophilicGreenWallAtelier } from '@/components/studio/SaigonBiophilicGreenWallAtelier'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -662,6 +663,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Bespoke Infinity Pool Lab Acrylic & Mineral Ion */}
           <SaigonBespokeInfinityPoolLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Biophilic Vertical Green Wall Hydroponic Atelier */}
+          <SaigonBiophilicGreenWallAtelier className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

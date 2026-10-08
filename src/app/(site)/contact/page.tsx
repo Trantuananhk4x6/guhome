@@ -31,6 +31,7 @@ import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhit
 import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchiveVault'
 import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugStudio'
 import { PrivateYachtBerthAndHelipadConcierge } from '@/components/tools/PrivateYachtBerthAndHelipadConcierge'
+import { MasterArchitecturalDossierArchive } from '@/components/tools/MasterArchitecturalDossierArchive'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -360,6 +361,9 @@ export default async function ContactPage() {
 
       {/* Private Yacht Berth & Sky Helipad Concierge */}
       <PrivateYachtBerthAndHelipadConcierge className="mt-[var(--spacing-section)]" />
+
+      {/* Master Architectural Dossier Archive A3 Leather Folio */}
+      <MasterArchitecturalDossierArchive className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -48,6 +48,8 @@ import { SaigonBespokeTeakDeckingPavilion } from '@/components/studio/SaigonBesp
 import { BespokeAcousticHomeCinemaLab } from '@/components/studio/BespokeAcousticHomeCinemaLab'
 import { SaigonBespokeInfinityPoolLab } from '@/components/studio/SaigonBespokeInfinityPoolLab'
 import { HandCarvedStoneFireplaceVault } from '@/components/studio/HandCarvedStoneFireplaceVault'
+import { SaigonBiophilicGreenWallAtelier } from '@/components/studio/SaigonBiophilicGreenWallAtelier'
+import { ArtisanHandCastBronzeBasinVault } from '@/components/studio/ArtisanHandCastBronzeBasinVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -254,6 +256,12 @@ export default async function StylesPage() {
 
       {/* Hand-carved Stone Fireplace Vault 3D Mist & Agarwood */}
       <HandCarvedStoneFireplaceVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Biophilic Vertical Green Wall Hydroponic Atelier */}
+      <SaigonBiophilicGreenWallAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Hand-carved Basalt Stone & Bronze Basin Vault */}
+      <ArtisanHandCastBronzeBasinVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

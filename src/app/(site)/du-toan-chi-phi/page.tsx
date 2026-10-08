@@ -33,6 +33,8 @@ import { BespokeAcousticHomeCinemaLab } from '@/components/studio/BespokeAcousti
 import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugStudio'
 import { HandCarvedStoneFireplaceVault } from '@/components/studio/HandCarvedStoneFireplaceVault'
 import { PrivateYachtBerthAndHelipadConcierge } from '@/components/tools/PrivateYachtBerthAndHelipadConcierge'
+import { ArtisanHandCastBronzeBasinVault } from '@/components/studio/ArtisanHandCastBronzeBasinVault'
+import { MasterArchitecturalDossierArchive } from '@/components/tools/MasterArchitecturalDossierArchive'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -172,6 +174,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Private Yacht Berth & Sky Helipad Concierge */}
       <PrivateYachtBerthAndHelipadConcierge className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Hand-carved Basalt Stone & Bronze Basin Vault */}
+      <ArtisanHandCastBronzeBasinVault className="mt-[var(--spacing-section)]" />
+
+      {/* Master Architectural Dossier Archive A3 Leather Folio */}
+      <MasterArchitecturalDossierArchive className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

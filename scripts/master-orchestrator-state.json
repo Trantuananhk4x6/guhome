@@ -252,13 +252,19 @@
       "title": "Hồ Bơi Vô Cực Điện Phân Nước Mặn, Lò Sưởi Hơi Nước Đá Khối & Bến Du Thuyền Ven Sông",
       "sentAt": "2026-10-08T14:52:37.433Z",
       "completedAt": "2026-10-08T14:55:50.000Z"
+    },
+    {
+      "directiveId": "dir-28-sprint-30-greenwall-stonebasin-dossier",
+      "title": "Vườn Tường Đứng Thủy Canh, Bồn Tắm Đá Khối & Hồ Sơ Hoàn Công Bìa Da A3",
+      "sentAt": "2026-10-08T14:56:30.890Z",
+      "completedAt": "2026-10-08T15:00:25.000Z"
     }
   ],
-  "lastDispatchedAt": 1791471157434,
+  "lastDispatchedAt": 1791471390891,
   "activeDirective": {
-    "directiveId": "dir-27-sprint-29-pool-fireplace-yacht",
-    "title": "Hồ Bơi Vô Cực Điện Phân Nước Mặn, Lò Sưởi Hơi Nước Đá Khối & Bến Du Thuyền Ven Sông",
-    "sentAt": "2026-10-08T14:52:37.433Z",
+    "directiveId": "dir-28-sprint-30-greenwall-stonebasin-dossier",
+    "title": "Vườn Tường Đứng Thủy Canh, Bồn Tắm Đá Khối & Hồ Sơ Hoàn Công Bìa Da A3",
+    "sentAt": "2026-10-08T14:56:30.890Z",
     "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
   }
 }
