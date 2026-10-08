@@ -166,6 +166,9 @@ import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier } from '@/
 import { SaigonCanalSideAncientSandalwoodTeaPavilion } from '@/components/studio/SaigonCanalSideAncientSandalwoodTeaPavilion'
 import { BespokeImperialKynamAndGoldInlaidTeaChestVault } from '@/components/studio/BespokeImperialKynamAndGoldInlaidTeaChestVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyWaterDropperAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyWaterDropperAtelier'
+import { SaigonCanalSideAncientHingedTeakLouverTeaPavilion } from '@/components/studio/SaigonCanalSideAncientHingedTeakLouverTeaPavilion'
+import { BespokeImperialKynamAndGoldLeafScentCasketVault } from '@/components/studio/BespokeImperialKynamAndGoldLeafScentCasketVault'
+import { ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyRulerAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyRulerAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -705,6 +708,15 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Gold Filigree & Jade Water Dropper Atelier */}
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyWaterDropperAtelier />
+
+      {/* Saigon Canal Side Ancient Hinged Teak Louver Tea Pavilion */}
+      <SaigonCanalSideAncientHingedTeakLouverTeaPavilion />
+
+      {/* Bespoke Imperial Kynam & Gold Leaf Scent Casket Vault */}
+      <BespokeImperialKynamAndGoldLeafScentCasketVault />
+
+      {/* Artisan Gold Filigree & Rosewood Ruler Atelier */}
+      <ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyRulerAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

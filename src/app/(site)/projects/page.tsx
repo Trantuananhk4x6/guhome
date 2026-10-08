@@ -181,6 +181,9 @@ import { ArtisanHandmadeGoldFiligreeAndOnyxCalligraphyInkstoneAtelier } from '@/
 import { SaigonCanalSideAncientSandalwoodTeaPavilion } from '@/components/studio/SaigonCanalSideAncientSandalwoodTeaPavilion'
 import { BespokeImperialKynamAndGoldInlaidTeaChestVault } from '@/components/studio/BespokeImperialKynamAndGoldInlaidTeaChestVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyWaterDropperAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyWaterDropperAtelier'
+import { SaigonCanalSideAncientHingedTeakLouverTeaPavilion } from '@/components/studio/SaigonCanalSideAncientHingedTeakLouverTeaPavilion'
+import { BespokeImperialKynamAndGoldLeafScentCasketVault } from '@/components/studio/BespokeImperialKynamAndGoldLeafScentCasketVault'
+import { ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyRulerAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyRulerAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -995,6 +998,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Artisan Gold Filigree & Jade Water Dropper Atelier */}
           <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyWaterDropperAtelier />
+
+          {/* Saigon Canal Side Ancient Hinged Teak Louver Tea Pavilion */}
+          <SaigonCanalSideAncientHingedTeakLouverTeaPavilion />
+
+          {/* Bespoke Imperial Kynam & Gold Leaf Scent Casket Vault */}
+          <BespokeImperialKynamAndGoldLeafScentCasketVault />
+
+          {/* Artisan Gold Filigree & Rosewood Ruler Atelier */}
+          <ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyRulerAtelier />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
