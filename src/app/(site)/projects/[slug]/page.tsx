@@ -13,6 +13,7 @@ import { notFound } from 'next/navigation'
 import { ProjectAnalytics } from '@/components/projects/ProjectAnalytics'
 import { ProjectBlocks } from '@/components/projects/ProjectBlocks'
 import { ProjectBlueprintSection } from '@/components/projects/ProjectBlueprintSection'
+import { SpatialPanoramaViewer } from '@/components/projects/SpatialPanoramaViewer'
 import { buildBreadcrumbJsonLd, buildMetadata, buildProjectJsonLd, jsonLdScript } from '@/lib/seo'
 import { getMediaById } from '@/server/queries/media'
 import { getAllProjectSlugs, getProjectBySlug } from '@/server/queries/projects'
@@ -89,6 +90,7 @@ export default async function ProjectPage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(graph) }} />
       <ProjectAnalytics projectId={project.id} slug={project.slug} />
       <ProjectBlocks project={project} />
+      <SpatialPanoramaViewer project={project} />
       <ProjectBlueprintSection project={project} />
     </div>
   )

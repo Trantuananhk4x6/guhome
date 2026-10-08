@@ -19,6 +19,8 @@ const ROUTES_TO_TEST = [
   { path: '/phong-cach/wabi-sabi', label: 'Chi tiết phong cách Wabi-Sabi' },
   { path: '/contact', label: 'Liên hệ & Bản đồ' },
   { path: '/du-toan-chi-phi', label: 'Dự toán chi phí may đo bóc tách' },
+  { path: '/khu-vuc', label: 'Tâm điểm bất động sản & vi khí hậu' },
+  { path: '/khu-vuc/thu-thiem', label: 'Chi tiết khu vực Bán Đảo Thủ Thiêm' },
   { path: '/styles', label: 'Redirect /styles -> /phong-cach' }
 ]
 

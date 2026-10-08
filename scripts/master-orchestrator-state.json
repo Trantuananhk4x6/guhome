@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 5,
+  "currentDirectiveIndex": 7,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -30,7 +30,21 @@
       "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
       "sentAt": "2026-10-08T13:04:56.789Z",
       "atStep": 805
+    },
+    {
+      "directiveId": "dir-6-sprint-8-lookbook-blueprint-geo",
+      "title": "Bộ sưu tập Lookbook 2026, Bản vẽ Blueprint tương tác & Saigon Local Entity GEO",
+      "sentAt": "2026-10-08T13:05:30.000Z",
+      "atStep": 922,
+      "commit": "85093d3",
+      "result": "100% routes passed, 148 static & dynamic pages built"
     }
   ],
-  "lastDispatchedAt": 1791464696789
+  "activeDirective": {
+    "directiveId": "dir-7-sprint-9-virtual-tour-soundscape-districts",
+    "title": "360 Spatial Panorama Virtual Tour, Quiet Luxury Sensory Soundscape & Saigon District Real Estate Hubs",
+    "sentAt": "2026-10-08T13:10:25.000Z",
+    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
+  },
+  "lastDispatchedAt": 1791465025000
 }

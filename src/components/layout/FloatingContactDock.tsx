@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useSocialModalStore } from '@/lib/social'
 import { useQuickQuote } from '@/components/layout/QuickQuoteModal'
 import { ArrowUpRightIcon, CheckIcon, CloseIcon } from '@/components/ui/icons'
+import { SensorySoundscape } from '@/components/ui/SensorySoundscape'
 import { cn } from '@/lib/utils'
 
 export function FloatingContactDock() {
@@ -104,29 +105,34 @@ export function FloatingContactDock() {
         )}
       </AnimatePresence>
 
-      {/* Main Floating Trigger Button */}
-      <button
-        type="button"
-        onClick={() => setIsExpanded((prev) => !prev)}
-        aria-label={isExpanded ? 'Đóng menu kết nối' : 'Mở menu kết nối nhanh cùng GuHomes'}
-        className={cn(
-          'relative flex h-14 items-center gap-3 rounded-full border px-5 shadow-2xl transition-all duration-500 ease-editorial',
-          isExpanded
-            ? 'border-accent bg-espresso text-canvas shadow-accent/20'
-            : 'border-accent/40 bg-espresso/95 text-canvas hover:border-accent hover:bg-espresso hover:scale-105 backdrop-blur-md',
-        )}
-      >
-        <span className="relative flex h-3 w-3">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-          <span className="relative inline-flex h-3 w-3 rounded-full bg-accent" />
-        </span>
-        <span className="font-display text-[0.9375rem] font-medium tracking-wide">
-          {isExpanded ? 'Đóng' : 'Liên hệ & QR'}
-        </span>
-        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-canvas/10 text-xs font-mono">
-          {isExpanded ? '✕' : '💬'}
-        </span>
-      </button>
+      {/* Floating Action Row: Sensory Soundscape + Main Trigger */}
+      <div className="flex items-center gap-2">
+        <SensorySoundscape />
+
+        {/* Main Floating Trigger Button */}
+        <button
+          type="button"
+          onClick={() => setIsExpanded((prev) => !prev)}
+          aria-label={isExpanded ? 'Đóng menu kết nối' : 'Mở menu kết nối nhanh cùng GuHomes'}
+          className={cn(
+            'relative flex h-14 items-center gap-3 rounded-full border px-5 shadow-2xl transition-all duration-500 ease-editorial shrink-0',
+            isExpanded
+              ? 'border-accent bg-espresso text-canvas shadow-accent/20'
+              : 'border-accent/40 bg-espresso/95 text-canvas hover:border-accent hover:bg-espresso hover:scale-105 backdrop-blur-md',
+          )}
+        >
+          <span className="relative flex h-3 w-3">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+            <span className="relative inline-flex h-3 w-3 rounded-full bg-accent" />
+          </span>
+          <span className="font-display text-[0.9375rem] font-medium tracking-wide">
+            {isExpanded ? 'Đóng' : 'Liên hệ & QR'}
+          </span>
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-canvas/10 text-xs font-mono">
+            {isExpanded ? '✕' : '💬'}
+          </span>
+        </button>
+      </div>
     </aside>
   )
 }
