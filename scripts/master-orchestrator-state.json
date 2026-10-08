@@ -360,7 +360,27 @@
       "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
       "sentAt": "2026-10-08T17:57:35.169Z",
       "atStep": 7319
+    },
+    {
+      "directiveId": "dir-63-sprint-65-oud-mineralpool-zisha",
+      "title": "Phòng Đàn Oud Hoàng Đàn, Hồ Khoáng Núi Lửa Nước Mặn & Ấm Tử Sa Đoạn Nê",
+      "completedAt": "2026-10-08T17:53:46.000Z",
+      "status": "COMPLETED_100_PERCENT",
+      "commitMessage": "feat(sprint-65): add SaigonAcousticOudSanctuarySalon, SaigonVolcanicSlateMineralPoolPavilion, and ArtisanDuanniZishaTeapotAtelier with 100% SEO pass"
+    },
+    {
+      "directiveId": "dir-64-sprint-66-klongput-skyjungle-rattanwine",
+      "title": "Phòng Đàn Klong Pút Tre Lồ Ô, Vườn Sky Jungle & Bộ Rượu Cần Mây Tre",
+      "completedAt": "2026-10-08T17:58:06.000Z",
+      "status": "COMPLETED_100_PERCENT",
+      "commitMessage": "feat(sprint-66): add SaigonAcousticKlongPutSanctuaryPavilion, SaigonSkyJungleBiofilterConservatory, and ArtisanRattanSilverWineSetVault with 100% SEO pass"
     }
   ],
-  "lastDispatchedAt": 1791482255169
+  "lastDispatchedAt": 1791482296000,
+  "activeDirective": {
+    "directiveId": "dir-65-sprint-67-yangqin-ecopool-hoangdantray",
+    "title": "Phòng Tam Thập Lục Gỗ Hương, Hồ Bơi Sinh Thái & Khay Trà Hoàng Đàn",
+    "sentAt": "2026-10-08T17:58:16.000Z",
+    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
+  }
 }
