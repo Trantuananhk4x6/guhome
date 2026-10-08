@@ -96,6 +96,8 @@ import { SaigonAcousticFluteSanctuaryPavilion } from '@/components/studio/Saigon
 import { SaigonArtisanBespokeLoomSilkPavilion } from '@/components/studio/SaigonArtisanBespokeLoomSilkPavilion'
 import { SaigonAcousticKotoSanctuarySalon } from '@/components/studio/SaigonAcousticKotoSanctuarySalon'
 import { SaigonRiversideTeaRoastingAtelier } from '@/components/studio/SaigonRiversideTeaRoastingAtelier'
+import { SaigonAcousticGuqinSanctuaryPavilion } from '@/components/studio/SaigonAcousticGuqinSanctuaryPavilion'
+import { SaigonRiversideHerbalSteamPavilion } from '@/components/studio/SaigonRiversideHerbalSteamPavilion'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -446,6 +448,12 @@ export default async function StylesPage() {
 
       {/* Saigon Riverside Tea Roasting Atelier */}
       <SaigonRiversideTeaRoastingAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Guqin Sanctuary Pavilion */}
+      <SaigonAcousticGuqinSanctuaryPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Riverside Herbal Steam Pavilion */}
+      <SaigonRiversideHerbalSteamPavilion className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

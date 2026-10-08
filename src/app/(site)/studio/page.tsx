@@ -140,6 +140,9 @@ import { ArtisanBronzeWindGongSanctuaryAtelier } from '@/components/tools/Artisa
 import { SaigonAcousticKotoSanctuarySalon } from '@/components/studio/SaigonAcousticKotoSanctuarySalon'
 import { SaigonRiversideTeaRoastingAtelier } from '@/components/studio/SaigonRiversideTeaRoastingAtelier'
 import { ArtisanBronzeIncenseSealSanctuary } from '@/components/tools/ArtisanBronzeIncenseSealSanctuary'
+import { SaigonAcousticGuqinSanctuaryPavilion } from '@/components/studio/SaigonAcousticGuqinSanctuaryPavilion'
+import { SaigonRiversideHerbalSteamPavilion } from '@/components/studio/SaigonRiversideHerbalSteamPavilion'
+import { ArtisanBronzeIncenseFurnaceVault } from '@/components/tools/ArtisanBronzeIncenseFurnaceVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1215,6 +1218,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan bronze incense seal sanctuary ------------------- */}
       <ArtisanBronzeIncenseSealSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon acoustic guqin sanctuary pavilion ---------------- */}
+      <SaigonAcousticGuqinSanctuaryPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon riverside herbal steam pavilion ------------------- */}
+      <SaigonRiversideHerbalSteamPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan bronze incense furnace vault -------------------- */}
+      <ArtisanBronzeIncenseFurnaceVault className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

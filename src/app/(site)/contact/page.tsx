@@ -55,6 +55,7 @@ import { ArtisanGoldLeafTeaCanisterAtelier } from '@/components/tools/ArtisanGol
 import { ArtisanBespokeSilverCutleryVault } from '@/components/tools/ArtisanBespokeSilverCutleryVault'
 import { ArtisanBronzeWindGongSanctuaryAtelier } from '@/components/tools/ArtisanBronzeWindGongSanctuaryAtelier'
 import { ArtisanBronzeIncenseSealSanctuary } from '@/components/tools/ArtisanBronzeIncenseSealSanctuary'
+import { ArtisanBronzeIncenseFurnaceVault } from '@/components/tools/ArtisanBronzeIncenseFurnaceVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -456,6 +457,9 @@ export default async function ContactPage() {
 
       {/* Artisan Bronze Incense Seal Sanctuary */}
       <ArtisanBronzeIncenseSealSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bronze Incense Furnace Vault */}
+      <ArtisanBronzeIncenseFurnaceVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
