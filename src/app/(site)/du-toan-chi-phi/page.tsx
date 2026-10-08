@@ -93,6 +93,8 @@ import { ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary } from '@/component
 import { ArtisanHandmadeHornAndTortoiseshellCombAtelier } from '@/components/tools/ArtisanHandmadeHornAndTortoiseshellCombAtelier'
 import { ArtisanSaigonMonolithicBasaltOutdoorPlungePool } from '@/components/studio/ArtisanSaigonMonolithicBasaltOutdoorPlungePool'
 import { ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier } from '@/components/tools/ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier'
+import { ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary } from '@/components/studio/ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary'
+import { ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier } from '@/components/tools/ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -412,6 +414,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Handmade Lacquer And Silver Inlay Brush Set Atelier */}
       <ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Saigon Monolithic Petrified Wood Tea Table Sanctuary */}
+      <ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Handmade Bronze Chau Gong And Singing Bowl Atelier */}
+      <ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 44,
+  "currentDirectiveIndex": 45,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -266,41 +266,17 @@
       "atStep": 5766
     },
     {
-      "directiveId": "dir-52-sprint-54-guqin-steam-furnace",
-      "title": "Sprint 54: Phòng tĩnh tâm Cổ Cầm gỗ Ngô Đồng, Phòng xông hơi thảo dược đá Viola & Đỉnh đồng tam khí hoàng gia",
-      "sentAt": "2026-10-08T16:51:00.000Z",
-      "atStep": 6000
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-08T17:17:42.945Z",
+      "atStep": 6461
     },
     {
-      "directiveId": "dir-53-sprint-55-clavecin-giadinhkiln-damascuscleaver",
-      "title": "Sprint 55: Phòng Clavecin Baroque, Sân Gốm Gia Định & Dao Chặt Damascus Thớt Nghiến",
-      "sentAt": "2026-10-08T16:52:06.718Z",
-      "atStep": 6100
-    },
-    {
-      "directiveId": "dir-54-sprint-56-harp-ancientbrick-silverteapot",
-      "title": "Sprint 56: Phòng Đàn Hạc Giao Hưởng, Đình Trà Gạch Cổ Bến Nghé & Ấm Trà Bạc Chạm Lộng",
-      "sentAt": "2026-10-08T16:55:17.415Z",
-      "atStep": 6200
-    },
-    {
-      "directiveId": "dir-55-sprint-57-pipeorgan-boatwood-goldfiligree",
-      "title": "Sprint 57: Điện Thính Phòng Đại Phong Cầm Pipe Organ, Nghệ Thuật Gỗ Thuyền Cổ Sài Gòn & Tráp Đậu Bạc Thếp Vàng Định Công",
-      "sentAt": "2026-10-08T17:00:00.000Z",
-      "atStep": 6300
-    },
-    {
-      "directiveId": "dir-56-sprint-58-cimbalom-granitewater-horncomb",
-      "title": "Sprint 58: Thính Phòng Đàn Tam Thập Lục & Đàn Đáy, Đài Phun Nước Đá Granite Nguyên Khối & Xưởng Chế Tác Lược Sừng Đồi Mồi Thụy Ứng",
-      "sentAt": "2026-10-08T17:05:00.000Z",
-      "atStep": 6400
-    },
-    {
-      "directiveId": "dir-57-sprint-59-lithophone-basaltplunge-lacquerbrush",
-      "title": "Sprint 59: Phòng Đàn Đá Tây Nguyên, Bể Ngâm Đá Bazan Cột & Bút Lông Cẩn Bạc",
-      "sentAt": "2026-10-08T17:09:03.477Z",
-      "atStep": 6500
+      "directiveId": "dir-58-sprint-60-glassarmonica-petrifiedwood-singingbowl",
+      "title": "Sprint 60: Đàn Kính Pha Lê, Bàn Trà Gỗ Hóa Thạch & Chuông Xoay 528Hz",
+      "sentAt": "2026-10-08T17:15:00.000Z",
+      "atStep": 6600
     }
   ],
-  "lastDispatchedAt": 1791479550000
+  "lastDispatchedAt": 1791479862945
 }
