@@ -12,6 +12,7 @@ import { RiverBreezeAerodynamicsLab } from '@/components/studio/RiverBreezeAerod
 import { NaturalStoneQuarryAtlas } from '@/components/studio/NaturalStoneQuarryAtlas'
 import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
 import { TropicalBonsaiEcologyLab } from '@/components/studio/TropicalBonsaiEcologyLab'
+import { SaigonBreezeMicroclimateCurator } from '@/components/studio/SaigonBreezeMicroclimateCurator'
 
 export const revalidate = 3600
 
@@ -193,6 +194,11 @@ export default function SaigonDistrictsPage() {
         {/* Biophilic Tropical Bonsai & Ecology Lab */}
         <div className="mt-16">
           <TropicalBonsaiEcologyLab className="rounded-3xl border border-line" />
+        </div>
+
+        {/* Saigon River Breeze Microclimate Curator */}
+        <div className="mt-16">
+          <SaigonBreezeMicroclimateCurator className="rounded-3xl border border-line" />
         </div>
 
         {/* Bottom Editorial Callout */}

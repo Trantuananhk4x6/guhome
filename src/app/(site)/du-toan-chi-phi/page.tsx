@@ -26,6 +26,7 @@ import { PatinaMetalworkArtisanLab } from '@/components/studio/PatinaMetalworkAr
 import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudit'
 import { BespokeWalkInWardrobeVault } from '@/components/studio/BespokeWalkInWardrobeVault'
 import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPassport'
+import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhiteGloveMovingAudit'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -144,6 +145,9 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Craftsman Passport NFC Provenance */}
       <ArtisanCraftsmanPassport className="mt-[var(--spacing-section)]" />
+
+      {/* Concierge White-Glove Moving & Installation Audit */}
+      <ConciergeWhiteGloveMovingAudit className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

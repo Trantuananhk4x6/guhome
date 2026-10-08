@@ -93,6 +93,8 @@ import { SommelierWineCigarVault } from '@/components/studio/SommelierWineCigarV
 import { AcousticSanctuaryMasterSuite } from '@/components/studio/AcousticSanctuaryMasterSuite'
 import { SaigonCourtyardAtriumLab } from '@/components/studio/SaigonCourtyardAtriumLab'
 import { BespokeWalkInWardrobeVault } from '@/components/studio/BespokeWalkInWardrobeVault'
+import { ArtisanBespokeJoineryVault } from '@/components/studio/ArtisanBespokeJoineryVault'
+import { SaigonBreezeMicroclimateCurator } from '@/components/studio/SaigonBreezeMicroclimateCurator'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -642,6 +644,12 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Bespoke Walk-in Wardrobe Vault Agarwood */}
           <BespokeWalkInWardrobeVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Artisan Bespoke Timber Joinery Vault */}
+          <ArtisanBespokeJoineryVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Breeze River Microclimate Curator */}
+          <SaigonBreezeMicroclimateCurator className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

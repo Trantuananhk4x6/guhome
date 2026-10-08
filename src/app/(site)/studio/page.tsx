@@ -56,6 +56,9 @@ import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudi
 import { SaigonCourtyardAtriumLab } from '@/components/studio/SaigonCourtyardAtriumLab'
 import { BespokeWalkInWardrobeVault } from '@/components/studio/BespokeWalkInWardrobeVault'
 import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPassport'
+import { ArtisanBespokeJoineryVault } from '@/components/studio/ArtisanBespokeJoineryVault'
+import { SaigonBreezeMicroclimateCurator } from '@/components/studio/SaigonBreezeMicroclimateCurator'
+import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhiteGloveMovingAudit'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -879,6 +882,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan craftsman passport NFC provenance --------------- */}
       <ArtisanCraftsmanPassport className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan bespoke timber joinery vault -------------------- */}
+      <ArtisanBespokeJoineryVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon breeze river microclimate curator ---------------- */}
+      <SaigonBreezeMicroclimateCurator className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- concierge white-glove relocation audit ------------------- */}
+      <ConciergeWhiteGloveMovingAudit className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

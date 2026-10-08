@@ -41,6 +41,7 @@ import { ArtisanLimePlasterLab } from '@/components/studio/ArtisanLimePlasterLab
 import { AcousticSanctuaryMasterSuite } from '@/components/studio/AcousticSanctuaryMasterSuite'
 import { PatinaMetalworkArtisanLab } from '@/components/studio/PatinaMetalworkArtisanLab'
 import { SaigonCourtyardAtriumLab } from '@/components/studio/SaigonCourtyardAtriumLab'
+import { ArtisanBespokeJoineryVault } from '@/components/studio/ArtisanBespokeJoineryVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -226,6 +227,9 @@ export default async function StylesPage() {
 
       {/* Saigon Courtyard Atrium Aerodynamic Lab */}
       <SaigonCourtyardAtriumLab className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Bespoke Timber Joinery Vault */}
+      <ArtisanBespokeJoineryVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -27,6 +27,7 @@ import { BespokeTimberCareVault } from '@/components/tools/BespokeTimberCareVaul
 import { LeadArchitectPrivateSession } from '@/components/consultation/LeadArchitectPrivateSession'
 import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudit'
 import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPassport'
+import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhiteGloveMovingAudit'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -344,6 +345,9 @@ export default async function ContactPage() {
 
       {/* Artisan Craftsman Passport NFC Provenance */}
       <ArtisanCraftsmanPassport className="mt-[var(--spacing-section)]" />
+
+      {/* Concierge White-Glove Moving & Installation Audit */}
+      <ConciergeWhiteGloveMovingAudit className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
