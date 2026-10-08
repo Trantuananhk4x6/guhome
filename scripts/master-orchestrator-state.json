@@ -98,5 +98,11 @@
       "atStep": 2400
     }
   ],
-  "lastDispatchedAt": 1791468875000
+  "lastDispatchedAt": 1791469087186,
+  "activeDirective": {
+    "directiveId": "dir-19-sprint-21-tea-island-cashflow",
+    "title": "Phòng Thưởng Trà Tịnh Tâm, Kỹ Nghệ Đảo Bếp Khối Đá Chef Island & Bảng Tiến Độ Dòng Tiền 6 Đợt Minh Bạch",
+    "sentAt": "2026-10-08T14:18:07.185Z",
+    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
+  }
 }
