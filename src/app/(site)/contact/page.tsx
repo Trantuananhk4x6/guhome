@@ -51,6 +51,7 @@ import { ArtisanJapaneseTatamiChashitsuTeaAtelier } from '@/components/tools/Art
 import { ArtisanGoldLeafCalligraphyCabinetryAtelier } from '@/components/tools/ArtisanGoldLeafCalligraphyCabinetryAtelier'
 import { ArtisanBronzeIncenseBurnerAtelier } from '@/components/tools/ArtisanBronzeIncenseBurnerAtelier'
 import { ArtisanHandmadeTerracottaPlanterAtelier } from '@/components/tools/ArtisanHandmadeTerracottaPlanterAtelier'
+import { ArtisanGoldLeafTeaCanisterAtelier } from '@/components/tools/ArtisanGoldLeafTeaCanisterAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -440,6 +441,9 @@ export default async function ContactPage() {
 
       {/* Artisan Handmade Terracotta Planter Atelier */}
       <ArtisanHandmadeTerracottaPlanterAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Gold Leaf Tea Canister Atelier */}
+      <ArtisanGoldLeafTeaCanisterAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

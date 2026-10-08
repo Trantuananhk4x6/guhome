@@ -118,6 +118,7 @@ import { SaigonStarlightFiberOpticCeilingVault } from '@/components/studio/Saigo
 import { SaigonAcousticCelloListeningVault } from '@/components/studio/SaigonAcousticCelloListeningVault'
 import { SaigonArtisanBespokeParfumVault } from '@/components/studio/SaigonArtisanBespokeParfumVault'
 import { SaigonStainedGlassTerrariumConservatory } from '@/components/studio/SaigonStainedGlassTerrariumConservatory'
+import { SaigonAstronomyObservatoryRetractableDomeVault } from '@/components/studio/SaigonAstronomyObservatoryRetractableDomeVault'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -742,6 +743,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Stained Glass Terrarium Conservatory */}
           <SaigonStainedGlassTerrariumConservatory className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Astronomy Observatory Retractable Dome Vault */}
+          <SaigonAstronomyObservatoryRetractableDomeVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

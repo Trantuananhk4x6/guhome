@@ -282,8 +282,14 @@
       "title": "Nhà Kính Kiểng Lá Nhiệt Đới, Mâm Đĩa Than Đệm Từ Trường & Chậu Gốm Phù Sa",
       "sentAt": "2026-10-08T16:17:29.454Z",
       "completedAt": "2026-10-08T16:22:20.000Z"
+    },
+    {
+      "directiveId": "dir-48-sprint-50-observatory-harp-teacanister",
+      "title": "Đài Thiên Văn Mái Kính, Phòng Đàn Hạc Mạ Vàng & Hũ Trà Đồng Dát Vàng",
+      "sentAt": "2026-10-08T16:23:08.283Z",
+      "completedAt": "2026-10-08T16:29:10.000Z"
     }
   ],
-  "lastDispatchedAt": 1791476540000,
+  "lastDispatchedAt": 1791476950000,
   "activeDirective": null
 }

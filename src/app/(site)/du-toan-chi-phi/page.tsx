@@ -73,6 +73,8 @@ import { SaigonFloatingInfinityDaybedPavilion } from '@/components/studio/Saigon
 import { ArtisanBronzeIncenseBurnerAtelier } from '@/components/tools/ArtisanBronzeIncenseBurnerAtelier'
 import { SaigonBespokeAudiophileTurntableVault } from '@/components/studio/SaigonBespokeAudiophileTurntableVault'
 import { ArtisanHandmadeTerracottaPlanterAtelier } from '@/components/tools/ArtisanHandmadeTerracottaPlanterAtelier'
+import { SaigonAcousticHarpSanctuarySalon } from '@/components/studio/SaigonAcousticHarpSanctuarySalon'
+import { ArtisanGoldLeafTeaCanisterAtelier } from '@/components/tools/ArtisanGoldLeafTeaCanisterAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -332,6 +334,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Handmade Terracotta Planter Atelier */}
       <ArtisanHandmadeTerracottaPlanterAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Harp Sanctuary Salon */}
+      <SaigonAcousticHarpSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Gold Leaf Tea Canister Atelier */}
+      <ArtisanGoldLeafTeaCanisterAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

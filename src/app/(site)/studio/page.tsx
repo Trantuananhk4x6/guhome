@@ -128,6 +128,9 @@ import { ArtisanBronzeIncenseBurnerAtelier } from '@/components/tools/ArtisanBro
 import { SaigonStainedGlassTerrariumConservatory } from '@/components/studio/SaigonStainedGlassTerrariumConservatory'
 import { SaigonBespokeAudiophileTurntableVault } from '@/components/studio/SaigonBespokeAudiophileTurntableVault'
 import { ArtisanHandmadeTerracottaPlanterAtelier } from '@/components/tools/ArtisanHandmadeTerracottaPlanterAtelier'
+import { SaigonAstronomyObservatoryRetractableDomeVault } from '@/components/studio/SaigonAstronomyObservatoryRetractableDomeVault'
+import { SaigonAcousticHarpSanctuarySalon } from '@/components/studio/SaigonAcousticHarpSanctuarySalon'
+import { ArtisanGoldLeafTeaCanisterAtelier } from '@/components/tools/ArtisanGoldLeafTeaCanisterAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1167,6 +1170,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan handmade terracotta planter atelier -------------- */}
       <ArtisanHandmadeTerracottaPlanterAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon astronomy observatory retractable dome vault ------ */}
+      <SaigonAstronomyObservatoryRetractableDomeVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon acoustic harp sanctuary salon --------------------- */}
+      <SaigonAcousticHarpSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan gold leaf tea canister atelier ------------------- */}
+      <ArtisanGoldLeafTeaCanisterAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

@@ -88,6 +88,8 @@ import { SaigonArtisanBespokeParfumVault } from '@/components/studio/SaigonArtis
 import { SaigonFloatingInfinityDaybedPavilion } from '@/components/studio/SaigonFloatingInfinityDaybedPavilion'
 import { SaigonStainedGlassTerrariumConservatory } from '@/components/studio/SaigonStainedGlassTerrariumConservatory'
 import { SaigonBespokeAudiophileTurntableVault } from '@/components/studio/SaigonBespokeAudiophileTurntableVault'
+import { SaigonAstronomyObservatoryRetractableDomeVault } from '@/components/studio/SaigonAstronomyObservatoryRetractableDomeVault'
+import { SaigonAcousticHarpSanctuarySalon } from '@/components/studio/SaigonAcousticHarpSanctuarySalon'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -414,6 +416,12 @@ export default async function StylesPage() {
 
       {/* Saigon Bespoke Audiophile Turntable Basalt Vault */}
       <SaigonBespokeAudiophileTurntableVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Astronomy Observatory Retractable Dome Vault */}
+      <SaigonAstronomyObservatoryRetractableDomeVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Harp Sanctuary Salon */}
+      <SaigonAcousticHarpSanctuarySalon className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
