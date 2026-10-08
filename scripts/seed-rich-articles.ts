@@ -2,7 +2,7 @@ import { config } from 'dotenv'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { eq, inArray } from 'drizzle-orm'
-import type { RichTextDoc } from '../src/types/content'
+import type { RichTextDoc, RichTextNode } from '../src/types/content'
 
 interface ArticleSeedItem {
   slug: string
@@ -19,7 +19,9 @@ interface ArticleSeedItem {
     title: string
     description: string
   }
-  content: RichTextDoc
+  content: {
+    nodes: RichTextNode[]
+  }
 }
 
 const here = dirname(fileURLToPath(import.meta.url))
@@ -101,7 +103,7 @@ async function run() {
           {
             type: 'image',
             mediaId: '631e4c9d-bfa9-45e6-beb6-adc3e4bf883a',
-            caption: 'Phối cảnh 3D không gian phòng khách thông tầng Penthouse The Opera Metropole — ánh sáng tự nhiên giao hòa cùng vật liệu đá mộc.',
+            caption: 'Phối cảnh 3D không gian phòng khách thông tầng Penthouse The Opera Metropole - ánh sáng tự nhiên giao hòa cùng vật liệu đá mộc.',
           },
           {
             type: 'heading',
@@ -110,7 +112,7 @@ async function run() {
           },
           {
             type: 'paragraph',
-            text: 'Thay vì lạm dụng kim loại bóng bẩy hay các chi tiết phào chỉ rườm rà, GuHomes chọn ngôn ngữ "Quiet Luxury" — sự sang trọng thầm lặng được thể hiện qua xúc giác và chất lượng gia công đỉnh cao:',
+            text: 'Thay vì lạm dụng kim loại bóng bẩy hay các chi tiết phào chỉ rườm rà, GuHomes chọn ngôn ngữ "Quiet Luxury" - sự sang trọng thầm lặng được thể hiện qua xúc giác và chất lượng gia công đỉnh cao:',
           },
           {
             type: 'list',
@@ -175,12 +177,12 @@ async function run() {
           },
           {
             type: 'paragraph',
-            text: 'Khoảng thông tầng cao gần 6 mét được thiết kế như một giếng sáng trung tâm. Ánh nắng ban mai đi qua hệ lam gỗ sồi, đổ những vệt bóng dài trên nền sàn vi xi măng mài bóng mờ. Vào mỗi thời khắc trong ngày — từ bình minh trong trẻo, buổi trưa rực rỡ đến hoàng hôn màu mật ong — căn phòng như một bức tranh sống động chuyển mình theo tự nhiên.',
+            text: 'Khoảng thông tầng cao gần 6 mét được thiết kế như một giếng sáng trung tâm. Ánh nắng ban mai đi qua hệ lam gỗ sồi, đổ những vệt bóng dài trên nền sàn vi xi măng mài bóng mờ. Vào mỗi thời khắc trong ngày - từ bình minh trong trẻo, buổi trưa rực rỡ đến hoàng hôn màu mật ong - căn phòng như một bức tranh sống động chuyển mình theo tự nhiên.',
           },
           {
             type: 'image',
             mediaId: '7ace332d-0a3f-4d31-a36b-9978c0789154',
-            caption: 'Góc nhìn từ tầng lửng xuống phòng khách — sự giao hòa tinh tế giữa gỗ mộc, vải lanh và vữa vôi phủ tay.',
+            caption: 'Góc nhìn từ tầng lửng xuống phòng khách - sự giao hòa tinh tế giữa gỗ mộc, vải lanh và vữa vôi phủ tay.',
           },
           {
             type: 'heading',
@@ -236,7 +238,7 @@ async function run() {
           {
             type: 'image',
             mediaId: 'aec70178-ce10-4450-88dc-1014ba5c5c88',
-            caption: 'Hiện trường nghiệm thu cốt thép và hệ thống cơ điện ngầm tại The Global City — sự cẩn trọng là nguyên tắc sống còn.',
+            caption: 'Hiện trường nghiệm thu cốt thép và hệ thống cơ điện ngầm tại The Global City - sự cẩn trọng là nguyên tắc sống còn.',
           },
           {
             type: 'heading',
@@ -273,7 +275,7 @@ async function run() {
         nodes: [
           {
             type: 'paragraph',
-            text: 'Trong nhịp sống gấp gáp của Sài Gòn, ngày càng nhiều gia chủ tìm kiếm một không gian riêng tư để tĩnh tâm, đọc sách hoặc đón tiếp những người bạn tâm giao bên chén trà thơm. Phòng trà đạo không cần diện tích quá lớn — chỉ từ 12 đến 20m² là đủ để kiến tạo một thế giới tách biệt hoàn toàn khỏi khói bụi và tiếng ồn bên ngoài.',
+            text: 'Trong nhịp sống gấp gáp của Sài Gòn, ngày càng nhiều gia chủ tìm kiếm một không gian riêng tư để tĩnh tâm, đọc sách hoặc đón tiếp những người bạn tâm giao bên chén trà thơm. Phòng trà đạo không cần diện tích quá lớn - chỉ từ 12 đến 20m² là đủ để kiến tạo một thế giới tách biệt hoàn toàn khỏi khói bụi và tiếng ồn bên ngoài.',
           },
           {
             type: 'heading',
@@ -287,7 +289,7 @@ async function run() {
           {
             type: 'image',
             mediaId: '255b04c6-977f-4033-9fa1-02e0c3ab81b4',
-            caption: 'Không gian phòng trà Trăng Trong Vách — sự tối giản chuẩn xác đem lại chiều sâu suy tưởng.',
+            caption: 'Không gian phòng trà Trăng Trong Vách - sự tối giản chuẩn xác đem lại chiều sâu suy tưởng.',
           },
           {
             type: 'heading',
@@ -324,7 +326,7 @@ async function run() {
         nodes: [
           {
             type: 'paragraph',
-            text: 'Tọa lạc tại khu Nam Viên — nơi có mật độ cây xanh và mặt nước cao nhất Phú Mỹ Hưng, căn hộ Mỹ Gia thừa hưởng luồng gió mát lành từ nhánh sông Rạch Đĩa. Đề bài đặt ra cho GuHomes là thiết kế không gian cho gia đình ba thế hệ: vừa ấm áp, sang trọng cho ông bà, vừa tiện nghi hiện đại cho con cái và có góc học tập vui tươi cho cháu nhỏ.',
+            text: 'Tọa lạc tại khu Nam Viên - nơi có mật độ cây xanh và mặt nước cao nhất Phú Mỹ Hưng, căn hộ Mỹ Gia thừa hưởng luồng gió mát lành từ nhánh sông Rạch Đĩa. Đề bài đặt ra cho GuHomes là thiết kế không gian cho gia đình ba thế hệ: vừa ấm áp, sang trọng cho ông bà, vừa tiện nghi hiện đại cho con cái và có góc học tập vui tươi cho cháu nhỏ.',
           },
           {
             type: 'heading',
@@ -338,7 +340,7 @@ async function run() {
           {
             type: 'image',
             mediaId: '7699547d-860a-4457-b7be-9fd98e7425e8',
-            caption: 'Không gian phòng khách căn hộ Mỹ Gia Phú Mỹ Hưng — tone màu gỗ trầm ấm hòa cùng ánh sáng tự nhiên tràn ngập qua ban công.',
+            caption: 'Không gian phòng khách căn hộ Mỹ Gia Phú Mỹ Hưng - tone màu gỗ trầm ấm hòa cùng ánh sáng tự nhiên tràn ngập qua ban công.',
           },
           {
             type: 'heading',
@@ -371,7 +373,7 @@ async function run() {
         nodes: [
           {
             type: 'paragraph',
-            text: 'Nếu như phong cách Scandinavian mang lại sự thoáng đãng, ấm cúng (Hygge) thì tinh thần Wabi-Sabi Nhật Bản lại bổ sung chiều sâu triết lý và sự trân trọng những vẻ đẹp mộc mạc. Sự gặp gỡ của hai trường phái này tạo nên phong cách Japandi — một trong những xu hướng nội thất được yêu thích nhất của các gia chủ hiện đại.',
+            text: 'Nếu như phong cách Scandinavian mang lại sự thoáng đãng, ấm cúng (Hygge) thì tinh thần Wabi-Sabi Nhật Bản lại bổ sung chiều sâu triết lý và sự trân trọng những vẻ đẹp mộc mạc. Sự gặp gỡ của hai trường phái này tạo nên phong cách Japandi - một trong những xu hướng nội thất được yêu thích nhất của các gia chủ hiện đại.',
           },
           {
             type: 'heading',
@@ -391,7 +393,7 @@ async function run() {
           {
             type: 'image',
             mediaId: 'a5a91aca-82b7-4aba-b84d-20e83f3ebc26',
-            caption: 'Căn hộ Japandi Bậc Chiếu Mùa Xuân — đường nét tối giản tôn vinh thớ gỗ tự nhiên và sự thoáng đạt.',
+            caption: 'Căn hộ Japandi Bậc Chiếu Mùa Xuân - đường nét tối giản tôn vinh thớ gỗ tự nhiên và sự thoáng đạt.',
           },
         ],
       },
@@ -527,7 +529,7 @@ async function run() {
         tags: art.tags,
         readingMinutes: art.readingMinutes,
         seo: art.seo,
-        content: art.content as any,
+        content: art.content as RichTextDoc,
         publishedAt: art.publishedAt,
         updatedAt: new Date(),
       }).where(eq(schema.articles.slug, art.slug))
@@ -544,7 +546,7 @@ async function run() {
         tags: art.tags,
         readingMinutes: art.readingMinutes,
         seo: art.seo,
-        content: art.content as any,
+        content: art.content as RichTextDoc,
         publishedAt: art.publishedAt,
       })
     }
