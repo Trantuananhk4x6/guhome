@@ -58,7 +58,7 @@ export function SocialModal() {
                 type="button"
                 onClick={() => setActiveId(channel.id)}
                 className={cn(
-                  'group relative flex items-center gap-2.5 border px-4 py-2.5 font-body text-[0.875rem] transition-all duration-300',
+                  'group relative flex min-h-[44px] items-center gap-2.5 border px-4 py-2 font-body text-[0.875rem] transition-all duration-300',
                   isSelected
                     ? 'border-accent bg-espresso text-canvas font-medium shadow-sm ring-1 ring-accent/30'
                     : 'border-line/80 bg-surface/70 text-ink/75 hover:border-accent/40 hover:bg-canvas hover:text-ink',

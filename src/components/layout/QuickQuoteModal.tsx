@@ -236,7 +236,7 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
                           key={item.id}
                           type="button"
                           onClick={() => setPropertyType(item.id)}
-                          className={`px-3 py-2.5 rounded-lg text-xs font-medium text-left border transition-all ${
+                          className={`min-h-[44px] flex items-center px-3 py-2 rounded-lg text-xs font-medium text-left border transition-all ${
                             propertyType === item.id
                               ? 'border-accent bg-accent/20 text-canvas font-semibold shadow-[0_0_12px_rgba(197,168,128,0.25)]'
                               : 'border-canvas/15 bg-canvas/5 text-canvas/70 hover:border-canvas/30'
@@ -264,7 +264,7 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
                           key={item.id}
                           type="button"
                           onClick={() => setAreaRange(item.id)}
-                          className={`px-3 py-2.5 rounded-lg text-xs font-medium text-center border transition-all ${
+                          className={`min-h-[44px] flex items-center justify-center px-3 py-2 rounded-lg text-xs font-medium text-center border transition-all ${
                             areaRange === item.id
                               ? 'border-accent bg-accent/20 text-canvas font-semibold shadow-[0_0_12px_rgba(197,168,128,0.25)]'
                               : 'border-canvas/15 bg-canvas/5 text-canvas/70 hover:border-canvas/30'
@@ -292,7 +292,7 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
                           key={item.id}
                           type="button"
                           onClick={() => setStyle(item.id)}
-                          className={`px-3 py-2.5 rounded-lg text-xs font-medium text-left border transition-all ${
+                          className={`min-h-[44px] flex items-center px-3 py-2 rounded-lg text-xs font-medium text-left border transition-all ${
                             style === item.id
                               ? 'border-accent bg-accent/20 text-canvas font-semibold shadow-[0_0_12px_rgba(197,168,128,0.25)]'
                               : 'border-canvas/15 bg-canvas/5 text-canvas/70 hover:border-canvas/30'
@@ -318,7 +318,7 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
                           key={item.id}
                           type="button"
                           onClick={() => setScope(item.id)}
-                          className={`px-3 py-2.5 rounded-lg text-xs font-medium text-left border transition-all ${
+                          className={`min-h-[44px] flex items-center px-3 py-2 rounded-lg text-xs font-medium text-left border transition-all ${
                             scope === item.id
                               ? 'border-accent bg-accent/20 text-canvas font-semibold shadow-[0_0_12px_rgba(197,168,128,0.25)]'
                               : 'border-canvas/15 bg-canvas/5 text-canvas/70 hover:border-canvas/30'
@@ -356,7 +356,7 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         placeholder="Anh / Chị..."
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-canvas/5 border border-canvas/20 text-canvas text-sm placeholder:text-canvas/35 focus:outline-none focus:border-accent transition-colors"
+                        className="h-11 w-full px-3.5 rounded-lg bg-canvas/5 border border-canvas/20 text-canvas text-sm placeholder:text-canvas/35 focus:outline-none focus:border-accent transition-colors"
                       />
                     </div>
                     <div>
@@ -369,7 +369,7 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="09xx xxx xxx"
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-canvas/5 border border-canvas/20 text-canvas text-sm placeholder:text-canvas/35 focus:outline-none focus:border-accent transition-colors"
+                        className="h-11 w-full px-3.5 rounded-lg bg-canvas/5 border border-canvas/20 text-canvas text-sm placeholder:text-canvas/35 focus:outline-none focus:border-accent transition-colors"
                       />
                     </div>
                   </div>
@@ -384,7 +384,7 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full sm:w-auto px-7 py-3 rounded-full bg-accent hover:bg-accent-soft disabled:opacity-60 text-espresso font-medium text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_8px_20px_rgba(197,168,128,0.3)] flex items-center justify-center gap-2"
+                      className="min-h-[48px] w-full sm:w-auto px-7 py-3 rounded-full bg-accent hover:bg-accent-soft disabled:opacity-60 text-espresso font-medium text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_8px_20px_rgba(197,168,128,0.3)] flex items-center justify-center gap-2 cursor-pointer"
                     >
                       {isSubmitting ? (
                         <span>Đang gửi thông tin...</span>

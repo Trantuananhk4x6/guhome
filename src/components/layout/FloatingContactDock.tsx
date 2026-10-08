@@ -18,10 +18,10 @@ export function FloatingContactDock() {
       <AnimatePresence>
         {isExpanded && (
           <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.95 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: 14, scale: 0.92 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
             className="flex flex-col items-end gap-2.5"
           >
             {/* 1. Nhận báo giá nhanh */}
@@ -31,12 +31,12 @@ export function FloatingContactDock() {
                 setIsExpanded(false)
                 openQuoteModal()
               }}
-              className="group flex items-center gap-3 rounded-full border border-line bg-surface/95 px-4 py-2.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-xl"
+              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/90 bg-surface/95 px-4 py-2 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
             >
               <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent">
                 Dự toán chi phí 15 phút
               </span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-sm">
                 ⚡
               </span>
             </button>
@@ -46,7 +46,7 @@ export function FloatingContactDock() {
               href="https://zalo.me/0368757916"
               target="_blank"
               rel="noreferrer noopener"
-              className="group flex items-center gap-3 rounded-full border border-line bg-surface/95 px-4 py-2.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-[#0068FF] hover:bg-canvas hover:shadow-xl"
+              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/90 bg-surface/95 px-4 py-2 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-[#0068FF] hover:bg-canvas hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
             >
               <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-[#0068FF]">
                 Nhắn Zalo KTS Trưởng
@@ -59,12 +59,12 @@ export function FloatingContactDock() {
             {/* 3. Gọi Hotline KTS */}
             <a
               href="tel:0368757916"
-              className="group flex items-center gap-3 rounded-full border border-line bg-surface/95 px-4 py-2.5 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-xl"
+              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/90 bg-surface/95 px-4 py-2 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
             >
               <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent">
                 Gọi 0368 757 916
               </span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-sm">
                 📞
               </span>
             </a>
@@ -76,12 +76,12 @@ export function FloatingContactDock() {
                 setIsExpanded(false)
                 openModal()
               }}
-              className="group flex items-center gap-3 rounded-full border border-accent/40 bg-espresso px-4 py-2.5 text-canvas shadow-lg transition-all duration-300 hover:border-accent hover:bg-ink hover:shadow-xl"
+              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-espresso px-4 py-2 text-canvas shadow-lg transition-all duration-300 hover:border-accent hover:bg-ink hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
             >
               <span className="font-body text-[0.8125rem] font-medium text-accent-soft group-hover:text-canvas">
                 Thông tin Mạng xã hội & QR
               </span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-canvas text-xs">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-canvas text-xs font-mono font-bold">
                 QR
               </span>
             </button>
