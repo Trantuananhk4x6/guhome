@@ -33,6 +33,7 @@ import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugS
 import { PrivateYachtBerthAndHelipadConcierge } from '@/components/tools/PrivateYachtBerthAndHelipadConcierge'
 import { MasterArchitecturalDossierArchive } from '@/components/tools/MasterArchitecturalDossierArchive'
 import { PrivateEstateDigitalButlerPortal } from '@/components/tools/PrivateEstateDigitalButlerPortal'
+import { ArtisanShanTuyetTeaSanctuary } from '@/components/tools/ArtisanShanTuyetTeaSanctuary'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -368,6 +369,9 @@ export default async function ContactPage() {
 
       {/* Private Estate Digital Butler Local Edge Portal */}
       <PrivateEstateDigitalButlerPortal className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Shan Tuyet Tea Sanctuary & Zisha Pottery Pavilion */}
+      <ArtisanShanTuyetTeaSanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

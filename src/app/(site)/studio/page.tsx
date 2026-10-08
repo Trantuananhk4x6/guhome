@@ -74,6 +74,9 @@ import { MasterArchitecturalDossierArchive } from '@/components/tools/MasterArch
 import { SaigonRooftopStargazingObservatory } from '@/components/studio/SaigonRooftopStargazingObservatory'
 import { BespokeOlfactoryFragranceAtelier } from '@/components/studio/BespokeOlfactoryFragranceAtelier'
 import { PrivateEstateDigitalButlerPortal } from '@/components/tools/PrivateEstateDigitalButlerPortal'
+import { AntiqueLibraryAndCartographyVault } from '@/components/studio/AntiqueLibraryAndCartographyVault'
+import { ArtisanHorologyGrandfatherClockVault } from '@/components/studio/ArtisanHorologyGrandfatherClockVault'
+import { ArtisanShanTuyetTeaSanctuary } from '@/components/tools/ArtisanShanTuyetTeaSanctuary'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -951,6 +954,15 @@ export default async function StudioPage() {
 
       {/* ---------------- private estate digital butler local edge portal ----------- */}
       <PrivateEstateDigitalButlerPortal className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- antique rare library & cartography preservation vault ----- */}
+      <AntiqueLibraryAndCartographyVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan haute horology grandfather clock 432Hz vault ------- */}
+      <ArtisanHorologyGrandfatherClockVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan shan tuyet tea sanctuary & zisha pottery pavilion - */}
+      <ArtisanShanTuyetTeaSanctuary className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

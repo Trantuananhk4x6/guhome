@@ -100,6 +100,7 @@ import { SaigonBespokeTeakDeckingPavilion } from '@/components/studio/SaigonBesp
 import { SaigonBespokeInfinityPoolLab } from '@/components/studio/SaigonBespokeInfinityPoolLab'
 import { SaigonBiophilicGreenWallAtelier } from '@/components/studio/SaigonBiophilicGreenWallAtelier'
 import { SaigonRooftopStargazingObservatory } from '@/components/studio/SaigonRooftopStargazingObservatory'
+import { AntiqueLibraryAndCartographyVault } from '@/components/studio/AntiqueLibraryAndCartographyVault'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -670,6 +671,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Rooftop Stargazing Glass Observatory */}
           <SaigonRooftopStargazingObservatory className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Antique Rare Library & Cartography Preservation Vault */}
+          <AntiqueLibraryAndCartographyVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

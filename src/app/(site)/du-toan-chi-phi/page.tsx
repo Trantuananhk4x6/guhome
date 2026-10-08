@@ -37,6 +37,8 @@ import { ArtisanHandCastBronzeBasinVault } from '@/components/studio/ArtisanHand
 import { MasterArchitecturalDossierArchive } from '@/components/tools/MasterArchitecturalDossierArchive'
 import { BespokeOlfactoryFragranceAtelier } from '@/components/studio/BespokeOlfactoryFragranceAtelier'
 import { PrivateEstateDigitalButlerPortal } from '@/components/tools/PrivateEstateDigitalButlerPortal'
+import { ArtisanHorologyGrandfatherClockVault } from '@/components/studio/ArtisanHorologyGrandfatherClockVault'
+import { ArtisanShanTuyetTeaSanctuary } from '@/components/tools/ArtisanShanTuyetTeaSanctuary'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -188,6 +190,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Private Estate Digital Butler Local Edge Portal */}
       <PrivateEstateDigitalButlerPortal className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Haute Horology Grandfather Clock 432Hz Vault */}
+      <ArtisanHorologyGrandfatherClockVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Shan Tuyet Tea Sanctuary & Zisha Pottery Pavilion */}
+      <ArtisanShanTuyetTeaSanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

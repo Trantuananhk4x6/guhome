@@ -264,8 +264,14 @@
       "title": "Đài Quan Sát Thiên Văn Mái Kính, Xưởng Hương Không Gian & Ứng Dụng Quản Gia Số Dinh Thự",
       "sentAt": "2026-10-08T15:00:58.495Z",
       "completedAt": "2026-10-08T15:04:30.000Z"
+    },
+    {
+      "directiveId": "dir-30-sprint-32-library-clock-teasanctuary",
+      "title": "Thư Viện Sách Cổ Kiểm Soát Độ Ẩm, Đồng Hồ Cơ Khí & Thánh Địa Trà Đạo Shan Tuyết",
+      "sentAt": "2026-10-08T15:05:23.609Z",
+      "completedAt": "2026-10-08T15:08:00.000Z"
     }
   ],
-  "lastDispatchedAt": 1791471658496,
+  "lastDispatchedAt": 1791471923610,
   "activeDirective": null
 }

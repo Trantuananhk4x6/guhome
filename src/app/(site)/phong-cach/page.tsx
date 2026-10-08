@@ -52,6 +52,8 @@ import { SaigonBiophilicGreenWallAtelier } from '@/components/studio/SaigonBioph
 import { ArtisanHandCastBronzeBasinVault } from '@/components/studio/ArtisanHandCastBronzeBasinVault'
 import { SaigonRooftopStargazingObservatory } from '@/components/studio/SaigonRooftopStargazingObservatory'
 import { BespokeOlfactoryFragranceAtelier } from '@/components/studio/BespokeOlfactoryFragranceAtelier'
+import { AntiqueLibraryAndCartographyVault } from '@/components/studio/AntiqueLibraryAndCartographyVault'
+import { ArtisanHorologyGrandfatherClockVault } from '@/components/studio/ArtisanHorologyGrandfatherClockVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -270,6 +272,12 @@ export default async function StylesPage() {
 
       {/* Bespoke Olfactory Cold-Air Nebulization Fragrance Atelier */}
       <BespokeOlfactoryFragranceAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Antique Rare Library & Cartography Preservation Vault */}
+      <AntiqueLibraryAndCartographyVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Haute Horology Grandfather Clock 432Hz Vault */}
+      <ArtisanHorologyGrandfatherClockVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
