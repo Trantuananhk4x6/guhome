@@ -30,6 +30,8 @@ import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvis
 import { ArchitecturalLightingLab } from '@/components/studio/ArchitecturalLightingLab'
 import { BespokeCabinetryStudio } from '@/components/studio/BespokeCabinetryStudio'
 import { AcousticDampeningSimulator } from '@/components/studio/AcousticDampeningSimulator'
+import { TropicalPatinaLab } from '@/components/studio/TropicalPatinaLab'
+import { SmartHomeQuietSanctuary } from '@/components/sections/SmartHomeQuietSanctuary'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -182,6 +184,12 @@ export default async function StylesPage() {
 
       {/* Architectural Acoustic Dampening & RT60 Simulator */}
       <AcousticDampeningSimulator className="mt-[var(--spacing-section)]" />
+
+      {/* Tropical Timber Patina & Aging Simulator */}
+      <TropicalPatinaLab className="mt-[var(--spacing-section)]" />
+
+      {/* Invisible KNX Smart Home & Sanctuary System */}
+      <SmartHomeQuietSanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

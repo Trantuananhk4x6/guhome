@@ -8,6 +8,8 @@ import { DigitalHandoverVault } from '@/components/services/DigitalHandoverVault
 import { BespokeCabinetryStudio } from '@/components/studio/BespokeCabinetryStudio'
 import { ContractorComparisonMatrix } from '@/components/sections/ContractorComparisonMatrix'
 import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiCompass'
+import { TropicalHvacAirflowSimulator } from '@/components/tools/TropicalHvacAirflowSimulator'
+import { SmartHomeQuietSanctuary } from '@/components/sections/SmartHomeQuietSanctuary'
 import { VipConciergePortal } from '@/components/consultation/VipConciergePortal'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -70,6 +72,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Tropical Feng Shui & Microclimate Compass */}
       <TropicalFengShuiCompass className="mt-[var(--spacing-section)]" />
+
+      {/* Tropical HVAC & Anti-Condensation VRV Simulator */}
+      <TropicalHvacAirflowSimulator className="mt-[var(--spacing-section)]" />
+
+      {/* Invisible KNX Smart Home Sanctuary */}
+      <SmartHomeQuietSanctuary className="mt-[var(--spacing-section)]" />
 
       {/* Digital Handover & Warranty Vault */}
       <DigitalHandoverVault className="mt-[var(--spacing-section)]" />

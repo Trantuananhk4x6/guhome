@@ -7,6 +7,7 @@ import { ProjectSpatialMap } from '@/components/projects/ProjectSpatialMap'
 import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvisory'
 import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatCalculator'
 import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiCompass'
+import { TropicalHvacAirflowSimulator } from '@/components/tools/TropicalHvacAirflowSimulator'
 
 export const revalidate = 3600
 
@@ -163,6 +164,11 @@ export default function SaigonDistrictsPage() {
         {/* Tropical Feng Shui & Microclimate Compass */}
         <div className="mt-16">
           <TropicalFengShuiCompass className="rounded-3xl border border-line" />
+        </div>
+
+        {/* Tropical HVAC & Dew Point Condensation Safety Simulator */}
+        <div className="mt-16">
+          <TropicalHvacAirflowSimulator className="rounded-3xl border border-line" />
         </div>
 
         {/* Bottom Editorial Callout */}

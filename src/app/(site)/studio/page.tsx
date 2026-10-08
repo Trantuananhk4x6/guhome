@@ -30,6 +30,9 @@ import { ContractorComparisonMatrix } from '@/components/sections/ContractorComp
 import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiCompass'
 import { AcousticDampeningSimulator } from '@/components/studio/AcousticDampeningSimulator'
 import { VipConciergePortal } from '@/components/consultation/VipConciergePortal'
+import { TropicalPatinaLab } from '@/components/studio/TropicalPatinaLab'
+import { TropicalHvacAirflowSimulator } from '@/components/tools/TropicalHvacAirflowSimulator'
+import { SmartHomeQuietSanctuary } from '@/components/sections/SmartHomeQuietSanctuary'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -743,6 +746,9 @@ export default async function StudioPage() {
       {/* ---------------- tropical feng shui & climate compass ------------------- */}
       <TropicalFengShuiCompass className="mt-[var(--spacing-section)]" />
 
+      {/* ---------------- tropical hvac & anti-condensation ---------------------- */}
+      <TropicalHvacAirflowSimulator className="mt-[var(--spacing-section)]" />
+
       {/* ----------------------- microclimate simulator -------------------------- */}
       <MicroclimateSimulator />
 
@@ -758,6 +764,9 @@ export default async function StudioPage() {
       {/* --------------------- curved wood craft lab ----------------------------- */}
       <CurvedWoodCraftLab className="mt-[var(--spacing-section)]" />
 
+      {/* ----------------- tropical timber patina & aging lab --------------------- */}
+      <TropicalPatinaLab className="mt-[var(--spacing-section)]" />
+
       {/* ---------------------- construction timeline diary ----------------------- */}
       <ConstructionTimelineDiary className="mt-[var(--spacing-section)]" />
 
@@ -766,6 +775,9 @@ export default async function StudioPage() {
 
       {/* ------------ architectural technical cross-section viewer --------------- */}
       <ArchitecturalDetailViewer className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- invisible knx smart home sanctuary --------------------- */}
+      <SmartHomeQuietSanctuary className="mt-[var(--spacing-section)]" />
 
       {/* ---------------- contractor capability comparison matrix ---------------- */}
       <ContractorComparisonMatrix className="mt-[var(--spacing-section)]" />

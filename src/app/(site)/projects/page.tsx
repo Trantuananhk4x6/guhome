@@ -78,6 +78,7 @@ import { CurvedWoodCraftLab } from '@/components/studio/CurvedWoodCraftLab'
 import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatCalculator'
 import { ArchitecturalDetailViewer } from '@/components/projects/ArchitecturalDetailViewer'
 import { AcousticDampeningSimulator } from '@/components/studio/AcousticDampeningSimulator'
+import { TropicalPatinaLab } from '@/components/studio/TropicalPatinaLab'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -582,6 +583,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Architectural Acoustic Dampening & RT60 Simulator */}
           <AcousticDampeningSimulator className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Tropical Timber Patina & Aging Simulator */}
+          <TropicalPatinaLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>
