@@ -11,6 +11,7 @@ import type { MediaRef, ServiceItem } from '@/types/content'
 
 import { EXCLUSIONS, FALLBACK_SERVICES, deliverablesFor, paragraphsOf } from './_content'
 import { ImageFrame, Reveal, TextReveal } from './_components/motion'
+import { GuHomesMarketingTrustPledge } from '@/components/sections/GuHomesMarketingTrustPledge'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Dịch vụ',
@@ -191,6 +192,9 @@ export default async function ServicesPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* --------------------------- trust pledge --------------------------------- */}
+      <GuHomesMarketingTrustPledge className="mt-[var(--spacing-section)] border-t border-line" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="mt-[var(--spacing-section)] bg-espresso py-[calc(var(--spacing-section)*0.8)] text-canvas">
