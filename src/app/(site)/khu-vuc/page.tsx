@@ -6,6 +6,7 @@ import { ArrowUpRightIcon } from '@/components/ui/icons'
 import { ProjectSpatialMap } from '@/components/projects/ProjectSpatialMap'
 import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvisory'
 import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatCalculator'
+import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiCompass'
 
 export const revalidate = 3600
 
@@ -157,6 +158,11 @@ export default function SaigonDistrictsPage() {
         {/* Western Solar Heat Radiation Calculator */}
         <div className="mt-16">
           <WesternSolarHeatCalculator className="rounded-3xl border border-line" />
+        </div>
+
+        {/* Tropical Feng Shui & Microclimate Compass */}
+        <div className="mt-16">
+          <TropicalFengShuiCompass className="rounded-3xl border border-line" />
         </div>
 
         {/* Bottom Editorial Callout */}

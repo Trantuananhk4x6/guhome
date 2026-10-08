@@ -77,6 +77,7 @@ import { WoodJoineryExplorer } from '@/components/studio/WoodJoineryExplorer'
 import { CurvedWoodCraftLab } from '@/components/studio/CurvedWoodCraftLab'
 import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatCalculator'
 import { ArchitecturalDetailViewer } from '@/components/projects/ArchitecturalDetailViewer'
+import { AcousticDampeningSimulator } from '@/components/studio/AcousticDampeningSimulator'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -578,6 +579,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Architectural Technical Detail & Cross-Section Viewer */}
           <ArchitecturalDetailViewer className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Architectural Acoustic Dampening & RT60 Simulator */}
+          <AcousticDampeningSimulator className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

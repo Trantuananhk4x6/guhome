@@ -27,6 +27,9 @@ import { ArchitecturalDetailViewer } from '@/components/projects/ArchitecturalDe
 import { BespokeCabinetryStudio } from '@/components/studio/BespokeCabinetryStudio'
 import { CurvedWoodCraftLab } from '@/components/studio/CurvedWoodCraftLab'
 import { ContractorComparisonMatrix } from '@/components/sections/ContractorComparisonMatrix'
+import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiCompass'
+import { AcousticDampeningSimulator } from '@/components/studio/AcousticDampeningSimulator'
+import { VipConciergePortal } from '@/components/consultation/VipConciergePortal'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -731,8 +734,14 @@ export default async function StudioPage() {
       {/* ----------------- architectural optical lighting lab -------------------- */}
       <ArchitecturalLightingLab className="mt-[var(--spacing-section)]" />
 
+      {/* ---------------- acoustic dampening & RT60 simulator -------------------- */}
+      <AcousticDampeningSimulator className="mt-[var(--spacing-section)]" />
+
       {/* -------------------- tropical weather advisory -------------------------- */}
       <TropicalWeatherAdvisory className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- tropical feng shui & climate compass ------------------- */}
+      <TropicalFengShuiCompass className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------- microclimate simulator -------------------------- */}
       <MicroclimateSimulator />
@@ -763,6 +772,9 @@ export default async function StudioPage() {
 
       {/* ----------------------- client chronicles section ----------------------- */}
       <ClientChroniclesSection className="mt-[var(--spacing-section)]" />
+
+      {/* --------------------- vip concierge access portal ----------------------- */}
+      <VipConciergePortal className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

@@ -29,6 +29,7 @@ import { TactileMoodboardStudio } from '@/components/studio/TactileMoodboardStud
 import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvisory'
 import { ArchitecturalLightingLab } from '@/components/studio/ArchitecturalLightingLab'
 import { BespokeCabinetryStudio } from '@/components/studio/BespokeCabinetryStudio'
+import { AcousticDampeningSimulator } from '@/components/studio/AcousticDampeningSimulator'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -178,6 +179,9 @@ export default async function StylesPage() {
 
       {/* Bespoke Cabinetry & Millwork Studio */}
       <BespokeCabinetryStudio className="mt-[var(--spacing-section)]" />
+
+      {/* Architectural Acoustic Dampening & RT60 Simulator */}
+      <AcousticDampeningSimulator className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

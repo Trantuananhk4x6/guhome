@@ -94,8 +94,21 @@
       "completedAt": "2026-10-08T13:47:00.000Z",
       "commit": "8851f93",
       "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, BespokeCabinetryStudio, CurvedWoodCraftLab, and ContractorComparisonMatrix fully active across /studio, /phong-cach, /du-toan-chi-phi, /projects, and /contact"
+    },
+    {
+      "directiveId": "dir-14-sprint-16-fengshui-acoustic-concierge",
+      "title": "La Bàn Phong Thủy Vi Khí Hậu Sài Gòn, Phòng Thử Nghiệm Tiêu Âm RT60 & Cổng Dịch Vụ Thượng Khách VIP Concierge",
+      "sentAt": "2026-10-08T13:47:45.076Z",
+      "completedAt": "2026-10-08T13:54:30.000Z",
+      "commit": "pending",
+      "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, TropicalFengShuiCompass, AcousticDampeningSimulator, and VipConciergePortal fully active across /khu-vuc, /studio, /du-toan-chi-phi, /projects, /phong-cach, and /contact"
     }
   ],
-  "activeDirective": null,
-  "lastDispatchedAt": 1791467220000
+  "activeDirective": {
+    "directiveId": "dir-15-sprint-17-tropical-patina-hvac-smart-home",
+    "title": "Phòng Thí Nghiệm Lão Hóa Vật Liệu Tự Nhiên (Tropical Patina Ageing Lab), Bộ Tính Toán Lưu Lượng Gió Đối Lưu & VRV Chống Đọng Sương, và Chuẩn Nhà Thông Minh KNX/Matter Tĩnh Lặng",
+    "sentAt": "2026-10-08T13:55:00.000Z",
+    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
+  },
+  "lastDispatchedAt": 1791467700000
 }

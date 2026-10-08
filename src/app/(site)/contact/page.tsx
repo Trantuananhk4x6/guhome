@@ -16,6 +16,7 @@ import { ContactForm } from './_components/ContactForm'
 import { Reveal, TextReveal } from './_components/motion'
 import { OpenSocialModalButton, SocialTrigger } from '@/components/layout/SocialTrigger'
 import { VipBookingCalendar } from '@/components/consultation/VipBookingCalendar'
+import { VipConciergePortal } from '@/components/consultation/VipConciergePortal'
 import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesSection'
 import { DigitalHandoverVault } from '@/components/services/DigitalHandoverVault'
 import { ContractorComparisonMatrix } from '@/components/sections/ContractorComparisonMatrix'
@@ -300,6 +301,9 @@ export default async function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* VIP Concierge Access Portal & Digital VIP Card */}
+      <VipConciergePortal className="mt-[var(--spacing-section)]" />
 
       {/* VIP 1-1 Consultation Booking with Lead Architect */}
       <VipBookingCalendar className="mt-[var(--spacing-section)]" />

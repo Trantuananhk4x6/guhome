@@ -7,6 +7,8 @@ import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatC
 import { DigitalHandoverVault } from '@/components/services/DigitalHandoverVault'
 import { BespokeCabinetryStudio } from '@/components/studio/BespokeCabinetryStudio'
 import { ContractorComparisonMatrix } from '@/components/sections/ContractorComparisonMatrix'
+import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiCompass'
+import { VipConciergePortal } from '@/components/consultation/VipConciergePortal'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -66,8 +68,14 @@ export default function DuToanChiPhiPage() {
       {/* Western Solar Heat Radiation Calculator */}
       <WesternSolarHeatCalculator className="mt-[var(--spacing-section)]" />
 
+      {/* Tropical Feng Shui & Microclimate Compass */}
+      <TropicalFengShuiCompass className="mt-[var(--spacing-section)]" />
+
       {/* Digital Handover & Warranty Vault */}
       <DigitalHandoverVault className="mt-[var(--spacing-section)]" />
+
+      {/* VIP Concierge Access Portal & Digital VIP Card */}
+      <VipConciergePortal className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
