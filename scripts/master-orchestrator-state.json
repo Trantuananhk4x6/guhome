@@ -110,5 +110,11 @@
       "atStep": 2480
     }
   ],
-  "lastDispatchedAt": 1791469350000
+  "lastDispatchedAt": 1791469373523,
+  "activeDirective": {
+    "directiveId": "dir-20-sprint-22-hardware-biophilic-timber-care",
+    "title": "Phòng Thí Nghiệm Kim Khí Đồng Mộc May Đo, Cảnh Quan Sinh Thái Nhiệt Đới Biophilic & Cổng Dưỡng Gỗ Tận Gia VIP Care",
+    "sentAt": "2026-10-08T14:22:53.523Z",
+    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
+  }
 }
