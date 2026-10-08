@@ -40,6 +40,7 @@ import { TactileHardwareAtelier } from '@/components/studio/TactileHardwareAteli
 import { ArtisanLimePlasterLab } from '@/components/studio/ArtisanLimePlasterLab'
 import { AcousticSanctuaryMasterSuite } from '@/components/studio/AcousticSanctuaryMasterSuite'
 import { PatinaMetalworkArtisanLab } from '@/components/studio/PatinaMetalworkArtisanLab'
+import { SaigonCourtyardAtriumLab } from '@/components/studio/SaigonCourtyardAtriumLab'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -222,6 +223,9 @@ export default async function StylesPage() {
 
       {/* Living Metal Patina Artisan Lab */}
       <PatinaMetalworkArtisanLab className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Courtyard Atrium Aerodynamic Lab */}
+      <SaigonCourtyardAtriumLab className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

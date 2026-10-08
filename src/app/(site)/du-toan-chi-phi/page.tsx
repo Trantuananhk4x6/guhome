@@ -24,6 +24,8 @@ import { SommelierWineCigarVault } from '@/components/studio/SommelierWineCigarV
 import { LeadArchitectPrivateSession } from '@/components/consultation/LeadArchitectPrivateSession'
 import { PatinaMetalworkArtisanLab } from '@/components/studio/PatinaMetalworkArtisanLab'
 import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudit'
+import { BespokeWalkInWardrobeVault } from '@/components/studio/BespokeWalkInWardrobeVault'
+import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPassport'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -136,6 +138,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Digital Twin Estate Audit 3D LiDAR */}
       <DigitalTwinEstateAudit className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Walk-in Wardrobe Vault Agarwood */}
+      <BespokeWalkInWardrobeVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Craftsman Passport NFC Provenance */}
+      <ArtisanCraftsmanPassport className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

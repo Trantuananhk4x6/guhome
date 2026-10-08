@@ -26,6 +26,7 @@ import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestone
 import { BespokeTimberCareVault } from '@/components/tools/BespokeTimberCareVault'
 import { LeadArchitectPrivateSession } from '@/components/consultation/LeadArchitectPrivateSession'
 import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudit'
+import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPassport'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -340,6 +341,9 @@ export default async function ContactPage() {
 
       {/* Digital Twin Estate Audit 3D LiDAR */}
       <DigitalTwinEstateAudit className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Craftsman Passport NFC Provenance */}
+      <ArtisanCraftsmanPassport className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

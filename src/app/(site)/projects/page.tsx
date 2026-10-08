@@ -91,6 +91,8 @@ import { TropicalBonsaiEcologyLab } from '@/components/studio/TropicalBonsaiEcol
 import { ArtisanLimePlasterLab } from '@/components/studio/ArtisanLimePlasterLab'
 import { SommelierWineCigarVault } from '@/components/studio/SommelierWineCigarVault'
 import { AcousticSanctuaryMasterSuite } from '@/components/studio/AcousticSanctuaryMasterSuite'
+import { SaigonCourtyardAtriumLab } from '@/components/studio/SaigonCourtyardAtriumLab'
+import { BespokeWalkInWardrobeVault } from '@/components/studio/BespokeWalkInWardrobeVault'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -634,6 +636,12 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Acoustic Sanctuary Master Suite NC-25 */}
           <AcousticSanctuaryMasterSuite className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Courtyard Atrium Aerodynamic Lab */}
+          <SaigonCourtyardAtriumLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Bespoke Walk-in Wardrobe Vault Agarwood */}
+          <BespokeWalkInWardrobeVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

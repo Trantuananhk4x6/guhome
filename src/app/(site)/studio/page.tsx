@@ -53,6 +53,9 @@ import { LeadArchitectPrivateSession } from '@/components/consultation/LeadArchi
 import { AcousticSanctuaryMasterSuite } from '@/components/studio/AcousticSanctuaryMasterSuite'
 import { PatinaMetalworkArtisanLab } from '@/components/studio/PatinaMetalworkArtisanLab'
 import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudit'
+import { SaigonCourtyardAtriumLab } from '@/components/studio/SaigonCourtyardAtriumLab'
+import { BespokeWalkInWardrobeVault } from '@/components/studio/BespokeWalkInWardrobeVault'
+import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPassport'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -867,6 +870,15 @@ export default async function StudioPage() {
 
       {/* ---------------- digital twin estate audit 3D LiDAR ---------------------- */}
       <DigitalTwinEstateAudit className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon courtyard atrium aerodynamic lab ------------------ */}
+      <SaigonCourtyardAtriumLab className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- bespoke walk-in wardrobe vault agarwood ----------------- */}
+      <BespokeWalkInWardrobeVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan craftsman passport NFC provenance --------------- */}
+      <ArtisanCraftsmanPassport className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
