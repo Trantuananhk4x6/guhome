@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useQuickQuote } from '@/components/layout/QuickQuoteModal'
 import { Label } from '@/components/ui/Label'
@@ -147,6 +148,37 @@ const QUESTIONS: readonly QuizQuestion[] = [
         label: 'Cách ly tiếng ồn giao thông đô thị và bụi mịn PM2.5',
         description: 'Kính Low-E đa lớp, hệ rãnh tiêu âm âm học thính phòng và thác nước ion âm làm mát không khí.',
         stylePoints: { wabiSabi: 1, japandi: 1, modernLuxury: 3, contemporary: 3, indochine: 1 },
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: 'Bảng màu & Ánh sáng xúc giác yêu thích cho không gian nghỉ ngơi?',
+    subtitle: 'Nơi tái tạo năng lượng đòi hỏi sự điều tiết thị giác và nhịp sinh học tinh tế.',
+    options: [
+      {
+        id: 'q5-a',
+        label: 'Ánh sáng 2400K Warm Dim, tường vôi loang mờ, thớ gỗ óc chó đậm sáp ong',
+        description: 'Bầu không khí thiền tịnh, ánh sáng dịu mắt kích thích giấc ngủ sâu tự nhiên.',
+        stylePoints: { wabiSabi: 3, japandi: 1, modernLuxury: 1, contemporary: 0, indochine: 2 },
+      },
+      {
+        id: 'q5-b',
+        label: 'Hệ đèn rãnh từ tính âm trần 2700K, điểm nhấn kim loại xước mờ và đá marble',
+        description: 'Tỷ lệ quang học hoàn hảo, chóa tổ ong UGR < 16 chống chói tuyệt đối khi ngắm nhìn.',
+        stylePoints: { wabiSabi: 0, japandi: 0, modernLuxury: 3, contemporary: 3, indochine: 0 },
+      },
+      {
+        id: 'q5-c',
+        label: 'Ánh sáng tự nhiên khuếch tán qua rèm lanh Bỉ mỏng, gỗ sồi sáng màu',
+        description: 'Thoáng đãng tinh khôi, năng lượng tươi mới mỗi sớm mai thức giấc.',
+        stylePoints: { wabiSabi: 1, japandi: 3, modernLuxury: 0, contemporary: 1, indochine: 0 },
+      },
+      {
+        id: 'q5-d',
+        label: 'Ánh sáng vàng nến 1800K, quạt trần gỗ cánh sen và chao đèn gốm Cây Mai thủ công',
+        description: 'Hoài niệm bình yên, gió mát thoang thoảng mùi gỗ cổ truyền xua tan âu lo.',
+        stylePoints: { wabiSabi: 2, japandi: 0, modernLuxury: 0, contemporary: 0, indochine: 3 },
       },
     ],
   },
@@ -428,17 +460,22 @@ export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
                 </div>
 
                 {/* Color Scheme Palette Preview */}
-                <div className="mt-6 flex items-center gap-3">
-                  <span className="text-xs font-mono text-canvas/50">Dải màu chủ đạo:</span>
-                  <div className="flex items-center gap-2">
-                    {result.palette.map((color, idx) => (
-                      <span
-                        key={idx}
-                        className="h-6 w-9 rounded-md border border-canvas/30 shadow-sm"
-                        style={{ backgroundColor: color }}
-                        title={color}
-                      />
-                    ))}
+                <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-mono text-canvas/50">Dải màu chủ đạo:</span>
+                    <div className="flex items-center gap-2">
+                      {result.palette.map((color, idx) => (
+                        <span
+                          key={idx}
+                          className="h-6 w-9 rounded-md border border-canvas/30 shadow-sm"
+                          style={{ backgroundColor: color }}
+                          title={color}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="text-xs font-mono text-accent-soft bg-canvas/10 px-3 py-1 rounded-lg border border-accent/20">
+                    Mã hồ sơ: GU-STYLE-{result.code.toUpperCase()}-2026
                   </div>
                 </div>
 
@@ -453,12 +490,20 @@ export function StyleQuizSection({ className }: StyleQuizSectionProps = {}) {
                     <ArrowUpRightIcon className="text-base" />
                   </button>
 
+                  <Link
+                    href={`/du-toan-chi-phi?style=${result.code}`}
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-accent/40 bg-canvas/10 hover:bg-canvas/20 text-canvas font-medium text-xs font-mono transition-all min-h-[48px]"
+                  >
+                    <span>Bóc Tách Chi Phí Từng m²</span>
+                    <ArrowUpRightIcon className="text-sm" />
+                  </Link>
+
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="inline-flex items-center justify-center px-6 py-3.5 rounded-full border border-canvas/20 bg-canvas/5 text-canvas/75 hover:text-canvas hover:bg-canvas/10 text-xs font-mono transition-colors min-h-[48px] cursor-pointer"
+                    className="inline-flex items-center justify-center px-5 py-3.5 rounded-full border border-canvas/20 bg-canvas/5 text-canvas/75 hover:text-canvas hover:bg-canvas/10 text-xs font-mono transition-colors min-h-[48px] cursor-pointer"
                   >
-                    ↺ Làm lại trắc nghiệm
+                    ↺ Làm lại
                   </button>
                 </div>
               </motion.div>

@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 113,
+  "currentDirectiveIndex": 114,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -678,7 +678,13 @@
       "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
       "sentAt": "2026-10-08T20:04:48.404Z",
       "atStep": 9858
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T20:07:50.979Z",
+      "atStep": 9933
     }
   ],
-  "lastDispatchedAt": 1791489888404
+  "lastDispatchedAt": 1791490070979
 }
