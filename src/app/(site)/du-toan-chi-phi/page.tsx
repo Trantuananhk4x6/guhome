@@ -119,6 +119,8 @@ import { SaigonCanalSideAncientWellCourtyardSanctuary } from '@/components/studi
 import { ArtisanHandmadeHornSnuffBottleVault } from '@/components/tools/ArtisanHandmadeHornSnuffBottleVault'
 import { SaigonHeritageTerracottaTileCourtyardPavilion } from '@/components/studio/SaigonHeritageTerracottaTileCourtyardPavilion'
 import { ArtisanHandmadeCloisonneIncenseBurnerVault } from '@/components/tools/ArtisanHandmadeCloisonneIncenseBurnerVault'
+import { SaigonMonolithicBiotiteGraniteFireplaceLounge } from '@/components/studio/SaigonMonolithicBiotiteGraniteFireplaceLounge'
+import { ArtisanGoldLeafLacquerTeaTrayAtelier } from '@/components/tools/ArtisanGoldLeafLacquerTeaTrayAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -517,6 +519,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Handmade Cloisonne Incense Burner Vault */}
       <ArtisanHandmadeCloisonneIncenseBurnerVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Monolithic Biotite Granite Fireplace Lounge */}
+      <SaigonMonolithicBiotiteGraniteFireplaceLounge className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Gold Leaf Lacquer Tea Tray Atelier */}
+      <ArtisanGoldLeafLacquerTeaTrayAtelier className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

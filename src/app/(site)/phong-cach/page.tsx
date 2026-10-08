@@ -134,6 +134,8 @@ import { SaigonBespokeDanBauMonochordSanctuary } from '@/components/studio/Saigo
 import { SaigonCanalSideAncientWellCourtyardSanctuary } from '@/components/studio/SaigonCanalSideAncientWellCourtyardSanctuary'
 import { SaigonAcousticSitarSanctuarySalon } from '@/components/studio/SaigonAcousticSitarSanctuarySalon'
 import { SaigonHeritageTerracottaTileCourtyardPavilion } from '@/components/studio/SaigonHeritageTerracottaTileCourtyardPavilion'
+import { SaigonAcousticBalalaikaSanctuarySalon } from '@/components/studio/SaigonAcousticBalalaikaSanctuarySalon'
+import { SaigonMonolithicBiotiteGraniteFireplaceLounge } from '@/components/studio/SaigonMonolithicBiotiteGraniteFireplaceLounge'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -600,6 +602,12 @@ export default async function StylesPage() {
 
       {/* Saigon Heritage Terracotta Tile Courtyard Pavilion */}
       <SaigonHeritageTerracottaTileCourtyardPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Balalaika Sanctuary Salon */}
+      <SaigonAcousticBalalaikaSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Monolithic Biotite Granite Fireplace Lounge */}
+      <SaigonMonolithicBiotiteGraniteFireplaceLounge className="mt-[var(--spacing-section)]" />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

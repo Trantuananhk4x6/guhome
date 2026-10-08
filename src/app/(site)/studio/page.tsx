@@ -197,6 +197,9 @@ import { ArtisanHandmadeHornSnuffBottleVault } from '@/components/tools/ArtisanH
 import { SaigonAcousticSitarSanctuarySalon } from '@/components/studio/SaigonAcousticSitarSanctuarySalon'
 import { SaigonHeritageTerracottaTileCourtyardPavilion } from '@/components/studio/SaigonHeritageTerracottaTileCourtyardPavilion'
 import { ArtisanHandmadeCloisonneIncenseBurnerVault } from '@/components/tools/ArtisanHandmadeCloisonneIncenseBurnerVault'
+import { SaigonAcousticBalalaikaSanctuarySalon } from '@/components/studio/SaigonAcousticBalalaikaSanctuarySalon'
+import { SaigonMonolithicBiotiteGraniteFireplaceLounge } from '@/components/studio/SaigonMonolithicBiotiteGraniteFireplaceLounge'
+import { ArtisanGoldLeafLacquerTeaTrayAtelier } from '@/components/tools/ArtisanGoldLeafLacquerTeaTrayAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1443,6 +1446,15 @@ export default async function StudioPage() {
 
       {/* ---------------- handmade cloisonne incense burner vault ----------------- */}
       <ArtisanHandmadeCloisonneIncenseBurnerVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- acoustic balalaika sanctuary salon ---------------------- */}
+      <SaigonAcousticBalalaikaSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- monolithic biotite granite fireplace lounge ------------- */}
+      <SaigonMonolithicBiotiteGraniteFireplaceLounge className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- gold leaf lacquer tea tray atelier ---------------------- */}
+      <ArtisanGoldLeafLacquerTeaTrayAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
