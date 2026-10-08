@@ -127,7 +127,7 @@ export const DEFAULT_BRAND: BrandConfig = {
   tagline: 'Nội thất và kiến trúc cho khí hậu Sài Gòn',
   logoMediaId: null,
   faviconMediaId: null,
-  email: 'studio@guhomes.vn',
+  email: 'guhomesvn@gmail.com',
   // Real studio contact details — editable in Admin → Giao diện → Thương hiệu.
   // The phone is stored in the local form because that is how a Vietnamese
   // visitor reads it; `tel:` hrefs strip the spacing themselves.
@@ -139,6 +139,8 @@ export const DEFAULT_BRAND: BrandConfig = {
     { label: 'YouTube', href: 'https://www.youtube.com/@guconcept' },
     { label: 'Instagram', href: 'https://www.instagram.com/guconcept.vn' },
     { label: 'TikTok', href: 'https://www.tiktok.com/@guconcept' },
+    { label: 'Behance', href: 'https://www.behance.net/guhomes' },
+    { label: 'Pinterest', href: 'https://www.pinterest.com/guhomes' },
   ],
 }
 

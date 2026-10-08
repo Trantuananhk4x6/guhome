@@ -90,9 +90,8 @@ export function StudioIntro({ section, data }: HomeSectionProps) {
   const caption =
     sectionOptionalText(content, 'caption') ??
     data.studioImageCaption ??
-    // Quận 7 — the address in the footer. The fallback said Quận 2, so the last
-    // resort caption contradicted the studio's own address on the same page.
-    'Xưởng làm việc — Quận 7, TP. Hồ Chí Minh'
+    // Fallback caption aligned with GuHomes identity
+    'Studio thiết kế & xưởng may đo nội thất — TP. Hồ Chí Minh'
 
   // The count is always the live one, so the ledger can never contradict the
   // catalogue sitting a section above it.
