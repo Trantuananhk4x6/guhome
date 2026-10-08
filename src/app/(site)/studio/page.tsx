@@ -125,6 +125,9 @@ import { ArtisanGoldLeafCalligraphyCabinetryAtelier } from '@/components/tools/A
 import { SaigonArtisanBespokeParfumVault } from '@/components/studio/SaigonArtisanBespokeParfumVault'
 import { SaigonFloatingInfinityDaybedPavilion } from '@/components/studio/SaigonFloatingInfinityDaybedPavilion'
 import { ArtisanBronzeIncenseBurnerAtelier } from '@/components/tools/ArtisanBronzeIncenseBurnerAtelier'
+import { SaigonStainedGlassTerrariumConservatory } from '@/components/studio/SaigonStainedGlassTerrariumConservatory'
+import { SaigonBespokeAudiophileTurntableVault } from '@/components/studio/SaigonBespokeAudiophileTurntableVault'
+import { ArtisanHandmadeTerracottaPlanterAtelier } from '@/components/tools/ArtisanHandmadeTerracottaPlanterAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1155,6 +1158,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan bronze incense burner atelier ------------------- */}
       <ArtisanBronzeIncenseBurnerAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon stained glass terrarium conservatory -------------- */}
+      <SaigonStainedGlassTerrariumConservatory className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon bespoke audiophile turntable basalt vault --------- */}
+      <SaigonBespokeAudiophileTurntableVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan handmade terracotta planter atelier -------------- */}
+      <ArtisanHandmadeTerracottaPlanterAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

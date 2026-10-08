@@ -117,6 +117,7 @@ import { SaigonStainedGlassAtriumDomeSanctuary } from '@/components/studio/Saigo
 import { SaigonStarlightFiberOpticCeilingVault } from '@/components/studio/SaigonStarlightFiberOpticCeilingVault'
 import { SaigonAcousticCelloListeningVault } from '@/components/studio/SaigonAcousticCelloListeningVault'
 import { SaigonArtisanBespokeParfumVault } from '@/components/studio/SaigonArtisanBespokeParfumVault'
+import { SaigonStainedGlassTerrariumConservatory } from '@/components/studio/SaigonStainedGlassTerrariumConservatory'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -738,6 +739,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Artisan Bespoke Parfum 18C Climate Vault */}
           <SaigonArtisanBespokeParfumVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Stained Glass Terrarium Conservatory */}
+          <SaigonStainedGlassTerrariumConservatory className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>
