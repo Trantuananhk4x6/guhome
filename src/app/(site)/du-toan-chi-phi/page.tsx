@@ -184,6 +184,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeWaterDropperStudio } from '@/componen
 import { SaigonCanalSideAncientHingedCedarTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedCedarTeaBonsaiPavilion'
 import { BespokeImperialKynamAndSilverRepousseIncenseVault } from '@/components/studio/BespokeImperialKynamAndSilverRepousseIncenseVault'
 import { ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier'
+import { SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion'
+import { BespokeImperialKynamAndGoldFiligreeTeaCanisterVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTeaCanisterVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -777,6 +780,15 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Gold Filigree & Rosewood Inkrest Atelier */}
       <ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier />
+
+      {/* Saigon Canal Side Ancient Hinged Rosewood Tea Bonsai Pavilion */}
+      <SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion />
+
+      {/* Bespoke Imperial Kynam & Gold Filigree Tea Canister Vault */}
+      <BespokeImperialKynamAndGoldFiligreeTeaCanisterVault />
+
+      {/* Artisan Gold Filigree & Jade Paperweight Bar Atelier */}
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

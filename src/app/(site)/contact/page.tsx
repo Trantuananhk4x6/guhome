@@ -132,6 +132,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeWaterDropperStudio } from '@/componen
 import { SaigonCanalSideAncientHingedCedarTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedCedarTeaBonsaiPavilion'
 import { BespokeImperialKynamAndSilverRepousseIncenseVault } from '@/components/studio/BespokeImperialKynamAndSilverRepousseIncenseVault'
 import { ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier'
+import { SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion'
+import { BespokeImperialKynamAndGoldFiligreeTeaCanisterVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTeaCanisterVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -764,6 +767,15 @@ export default async function ContactPage() {
 
       {/* Artisan Gold Filigree & Rosewood Inkrest Atelier */}
       <ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier />
+
+      {/* Saigon Canal Side Ancient Hinged Rosewood Tea Bonsai Pavilion */}
+      <SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion />
+
+      {/* Bespoke Imperial Kynam & Gold Filigree Tea Canister Vault */}
+      <BespokeImperialKynamAndGoldFiligreeTeaCanisterVault />
+
+      {/* Artisan Gold Filigree & Jade Paperweight Bar Atelier */}
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier />
     </div>
   )
 }

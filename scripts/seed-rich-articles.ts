@@ -19,20 +19,7 @@ interface ArticleSeedItem {
     title: string
     description: string
   }
-  content: {
-    nodes: Array<
-      | { type: 'heading'; level: 2 | 3 | 4; text: string }
-      | { type: 'paragraph'; text: string }
-      | { type: 'image'; mediaId: string; caption?: string }
-      | { type: 'gallery'; mediaIds: string[] }
-      | { type: 'video'; mediaId: string }
-      | { type: 'quote'; text: string; attribution?: string }
-      | { type: 'list'; ordered: boolean; items: string[] }
-      | { type: 'projectRef'; projectId: string }
-      | { type: 'divider' }
-      | Record<string, unknown>
-    >
-  }
+  content: RichTextDoc
 }
 
 const here = dirname(fileURLToPath(import.meta.url))

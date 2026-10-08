@@ -199,6 +199,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeWaterDropperStudio } from '@/componen
 import { SaigonCanalSideAncientHingedCedarTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedCedarTeaBonsaiPavilion'
 import { BespokeImperialKynamAndSilverRepousseIncenseVault } from '@/components/studio/BespokeImperialKynamAndSilverRepousseIncenseVault'
 import { ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier'
+import { SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion'
+import { BespokeImperialKynamAndGoldFiligreeTeaCanisterVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTeaCanisterVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1067,6 +1070,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Artisan Gold Filigree & Rosewood Inkrest Atelier */}
           <ArtisanHandmadeGoldFiligreeAndRosewoodCalligraphyInkrestAtelier />
+
+          {/* Saigon Canal Side Ancient Hinged Rosewood Tea Bonsai Pavilion */}
+          <SaigonCanalSideAncientHingedRosewoodTeaBonsaiPavilion />
+
+          {/* Bespoke Imperial Kynam & Gold Filigree Tea Canister Vault */}
+          <BespokeImperialKynamAndGoldFiligreeTeaCanisterVault />
+
+          {/* Artisan Gold Filigree & Jade Paperweight Bar Atelier */}
+          <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyPaperweightBarAtelier />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
