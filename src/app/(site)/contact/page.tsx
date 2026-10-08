@@ -77,6 +77,7 @@ import { ArtisanHandmadeCloisonneIncenseBurnerVault } from '@/components/tools/A
 import { ArtisanGoldLeafLacquerTeaTrayAtelier } from '@/components/tools/ArtisanGoldLeafLacquerTeaTrayAtelier'
 import { ArtisanHornMotherOfPearlJewelryChestAtelier } from '@/components/tools/ArtisanHornMotherOfPearlJewelryChestAtelier'
 import { ArtisanImperialSilverAgarwoodTeaCaddyAtelier } from '@/components/tools/ArtisanImperialSilverAgarwoodTeaCaddyAtelier'
+import { ArtisanGoldDamasceneEbonyTobaccoPipeAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyTobaccoPipeAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -544,6 +545,9 @@ export default async function ContactPage() {
 
       {/* Artisan Imperial Silver Agarwood Tea Caddy Atelier */}
       <ArtisanImperialSilverAgarwoodTeaCaddyAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Gold Damascene Ebony Tobacco Pipe Atelier */}
+      <ArtisanGoldDamasceneEbonyTobaccoPipeAtelier />
     </div>
   )
 }

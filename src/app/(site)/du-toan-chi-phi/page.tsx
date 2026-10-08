@@ -125,6 +125,8 @@ import { SaigonCanalSideGlassBottomKoiCourtyard } from '@/components/studio/Saig
 import { ArtisanHornMotherOfPearlJewelryChestAtelier } from '@/components/tools/ArtisanHornMotherOfPearlJewelryChestAtelier'
 import { SaigonRiversideTerracedHerbalOrchardPavilion } from '@/components/studio/SaigonRiversideTerracedHerbalOrchardPavilion'
 import { ArtisanImperialSilverAgarwoodTeaCaddyAtelier } from '@/components/tools/ArtisanImperialSilverAgarwoodTeaCaddyAtelier'
+import { SaigonCanalSideFloatingBambooTeaPavilion } from '@/components/studio/SaigonCanalSideFloatingBambooTeaPavilion'
+import { ArtisanGoldDamasceneEbonyTobaccoPipeAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyTobaccoPipeAtelier'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -541,6 +543,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Imperial Silver Agarwood Tea Caddy Atelier */}
       <ArtisanImperialSilverAgarwoodTeaCaddyAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Canal-Side Floating Bamboo Tea Pavilion */}
+      <SaigonCanalSideFloatingBambooTeaPavilion />
+
+      {/* Artisan Gold Damascene Ebony Tobacco Pipe Atelier */}
+      <ArtisanGoldDamasceneEbonyTobaccoPipeAtelier />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

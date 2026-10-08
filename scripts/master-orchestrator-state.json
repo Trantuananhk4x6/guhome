@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 102,
+  "currentDirectiveIndex": 103,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -614,14 +614,20 @@
       "atStep": 8414
     },
     {
-      "directiveId": "dir-73-sprint-75-tambourine-herbalorchard-silveragarwoodcaddy",
-      "title": "Thính Phòng Tambourine Vòm Pơ-Mu, Vườn Dược Liệu Bậc Thang Ven Sông & Hũ Trà Bạc Trầm Hương",
-      "sentAt": "2026-10-08T18:50:00.000Z",
-      "completedAt": "2026-10-08T19:06:00.000Z",
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T19:11:56.909Z",
+      "atStep": 8577
+    },
+    {
+      "directiveId": "dir-74-sprint-76-cajon-floatingbamboo-damascenepipe",
+      "title": "Thính Phòng Trống Cajon Vòm Trắc, Thủy Đình Tre Nổi Ven Sông & Tẩu Thuốc Mun Nạm Vàng 24K",
+      "sentAt": "2026-10-08T19:06:48.644Z",
+      "completedAt": "2026-10-08T19:15:30.000Z",
       "status": "COMPLETED_100_PERCENT_QA",
-      "commitMessage": "feat(sprint-75): add SaigonAcousticTambourineSanctuarySalon, SaigonRiversideTerracedHerbalOrchardPavilion, and ArtisanImperialSilverAgarwoodTeaCaddyAtelier with 100% SEO pass",
-      "atStep": 8415
+      "commitMessage": "feat(sprint-76): add SaigonAcousticCajonSanctuarySalon, SaigonCanalSideFloatingBambooTeaPavilion, and ArtisanGoldDamasceneEbonyTobaccoPipeAtelier with 100% SEO pass",
+      "atStep": 8578
     }
   ],
-  "lastDispatchedAt": 1791486331323
+  "lastDispatchedAt": 1791486716909
 }

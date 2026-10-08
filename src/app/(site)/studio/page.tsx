@@ -206,6 +206,9 @@ import { ArtisanHornMotherOfPearlJewelryChestAtelier } from '@/components/tools/
 import { SaigonAcousticTambourineSanctuarySalon } from '@/components/studio/SaigonAcousticTambourineSanctuarySalon'
 import { SaigonRiversideTerracedHerbalOrchardPavilion } from '@/components/studio/SaigonRiversideTerracedHerbalOrchardPavilion'
 import { ArtisanImperialSilverAgarwoodTeaCaddyAtelier } from '@/components/tools/ArtisanImperialSilverAgarwoodTeaCaddyAtelier'
+import { SaigonAcousticCajonSanctuarySalon } from '@/components/studio/SaigonAcousticCajonSanctuarySalon'
+import { SaigonCanalSideFloatingBambooTeaPavilion } from '@/components/studio/SaigonCanalSideFloatingBambooTeaPavilion'
+import { ArtisanGoldDamasceneEbonyTobaccoPipeAtelier } from '@/components/tools/ArtisanGoldDamasceneEbonyTobaccoPipeAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1479,6 +1482,15 @@ export default async function StudioPage() {
 
       {/* ---------------- imperial silver agarwood tea caddy atelier -------------- */}
       <ArtisanImperialSilverAgarwoodTeaCaddyAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- acoustic cajon sanctuary salon ------------------------- */}
+      <SaigonAcousticCajonSanctuarySalon />
+
+      {/* ---------------- floating bamboo tea pavilion --------------------------- */}
+      <SaigonCanalSideFloatingBambooTeaPavilion />
+
+      {/* ---------------- gold damascene ebony tobacco pipe atelier ------------- */}
+      <ArtisanGoldDamasceneEbonyTobaccoPipeAtelier />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
