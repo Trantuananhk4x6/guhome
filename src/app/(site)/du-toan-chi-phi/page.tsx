@@ -67,6 +67,8 @@ import { SaigonAcousticPianoGrandSalon } from '@/components/studio/SaigonAcousti
 import { ArtisanBronzeBonsaiWaterFeatureAtelier } from '@/components/tools/ArtisanBronzeBonsaiWaterFeatureAtelier'
 import { SaigonArtisanLacquerwareGallerySanctuary } from '@/components/studio/SaigonArtisanLacquerwareGallerySanctuary'
 import { ArtisanJapaneseTatamiChashitsuTeaAtelier } from '@/components/tools/ArtisanJapaneseTatamiChashitsuTeaAtelier'
+import { SaigonRainwaterCascadeAtriumSanctuary } from '@/components/studio/SaigonRainwaterCascadeAtriumSanctuary'
+import { ArtisanGoldLeafCalligraphyCabinetryAtelier } from '@/components/tools/ArtisanGoldLeafCalligraphyCabinetryAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -308,6 +310,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Japanese Tatami Chashitsu Dinh Yen Tea Atelier */}
       <ArtisanJapaneseTatamiChashitsuTeaAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Rainwater Cascade Atrium Kusari Toi Sanctuary */}
+      <SaigonRainwaterCascadeAtriumSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Gold Leaf Calligraphy Cabinetry Atelier */}
+      <ArtisanGoldLeafCalligraphyCabinetryAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

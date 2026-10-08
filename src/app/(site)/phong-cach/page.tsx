@@ -82,6 +82,8 @@ import { SaigonStainedGlassAtriumDomeSanctuary } from '@/components/studio/Saigo
 import { SaigonAcousticPianoGrandSalon } from '@/components/studio/SaigonAcousticPianoGrandSalon'
 import { SaigonStarlightFiberOpticCeilingVault } from '@/components/studio/SaigonStarlightFiberOpticCeilingVault'
 import { SaigonArtisanLacquerwareGallerySanctuary } from '@/components/studio/SaigonArtisanLacquerwareGallerySanctuary'
+import { SaigonAcousticCelloListeningVault } from '@/components/studio/SaigonAcousticCelloListeningVault'
+import { SaigonRainwaterCascadeAtriumSanctuary } from '@/components/studio/SaigonRainwaterCascadeAtriumSanctuary'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -390,6 +392,12 @@ export default async function StylesPage() {
 
       {/* Saigon Artisan Lacquerware Gallery 18 Steps Sanctuary */}
       <SaigonArtisanLacquerwareGallerySanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Cello Listening Maple Vault */}
+      <SaigonAcousticCelloListeningVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Rainwater Cascade Atrium Kusari Toi Sanctuary */}
+      <SaigonRainwaterCascadeAtriumSanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

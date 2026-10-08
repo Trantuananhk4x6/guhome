@@ -115,6 +115,7 @@ import { SaigonMekongBiotopeAquariumVault } from '@/components/studio/SaigonMeko
 import { SaigonMaritimeAntiqueMapLibraryVault } from '@/components/studio/SaigonMaritimeAntiqueMapLibraryVault'
 import { SaigonStainedGlassAtriumDomeSanctuary } from '@/components/studio/SaigonStainedGlassAtriumDomeSanctuary'
 import { SaigonStarlightFiberOpticCeilingVault } from '@/components/studio/SaigonStarlightFiberOpticCeilingVault'
+import { SaigonAcousticCelloListeningVault } from '@/components/studio/SaigonAcousticCelloListeningVault'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -730,6 +731,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Starlight Fiber Optic Ceiling Vault 1600 Stars */}
           <SaigonStarlightFiberOpticCeilingVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Acoustic Cello Listening Maple Vault */}
+          <SaigonAcousticCelloListeningVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

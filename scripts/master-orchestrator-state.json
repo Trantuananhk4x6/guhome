@@ -264,8 +264,14 @@
       "title": "Trần Sao Sợi Quang Bầu Trời Đêm, Xưởng Sơn Mài Cẩn Trứng & Trà Thất Chiếu Cói",
       "sentAt": "2026-10-08T16:00:54.405Z",
       "completedAt": "2026-10-08T16:05:00.000Z"
+    },
+    {
+      "directiveId": "dir-45-sprint-47-cello-kusaritoi-goldcalligraphy",
+      "title": "Phòng Thính Âm Cello, Màn Mưa Xích Đồng Kusari-Toi & Tủ Thư Pháp Dát Vàng",
+      "sentAt": "2026-10-08T16:05:34.573Z",
+      "completedAt": "2026-10-08T16:09:30.000Z"
     }
   ],
-  "lastDispatchedAt": 1791474673514,
+  "lastDispatchedAt": 1791475770000,
   "activeDirective": null
 }

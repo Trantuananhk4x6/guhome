@@ -48,6 +48,7 @@ import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhis
 import { ArtisanIndoorMedicinalHerbGardenAtelier } from '@/components/tools/ArtisanIndoorMedicinalHerbGardenAtelier'
 import { ArtisanBronzeBonsaiWaterFeatureAtelier } from '@/components/tools/ArtisanBronzeBonsaiWaterFeatureAtelier'
 import { ArtisanJapaneseTatamiChashitsuTeaAtelier } from '@/components/tools/ArtisanJapaneseTatamiChashitsuTeaAtelier'
+import { ArtisanGoldLeafCalligraphyCabinetryAtelier } from '@/components/tools/ArtisanGoldLeafCalligraphyCabinetryAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -428,6 +429,9 @@ export default async function ContactPage() {
 
       {/* Artisan Japanese Tatami Chashitsu Dinh Yen Tea Atelier */}
       <ArtisanJapaneseTatamiChashitsuTeaAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Gold Leaf Calligraphy Cabinetry Atelier */}
+      <ArtisanGoldLeafCalligraphyCabinetryAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
