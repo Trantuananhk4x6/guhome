@@ -194,6 +194,9 @@ import { ArtisanSilverChasedArecaNutCasketAtelier } from '@/components/tools/Art
 import { SaigonBespokeDanBauMonochordSanctuary } from '@/components/studio/SaigonBespokeDanBauMonochordSanctuary'
 import { SaigonCanalSideAncientWellCourtyardSanctuary } from '@/components/studio/SaigonCanalSideAncientWellCourtyardSanctuary'
 import { ArtisanHandmadeHornSnuffBottleVault } from '@/components/tools/ArtisanHandmadeHornSnuffBottleVault'
+import { SaigonAcousticSitarSanctuarySalon } from '@/components/studio/SaigonAcousticSitarSanctuarySalon'
+import { SaigonHeritageTerracottaTileCourtyardPavilion } from '@/components/studio/SaigonHeritageTerracottaTileCourtyardPavilion'
+import { ArtisanHandmadeCloisonneIncenseBurnerVault } from '@/components/tools/ArtisanHandmadeCloisonneIncenseBurnerVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1431,6 +1434,15 @@ export default async function StudioPage() {
 
       {/* ---------------- handmade horn snuff bottle vault ------------------------ */}
       <ArtisanHandmadeHornSnuffBottleVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- acoustic sitar sanctuary salon -------------------------- */}
+      <SaigonAcousticSitarSanctuarySalon className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- heritage terracotta tile courtyard pavilion ------------- */}
+      <SaigonHeritageTerracottaTileCourtyardPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- handmade cloisonne incense burner vault ----------------- */}
+      <ArtisanHandmadeCloisonneIncenseBurnerVault className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

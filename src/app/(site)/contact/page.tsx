@@ -73,6 +73,7 @@ import { ArtisanBatTrangHoneyGlazeTeaBowlVault } from '@/components/tools/Artisa
 import { ArtisanSilverInlaidEbonyChopsticksAtelier } from '@/components/tools/ArtisanSilverInlaidEbonyChopsticksAtelier'
 import { ArtisanSilverChasedArecaNutCasketAtelier } from '@/components/tools/ArtisanSilverChasedArecaNutCasketAtelier'
 import { ArtisanHandmadeHornSnuffBottleVault } from '@/components/tools/ArtisanHandmadeHornSnuffBottleVault'
+import { ArtisanHandmadeCloisonneIncenseBurnerVault } from '@/components/tools/ArtisanHandmadeCloisonneIncenseBurnerVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -528,6 +529,9 @@ export default async function ContactPage() {
 
       {/* Artisan Handmade Horn Snuff Bottle Vault */}
       <ArtisanHandmadeHornSnuffBottleVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Handmade Cloisonne Incense Burner Vault */}
+      <ArtisanHandmadeCloisonneIncenseBurnerVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
