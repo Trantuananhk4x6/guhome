@@ -71,6 +71,7 @@ import { IndexPager, pageWindow } from '@/components/projects/IndexPager'
 import { ProjectIndex } from '@/components/projects/ProjectIndex'
 import { ProjectLead } from '@/components/projects/ProjectLead'
 import { LookbookClimateFilter } from '@/components/projects/LookbookClimateFilter'
+import { ProjectsViewSwitcher } from '@/components/projects/ProjectsViewSwitcher'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -436,8 +437,10 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
   return (
     <div className="bg-canvas pb-[var(--spacing-section)]">
-      <div className="u-gutter mx-auto w-full max-w-[110rem] pt-[clamp(6.5rem,16vh,11rem)]">
-        <div className="grid grid-cols-12 gap-x-8 gap-y-10 lg:gap-y-14">
+      <div className="pt-[clamp(6.5rem,16vh,11rem)]">
+        <ProjectsViewSwitcher>
+          <div className="u-gutter mx-auto w-full max-w-[110rem]">
+            <div className="grid grid-cols-12 gap-x-8 gap-y-10 lg:gap-y-14">
           {/* The rail: the whole masthead, in four columns instead of a band. */}
           <div className="col-span-12 flex flex-col lg:col-span-4">
             {/* Every page of the index opens on the same masthead, so the eyebrow
@@ -555,6 +558,8 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           className="mt-[clamp(3.5rem,9vh,7rem)]"
         />
       )}
+        </ProjectsViewSwitcher>
+      </div>
     </div>
   )
 }

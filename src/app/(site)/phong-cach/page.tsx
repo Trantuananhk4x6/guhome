@@ -25,6 +25,7 @@ import { Reveal, TextReveal } from '@/components/animation'
 import { Button } from '@/components/ui/Button'
 import { ImageFrame } from '@/components/ui/ImageFrame'
 import { Label } from '@/components/ui/Label'
+import { TactileMoodboardStudio } from '@/components/studio/TactileMoodboardStudio'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -162,6 +163,9 @@ export default async function StylesPage() {
           )}
         </div>
       </section>
+
+      {/* Tactile Moodboard & Acoustics Studio */}
+      <TactileMoodboardStudio className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { buildBreadcrumbJsonLd, buildMetadata, jsonLdScript } from '@/lib/seo'
 import { DISTRICT_LIST } from '@/data/saigonDistricts'
 import { ArrowUpRightIcon } from '@/components/ui/icons'
+import { ProjectSpatialMap } from '@/components/projects/ProjectSpatialMap'
 
 export const revalidate = 3600
 
@@ -73,8 +74,13 @@ export default function SaigonDistrictsPage() {
           </div>
         </div>
 
+        {/* Interactive Saigon Spatial Map */}
+        <div className="mt-14">
+          <ProjectSpatialMap className="rounded-3xl border border-line" />
+        </div>
+
         {/* 4 Districts Grid Showcase */}
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
           {DISTRICT_LIST.map((hub, index) => (
             <article
               key={hub.slug}

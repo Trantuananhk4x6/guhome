@@ -14,6 +14,7 @@ import type { ProjectSummary } from '@/types/content'
 import { ImageFrame } from './_components/ImageFrame'
 import { Reveal, TextReveal } from './_components/motion'
 import { TactileMaterialLab } from '@/components/sections/TactileMaterialLab'
+import { TactileMoodboardStudio } from '@/components/studio/TactileMoodboardStudio'
 import { MicroclimateSimulator } from '@/components/sections/MicroclimateSimulator'
 import { WoodshopTourSection } from '@/components/studio/WoodshopTourSection'
 
@@ -713,6 +714,9 @@ export default async function StudioPage() {
 
       {/* --------------------------- tactile material lab ------------------------ */}
       <TactileMaterialLab />
+
+      {/* -------------------- tactile moodboard studio --------------------------- */}
+      <TactileMoodboardStudio className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------- microclimate simulator -------------------------- */}
       <MicroclimateSimulator />
