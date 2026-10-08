@@ -83,6 +83,9 @@ import { ArtisanHinokiVolcanicSaunaSanctuary } from '@/components/tools/ArtisanH
 import { ArtisanLiveEdgeParquetFlooringVault } from '@/components/studio/ArtisanLiveEdgeParquetFlooringVault'
 import { MonolithicCalacattaMarbleChefIslandVault } from '@/components/studio/MonolithicCalacattaMarbleChefIslandVault'
 import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZenYogaPavilion'
+import { PrivateArtCollectionMuseumVault } from '@/components/studio/PrivateArtCollectionMuseumVault'
+import { ArtisanQuartzHourglassVault } from '@/components/studio/ArtisanQuartzHourglassVault'
+import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/RiversideCigarLoungeAndHumidorSanctuary'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -987,6 +990,15 @@ export default async function StudioPage() {
 
       {/* ---------------- riverside dawn zen yoga & 528Hz singing bowl pavilion ----- */}
       <RiversideDawnZenYogaPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- private art collection museum optical glass vault --------- */}
+      <PrivateArtCollectionMuseumVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan red quartz hourglass 60m ASMR sound vault --------- */}
+      <ArtisanQuartzHourglassVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- riverside cigar lounge negative-pressure & humidor -------- */}
+      <RiversideCigarLoungeAndHumidorSanctuary className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

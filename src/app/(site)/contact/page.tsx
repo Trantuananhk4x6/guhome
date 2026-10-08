@@ -36,6 +36,7 @@ import { PrivateEstateDigitalButlerPortal } from '@/components/tools/PrivateEsta
 import { ArtisanShanTuyetTeaSanctuary } from '@/components/tools/ArtisanShanTuyetTeaSanctuary'
 import { ArtisanHinokiVolcanicSaunaSanctuary } from '@/components/tools/ArtisanHinokiVolcanicSaunaSanctuary'
 import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZenYogaPavilion'
+import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/RiversideCigarLoungeAndHumidorSanctuary'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -380,6 +381,9 @@ export default async function ContactPage() {
 
       {/* Riverside Dawn Zen Yoga & 528Hz Singing Bowl Pavilion */}
       <RiversideDawnZenYogaPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Riverside Cigar Lounge Negative-Pressure & Humidor */}
+      <RiversideCigarLoungeAndHumidorSanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

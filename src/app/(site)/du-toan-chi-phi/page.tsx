@@ -43,6 +43,8 @@ import { ArtisanTeppanyakiChefTableVault } from '@/components/studio/ArtisanTepp
 import { ArtisanHinokiVolcanicSaunaSanctuary } from '@/components/tools/ArtisanHinokiVolcanicSaunaSanctuary'
 import { MonolithicCalacattaMarbleChefIslandVault } from '@/components/studio/MonolithicCalacattaMarbleChefIslandVault'
 import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZenYogaPavilion'
+import { ArtisanQuartzHourglassVault } from '@/components/studio/ArtisanQuartzHourglassVault'
+import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/RiversideCigarLoungeAndHumidorSanctuary'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -212,6 +214,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Riverside Dawn Zen Yoga & 528Hz Singing Bowl Pavilion */}
       <RiversideDawnZenYogaPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Red Quartz Hourglass 60m ASMR Sound Vault */}
+      <ArtisanQuartzHourglassVault className="mt-[var(--spacing-section)]" />
+
+      {/* Riverside Cigar Lounge Negative-Pressure & Humidor */}
+      <RiversideCigarLoungeAndHumidorSanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

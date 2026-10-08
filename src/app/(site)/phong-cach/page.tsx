@@ -58,6 +58,8 @@ import { ArtisanBatTrangBrickWineCellarVault } from '@/components/studio/Artisan
 import { ArtisanTeppanyakiChefTableVault } from '@/components/studio/ArtisanTeppanyakiChefTableVault'
 import { ArtisanLiveEdgeParquetFlooringVault } from '@/components/studio/ArtisanLiveEdgeParquetFlooringVault'
 import { MonolithicCalacattaMarbleChefIslandVault } from '@/components/studio/MonolithicCalacattaMarbleChefIslandVault'
+import { PrivateArtCollectionMuseumVault } from '@/components/studio/PrivateArtCollectionMuseumVault'
+import { ArtisanQuartzHourglassVault } from '@/components/studio/ArtisanQuartzHourglassVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -294,6 +296,12 @@ export default async function StylesPage() {
 
       {/* Monolithic Calacatta Borghini Chef Island 2.2T Vault */}
       <MonolithicCalacattaMarbleChefIslandVault className="mt-[var(--spacing-section)]" />
+
+      {/* Private Art Collection Museum Optical Glass Vault */}
+      <PrivateArtCollectionMuseumVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Red Quartz Hourglass 60m ASMR Sound Vault */}
+      <ArtisanQuartzHourglassVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
