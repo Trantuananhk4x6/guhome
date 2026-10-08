@@ -58,6 +58,7 @@ import { ArtisanBronzeIncenseSealSanctuary } from '@/components/tools/ArtisanBro
 import { ArtisanBronzeIncenseFurnaceVault } from '@/components/tools/ArtisanBronzeIncenseFurnaceVault'
 import { ArtisanHandmadeDamascusCleaverCulinaryAtelier } from '@/components/tools/ArtisanHandmadeDamascusCleaverCulinaryAtelier'
 import { ArtisanImperialSilverChasedTeapotAtelier } from '@/components/tools/ArtisanImperialSilverChasedTeapotAtelier'
+import { ArtisanGoldFiligreeJewelryAndCasketAtelier } from '@/components/tools/ArtisanGoldFiligreeJewelryAndCasketAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -468,6 +469,9 @@ export default async function ContactPage() {
 
       {/* Artisan Imperial Silver Chased Teapot Atelier */}
       <ArtisanImperialSilverChasedTeapotAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Gold Filigree Jewelry And Casket Atelier */}
+      <ArtisanGoldFiligreeJewelryAndCasketAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

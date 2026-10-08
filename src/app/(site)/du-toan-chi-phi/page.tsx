@@ -87,6 +87,8 @@ import { ArtisanGiaDinhCeramicKilnCourtyardSanctuary } from '@/components/studio
 import { ArtisanHandmadeDamascusCleaverCulinaryAtelier } from '@/components/tools/ArtisanHandmadeDamascusCleaverCulinaryAtelier'
 import { SaigonHeritageAncientBrickCourtyardPavilion } from '@/components/studio/SaigonHeritageAncientBrickCourtyardPavilion'
 import { ArtisanImperialSilverChasedTeapotAtelier } from '@/components/tools/ArtisanImperialSilverChasedTeapotAtelier'
+import { ArtisanSaigonRiverboatWoodCraftSanctuary } from '@/components/studio/ArtisanSaigonRiverboatWoodCraftSanctuary'
+import { ArtisanGoldFiligreeJewelryAndCasketAtelier } from '@/components/tools/ArtisanGoldFiligreeJewelryAndCasketAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -388,6 +390,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Imperial Silver Chased Teapot Atelier */}
       <ArtisanImperialSilverChasedTeapotAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Saigon Riverboat Wood Craft Sanctuary */}
+      <ArtisanSaigonRiverboatWoodCraftSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Gold Filigree Jewelry And Casket Atelier */}
+      <ArtisanGoldFiligreeJewelryAndCasketAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -7,7 +7,7 @@ const LANGUAGE_SERVER_EXE = 'C:\\Users\\Admin\\AppData\\Local\\Programs\\antigra
 const STATE_PATH = path.resolve('scripts/master-orchestrator-state.json');
 
 const SPRINT_57_DIRECTIVE = `[MASTER ORCHESTRATOR DIRECTIVE - SPRINT 57: ĐIỆN THÍNH PHÒNG ĐẠI PHONG CẦM PIPE ORGAN, NGHỆ THUẬT GỖ THUYỀN CỔ SÀI GÒN & TRÁP ĐẬU BẠC THẾP VÀNG ĐỊNH CÔNG]
-KTS Trưởng kiêm Kỹ sư trưởng GuHomes (Session \${TARGET_ID}):
+KTS Trưởng kiêm Kỹ sư trưởng GuHomes (Session ${TARGET_ID}):
 
 Master Orchestrator cùng Elite QA tiếp tục mở rộng chuỗi sáng tạo nghệ thuật cao cấp với Sprint 57:
 "ĐIỆN THÍNH PHÒNG ĐẠI PHONG CẦM PIPE ORGAN, NGHỆ THUẬT GỖ THUYỀN CỔ SÀI GÒN & TRÁP ĐẬU BẠC THẾP VÀNG ĐỊNH CÔNG"
