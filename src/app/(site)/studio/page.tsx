@@ -179,6 +179,9 @@ import { ArtisanDuanniZishaTeapotAtelier } from '@/components/tools/ArtisanDuann
 import { SaigonAcousticKlongPutSanctuaryPavilion } from '@/components/studio/SaigonAcousticKlongPutSanctuaryPavilion'
 import { SaigonSkyJungleBiofilterConservatory } from '@/components/studio/SaigonSkyJungleBiofilterConservatory'
 import { ArtisanRattanSilverWineSetVault } from '@/components/tools/ArtisanRattanSilverWineSetVault'
+import { SaigonAcousticYangqinSanctuaryPavilion } from '@/components/studio/SaigonAcousticYangqinSanctuaryPavilion'
+import { SaigonBioNaturalEcoPoolSanctuary } from '@/components/studio/SaigonBioNaturalEcoPoolSanctuary'
+import { ArtisanHoangDanBrassInlayTeaTrayVault } from '@/components/tools/ArtisanHoangDanBrassInlayTeaTrayVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1371,6 +1374,15 @@ export default async function StudioPage() {
 
       {/* ---------------- rattan silver wine set vault --------------------------- */}
       <ArtisanRattanSilverWineSetVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- acoustic yangqin sanctuary pavilion --------------------- */}
+      <SaigonAcousticYangqinSanctuaryPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- bio-natural eco pool sanctuary -------------------------- */}
+      <SaigonBioNaturalEcoPoolSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- hoang dan brass inlay tea tray vault -------------------- */}
+      <ArtisanHoangDanBrassInlayTeaTrayVault className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

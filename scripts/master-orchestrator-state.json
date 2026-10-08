@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 60,
+  "currentDirectiveIndex": 65,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -362,25 +362,35 @@
       "atStep": 7319
     },
     {
-      "directiveId": "dir-63-sprint-65-oud-mineralpool-zisha",
-      "title": "Phòng Đàn Oud Hoàng Đàn, Hồ Khoáng Núi Lửa Nước Mặn & Ấm Tử Sa Đoạn Nê",
-      "completedAt": "2026-10-08T17:53:46.000Z",
-      "status": "COMPLETED_100_PERCENT",
-      "commitMessage": "feat(sprint-65): add SaigonAcousticOudSanctuarySalon, SaigonVolcanicSlateMineralPoolPavilion, and ArtisanDuanniZishaTeapotAtelier with 100% SEO pass"
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T17:59:57.094Z",
+      "atStep": 7355
     },
     {
-      "directiveId": "dir-64-sprint-66-klongput-skyjungle-rattanwine",
-      "title": "Phòng Đàn Klong Pút Tre Lồ Ô, Vườn Sky Jungle & Bộ Rượu Cần Mây Tre",
-      "completedAt": "2026-10-08T17:58:06.000Z",
-      "status": "COMPLETED_100_PERCENT",
-      "commitMessage": "feat(sprint-66): add SaigonAcousticKlongPutSanctuaryPavilion, SaigonSkyJungleBiofilterConservatory, and ArtisanRattanSilverWineSetVault with 100% SEO pass"
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-08T18:01:07.735Z",
+      "atStep": 7379
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-08T18:02:08.691Z",
+      "atStep": 7395
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-08T18:02:41.664Z",
+      "atStep": 7399
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T18:03:43.224Z",
+      "atStep": 7413
     }
   ],
-  "lastDispatchedAt": 1791482296000,
-  "activeDirective": {
-    "directiveId": "dir-65-sprint-67-yangqin-ecopool-hoangdantray",
-    "title": "Phòng Tam Thập Lục Gỗ Hương, Hồ Bơi Sinh Thái & Khay Trà Hoàng Đàn",
-    "sentAt": "2026-10-08T17:58:16.000Z",
-    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
-  }
+  "lastDispatchedAt": 1791482623224
 }

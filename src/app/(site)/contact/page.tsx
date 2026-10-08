@@ -68,6 +68,7 @@ import { ArtisanRattanCoreLacquerTeaCaddyAtelier } from '@/components/tools/Arti
 import { ArtisanPureSilverAgarwoodSnuffBottleAtelier } from '@/components/tools/ArtisanPureSilverAgarwoodSnuffBottleAtelier'
 import { ArtisanDuanniZishaTeapotAtelier } from '@/components/tools/ArtisanDuanniZishaTeapotAtelier'
 import { ArtisanRattanSilverWineSetVault } from '@/components/tools/ArtisanRattanSilverWineSetVault'
+import { ArtisanHoangDanBrassInlayTeaTrayVault } from '@/components/tools/ArtisanHoangDanBrassInlayTeaTrayVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -508,6 +509,9 @@ export default async function ContactPage() {
 
       {/* Artisan Rattan Silver Wine Set Vault */}
       <ArtisanRattanSilverWineSetVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Hoang Dan Brass Inlay Tea Tray Vault */}
+      <ArtisanHoangDanBrassInlayTeaTrayVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
