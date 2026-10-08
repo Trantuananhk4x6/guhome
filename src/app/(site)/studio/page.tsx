@@ -50,6 +50,9 @@ import { BespokeTimberCareVault } from '@/components/tools/BespokeTimberCareVaul
 import { ArtisanLimePlasterLab } from '@/components/studio/ArtisanLimePlasterLab'
 import { SommelierWineCigarVault } from '@/components/studio/SommelierWineCigarVault'
 import { LeadArchitectPrivateSession } from '@/components/consultation/LeadArchitectPrivateSession'
+import { AcousticSanctuaryMasterSuite } from '@/components/studio/AcousticSanctuaryMasterSuite'
+import { PatinaMetalworkArtisanLab } from '@/components/studio/PatinaMetalworkArtisanLab'
+import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudit'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -855,6 +858,15 @@ export default async function StudioPage() {
 
       {/* ---------------- 1-on-1 lead architect private session ------------------ */}
       <LeadArchitectPrivateSession className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- acoustic sanctuary master suite NC-25 ------------------- */}
+      <AcousticSanctuaryMasterSuite className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- living metal patina artisan lab ------------------------- */}
+      <PatinaMetalworkArtisanLab className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- digital twin estate audit 3D LiDAR ---------------------- */}
+      <DigitalTwinEstateAudit className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

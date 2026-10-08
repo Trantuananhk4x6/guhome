@@ -22,6 +22,8 @@ import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestone
 import { BespokeTimberCareVault } from '@/components/tools/BespokeTimberCareVault'
 import { SommelierWineCigarVault } from '@/components/studio/SommelierWineCigarVault'
 import { LeadArchitectPrivateSession } from '@/components/consultation/LeadArchitectPrivateSession'
+import { PatinaMetalworkArtisanLab } from '@/components/studio/PatinaMetalworkArtisanLab'
+import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudit'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -128,6 +130,12 @@ export default function DuToanChiPhiPage() {
 
       {/* 1-on-1 Lead Architect Private Session */}
       <LeadArchitectPrivateSession className="mt-[var(--spacing-section)]" />
+
+      {/* Living Metal Patina Artisan Lab */}
+      <PatinaMetalworkArtisanLab className="mt-[var(--spacing-section)]" />
+
+      {/* Digital Twin Estate Audit 3D LiDAR */}
+      <DigitalTwinEstateAudit className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

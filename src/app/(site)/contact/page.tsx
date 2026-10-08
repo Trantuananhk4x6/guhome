@@ -25,6 +25,7 @@ import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationD
 import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestoneScheduler'
 import { BespokeTimberCareVault } from '@/components/tools/BespokeTimberCareVault'
 import { LeadArchitectPrivateSession } from '@/components/consultation/LeadArchitectPrivateSession'
+import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudit'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -336,6 +337,9 @@ export default async function ContactPage() {
 
       {/* 1-on-1 Lead Architect Private Session */}
       <LeadArchitectPrivateSession className="mt-[var(--spacing-section)]" />
+
+      {/* Digital Twin Estate Audit 3D LiDAR */}
+      <DigitalTwinEstateAudit className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

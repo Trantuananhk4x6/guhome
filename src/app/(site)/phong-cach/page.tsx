@@ -38,6 +38,8 @@ import { TactileTextileDraperyLab } from '@/components/studio/TactileTextileDrap
 import { TeaSanctuaryPavilion } from '@/components/studio/TeaSanctuaryPavilion'
 import { TactileHardwareAtelier } from '@/components/studio/TactileHardwareAtelier'
 import { ArtisanLimePlasterLab } from '@/components/studio/ArtisanLimePlasterLab'
+import { AcousticSanctuaryMasterSuite } from '@/components/studio/AcousticSanctuaryMasterSuite'
+import { PatinaMetalworkArtisanLab } from '@/components/studio/PatinaMetalworkArtisanLab'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -214,6 +216,12 @@ export default async function StylesPage() {
 
       {/* Artisan Hand-troweled Lime Plaster Lab */}
       <ArtisanLimePlasterLab className="mt-[var(--spacing-section)]" />
+
+      {/* Acoustic Sanctuary Master Suite NC-25 */}
+      <AcousticSanctuaryMasterSuite className="mt-[var(--spacing-section)]" />
+
+      {/* Living Metal Patina Artisan Lab */}
+      <PatinaMetalworkArtisanLab className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

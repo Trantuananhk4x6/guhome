@@ -90,6 +90,7 @@ import { TactileHardwareAtelier } from '@/components/studio/TactileHardwareAteli
 import { TropicalBonsaiEcologyLab } from '@/components/studio/TropicalBonsaiEcologyLab'
 import { ArtisanLimePlasterLab } from '@/components/studio/ArtisanLimePlasterLab'
 import { SommelierWineCigarVault } from '@/components/studio/SommelierWineCigarVault'
+import { AcousticSanctuaryMasterSuite } from '@/components/studio/AcousticSanctuaryMasterSuite'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -630,6 +631,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Sommelier Wine & Cigar Microclimate Vault */}
           <SommelierWineCigarVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Acoustic Sanctuary Master Suite NC-25 */}
+          <AcousticSanctuaryMasterSuite className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>
