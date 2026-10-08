@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 43,
+  "currentDirectiveIndex": 44,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -330,6 +330,12 @@
       "title": "Đồng Hồ Nước Clepsydra, Tủ Bảo Tồn Tourbillon & Tiểu Cảnh Rừng Ngập Mặn",
       "sentAt": "2026-10-08T15:43:03.821Z",
       "completedAt": "2026-10-08T15:46:40.000Z"
+    },
+    {
+      "directiveId": "dir-41-sprint-43-mekong-chandelier-whisky",
+      "title": "Thủy Sinh Biotope Mê Kông, Đèn Chùm Pha Lê Thông Tầng & Hầm Ủ Whisky Thùng Sồi",
+      "sentAt": "2026-10-08T15:47:11.050Z",
+      "completedAt": "2026-10-08T15:50:50.000Z"
     }
   ],
   "lastDispatchedAt": 1791472996786,

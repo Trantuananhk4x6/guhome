@@ -74,6 +74,8 @@ import { SaigonCalocedrusHomeCinemaSanctuary } from '@/components/studio/SaigonC
 import { ArtisanMotherOfPearlChessPavilion } from '@/components/studio/ArtisanMotherOfPearlChessPavilion'
 import { SaigonClepsydraWaterClockVault } from '@/components/studio/SaigonClepsydraWaterClockVault'
 import { HorologyTimepieceAndCigarVault } from '@/components/studio/HorologyTimepieceAndCigarVault'
+import { SaigonMekongBiotopeAquariumVault } from '@/components/studio/SaigonMekongBiotopeAquariumVault'
+import { ArtisanBaccaratCrystalChandelierAtelier } from '@/components/studio/ArtisanBaccaratCrystalChandelierAtelier'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -358,6 +360,12 @@ export default async function StylesPage() {
 
       {/* Horology Timepiece Tourbillon & Cigar Spanish Cedar Vault */}
       <HorologyTimepieceAndCigarVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Mekong Biotope Aquarium Hopea Driftwood Vault */}
+      <SaigonMekongBiotopeAquariumVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Baccarat Crystal Chandelier Winch Atelier */}
+      <ArtisanBaccaratCrystalChandelierAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

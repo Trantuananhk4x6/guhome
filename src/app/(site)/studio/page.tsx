@@ -107,6 +107,9 @@ import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/Artisan
 import { SaigonClepsydraWaterClockVault } from '@/components/studio/SaigonClepsydraWaterClockVault'
 import { HorologyTimepieceAndCigarVault } from '@/components/studio/HorologyTimepieceAndCigarVault'
 import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangroveBoutiqueEcologyLab'
+import { SaigonMekongBiotopeAquariumVault } from '@/components/studio/SaigonMekongBiotopeAquariumVault'
+import { ArtisanBaccaratCrystalChandelierAtelier } from '@/components/studio/ArtisanBaccaratCrystalChandelierAtelier'
+import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhiskyLibraryAndCaskVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1083,6 +1086,15 @@ export default async function StudioPage() {
 
       {/* ---------------- saigon mangrove boutique ecology atrium tidal lab --------- */}
       <SaigonMangroveBoutiqueEcologyLab className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon mekong biotope aquarium hopea driftwood vault ------ */}
+      <SaigonMekongBiotopeAquariumVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan baccarat crystal chandelier winch atelier --------- */}
+      <ArtisanBaccaratCrystalChandelierAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- private whisky library american oak cask vault ------------ */}
+      <PrivateWhiskyLibraryAndCaskVault className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

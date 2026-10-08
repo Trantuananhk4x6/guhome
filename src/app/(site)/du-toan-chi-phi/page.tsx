@@ -59,6 +59,8 @@ import { ArtisanMotherOfPearlChessPavilion } from '@/components/studio/ArtisanMo
 import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/ArtisanRiverPebbleAcupressureWalkway'
 import { HorologyTimepieceAndCigarVault } from '@/components/studio/HorologyTimepieceAndCigarVault'
 import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangroveBoutiqueEcologyLab'
+import { ArtisanBaccaratCrystalChandelierAtelier } from '@/components/studio/ArtisanBaccaratCrystalChandelierAtelier'
+import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhiskyLibraryAndCaskVault'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -276,6 +278,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Saigon Mangrove Boutique Ecology Atrium Tidal Lab */}
       <SaigonMangroveBoutiqueEcologyLab className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Baccarat Crystal Chandelier Winch Atelier */}
+      <ArtisanBaccaratCrystalChandelierAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Private Whisky Library American Oak Cask Vault */}
+      <PrivateWhiskyLibraryAndCaskVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

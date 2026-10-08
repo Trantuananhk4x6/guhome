@@ -44,6 +44,7 @@ import { ArtisanMarbleSundialGardenVault } from '@/components/tools/ArtisanMarbl
 import { ArtisanDamascusSteelChefKnifeAtelier } from '@/components/tools/ArtisanDamascusSteelChefKnifeAtelier'
 import { ArtisanRiverPebbleAcupressureWalkway } from '@/components/tools/ArtisanRiverPebbleAcupressureWalkway'
 import { SaigonMangroveBoutiqueEcologyLab } from '@/components/tools/SaigonMangroveBoutiqueEcologyLab'
+import { PrivateWhiskyLibraryAndCaskVault } from '@/components/tools/PrivateWhiskyLibraryAndCaskVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -412,6 +413,9 @@ export default async function ContactPage() {
 
       {/* Saigon Mangrove Boutique Ecology Atrium Tidal Lab */}
       <SaigonMangroveBoutiqueEcologyLab className="mt-[var(--spacing-section)]" />
+
+      {/* Private Whisky Library American Oak Cask Vault */}
+      <PrivateWhiskyLibraryAndCaskVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
