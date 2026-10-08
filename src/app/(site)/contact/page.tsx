@@ -35,6 +35,7 @@ import { MasterArchitecturalDossierArchive } from '@/components/tools/MasterArch
 import { PrivateEstateDigitalButlerPortal } from '@/components/tools/PrivateEstateDigitalButlerPortal'
 import { ArtisanShanTuyetTeaSanctuary } from '@/components/tools/ArtisanShanTuyetTeaSanctuary'
 import { ArtisanHinokiVolcanicSaunaSanctuary } from '@/components/tools/ArtisanHinokiVolcanicSaunaSanctuary'
+import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZenYogaPavilion'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -376,6 +377,9 @@ export default async function ContactPage() {
 
       {/* Artisan Hinoki Volcanic Stone Bio-Sauna Sanctuary */}
       <ArtisanHinokiVolcanicSaunaSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Riverside Dawn Zen Yoga & 528Hz Singing Bowl Pavilion */}
+      <RiversideDawnZenYogaPavilion className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

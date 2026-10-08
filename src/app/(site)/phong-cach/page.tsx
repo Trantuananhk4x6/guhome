@@ -56,6 +56,8 @@ import { AntiqueLibraryAndCartographyVault } from '@/components/studio/AntiqueLi
 import { ArtisanHorologyGrandfatherClockVault } from '@/components/studio/ArtisanHorologyGrandfatherClockVault'
 import { ArtisanBatTrangBrickWineCellarVault } from '@/components/studio/ArtisanBatTrangBrickWineCellarVault'
 import { ArtisanTeppanyakiChefTableVault } from '@/components/studio/ArtisanTeppanyakiChefTableVault'
+import { ArtisanLiveEdgeParquetFlooringVault } from '@/components/studio/ArtisanLiveEdgeParquetFlooringVault'
+import { MonolithicCalacattaMarbleChefIslandVault } from '@/components/studio/MonolithicCalacattaMarbleChefIslandVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -286,6 +288,12 @@ export default async function StylesPage() {
 
       {/* Artisan Teppanyaki Chef Table 25mm Steel & Plasma Downdraft */}
       <ArtisanTeppanyakiChefTableVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Live-Edge Parquet Flooring 220mm Osmo Wax Vault */}
+      <ArtisanLiveEdgeParquetFlooringVault className="mt-[var(--spacing-section)]" />
+
+      {/* Monolithic Calacatta Borghini Chef Island 2.2T Vault */}
+      <MonolithicCalacattaMarbleChefIslandVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

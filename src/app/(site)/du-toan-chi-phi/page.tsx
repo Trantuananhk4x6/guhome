@@ -41,6 +41,8 @@ import { ArtisanHorologyGrandfatherClockVault } from '@/components/studio/Artisa
 import { ArtisanShanTuyetTeaSanctuary } from '@/components/tools/ArtisanShanTuyetTeaSanctuary'
 import { ArtisanTeppanyakiChefTableVault } from '@/components/studio/ArtisanTeppanyakiChefTableVault'
 import { ArtisanHinokiVolcanicSaunaSanctuary } from '@/components/tools/ArtisanHinokiVolcanicSaunaSanctuary'
+import { MonolithicCalacattaMarbleChefIslandVault } from '@/components/studio/MonolithicCalacattaMarbleChefIslandVault'
+import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZenYogaPavilion'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -204,6 +206,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Hinoki Volcanic Stone Bio-Sauna Sanctuary */}
       <ArtisanHinokiVolcanicSaunaSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Monolithic Calacatta Borghini Chef Island 2.2T Vault */}
+      <MonolithicCalacattaMarbleChefIslandVault className="mt-[var(--spacing-section)]" />
+
+      {/* Riverside Dawn Zen Yoga & 528Hz Singing Bowl Pavilion */}
+      <RiversideDawnZenYogaPavilion className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -80,6 +80,9 @@ import { ArtisanShanTuyetTeaSanctuary } from '@/components/tools/ArtisanShanTuye
 import { ArtisanBatTrangBrickWineCellarVault } from '@/components/studio/ArtisanBatTrangBrickWineCellarVault'
 import { ArtisanTeppanyakiChefTableVault } from '@/components/studio/ArtisanTeppanyakiChefTableVault'
 import { ArtisanHinokiVolcanicSaunaSanctuary } from '@/components/tools/ArtisanHinokiVolcanicSaunaSanctuary'
+import { ArtisanLiveEdgeParquetFlooringVault } from '@/components/studio/ArtisanLiveEdgeParquetFlooringVault'
+import { MonolithicCalacattaMarbleChefIslandVault } from '@/components/studio/MonolithicCalacattaMarbleChefIslandVault'
+import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZenYogaPavilion'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -975,6 +978,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan hinoki volcanic stone bio-sauna sanctuary --------- */}
       <ArtisanHinokiVolcanicSaunaSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan live-edge parquet flooring 220mm osmo wax vault --- */}
+      <ArtisanLiveEdgeParquetFlooringVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- monolithic calacatta borghini chef island 2.2T vault ------ */}
+      <MonolithicCalacattaMarbleChefIslandVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- riverside dawn zen yoga & 528Hz singing bowl pavilion ----- */}
+      <RiversideDawnZenYogaPavilion className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">
