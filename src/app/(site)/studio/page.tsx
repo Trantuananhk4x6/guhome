@@ -152,6 +152,9 @@ import { ArtisanImperialSilverChasedTeapotAtelier } from '@/components/tools/Art
 import { SaigonAcousticPipeOrganAtriumVault } from '@/components/studio/SaigonAcousticPipeOrganAtriumVault'
 import { ArtisanSaigonRiverboatWoodCraftSanctuary } from '@/components/studio/ArtisanSaigonRiverboatWoodCraftSanctuary'
 import { ArtisanGoldFiligreeJewelryAndCasketAtelier } from '@/components/tools/ArtisanGoldFiligreeJewelryAndCasketAtelier'
+import { SaigonAcousticCimbalomSalonSanctuary } from '@/components/studio/SaigonAcousticCimbalomSalonSanctuary'
+import { ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary } from '@/components/studio/ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary'
+import { ArtisanHandmadeHornAndTortoiseshellCombAtelier } from '@/components/tools/ArtisanHandmadeHornAndTortoiseshellCombAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1263,6 +1266,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan gold filigree jewelry and casket atelier -------- */}
       <ArtisanGoldFiligreeJewelryAndCasketAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon acoustic cimbalom salon sanctuary --------------- */}
+      <SaigonAcousticCimbalomSalonSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan saigon monolithic granite water feature sanctuary - */}
+      <ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan handmade horn and tortoiseshell comb atelier ---- */}
+      <ArtisanHandmadeHornAndTortoiseshellCombAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

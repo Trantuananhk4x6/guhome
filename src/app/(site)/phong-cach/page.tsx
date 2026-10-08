@@ -104,6 +104,8 @@ import { SaigonAcousticHarpSalonSanctuary } from '@/components/studio/SaigonAcou
 import { SaigonHeritageAncientBrickCourtyardPavilion } from '@/components/studio/SaigonHeritageAncientBrickCourtyardPavilion'
 import { SaigonAcousticPipeOrganAtriumVault } from '@/components/studio/SaigonAcousticPipeOrganAtriumVault'
 import { ArtisanSaigonRiverboatWoodCraftSanctuary } from '@/components/studio/ArtisanSaigonRiverboatWoodCraftSanctuary'
+import { SaigonAcousticCimbalomSalonSanctuary } from '@/components/studio/SaigonAcousticCimbalomSalonSanctuary'
+import { ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary } from '@/components/studio/ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -478,6 +480,12 @@ export default async function StylesPage() {
 
       {/* Artisan Saigon Riverboat Wood Craft Sanctuary */}
       <ArtisanSaigonRiverboatWoodCraftSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Cimbalom Salon Sanctuary */}
+      <SaigonAcousticCimbalomSalonSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Saigon Monolithic Granite Water Feature Sanctuary */}
+      <ArtisanSaigonMonolithicGraniteWaterFeatureSanctuary className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

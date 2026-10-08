@@ -126,6 +126,7 @@ import { SaigonAcousticGuqinSanctuaryPavilion } from '@/components/studio/Saigon
 import { SaigonHarpsichordClavecinSanctuary } from '@/components/studio/SaigonHarpsichordClavecinSanctuary'
 import { SaigonAcousticHarpSalonSanctuary } from '@/components/studio/SaigonAcousticHarpSalonSanctuary'
 import { SaigonAcousticPipeOrganAtriumVault } from '@/components/studio/SaigonAcousticPipeOrganAtriumVault'
+import { SaigonAcousticCimbalomSalonSanctuary } from '@/components/studio/SaigonAcousticCimbalomSalonSanctuary'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -774,6 +775,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Acoustic Pipe Organ Atrium Vault */}
           <SaigonAcousticPipeOrganAtriumVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Acoustic Cimbalom Salon Sanctuary */}
+          <SaigonAcousticCimbalomSalonSanctuary className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>
