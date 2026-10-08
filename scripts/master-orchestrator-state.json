@@ -390,7 +390,15 @@
       "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
       "sentAt": "2026-10-08T18:03:43.224Z",
       "atStep": 7413
+    },
+    {
+      "directiveId": "dir-65-sprint-67-yangqin-ecopool-hoangdantray",
+      "title": "Phòng Tam Thập Lục Gỗ Hương, Hồ Bơi Sinh Thái & Khay Trà Hoàng Đàn",
+      "sentAt": "2026-10-08T17:58:16.000Z",
+      "completedAt": "2026-10-08T18:04:00.000Z",
+      "status": "COMPLETED_100_PERCENT_QA",
+      "commitMessage": "feat(sprint-67): add SaigonAcousticYangqinSanctuaryPavilion, SaigonBioNaturalEcoPoolSanctuary, and ArtisanHoangDanBrassInlayTeaTrayVault with 100% SEO pass"
     }
   ],
-  "lastDispatchedAt": 1791482623224
+  "lastDispatchedAt": 1791482640000
 }
