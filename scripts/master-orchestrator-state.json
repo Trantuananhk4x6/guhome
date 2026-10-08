@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 21,
+  "currentDirectiveIndex": 25,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -126,7 +126,31 @@
       "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
       "sentAt": "2026-10-08T14:28:19.712Z",
       "atStep": 2565
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-08T14:30:10.195Z",
+      "atStep": 2609
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T14:31:20.664Z",
+      "atStep": 2643
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-08T14:32:11.796Z",
+      "atStep": 2665
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-08T14:32:42.165Z",
+      "atStep": 2675
     }
   ],
-  "lastDispatchedAt": 1791469699712
+  "lastDispatchedAt": 1791469962165
 }

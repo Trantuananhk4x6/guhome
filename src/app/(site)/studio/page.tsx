@@ -47,6 +47,9 @@ import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestone
 import { TactileHardwareAtelier } from '@/components/studio/TactileHardwareAtelier'
 import { TropicalBonsaiEcologyLab } from '@/components/studio/TropicalBonsaiEcologyLab'
 import { BespokeTimberCareVault } from '@/components/tools/BespokeTimberCareVault'
+import { ArtisanLimePlasterLab } from '@/components/studio/ArtisanLimePlasterLab'
+import { SommelierWineCigarVault } from '@/components/studio/SommelierWineCigarVault'
+import { LeadArchitectPrivateSession } from '@/components/consultation/LeadArchitectPrivateSession'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -843,6 +846,15 @@ export default async function StudioPage() {
 
       {/* ---------------- bespoke timber care & VIP maintenance vault ----------- */}
       <BespokeTimberCareVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan hand-troweled lime plaster lab ----------------- */}
+      <ArtisanLimePlasterLab className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- sommelier wine & cigar microclimate vault --------------- */}
+      <SommelierWineCigarVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- 1-on-1 lead architect private session ------------------ */}
+      <LeadArchitectPrivateSession className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

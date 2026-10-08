@@ -88,6 +88,8 @@ import { TeaSanctuaryPavilion } from '@/components/studio/TeaSanctuaryPavilion'
 import { ChefIslandPlumbingVault } from '@/components/studio/ChefIslandPlumbingVault'
 import { TactileHardwareAtelier } from '@/components/studio/TactileHardwareAtelier'
 import { TropicalBonsaiEcologyLab } from '@/components/studio/TropicalBonsaiEcologyLab'
+import { ArtisanLimePlasterLab } from '@/components/studio/ArtisanLimePlasterLab'
+import { SommelierWineCigarVault } from '@/components/studio/SommelierWineCigarVault'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -622,6 +624,12 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Biophilic Tropical Bonsai & Ecology Lab */}
           <TropicalBonsaiEcologyLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Artisan Hand-troweled Lime Plaster Lab */}
+          <ArtisanLimePlasterLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Sommelier Wine & Cigar Microclimate Vault */}
+          <SommelierWineCigarVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

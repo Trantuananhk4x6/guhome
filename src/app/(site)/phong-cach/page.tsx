@@ -37,6 +37,7 @@ import { LightingAtelierCustomizer } from '@/components/studio/LightingAtelierCu
 import { TactileTextileDraperyLab } from '@/components/studio/TactileTextileDraperyLab'
 import { TeaSanctuaryPavilion } from '@/components/studio/TeaSanctuaryPavilion'
 import { TactileHardwareAtelier } from '@/components/studio/TactileHardwareAtelier'
+import { ArtisanLimePlasterLab } from '@/components/studio/ArtisanLimePlasterLab'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -210,6 +211,9 @@ export default async function StylesPage() {
 
       {/* Bespoke Tactile Architectural Hardware Atelier */}
       <TactileHardwareAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Hand-troweled Lime Plaster Lab */}
+      <ArtisanLimePlasterLab className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

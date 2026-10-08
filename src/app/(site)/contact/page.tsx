@@ -24,6 +24,7 @@ import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualV
 import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
 import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestoneScheduler'
 import { BespokeTimberCareVault } from '@/components/tools/BespokeTimberCareVault'
+import { LeadArchitectPrivateSession } from '@/components/consultation/LeadArchitectPrivateSession'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -332,6 +333,9 @@ export default async function ContactPage() {
 
       {/* Bespoke Timber Care & White-Glove VIP Maintenance Vault */}
       <BespokeTimberCareVault className="mt-[var(--spacing-section)]" />
+
+      {/* 1-on-1 Lead Architect Private Session */}
+      <LeadArchitectPrivateSession className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
