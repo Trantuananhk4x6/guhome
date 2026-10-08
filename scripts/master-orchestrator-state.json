@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 12,
+  "currentDirectiveIndex": 13,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -78,8 +78,16 @@
       "completedAt": "2026-10-08T13:38:00.000Z",
       "commit": "bb3d7cb",
       "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, ArchitecturalLightingLab, WoodJoineryExplorer, and TenEngineeringNormsSection fully active across /studio, /phong-cach, /projects, and /du-toan-chi-phi"
+    },
+    {
+      "directiveId": "dir-12-sprint-14-solar-heat-cad-vault",
+      "title": "Bộ Tính Toán Bức Xạ Nắng Tây Western Solar Calculator, Thư Viện Bản Vẽ Mặt Cắt Kỹ Thuật & Cổng Bảo Hành Gỗ Mộc Digital Vault",
+      "sentAt": "2026-10-08T13:38:39.000Z",
+      "completedAt": "2026-10-08T13:42:30.000Z",
+      "commit": "pending",
+      "result": "TypeScript 0 errors, 100% routes passed in test-routes-seo.ts, 153 static & dynamic pages built in production, WesternSolarHeatCalculator, ArchitecturalDetailViewer, and DigitalHandoverVault fully active across /khu-vuc, /du-toan-chi-phi, /projects, /studio, and /contact"
     }
   ],
   "activeDirective": null,
-  "lastDispatchedAt": 1791466680000
+  "lastDispatchedAt": 1791466950000
 }

@@ -17,6 +17,7 @@ import { Reveal, TextReveal } from './_components/motion'
 import { OpenSocialModalButton, SocialTrigger } from '@/components/layout/SocialTrigger'
 import { VipBookingCalendar } from '@/components/consultation/VipBookingCalendar'
 import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesSection'
+import { DigitalHandoverVault } from '@/components/services/DigitalHandoverVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -304,6 +305,9 @@ export default async function ContactPage() {
 
       {/* Real-life Client Chronicles & Testimonials */}
       <ClientChroniclesSection className="mt-[var(--spacing-section)]" />
+
+      {/* Digital Handover & Warranty Vault */}
+      <DigitalHandoverVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

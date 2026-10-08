@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { SpatialBudgetCalculator } from '@/components/sections/SpatialBudgetCalculator'
 import { TactileMaterialLab } from '@/components/sections/TactileMaterialLab'
 import { TenEngineeringNormsSection } from '@/components/sections/TenEngineeringNormsSection'
+import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatCalculator'
+import { DigitalHandoverVault } from '@/components/services/DigitalHandoverVault'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -52,6 +54,12 @@ export default function DuToanChiPhiPage() {
 
       {/* 10 Engineering Norms Manifesto */}
       <TenEngineeringNormsSection className="mt-[var(--spacing-section)]" />
+
+      {/* Western Solar Heat Radiation Calculator */}
+      <WesternSolarHeatCalculator className="mt-[var(--spacing-section)]" />
+
+      {/* Digital Handover & Warranty Vault */}
+      <DigitalHandoverVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

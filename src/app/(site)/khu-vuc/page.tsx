@@ -5,6 +5,7 @@ import { DISTRICT_LIST } from '@/data/saigonDistricts'
 import { ArrowUpRightIcon } from '@/components/ui/icons'
 import { ProjectSpatialMap } from '@/components/projects/ProjectSpatialMap'
 import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvisory'
+import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatCalculator'
 
 export const revalidate = 3600
 
@@ -151,6 +152,11 @@ export default function SaigonDistrictsPage() {
         {/* Tropical Weather & Microclimate Advisory */}
         <div className="mt-16">
           <TropicalWeatherAdvisory className="rounded-3xl border border-line" />
+        </div>
+
+        {/* Western Solar Heat Radiation Calculator */}
+        <div className="mt-16">
+          <WesternSolarHeatCalculator className="rounded-3xl border border-line" />
         </div>
 
         {/* Bottom Editorial Callout */}

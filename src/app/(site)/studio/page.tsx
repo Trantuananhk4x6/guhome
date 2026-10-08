@@ -23,6 +23,7 @@ import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvis
 import { ArchitecturalLightingLab } from '@/components/studio/ArchitecturalLightingLab'
 import { WoodJoineryExplorer } from '@/components/studio/WoodJoineryExplorer'
 import { TenEngineeringNormsSection } from '@/components/sections/TenEngineeringNormsSection'
+import { ArchitecturalDetailViewer } from '@/components/projects/ArchitecturalDetailViewer'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -744,6 +745,9 @@ export default async function StudioPage() {
 
       {/* -------------------- 10 engineering norms manifesto -------------------- */}
       <TenEngineeringNormsSection className="mt-[var(--spacing-section)]" />
+
+      {/* ------------ architectural technical cross-section viewer --------------- */}
+      <ArchitecturalDetailViewer className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------- client chronicles section ----------------------- */}
       <ClientChroniclesSection className="mt-[var(--spacing-section)]" />
