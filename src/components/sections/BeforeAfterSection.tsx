@@ -138,23 +138,21 @@ export function BeforeAfterSection({
               </div>
             </div>
 
-            {/* BEFORE IMAGE (Clipped Layer on Top) */}
+            {/* BEFORE IMAGE (Clipped Layer on Top using clipPath) */}
             <div
-              className="absolute inset-0 overflow-hidden"
-              style={{ width: `${sliderPos}%` }}
+              className="absolute inset-0"
+              style={{ clipPath: `inset(0 calc(100% - ${sliderPos}%) 0 0)` }}
             >
-              <div className="relative h-full w-full" style={{ width: containerRef.current ? `${containerRef.current.clientWidth}px` : '100vw' }}>
-                <Image
-                  src={beforeImg}
-                  alt="Hiện trạng bàn giao thô bê tông"
-                  fill
-                  sizes="(min-width: 1024px) 90vw, 100vw"
-                  className="object-cover filter grayscale contrast-110"
-                />
-                {/* Before Label Badge */}
-                <div className="absolute top-5 left-5 z-10 rounded-full border border-canvas/20 bg-black/75 backdrop-blur-md px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-canvas/80 shadow-lg">
-                  ● Trước: Bàn Giao Thô Bê Tông
-                </div>
+              <Image
+                src={beforeImg}
+                alt="Hiện trạng bàn giao thô bê tông"
+                fill
+                sizes="(min-width: 1024px) 90vw, 100vw"
+                className="object-cover filter grayscale contrast-110"
+              />
+              {/* Before Label Badge */}
+              <div className="absolute top-5 left-5 z-10 rounded-full border border-canvas/20 bg-black/75 backdrop-blur-md px-4 py-1.5 text-xs font-mono uppercase tracking-wider text-canvas/80 shadow-lg">
+                ● Trước: Bàn Giao Thô Bê Tông
               </div>
             </div>
 
