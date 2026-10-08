@@ -343,12 +343,12 @@ export function SensorySoundscape({ className }: { className?: string }) {
   return (
     <div className={cn('relative inline-flex items-center font-sans select-none', className)}>
       {/* Soundscape Control Capsule */}
-      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/90 border border-line/80 shadow-md backdrop-blur-md transition-all hover:border-accent/60">
+      <div className="flex items-center gap-2 px-3 py-1.5 min-h-[44px] rounded-full bg-surface/90 border border-line/80 shadow-md backdrop-blur-md transition-all hover:border-accent/60">
         {/* Play/Pause Button */}
         <button
           onClick={togglePlay}
           className={cn(
-            'w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 text-xs',
+            'w-8 h-8 min-h-[32px] min-w-[32px] rounded-full flex items-center justify-center transition-all duration-300 text-xs cursor-pointer',
             isPlaying
               ? 'bg-accent text-white shadow-sm shadow-accent/40 animate-pulse'
               : 'bg-canvas text-muted hover:text-ink border border-line',
@@ -370,7 +370,7 @@ export function SensorySoundscape({ className }: { className?: string }) {
         {/* Current Track Label & Selector Trigger */}
         <button
           onClick={() => setIsMenuOpen((o) => !o)}
-          className="flex items-center gap-1.5 text-xs text-left group"
+          className="flex items-center gap-1.5 min-h-[40px] text-xs text-left group cursor-pointer"
         >
           <span className="text-sm">{activeTrackObj.icon}</span>
           <span className="font-body font-medium text-ink/85 group-hover:text-accent transition-colors max-w-[140px] truncate hidden sm:inline">
@@ -408,8 +408,8 @@ export function SensorySoundscape({ className }: { className?: string }) {
               <span className="text-[11px] font-mono text-muted uppercase tracking-wider">Không gian âm học Quiet Luxury</span>
               <button
                 onClick={() => setIsMenuOpen(false)}
-                className="text-muted hover:text-ink text-xs p-1"
-                aria-label="Đóng"
+                className="text-muted hover:text-ink text-xs min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer transition-colors"
+                aria-label="Đóng bảng âm học"
               >
                 ✕
               </button>
