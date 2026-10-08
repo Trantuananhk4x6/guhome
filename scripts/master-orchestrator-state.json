@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 15,
+  "currentDirectiveIndex": 17,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -92,17 +92,23 @@
       "atStep": 2388
     },
     {
-      "directiveId": "dir-18-sprint-20-textile-subfloor-renovation",
-      "title": "Phòng Thí Nghiệm Vải Dệt Xúc Giác Nhiệt Đới, Công Nghệ Sàn Gỗ 5 Tầng Âm Thổ & Bộ Chẩn Đoán Cải Tạo Quiet Luxury",
-      "sentAt": "2026-10-08T14:17:30.000Z",
-      "atStep": 2400
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-08T14:20:06.890Z",
+      "atStep": 2443
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-08T14:21:47.756Z",
+      "atStep": 2465
+    },
+    {
+      "directiveId": "dir-19-sprint-21-tea-chef-island-cashflow",
+      "title": "Phòng Thưởng Trà Tịnh Tâm, Kỹ Nghệ Đảo Bếp Khối Đá Chef Island & Bảng Tiến Độ Dòng Tiền 6 Đợt Minh Bạch",
+      "sentAt": "2026-10-08T14:22:30.000Z",
+      "atStep": 2480
     }
   ],
-  "lastDispatchedAt": 1791469087186,
-  "activeDirective": {
-    "directiveId": "dir-19-sprint-21-tea-island-cashflow",
-    "title": "Phòng Thưởng Trà Tịnh Tâm, Kỹ Nghệ Đảo Bếp Khối Đá Chef Island & Bảng Tiến Độ Dòng Tiền 6 Đợt Minh Bạch",
-    "sentAt": "2026-10-08T14:18:07.185Z",
-    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
-  }
+  "lastDispatchedAt": 1791469350000
 }

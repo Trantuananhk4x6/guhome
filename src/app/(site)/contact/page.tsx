@@ -22,6 +22,7 @@ import { DigitalHandoverVault } from '@/components/services/DigitalHandoverVault
 import { ContractorComparisonMatrix } from '@/components/sections/ContractorComparisonMatrix'
 import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualVault'
 import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
+import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestoneScheduler'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -324,6 +325,9 @@ export default async function ContactPage() {
 
       {/* Estate Renovation Diagnostic & Cost Estimator */}
       <EstateRenovationDiagnostic className="mt-[var(--spacing-section)]" />
+
+      {/* Cashflow Milestones & 6-Stage Verification Scheduler */}
+      <CashflowMilestoneScheduler className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

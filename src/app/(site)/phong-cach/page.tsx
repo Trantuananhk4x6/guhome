@@ -35,6 +35,7 @@ import { SmartHomeQuietSanctuary } from '@/components/sections/SmartHomeQuietSan
 import { BespokeFurnitureCustomizer } from '@/components/tools/BespokeFurnitureCustomizer'
 import { LightingAtelierCustomizer } from '@/components/studio/LightingAtelierCustomizer'
 import { TactileTextileDraperyLab } from '@/components/studio/TactileTextileDraperyLab'
+import { TeaSanctuaryPavilion } from '@/components/studio/TeaSanctuaryPavilion'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -202,6 +203,9 @@ export default async function StylesPage() {
 
       {/* Tactile Textile & Tropical Drapery Lab */}
       <TactileTextileDraperyLab className="mt-[var(--spacing-section)]" />
+
+      {/* Tea Sanctuary & Meditation Pavilion */}
+      <TeaSanctuaryPavilion className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

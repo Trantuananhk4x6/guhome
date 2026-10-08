@@ -84,6 +84,8 @@ import { KilnMoistureDiary } from '@/components/studio/KilnMoistureDiary'
 import { NaturalStoneQuarryAtlas } from '@/components/studio/NaturalStoneQuarryAtlas'
 import { TactileTextileDraperyLab } from '@/components/studio/TactileTextileDraperyLab'
 import { SubfloorAcousticMoistureShield } from '@/components/studio/SubfloorAcousticMoistureShield'
+import { TeaSanctuaryPavilion } from '@/components/studio/TeaSanctuaryPavilion'
+import { ChefIslandPlumbingVault } from '@/components/studio/ChefIslandPlumbingVault'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -606,6 +608,12 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Subfloor Acoustic & Moisture Shield System */}
           <SubfloorAcousticMoistureShield className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Tea Sanctuary & Meditation Pavilion */}
+          <TeaSanctuaryPavilion className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Chef Island Monolithic Stone & MEP Plumbing Vault */}
+          <ChefIslandPlumbingVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

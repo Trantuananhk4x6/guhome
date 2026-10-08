@@ -41,6 +41,9 @@ import { NaturalStoneQuarryAtlas } from '@/components/studio/NaturalStoneQuarryA
 import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualVault'
 import { TactileTextileDraperyLab } from '@/components/studio/TactileTextileDraperyLab'
 import { SubfloorAcousticMoistureShield } from '@/components/studio/SubfloorAcousticMoistureShield'
+import { TeaSanctuaryPavilion } from '@/components/studio/TeaSanctuaryPavilion'
+import { ChefIslandPlumbingVault } from '@/components/studio/ChefIslandPlumbingVault'
+import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestoneScheduler'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -819,6 +822,15 @@ export default async function StudioPage() {
 
       {/* ---------------- subfloor acoustic & moisture shield -------------------- */}
       <SubfloorAcousticMoistureShield className="mt-[var(--spacing-section)]" />
+
+      {/* ----------------- tea sanctuary & meditation pavilion -------------------- */}
+      <TeaSanctuaryPavilion className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- chef island stone & plumbing vault --------------------- */}
+      <ChefIslandPlumbingVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- cashflow milestones & verification scheduler ------------ */}
+      <CashflowMilestoneScheduler className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

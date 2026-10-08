@@ -17,6 +17,8 @@ import { LightingAtelierCustomizer } from '@/components/studio/LightingAtelierCu
 import { KeyHandoverRitualVault } from '@/components/sections/KeyHandoverRitualVault'
 import { SubfloorAcousticMoistureShield } from '@/components/studio/SubfloorAcousticMoistureShield'
 import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
+import { ChefIslandPlumbingVault } from '@/components/studio/ChefIslandPlumbingVault'
+import { CashflowMilestoneScheduler } from '@/components/tools/CashflowMilestoneScheduler'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -108,6 +110,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Estate Renovation Diagnostic & Cost Estimator */}
       <EstateRenovationDiagnostic className="mt-[var(--spacing-section)]" />
+
+      {/* Chef Island Monolithic Stone & MEP Plumbing Vault */}
+      <ChefIslandPlumbingVault className="mt-[var(--spacing-section)]" />
+
+      {/* Cashflow Milestones & 6-Stage Verification Scheduler */}
+      <CashflowMilestoneScheduler className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
