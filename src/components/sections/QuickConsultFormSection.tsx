@@ -71,7 +71,7 @@ export function QuickConsultFormSection() {
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-canvas">
                     <CheckIcon className="h-3 w-3" />
                   </span>
-                  <span>Báo giá tách bạch theo từng hạng mục — tuyệt đối không phát sinh chi phí ẩn</span>
+                  <span>Báo giá tách bạch theo từng hạng mục - tuyệt đối không phát sinh chi phí ẩn</span>
                 </li>
                 <li className="flex items-center gap-3 text-[0.875rem] text-canvas/80">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-canvas">
@@ -94,7 +94,7 @@ export function QuickConsultFormSection() {
                 href="https://zalo.me/0368757916"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center gap-2 rounded-full border border-canvas/20 bg-canvas/10 px-5 py-2.5 text-[0.875rem] font-medium text-canvas transition-all duration-300 hover:border-accent-soft hover:bg-canvas/20 hover:text-accent-soft"
+                className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-canvas/20 bg-canvas/10 px-5 py-2.5 text-[0.875rem] font-medium text-canvas transition-all duration-300 hover:border-accent-soft hover:bg-canvas/20 hover:text-accent-soft active:scale-95"
               >
                 <span>Nhắn tin Zalo với KTS</span>
                 <span className="text-xs">↗</span>
@@ -102,7 +102,7 @@ export function QuickConsultFormSection() {
 
               <a
                 href="tel:0368757916"
-                className="inline-flex items-center gap-2 text-[0.875rem] text-canvas/70 transition-colors hover:text-accent-soft"
+                className="inline-flex min-h-[44px] items-center gap-2 text-[0.875rem] text-canvas/70 transition-colors hover:text-accent-soft active:scale-95"
               >
                 <span>Hotline: <strong>0368 757 916</strong></span>
               </a>
@@ -111,7 +111,7 @@ export function QuickConsultFormSection() {
 
           {/* Right Column: Interactive Consultation Form */}
           <div className="lg:col-span-7">
-            <div className="relative overflow-hidden border border-canvas/20 bg-surface/10 p-6 sm:p-10 backdrop-blur-md shadow-2xl">
+            <div className="relative overflow-hidden border border-canvas/20 bg-surface/10 p-5 sm:p-8 lg:p-10 backdrop-blur-md shadow-2xl">
               {/* Corner accents */}
               <div aria-hidden="true" className="pointer-events-none absolute top-0 left-0 h-3 w-3 border-t border-l border-accent" />
               <div aria-hidden="true" className="pointer-events-none absolute top-0 right-0 h-3 w-3 border-t border-r border-accent" />
@@ -151,7 +151,7 @@ export function QuickConsultFormSection() {
                         type="text"
                         required
                         placeholder="Nguyễn Văn A"
-                        className="w-full border-b border-canvas/25 bg-transparent px-1 py-2.5 font-body text-[0.9375rem] text-canvas placeholder:text-canvas/35 focus:border-accent-soft focus:outline-hidden transition-colors"
+                        className="w-full min-h-[44px] border-b border-canvas/25 bg-transparent px-1 py-2.5 font-body text-[0.9375rem] text-canvas placeholder:text-canvas/35 focus:border-accent-soft focus:outline-hidden transition-colors"
                       />
                       {state.fieldErrors.name && (
                         <span className="text-xs text-red-400">{state.fieldErrors.name}</span>
@@ -169,7 +169,7 @@ export function QuickConsultFormSection() {
                         type="tel"
                         required
                         placeholder="090x xxx xxx"
-                        className="w-full border-b border-canvas/25 bg-transparent px-1 py-2.5 font-body text-[0.9375rem] text-canvas placeholder:text-canvas/35 focus:border-accent-soft focus:outline-hidden transition-colors"
+                        className="w-full min-h-[44px] border-b border-canvas/25 bg-transparent px-1 py-2.5 font-body text-[0.9375rem] text-canvas placeholder:text-canvas/35 focus:border-accent-soft focus:outline-hidden transition-colors"
                       />
                       {state.fieldErrors.phone && (
                         <span className="text-xs text-red-400">{state.fieldErrors.phone}</span>
@@ -189,7 +189,7 @@ export function QuickConsultFormSection() {
                         type="email"
                         required
                         placeholder="email@vidu.com"
-                        className="w-full border-b border-canvas/25 bg-transparent px-1 py-2.5 font-body text-[0.9375rem] text-canvas placeholder:text-canvas/35 focus:border-accent-soft focus:outline-hidden transition-colors"
+                        className="w-full min-h-[44px] border-b border-canvas/25 bg-transparent px-1 py-2.5 font-body text-[0.9375rem] text-canvas placeholder:text-canvas/35 focus:border-accent-soft focus:outline-hidden transition-colors"
                       />
                       {state.fieldErrors.email && (
                         <span className="text-xs text-red-400">{state.fieldErrors.email}</span>
@@ -206,7 +206,7 @@ export function QuickConsultFormSection() {
                         name="projectType"
                         required
                         defaultValue=""
-                        className="w-full border-b border-canvas/25 bg-transparent px-1 py-2.5 font-body text-[0.9375rem] text-canvas focus:border-accent-soft focus:outline-hidden transition-colors [&>option]:bg-espresso [&>option]:text-canvas"
+                        className="w-full min-h-[44px] border-b border-canvas/25 bg-transparent px-1 py-2.5 font-body text-[0.9375rem] text-canvas focus:border-accent-soft focus:outline-hidden transition-colors [&>option]:bg-espresso [&>option]:text-canvas"
                       >
                         <option value="" disabled>Chọn loại công trình</option>
                         {PROJECT_TYPES.map((t) => (
@@ -231,7 +231,7 @@ export function QuickConsultFormSection() {
                       name="budget"
                       required
                       defaultValue=""
-                      className="w-full border-b border-canvas/25 bg-transparent px-1 py-2.5 font-body text-[0.9375rem] text-canvas focus:border-accent-soft focus:outline-hidden transition-colors [&>option]:bg-espresso [&>option]:text-canvas"
+                      className="w-full min-h-[44px] border-b border-canvas/25 bg-transparent px-1 py-2.5 font-body text-[0.9375rem] text-canvas focus:border-accent-soft focus:outline-hidden transition-colors [&>option]:bg-espresso [&>option]:text-canvas"
                     >
                       <option value="" disabled>Chọn mức ngân sách</option>
                       {BUDGET_RANGES.map((b) => (
@@ -265,7 +265,7 @@ export function QuickConsultFormSection() {
                       type="submit"
                       disabled={isPending}
                       className={cn(
-                        'group inline-flex items-center justify-center gap-3 border border-accent bg-accent px-8 py-3.5 font-body text-[0.9375rem] font-medium text-canvas transition-all duration-300 hover:border-accent-soft hover:bg-accent-soft hover:shadow-lg disabled:opacity-50 cursor-pointer',
+                        'group inline-flex min-h-[48px] items-center justify-center gap-3 border border-accent bg-accent px-8 py-3.5 font-body text-[0.9375rem] font-medium text-canvas transition-all duration-300 hover:border-accent-soft hover:bg-accent-soft hover:shadow-lg disabled:opacity-50 cursor-pointer active:scale-[0.98]',
                       )}
                     >
                       <span>{isPending ? 'Đang gửi thông tin...' : 'Gửi yêu cầu nhận dự toán'}</span>

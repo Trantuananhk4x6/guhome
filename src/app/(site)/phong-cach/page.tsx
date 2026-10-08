@@ -110,6 +110,8 @@ import { SaigonAcousticLithophoneSanctuary } from '@/components/studio/SaigonAco
 import { ArtisanSaigonMonolithicBasaltOutdoorPlungePool } from '@/components/studio/ArtisanSaigonMonolithicBasaltOutdoorPlungePool'
 import { SaigonAcousticGlassArmonicaSanctuary } from '@/components/studio/SaigonAcousticGlassArmonicaSanctuary'
 import { ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary } from '@/components/studio/ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary'
+import { SaigonAcousticThereminSanctuary } from '@/components/studio/SaigonAcousticThereminSanctuary'
+import { ArtisanSaigonMonolithicQuartzCrystalWaterfallVault } from '@/components/studio/ArtisanSaigonMonolithicQuartzCrystalWaterfallVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -502,6 +504,12 @@ export default async function StylesPage() {
 
       {/* Artisan Saigon Monolithic Petrified Wood Tea Table Sanctuary */}
       <ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Acoustic Theremin Sanctuary */}
+      <SaigonAcousticThereminSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Saigon Monolithic Quartz Crystal Waterfall Vault */}
+      <ArtisanSaigonMonolithicQuartzCrystalWaterfallVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

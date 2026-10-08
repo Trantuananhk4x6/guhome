@@ -426,7 +426,7 @@ export function SensorySoundscape({ className }: { className?: string }) {
                       setIsMenuOpen(false)
                     }}
                     className={cn(
-                      'flex items-center gap-3 p-2.5 rounded-xl text-left transition-all',
+                      'flex min-h-[44px] items-center gap-3 p-2.5 rounded-xl text-left transition-all active:scale-[0.98] cursor-pointer',
                       isActive
                         ? 'bg-accent/15 border border-accent/40 text-accent font-medium'
                         : 'hover:bg-canvas text-ink/80',

@@ -61,11 +61,11 @@ export default function DialogSurface({
         // `useModalLock` runs over the rest of the document.
         <div
           data-ui-overlay="dialog"
-          className="fixed inset-0 z-[100] flex items-center justify-center p-6"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6"
         >
           <motion.div
             aria-hidden="true"
-            className="absolute inset-0 bg-espresso/70"
+            className="absolute inset-0 bg-espresso/70 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -87,7 +87,7 @@ export default function DialogSurface({
             exit={{ opacity: 0, y: reduced ? 0 : 16 }}
             transition={{ duration, ease: [0.22, 1, 0.36, 1] }}
             className={cn(
-              'relative max-h-[85vh] w-full overflow-y-auto rounded-none border border-line bg-canvas p-8 md:p-12',
+              'relative max-h-[85vh] w-full overflow-y-auto rounded-none border border-line bg-canvas p-5 sm:p-8 md:p-12 shadow-2xl',
               SIZES[size],
               className,
             )}
@@ -95,7 +95,7 @@ export default function DialogSurface({
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-6 top-6 inline-flex h-8 w-8 items-center justify-center text-muted transition-colors duration-300 hover:text-ink"
+              className="absolute right-4 top-4 sm:right-6 sm:top-6 inline-flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center text-muted transition-colors duration-300 hover:text-ink"
             >
               <CloseIcon className="text-lg" />
               <span className="sr-only">Đóng</span>

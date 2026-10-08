@@ -95,6 +95,8 @@ import { ArtisanSaigonMonolithicBasaltOutdoorPlungePool } from '@/components/stu
 import { ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier } from '@/components/tools/ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier'
 import { ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary } from '@/components/studio/ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary'
 import { ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier } from '@/components/tools/ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier'
+import { ArtisanSaigonMonolithicQuartzCrystalWaterfallVault } from '@/components/studio/ArtisanSaigonMonolithicQuartzCrystalWaterfallVault'
+import { ArtisanHandmadeCloisonneEnamelTeaSetAtelier } from '@/components/tools/ArtisanHandmadeCloisonneEnamelTeaSetAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -420,6 +422,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Handmade Bronze Chau Gong And Singing Bowl Atelier */}
       <ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Saigon Monolithic Quartz Crystal Waterfall Vault */}
+      <ArtisanSaigonMonolithicQuartzCrystalWaterfallVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Handmade Cloisonne Enamel Tea Set Atelier */}
+      <ArtisanHandmadeCloisonneEnamelTeaSetAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

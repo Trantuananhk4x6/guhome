@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 45,
+  "currentDirectiveIndex": 46,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -272,11 +272,18 @@
       "atStep": 6461
     },
     {
-      "directiveId": "dir-58-sprint-60-glassarmonica-petrifiedwood-singingbowl",
-      "title": "Sprint 60: Đàn Kính Pha Lê, Bàn Trà Gỗ Hóa Thạch & Chuông Xoay 528Hz",
-      "sentAt": "2026-10-08T17:15:00.000Z",
-      "atStep": 6600
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-08T17:22:17.114Z",
+      "atStep": 6566
+    },
+    {
+      "directiveId": "dir-59-sprint-61-theremin-quartzwaterfall-cloisonne",
+      "title": "Phòng Theremin Điện Từ, Thác Tinh Thể Thạch Anh & Trà Pháp Lam Huế",
+      "completedAt": "2026-10-08T17:26:00.000Z",
+      "status": "COMPLETED_100_PERCENT",
+      "commitMessage": "feat(sprint-61): add SaigonAcousticThereminSanctuary, ArtisanSaigonMonolithicQuartzCrystalWaterfallVault, and ArtisanHandmadeCloisonneEnamelTeaSetAtelier with 100% SEO pass"
     }
   ],
-  "lastDispatchedAt": 1791479862945
+  "lastDispatchedAt": 1791480360000
 }

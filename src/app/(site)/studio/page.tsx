@@ -161,6 +161,9 @@ import { ArtisanHandmadeLacquerAndSilverInlayBrushSetAtelier } from '@/component
 import { SaigonAcousticGlassArmonicaSanctuary } from '@/components/studio/SaigonAcousticGlassArmonicaSanctuary'
 import { ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary } from '@/components/studio/ArtisanSaigonMonolithicPetrifiedWoodTeaTableSanctuary'
 import { ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier } from '@/components/tools/ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier'
+import { SaigonAcousticThereminSanctuary } from '@/components/studio/SaigonAcousticThereminSanctuary'
+import { ArtisanSaigonMonolithicQuartzCrystalWaterfallVault } from '@/components/studio/ArtisanSaigonMonolithicQuartzCrystalWaterfallVault'
+import { ArtisanHandmadeCloisonneEnamelTeaSetAtelier } from '@/components/tools/ArtisanHandmadeCloisonneEnamelTeaSetAtelier'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -1299,6 +1302,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan handmade bronze chau gong and singing bowl atelier */}
       <ArtisanHandmadeBronzeChauGongAndSingingBowlAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon acoustic theremin sanctuary ---------------------- */}
+      <SaigonAcousticThereminSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan saigon monolithic quartz crystal waterfall vault - */}
+      <ArtisanSaigonMonolithicQuartzCrystalWaterfallVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan handmade cloisonne enamel tea set atelier ------- */}
+      <ArtisanHandmadeCloisonneEnamelTeaSetAtelier className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

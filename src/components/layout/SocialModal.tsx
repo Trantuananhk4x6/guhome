@@ -126,7 +126,7 @@ export function SocialModal() {
                 href={activeChannel.href}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group inline-flex items-center justify-center gap-2 border border-ink bg-ink px-6 py-3 font-body text-[0.875rem] font-medium text-canvas transition-all duration-300 hover:border-accent hover:bg-accent hover:shadow-md"
+                className="group inline-flex min-h-[44px] items-center justify-center gap-2 border border-ink bg-ink px-6 py-3 font-body text-[0.875rem] font-medium text-canvas transition-all duration-300 hover:border-accent hover:bg-accent hover:shadow-md active:scale-[0.98]"
               >
                 <span>{activeChannel.actionLabel}</span>
                 <ArrowUpRightIcon className="text-base transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -137,7 +137,7 @@ export function SocialModal() {
                 variant="ghost"
                 size="md"
                 onClick={handleCopyLink}
-                className="border border-line hover:border-accent hover:bg-surface transition-all duration-300"
+                className="min-h-[44px] border border-line hover:border-accent hover:bg-surface transition-all duration-300 active:scale-[0.98]"
               >
                 {copied ? '✓ Đã sao chép liên kết!' : 'Sao chép liên kết'}
               </Button>
@@ -146,7 +146,7 @@ export function SocialModal() {
 
           {/* QR Code & Mobile Connection Column */}
           <div className="flex flex-col items-center justify-start gap-5 border-t border-line pt-6 lg:col-span-4 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-0">
-            <div className="relative flex w-full flex-col items-center overflow-hidden border border-line bg-gradient-to-b from-surface via-surface to-canvas p-6 shadow-xs">
+            <div className="relative flex w-full flex-col items-center overflow-hidden border border-line bg-gradient-to-b from-surface via-surface to-canvas p-4 sm:p-6 shadow-xs">
               {/* Corner Accents */}
               <div aria-hidden="true" className="pointer-events-none absolute top-2 left-2 h-2.5 w-2.5 border-t-2 border-l-2 border-accent" />
               <div aria-hidden="true" className="pointer-events-none absolute top-2 right-2 h-2.5 w-2.5 border-t-2 border-r-2 border-accent" />
@@ -170,7 +170,7 @@ export function SocialModal() {
                 </p>
                 <a
                   href="tel:0368757916"
-                  className="mt-1 inline-flex items-center gap-1.5 font-display text-[1.25rem] font-normal text-ink transition-colors hover:text-accent"
+                  className="mt-1 inline-flex min-h-[44px] items-center justify-center gap-1.5 font-display text-[1.25rem] font-normal text-ink transition-colors hover:text-accent"
                 >
                   <span>0368 757 916</span>
                   <span className="text-xs text-accent">↗</span>

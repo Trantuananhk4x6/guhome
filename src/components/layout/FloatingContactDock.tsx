@@ -2,12 +2,46 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { useSocialModalStore } from '@/lib/social'
 import { useQuickQuote } from '@/components/layout/QuickQuoteModal'
 import { useTactileSampleBoxStore } from '@/lib/tactile-sample-box'
 import { SensorySoundscape } from '@/components/ui/SensorySoundscape'
 import { cn } from '@/lib/utils'
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.04,
+      delayChildren: 0.02,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.03,
+      staggerDirection: -1,
+    },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 16, scale: 0.94 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: 'spring' as const, damping: 24, stiffness: 360 },
+  },
+  exit: {
+    opacity: 0,
+    y: 12,
+    scale: 0.94,
+    transition: { duration: 0.15 },
+  },
+}
 
 export function FloatingContactDock() {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -16,109 +50,124 @@ export function FloatingContactDock() {
   const { openModal: openTactileModal } = useTactileSampleBoxStore()
 
   return (
-    <aside aria-label="Thanh liên hệ nhanh" className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[90] flex flex-col items-end gap-2.5 sm:gap-3 print:hidden">
-      {/* Expanded Quick Options Menu */}
+    <aside
+      aria-label="Thanh liên hệ nhanh"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[90] flex flex-col items-end gap-2.5 sm:gap-3 print:hidden touch-manipulation select-none"
+    >
+      {/* Expanded Quick Options Menu with 60fps spring choreography */}
       <AnimatePresence>
         {isExpanded && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.92 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 14, scale: 0.92 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className="flex flex-col items-end gap-2.5"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="flex flex-col items-end gap-2.5 w-full max-w-[calc(100vw-2rem)]"
           >
             {/* 0. Bóc tách chi phí theo phòng */}
-            <Link
-              href="/du-toan-chi-phi"
-              onClick={() => setIsExpanded(false)}
-              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/90 bg-surface/95 px-4 py-2 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent">
-                Bóc tách chi phí theo phòng
-              </span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-xs font-mono">
-                m²
-              </span>
-            </Link>
+            <motion.div variants={itemVariants}>
+              <Link
+                href="/du-toan-chi-phi"
+                onClick={() => setIsExpanded(false)}
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/80 bg-surface/95 px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-300 hover:border-accent/70 hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.2)] hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent transition-colors">
+                  Bóc tách chi phí theo phòng
+                </span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-xs font-mono font-medium">
+                  m²
+                </span>
+              </Link>
+            </motion.div>
 
             {/* 1. Nhận báo giá nhanh */}
-            <button
-              type="button"
-              onClick={() => {
-                setIsExpanded(false)
-                openQuoteModal()
-              }}
-              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/90 bg-surface/95 px-4 py-2 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent">
-                Dự toán chi phí 15 phút
-              </span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-sm">
-                ⚡
-              </span>
-            </button>
+            <motion.div variants={itemVariants}>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsExpanded(false)
+                  openQuoteModal()
+                }}
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-surface/95 px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.2)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              >
+                <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent transition-colors">
+                  Dự toán chi phí 15 phút
+                </span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/20 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-xs">
+                  ⚡
+                </span>
+              </button>
+            </motion.div>
 
             {/* 2. Nhận Hộp Mẫu Xúc Giác Tại Nhà */}
-            <button
-              type="button"
-              onClick={() => {
-                setIsExpanded(false)
-                openTactileModal()
-              }}
-              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-surface/95 px-4 py-2 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent">
-                Nhận Hộp Mẫu Xúc Giác
-              </span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/20 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-xs">
-                🪵
-              </span>
-            </button>
+            <motion.div variants={itemVariants}>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsExpanded(false)
+                  openTactileModal()
+                }}
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-surface/95 px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.2)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              >
+                <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent transition-colors">
+                  Nhận Hộp Mẫu Xúc Giác
+                </span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/20 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-xs">
+                  🪵
+                </span>
+              </button>
+            </motion.div>
 
             {/* 3. Chat Zalo trực tiếp KTS */}
-            <a
-              href="https://zalo.me/0368757916"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/90 bg-surface/95 px-4 py-2 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-[#0068FF] hover:bg-canvas hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-[#0068FF]">
-                Nhắn Zalo KTS Trưởng
-              </span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0068FF]/15 text-[#0068FF] group-hover:bg-[#0068FF] group-hover:text-white transition-colors text-xs font-bold">
-                Zalo
-              </span>
-            </a>
+            <motion.div variants={itemVariants}>
+              <a
+                href="https://zalo.me/0368757916"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/80 bg-surface/95 px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-300 hover:border-[#0068FF]/70 hover:bg-canvas hover:shadow-[0_12px_36px_rgba(0,104,255,0.15)] hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-[#0068FF] transition-colors">
+                  Nhắn Zalo KTS Trưởng
+                </span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0068FF]/15 text-[#0068FF] group-hover:bg-[#0068FF] group-hover:text-white transition-colors text-xs font-bold font-mono">
+                  Zalo
+                </span>
+              </a>
+            </motion.div>
 
-            {/* 3. Gọi Hotline KTS */}
-            <a
-              href="tel:0368757916"
-              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/90 bg-surface/95 px-4 py-2 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent">
-                Gọi 0368 757 916
-              </span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-sm">
-                📞
-              </span>
-            </a>
+            {/* 4. Gọi Hotline KTS */}
+            <motion.div variants={itemVariants}>
+              <a
+                href="tel:0368757916"
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-line/80 bg-surface/95 px-4 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-canvas hover:shadow-[0_12px_36px_rgba(197,168,128,0.2)] hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <span className="font-body text-[0.8125rem] font-medium text-ink group-hover:text-accent transition-colors">
+                  Gọi 0368 757 916
+                </span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/15 text-accent group-hover:bg-accent group-hover:text-canvas transition-colors text-xs">
+                  📞
+                </span>
+              </a>
+            </motion.div>
 
-            {/* 4. Mở toàn bộ Mạng xã hội & Mã QR */}
-            <button
-              type="button"
-              onClick={() => {
-                setIsExpanded(false)
-                openModal()
-              }}
-              className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-espresso px-4 py-2 text-canvas shadow-lg transition-all duration-300 hover:border-accent hover:bg-ink hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span className="font-body text-[0.8125rem] font-medium text-accent-soft group-hover:text-canvas">
-                Thông tin Mạng xã hội & QR
-              </span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-canvas text-xs font-mono font-bold">
-                QR
-              </span>
-            </button>
+            {/* 5. Mở toàn bộ Mạng xã hội & Mã QR */}
+            <motion.div variants={itemVariants}>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsExpanded(false)
+                  openModal()
+                }}
+                className="group flex min-h-[44px] items-center gap-3 rounded-full border border-accent/40 bg-espresso px-4 py-2.5 text-canvas shadow-[0_8px_30px_rgba(0,0,0,0.3)] transition-all duration-300 hover:border-accent hover:bg-ink hover:shadow-[0_12px_36px_rgba(197,168,128,0.25)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              >
+                <span className="font-body text-[0.8125rem] font-medium text-accent-soft group-hover:text-canvas transition-colors">
+                  Mạng xã hội & Mã QR
+                </span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-canvas text-xs font-mono font-bold">
+                  QR
+                </span>
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -133,10 +182,10 @@ export function FloatingContactDock() {
           onClick={() => setIsExpanded((prev) => !prev)}
           aria-label={isExpanded ? 'Đóng menu kết nối' : 'Mở menu kết nối nhanh cùng GuHomes'}
           className={cn(
-            'relative flex h-14 items-center gap-3 rounded-full border px-5 shadow-2xl transition-all duration-500 ease-editorial shrink-0',
+            'relative flex h-14 min-h-[44px] items-center gap-3 rounded-full border px-5 shadow-[0_12px_40px_rgba(0,0,0,0.45)] transition-all duration-300 ease-editorial shrink-0 active:scale-95 cursor-pointer ring-1',
             isExpanded
-              ? 'border-accent bg-espresso text-canvas shadow-accent/20'
-              : 'border-accent/40 bg-espresso/95 text-canvas hover:border-accent hover:bg-espresso hover:scale-105 backdrop-blur-md',
+              ? 'border-accent bg-espresso text-canvas ring-accent/30 shadow-accent/20'
+              : 'border-accent/40 bg-espresso/95 text-canvas hover:border-accent hover:bg-espresso hover:scale-105 backdrop-blur-md ring-accent/20',
           )}
         >
           <span className="relative flex h-3 w-3">

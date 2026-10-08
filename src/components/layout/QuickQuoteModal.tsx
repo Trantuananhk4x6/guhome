@@ -143,34 +143,34 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
 
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[90] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-            {/* Backdrop */}
+          <div className="fixed inset-0 z-[90] flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+            {/* Backdrop with 60fps blur */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeQuoteModal}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md"
+              className="fixed inset-0 bg-black/80 backdrop-blur-xl"
             />
 
             {/* Modal Dialog Card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              initial={{ opacity: 0, scale: 0.94, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-              className="relative w-full max-w-2xl bg-espresso text-canvas rounded-2xl border border-accent/35 shadow-[0_24px_60px_rgba(0,0,0,0.85)] p-6 sm:p-9 z-10 overflow-hidden my-8"
+              exit={{ opacity: 0, scale: 0.94, y: 12 }}
+              transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+              className="relative w-full max-w-2xl bg-espresso text-canvas rounded-2xl border border-accent/40 shadow-[0_24px_60px_rgba(0,0,0,0.85)] p-5 sm:p-8 z-10 overflow-hidden my-6"
               onClick={(e: React.MouseEvent) => e.stopPropagation()}
             >
               {/* Subtle top gold accent glow */}
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-accent/20 via-accent to-accent/20" />
 
-              {/* Close Button */}
+              {/* Close Button with 44x44px touch target */}
               <button
                 type="button"
                 onClick={closeQuoteModal}
-                className="absolute top-5 right-5 h-9 w-9 rounded-full border border-canvas/20 bg-canvas/10 text-canvas/75 hover:text-canvas hover:bg-canvas/20 flex items-center justify-center transition-all"
-                aria-label="Đóng"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 h-11 w-11 min-h-[44px] min-w-[44px] rounded-full border border-canvas/20 bg-canvas/10 text-canvas/75 hover:text-canvas hover:bg-canvas/20 flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                aria-label="Đóng bảng dự toán"
               >
                 <CloseIcon className="text-base" />
               </button>
@@ -256,8 +256,8 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                       {[
                         { id: 'duoi-70', label: 'Dưới 70 m²' },
-                        { id: '70-120', label: '70 – 120 m²' },
-                        { id: '120-200', label: '120 – 200 m²' },
+                        { id: '70-120', label: '70-120 m²' },
+                        { id: '120-200', label: '120-200 m²' },
                         { id: 'tren-200', label: 'Trên 200 m²' },
                       ].map((item) => (
                         <button
