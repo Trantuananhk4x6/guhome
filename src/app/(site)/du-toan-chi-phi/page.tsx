@@ -83,6 +83,8 @@ import { SaigonRiversideTeaRoastingAtelier } from '@/components/studio/SaigonRiv
 import { ArtisanBronzeIncenseSealSanctuary } from '@/components/tools/ArtisanBronzeIncenseSealSanctuary'
 import { SaigonRiversideHerbalSteamPavilion } from '@/components/studio/SaigonRiversideHerbalSteamPavilion'
 import { ArtisanBronzeIncenseFurnaceVault } from '@/components/tools/ArtisanBronzeIncenseFurnaceVault'
+import { ArtisanGiaDinhCeramicKilnCourtyardSanctuary } from '@/components/studio/ArtisanGiaDinhCeramicKilnCourtyardSanctuary'
+import { ArtisanHandmadeDamascusCleaverCulinaryAtelier } from '@/components/tools/ArtisanHandmadeDamascusCleaverCulinaryAtelier'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -372,6 +374,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Bronze Incense Furnace Vault */}
       <ArtisanBronzeIncenseFurnaceVault className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Gia Dinh Ceramic Kiln Courtyard Sanctuary */}
+      <ArtisanGiaDinhCeramicKilnCourtyardSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Handmade Damascus Cleaver Culinary Atelier */}
+      <ArtisanHandmadeDamascusCleaverCulinaryAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

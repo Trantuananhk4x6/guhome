@@ -7,7 +7,7 @@ const LANGUAGE_SERVER_EXE = 'C:\\Users\\Admin\\AppData\\Local\\Programs\\antigra
 const STATE_PATH = path.resolve('scripts/master-orchestrator-state.json');
 
 const SPRINT_55_DIRECTIVE = `[MASTER ORCHESTRATOR DIRECTIVE - SPRINT 55: PHÒNG HÒA TẤU ĐÀN CLAVECIN BAROQUE, SÂN TRONG LÒ GỐM GIA ĐỊNH & XƯỞNG DAO CHẶT DAMASCUS THỚT NGHIẾN]
-KTS Trưởng kiêm Kỹ sư trưởng GuHomes (Session \${TARGET_ID}):
+KTS Trưởng kiêm Kỹ sư trưởng GuHomes (Session ${TARGET_ID}):
 
 Master Orchestrator cùng Elite QA tiếp tục mở rộng chuỗi sáng tạo nghệ thuật cao cấp với Sprint 55:
 "PHÒNG HÒA TẤU ĐÀN CLAVECIN BAROQUE, SÂN TRONG LÒ GỐM GIA ĐỊNH & XƯỞNG DAO CHẶT DAMASCUS THỚT NGHIẾN"
@@ -54,10 +54,10 @@ QUY CHUẨN XÁC THỰC BẮT BUỘC TRƯỚC KHI BÁO CÁO:
 3. Production Build: Chạy 'npm run build' exit code 0.
 4. Cập nhật scripts/master-orchestrator-state.json và commit git trên nhánh enhaceta:
    'feat(sprint-55): add SaigonHarpsichordClavecinSanctuary, ArtisanGiaDinhCeramicKilnCourtyardSanctuary, and ArtisanHandmadeDamascusCleaverCulinaryAtelier with 100% SEO pass'
-\`;
+`;
 
 async function dispatchSprint55() {
-  console.log(\`[Master Orchestrator] Dispatching Sprint 55 to Agent \${TARGET_ID}...\`);
+  console.log(`[Master Orchestrator] Dispatching Sprint 55 to Agent ${TARGET_ID}...`);
 
   let state = {};
   if (fs.existsSync(STATE_PATH)) {
@@ -85,7 +85,7 @@ async function dispatchSprint55() {
   ], { stdio: 'inherit', shell: true });
 
   proc.on('close', (code) => {
-    console.log(\`[Master Orchestrator] Language server send-message exited with code: \${code}\`);
+    console.log(`[Master Orchestrator] Language server send-message exited with code: ${code}`);
   });
 }
 
