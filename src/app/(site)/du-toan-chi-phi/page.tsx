@@ -10,6 +10,8 @@ import { ContractorComparisonMatrix } from '@/components/sections/ContractorComp
 import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiCompass'
 import { TropicalHvacAirflowSimulator } from '@/components/tools/TropicalHvacAirflowSimulator'
 import { SmartHomeQuietSanctuary } from '@/components/sections/SmartHomeQuietSanctuary'
+import { KilnMoistureDiary } from '@/components/studio/KilnMoistureDiary'
+import { BespokeFurnitureCustomizer } from '@/components/tools/BespokeFurnitureCustomizer'
 import { VipConciergePortal } from '@/components/consultation/VipConciergePortal'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -78,6 +80,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Invisible KNX Smart Home Sanctuary */}
       <SmartHomeQuietSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Vacuum Kiln & Wood Moisture Balancing Diary */}
+      <KilnMoistureDiary className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Handcrafted Furniture Customizer */}
+      <BespokeFurnitureCustomizer className="mt-[var(--spacing-section)]" />
 
       {/* Digital Handover & Warranty Vault */}
       <DigitalHandoverVault className="mt-[var(--spacing-section)]" />

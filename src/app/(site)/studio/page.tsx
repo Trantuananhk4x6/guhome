@@ -33,6 +33,9 @@ import { VipConciergePortal } from '@/components/consultation/VipConciergePortal
 import { TropicalPatinaLab } from '@/components/studio/TropicalPatinaLab'
 import { TropicalHvacAirflowSimulator } from '@/components/tools/TropicalHvacAirflowSimulator'
 import { SmartHomeQuietSanctuary } from '@/components/sections/SmartHomeQuietSanctuary'
+import { RiverBreezeAerodynamicsLab } from '@/components/studio/RiverBreezeAerodynamicsLab'
+import { KilnMoistureDiary } from '@/components/studio/KilnMoistureDiary'
+import { BespokeFurnitureCustomizer } from '@/components/tools/BespokeFurnitureCustomizer'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -749,14 +752,23 @@ export default async function StudioPage() {
       {/* ---------------- tropical hvac & anti-condensation ---------------------- */}
       <TropicalHvacAirflowSimulator className="mt-[var(--spacing-section)]" />
 
+      {/* ---------------- river breeze & aerodynamics cooling lab ---------------- */}
+      <RiverBreezeAerodynamicsLab className="mt-[var(--spacing-section)]" />
+
       {/* ----------------------- microclimate simulator -------------------------- */}
       <MicroclimateSimulator />
 
       {/* --------------------------- woodshop tour ------------------------------- */}
       <WoodshopTourSection />
 
+      {/* ----------------- vacuum kiln & moisture balance diary ------------------- */}
+      <KilnMoistureDiary className="mt-[var(--spacing-section)]" />
+
       {/* -------------------- bespoke cabinetry studio --------------------------- */}
       <BespokeCabinetryStudio className="mt-[var(--spacing-section)]" />
+
+      {/* ------------------ bespoke handcrafted furniture studio ----------------- */}
+      <BespokeFurnitureCustomizer className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------- wood joinery explorer --------------------------- */}
       <WoodJoineryExplorer className="mt-[var(--spacing-section)]" />

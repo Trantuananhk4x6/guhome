@@ -8,6 +8,7 @@ import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvis
 import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatCalculator'
 import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiCompass'
 import { TropicalHvacAirflowSimulator } from '@/components/tools/TropicalHvacAirflowSimulator'
+import { RiverBreezeAerodynamicsLab } from '@/components/studio/RiverBreezeAerodynamicsLab'
 
 export const revalidate = 3600
 
@@ -169,6 +170,11 @@ export default function SaigonDistrictsPage() {
         {/* Tropical HVAC & Dew Point Condensation Safety Simulator */}
         <div className="mt-16">
           <TropicalHvacAirflowSimulator className="rounded-3xl border border-line" />
+        </div>
+
+        {/* Saigon River Breeze & Aerodynamics Cooling Lab */}
+        <div className="mt-16">
+          <RiverBreezeAerodynamicsLab className="rounded-3xl border border-line" />
         </div>
 
         {/* Bottom Editorial Callout */}

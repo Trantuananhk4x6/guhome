@@ -79,6 +79,8 @@ import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatC
 import { ArchitecturalDetailViewer } from '@/components/projects/ArchitecturalDetailViewer'
 import { AcousticDampeningSimulator } from '@/components/studio/AcousticDampeningSimulator'
 import { TropicalPatinaLab } from '@/components/studio/TropicalPatinaLab'
+import { RiverBreezeAerodynamicsLab } from '@/components/studio/RiverBreezeAerodynamicsLab'
+import { KilnMoistureDiary } from '@/components/studio/KilnMoistureDiary'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -586,6 +588,12 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Tropical Timber Patina & Aging Simulator */}
           <TropicalPatinaLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon River Breeze & Aerodynamics Cooling Lab */}
+          <RiverBreezeAerodynamicsLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Vacuum Kiln & Wood Moisture Balancing Diary */}
+          <KilnMoistureDiary className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

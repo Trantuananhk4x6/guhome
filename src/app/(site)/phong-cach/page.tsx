@@ -32,6 +32,7 @@ import { BespokeCabinetryStudio } from '@/components/studio/BespokeCabinetryStud
 import { AcousticDampeningSimulator } from '@/components/studio/AcousticDampeningSimulator'
 import { TropicalPatinaLab } from '@/components/studio/TropicalPatinaLab'
 import { SmartHomeQuietSanctuary } from '@/components/sections/SmartHomeQuietSanctuary'
+import { BespokeFurnitureCustomizer } from '@/components/tools/BespokeFurnitureCustomizer'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -190,6 +191,9 @@ export default async function StylesPage() {
 
       {/* Invisible KNX Smart Home & Sanctuary System */}
       <SmartHomeQuietSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Bespoke Handcrafted Furniture Customizer */}
+      <BespokeFurnitureCustomizer className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
