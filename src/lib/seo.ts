@@ -257,6 +257,133 @@ function publisherNode(): JsonLdObject {
   })
 }
 
+interface LocalPropertyEntity {
+  name: string
+  alternateName?: string
+  streetAddress: string
+  addressLocality: string
+  addressRegion: string
+  latitude: number
+  longitude: number
+  containedInPlace?: string
+}
+
+/**
+ * Resolves high-value Saigon prime luxury real estate entities for Local Entity SEO,
+ * Generative Engine Optimization (GEO), and AI Overviews (AIO).
+ */
+function resolveLocalEntityGeo(project: ProjectSummary | ProjectDetail): JsonLdObject | undefined {
+  const text = `${project.title} ${project.slug} ${project.location ?? ''} ${project.subtitle ?? ''}`.toLowerCase()
+
+  let entity: LocalPropertyEntity | null = null
+
+  if (text.includes('metropole') || text.includes('thu-thiem') || text.includes('thủ thiêm')) {
+    entity = {
+      name: 'The Metropole Thủ Thiêm',
+      alternateName: 'Khu phức hợp The Metropole Thủ Thiêm',
+      streetAddress: 'Khu chức năng số 1, Khu đô thị mới Thủ Thiêm, Phường An Khánh',
+      addressLocality: 'TP. Thủ Đức',
+      addressRegion: 'TP. Hồ Chí Minh',
+      latitude: 10.7769,
+      longitude: 106.7092,
+      containedInPlace: 'Khu đô thị mới Thủ Thiêm',
+    }
+  } else if (text.includes('global-city') || text.includes('the global city') || text.includes('global city')) {
+    entity = {
+      name: 'The Global City',
+      alternateName: 'Khu đô thị The Global City Masterise Homes',
+      streetAddress: 'Đường Đỗ Xuân Hợp, Phường An Phú',
+      addressLocality: 'TP. Thủ Đức',
+      addressRegion: 'TP. Hồ Chí Minh',
+      latitude: 10.7933,
+      longitude: 106.7725,
+      containedInPlace: 'Khu đô thị Bắc Rạch Chiếc',
+    }
+  } else if (
+    text.includes('masteri centre point') ||
+    text.includes('lumiere boulevard') ||
+    text.includes('grand-park') ||
+    text.includes('grand park')
+  ) {
+    entity = {
+      name: text.includes('lumiere boulevard') ? 'Lumière Boulevard' : 'Masteri Centre Point',
+      alternateName: 'Đại đô thị Vinhomes Grand Park',
+      streetAddress: 'Đường Nguyễn Xiển & Phước Thiện, Phường Long Bình',
+      addressLocality: 'TP. Thủ Đức',
+      addressRegion: 'TP. Hồ Chí Minh',
+      latitude: 10.8415,
+      longitude: 106.8402,
+      containedInPlace: 'Vinhomes Grand Park',
+    }
+  } else if (
+    text.includes('chateau') ||
+    text.includes('my-gia') ||
+    text.includes('mỹ gia') ||
+    text.includes('phu my hung') ||
+    text.includes('phú mỹ hưng') ||
+    text.includes('quan 7') ||
+    text.includes('quận 7')
+  ) {
+    entity = {
+      name: text.includes('chateau') ? 'Khu Biệt Thự Lâu Đài Chateau' : 'Khu Biệt Thự Mỹ Gia Phú Mỹ Hưng',
+      alternateName: 'Khu đô thị Phú Mỹ Hưng Nam Viên',
+      streetAddress: 'Đại lộ Nguyễn Lương Bằng, Phường Tân Phú',
+      addressLocality: 'Quận 7',
+      addressRegion: 'TP. Hồ Chí Minh',
+      latitude: 10.7228,
+      longitude: 106.7198,
+      containedInPlace: 'Đô thị kiểu mẫu Phú Mỹ Hưng',
+    }
+  } else if (text.includes('lumiere riverside') || text.includes('thao dien') || text.includes('thảo điền')) {
+    entity = {
+      name: 'Lumière Riverside',
+      alternateName: 'Khu phức hợp căn hộ hạng sang Thảo Điền',
+      streetAddress: '259 Xa Lộ Hà Nội, Phường An Phú (liền kề Thảo Điền)',
+      addressLocality: 'TP. Thủ Đức',
+      addressRegion: 'TP. Hồ Chí Minh',
+      latitude: 10.8032,
+      longitude: 106.741,
+      containedInPlace: 'Bán đảo Thảo Điền',
+    }
+  } else if (project.location) {
+    entity = {
+      name: project.location,
+      streetAddress: project.location,
+      addressLocality: 'TP. Hồ Chí Minh',
+      addressRegion: 'TP. Hồ Chí Minh',
+      latitude: 10.7769,
+      longitude: 106.7009,
+      containedInPlace: 'TP. Hồ Chí Minh',
+    }
+  }
+
+  if (!entity) return undefined
+
+  return compact({
+    '@type': 'Place',
+    name: entity.name,
+    alternateName: entity.alternateName,
+    address: compact({
+      '@type': 'PostalAddress',
+      streetAddress: entity.streetAddress,
+      addressLocality: entity.addressLocality,
+      addressRegion: entity.addressRegion,
+      addressCountry: 'VN',
+    }),
+    geo: compact({
+      '@type': 'GeoCoordinates',
+      latitude: entity.latitude,
+      longitude: entity.longitude,
+    }),
+    containedInPlace: entity.containedInPlace
+      ? compact({
+          '@type': 'Place',
+          name: entity.containedInPlace,
+        })
+      : undefined,
+  })
+}
+
 /**
  * A finished interior-architecture project — `CreativeWork` with the studio as
  * creator, plus location, floor area and completion year when they are known.
@@ -268,6 +395,8 @@ export function buildProjectJsonLd(project: ProjectSummary | ProjectDetail): Jso
     .filter((m): m is MediaRef => Boolean(m))
     .slice(0, 6)
     .map((m) => absoluteUrl(mediaUrl(m, 1600)))
+
+  const localGeo = resolveLocalEntityGeo(project)
 
   return compact({
     '@context': SCHEMA_CONTEXT,
@@ -289,9 +418,8 @@ export function buildProjectJsonLd(project: ProjectSummary | ProjectDetail): Jso
     keywords: [project.categoryName, project.style, ...(detail?.services ?? [])].filter(
       (value): value is string => typeof value === 'string' && value.length > 0,
     ),
-    locationCreated: project.location
-      ? compact({ '@type': 'Place', name: project.location })
-      : undefined,
+    locationCreated: localGeo ?? (project.location ? compact({ '@type': 'Place', name: project.location }) : undefined),
+    spatialCoverage: localGeo,
     about: project.categoryName
       ? compact({ '@type': 'Thing', name: project.categoryName })
       : undefined,

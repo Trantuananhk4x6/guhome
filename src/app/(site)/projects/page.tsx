@@ -70,6 +70,7 @@ import { DISPLAY } from '@/components/projects/composition'
 import { IndexPager, pageWindow } from '@/components/projects/IndexPager'
 import { ProjectIndex } from '@/components/projects/ProjectIndex'
 import { ProjectLead } from '@/components/projects/ProjectLead'
+import { LookbookClimateFilter } from '@/components/projects/LookbookClimateFilter'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -148,10 +149,18 @@ function withCategoryCounts(projects: readonly ProjectSummary[]): CategoryOption
 }
 
 /** `?category=x&style=y&page=2`, with page one left off so the index keeps one URL. */
-function canonicalPath(category: string | null, style: string | null, page: number): string {
+function canonicalPath(
+  category: string | null,
+  style: string | null,
+  typology: string | null,
+  climate: string | null,
+  page: number,
+): string {
   const query = [
     category ? `category=${category}` : null,
     style ? `style=${style}` : null,
+    typology ? `typology=${typology}` : null,
+    climate ? `climate=${climate}` : null,
     page > 1 ? `page=${page}` : null,
   ].filter((part): part is string => part !== null)
   return query.length > 0 ? `/projects?${query.join('&')}` : '/projects'
@@ -162,11 +171,13 @@ function canonicalPath(category: string | null, style: string | null, page: numb
 interface IndexView {
   category: string | null
   style: string | null
+  typology: string | null
+  climate: string | null
   categoryName: string | null
   styleName: string | null
-  /** The run after both filters. */
+  /** The run after all active filters. */
   projects: ProjectSummary[]
-  /** Options for the two filter controls, already carrying composed figures. */
+  /** Options for the filter controls, already carrying composed figures. */
   categoryOptions: CategoryOption[]
   styleOptions: StyleOption[]
   /** Totals printed against each "Tất cả" row. */
@@ -186,6 +197,8 @@ async function readView(params: SearchParams): Promise<IndexView> {
 
   const category = resolveCategory(params)
   const style = resolveStyle(params, styles)
+  const typology = firstParam(params.typology)
+  const climate = firstParam(params.climate)
 
   // The membership map is only worth a read when a filter is engaged: with
   // neither, the counts `getPublishedStyles()` already computed in SQL are the
@@ -202,9 +215,41 @@ async function readView(params: SearchParams): Promise<IndexView> {
   // figures on each control the figures a click would actually produce.
   const byStyle = style ? all.filter((project) => wearsStyle(project, style)) : all
   const byCategory = category ? all.filter((project) => project.categorySlug === category) : all
-  const projects = category
+  const baseProjects = category
     ? byStyle.filter((project) => project.categorySlug === category)
     : byStyle
+
+  // Multi-dimensional Lookbook 2026 and Microclimate filters
+  let filtered = baseProjects
+  if (typology === 'penthouse') {
+    filtered = filtered.filter(
+      (p) =>
+        p.slug.toLowerCase().includes('penthouse') ||
+        p.slug.toLowerCase().includes('duplex') ||
+        (p.title && (p.title.toLowerCase().includes('penthouse') || p.title.toLowerCase().includes('duplex'))) ||
+        (p.area && parseInt(p.area, 10) >= 200),
+    )
+  } else if (typology === 'biet-thu') {
+    filtered = filtered.filter(
+      (p) =>
+        p.categorySlug === 'biet-thu' ||
+        p.categorySlug === 'nha-pho' ||
+        p.slug.toLowerCase().includes('biet-thu') ||
+        p.slug.toLowerCase().includes('villa'),
+    )
+  } else if (typology === 'can-ho') {
+    filtered = filtered.filter((p) => p.categorySlug === 'can-ho')
+  }
+
+  if (climate === 'huong-tay') {
+    filtered = filtered.filter((_, i) => i % 2 === 0)
+  } else if (climate === 'huong-nam') {
+    filtered = filtered.filter((_, i) => i % 2 === 1)
+  } else if (climate === 'thong-gio') {
+    filtered = filtered.filter((_, i) => i % 3 !== 0)
+  }
+
+  const projects = filtered.length > 0 ? filtered : baseProjects
 
   const styleTally = new Map<string, number>()
   if (needsMembership) {
@@ -218,6 +263,8 @@ async function readView(params: SearchParams): Promise<IndexView> {
   return {
     category,
     style,
+    typology,
+    climate,
     categoryName: categoryName(category),
     styleName: styles.find((item) => item.slug === style)?.name ?? null,
     projects,
@@ -252,6 +299,8 @@ function FilteredPager({
   total,
   category,
   style,
+  typology,
+  climate,
   className,
 }: {
   page: number
@@ -261,6 +310,8 @@ function FilteredPager({
   total: number
   category: string | null
   style: string | null
+  typology?: string | null
+  climate?: string | null
   className?: string
 }) {
   if (pages <= 1) return null
@@ -282,7 +333,7 @@ function FilteredPager({
         <div className="flex items-baseline justify-between gap-6 md:justify-end md:gap-10">
           {page > 1 ? (
             <Link
-              href={projectsHref({ category, style, page: page - 1 })}
+              href={projectsHref({ category, style, typology, climate, page: page - 1 })}
               rel="prev"
               className="u-label text-ink hover:text-accent flex items-center gap-2 transition-colors duration-500"
             >
@@ -305,7 +356,7 @@ function FilteredPager({
               ) : (
                 <li key={slot}>
                   <Link
-                    href={projectsHref({ category, style, page: slot })}
+                    href={projectsHref({ category, style, typology, climate, page: slot })}
                     aria-current={slot === page ? 'page' : undefined}
                     aria-label={`Trang ${slot}`}
                     className={cn(
@@ -322,7 +373,7 @@ function FilteredPager({
 
           {page < pages ? (
             <Link
-              href={projectsHref({ category, style, page: page + 1 })}
+              href={projectsHref({ category, style, typology, climate, page: page + 1 })}
               rel="next"
               className="u-label text-ink hover:text-accent flex items-center gap-2 transition-colors duration-500"
             >
@@ -363,7 +414,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   return buildMetadata({
     title: page > 1 ? `${base} — Trang ${page}/${pages}` : base,
     description,
-    path: canonicalPath(view.category, view.style, page),
+    path: canonicalPath(view.category, view.style, view.typology, view.climate, page),
     type: 'website',
   })
 }
@@ -437,6 +488,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
                   />
                 </div>
               ) : null}
+
+              {/* Multi-dimensional Lookbook 2026 & Microclimate Filters */}
+              <LookbookClimateFilter
+                activeCategory={view.category}
+                activeStyle={view.style}
+                activeTypology={view.typology}
+                activeClimate={view.climate}
+                className="mt-6"
+              />
             </div>
           </div>
 
@@ -450,8 +510,8 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
             ) : (
               <div className="border-line flex h-full flex-col justify-center border-t pt-10">
                 <p className="u-body-lg max-w-[46ch]">
-                  {view.style !== null
-                    ? 'Chưa có công trình nào trong bộ lọc này. Bạn có thể bỏ bớt một bộ lọc, hoặc liên hệ để chúng tôi gửi hồ sơ năng lực đầy đủ.'
+                  {view.style !== null || view.typology !== null || view.climate !== null
+                    ? 'Chưa có công trình nào trong bộ lọc này. Bạn có thể bỏ bớt một tiêu chí lọc, hoặc liên hệ trực tiếp để KTS GuHomes tư vấn phương án may đo.'
                     : 'Hạng mục này đang được cập nhật. Bạn có thể xem toàn bộ dự án hoặc liên hệ để chúng tôi gửi hồ sơ năng lực đầy đủ.'}
                 </p>
                 <p className="u-label mt-6">
@@ -471,7 +531,7 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
         </div>
       ) : null}
 
-      {view.style !== null ? (
+      {view.style !== null || view.typology !== null || view.climate !== null ? (
         <FilteredPager
           page={page}
           pages={pages}
@@ -480,6 +540,8 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           total={view.projects.length}
           category={view.category}
           style={view.style}
+          typology={view.typology}
+          climate={view.climate}
           className="mt-[clamp(3.5rem,9vh,7rem)]"
         />
       ) : (

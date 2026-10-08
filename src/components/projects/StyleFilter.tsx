@@ -35,22 +35,26 @@ export interface StyleOption {
 export interface ProjectsQuery {
   category?: string | null
   style?: string | null
+  typology?: string | null
+  climate?: string | null
   page?: number
 }
 
 /**
  * The one place the `/projects` URL contract is written. The page's pager and
- * both filters build their hrefs from here, so a parameter can never be dropped
+ * filters build their hrefs from here, so a parameter can never be dropped
  * by one control and kept by another.
  */
 export function projectsHref(query: ProjectsQuery): {
   pathname: string
   query: Record<string, string>
 } {
-  const { category = null, style = null, page = 1 } = query
+  const { category = null, style = null, typology = null, climate = null, page = 1 } = query
   const params: Record<string, string> = {}
   if (category) params.category = category
   if (style) params.style = style
+  if (typology) params.typology = typology
+  if (climate) params.climate = climate
   if (page > 1) params.page = String(page)
   return { pathname: '/projects', query: params }
 }

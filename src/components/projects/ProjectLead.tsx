@@ -25,6 +25,7 @@ import type { ProjectSummary } from '@/types/content'
 
 import { BLEED_R, DISPLAY_SM, SCRIM_T } from './composition'
 import { ProjectFigure } from './ProjectFigure'
+import { getTactileSpecs } from './tactileSpecs'
 
 export interface ProjectLeadProps {
   project: ProjectSummary
@@ -40,11 +41,13 @@ interface Fact {
 
 function facts(project: ProjectSummary): Fact[] {
   const out: Fact[] = []
+  const specs = getTactileSpecs(project)
   if (project.location) out.push({ label: 'Địa điểm', value: project.location })
   const area = formatArea(project.area)
   if (area) out.push({ label: 'Diện tích', value: area })
+  out.push({ label: 'Vật liệu chủ đạo', value: specs.materials })
+  out.push({ label: 'Vi khí hậu', value: specs.climateOrientation })
   if (project.year) out.push({ label: 'Năm', value: String(project.year) })
-  if (out.length < 3 && project.categoryName) out.push({ label: 'Hạng mục', value: project.categoryName })
   return out
 }
 

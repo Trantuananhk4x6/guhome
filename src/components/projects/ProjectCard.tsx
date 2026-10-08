@@ -26,6 +26,7 @@ import type { ProjectSummary } from '@/types/content'
 
 import { DISPLAY, DISPLAY_SM } from './composition'
 import { ProjectFigure } from './ProjectFigure'
+import { getTactileSpecs } from './tactileSpecs'
 
 /** Retained so `variant="grid"` at existing call sites keeps type-checking. */
 export type ProjectCardVariant = 'grid'
@@ -123,6 +124,7 @@ export function ProjectCard({
   )
 
   const meta = metaLine(project)
+  const specs = getTactileSpecs(project)
 
   return (
     <article className={cn('flex flex-col', className)}>
@@ -178,6 +180,18 @@ export function ProjectCard({
         ) : null}
 
         {meta ? <p className="u-label">{meta}</p> : null}
+
+        {/* Tactile Specs: Quiet Luxury & Microclimate */}
+        <div className="border-line/60 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 border-t pt-2 text-[0.8125rem] text-muted">
+          <span className="inline-flex items-center gap-1.5 font-medium text-ink/80">
+            <span className="bg-accent/80 h-1.5 w-1.5 rounded-full" />
+            {specs.materials}
+          </span>
+          <span className="text-muted/40">·</span>
+          <span>{specs.climateOrientation}</span>
+          <span className="text-muted/40">·</span>
+          <span className="text-ink/65 italic">{specs.craftDuration}</span>
+        </div>
 
         {showSummary && project.summary ? (
           <p className="text-muted mt-2 line-clamp-3 max-w-[46ch] text-sm leading-relaxed">
