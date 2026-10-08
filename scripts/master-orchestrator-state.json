@@ -492,6 +492,15 @@
       "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
       "sentAt": "2026-10-08T18:40:23.162Z",
       "atStep": 8046
+    },
+    {
+      "directiveId": "dir-71-sprint-73-balalaika-biotite-goldleaftray",
+      "title": "Phòng Thính Âm Đàn Balalaika Vòm Vân Sam, Sảnh Sưởi Đá Hoa Cương Biotite & Khay Trà Sơn Mài Thếp Vàng",
+      "sentAt": "2026-10-08T18:34:40.000Z",
+      "completedAt": "2026-10-08T18:42:25.000Z",
+      "status": "COMPLETED_100_PERCENT_QA",
+      "commitMessage": "feat(sprint-73): add SaigonAcousticBalalaikaSanctuarySalon, SaigonMonolithicBiotiteGraniteFireplaceLounge, and ArtisanGoldLeafLacquerTeaTrayAtelier with 100% SEO pass",
+      "atStep": 8070
     }
   ],
   "lastDispatchedAt": 1791484823162
