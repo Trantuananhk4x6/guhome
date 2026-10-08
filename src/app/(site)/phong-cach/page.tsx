@@ -42,6 +42,8 @@ import { AcousticSanctuaryMasterSuite } from '@/components/studio/AcousticSanctu
 import { PatinaMetalworkArtisanLab } from '@/components/studio/PatinaMetalworkArtisanLab'
 import { SaigonCourtyardAtriumLab } from '@/components/studio/SaigonCourtyardAtriumLab'
 import { ArtisanBespokeJoineryVault } from '@/components/studio/ArtisanBespokeJoineryVault'
+import { SaigonMonsoonRainwaterHarvestLab } from '@/components/studio/SaigonMonsoonRainwaterHarvestLab'
+import { HandcraftedLacquerArtisanAtelier } from '@/components/studio/HandcraftedLacquerArtisanAtelier'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -230,6 +232,12 @@ export default async function StylesPage() {
 
       {/* Artisan Bespoke Timber Joinery Vault */}
       <ArtisanBespokeJoineryVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Monsoon Rainwater Harvest & Passive Rooftop Mist Cooling */}
+      <SaigonMonsoonRainwaterHarvestLab className="mt-[var(--spacing-section)]" />
+
+      {/* Handcrafted Lacquer Artisan Atelier Bát Tràng x Thạnh Xuân */}
+      <HandcraftedLacquerArtisanAtelier className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

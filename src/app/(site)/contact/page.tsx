@@ -28,6 +28,7 @@ import { LeadArchitectPrivateSession } from '@/components/consultation/LeadArchi
 import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudit'
 import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPassport'
 import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhiteGloveMovingAudit'
+import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchiveVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -348,6 +349,9 @@ export default async function ContactPage() {
 
       {/* Concierge White-Glove Moving & Installation Audit */}
       <ConciergeWhiteGloveMovingAudit className="mt-[var(--spacing-section)]" />
+
+      {/* Private Family Archive Vault 1000C Fireproof */}
+      <PrivateFamilyArchiveVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

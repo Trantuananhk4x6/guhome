@@ -59,6 +59,9 @@ import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPas
 import { ArtisanBespokeJoineryVault } from '@/components/studio/ArtisanBespokeJoineryVault'
 import { SaigonBreezeMicroclimateCurator } from '@/components/studio/SaigonBreezeMicroclimateCurator'
 import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhiteGloveMovingAudit'
+import { SaigonMonsoonRainwaterHarvestLab } from '@/components/studio/SaigonMonsoonRainwaterHarvestLab'
+import { HandcraftedLacquerArtisanAtelier } from '@/components/studio/HandcraftedLacquerArtisanAtelier'
+import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchiveVault'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -891,6 +894,15 @@ export default async function StudioPage() {
 
       {/* ---------------- concierge white-glove relocation audit ------------------- */}
       <ConciergeWhiteGloveMovingAudit className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon monsoon rainwater harvest & passive cooling lab --- */}
+      <SaigonMonsoonRainwaterHarvestLab className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- handcrafted lacquer artisan atelier bát tràng x thạnh xuân */}
+      <HandcraftedLacquerArtisanAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- private family archive vault 1000C fireproof ------------- */}
+      <PrivateFamilyArchiveVault className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

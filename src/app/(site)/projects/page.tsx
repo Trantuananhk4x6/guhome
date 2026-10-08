@@ -95,6 +95,7 @@ import { SaigonCourtyardAtriumLab } from '@/components/studio/SaigonCourtyardAtr
 import { BespokeWalkInWardrobeVault } from '@/components/studio/BespokeWalkInWardrobeVault'
 import { ArtisanBespokeJoineryVault } from '@/components/studio/ArtisanBespokeJoineryVault'
 import { SaigonBreezeMicroclimateCurator } from '@/components/studio/SaigonBreezeMicroclimateCurator'
+import { SaigonMonsoonRainwaterHarvestLab } from '@/components/studio/SaigonMonsoonRainwaterHarvestLab'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -650,6 +651,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Breeze River Microclimate Curator */}
           <SaigonBreezeMicroclimateCurator className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Monsoon Rainwater Harvest & Passive Rooftop Mist Cooling */}
+          <SaigonMonsoonRainwaterHarvestLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

@@ -27,6 +27,8 @@ import { DigitalTwinEstateAudit } from '@/components/tools/DigitalTwinEstateAudi
 import { BespokeWalkInWardrobeVault } from '@/components/studio/BespokeWalkInWardrobeVault'
 import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPassport'
 import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhiteGloveMovingAudit'
+import { HandcraftedLacquerArtisanAtelier } from '@/components/studio/HandcraftedLacquerArtisanAtelier'
+import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchiveVault'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -148,6 +150,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Concierge White-Glove Moving & Installation Audit */}
       <ConciergeWhiteGloveMovingAudit className="mt-[var(--spacing-section)]" />
+
+      {/* Handcrafted Lacquer Artisan Atelier Bát Tràng x Thạnh Xuân */}
+      <HandcraftedLacquerArtisanAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Private Family Archive Vault 1000C Fireproof */}
+      <PrivateFamilyArchiveVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
