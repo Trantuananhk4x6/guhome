@@ -31,6 +31,8 @@ import { HandcraftedLacquerArtisanAtelier } from '@/components/studio/Handcrafte
 import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchiveVault'
 import { BespokeAcousticHomeCinemaLab } from '@/components/studio/BespokeAcousticHomeCinemaLab'
 import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugStudio'
+import { HandCarvedStoneFireplaceVault } from '@/components/studio/HandCarvedStoneFireplaceVault'
+import { PrivateYachtBerthAndHelipadConcierge } from '@/components/tools/PrivateYachtBerthAndHelipadConcierge'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -164,6 +166,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Artisan Handmade Lotus Silk & Wool Rug Studio */}
       <ArtisanHandmadeRugStudio className="mt-[var(--spacing-section)]" />
+
+      {/* Hand-carved Stone Fireplace Vault 3D Mist & Agarwood */}
+      <HandCarvedStoneFireplaceVault className="mt-[var(--spacing-section)]" />
+
+      {/* Private Yacht Berth & Sky Helipad Concierge */}
+      <PrivateYachtBerthAndHelipadConcierge className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

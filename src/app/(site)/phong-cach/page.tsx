@@ -46,6 +46,8 @@ import { SaigonMonsoonRainwaterHarvestLab } from '@/components/studio/SaigonMons
 import { HandcraftedLacquerArtisanAtelier } from '@/components/studio/HandcraftedLacquerArtisanAtelier'
 import { SaigonBespokeTeakDeckingPavilion } from '@/components/studio/SaigonBespokeTeakDeckingPavilion'
 import { BespokeAcousticHomeCinemaLab } from '@/components/studio/BespokeAcousticHomeCinemaLab'
+import { SaigonBespokeInfinityPoolLab } from '@/components/studio/SaigonBespokeInfinityPoolLab'
+import { HandCarvedStoneFireplaceVault } from '@/components/studio/HandCarvedStoneFireplaceVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -246,6 +248,12 @@ export default async function StylesPage() {
 
       {/* Bespoke Acoustic Home Cinema Lab THX & Dolby Atmos */}
       <BespokeAcousticHomeCinemaLab className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Bespoke Infinity Pool Lab Acrylic & Mineral Ion */}
+      <SaigonBespokeInfinityPoolLab className="mt-[var(--spacing-section)]" />
+
+      {/* Hand-carved Stone Fireplace Vault 3D Mist & Agarwood */}
+      <HandCarvedStoneFireplaceVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

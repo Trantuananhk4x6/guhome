@@ -97,6 +97,7 @@ import { ArtisanBespokeJoineryVault } from '@/components/studio/ArtisanBespokeJo
 import { SaigonBreezeMicroclimateCurator } from '@/components/studio/SaigonBreezeMicroclimateCurator'
 import { SaigonMonsoonRainwaterHarvestLab } from '@/components/studio/SaigonMonsoonRainwaterHarvestLab'
 import { SaigonBespokeTeakDeckingPavilion } from '@/components/studio/SaigonBespokeTeakDeckingPavilion'
+import { SaigonBespokeInfinityPoolLab } from '@/components/studio/SaigonBespokeInfinityPoolLab'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -658,6 +659,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Saigon Bespoke Teak Decking & Outdoor Pavilion */}
           <SaigonBespokeTeakDeckingPavilion className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Bespoke Infinity Pool Lab Acrylic & Mineral Ion */}
+          <SaigonBespokeInfinityPoolLab className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

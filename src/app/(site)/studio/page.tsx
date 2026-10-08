@@ -65,6 +65,9 @@ import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchi
 import { SaigonBespokeTeakDeckingPavilion } from '@/components/studio/SaigonBespokeTeakDeckingPavilion'
 import { BespokeAcousticHomeCinemaLab } from '@/components/studio/BespokeAcousticHomeCinemaLab'
 import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugStudio'
+import { SaigonBespokeInfinityPoolLab } from '@/components/studio/SaigonBespokeInfinityPoolLab'
+import { HandCarvedStoneFireplaceVault } from '@/components/studio/HandCarvedStoneFireplaceVault'
+import { PrivateYachtBerthAndHelipadConcierge } from '@/components/tools/PrivateYachtBerthAndHelipadConcierge'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -915,6 +918,15 @@ export default async function StudioPage() {
 
       {/* ---------------- artisan handmade lotus silk & wool rug studio ------------ */}
       <ArtisanHandmadeRugStudio className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon bespoke infinity pool lab acrylic & mineral ion --- */}
+      <SaigonBespokeInfinityPoolLab className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- hand-carved stone fireplace vault 3D mist & agarwood ----- */}
+      <HandCarvedStoneFireplaceVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- private yacht berth & sky helipad concierge -------------- */}
+      <PrivateYachtBerthAndHelipadConcierge className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

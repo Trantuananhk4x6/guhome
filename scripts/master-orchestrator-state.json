@@ -246,7 +246,19 @@
       "title": "Sàn Gỗ Teak Sân Thượng, Phòng Chiếu Phim Dolby Atmos & Thảm Tơ Sen Dệt Tay",
       "sentAt": "2026-10-08T14:48:57.000Z",
       "completedAt": "2026-10-08T14:52:15.000Z"
+    },
+    {
+      "directiveId": "dir-27-sprint-29-pool-fireplace-yacht",
+      "title": "Hồ Bơi Vô Cực Điện Phân Nước Mặn, Lò Sưởi Hơi Nước Đá Khối & Bến Du Thuyền Ven Sông",
+      "sentAt": "2026-10-08T14:52:37.433Z",
+      "completedAt": "2026-10-08T14:55:50.000Z"
     }
   ],
-  "lastDispatchedAt": 1791471111109
+  "lastDispatchedAt": 1791471157434,
+  "activeDirective": {
+    "directiveId": "dir-27-sprint-29-pool-fireplace-yacht",
+    "title": "Hồ Bơi Vô Cực Điện Phân Nước Mặn, Lò Sưởi Hơi Nước Đá Khối & Bến Du Thuyền Ven Sông",
+    "sentAt": "2026-10-08T14:52:37.433Z",
+    "targetAgentId": "2f5ce5fe-ad05-4f10-95a6-3b7c495b4b22"
+  }
 }

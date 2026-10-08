@@ -30,6 +30,7 @@ import { ArtisanCraftsmanPassport } from '@/components/tools/ArtisanCraftsmanPas
 import { ConciergeWhiteGloveMovingAudit } from '@/components/tools/ConciergeWhiteGloveMovingAudit'
 import { PrivateFamilyArchiveVault } from '@/components/tools/PrivateFamilyArchiveVault'
 import { ArtisanHandmadeRugStudio } from '@/components/tools/ArtisanHandmadeRugStudio'
+import { PrivateYachtBerthAndHelipadConcierge } from '@/components/tools/PrivateYachtBerthAndHelipadConcierge'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -356,6 +357,9 @@ export default async function ContactPage() {
 
       {/* Artisan Handmade Lotus Silk & Wool Rug Studio */}
       <ArtisanHandmadeRugStudio className="mt-[var(--spacing-section)]" />
+
+      {/* Private Yacht Berth & Sky Helipad Concierge */}
+      <PrivateYachtBerthAndHelipadConcierge className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
