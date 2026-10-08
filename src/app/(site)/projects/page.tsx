@@ -104,6 +104,7 @@ import { AntiqueLibraryAndCartographyVault } from '@/components/studio/AntiqueLi
 import { ArtisanBatTrangBrickWineCellarVault } from '@/components/studio/ArtisanBatTrangBrickWineCellarVault'
 import { ArtisanLiveEdgeParquetFlooringVault } from '@/components/studio/ArtisanLiveEdgeParquetFlooringVault'
 import { PrivateArtCollectionMuseumVault } from '@/components/studio/PrivateArtCollectionMuseumVault'
+import { SaigonBreezeWindChimeArtisanAtelier } from '@/components/studio/SaigonBreezeWindChimeArtisanAtelier'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
 import { Label } from '@/components/ui/Label'
@@ -686,6 +687,9 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
           {/* Private Art Collection Museum Optical Glass Vault */}
           <PrivateArtCollectionMuseumVault className="mt-[clamp(4.5rem,10vh,8rem)]" />
+
+          {/* Saigon Breeze Pentatonic Bronze Wind Chime Atelier */}
+          <SaigonBreezeWindChimeArtisanAtelier className="mt-[clamp(4.5rem,10vh,8rem)]" />
         </ProjectsViewSwitcher>
       </div>
     </div>

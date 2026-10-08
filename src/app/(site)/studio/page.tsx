@@ -86,6 +86,9 @@ import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZe
 import { PrivateArtCollectionMuseumVault } from '@/components/studio/PrivateArtCollectionMuseumVault'
 import { ArtisanQuartzHourglassVault } from '@/components/studio/ArtisanQuartzHourglassVault'
 import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/RiversideCigarLoungeAndHumidorSanctuary'
+import { SaigonBreezeWindChimeArtisanAtelier } from '@/components/studio/SaigonBreezeWindChimeArtisanAtelier'
+import { ArtisanBasaltColdPlungeVault } from '@/components/studio/ArtisanBasaltColdPlungeVault'
+import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamilySanctuaryPanicRoom'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -999,6 +1002,15 @@ export default async function StudioPage() {
 
       {/* ---------------- riverside cigar lounge negative-pressure & humidor -------- */}
       <RiversideCigarLoungeAndHumidorSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- saigon breeze pentatonic bronze wind chime atelier -------- */}
+      <SaigonBreezeWindChimeArtisanAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- artisan basalt cold plunge 3C monolith vault ------------- */}
+      <ArtisanBasaltColdPlungeVault className="mt-[var(--spacing-section)]" />
+
+      {/* ---------------- private family sanctuary panic room 72h CBRN ------------ */}
+      <PrivateFamilySanctuaryPanicRoom className="mt-[var(--spacing-section)]" />
 
       {/* ----------------------------------- cta --------------------------------- */}
       <section className="u-gutter mt-[var(--spacing-section)]">

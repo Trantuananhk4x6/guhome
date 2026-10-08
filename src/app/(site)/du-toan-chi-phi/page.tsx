@@ -45,6 +45,8 @@ import { MonolithicCalacattaMarbleChefIslandVault } from '@/components/studio/Mo
 import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZenYogaPavilion'
 import { ArtisanQuartzHourglassVault } from '@/components/studio/ArtisanQuartzHourglassVault'
 import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/RiversideCigarLoungeAndHumidorSanctuary'
+import { ArtisanBasaltColdPlungeVault } from '@/components/studio/ArtisanBasaltColdPlungeVault'
+import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamilySanctuaryPanicRoom'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
 
@@ -220,6 +222,12 @@ export default function DuToanChiPhiPage() {
 
       {/* Riverside Cigar Lounge Negative-Pressure & Humidor */}
       <RiversideCigarLoungeAndHumidorSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Basalt Cold Plunge 3C Monolith Vault */}
+      <ArtisanBasaltColdPlungeVault className="mt-[var(--spacing-section)]" />
+
+      {/* Private Family Sanctuary Panic Room 72h CBRN */}
+      <PrivateFamilySanctuaryPanicRoom className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

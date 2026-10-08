@@ -37,6 +37,7 @@ import { ArtisanShanTuyetTeaSanctuary } from '@/components/tools/ArtisanShanTuye
 import { ArtisanHinokiVolcanicSaunaSanctuary } from '@/components/tools/ArtisanHinokiVolcanicSaunaSanctuary'
 import { RiversideDawnZenYogaPavilion } from '@/components/tools/RiversideDawnZenYogaPavilion'
 import { RiversideCigarLoungeAndHumidorSanctuary } from '@/components/tools/RiversideCigarLoungeAndHumidorSanctuary'
+import { PrivateFamilySanctuaryPanicRoom } from '@/components/tools/PrivateFamilySanctuaryPanicRoom'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -384,6 +385,9 @@ export default async function ContactPage() {
 
       {/* Riverside Cigar Lounge Negative-Pressure & Humidor */}
       <RiversideCigarLoungeAndHumidorSanctuary className="mt-[var(--spacing-section)]" />
+
+      {/* Private Family Sanctuary Panic Room 72h CBRN */}
+      <PrivateFamilySanctuaryPanicRoom className="mt-[var(--spacing-section)]" />
     </div>
   )
 }

@@ -60,6 +60,8 @@ import { ArtisanLiveEdgeParquetFlooringVault } from '@/components/studio/Artisan
 import { MonolithicCalacattaMarbleChefIslandVault } from '@/components/studio/MonolithicCalacattaMarbleChefIslandVault'
 import { PrivateArtCollectionMuseumVault } from '@/components/studio/PrivateArtCollectionMuseumVault'
 import { ArtisanQuartzHourglassVault } from '@/components/studio/ArtisanQuartzHourglassVault'
+import { SaigonBreezeWindChimeArtisanAtelier } from '@/components/studio/SaigonBreezeWindChimeArtisanAtelier'
+import { ArtisanBasaltColdPlungeVault } from '@/components/studio/ArtisanBasaltColdPlungeVault'
 import { buildMetadata } from '@/lib/seo'
 import { pad2 } from '@/lib/utils'
 import { getPublishedStyles } from '@/server/queries/styles'
@@ -302,6 +304,12 @@ export default async function StylesPage() {
 
       {/* Artisan Red Quartz Hourglass 60m ASMR Sound Vault */}
       <ArtisanQuartzHourglassVault className="mt-[var(--spacing-section)]" />
+
+      {/* Saigon Breeze Pentatonic Bronze Wind Chime Atelier */}
+      <SaigonBreezeWindChimeArtisanAtelier className="mt-[var(--spacing-section)]" />
+
+      {/* Artisan Basalt Cold Plunge 3C Monolith Vault */}
+      <ArtisanBasaltColdPlungeVault className="mt-[var(--spacing-section)]" />
     </div>
   )
 }
