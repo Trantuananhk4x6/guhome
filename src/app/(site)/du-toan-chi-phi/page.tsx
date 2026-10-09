@@ -405,6 +405,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudOctaviges
 import { SaigonCanalSideAncientHingedCamphorFlowerMoatPavilionV6 } from '@/components/studio/SaigonCanalSideAncientHingedCamphorFlowerMoatPavilionV6'
 import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV24 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV24'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudNovemvigesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudNovemvigesimalLeafStudio'
+import { SaigonCanalSideAncientHingedCypressFlowerMoatPavilionV6 } from '@/components/studio/SaigonCanalSideAncientHingedCypressFlowerMoatPavilionV6'
+import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV25 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV25'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudTrigesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudTrigesimalLeafStudio'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -1375,6 +1378,11 @@ export default function DuToanChiPhiPage() {
       <SaigonCanalSideAncientHingedCamphorFlowerMoatPavilionV6 />
       <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV24 />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudNovemvigesimalLeafStudio />
+
+      {/* Sprint 170 Masterpieces */}
+      <SaigonCanalSideAncientHingedCypressFlowerMoatPavilionV6 />
+      <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV25 />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudTrigesimalLeafStudio />
 
       {/* Lookbook Không Gian Danh Giá & Style Quiz */}
       <BespokePrestigeSpacesLookbook />
