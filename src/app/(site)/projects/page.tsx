@@ -280,6 +280,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestRuyiStudio } from
 import { SaigonCanalSideAncientHingedHuyetLongMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedHuyetLongMoatPavilion'
 import { BespokeImperialKynamAndGoldFiligreeHoundLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeHoundLotusIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestFishStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestFishStudio'
+import { SaigonCanalSideAncientHingedNgocNghienMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedNgocNghienMoatPavilion'
+import { BespokeImperialKynamAndGoldFiligreeBoarLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeBoarLotusIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1295,6 +1298,11 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           <SaigonCanalSideAncientHingedHuyetLongMoatPavilion />
           <BespokeImperialKynamAndGoldFiligreeHoundLotusIncenseBurnerVault />
           <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestFishStudio />
+
+          {/* Sprint 124 Masterpieces */}
+          <SaigonCanalSideAncientHingedNgocNghienMoatPavilion />
+          <BespokeImperialKynamAndGoldFiligreeBoarLotusIncenseBurnerVault />
+          <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedStudio />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />

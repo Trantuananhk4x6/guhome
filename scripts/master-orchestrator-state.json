@@ -1860,8 +1860,14 @@
       "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
       "sentAt": "2026-10-09T01:17:05.000Z",
       "atStep": 16415
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-09T01:23:05.000Z",
+      "atStep": 16525
     }
   ],
-  "currentDirectiveIndex": 310,
-  "lastDispatchedAt": 1791508625000
+  "currentDirectiveIndex": 311,
+  "lastDispatchedAt": 1791508985000
 }
