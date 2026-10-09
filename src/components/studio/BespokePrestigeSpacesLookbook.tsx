@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 interface SpaceLookbook {
   id: string
   title: string
+  shortTitle: string
   subtitle: string
   location: string
   area: string
@@ -23,6 +24,7 @@ const LOOKBOOK_SPACES: SpaceLookbook[] = [
   {
     id: 'metropole-penthouse',
     title: 'Penthouse The Opera Metropole Thủ Thiêm',
+    shortTitle: 'Metropole Thủ Thiêm',
     subtitle: 'Đối thoại giữa dòng sông Sài Gòn và ánh sáng tĩnh lặng tầng cao',
     location: 'Bán đảo Thủ Thiêm, TP. Thủ Đức',
     area: '320m² thông tầng 6.2m',
@@ -48,6 +50,7 @@ const LOOKBOOK_SPACES: SpaceLookbook[] = [
   {
     id: 'global-city-estate',
     title: 'Dinh Thự Vườn The Global City',
+    shortTitle: 'The Global City',
     subtitle: 'Kiến trúc vi khí hậu đa tầng với giếng trời đối lưu nhiệt tự nhiên',
     location: 'An Phú, TP. Thủ Đức',
     area: '520m² (5 tầng)',
@@ -73,6 +76,7 @@ const LOOKBOOK_SPACES: SpaceLookbook[] = [
   {
     id: 'ecopark-island-villa',
     title: 'Biệt Thự Đảo Grand Island Ecopark',
+    shortTitle: 'Đảo Grand Island',
     subtitle: 'Không gian tĩnh dưỡng Zen Retreat bốn bề mặt nước và cây xanh',
     location: 'Quần đảo Grand Island, Ecopark',
     area: '680m² ven hồ',
@@ -93,6 +97,32 @@ const LOOKBOOK_SPACES: SpaceLookbook[] = [
       { label: 'Phòng trà đạo', value: 'Thiết kế ngắm sen nổi' },
       { label: 'Gỗ tự nhiên', value: 'Gõ Đỏ & Mun Sừng nguyên tấm' },
       { label: 'Giới hạn thi công', value: 'Nằm trong 12 dự án/năm' },
+    ],
+  },
+  {
+    id: 'bason-sky-villa',
+    title: 'Sky Villa Grand Marina Saigon Ba Son',
+    shortTitle: 'Grand Marina Ba Son',
+    subtitle: 'Giao thoa giữa dòng sông lịch sử và chuẩn mực sống Branded Residence bên sông Sài Gòn',
+    location: 'Số 2 Tôn Đức Thắng, Bến Nghé, Quận 1',
+    area: '420m² ban công kính uốn cong 180°',
+    year: '2026',
+    climateSolution: 'Hệ lam kính Low-E 3 lớp xoay thông minh cản bức xạ nắng hướng Đông Nam, tối ưu gió mát ven sông Sài Gòn đối lưu tự nhiên không cần điều hòa 24/7.',
+    materialPalette: [
+      'Đá Marble Palissandro mài mờ nhập khẩu Ý',
+      'Gỗ Óc Chó Bắc Mỹ tuyển sấy vi sóng ẩm độ 8-10%',
+      'Đồng thau xước xát thủ công viền cạnh mạ PVD vàng champagne',
+      'Kính đúc gợn sóng thủ công tạo hiệu ứng khúc xạ nước sông',
+    ],
+    lightingSpecs: 'Kịch bản chiếu sáng gián tiếp hắt khe trần vô hình, dải nhiệt độ 2700K - 3500K điều chỉnh theo chu kỳ bình minh và hoàng hôn cảng Ba Son.',
+    heroDescription: 'Tọa lạc trên mảnh đất di sản Ba Son ven sông Sài Gòn, Sky Villa Grand Marina là đỉnh cao của phong cách Quiet Luxury. GuHomes chắt lọc từng đường cong kim hoàn, đưa ánh sáng dòng sông vào sâu trong lòng không gian sống, tạo nên một tư gia tĩnh lặng giữa trái tim đô thị phồn hoa.',
+    daylightImage: '/media/can-ho-3-ngu-150m2/0-1600.webp',
+    nightImage: '/media/nha-pho-100m2-1-tret-2-lau/0-1600.webp',
+    features: [
+      { label: 'Tầm nhìn ven sông', value: 'Trọn vẹn 180 độ khúc quanh Ba Son' },
+      { label: 'Cao độ trần thông thoáng', value: '3.65 mét tiêu chuẩn Branded' },
+      { label: 'Hệ mộc nội thất', value: 'Óc Chó & Palissandro may đo' },
+      { label: 'Cam kết chất lượng', value: 'May đo Thạnh Xuân 1.200m²' },
     ],
   },
 ]
@@ -159,13 +189,13 @@ export function BespokePrestigeSpacesLookbook() {
                 key={space.id}
                 type="button"
                 onClick={() => handleSelectSpace(space.id)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 border ${
+                className={`min-h-[44px] min-w-[44px] px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 border ${
                   activeSpaceId === space.id
                     ? 'bg-[#c5a880] text-[#14120f] border-[#c5a880] shadow-lg'
                     : 'bg-[#181511] text-[#a39785] border-[#30281e] hover:border-[#524433] hover:text-[#e0d8cc]'
                 }`}
               >
-                {space.title.split(' ')[0]} {space.title.split(' ')[1]}
+                {space.shortTitle}
               </button>
             ))}
           </div>
