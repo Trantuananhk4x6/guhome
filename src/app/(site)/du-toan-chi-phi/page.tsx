@@ -384,6 +384,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUnvigesim
 import { SaigonCanalSideAncientHingedEbonyFlowerMoatPavilionV5 } from '@/components/studio/SaigonCanalSideAncientHingedEbonyFlowerMoatPavilionV5'
 import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV17 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV17'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDuovigesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDuovigesimalLeafStudio'
+import { SaigonCanalSideAncientHingedRedSandalwoodFlowerMoatPavilionV5 } from '@/components/studio/SaigonCanalSideAncientHingedRedSandalwoodFlowerMoatPavilionV5'
+import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV18 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV18'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudTrevigesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudTrevigesimalLeafStudio'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -1319,6 +1322,11 @@ export default function DuToanChiPhiPage() {
       <SaigonCanalSideAncientHingedEbonyFlowerMoatPavilionV5 />
       <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV17 />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDuovigesimalLeafStudio />
+
+      {/* Sprint 163 Masterpieces */}
+      <SaigonCanalSideAncientHingedRedSandalwoodFlowerMoatPavilionV5 />
+      <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV18 />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudTrevigesimalLeafStudio />
 
       {/* Lookbook Không Gian Danh Giá & Style Quiz */}
       <BespokePrestigeSpacesLookbook />
