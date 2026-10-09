@@ -327,6 +327,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudLeafStudi
 import { SaigonCanalSideAncientHingedRosewoodBonsaiMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodBonsaiMoatPavilion'
 import { BespokeImperialKynamAndGoldFiligreeKirinLotusIncenseBurnerVaultV2 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeKirinLotusIncenseBurnerVaultV2'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodLeafStudio'
+import { SaigonCanalSideAncientHingedEbonyBonsaiMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedEbonyBonsaiMoatPavilion'
+import { BespokeImperialKynamAndGoldFiligreeTurtleCraneLotusIncenseBurnerVaultV2 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTurtleCraneLotusIncenseBurnerVaultV2'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFullBlossomLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFullBlossomLeafStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1417,6 +1420,11 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           <SaigonCanalSideAncientHingedRosewoodBonsaiMoatPavilion />
           <BespokeImperialKynamAndGoldFiligreeKirinLotusIncenseBurnerVaultV2 />
           <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodLeafStudio />
+
+          {/* Sprint 139 Masterpieces */}
+          <SaigonCanalSideAncientHingedEbonyBonsaiMoatPavilion />
+          <BespokeImperialKynamAndGoldFiligreeTurtleCraneLotusIncenseBurnerVaultV2 />
+          <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFullBlossomLeafStudio />
 
           {/* Lookbook Không Gian Danh Giá & Style Quiz */}
           <BespokePrestigeSpacesLookbook />
