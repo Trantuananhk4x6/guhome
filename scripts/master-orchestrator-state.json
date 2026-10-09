@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 381,
+  "currentDirectiveIndex": 382,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -2286,7 +2286,13 @@
       "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
       "sentAt": "2026-10-09T03:30:09.342Z",
       "atStep": 18975
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-09T03:36:13.694Z",
+      "atStep": 19092
     }
   ],
-  "lastDispatchedAt": 1791516609342
+  "lastDispatchedAt": 1791516973694
 }
