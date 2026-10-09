@@ -360,6 +360,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudOctaLeafS
 import { SaigonCanalSideAncientHingedGuBonsaiMoatPavilionV2 } from '@/components/studio/SaigonCanalSideAncientHingedGuBonsaiMoatPavilionV2'
 import { BespokeImperialKynamAndGoldFiligreeDragonCarpLotusIncenseBurnerVaultV4 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonCarpLotusIncenseBurnerVaultV4'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudEnneaLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudEnneaLeafStudio'
+import { SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilionV3 } from '@/components/studio/SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilionV3'
+import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV5 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV5'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDecaLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDecaLeafStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1505,6 +1508,11 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           <SaigonCanalSideAncientHingedGuBonsaiMoatPavilionV2 />
           <BespokeImperialKynamAndGoldFiligreeDragonCarpLotusIncenseBurnerVaultV4 />
           <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudEnneaLeafStudio />
+
+          {/* Sprint 150 Masterpieces */}
+          <SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilionV3 />
+          <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV5 />
+          <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDecaLeafStudio />
 
           {/* Lookbook Không Gian Danh Giá & Style Quiz */}
           <BespokePrestigeSpacesLookbook />
