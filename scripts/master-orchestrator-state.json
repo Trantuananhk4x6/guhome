@@ -1848,8 +1848,14 @@
       "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
       "sentAt": "2026-10-09T01:05:30.000Z",
       "atStep": 16135
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-09T01:11:45.000Z",
+      "atStep": 16295
     }
   ],
-  "currentDirectiveIndex": 308,
-  "lastDispatchedAt": 1791507930000
+  "currentDirectiveIndex": 309,
+  "lastDispatchedAt": 1791508305000
 }
