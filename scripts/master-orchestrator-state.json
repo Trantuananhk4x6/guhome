@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 347,
+  "currentDirectiveIndex": 350,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -2082,7 +2082,25 @@
       "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
       "sentAt": "2026-10-09T02:22:12.318Z",
       "atStep": 17587
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-09T02:26:05.356Z",
+      "atStep": 17692
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-09T02:26:56.203Z",
+      "atStep": 17703
+    },
+    {
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-09T02:27:30.825Z",
+      "atStep": 17707
     }
   ],
-  "lastDispatchedAt": 1791512532318
+  "lastDispatchedAt": 1791512850825
 }

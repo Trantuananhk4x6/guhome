@@ -318,6 +318,9 @@ import { BespokeInteriorStyleQuiz } from '@/components/tools/BespokeInteriorStyl
 import { SaigonCanalSideAncientHingedCamphorFlowerMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedCamphorFlowerMoatPavilion'
 import { BespokeImperialKynamAndGoldFiligreeTigerLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTigerLotusIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodStudio'
+import { SaigonCanalSideAncientHingedPoMuFlowerMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedPoMuFlowerMoatPavilion'
+import { BespokeImperialKynamAndGoldFiligreeCatLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeCatLotusIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudPairStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudPairStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -1186,6 +1189,11 @@ export default async function StylesPage() {
       <SaigonCanalSideAncientHingedCamphorFlowerMoatPavilion />
       <BespokeImperialKynamAndGoldFiligreeTigerLotusIncenseBurnerVault />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodStudio />
+
+      {/* Sprint 136 Masterpieces */}
+      <SaigonCanalSideAncientHingedPoMuFlowerMoatPavilion />
+      <BespokeImperialKynamAndGoldFiligreeCatLotusIncenseBurnerVault />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudPairStudio />
 
       {/* Lookbook Không Gian Danh Giá GuHomes */}
       <BespokePrestigeSpacesLookbook />
