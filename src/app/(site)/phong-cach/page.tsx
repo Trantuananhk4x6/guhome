@@ -351,6 +351,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudPentaLeaf
 import { SaigonCanalSideAncientHingedRosewoodBonsaiMoatPavilionV2 } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodBonsaiMoatPavilionV2'
 import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV3 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV3'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHexaLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHexaLeafStudio'
+import { SaigonCanalSideAncientHingedEbonyBonsaiMoatPavilionV2 } from '@/components/studio/SaigonCanalSideAncientHingedEbonyBonsaiMoatPavilionV2'
+import { BespokeImperialKynamAndGoldFiligreeTurtleCraneLotusIncenseBurnerVaultV3 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTurtleCraneLotusIncenseBurnerVaultV3'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHeptaLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHeptaLeafStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -1274,6 +1277,11 @@ export default async function StylesPage() {
       <SaigonCanalSideAncientHingedRosewoodBonsaiMoatPavilionV2 />
       <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV3 />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHexaLeafStudio />
+
+      {/* Sprint 147 Masterpieces */}
+      <SaigonCanalSideAncientHingedEbonyBonsaiMoatPavilionV2 />
+      <BespokeImperialKynamAndGoldFiligreeTurtleCraneLotusIncenseBurnerVaultV3 />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHeptaLeafStudio />
 
       {/* Lookbook Không Gian Danh Giá GuHomes */}
       <BespokePrestigeSpacesLookbook />

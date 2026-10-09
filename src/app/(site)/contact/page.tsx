@@ -284,6 +284,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudPentaLeaf
 import { SaigonCanalSideAncientHingedRosewoodBonsaiMoatPavilionV2 } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodBonsaiMoatPavilionV2'
 import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV3 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV3'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHexaLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHexaLeafStudio'
+import { SaigonCanalSideAncientHingedEbonyBonsaiMoatPavilionV2 } from '@/components/studio/SaigonCanalSideAncientHingedEbonyBonsaiMoatPavilionV2'
+import { BespokeImperialKynamAndGoldFiligreeTurtleCraneLotusIncenseBurnerVaultV3 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTurtleCraneLotusIncenseBurnerVaultV3'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHeptaLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHeptaLeafStudio'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Liên hệ',
@@ -1178,6 +1181,11 @@ export default async function ContactPage() {
       <SaigonCanalSideAncientHingedRosewoodBonsaiMoatPavilionV2 />
       <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV3 />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHexaLeafStudio />
+
+      {/* Sprint 147 Masterpieces */}
+      <SaigonCanalSideAncientHingedEbonyBonsaiMoatPavilionV2 />
+      <BespokeImperialKynamAndGoldFiligreeTurtleCraneLotusIncenseBurnerVaultV3 />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHeptaLeafStudio />
 
       {/* Lookbook Không Gian Danh Giá & Style Quiz */}
       <BespokePrestigeSpacesLookbook />
