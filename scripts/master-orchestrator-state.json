@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 431,
+  "currentDirectiveIndex": 434,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -2584,9 +2584,51 @@
     {
       "directiveId": "dir-5-build-production-perf",
       "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
-      "sentAt": "2026-10-09T05:38:30.000Z",
-      "atStep": 21880
+      "sentAt": "2026-10-09T05:39:22.785Z",
+      "atStep": 21881
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-09T05:42:07.040Z",
+      "atStep": 21937
+    },
+    {
+      "directiveId": "dir-1-fix-ts-seed",
+      "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
+      "sentAt": "2026-10-09T05:42:37.976Z",
+      "atStep": 21941
+    },
+    {
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-09T05:43:09.149Z",
+      "atStep": 21945
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-09T05:44:00.000Z",
+      "atStep": 21955
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-09T05:44:10.000Z",
+      "atStep": 21956
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-09T05:44:20.000Z",
+      "atStep": 21957
+    },
+    {
+      "directiveId": "dir-6-overnight-evolution",
+      "title": "Tiếp tục chu trình nâng cấp tính năng mới & Bộ sưu tập Lookbook 2026",
+      "sentAt": "2026-10-09T05:44:30.000Z",
+      "atStep": 21958
     }
   ],
-  "lastDispatchedAt": 1791524310000
+  "lastDispatchedAt": 1791524670000
 }
