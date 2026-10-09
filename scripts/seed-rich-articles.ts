@@ -22,6 +22,14 @@ interface ArticleSeedItem {
   content: RichTextDoc
 }
 
+function createListNode(items: string[], ordered = false): RichTextNode {
+  return {
+    type: 'list',
+    ordered,
+    items,
+  }
+}
+
 const here = dirname(fileURLToPath(import.meta.url))
 const root = join(here, '..')
 config({ path: join(root, '.env.local') })
@@ -112,16 +120,12 @@ async function run() {
             type: 'paragraph',
             text: 'Thay vì lạm dụng kim loại bóng bẩy hay các chi tiết phào chỉ rườm rà, GuHomes chọn ngôn ngữ "Quiet Luxury" - sự sang trọng thầm lặng được thể hiện qua xúc giác và chất lượng gia công đỉnh cao:',
           },
-          {
-            type: 'list',
-            ordered: false,
-            items: [
-              'Đá Travertine Navona nhập khẩu: Bề mặt mài mờ (honed finish) giữ trọn vẹn những lỗ rỗng tự nhiên, tạo cảm giác mộc mạc mà quyền uy cho mảng tường thông tầng cao 6.2 mét.',
-              'Gỗ óc chó Bắc Mỹ (FAS grade): Tuyển chọn từng tấm ván có vân cuộn xoáy đồng đều, sấy đạt ẩm độ tiêu chuẩn 10-12% để không bao giờ cong vênh trước gió biển Sài Gòn.',
-              'Đồng thau xước mờ thủ công: Điểm xuyết tinh tế ở các tay nắm cửa, chân đế sofa và viền kính lùa, tự động sẫm màu ấm áp theo thời gian tương tác của gia chủ.',
-              'Hệ sơn hiệu ứng vữa vôi hữu cơ: Không chứa VOC độc hại, có khả năng hút ẩm tự nhiên và phản xạ ánh sáng đèn 3000K một cách dịu mắt.',
-            ],
-          },
+          createListNode([
+            'Đá Travertine Navona nhập khẩu: Bề mặt mài mờ (honed finish) giữ trọn vẹn những lỗ rỗng tự nhiên, tạo cảm giác mộc mạc mà quyền uy cho mảng tường thông tầng cao 6.2 mét.',
+            'Gỗ óc chó Bắc Mỹ (FAS grade): Tuyển chọn từng tấm ván có vân cuộn xoáy đồng đều, sấy đạt ẩm độ tiêu chuẩn 10-12% để không bao giờ cong vênh trước gió biển Sài Gòn.',
+            'Đồng thau xước mờ thủ công: Điểm xuyết tinh tế ở các tay nắm cửa, chân đế sofa và viền kính lùa, tự động sẫm màu ấm áp theo thời gian tương tác của gia chủ.',
+            'Hệ sơn hiệu ứng vữa vôi hữu cơ: Không chứa VOC độc hại, có khả năng hút ẩm tự nhiên và phản xạ ánh sáng đèn 3000K một cách dịu mắt.',
+          ], false),
           {
             type: 'quote',
             text: 'Một không gian sống đẳng cấp không cần phải lớn tiếng chứng minh giá trị. Đẳng cấp thực sự hiển hiện khi gia chủ cởi bỏ đôi giày sau một ngày bận rộn, chạm chân lên sàn gỗ ấm và lắng nghe sự tĩnh lặng tuyệt đối sau cánh cửa kính.',
@@ -378,16 +382,12 @@ async function run() {
             level: 2,
             text: 'Đặc trưng cốt lõi của phong cách Japandi',
           },
-          {
-            type: 'list',
-            ordered: false,
-            items: [
-              'Bảng màu trung tính ấm: Trắng ngà, be cát, xám nhạt kết hợp với nốt trầm của gỗ sồi hoặc tần bì lau dầu tự nhiên.',
-              'Đường nét thanh mảnh, hình khối thấp: Bàn ghế và giường ngủ thường có chân thấp sát sàn, tạo cảm giác trần nhà cao thoáng và mở rộng tầm nhìn.',
-              'Vật liệu hữu cơ tự nhiên: Chiếu tatami dệt rơm khô, vải linen mộc, mây đan mắt cáo và gốm vuốt tay mộc mạc.',
-              'Loại bỏ chi tiết dư thừa: Mỗi món đồ hiện diện trong căn phòng đều phải có công năng sử dụng rõ ràng hoặc mang lại niềm vui tinh thần sâu sắc.',
-            ],
-          },
+          createListNode([
+            'Bảng màu trung tính ấm: Trắng ngà, be cát, xám nhạt kết hợp với nốt trầm của gỗ sồi hoặc tần bì lau dầu tự nhiên.',
+            'Đường nét thanh mảnh, hình khối thấp: Bàn ghế và giường ngủ thường có chân thấp sát sàn, tạo cảm giác trần nhà cao thoáng và mở rộng tầm nhìn.',
+            'Vật liệu hữu cơ tự nhiên: Chiếu tatami dệt rơm khô, vải linen mộc, mây đan mắt cáo và gốm vuốt tay mộc mạc.',
+            'Loại bỏ chi tiết dư thừa: Mỗi món đồ hiện diện trong căn phòng đều phải có công năng sử dụng rõ ràng hoặc mang lại niềm vui tinh thần sâu sắc.',
+          ], false),
           {
             type: 'image',
             mediaId: 'a5a91aca-82b7-4aba-b84d-20e83f3ebc26',
@@ -426,15 +426,11 @@ async function run() {
             type: 'paragraph',
             text: 'Đá Travertine được hình thành qua hàng ngàn năm từ các suối khoáng nóng, mang vẻ đẹp hoang sơ với những lỗ rỗng tự nhiên đặc trưng. Đây là loại đá từng xây dựng nên Đấu trường Colosseum tại Rome.',
           },
-          {
-            type: 'list',
-            ordered: false,
-            items: [
-              'Ưu điểm: Vẻ đẹp phong sương, chiều sâu thị giác độc bản không tấm nào trùng lặp, giữ nhiệt tốt, sờ vào rất đầm ấm.',
-              'Nhược điểm: Độ xốp cao, dễ thấm dầu mỡ nếu không được trám keo epoxy chuyên dụng và quét phủ chống thấm định kỳ 12 tháng/lần.',
-              'Khu vực khuyên dùng: Vách tivi, ốp lò sưởi giả, đảo trà khô, bàn console lối vào.',
-            ],
-          },
+          createListNode([
+            'Ưu điểm: Vẻ đẹp phong sương, chiều sâu thị giác độc bản không tấm nào trùng lặp, giữ nhiệt tốt, sờ vào rất đầm ấm.',
+            'Nhược điểm: Độ xốp cao, dễ thấm dầu mỡ nếu không được trám keo epoxy chuyên dụng và quét phủ chống thấm định kỳ 12 tháng/lần.',
+            'Khu vực khuyên dùng: Vách tivi, ốp lò sưởi giả, đảo trà khô, bàn console lối vào.',
+          ], false),
           {
             type: 'heading',
             level: 2,
@@ -444,15 +440,11 @@ async function run() {
             type: 'paragraph',
             text: 'Đá nung kết được tạo thành từ bột khoáng tự nhiên, ép dưới áp lực 25.000 tấn và nung ở nhiệt độ trên 1.200°C, mô phỏng quá trình hình thành đá magma sâu trong lòng đất.',
           },
-          {
-            type: 'list',
-            ordered: false,
-            items: [
-              'Ưu điểm: Độ hút nước < 0.05% (chống ố tuyệt đối), chịu nhiệt độ cao đặt được chảo nóng trực tiếp, độ cứng Mohs cấp 7 chống trầy xước dao kéo.',
-              'Nhược điểm: Đòi hỏi máy cắt CNC tia nước chuyên dụng để vát mòi 45 độ, nếu thợ tay nghề yếu rất dễ mẻ mép ghép.',
-              'Khu vực khuyên dùng: Mặt bếp nấu, chậu rửa âm đá đúc, mặt bàn ăn hàng ngày, sàn phòng tắm.',
-            ],
-          },
+          createListNode([
+            'Ưu điểm: Độ hút nước < 0.05% (chống ố tuyệt đối), chịu nhiệt độ cao đặt được chảo nóng trực tiếp, độ cứng Mohs cấp 7 chống trầy xước dao kéo.',
+            'Nhược điểm: Đòi hỏi máy cắt CNC tia nước chuyên dụng để vát mòi 45 độ, nếu thợ tay nghề yếu rất dễ mẻ mép ghép.',
+            'Khu vực khuyên dùng: Mặt bếp nấu, chậu rửa âm đá đúc, mặt bàn ăn hàng ngày, sàn phòng tắm.',
+          ], false),
           {
             type: 'quote',
             text: 'Lời khuyên của GuHomes: Hãy dùng đá nung kết cho mặt bàn bếp nơi dầu mỡ và nhiệt độ thử thách mỗi ngày, và dành đá Travertine cho vách tường phòng khách nơi ánh đèn rọi vào khoe trọn từng thớ trầm tích tự nhiên.',
@@ -487,15 +479,11 @@ async function run() {
             level: 2,
             text: 'Ba tầng ánh sáng trong kiến trúc chuẩn mực',
           },
-          {
-            type: 'list',
-            ordered: true,
-            items: [
-              'Tầng sáng bao quanh (Ambient Light): Ánh sáng nền tổng thể tạo sự dễ chịu, thường đến từ các hắt khe trần thạch cao hoặc đèn chiếu gián tiếp, tuyệt đối không gây lóa mắt.',
-              'Tầng sáng công năng (Task Light): Đèn rọi hội tụ tại đảo bếp, đèn đọc sách đầu giường, đèn gương trang điểm với góc chiếu hẹp 24-36 độ.',
-              'Tầng sáng cảm xúc (Accent Light): Đèn spotlight rọi tranh nghệ thuật, hắt khe tủ rượu hoặc chân tường, làm nổi bật đường vân đá và kết cấu xúc giác của vật liệu.',
-            ],
-          },
+          createListNode([
+            'Tầng sáng bao quanh (Ambient Light): Ánh sáng nền tổng thể tạo sự dễ chịu, thường đến từ các hắt khe trần thạch cao hoặc đèn chiếu gián tiếp, tuyệt đối không gây lóa mắt.',
+            'Tầng sáng công năng (Task Light): Đèn rọi hội tụ tại đảo bếp, đèn đọc sách đầu giường, đèn gương trang điểm với góc chiếu hẹp 24-36 độ.',
+            'Tầng sáng cảm xúc (Accent Light): Đèn spotlight rọi tranh nghệ thuật, hắt khe tủ rượu hoặc chân tường, làm nổi bật đường vân đá và kết cấu xúc giác của vật liệu.',
+          ], true),
           {
             type: 'heading',
             level: 2,
@@ -509,6 +497,25 @@ async function run() {
       },
     },
   ]
+
+  // Validate media IDs against schema.media to ensure 100% valid relations
+  const allMediaRows = await db.select({ id: schema.media.id, url: schema.media.url }).from(schema.media)
+  const validMediaIdSet = new Set(allMediaRows.map((m) => m.id))
+  const defaultFallbackMediaId = allMediaRows[0]?.id ?? ''
+  console.log(`Verified ${allMediaRows.length} media records in DB. Default fallback: ${defaultFallbackMediaId}`)
+
+  for (const art of newArticles) {
+    if (!validMediaIdSet.has(art.coverMediaId)) {
+      console.warn(`[Media Audit] Cover media ${art.coverMediaId} not found in DB for article ${art.slug}. Using fallback ${defaultFallbackMediaId}`)
+      art.coverMediaId = defaultFallbackMediaId
+    }
+    for (const node of art.content.nodes) {
+      if (node.type === 'image' && !validMediaIdSet.has(node.mediaId)) {
+        console.warn(`[Media Audit] Image media ${node.mediaId} not found in DB for article ${art.slug}. Using fallback ${defaultFallbackMediaId}`)
+        node.mediaId = defaultFallbackMediaId
+      }
+    }
+  }
 
   console.log(`Inserting/Upserting ${newArticles.length} master articles...`)
 
