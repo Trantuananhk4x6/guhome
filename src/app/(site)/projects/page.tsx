@@ -366,6 +366,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDecaLeafS
 import { SaigonCanalSideAncientHingedRosewoodFlowerMoatPavilionV3 } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodFlowerMoatPavilionV3'
 import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV6 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV6'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUndecaLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUndecaLeafStudio'
+import { SaigonCanalSideAncientHingedEbonyFlowerMoatPavilionV3 } from '@/components/studio/SaigonCanalSideAncientHingedEbonyFlowerMoatPavilionV3'
+import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV7 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV7'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDodecaLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDodecaLeafStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1521,6 +1524,11 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           <SaigonCanalSideAncientHingedRosewoodFlowerMoatPavilionV3 />
           <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV6 />
           <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUndecaLeafStudio />
+
+          {/* Sprint 152 Masterpieces */}
+          <SaigonCanalSideAncientHingedEbonyFlowerMoatPavilionV3 />
+          <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV7 />
+          <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDodecaLeafStudio />
 
           {/* Lookbook Không Gian Danh Giá & Style Quiz */}
           <BespokePrestigeSpacesLookbook />

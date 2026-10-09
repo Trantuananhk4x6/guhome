@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 391,
+  "currentDirectiveIndex": 392,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -2346,7 +2346,13 @@
       "title": "Sửa lỗi TypeScript seed-rich-articles.ts và nạp bài viết Quiet Luxury vào DB",
       "sentAt": "2026-10-09T03:53:50.950Z",
       "atStep": 19444
+    },
+    {
+      "directiveId": "dir-2-quiet-luxury-copy-audit",
+      "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
+      "sentAt": "2026-10-09T03:58:46.634Z",
+      "atStep": 19592
     }
   ],
-  "lastDispatchedAt": 1791518030950
+  "lastDispatchedAt": 1791518326634
 }

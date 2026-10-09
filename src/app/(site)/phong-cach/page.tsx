@@ -366,6 +366,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDecaLeafS
 import { SaigonCanalSideAncientHingedRosewoodFlowerMoatPavilionV3 } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodFlowerMoatPavilionV3'
 import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV6 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV6'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUndecaLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUndecaLeafStudio'
+import { SaigonCanalSideAncientHingedEbonyFlowerMoatPavilionV3 } from '@/components/studio/SaigonCanalSideAncientHingedEbonyFlowerMoatPavilionV3'
+import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV7 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV7'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDodecaLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDodecaLeafStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -1314,6 +1317,11 @@ export default async function StylesPage() {
       <SaigonCanalSideAncientHingedRosewoodFlowerMoatPavilionV3 />
       <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV6 />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUndecaLeafStudio />
+
+      {/* Sprint 152 Masterpieces */}
+      <SaigonCanalSideAncientHingedEbonyFlowerMoatPavilionV3 />
+      <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV7 />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudDodecaLeafStudio />
 
       {/* Lookbook Không Gian Danh Giá GuHomes */}
       <BespokePrestigeSpacesLookbook />
