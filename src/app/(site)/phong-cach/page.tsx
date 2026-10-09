@@ -423,6 +423,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudNovemvige
 import { SaigonCanalSideAncientHingedCypressFlowerMoatPavilionV6 } from '@/components/studio/SaigonCanalSideAncientHingedCypressFlowerMoatPavilionV6'
 import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV25 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV25'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudTrigesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudTrigesimalLeafStudio'
+import { SaigonCanalSideAncientHingedAgarwoodFlowerMoatPavilionV7 } from '@/components/studio/SaigonCanalSideAncientHingedAgarwoodFlowerMoatPavilionV7'
+import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV26 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV26'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUntrigesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUntrigesimalLeafStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -1466,6 +1469,11 @@ export default async function StylesPage() {
       <SaigonCanalSideAncientHingedCypressFlowerMoatPavilionV6 />
       <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV25 />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudTrigesimalLeafStudio />
+
+      {/* Sprint 171 Masterpieces */}
+      <SaigonCanalSideAncientHingedAgarwoodFlowerMoatPavilionV7 />
+      <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV26 />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUntrigesimalLeafStudio />
 
       {/* Lookbook Không Gian Danh Giá GuHomes */}
       <BespokePrestigeSpacesLookbook />
