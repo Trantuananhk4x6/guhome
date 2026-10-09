@@ -2398,15 +2398,15 @@
     {
       "directiveId": "dir-4-e2e-routes-seo",
       "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
-      "sentAt": "2026-10-09T04:28:30.000Z",
-      "atStep": 20290
+      "sentAt": "2026-10-09T04:34:53.505Z",
+      "atStep": 20443
     },
     {
       "directiveId": "dir-5-build-production-perf",
       "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
-      "sentAt": "2026-10-09T04:32:30.000Z",
-      "atStep": 20391
+      "sentAt": "2026-10-09T04:38:41.040Z",
+      "atStep": 20531
     }
   ],
-  "lastDispatchedAt": 1791520350000
+  "lastDispatchedAt": 1791520721040
 }

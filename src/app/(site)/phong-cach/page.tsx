@@ -393,6 +393,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudEnneadeca
 import { SaigonCanalSideAncientHingedAgarwoodFlowerMoatPavilionV4 } from '@/components/studio/SaigonCanalSideAncientHingedAgarwoodFlowerMoatPavilionV4'
 import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV15 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV15'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudVigesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudVigesimalLeafStudio'
+import { SaigonCanalSideAncientHingedRosewoodFlowerMoatPavilionV5 } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodFlowerMoatPavilionV5'
+import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV16 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV16'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUnvigesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUnvigesimalLeafStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { buildMetadata } from '@/lib/seo'
@@ -1386,6 +1389,11 @@ export default async function StylesPage() {
       <SaigonCanalSideAncientHingedAgarwoodFlowerMoatPavilionV4 />
       <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV15 />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudVigesimalLeafStudio />
+
+      {/* Sprint 161 Masterpieces */}
+      <SaigonCanalSideAncientHingedRosewoodFlowerMoatPavilionV5 />
+      <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV16 />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudUnvigesimalLeafStudio />
 
       {/* Lookbook Không Gian Danh Giá GuHomes */}
       <BespokePrestigeSpacesLookbook />
