@@ -277,6 +277,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestPeonyStudio } fro
 import { SaigonCanalSideAncientHingedMunSocMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedMunSocMoatPavilion'
 import { BespokeImperialKynamAndGoldFiligreeHorseLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeHorseLotusIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestOrchidStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestOrchidStudio'
+import { SaigonCanalSideAncientHingedKimGiaoMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedKimGiaoMoatPavilion'
+import { BespokeImperialKynamAndGoldFiligreeGoatLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeGoatLotusIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestBambooJointStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestBambooJointStudio'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -1037,6 +1040,11 @@ export default function DuToanChiPhiPage() {
       <SaigonCanalSideAncientHingedMunSocMoatPavilion />
       <BespokeImperialKynamAndGoldFiligreeHorseLotusIncenseBurnerVault />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestOrchidStudio />
+
+      {/* Sprint 128 Masterpieces */}
+      <SaigonCanalSideAncientHingedKimGiaoMoatPavilion />
+      <BespokeImperialKynamAndGoldFiligreeGoatLotusIncenseBurnerVault />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestBambooJointStudio />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
