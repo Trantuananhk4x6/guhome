@@ -19,7 +19,9 @@ interface ArticleSeedItem {
     title: string
     description: string
   }
-  content: RichTextDoc
+  content: {
+    nodes: Array<RichTextNode | { type: string; [key: string]: unknown }>
+  }
 }
 
 const here = dirname(fileURLToPath(import.meta.url))
