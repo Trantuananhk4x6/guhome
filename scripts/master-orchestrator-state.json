@@ -1,5 +1,5 @@
 {
-  "currentDirectiveIndex": 452,
+  "currentDirectiveIndex": 455,
   "completedDirectives": [
     {
       "directiveId": "dir-1-fix-ts-seed",
@@ -2712,7 +2712,25 @@
       "title": "Audit toàn diện câu từ tiếng Việt chuẩn Quiet Luxury & Vi khí hậu Sài Gòn",
       "sentAt": "2026-10-09T06:20:47.730Z",
       "atStep": 22764
+    },
+    {
+      "directiveId": "dir-3-ui-motion-spatial",
+      "title": "Đánh giá & Tinh chỉnh Giao diện Tương tác, GSAP Motion và Floating Contact Dock",
+      "sentAt": "2026-10-09T06:23:51.368Z",
+      "atStep": 22831
+    },
+    {
+      "directiveId": "dir-4-e2e-routes-seo",
+      "title": "Kiểm thử toàn bộ Routing Next.js, SEO Metatags và OpenGraph",
+      "sentAt": "2026-10-09T06:24:23.936Z",
+      "atStep": 22835
+    },
+    {
+      "directiveId": "dir-5-build-production-perf",
+      "title": "Chứng thực Production Build Next.js & Đảm bảo Hiệu năng Tối đa",
+      "sentAt": "2026-10-09T06:24:55.831Z",
+      "atStep": 22839
     }
   ],
-  "lastDispatchedAt": 1791526847730
+  "lastDispatchedAt": 1791527095831
 }
