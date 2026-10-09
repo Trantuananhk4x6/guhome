@@ -283,6 +283,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestFishStudio } from
 import { SaigonCanalSideAncientHingedNgocNghienMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedNgocNghienMoatPavilion'
 import { BespokeImperialKynamAndGoldFiligreeBoarLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeBoarLotusIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedStudio'
+import { SaigonCanalSideAncientHingedLongNaoMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedLongNaoMoatPavilion'
+import { BespokeImperialKynamAndGoldFiligreeDragonLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonLotusIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestPineCraneStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestPineCraneStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1303,6 +1306,11 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           <SaigonCanalSideAncientHingedNgocNghienMoatPavilion />
           <BespokeImperialKynamAndGoldFiligreeBoarLotusIncenseBurnerVault />
           <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedStudio />
+
+          {/* Sprint 125 Masterpieces */}
+          <SaigonCanalSideAncientHingedLongNaoMoatPavilion />
+          <BespokeImperialKynamAndGoldFiligreeDragonLotusIncenseBurnerVault />
+          <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestPineCraneStudio />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
