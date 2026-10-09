@@ -256,6 +256,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusStudio } fro
 import { SaigonCanalSideAncientHingedPoMuMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedPoMuMoatPavilion'
 import { BespokeImperialKynamAndGoldFiligreeXuanWuIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeXuanWuIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphySealPasteWellStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphySealPasteWellStudio'
+import { SaigonCanalSideAncientHingedChuaMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedChuaMoatPavilion'
+import { BespokeImperialKynamAndGoldFiligreeZhuQueIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeZhuQueIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestMountainStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestMountainStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1231,6 +1234,11 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           <SaigonCanalSideAncientHingedPoMuMoatPavilion />
           <BespokeImperialKynamAndGoldFiligreeXuanWuIncenseBurnerVault />
           <ArtisanHandmadeGoldFiligreeAndJadeCalligraphySealPasteWellStudio />
+
+          {/* Sprint 116 Masterpieces */}
+          <SaigonCanalSideAncientHingedChuaMoatPavilion />
+          <BespokeImperialKynamAndGoldFiligreeZhuQueIncenseBurnerVault />
+          <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestMountainStudio />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />
