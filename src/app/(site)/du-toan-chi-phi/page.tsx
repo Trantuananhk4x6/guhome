@@ -300,6 +300,9 @@ import { BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault } from '@/
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio'
 import { BespokePrestigeSpacesLookbook } from '@/components/studio/BespokePrestigeSpacesLookbook'
 import { BespokeInteriorStyleQuiz } from '@/components/tools/BespokeInteriorStyleQuiz'
+import { SaigonCanalSideAncientHingedCamphorFlowerMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedCamphorFlowerMoatPavilion'
+import { BespokeImperialKynamAndGoldFiligreeTigerLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTigerLotusIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodStudio'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -1095,6 +1098,11 @@ export default function DuToanChiPhiPage() {
       <SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion />
       <BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio />
+
+      {/* Sprint 135 Masterpieces */}
+      <SaigonCanalSideAncientHingedCamphorFlowerMoatPavilion />
+      <BespokeImperialKynamAndGoldFiligreeTigerLotusIncenseBurnerVault />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodStudio />
 
       {/* Lookbook Không Gian Danh Giá & Style Quiz */}
       <BespokePrestigeSpacesLookbook />
