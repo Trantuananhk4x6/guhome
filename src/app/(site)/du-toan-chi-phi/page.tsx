@@ -549,6 +549,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudSexaseptu
 import { SaigonCanalSideAncientHingedNgocAmFlowerMoatPavilionV18 } from '@/components/studio/SaigonCanalSideAncientHingedNgocAmFlowerMoatPavilionV18'
 import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV72 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV72'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudSeptaseptuagesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudSeptaseptuagesimalLeafStudio'
+import { SaigonCanalSideAncientHingedChuaFlowerMoatPavilionV18 } from '@/components/studio/SaigonCanalSideAncientHingedChuaFlowerMoatPavilionV18'
+import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV73 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV73'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudOctaseptuagesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudOctaseptuagesimalLeafStudio'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -1759,6 +1762,11 @@ export default function DuToanChiPhiPage() {
       <SaigonCanalSideAncientHingedNgocAmFlowerMoatPavilionV18 />
       <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV72 />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudSeptaseptuagesimalLeafStudio />
+
+      {/* Sprint 218 Masterpieces */}
+      <SaigonCanalSideAncientHingedChuaFlowerMoatPavilionV18 />
+      <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV73 />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudOctaseptuagesimalLeafStudio />
 
       {/* Lookbook Không Gian Danh Giá & Style Quiz */}
       <BespokePrestigeSpacesLookbook />
