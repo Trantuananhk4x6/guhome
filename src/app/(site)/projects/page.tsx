@@ -310,6 +310,11 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusLeafStudio }
 import { SaigonCanalSideAncientHingedRosewoodMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodMoatPavilion'
 import { BespokeImperialKynamAndGoldFiligreeRatLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeRatLotusIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusRootStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusRootStudio'
+import { SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion'
+import { BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio'
+import { BespokePrestigeSpacesLookbook } from '@/components/studio/BespokePrestigeSpacesLookbook'
+import { BespokeInteriorStyleQuiz } from '@/components/tools/BespokeInteriorStyleQuiz'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1375,6 +1380,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           <SaigonCanalSideAncientHingedRosewoodMoatPavilion />
           <BespokeImperialKynamAndGoldFiligreeRatLotusIncenseBurnerVault />
           <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusRootStudio />
+
+          {/* Sprint 134 Masterpieces */}
+          <SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion />
+          <BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault />
+          <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio />
+
+          {/* Lookbook Không Gian Danh Giá & Style Quiz */}
+          <BespokePrestigeSpacesLookbook />
+          <BespokeInteriorStyleQuiz />
 
           {/* Bespoke Spatial Lookbook Showcase */}
           <BespokeSpatialLookbookShowcase className="mt-[clamp(4.5rem,10vh,8rem)]" />

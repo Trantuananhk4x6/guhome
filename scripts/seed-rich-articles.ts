@@ -19,9 +19,7 @@ interface ArticleSeedItem {
     title: string
     description: string
   }
-  content: {
-    nodes: Array<RichTextNode | { type: string; [key: string]: unknown }>
-  }
+  content: RichTextDoc
 }
 
 const here = dirname(fileURLToPath(import.meta.url))
@@ -529,7 +527,7 @@ async function run() {
         tags: art.tags,
         readingMinutes: art.readingMinutes,
         seo: art.seo,
-        content: art.content as unknown as RichTextDoc,
+        content: art.content,
         publishedAt: art.publishedAt,
         updatedAt: new Date(),
       }).where(eq(schema.articles.slug, art.slug))
@@ -546,7 +544,7 @@ async function run() {
         tags: art.tags,
         readingMinutes: art.readingMinutes,
         seo: art.seo,
-        content: art.content as unknown as RichTextDoc,
+        content: art.content,
         publishedAt: art.publishedAt,
       })
     }

@@ -1,42 +1,48 @@
 import { config } from 'dotenv'
-import { join } from 'node:path'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { inArray } from 'drizzle-orm'
 
-config({ path: join(process.cwd(), '.env.local') })
+const here = dirname(fileURLToPath(import.meta.url))
+const root = join(here, '..')
+config({ path: join(root, '.env.local') })
 
-async function check() {
+async function run() {
   const { db } = await import('../src/server/db/index')
   const schema = await import('../src/server/db/schema')
-  const { eq } = await import('drizzle-orm')
 
-  const arts = await db.select({
+  const articles = await db.select({
     id: schema.articles.id,
     slug: schema.articles.slug,
     title: schema.articles.title,
-    coverMediaId: schema.articles.coverMediaId
+    coverMediaId: schema.articles.coverMediaId,
   }).from(schema.articles)
 
-  console.log(`=== BÁO CÁO KIỂM TRA BÀI VIẾT & MEDIA LIÊN KẾT ===`)
-  console.log(`Tổng số bài viết trong Neon Database: ${arts.length}\n`)
+  const mediaIds = articles.map((a) => a.coverMediaId).filter((id): id is string => Boolean(id))
+  const foundMedia = await db
+    .select({ id: schema.media.id, url: schema.media.url })
+    .from(schema.media)
+    .where(inArray(schema.media.id, mediaIds))
 
-  let validCovers = 0
-  for (const a of arts) {
-    if (a.coverMediaId) {
-      const m = await db.select({ id: schema.media.id, url: schema.media.url }).from(schema.media).where(eq(schema.media.id, a.coverMediaId))
-      const isValid = m.length > 0
-      if (isValid) validCovers++
-      console.log(`• [${isValid ? '✓' : '✗'}] ${a.slug}`)
-      console.log(`    Tiêu đề: ${a.title.slice(0, 60)}...`)
-      console.log(`    Cover Media ID: ${a.coverMediaId} -> ${isValid ? m[0]!.url : 'KHÔNG TÌM THẤY TRONG BẢNG MEDIA!'}`)
-    } else {
-      console.log(`• [!] ${a.slug} -> Chưa có coverMediaId`)
-    }
+  const foundMap = new Map(foundMedia.map((m) => [m.id, m.url]))
+
+  console.log(`=== BÁO CÁO KIỂM TRA BẢNG ARTICLES & MEDIA ===`)
+  console.log(`Tổng số bài viết trong CSDL: ${articles.length}`)
+  console.log(`Số coverMediaId hợp lệ tìm thấy trong bảng media: ${foundMedia.length}/${mediaIds.length}`)
+
+  let allValid = true
+  for (const art of articles) {
+    const url = art.coverMediaId ? foundMap.get(art.coverMediaId) : null
+    const isValid = Boolean(url)
+    if (!isValid) allValid = false
+    console.log(`- [${isValid ? 'OK' : 'MISSING'}] ${art.slug} -> Cover URL: ${url ?? 'KHÔNG TÌM THẤY'}`)
   }
 
-  console.log(`\nKết quả: ${validCovers}/${arts.length} bài viết có coverMediaId hợp lệ.`)
+  console.log(`\nKết luận: ${allValid ? 'TẤT CẢ ẢNH BÌA ĐỀU HỢP LỆ!' : 'CÓ ẢNH BÌA BỊ THIẾU'}`)
   process.exit(0)
 }
 
-check().catch((err) => {
-  console.error('Lỗi kiểm tra:', err)
+run().catch((err) => {
+  console.error(err)
   process.exit(1)
 })

@@ -382,6 +382,11 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusLeafStudio }
 import { SaigonCanalSideAncientHingedRosewoodMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodMoatPavilion'
 import { BespokeImperialKynamAndGoldFiligreeRatLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeRatLotusIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusRootStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusRootStudio'
+import { SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion'
+import { BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio'
+import { BespokePrestigeSpacesLookbook } from '@/components/studio/BespokePrestigeSpacesLookbook'
+import { BespokeInteriorStyleQuiz } from '@/components/tools/BespokeInteriorStyleQuiz'
 
 export const metadata: Metadata = buildMetadata({
   title: 'Studio',
@@ -2041,6 +2046,17 @@ export default async function StudioPage() {
       <SaigonCanalSideAncientHingedRosewoodMoatPavilion />
       <BespokeImperialKynamAndGoldFiligreeRatLotusIncenseBurnerVault />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusRootStudio />
+
+      {/* ---------------- sprint 134 masterpieces ---------------------------- */}
+      <SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion />
+      <BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio />
+
+      {/* ---------------- prestige spaces lookbook --------------------------- */}
+      <BespokePrestigeSpacesLookbook />
+
+      {/* ---------------- bespoke interior style quiz ------------------------- */}
+      <BespokeInteriorStyleQuiz />
 
       {/* ---------------- bespoke spatial lookbook showcase --------------------- */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />

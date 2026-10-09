@@ -295,6 +295,11 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusLeafStudio }
 import { SaigonCanalSideAncientHingedRosewoodMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedRosewoodMoatPavilion'
 import { BespokeImperialKynamAndGoldFiligreeRatLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeRatLotusIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusRootStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusRootStudio'
+import { SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion'
+import { BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio'
+import { BespokePrestigeSpacesLookbook } from '@/components/studio/BespokePrestigeSpacesLookbook'
+import { BespokeInteriorStyleQuiz } from '@/components/tools/BespokeInteriorStyleQuiz'
 import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { Label } from '@/components/ui/Label'
 import { buildMetadata } from '@/lib/seo'
@@ -1085,6 +1090,15 @@ export default function DuToanChiPhiPage() {
       <SaigonCanalSideAncientHingedRosewoodMoatPavilion />
       <BespokeImperialKynamAndGoldFiligreeRatLotusIncenseBurnerVault />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusRootStudio />
+
+      {/* Sprint 134 Masterpieces */}
+      <SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion />
+      <BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault />
+      <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio />
+
+      {/* Lookbook Không Gian Danh Giá & Style Quiz */}
+      <BespokePrestigeSpacesLookbook />
+      <BespokeInteriorStyleQuiz />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />
