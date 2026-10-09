@@ -125,6 +125,32 @@ const LOOKBOOK_SPACES: SpaceLookbook[] = [
       { label: 'Cam kết chất lượng', value: 'May đo Thạnh Xuân 1.200m²' },
     ],
   },
+  {
+    id: 'chateau-phumyhung-manor',
+    title: 'Dinh Thự Lâu Đài Chateau Phú Mỹ Hưng',
+    shortTitle: 'Château Phú Mỹ Hưng',
+    subtitle: 'Nét kiêu hãnh bán cổ điển bên dòng rạch Thầy Tiêu thanh bình Nam Sài Gòn',
+    location: 'Khu A Phú Mỹ Hưng, Phường Tân Phú, Quận 7',
+    area: '750m² sân vườn cảnh quan 4 mặt',
+    year: '2026',
+    climateSolution: 'Hệ thống hiên che hành lang nhiệt đới kết hợp vườn cây bóng mát cản bức xạ nắng Tây, sàn gỗ 5 tầng thoáng khí chống nồm ẩm Nam Bộ.',
+    materialPalette: [
+      'Gỗ Gõ Đỏ Pachyloba tuyển chọn vân tuyển từ xưởng Thạnh Xuân',
+      'Đá Granite tự nhiên mài chải mặt nước bể cảnh quan',
+      'Chi tiết chỉ phào thạch cao khoáng thủ công dát vàng điểm xuyết',
+      'Vải dệt lanh thô nhập khẩu Bỉ rèm 3 lớp cách nhiệt',
+    ],
+    lightingSpecs: 'Hệ thống đèn chùm pha lê chế tác độc bản kết hợp dải hắt sáng 2700K tạo chiều sâu ấm áp cho các vòm trần cao 4.2 mét.',
+    heroDescription: 'Ẩn mình bên nhánh rạch Thầy Tiêu xanh mát của đô thị Phú Mỹ Hưng, Dinh Thự Chateau là bản tuyên ngôn của sự thịnh vượng và tĩnh lặng. GuHomes kết hợp tinh hoa kiến trúc Pháp cổ điển với giải pháp vi khí hậu nhiệt đới Sài Gòn, mang lại trải nghiệm sống vương giả mà ấm cúng cho nhiều thế hệ.',
+    daylightImage: '/media/can-ho-3-ngu-150m2/0-1600.webp',
+    nightImage: '/media/nha-pho-100m2-1-tret-2-lau/0-1600.webp',
+    features: [
+      { label: 'Không gian mở', value: '4 mặt sân vườn cảnh quan xanh mát' },
+      { label: 'Cao độ thông tầng', value: '4.2 mét tiêu chuẩn lâu đài' },
+      { label: 'Hệ mộc nội thất', value: 'Gõ Đỏ & Travertine chế tác riêng' },
+      { label: 'Tiêu chuẩn bảo hành', value: 'Bảo trì trọn đời xưởng Thạnh Xuân' },
+    ],
+  },
 ]
 
 export function BespokePrestigeSpacesLookbook() {
