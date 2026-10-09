@@ -417,6 +417,9 @@ import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudHeptavige
 import { SaigonCanalSideAncientHingedPoMuFlowerMoatPavilionV6 } from '@/components/studio/SaigonCanalSideAncientHingedPoMuFlowerMoatPavilionV6'
 import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV23 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV23'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudOctavigesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudOctavigesimalLeafStudio'
+import { SaigonCanalSideAncientHingedCamphorFlowerMoatPavilionV6 } from '@/components/studio/SaigonCanalSideAncientHingedCamphorFlowerMoatPavilionV6'
+import { BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV24 } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV24'
+import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudNovemvigesimalLeafStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudNovemvigesimalLeafStudio'
 import { BespokeSpatialLookbookShowcase } from '@/components/projects/BespokeSpatialLookbookShowcase'
 import { StyleFilter, projectsHref } from '@/components/projects/StyleFilter'
 import type { StyleOption } from '@/components/projects/StyleFilter'
@@ -1657,6 +1660,11 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
           <SaigonCanalSideAncientHingedPoMuFlowerMoatPavilionV6 />
           <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV23 />
           <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudOctavigesimalLeafStudio />
+
+          {/* Sprint 169 Masterpieces */}
+          <SaigonCanalSideAncientHingedCamphorFlowerMoatPavilionV6 />
+          <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV24 />
+          <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudNovemvigesimalLeafStudio />
 
           {/* Lookbook Không Gian Danh Giá & Style Quiz */}
           <BespokePrestigeSpacesLookbook />
