@@ -44,8 +44,8 @@ function localCandidates(row: MediaRow): string[] {
   const out: string[] = []
 
   const url = row.url.trim()
-  if (url.startsWith('/media/')) out.push(path.join(root, url.slice('/media/'.length)))
-  if (url.startsWith('/') && !url.startsWith('/media/')) out.push(path.join(process.cwd(), 'public', url.slice(1)))
+  if (url.startsWith('/media/')) out.push(path.join(/*turbopackIgnore: true*/ root, url.slice('/media/'.length)))
+  if (url.startsWith('/') && !url.startsWith('/media/')) out.push(path.join(/*turbopackIgnore: true*/ process.cwd(), 'public', url.slice(1)))
 
   // `media.storage_key` is `<slug>/<index>` for pipeline images: the widest
   // derivative that exists on disk is the best source for reconstruction.
