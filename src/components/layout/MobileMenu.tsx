@@ -1,18 +1,20 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 
 import { gsap, registerGsap } from '@/animations/gsap'
 import { useLenis } from '@/animations/scroll'
+import { useQuickQuote } from '@/components/layout/QuickQuoteModal'
 import { ArrowRightIcon, ArrowUpRightIcon, CloseIcon } from '@/components/ui/icons'
 import { useMotionFlag } from '@/lib/motion'
-import { cn } from '@/lib/utils'
+import { useSocialModalStore } from '@/lib/social'
+import { cn, pad2 } from '@/lib/utils'
 import type { BrandConfig, NavItem } from '@/types/content'
 
-import { groupNav, isLeadProjects } from './nav-fallback'
-import { useSocialModalStore } from '@/lib/social'
+import { GuHomesBrandMark, isActive } from './Header'
+import { normalizeHeaderNav } from './nav-fallback'
 
 export interface MobileMenuProps {
   id: string
@@ -20,34 +22,33 @@ export interface MobileMenuProps {
   onClose: () => void
   nav: NavItem[]
   brand: BrandConfig
-  /** Resolved URL of the horizontal lockup, or null to set the name in type. */
   logo?: string | null
 }
 
-/**
- * The sheet slides over photographs, so it is limestone paper rather than the
- * usual black overlay, and the rows are weighted instead of stacked: the
- * wordmark carries `Trang chủ`, `Dự án` gets display size and a line of copy,
- * the reading pages sit on hairlines beneath it, and `Liên hệ` owns the
- * espresso block at the foot with the address and the two ways to reach a
- * human. GSAP rather than framer-motion, because this ships on the homepage
- * (ARCHITECTURE §8) — and Lenis is stopped while it is open.
- */
-export function MobileMenu({ id, open, onClose, nav, brand, logo = null }: MobileMenuProps) {
+const ROUTE_SUBTITLES: Record<string, string> = {
+  '/': 'Không gian kiến trúc & nội thất khí hậu nhiệt đới',
+  '/projects': 'Căn hộ, nhà phố, biệt thự & không gian thương mại tại Sài Gòn',
+  '/phong-cach': 'Modern Luxury, Indochine, Wabi-Sabi, Tối giản & Đương đại',
+  '/du-toan-chi-phi': 'Công cụ bóc tách chi phí thi công thực tế theo từng phòng',
+  '/khu-vuc': 'Giải pháp vi khí hậu Thủ Thiêm, Thảo Điền, Phú Mỹ Hưng, Ba Son',
+  '/studio': 'Triết lý thiết kế, xưởng mộc 1.200m² Thạnh Xuân & quy trình 4 bước',
+  '/services': 'Thiết kế kiến trúc, thi công trọn gói & nội thất may đo',
+  '/journal': 'Ghi chép thực tế từ công trường, vật liệu và đời sống',
+}
+
+export function MobileMenu({ id, open, onClose, nav, brand }: MobileMenuProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<ReturnType<typeof gsap.timeline> | null>(null)
   const openerRef = useRef<HTMLElement | null>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const onCloseRef = useRef(onClose)
   const openRef = useRef(open)
+  const pathname = usePathname()
   const lenis = useLenis()
+  const { openQuoteModal } = useQuickQuote()
 
-  const { home, lead, rest, contact } = groupNav(nav)
+  const { primary, contact } = normalizeHeaderNav(nav)
   const tel = `tel:${brand.phone.replace(/\s+/g, '')}`
-
-  // Reactive rather than a store snapshot: read once inside the effect below it
-  // would be captured before `ScrollProvider` publishes the OS
-  // `prefers-reduced-motion` value, and the timeline would keep animating.
   const canAnimate = useMotionFlag('enabled')
 
   useEffect(() => {
@@ -73,17 +74,20 @@ export function MobileMenu({ id, open, onClose, nav, brand, logo = null }: Mobil
         .fromTo(
           '[data-menu-panel]',
           { yPercent: -100 },
-          { yPercent: 0, duration: 0.8 * speed, ease: 'expo.inOut' },
+          { yPercent: 0, duration: 0.65 * speed, ease: 'expo.inOut' },
         )
         .fromTo(
           '[data-menu-item]',
-          { yPercent: 115, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.7 * speed, stagger: 0.055 * speed },
-          `-=${0.35 * speed}`,
+          { y: 24, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.55 * speed, stagger: 0.04 * speed },
+          `-=${0.3 * speed}`,
         )
-        .fromTo('[data-menu-foot]', { opacity: 0 }, { opacity: 1, duration: 0.5 * speed }, `-=${0.25 * speed}`)
-      // Rebuilt when the motion setting changes; the open/close effect below is
-      // keyed on `open` alone, so re-sync the new timeline by hand.
+        .fromTo(
+          '[data-menu-foot]',
+          { opacity: 0 },
+          { opacity: 1, duration: 0.45 * speed },
+          `-=${0.25 * speed}`,
+        )
       if (openRef.current) timeline.progress(1)
       timelineRef.current = timeline
     }, rootRef)
@@ -132,154 +136,160 @@ export function MobileMenu({ id, open, onClose, nav, brand, logo = null }: Mobil
       aria-hidden={!open}
       inert={!open}
       className={cn(
-        'invisible fixed inset-0 z-[95] opacity-0 md:hidden',
+        'invisible fixed inset-0 z-[95] opacity-0 lg:hidden',
         open ? 'pointer-events-auto' : 'pointer-events-none',
       )}
     >
       <div
         data-menu-panel
-        // Lenis preventDefaults every wheel and touchmove on the document,
-        // including while stopped, so a nested scroller never receives them.
-        // Without this opt-out the menu is unscrollable on the one device it
-        // exists for.
         data-lenis-prevent
         className="flex h-full w-full flex-col overflow-y-auto overscroll-contain bg-canvas text-ink"
       >
-        <div className="u-gutter flex h-20 shrink-0 items-center justify-between border-b border-line">
+        {/* Top Masthead Bar */}
+        <div className="u-gutter flex h-[4.5rem] shrink-0 items-center justify-between border-b border-line md:h-20">
           <Link
-            href={home?.href ?? '/'}
+            href="/"
             onClick={onClose}
-            aria-label={`${brand.companyName} — ${home?.label ?? 'Trang chủ'}`}
-            className="group flex flex-col gap-1.5"
+            aria-label={`${brand.companyName} — Trang chủ`}
+            className="flex items-center"
           >
-            {logo ? (
-              <Image src={logo} alt={brand.companyName} width={960} height={174} className="h-8 w-auto" />
-            ) : (
-              <span className="font-display text-sm uppercase leading-none tracking-[0.2em] transition-colors duration-500 group-hover:text-accent">
-                {brand.companyName}
-              </span>
-            )}
-            {home ? <span className="u-label text-[0.625rem] text-muted">{home.label}</span> : null}
+            <GuHomesBrandMark companyName={brand.companyName} />
           </Link>
+
           <button
             ref={closeRef}
             type="button"
             onClick={onClose}
-            className="u-label flex items-center gap-3 text-muted transition-colors duration-300 hover:text-ink"
+            className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-[0.72rem] font-medium uppercase tracking-[0.14em] text-ink transition-colors duration-300 hover:border-accent hover:text-accent"
           >
-            Đóng
-            <CloseIcon className="text-lg" />
+            <span>Đóng</span>
+            <CloseIcon className="text-base" />
           </button>
         </div>
 
-        <nav aria-label="Điều hướng chính" className="u-gutter flex flex-col">
-          {lead ? (
-            <span className="block overflow-hidden">
-              <Link
-                data-menu-item
-                href={lead.href}
-                onClick={onClose}
-                className="group block pb-8 pt-8 text-ink transition-colors duration-500 hover:text-accent"
-              >
-                <span className="flex items-center gap-4">
-                  <span className="font-display text-[2.625rem] leading-[1.06]">{lead.label}</span>
-                  <ArrowUpRightIcon className="mt-1 text-xl text-accent transition-transform duration-500 ease-editorial group-hover:translate-x-1" />
-                </span>
-                {isLeadProjects(lead) ? (
-                  <span className="mt-3 block max-w-[30ch] text-[0.875rem] leading-relaxed text-muted">
-                    Căn hộ mới bàn giao, nhà phố một mặt tiền, quán ăn và spa — gần như tất cả ở Sài Gòn.
-                  </span>
-                ) : null}
-              </Link>
-            </span>
-          ) : null}
-
-          {rest.map((item) => (
-            <span key={item.id} className="block overflow-hidden border-t border-line">
-              <Link
-                data-menu-item
-                href={item.href}
-                onClick={onClose}
-                className="group flex items-center justify-between gap-4 py-4 text-ink transition-colors duration-500 hover:text-accent"
-              >
-                <span className="font-display text-[1.5rem] leading-none">{item.label}</span>
-                <ArrowRightIcon className="text-base text-muted/45 transition-all duration-500 ease-editorial group-hover:translate-x-1 group-hover:text-accent" />
-              </Link>
-            </span>
-          ))}
+        {/* Navigation List */}
+        <nav aria-label="Điều hướng chính" className="u-gutter flex flex-col py-4">
+          {primary.map((item, idx) => {
+            const active = isActive(pathname, item.href)
+            const subtitle = ROUTE_SUBTITLES[item.href]
+            return (
+              <div key={item.id} className="border-b border-line/70 last:border-b-0">
+                <Link
+                  data-menu-item
+                  href={item.href}
+                  onClick={onClose}
+                  aria-current={active ? 'page' : undefined}
+                  className={cn(
+                    'group flex items-center justify-between gap-4 py-4 transition-colors duration-300',
+                    active ? 'text-accent' : 'text-ink hover:text-accent',
+                  )}
+                >
+                  <div className="flex items-baseline gap-4">
+                    <span className="font-mono text-xs text-accent/80 tabular-nums">
+                      {pad2(idx + 1)}
+                    </span>
+                    <div>
+                      <span className="font-display text-[1.45rem] leading-tight sm:text-[1.65rem]">
+                        {item.label}
+                      </span>
+                      {subtitle ? (
+                        <span className="mt-1 block text-xs leading-relaxed text-muted">
+                          {subtitle}
+                        </span>
+                      ) : null}
+                    </div>
+                  </div>
+                  <ArrowRightIcon
+                    className={cn(
+                      'shrink-0 text-base transition-transform duration-300 group-hover:translate-x-1',
+                      active ? 'text-accent' : 'text-muted/50 group-hover:text-accent',
+                    )}
+                  />
+                </Link>
+              </div>
+            )
+          })}
         </nav>
 
+        {/* Bottom Espresso Conversion Block */}
         <div data-menu-foot className="mt-auto bg-espresso text-canvas">
           <div className="u-gutter flex flex-col gap-6 pb-9 pt-8">
-            {contact ? (
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-canvas/15 pb-5">
               <Link
                 href={contact.href}
                 onClick={onClose}
-                className="group flex items-center justify-between gap-4 border-b border-canvas/20 pb-5 transition-colors duration-500 hover:border-accent-soft"
+                className="group flex items-center gap-3 transition-colors duration-300 hover:text-[#D9B061]"
               >
-                <span className="font-display text-[2rem] leading-none transition-colors duration-500 group-hover:text-accent-soft">
-                  {contact.label}
+                <span className="font-display text-[1.75rem] leading-none">
+                  {contact.label} tư vấn
                 </span>
-                <ArrowUpRightIcon className="text-xl text-canvas/45 transition-all duration-500 ease-editorial group-hover:translate-x-1 group-hover:text-accent-soft" />
+                <ArrowUpRightIcon className="text-lg text-[#D9B061] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-            ) : null}
 
-            <p className="max-w-[32ch] text-[0.875rem] leading-relaxed text-canvas/60">
-              Đã có mặt bằng bàn giao thì gửi kèm luôn khi nhắn — đỡ được một vòng hỏi lại.
-            </p>
-
-            <div className="flex flex-col gap-2">
-              <a
-                href={`mailto:${brand.email}`}
-                className="text-[1.0625rem] text-canvas transition-colors duration-500 hover:text-accent-soft"
+              <button
+                type="button"
+                onClick={() => {
+                  onClose()
+                  openQuoteModal()
+                }}
+                className="rounded-full border border-[#D9B061]/50 bg-[#D9B061]/15 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-[#D9B061] transition-colors hover:bg-[#D9B061] hover:text-espresso"
               >
-                {brand.email}
-              </a>
-              <a
-                href={tel}
-                className="text-[1.0625rem] text-canvas transition-colors duration-500 hover:text-accent-soft"
-              >
-                {brand.phone}
-              </a>
-              <p className="text-[0.875rem] text-canvas/45">{brand.address}</p>
+                Báo giá nhanh 15p
+              </button>
             </div>
 
-            {/* Four labels are 309px of type in a 335px row at 390 wide, so a single
-                line always drops one name onto a second row. Two columns on purpose. */}
-            {brand.social.length > 0 ? (
-              <div className="flex flex-col gap-3 border-t border-canvas/12 pt-6">
-                <div className="grid grid-cols-2 gap-x-4 gap-y-3">
-                  {brand.social.map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      onClick={(e) => {
-                        if (!e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
-                          e.preventDefault()
-                          onClose()
-                          useSocialModalStore.getState().openModal(social.label)
-                        }
-                      }}
-                      className="u-label w-fit text-canvas/60 transition-colors duration-300 hover:text-accent-soft"
-                    >
-                      {social.label}
-                    </a>
-                  ))}
-                </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    onClose()
-                    useSocialModalStore.getState().openModal()
-                  }}
-                  className="u-label text-left text-[0.75rem] text-accent-soft hover:text-canvas transition-colors duration-300 pt-1"
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-1.5">
+                <a
+                  href={tel}
+                  className="font-display text-lg text-canvas transition-colors hover:text-[#D9B061]"
                 >
-                  Xem thông tin mạng xã hội & QR →
-                </button>
+                  {brand.phone}
+                </a>
+                <a
+                  href={`mailto:${brand.email}`}
+                  className="text-sm text-canvas/75 transition-colors hover:text-[#D9B061]"
+                >
+                  {brand.email}
+                </a>
+                <p className="mt-1 text-xs leading-relaxed text-canvas/50">{brand.address}</p>
               </div>
-            ) : null}
+
+              {brand.social.length > 0 ? (
+                <div className="flex flex-col justify-between gap-3">
+                  <div className="flex flex-wrap gap-x-4 gap-y-2">
+                    {brand.social.map((social) => (
+                      <a
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        onClick={(e) => {
+                          if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey && e.button === 0) {
+                            e.preventDefault()
+                            onClose()
+                            useSocialModalStore.getState().openModal(social.label)
+                          }
+                        }}
+                        className="u-label text-xs text-canvas/65 transition-colors hover:text-[#D9B061]"
+                      >
+                        {social.label}
+                      </a>
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onClose()
+                      useSocialModalStore.getState().openModal()
+                    }}
+                    className="u-label w-fit text-left text-xs text-[#D9B061] transition-colors hover:text-canvas"
+                  >
+                    Mở mã QR &amp; Kênh kết nối →
+                  </button>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

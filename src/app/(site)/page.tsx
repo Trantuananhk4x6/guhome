@@ -10,16 +10,10 @@ import {
 } from '@/components/sections'
 import { StyleExplorer } from '@/components/sections/StyleExplorer'
 import { WorkflowSection } from '@/components/sections/WorkflowSection'
-import { GuHomesMarketingTrustPledge } from '@/components/sections/GuHomesMarketingTrustPledge'
-import { MissionVisionSection } from '@/components/sections/MissionVisionSection'
 import { QuickConsultFormSection } from '@/components/sections/QuickConsultFormSection'
-import { TactileMaterialLab } from '@/components/sections/TactileMaterialLab'
 import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection'
-import { StyleQuizSection } from '@/components/sections/StyleQuizSection'
 import { SpatialBudgetCalculator } from '@/components/sections/SpatialBudgetCalculator'
-import { MicroclimateSimulator } from '@/components/sections/MicroclimateSimulator'
 import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesSection'
-import { BespokePrestigeSpacesLookbook } from '@/components/studio/BespokePrestigeSpacesLookbook'
 import { getPublishedArticles } from '@/server/queries/articles'
 import { getMediaMap } from '@/server/queries/media'
 import { getProjectBySlug, getPublishedProjects } from '@/server/queries/projects'
@@ -245,23 +239,13 @@ export default async function HomePage() {
             {section.key === 'FEATURED_PROJECTS' && (
               <>
                 <StyleExplorer />
-                <BespokePrestigeSpacesLookbook />
                 <BeforeAfterSection />
-              </>
-            )}
-            {section.key === 'STUDIO' && (
-              <>
-                <MissionVisionSection />
-                <MicroclimateSimulator />
               </>
             )}
             {section.key === 'SERVICES' && (
               <>
                 <WorkflowSection />
-                <GuHomesMarketingTrustPledge />
-                <TactileMaterialLab />
                 <SpatialBudgetCalculator />
-                <StyleQuizSection />
                 <ClientChroniclesSection />
               </>
             )}

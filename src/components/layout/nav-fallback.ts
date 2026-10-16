@@ -14,22 +14,24 @@ export const FALLBACK_HEADER_NAV: NavItem[] = [
   { id: 'fallback-home', label: 'Trang chủ', href: '/', order: 0 },
   { id: 'fallback-projects', label: 'Dự án', href: '/projects', order: 1 },
   { id: 'fallback-styles', label: 'Phong cách', href: '/phong-cach', order: 2 },
-  { id: 'fallback-khu-vuc', label: 'Khu vực TP.HCM', href: '/khu-vuc', order: 3 },
-  { id: 'fallback-du-toan', label: 'Dự toán chi phí', href: '/du-toan-chi-phi', order: 4 },
+  { id: 'fallback-du-toan', label: 'Dự toán', href: '/du-toan-chi-phi', order: 3 },
+  { id: 'fallback-khu-vuc', label: 'Khu vực', href: '/khu-vuc', order: 4 },
   { id: 'fallback-studio', label: 'Studio', href: '/studio', order: 5 },
-  { id: 'fallback-journal', label: 'Bài viết', href: '/journal', order: 6 },
-  { id: 'fallback-contact', label: 'Liên hệ', href: '/contact', order: 7 },
+  { id: 'fallback-services', label: 'Dịch vụ', href: '/services', order: 6 },
+  { id: 'fallback-journal', label: 'Bài viết', href: '/journal', order: 7 },
+  { id: 'fallback-contact', label: 'Liên hệ', href: '/contact', order: 8 },
 ]
 
 export const FALLBACK_FOOTER_NAV: NavItem[] = [
   { id: 'fallback-f-home', label: 'Trang chủ', href: '/', order: 0 },
   { id: 'fallback-f-projects', label: 'Dự án', href: '/projects', order: 1 },
   { id: 'fallback-f-styles', label: 'Phong cách', href: '/phong-cach', order: 2 },
-  { id: 'fallback-f-khu-vuc', label: 'Khu vực TP.HCM', href: '/khu-vuc', order: 3 },
-  { id: 'fallback-f-du-toan', label: 'Dự toán chi phí', href: '/du-toan-chi-phi', order: 4 },
+  { id: 'fallback-f-du-toan', label: 'Dự toán chi phí', href: '/du-toan-chi-phi', order: 3 },
+  { id: 'fallback-f-khu-vuc', label: 'Khu vực TP.HCM', href: '/khu-vuc', order: 4 },
   { id: 'fallback-f-studio', label: 'Studio', href: '/studio', order: 5 },
-  { id: 'fallback-f-journal', label: 'Bài viết', href: '/journal', order: 6 },
-  { id: 'fallback-f-contact', label: 'Liên hệ', href: '/contact', order: 7 },
+  { id: 'fallback-f-services', label: 'Dịch vụ', href: '/services', order: 6 },
+  { id: 'fallback-f-journal', label: 'Bài viết', href: '/journal', order: 7 },
+  { id: 'fallback-f-contact', label: 'Liên hệ', href: '/contact', order: 8 },
 ]
 
 export function withFallbackNav(items: NavItem[], fallback: NavItem[]): NavItem[] {
@@ -38,20 +40,6 @@ export function withFallbackNav(items: NavItem[], fallback: NavItem[]): NavItem[
 
 /* --------------------------------- roles ---------------------------------- */
 
-/**
- * Six navigation rows are not six equal destinations, and rendering them at one
- * size is what makes a menu read as a template. `groupNav` sorts the rows the
- * admin editor produced into the three jobs they actually do, so the header,
- * the mobile sheet and the footer can weight them the same way:
- *
- * - `home` — the way back. Belongs on the wordmark, not in the list.
- * - `lead` — `/projects`. The reason anyone opens the menu at all.
- * - `rest` — the reading destinations, in the order the editor set.
- * - `contact` — the conversion. Gets its own block, never a row in a list.
- *
- * Matching is by path, so renaming a row in the admin editor keeps its weight;
- * deleting or re-pointing one degrades to `rest` instead of disappearing.
- */
 export interface NavRoles {
   home: NavItem | null
   lead: NavItem | null
@@ -64,10 +52,77 @@ export const LEAD_HREF = '/projects'
 export const CONTACT_HREF = '/contact'
 
 /** `/projects/` and `/projects?x=1` are the same destination as `/projects`. */
-function navPath(href: string): string {
+export function navPath(href: string): string {
   const head = href.split('?')[0] ?? href
   const path = head.split('#')[0] ?? head
   return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path
+}
+
+/**
+ * Ensures the header navigation always includes key customer journeys
+ * (`Trang chủ`, `Dự án`, `Phong cách`, `Dự toán`, `Studio`, `Dịch vụ`, `Bài viết`)
+ * in a clean, balanced order without duplicate paths.
+ */
+export function normalizeHeaderNav(items: NavItem[]): {
+  primary: NavItem[]
+  contact: NavItem
+} {
+  const byPath = new Map<string, NavItem>()
+  for (const item of items) {
+    byPath.set(navPath(item.href), item)
+  }
+
+  const curatedOrder: readonly { href: string; defaultLabel: string }[] = [
+    { href: '/', defaultLabel: 'Trang chủ' },
+    { href: '/projects', defaultLabel: 'Dự án' },
+    { href: '/phong-cach', defaultLabel: 'Phong cách' },
+    { href: '/du-toan-chi-phi', defaultLabel: 'Dự toán' },
+    { href: '/khu-vuc', defaultLabel: 'Khu vực' },
+    { href: '/studio', defaultLabel: 'Studio' },
+    { href: '/services', defaultLabel: 'Dịch vụ' },
+    { href: '/journal', defaultLabel: 'Bài viết' },
+  ]
+
+  const used = new Set<string>()
+  const primary: NavItem[] = []
+
+  curatedOrder.forEach((slot, idx) => {
+    const existing = byPath.get(slot.href)
+    used.add(slot.href)
+    // Keep Header labels concise so the top bar never wraps or crowds
+    const label =
+      slot.href === '/du-toan-chi-phi'
+        ? 'Dự toán'
+        : slot.href === '/khu-vuc'
+          ? 'Khu vực'
+          : existing?.label ?? slot.defaultLabel
+
+    primary.push({
+      id: existing?.id ?? `hdr-${idx}`,
+      label,
+      href: slot.href,
+      order: idx,
+      children: existing?.children,
+    })
+  })
+
+  // Append any custom admin-created routes that aren't in the default set or contact
+  for (const item of items) {
+    const p = navPath(item.href)
+    if (!used.has(p) && p !== CONTACT_HREF) {
+      used.add(p)
+      primary.push(item)
+    }
+  }
+
+  const contactItem = byPath.get(CONTACT_HREF) ?? {
+    id: 'hdr-contact',
+    label: 'Liên hệ',
+    href: CONTACT_HREF,
+    order: 99,
+  }
+
+  return { primary, contact: contactItem }
 }
 
 export function groupNav(items: NavItem[]): NavRoles {
@@ -84,8 +139,6 @@ export function groupNav(items: NavItem[]): NavRoles {
     else rest.push(item)
   }
 
-  // A nav without `/projects` still needs a head item, otherwise the sheet opens
-  // on three identical small rows and the hierarchy collapses.
   if (lead === null) lead = rest.shift() ?? null
 
   return { home, lead, rest, contact }
@@ -95,3 +148,4 @@ export function groupNav(items: NavItem[]): NavRoles {
 export function isLeadProjects(item: NavItem | null): boolean {
   return item !== null && navPath(item.href) === LEAD_HREF
 }
+

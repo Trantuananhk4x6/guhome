@@ -370,13 +370,17 @@ export function SensorySoundscape({ className }: { className?: string }) {
         {/* Current Track Label & Selector Trigger */}
         <button
           onClick={() => setIsMenuOpen((o) => !o)}
-          className="flex items-center gap-1.5 min-h-[40px] text-xs text-left group cursor-pointer"
+          className="flex items-center gap-2 min-h-[40px] text-xs text-left group cursor-pointer"
         >
-          <span className="text-sm">{activeTrackObj.icon}</span>
+          <span
+            aria-hidden="true"
+            className="h-2 w-2 rounded-full shrink-0"
+            style={{ backgroundColor: activeTrackObj.color }}
+          />
           <span className="font-body font-medium text-ink/85 group-hover:text-accent transition-colors max-w-[140px] truncate hidden sm:inline">
             {activeTrackObj.name}
           </span>
-          <span className="text-[10px] text-muted/60 transition-transform group-hover:translate-y-0.5">▼</span>
+          <span className="text-[10px] text-muted/60 transition-transform group-hover:translate-y-0.5">▾</span>
         </button>
 
         {/* Volume Slider */}
@@ -432,7 +436,11 @@ export function SensorySoundscape({ className }: { className?: string }) {
                         : 'hover:bg-canvas text-ink/80',
                     )}
                   >
-                    <span className="text-xl shrink-0">{track.icon}</span>
+                    <span
+                      aria-hidden="true"
+                      className="h-2.5 w-2.5 rounded-full shrink-0"
+                      style={{ backgroundColor: track.color }}
+                    />
                     <div className="flex flex-col min-w-0">
                       <span className="text-xs font-medium leading-tight">{track.name}</span>
                       <span className="text-[10px] text-muted truncate mt-0.5">{track.subtitle}</span>

@@ -65,16 +65,17 @@ export function ScrollProvider(props: { children: ReactNode; motion: MotionConfi
     if (!smooth) return
 
     const instance = new Lenis({
-      duration: 1.05,
+      duration: 0.65,
       easing: LENIS_EASING,
-      smoothWheel: true,
+      // Native compositor scrolling eliminates main-thread wheel input lag ("lag lag")
+      // while keeping Lenis API (stop/start/scrollTo) and ScrollTrigger in sync.
+      smoothWheel: false,
       syncTouch: false,
-      touchMultiplier: 1.4,
+      touchMultiplier: 1,
       wheelMultiplier: 1,
-      autoRaf: false,
+      autoRaf: true,
       anchors: true,
       overscroll: true,
-      // We drive reduced-motion ourselves; Lenis is simply never created for it.
       respectReducedMotion: false,
     })
 
@@ -86,18 +87,10 @@ export function ScrollProvider(props: { children: ReactNode; motion: MotionConfi
     }
     instance.on('scroll', onScroll)
 
-    const tick = (time: number): void => {
-      instance.raf(time * 1000)
-    }
-    gsap.ticker.add(tick)
-    gsap.ticker.lagSmoothing(0)
-
     const raf = window.requestAnimationFrame(() => ScrollTrigger.refresh())
 
     return () => {
       window.cancelAnimationFrame(raf)
-      gsap.ticker.remove(tick)
-      gsap.ticker.lagSmoothing(500, 33)
       instance.off('scroll', onScroll)
       instance.destroy()
       if (activeLenis === instance) activeLenis = null

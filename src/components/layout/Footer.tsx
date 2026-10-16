@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { ArrowUpRightIcon } from '@/components/ui/icons'
@@ -6,6 +5,7 @@ import { Label } from '@/components/ui/Label'
 import { cn } from '@/lib/utils'
 import type { BrandConfig, NavItem } from '@/types/content'
 
+import { GuHomesBrandMark } from './Header'
 import { groupNav } from './nav-fallback'
 import { OpenSocialModalButton, SocialTrigger } from './SocialTrigger'
 
@@ -36,7 +36,7 @@ export interface FooterProps {
  * out. Nothing is hidden and nothing is dropped; the copy that reads on a
  * desktop reads on a phone.
  */
-export function Footer({ nav, brand, logo = null }: FooterProps) {
+export function Footer({ nav, brand }: FooterProps) {
   const year = new Date().getFullYear()
   const { home, lead, rest, contact } = groupNav(nav)
   const tel = `tel:${brand.phone.replace(/\s+/g, '')}`
@@ -61,7 +61,7 @@ export function Footer({ nav, brand, logo = null }: FooterProps) {
                 this copy is the densest pair on the site — it sets the floor. */}
             <h2 className="max-w-[26ch] font-display text-[clamp(1.75rem,3.1vw,2.75rem)] leading-[1.38] text-canvas">
               {/* The compound must not break: "hướng" alone at a line end reads as a different word. */}
-              {'Bắt đầu bằng ba thứ: hướng nắng, mặt bằng bàn giao và ngày bạn cần dọn vào.'}
+              {'Bắt đầu bằng ba thứ: hướng\u00a0nắng, mặt bằng bàn giao và ngày bạn cần dọn vào.'}
             </h2>
             <p className="max-w-[48ch] text-[0.9375rem] leading-relaxed text-canvas/55">
               Chưa có bản vẽ cũng được. Ảnh chụp bằng điện thoại kèm số đo dài rộng là đủ để chúng tôi trả lời cụ thể.
@@ -105,26 +105,10 @@ export function Footer({ nav, brand, logo = null }: FooterProps) {
             <Link
               href={home?.href ?? '/'}
               aria-label={`${brand.companyName} - ${home?.label ?? 'Trang chủ'}`}
-              className="group flex flex-col gap-3 self-start"
+              data-mode="dark"
+              className="group/hdr flex flex-col gap-3 self-start text-canvas"
             >
-              {/*
-                The drawn lockup, or the name set in type when the brand has no
-                logo. Bigger here than in the masthead: the footer is where a
-                studio signs its name, and this is the last thing on the page.
-              */}
-              {logo ? (
-                <Image
-                  src={logo}
-                  alt={brand.companyName}
-                  width={960}
-                  height={174}
-                  className="h-[clamp(2.25rem,4.4vw,3.25rem)] w-auto"
-                />
-              ) : (
-                <span className="font-display text-[clamp(1.875rem,4vw,2.75rem)] uppercase leading-none tracking-[0.05em] text-canvas transition-colors duration-500 group-hover:text-accent-soft">
-                  {brand.companyName}
-                </span>
-              )}
+              <GuHomesBrandMark companyName={brand.companyName} className="scale-110 origin-left" />
               {home ? <span className="u-label text-canvas/40">{home.label}</span> : null}
             </Link>
             <p className="max-w-[44ch] text-[0.9375rem] leading-relaxed text-canvas/55">

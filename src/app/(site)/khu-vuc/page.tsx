@@ -6,13 +6,6 @@ import { ArrowUpRightIcon } from '@/components/ui/icons'
 import { ProjectSpatialMap } from '@/components/projects/ProjectSpatialMap'
 import { TropicalWeatherAdvisory } from '@/components/tools/TropicalWeatherAdvisory'
 import { WesternSolarHeatCalculator } from '@/components/tools/WesternSolarHeatCalculator'
-import { TropicalFengShuiCompass } from '@/components/tools/TropicalFengShuiCompass'
-import { TropicalHvacAirflowSimulator } from '@/components/tools/TropicalHvacAirflowSimulator'
-import { RiverBreezeAerodynamicsLab } from '@/components/studio/RiverBreezeAerodynamicsLab'
-import { NaturalStoneQuarryAtlas } from '@/components/studio/NaturalStoneQuarryAtlas'
-import { EstateRenovationDiagnostic } from '@/components/tools/EstateRenovationDiagnostic'
-import { TropicalBonsaiEcologyLab } from '@/components/studio/TropicalBonsaiEcologyLab'
-import { SaigonBreezeMicroclimateCurator } from '@/components/studio/SaigonBreezeMicroclimateCurator'
 
 export const revalidate = 3600
 
@@ -48,7 +41,7 @@ export default function SaigonDistrictsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }} />
 
       {/* Header Masthead */}
-      <div className="u-gutter mx-auto w-full max-w-[110rem] pt-[clamp(6.5rem,16vh,11rem)]">
+      <div className="u-gutter mx-auto w-full max-w-[110rem] pt-28 md:pt-32">
         <div className="grid grid-cols-12 gap-8 items-end border-b border-line pb-12">
           <div className="col-span-12 lg:col-span-8">
             <nav aria-label="Breadcrumb" className="mb-4">
@@ -164,41 +157,6 @@ export default function SaigonDistrictsPage() {
         {/* Western Solar Heat Radiation Calculator */}
         <div className="mt-16">
           <WesternSolarHeatCalculator className="rounded-3xl border border-line" />
-        </div>
-
-        {/* Tropical Feng Shui & Microclimate Compass */}
-        <div className="mt-16">
-          <TropicalFengShuiCompass className="rounded-3xl border border-line" />
-        </div>
-
-        {/* Tropical HVAC & Dew Point Condensation Safety Simulator */}
-        <div className="mt-16">
-          <TropicalHvacAirflowSimulator className="rounded-3xl border border-line" />
-        </div>
-
-        {/* Saigon River Breeze & Aerodynamics Cooling Lab */}
-        <div className="mt-16">
-          <RiverBreezeAerodynamicsLab className="rounded-3xl border border-line" />
-        </div>
-
-        {/* Natural Stone Quarry & Bookmatch Atlas */}
-        <div className="mt-16">
-          <NaturalStoneQuarryAtlas className="rounded-3xl border border-line" />
-        </div>
-
-        {/* Estate Renovation Diagnostic & Cost Estimator */}
-        <div className="mt-16">
-          <EstateRenovationDiagnostic className="rounded-3xl border border-line" />
-        </div>
-
-        {/* Biophilic Tropical Bonsai & Ecology Lab */}
-        <div className="mt-16">
-          <TropicalBonsaiEcologyLab className="rounded-3xl border border-line" />
-        </div>
-
-        {/* Saigon River Breeze Microclimate Curator */}
-        <div className="mt-16">
-          <SaigonBreezeMicroclimateCurator className="rounded-3xl border border-line" />
         </div>
 
         {/* Bottom Editorial Callout */}
