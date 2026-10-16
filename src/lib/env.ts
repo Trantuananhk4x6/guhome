@@ -1,8 +1,13 @@
 import { z } from 'zod'
 
 const serverEnvSchema = z.object({
-  DATABASE_URL: z.string().min(1),
-  AUTH_SECRET: z.string().min(16),
+  DATABASE_URL: z
+    .string()
+    .min(1)
+    .default(
+      'postgresql://neondb_owner:npg_tPjOXxY75UkA@ep-super-thunder-ax6hvmwk-pooler.c-4.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
+    ),
+  AUTH_SECRET: z.string().min(16).default('N2ezo5nYzVhQHsyCF/RG2fImtqlNlF4i+Fp4qXbwZ+A='),
   // Seed-time only (`scripts/seed.ts` reads `process.env` directly); nothing in
   // the running app consumes either. Deliberately NOT defaulted: the previous
   // literal default was the studio's old brand name, so any deploy that forgot

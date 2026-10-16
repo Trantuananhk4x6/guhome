@@ -40,7 +40,7 @@ async function exists(candidate: string): Promise<boolean> {
 }
 
 function localCandidates(row: MediaRow): string[] {
-  const root = path.resolve(process.cwd(), serverEnv().STORAGE_LOCAL_ROOT)
+  const root = path.resolve(/*turbopackIgnore: true*/ process.cwd(), serverEnv().STORAGE_LOCAL_ROOT)
   const out: string[] = []
 
   const url = row.url.trim()
@@ -53,7 +53,7 @@ function localCandidates(row: MediaRow): string[] {
   if (key.length > 0 && !/\.[a-z0-9]{2,5}$/i.test(key)) {
     for (const width of DERIVATIVE_WIDTHS) out.push(path.join(root, `${key}-${width}.webp`))
   } else if (key.length > 0) {
-    out.push(path.join(root, key))
+    out.push(path.join(/*turbopackIgnore: true*/ root, key))
   }
 
   return out

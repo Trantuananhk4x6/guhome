@@ -11,12 +11,12 @@ function isEnoent(error: unknown): boolean {
 }
 
 export function createLocalDriver(root: string, publicPrefix: string = MEDIA_PUBLIC_PREFIX): StorageDriver {
-  const absoluteRoot = path.resolve(process.cwd(), root)
+  const absoluteRoot = path.resolve(/*turbopackIgnore: true*/ process.cwd(), root)
   const prefix = publicPrefix.replace(/\/+$/, '')
 
   function absolutePath(key: string): string {
     const safeKey = normaliseKey(key)
-    const target = path.resolve(absoluteRoot, safeKey)
+    const target = path.resolve(/*turbopackIgnore: true*/ absoluteRoot, safeKey)
     const guard = absoluteRoot.endsWith(path.sep) ? absoluteRoot : absoluteRoot + path.sep
     if (!target.startsWith(guard)) throw new Error(`Storage key escapes media root: ${key}`)
     return target

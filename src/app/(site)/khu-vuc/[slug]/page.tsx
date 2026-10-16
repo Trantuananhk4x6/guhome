@@ -108,7 +108,7 @@ export default async function SaigonDistrictDetailPage({ params }: PageProps) {
               {hub.name}
             </h1>
             <p className="font-serif text-xl sm:text-2xl text-ink/80 font-light mt-4 italic leading-relaxed">
-              "{hub.subHeading}"
+              &ldquo;{hub.subHeading}&rdquo;
             </p>
             <p className="u-body-lg text-muted max-w-[56ch] mt-6 leading-relaxed">
               {hub.heroDescription}

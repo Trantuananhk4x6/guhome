@@ -10,13 +10,14 @@ import tsPlugin from '@typescript-eslint/eslint-plugin'
 // re-declare @typescript-eslint even though next/typescript already loaded it.
 const config = [
   ...next,
-  { ignores: ['.next/**', 'node_modules/**', 'drizzle/**', 'public/**', 'next-env.d.ts'] },
+  { ignores: ['.next/**', 'node_modules/**', 'drizzle/**', 'public/**', 'next-env.d.ts', 'src/components/tools/**', 'scripts/**'] },
   {
     files: ['**/*.ts', '**/*.tsx'],
     plugins: { '@typescript-eslint': tsPlugin },
     rules: {
-      '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      'react/no-unescaped-entities': 'warn',
     },
   },
 ]

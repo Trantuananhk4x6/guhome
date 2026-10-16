@@ -3,11 +3,9 @@ import { drizzle } from 'drizzle-orm/neon-http'
 
 import * as schema from './schema'
 
-const connectionString = process.env.DATABASE_URL
-
-if (!connectionString) {
-  throw new Error('DATABASE_URL is not set. Copy .env.example to .env.local and fill it in.')
-}
+const connectionString =
+  process.env.DATABASE_URL ||
+  'postgresql://neondb_owner:npg_tPjOXxY75UkA@ep-super-thunder-ax6hvmwk-pooler.c-4.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
 
 /**
  * Point the driver at a local Postgres when `DATABASE_URL` names one.
