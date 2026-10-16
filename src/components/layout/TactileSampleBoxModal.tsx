@@ -33,10 +33,11 @@ export function TactileSampleBoxModal() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    if (!phone.trim()) {
+    const digitsOnly = phone.replace(/\D/g, '')
+    if (!phone.trim() || digitsOnly.length < 8) {
       toast({
-        title: 'Vui lòng điền số điện thoại hoặc Zalo',
-        description: 'Chuyên viên điều phối GuHomes cần số liên lạc để xác nhận thời gian giao Hộp Mẫu Vật Liệu.',
+        title: 'Vui lòng điền số điện thoại hoặc Zalo hợp lệ',
+        description: 'Số điện thoại cần có ít nhất 8 chữ số để chuyên viên điều phối GuHomes liên lạc xác nhận.',
         tone: 'error',
       })
       return
@@ -73,19 +74,26 @@ export function TactileSampleBoxModal() {
 
         formData.set('message', messageContent)
 
-        await submitContact({ ok: false, fieldErrors: {} }, formData)
-        setSubmitted(true)
-        toast({
-          title: 'Đăng ký nhận Hộp Mẫu Xúc Giác thành công!',
-          description: 'Hộp mẫu gỗ lót lanh sẽ được đóng gói và bàn giao tận tay bạn trong 24–48 giờ.',
-          tone: 'success',
-        })
+        const res = await submitContact({ ok: false, fieldErrors: {} }, formData)
+        if (res.ok) {
+          setSubmitted(true)
+          toast({
+            title: 'Đăng ký nhận Hộp Mẫu Xúc Giác thành công!',
+            description: 'Hộp mẫu gỗ lót lanh sẽ được đóng gói và bàn giao tận tay bạn trong 24–48 giờ.',
+            tone: 'success',
+          })
+        } else {
+          toast({
+            title: 'Không thể gửi đăng ký',
+            description: res.formError || res.fieldErrors?.phone?.[0] || 'Vui lòng kiểm tra lại thông tin và thử lại.',
+            tone: 'error',
+          })
+        }
       } catch {
-        setSubmitted(true)
         toast({
-          title: 'Đã tiếp nhận yêu cầu gửi Hộp Mẫu',
-          description: 'Chuyên viên GuHomes sẽ liên hệ để chuẩn bị hộp mẫu bàn giao.',
-          tone: 'success',
+          title: 'Đã có lỗi xảy ra',
+          description: 'Không thể kết nối đến máy chủ. Vui lòng gọi trực tiếp hotline hoặc thử lại sau ít phút.',
+          tone: 'error',
         })
       }
     })

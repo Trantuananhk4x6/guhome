@@ -30,6 +30,8 @@
 
   --font-display: var(--f-display), 'Playfair Display', ui-serif, Georgia, serif;
   --font-body: var(--f-body), 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--f-display), 'Playfair Display', ui-serif, Georgia, serif;
+  --font-sans: var(--f-body), 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
 
   --tracking-label: 0.11em;
   --tracking-display: -0.02em;

@@ -189,13 +189,22 @@ export function SpatialBudgetCalculator() {
       return
     }
 
+    const cleanPhone = phone.replace(/[^\d+]/g, '')
+    if (cleanPhone.replace(/\D/g, '').length < 8) {
+      toast({
+        title: 'Số điện thoại chưa hợp lệ',
+        description: 'Vui lòng nhập số điện thoại hoặc Zalo có ít nhất 8 chữ số.',
+        tone: 'error',
+      })
+      return
+    }
+
     startTransition(async () => {
       try {
-        const cleanPhone = phone.replace(/[^\d+]/g, '')
         const formData = new FormData()
         formData.set('name', fullName.trim() || 'Gia chủ tính dự toán bóc tách')
         formData.set('phone', phone.trim())
-        formData.set('email', `${cleanPhone || 'khach'}@lead.guhomes.vn`)
+        formData.set('email', `${cleanPhone.replace(/\+/g, '') || 'khach'}@lead.guhomes.vn`)
         formData.set('projectType', 'can-ho')
         formData.set(
           'budget',
@@ -205,7 +214,9 @@ export function SpatialBudgetCalculator() {
             ? '500-1000'
             : totalMillions < 2000
             ? '1-2-ty'
-            : '2-5-ty',
+            : totalMillions < 5000
+            ? '2-5-ty'
+            : 'tren-5-ty',
         )
 
         const detailedSummary = [
@@ -224,19 +235,27 @@ export function SpatialBudgetCalculator() {
 
         formData.set('message', detailedSummary)
 
-        await submitContact({ ok: false, fieldErrors: {} }, formData)
-        setSubmitted(true)
-        toast({
-          title: 'Đã gửi bảng dự toán thành công!',
-          description: 'KTS Trưởng GuHomes sẽ lập file bóc tách kỹ thuật chi tiết gửi bạn trong 24 giờ.',
-          tone: 'success',
-        })
+        const res = await submitContact({ ok: false, fieldErrors: {} }, formData)
+        if (res.ok) {
+          setSubmitted(true)
+          toast({
+            title: 'Đã gửi bảng dự toán thành công!',
+            description: 'KTS Trưởng GuHomes sẽ lập file bóc tách kỹ thuật chi tiết gửi bạn trong 24 giờ.',
+            tone: 'success',
+          })
+        } else {
+          const errDetail = res.formError || Object.values(res.fieldErrors)[0] || 'Vui lòng kiểm tra lại thông tin gửi.'
+          toast({
+            title: 'Chưa thể gửi dự toán',
+            description: errDetail,
+            tone: 'error',
+          })
+        }
       } catch {
-        setSubmitted(true)
         toast({
-          title: 'Đã tiếp nhận yêu cầu dự toán',
-          description: 'KTS GuHomes đã lưu thông tin và sẽ liên hệ ngay.',
-          tone: 'success',
+          title: 'Lỗi kết nối',
+          description: 'Không thể kết nối đến máy chủ. Vui lòng gọi trực tiếp hotline 0368 757 916.',
+          tone: 'error',
         })
       }
     })

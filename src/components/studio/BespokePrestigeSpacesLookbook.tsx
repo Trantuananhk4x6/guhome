@@ -39,7 +39,7 @@ const LOOKBOOK_SPACES: SpaceLookbook[] = [
     lightingSpecs: 'Hệ chiếu sáng 3 tầng âm trần CRI > 95, dải nhiệt độ màu 2700K - 3000K, dimmer tự động theo nhịp sinh học hoàng hôn Sài Gòn.',
     heroDescription: 'Tại tầng cao The Opera Metropole, thử thách lớn nhất là sự tiết chế. KTS GuHomes kiến tạo một không gian mở khoáng đạt, nơi mọi góc nhìn đều tôn vinh khúc quanh dòng sông, nhưng bên trong vẫn giữ vẹn nguyên sự ấm cúng, che chở và tĩnh tại tuyệt đối cho gia chủ.',
     daylightImage: '/media/ben-kia-song/12-1600.webp',
-    nightImage: '/media/anh-kim-van-da/0-1600.webp',
+    nightImage: '/media/anh-kim-van-da/0-800.webp',
     features: [
       { label: 'Cao độ thông tầng', value: '6.20 mét' },
       { label: 'Hệ vách kính', value: 'Low-E 3 lớp cản nhiệt 78%' },
@@ -64,7 +64,7 @@ const LOOKBOOK_SPACES: SpaceLookbook[] = [
     ],
     lightingSpecs: 'Ánh sáng tự nhiên xuyên thấu qua hệ lam giếng trời ban ngày; ban đêm chuyển sang kịch bản ánh sáng ấm cúng tập trung vào các đảo công năng.',
     heroDescription: 'Dinh thự vườn tại The Global City là bài toán thích ứng hướng Tây nắng gắt. Thay vì bọc kín bê tông, GuHomes tạo ra lớp vỏ kép (double-skin facade) với hàng hiên cây xanh và lam gỗ, biến ánh nắng gay gắt thành những vệt sáng nhảy múa thi vị trên sàn nhà.',
-    daylightImage: '/media/nhat-ky-phan-tho/6-1600.webp',
+    daylightImage: '/media/nha-pho-hien-dai-nha-pho-4-oc-cho-phong-khach/0-1600.webp',
     nightImage: '/media/kham-go-soi/15-1600.webp',
     features: [
       { label: 'Quy mô công trình', value: '1 trệt, 4 lầu & sân thượng' },
@@ -90,8 +90,8 @@ const LOOKBOOK_SPACES: SpaceLookbook[] = [
     ],
     lightingSpecs: 'Ánh sáng hắt chân tường và đèn lồng thủ công tạo cảm giác thư giãn tuyệt đối cho nghi thức thiền định và thưởng trà đạo.',
     heroDescription: 'Một kiệt tác nghỉ dưỡng mặt nước riêng tư, nơi gia chủ có thể cởi bỏ đôi giày sau hành trình dài để chạm đôi bàn chân trần vào từng phiến gỗ Gõ Đỏ ấm áp, lắng nghe tiếng cá quẫy đuôi dưới chân cầu gỗ và tận hưởng sự tĩnh lặng tuyệt đối.',
-    daylightImage: '/media/song-cat/7-1600.webp',
-    nightImage: '/media/may-trang-tang-cao/4-1600.webp',
+    daylightImage: '/media/song-cat/7-1200.webp',
+    nightImage: '/media/may-trang-tang-cao/4-1200.webp',
     features: [
       { label: 'Mặt nước bao quanh', value: 'Chu vi 120 mét mặt hồ' },
       { label: 'Phòng trà đạo', value: 'Thiết kế ngắm sen nổi' },
@@ -116,8 +116,8 @@ const LOOKBOOK_SPACES: SpaceLookbook[] = [
     ],
     lightingSpecs: 'Kịch bản chiếu sáng gián tiếp hắt khe trần vô hình, dải nhiệt độ 2700K - 3500K điều chỉnh theo chu kỳ bình minh và hoàng hôn cảng Ba Son.',
     heroDescription: 'Tọa lạc trên mảnh đất di sản Ba Son ven sông Sài Gòn, Sky Villa Grand Marina là đỉnh cao của phong cách Quiet Luxury. GuHomes chắt lọc từng đường cong kim hoàn, đưa ánh sáng dòng sông vào sâu trong lòng không gian sống, tạo nên một tư gia tĩnh lặng giữa trái tim đô thị phồn hoa.',
-    daylightImage: '/media/can-ho-3-ngu-150m2/0-1600.webp',
-    nightImage: '/media/nha-pho-100m2-1-tret-2-lau/0-1600.webp',
+    daylightImage: '/media/chung-cu-1-2-ngu/0-1600.webp',
+    nightImage: '/media/nha-pho-hien-dai-nha-pho-1-mat-tien/0-1200.webp',
     features: [
       { label: 'Tầm nhìn ven sông', value: 'Trọn vẹn 180 độ khúc quanh Ba Son' },
       { label: 'Cao độ trần thông thoáng', value: '3.65 mét tiêu chuẩn Branded' },
@@ -142,8 +142,8 @@ const LOOKBOOK_SPACES: SpaceLookbook[] = [
     ],
     lightingSpecs: 'Hệ thống đèn chùm pha lê chế tác độc bản kết hợp dải hắt sáng 2700K tạo chiều sâu ấm áp cho các vòm trần cao 4.2 mét.',
     heroDescription: 'Ẩn mình bên nhánh rạch Thầy Tiêu xanh mát của đô thị Phú Mỹ Hưng, Dinh Thự Chateau là bản tuyên ngôn của sự thịnh vượng và tĩnh lặng. GuHomes kết hợp tinh hoa kiến trúc Pháp cổ điển với giải pháp vi khí hậu nhiệt đới Sài Gòn, mang lại trải nghiệm sống vương giả mà ấm cúng cho nhiều thế hệ.',
-    daylightImage: '/media/can-ho-3-ngu-150m2/0-1600.webp',
-    nightImage: '/media/nha-pho-100m2-1-tret-2-lau/0-1600.webp',
+    daylightImage: '/media/luxury-nha-pho-nha-pho-1/0-1600.webp',
+    nightImage: '/media/luxury-nha-pho-nha-pho-2/0-1600.webp',
     features: [
       { label: 'Không gian mở', value: '4 mặt sân vườn cảnh quan xanh mát' },
       { label: 'Cao độ thông tầng', value: '4.2 mét tiêu chuẩn lâu đài' },
@@ -175,6 +175,7 @@ export function BespokePrestigeSpacesLookbook() {
       gain.connect(ctx.destination)
       osc.start()
       osc.stop(ctx.currentTime + 0.3)
+      osc.onended = () => { ctx.close().catch(() => {}) }
     } catch {
       // Audio safe fallback
     }

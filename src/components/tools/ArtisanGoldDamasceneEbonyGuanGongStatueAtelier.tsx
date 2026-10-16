@@ -122,7 +122,7 @@ export function ArtisanGoldDamasceneEbonyGuanGongStatueAtelier({ className }: { 
                 className="relative h-full w-full"
               >
                 <Image
-                  src="/media/thiet-ke-nha-dep-kho-tin/3-1600.webp"
+                  src="/media/kham-go-soi/15-1600.webp"
                   alt="Tượng Quan Công Mun Sừng nạm chỉ vàng 24K Damascene GuHomes"
                   fill
                   sizes="(max-width: 1024px) 100vw, 58vw"

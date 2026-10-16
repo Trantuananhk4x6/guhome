@@ -114,7 +114,7 @@ const STYLE_TABS: StyleTab[] = [
         name: 'Căn Hộ Số 11 Mizuki',
         location: 'Bình Chánh, TP. Hồ Chí Minh',
         area: '92 m²',
-        imageUrl: '/media/anh-kim-van-da/0-1200.webp',
+        imageUrl: '/media/anh-kim-van-da/0-800.webp',
         tag: 'Ánh sáng tự nhiên',
       },
       {

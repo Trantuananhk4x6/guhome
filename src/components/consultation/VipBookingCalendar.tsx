@@ -119,13 +119,22 @@ export function VipBookingCalendar({ className }: { className?: string }) {
       return
     }
 
+    const cleanDigits = phone.replace(/\D/g, '')
+    if (cleanDigits.length < 8) {
+      toast({
+        title: 'Số điện thoại chưa hợp lệ',
+        description: 'Vui lòng nhập số điện thoại hoặc Zalo có ít nhất 8 chữ số.',
+        tone: 'error',
+      })
+      return
+    }
+
     startTransition(async () => {
       try {
-        const cleanPhone = phone.replace(/[^\d+]/g, '')
         const formData = new FormData()
         formData.set('name', fullName.trim() || 'Gia chủ đặt lịch hẹn VIP KTS')
         formData.set('phone', phone.trim())
-        formData.set('email', `${cleanPhone || 'khach'}@booking.guhomes.vn`)
+        formData.set('email', `${cleanDigits || 'khach'}@booking.guhomes.vn`)
         formData.set('projectType', 'can-ho')
         formData.set('budget', '1-2-ty')
 
@@ -142,19 +151,27 @@ export function VipBookingCalendar({ className }: { className?: string }) {
 
         formData.set('message', messageContent)
 
-        await submitContact({ ok: false, fieldErrors: {} }, formData)
-        setSubmitted(true)
-        toast({
-          title: 'Đã xác nhận lịch hẹn tư vấn VIP!',
-          description: 'KTS Trưởng GuHomes sẽ liên hệ trực tiếp với bạn trong vòng 30 phút.',
-          tone: 'success',
-        })
+        const res = await submitContact({ ok: false, fieldErrors: {} }, formData)
+        if (res.ok) {
+          setSubmitted(true)
+          toast({
+            title: 'Đã xác nhận lịch hẹn tư vấn VIP!',
+            description: 'KTS Trưởng GuHomes sẽ liên hệ trực tiếp với bạn trong vòng 30 phút.',
+            tone: 'success',
+          })
+        } else {
+          const errDetail = res.formError || Object.values(res.fieldErrors)[0] || 'Vui lòng kiểm tra lại thông tin gửi.'
+          toast({
+            title: 'Chưa thể đặt lịch',
+            description: errDetail,
+            tone: 'error',
+          })
+        }
       } catch {
-        setSubmitted(true)
         toast({
-          title: 'Đã tiếp nhận lịch hẹn VIP',
-          description: 'KTS Trưởng GuHomes đã lưu thông tin và sẽ gọi xác nhận ngay.',
-          tone: 'success',
+          title: 'Lỗi kết nối',
+          description: 'Không thể gửi lịch hẹn lúc này. Vui lòng gọi trực tiếp hotline 0368 757 916.',
+          tone: 'error',
         })
       }
     })

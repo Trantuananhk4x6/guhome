@@ -206,7 +206,7 @@ export function SaigonAcousticMaracasSanctuarySalon({ className }: { className?:
           <div className="lg:col-span-7 flex flex-col gap-6">
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl group">
               <Image
-                src="/media/phong-thuy-nha-o/1-1600.webp"
+                src="/media/anh-khoa/1-1600.webp"
                 alt="Thính phòng âm học hòa âm Maracas gỗ Trắc đỏ đen GuHomes"
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"

@@ -20,7 +20,6 @@ import { SpatialBudgetCalculator } from '@/components/sections/SpatialBudgetCalc
 import { MicroclimateSimulator } from '@/components/sections/MicroclimateSimulator'
 import { ClientChroniclesSection } from '@/components/sections/ClientChroniclesSection'
 import { BespokePrestigeSpacesLookbook } from '@/components/studio/BespokePrestigeSpacesLookbook'
-import { BespokeInteriorStyleQuiz } from '@/components/tools/BespokeInteriorStyleQuiz'
 import { getPublishedArticles } from '@/server/queries/articles'
 import { getMediaMap } from '@/server/queries/media'
 import { getProjectBySlug, getPublishedProjects } from '@/server/queries/projects'
@@ -262,7 +261,6 @@ export default async function HomePage() {
                 <GuHomesMarketingTrustPledge />
                 <TactileMaterialLab />
                 <SpatialBudgetCalculator />
-                <BespokeInteriorStyleQuiz />
                 <StyleQuizSection />
                 <ClientChroniclesSection />
               </>

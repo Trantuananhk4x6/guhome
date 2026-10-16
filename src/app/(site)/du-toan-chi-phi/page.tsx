@@ -299,7 +299,6 @@ import { SaigonCanalSideAncientHingedChukrasiaFlowerMoatPavilion } from '@/compo
 import { BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeOxLotusIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusFlowerStudio'
 import { BespokePrestigeSpacesLookbook } from '@/components/studio/BespokePrestigeSpacesLookbook'
-import { BespokeInteriorStyleQuiz } from '@/components/tools/BespokeInteriorStyleQuiz'
 import { SaigonCanalSideAncientHingedCamphorFlowerMoatPavilion } from '@/components/studio/SaigonCanalSideAncientHingedCamphorFlowerMoatPavilion'
 import { BespokeImperialKynamAndGoldFiligreeTigerLotusIncenseBurnerVault } from '@/components/studio/BespokeImperialKynamAndGoldFiligreeTigerLotusIncenseBurnerVault'
 import { ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodStudio } from '@/components/tools/ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusSeedPodStudio'
@@ -1816,9 +1815,8 @@ export default function DuToanChiPhiPage() {
       <BespokeImperialKynamAndGoldFiligreeDragonHorseLotusIncenseBurnerVaultV79 />
       <ArtisanHandmadeGoldFiligreeAndJadeCalligraphyBrushRestLotusBudQuattuoroctogesimalLeafStudio />
 
-      {/* Lookbook Không Gian Danh Giá & Style Quiz */}
+      {/* Lookbook Không Gian Danh Giá GuHomes */}
       <BespokePrestigeSpacesLookbook />
-      <BespokeInteriorStyleQuiz />
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
       <StyleQuizSection className="mt-[var(--spacing-section)]" />

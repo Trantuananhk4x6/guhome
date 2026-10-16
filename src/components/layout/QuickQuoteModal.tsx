@@ -50,6 +50,12 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
       return
     }
 
+    const cleanDigits = phone.replace(/\D/g, '')
+    if (cleanDigits.length < 8) {
+      toast({ title: 'Vui lòng cung cấp số điện thoại hoặc Zalo hợp lệ (tối thiểu 8 chữ số).', tone: 'error' })
+      return
+    }
+
     setIsSubmitting(true)
     try {
       const typeMap: Record<string, string> = {
@@ -62,8 +68,7 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
         'thiet-ke-only': 'duoi-500',
         'tron-goi': areaRange === 'duoi-70' ? 'duoi-500' : areaRange === '70-120' ? '500-1000' : '1-2-ty',
       }
-      const cleanPhone = phone.replace(/[^\d+]/g, '')
-      const safeEmail = `${cleanPhone || 'khach'}@lead.guhomes.vn`
+      const safeEmail = `${cleanDigits || 'khach'}@lead.guhomes.vn`
 
       const formData = new FormData()
       formData.set('name', fullName.trim() || 'Gia chủ đăng ký dự toán nhanh')
@@ -76,20 +81,28 @@ export function QuickQuoteProvider({ children }: { children: ReactNode }) {
         `[ĐĂNG KÝ BÁO GIÁ NHANH 15 PHÚT]\nLoại hình: ${propertyType}\nDiện tích: ${areaRange}\nGu thẩm mỹ: ${style}\nHạng mục: ${scope}\nDự toán ước tính: ${estimate.label} (${estimate.range})`,
       )
 
-      await submitContact({ ok: false, fieldErrors: {} }, formData)
+      const res = await submitContact({ ok: false, fieldErrors: {} }, formData)
 
-      setSubmitted(true)
-      toast({
-        title: 'Đăng ký thành công!',
-        description: 'KTS GuHomes sẽ liên hệ gửi bản dự toán chi tiết trong 15 phút.',
-        tone: 'success',
-      })
+      if (res.ok) {
+        setSubmitted(true)
+        toast({
+          title: 'Đăng ký thành công!',
+          description: 'KTS GuHomes sẽ liên hệ gửi bản dự toán chi tiết trong 15 phút.',
+          tone: 'success',
+        })
+      } else {
+        const errDetail = res.formError || Object.values(res.fieldErrors)[0] || 'Vui lòng kiểm tra lại thông tin gửi.'
+        toast({
+          title: 'Chưa thể đăng ký',
+          description: errDetail,
+          tone: 'error',
+        })
+      }
     } catch {
-      setSubmitted(true)
       toast({
-        title: 'Đã tiếp nhận yêu cầu!',
-        description: 'KTS GuHomes đã lưu thông tin và sẽ liên hệ ngay.',
-        tone: 'success',
+        title: 'Lỗi kết nối',
+        description: 'Không thể gửi yêu cầu lúc này. Vui lòng liên hệ Hotline 0368 757 916.',
+        tone: 'error',
       })
     } finally {
       setIsSubmitting(false)
