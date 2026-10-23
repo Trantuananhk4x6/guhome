@@ -9,6 +9,7 @@ import {
   type HomeData,
 } from '@/components/sections'
 import { StyleExplorer } from '@/components/sections/StyleExplorer'
+import { MissionVisionSection } from '@/components/sections/MissionVisionSection'
 import { WorkflowSection } from '@/components/sections/WorkflowSection'
 import { QuickConsultFormSection } from '@/components/sections/QuickConsultFormSection'
 import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection'
@@ -242,6 +243,7 @@ export default async function HomePage() {
                 <BeforeAfterSection />
               </>
             )}
+            {section.key === 'STUDIO' && <MissionVisionSection />}
             {section.key === 'SERVICES' && (
               <>
                 <WorkflowSection />

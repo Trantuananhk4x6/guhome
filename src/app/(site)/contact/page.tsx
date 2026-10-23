@@ -220,20 +220,29 @@ export default async function ContactPage() {
 
                 {brand.social.length > 0 ? (
                   <Detail label="Theo dõi">
-                    <div className="flex flex-col gap-3">
-                      <ul className="flex flex-wrap gap-x-8 gap-y-3">
+                    <div className="flex flex-col gap-3.5">
+                      <ul className="flex flex-wrap gap-2.5">
                         {brand.social.map((item) => (
-                          <li key={item.href}>
+                          <li key={item.label}>
                             <SocialTrigger
                               label={item.label}
                               href={item.href}
-                              className="u-label text-ink transition-colors duration-500 ease-editorial hover:text-accent"
+                              showInfoHint
+                              hintText="[QR]"
+                              className="border border-line bg-surface px-3 py-1.5 font-mono text-[0.75rem] uppercase tracking-wider text-ink transition-all duration-300 hover:border-accent hover:bg-canvas hover:text-accent"
                             />
                           </li>
                         ))}
                       </ul>
-                      <div className="pt-1">
-                        <OpenSocialModalButton className="text-[0.8125rem] text-accent hover:text-ink" />
+                      <div className="flex flex-wrap gap-2.5 pt-1">
+                        <OpenSocialModalButton className="border-line bg-surface text-[0.8125rem] text-ink hover:border-accent hover:bg-canvas hover:text-accent" />
+                        <OpenSocialModalButton
+                          channelId="facebook"
+                          tab="projects"
+                          className="border-accent/40 bg-accent/10 text-[0.8125rem] text-accent hover:border-accent hover:bg-accent hover:text-canvas"
+                        >
+                          Lịch trình & 06 Dự án trên Facebook / TikTok
+                        </OpenSocialModalButton>
                       </div>
                     </div>
                   </Detail>

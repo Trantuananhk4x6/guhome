@@ -75,6 +75,52 @@ export const getAppearance = cache(async (): Promise<AppearanceConfig> => {
   )
 })
 
+function mergeSocialLinks(
+  defaultSocial: readonly { label: string; href: string }[],
+  dbSocial?: readonly { label?: string; href?: string }[] | null,
+): { label: string; href: string }[] {
+  const validDb = Array.isArray(dbSocial)
+    ? dbSocial.filter(
+        (item): item is { label: string; href: string } =>
+          Boolean(
+            item &&
+              typeof item.label === 'string' &&
+              item.label.trim().length > 0 &&
+              typeof item.href === 'string' &&
+              item.href.trim().length > 0 &&
+              item.href.trim() !== '#',
+          ),
+      )
+    : []
+
+  if (validDb.length === 0) {
+    return defaultSocial.map((item) => ({ ...item }))
+  }
+
+  const byLabel = new Map<string, { label: string; href: string }>()
+  for (const item of validDb) {
+    byLabel.set(item.label.trim().toLowerCase(), {
+      label: item.label.trim(),
+      href: item.href.trim(),
+    })
+  }
+
+  const merged: { label: string; href: string }[] = defaultSocial.map((def) => {
+    const custom = byLabel.get(def.label.toLowerCase())
+    if (custom) {
+      byLabel.delete(def.label.toLowerCase())
+      return { label: def.label, href: custom.href }
+    }
+    return { ...def }
+  })
+
+  for (const extra of byLabel.values()) {
+    merged.push(extra)
+  }
+
+  return merged
+}
+
 export const getThemeSettings = cache(async (): Promise<ThemeSettings> => {
   return safeRead(
     'getThemeSettings',
@@ -92,7 +138,11 @@ export const getThemeSettings = cache(async (): Promise<ThemeSettings> => {
         colors: { ...DEFAULT_THEME.colors, ...row.colors },
         typography: { ...DEFAULT_THEME.typography, ...row.typography },
         motion: { ...DEFAULT_THEME.motion, ...row.motion },
-        brand: { ...DEFAULT_THEME.brand, ...row.brand },
+        brand: {
+          ...DEFAULT_THEME.brand,
+          ...row.brand,
+          social: mergeSocialLinks(DEFAULT_THEME.brand.social, row.brand?.social),
+        },
       }
     },
     DEFAULT_THEME,

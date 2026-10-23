@@ -1,11 +1,11 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { useEffect, useId, useRef, useState, type ReactNode, type RefObject } from 'react'
 
+import DialogSurface from './DialogSurface'
 import { useModalLock } from './modal'
 
-export type DialogSize = 'sm' | 'md' | 'lg'
+export type DialogSize = 'sm' | 'md' | 'lg' | 'xl'
 
 export interface DialogProps {
   open: boolean
@@ -23,13 +23,6 @@ export interface DialogProps {
   children?: ReactNode
   footer?: ReactNode
 }
-
-/**
- * The animated surface — and with it framer-motion (ARCHITECTURE §2: modals are
- * the one place it is allowed) — is a lazy chunk fetched on first open, so the
- * `@/components/ui` barrel never drags it into a page's first-load JS.
- */
-const DialogSurface = dynamic(() => import('./DialogSurface'), { ssr: false })
 
 /**
  * Modal surface. Focus trap, scroll lock, inert background and Escape live in

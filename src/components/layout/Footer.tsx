@@ -111,12 +111,11 @@ export function Footer({ nav, brand }: FooterProps) {
               <GuHomesBrandMark companyName={brand.companyName} className="scale-110 origin-left" />
               {home ? <span className="u-label text-canvas/40">{home.label}</span> : null}
             </Link>
-            <p className="max-w-[44ch] text-[0.9375rem] leading-relaxed text-canvas/55">
-              Mỗi công trình chúng tôi khoá bảng vật liệu ở khoảng bốn thứ, rồi làm thật kỹ từng thứ một.
+            <p className="max-w-[44ch] text-[0.9375rem] leading-relaxed text-canvas/70">
+              <strong className="font-medium text-canvas">Tầm nhìn & Sứ mệnh:</strong> Trở thành studio kiến trúc & nội thất may đo biểu tượng tại Việt Nam — phụng sự tổ ấm bằng sự tử tế, dự toán minh bạch và xưởng mộc 1.200m² tại Thạnh Xuân, Quận 12.
             </p>
-            <p className="max-w-[44ch] text-[0.9375rem] leading-relaxed text-canvas/55">
-              Còn lại là chuyện độ ẩm 75-80% quanh năm và bề rộng con hẻm trước nhà - nó quyết định cái tủ nào khiêng
-              vào được.
+            <p className="max-w-[44ch] text-[0.875rem] leading-relaxed text-canvas/50">
+              Mỗi công trình chúng tôi khoá bảng vật liệu ở những chất liệu thật biết thở cùng khí hậu Sài Gòn, nhận tối đa 12 công trình/năm để cùng một KTS Trưởng theo sát đến ngày bàn giao.
             </p>
           </div>
 
@@ -124,7 +123,7 @@ export function Footer({ nav, brand }: FooterProps) {
             aria-label="Điều hướng chân trang"
             className="col-span-1 row-span-2 flex flex-col gap-5 md:col-span-3 md:row-auto"
           >
-            <Label tone="light">Trang</Label>
+            <Label tone="light">Trang & Định hướng</Label>
             <ul className="flex flex-col gap-3">
               {pages.map((item) => {
                 const isLead = lead !== null && item.id === lead.id
@@ -150,32 +149,65 @@ export function Footer({ nav, brand }: FooterProps) {
                   </li>
                 )
               })}
+              <li className="border-t border-canvas/12 pt-3">
+                <Link
+                  href="/studio#tam-nhin-su-menh"
+                  className="text-[0.875rem] text-canvas/65 transition-colors duration-300 hover:text-accent-soft"
+                >
+                  Tầm nhìn & Sứ mệnh →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/studio#gia-tri-cot-loi"
+                  className="text-[0.875rem] text-canvas/65 transition-colors duration-300 hover:text-accent-soft"
+                >
+                  06 Giá trị cốt lõi →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/studio#kenh-truyen-thong"
+                  className="text-[0.875rem] text-accent-soft/90 transition-colors duration-300 hover:text-canvas"
+                >
+                  Dự án trên FB & TikTok →
+                </Link>
+              </li>
             </ul>
           </nav>
 
           <address className="col-span-1 col-start-2 flex flex-col gap-5 not-italic md:col-span-2 md:col-start-auto">
             <Label tone="light">Địa chỉ</Label>
             <p className="text-[0.9375rem] leading-relaxed text-canvas/70">{brand.address}</p>
-            <p className="max-w-[24ch] text-[0.875rem] leading-relaxed text-canvas/45">
-              Ghé studio thì hẹn trước một buổi.
+            <p className="max-w-[24ch] text-[0.8125rem] leading-relaxed text-canvas/50">
+              Xưởng mộc: Thạnh Xuân, Quận 12 (1.200m²). Ghé studio hoặc xưởng hẹn trước một buổi.
             </p>
           </address>
 
           <div className="col-span-1 col-start-2 flex flex-col gap-5 md:col-span-2 md:col-start-auto">
-            <Label tone="light">Theo dõi</Label>
-            <ul className="flex flex-col gap-3">
+            <Label tone="light">Theo dõi (07 kênh)</Label>
+            <ul className="flex flex-col gap-2.5">
               {brand.social.map((social) => (
                 <li key={social.label}>
                   <SocialTrigger
                     label={social.label}
                     href={social.href}
-                    className="text-[0.9375rem] text-canvas/60 transition-colors duration-500 hover:text-accent-soft"
+                    showInfoHint
+                    hintText="[Hồ sơ & QR]"
+                    className="text-[0.9375rem] text-canvas/75 transition-colors duration-300 hover:text-accent-soft"
                   />
                 </li>
               ))}
             </ul>
-            <div className="pt-2">
+            <div className="flex flex-col gap-2 pt-2">
               <OpenSocialModalButton />
+              <OpenSocialModalButton
+                channelId="facebook"
+                tab="projects"
+                className="border-accent-soft/40 bg-accent/15 text-canvas"
+              >
+                Lịch Content & 06 Dự án FB/TikTok
+              </OpenSocialModalButton>
             </div>
           </div>
         </section>

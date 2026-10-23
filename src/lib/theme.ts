@@ -135,10 +135,10 @@ export const DEFAULT_BRAND: BrandConfig = {
   address: '14 Đường 41, Phường An Khánh, TP. Hồ Chí Minh',
   social: [
     { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61594054897878' },
+    { label: 'TikTok', href: 'https://www.tiktok.com/@guconcept' },
     { label: 'Zalo', href: 'https://zalo.me/0368757916' },
     { label: 'YouTube', href: 'https://www.youtube.com/@guconcept' },
     { label: 'Instagram', href: 'https://www.instagram.com/guconcept.vn' },
-    { label: 'TikTok', href: 'https://www.tiktok.com/@guconcept' },
     { label: 'Behance', href: 'https://www.behance.net/guhomes' },
     { label: 'Pinterest', href: 'https://www.pinterest.com/guhomes' },
   ],
