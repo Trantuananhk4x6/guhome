@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { gsap, registerGsap } from '@/animations/gsap'
 import { useLenis } from '@/animations/scroll'
@@ -14,7 +14,7 @@ import { cn, pad2 } from '@/lib/utils'
 import type { BrandConfig, NavItem } from '@/types/content'
 
 import { GuHomesBrandMark, isActive } from './Header'
-import { normalizeHeaderNav } from './nav-fallback'
+import { HEADER_SUBMENUS, normalizeHeaderNav } from './nav-fallback'
 
 export interface MobileMenuProps {
   id: string
@@ -46,6 +46,7 @@ export function MobileMenu({ id, open, onClose, nav, brand }: MobileMenuProps) {
   const pathname = usePathname()
   const lenis = useLenis()
   const { openQuoteModal } = useQuickQuote()
+  const [expandedId, setExpandedId] = useState<string | null>(null)
 
   const { primary, contact } = normalizeHeaderNav(nav)
   const tel = `tel:${brand.phone.replace(/\s+/g, '')}`
@@ -172,23 +173,25 @@ export function MobileMenu({ id, open, onClose, nav, brand }: MobileMenuProps) {
           {primary.map((item, idx) => {
             const active = isActive(pathname, item.href)
             const subtitle = ROUTE_SUBTITLES[item.href]
+            const submenu = HEADER_SUBMENUS[item.href]
+            const isExpanded = expandedId === item.id
+
             return (
               <div key={item.id} className="border-b border-line/70 last:border-b-0">
-                <Link
-                  data-menu-item
-                  href={item.href}
-                  onClick={onClose}
-                  aria-current={active ? 'page' : undefined}
-                  className={cn(
-                    'group flex items-center justify-between gap-4 py-4 transition-colors duration-300',
-                    active ? 'text-accent' : 'text-ink hover:text-accent',
-                  )}
-                >
-                  <div className="flex items-baseline gap-4">
+                <div data-menu-item className="flex items-center justify-between gap-3 py-4">
+                  <Link
+                    href={item.href}
+                    onClick={onClose}
+                    aria-current={active ? 'page' : undefined}
+                    className={cn(
+                      'group flex min-w-0 flex-1 items-baseline gap-4 transition-colors duration-300',
+                      active ? 'text-accent' : 'text-ink hover:text-accent',
+                    )}
+                  >
                     <span className="font-mono text-xs text-accent/80 tabular-nums">
                       {pad2(idx + 1)}
                     </span>
-                    <div>
+                    <div className="min-w-0">
                       <span className="font-display text-[1.45rem] leading-tight sm:text-[1.65rem]">
                         {item.label}
                       </span>
@@ -198,14 +201,87 @@ export function MobileMenu({ id, open, onClose, nav, brand }: MobileMenuProps) {
                         </span>
                       ) : null}
                     </div>
+                  </Link>
+
+                  {submenu ? (
+                    <button
+                      type="button"
+                      onClick={() => setExpandedId((prev) => (prev === item.id ? null : item.id))}
+                      aria-expanded={isExpanded}
+                      className={cn(
+                        'inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 font-mono text-[0.65rem] font-medium uppercase tracking-wider transition-all duration-200',
+                        isExpanded
+                          ? 'border-accent bg-accent text-canvas'
+                          : 'border-line bg-surface text-ink/80 hover:border-accent hover:text-accent',
+                      )}
+                    >
+                      <span>{isExpanded ? 'Thu gọn' : 'Mục con'}</span>
+                      <svg
+                        viewBox="0 0 10 6"
+                        fill="none"
+                        aria-hidden="true"
+                        className={cn(
+                          'h-2 w-2.5 transition-transform duration-300',
+                          isExpanded && 'rotate-180',
+                        )}
+                      >
+                        <path
+                          d="M1 1L5 5L9 1"
+                          stroke="currentColor"
+                          strokeWidth="1.4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      onClick={onClose}
+                      aria-label={item.label}
+                      className="p-2 text-muted/60 hover:text-accent"
+                    >
+                      <ArrowRightIcon className="shrink-0 text-base" />
+                    </Link>
+                  )}
+                </div>
+
+                {submenu && isExpanded ? (
+                  <div className="mb-4 ml-7 rounded-2xl border border-line/80 bg-surface/65 p-4">
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      {submenu.columns.map((col) => (
+                        <div key={col.heading}>
+                          <p className="mb-2 font-mono text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-accent">
+                            {col.heading}
+                          </p>
+                          <ul className="space-y-1.5">
+                            {col.items.map((sub) => (
+                              <li key={sub.id}>
+                                <Link
+                                  href={sub.href}
+                                  onClick={onClose}
+                                  className="group/sub flex items-start justify-between gap-2 rounded-lg px-2 py-1.5 transition-colors hover:bg-canvas"
+                                >
+                                  <div className="min-w-0">
+                                    <p className="text-xs font-medium text-ink group-hover/sub:text-accent">
+                                      {sub.label}
+                                    </p>
+                                    {sub.meta ? (
+                                      <p className="mt-0.5 text-[0.68rem] text-muted">
+                                        {sub.meta}
+                                      </p>
+                                    ) : null}
+                                  </div>
+                                  <ArrowRightIcon className="mt-1 shrink-0 text-xs text-muted/40 group-hover/sub:text-accent" />
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <ArrowRightIcon
-                    className={cn(
-                      'shrink-0 text-base transition-transform duration-300 group-hover:translate-x-1',
-                      active ? 'text-accent' : 'text-muted/50 group-hover:text-accent',
-                    )}
-                  />
-                </Link>
+                ) : null}
               </div>
             )
           })}

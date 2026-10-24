@@ -160,7 +160,7 @@ export default async function ServicesPage() {
       })}
 
       {/* ------------------------------- exclusions ------------------------------ */}
-      <section className="u-gutter mt-[var(--spacing-section)]">
+      <section id="nguyen-tac-tu-choi" className="u-gutter mt-[var(--spacing-section)] scroll-mt-28">
         <div className="mx-auto w-full max-w-[110rem] border-t border-line pt-14">
           <Reveal>
             <Label rule tone="accent">

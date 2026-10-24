@@ -6,14 +6,14 @@ import { useEffect, useRef, useState } from 'react'
 
 import { gsap, registerGsap, ScrollTrigger } from '@/animations/gsap'
 import { useQuickQuote } from '@/components/layout/QuickQuoteModal'
-import { ArrowUpRightIcon } from '@/components/ui/icons'
+import { ArrowRightIcon, ArrowUpRightIcon } from '@/components/ui/icons'
 import { useMotionFlag } from '@/lib/motion'
 import { useSocialModalStore } from '@/lib/social'
-import { cn } from '@/lib/utils'
+import { cn, pad2 } from '@/lib/utils'
 import type { BrandConfig, NavItem } from '@/types/content'
 
 import { MobileMenu } from './MobileMenu'
-import { normalizeHeaderNav } from './nav-fallback'
+import { HEADER_SUBMENUS, normalizeHeaderNav, type HeaderSubmenuConfig } from './nav-fallback'
 
 export interface HeaderProps {
   nav: NavItem[]
@@ -123,34 +123,259 @@ export function GuHomesBrandMark({
   )
 }
 
-function DesktopNavLink({ item, pathname }: { item: NavItem; pathname: string }) {
-  const active = isActive(pathname, item.href)
+function resolveSubmenuConfig(item: NavItem): HeaderSubmenuConfig | null {
+  const curated = HEADER_SUBMENUS[item.href]
+  if (curated) return curated
+
+  if (item.children && item.children.length > 0) {
+    return {
+      eyebrow: `${item.label} · Chuyên mục`,
+      title: item.label,
+      viewAllLabel: `Xem toàn bộ ${item.label.toLowerCase()}`,
+      viewAllHref: item.href,
+      columns: [
+        {
+          heading: 'Danh mục chi tiết',
+          items: item.children.map((child, idx) => ({
+            id: child.id,
+            label: child.label,
+            href: child.href,
+            badge: pad2(idx + 1),
+          })),
+        },
+      ],
+    }
+  }
+
+  return null
+}
+
+function DesktopSubmenuPanel({
+  config,
+  open,
+  alignRight,
+  onNavigate,
+}: {
+  config: HeaderSubmenuConfig
+  open: boolean
+  alignRight: boolean
+  onNavigate: () => void
+}) {
+  const isTwoCol = config.columns.length > 1
 
   return (
-    <Link
-      href={item.href}
-      aria-current={active ? 'page' : undefined}
+    <div
+      role="region"
+      aria-label={config.title}
       className={cn(
-        'group/nav relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.72rem] font-medium uppercase tracking-[0.11em] whitespace-nowrap transition-all duration-300 xl:px-3.5 xl:text-[0.75rem]',
-        active
-          ? 'bg-ink text-canvas shadow-xs group-data-[mode=dark]/hdr:bg-canvas group-data-[mode=dark]/hdr:text-espresso'
-          : 'text-current/80 hover:bg-ink/[0.06] hover:text-current group-data-[mode=dark]/hdr:text-canvas/85 group-data-[mode=dark]/hdr:hover:bg-canvas/10 group-data-[mode=dark]/hdr:hover:text-canvas',
+        'absolute top-full z-50 pt-3 transition-all duration-250 ease-out',
+        isTwoCol
+          ? 'left-1/2 w-[42rem] -translate-x-1/2 xl:w-[46rem]'
+          : alignRight
+            ? 'right-0 w-[24.5rem] xl:w-[26rem]'
+            : 'left-0 w-[24.5rem] xl:w-[26rem]',
+        open
+          ? 'pointer-events-auto translate-y-0 opacity-100'
+          : 'pointer-events-none -translate-y-1.5 opacity-0',
       )}
     >
-      {active ? (
-        <span
-          aria-hidden="true"
-          className="h-1.5 w-1.5 rounded-full bg-accent group-data-[mode=dark]/hdr:bg-accent"
+      <div
+        className={cn(
+          'overflow-hidden rounded-2xl border p-5 transition-colors duration-300',
+          'border-line/90 bg-canvas/98 text-ink shadow-[0_24px_60px_rgba(24,22,20,0.14)] backdrop-blur-2xl',
+          'group-data-[mode=dark]/hdr:border-canvas/15 group-data-[mode=dark]/hdr:bg-espresso/96 group-data-[mode=dark]/hdr:text-canvas group-data-[mode=dark]/hdr:shadow-[0_28px_70px_rgba(0,0,0,0.55)]',
+        )}
+      >
+        {/* Top Eyebrow & View All Header */}
+        <div className="flex items-baseline justify-between gap-4 border-b border-line/70 pb-3.5 group-data-[mode=dark]/hdr:border-canvas/12">
+          <div>
+            <p className="font-mono text-[0.62rem] font-medium uppercase tracking-[0.18em] text-accent group-data-[mode=dark]/hdr:text-[#D9B061]">
+              {config.eyebrow}
+            </p>
+            <p className="mt-1 font-display text-[1.05rem] font-medium leading-snug text-current">
+              {config.title}
+            </p>
+          </div>
+          <Link
+            href={config.viewAllHref}
+            onClick={onNavigate}
+            className="inline-flex shrink-0 items-center gap-1 rounded-full border border-line/80 bg-surface/60 px-3 py-1 font-mono text-[0.62rem] font-medium uppercase tracking-[0.14em] text-current/85 transition-colors hover:border-accent hover:text-accent group-data-[mode=dark]/hdr:border-canvas/20 group-data-[mode=dark]/hdr:bg-canvas/[0.06] group-data-[mode=dark]/hdr:hover:border-[#D9B061] group-data-[mode=dark]/hdr:hover:text-[#D9B061]"
+          >
+            <span>{config.viewAllLabel}</span>
+            <ArrowUpRightIcon className="text-[0.65rem]" />
+          </Link>
+        </div>
+
+        {/* Columns Grid */}
+        <div
+          className={cn(
+            'mt-4 grid gap-5',
+            isTwoCol ? 'grid-cols-2 divide-x divide-line/60 group-data-[mode=dark]/hdr:divide-canvas/10' : 'grid-cols-1',
+          )}
+        >
+          {config.columns.map((col, colIdx) => (
+            <div key={col.heading} className={cn(colIdx > 0 ? 'pl-5' : '')}>
+              <p className="mb-2.5 font-mono text-[0.6rem] font-semibold uppercase tracking-[0.16em] text-muted group-data-[mode=dark]/hdr:text-canvas/55">
+                {col.heading}
+              </p>
+              <ul className="space-y-1">
+                {col.items.map((sub) => (
+                  <li key={sub.id}>
+                    <Link
+                      href={sub.href}
+                      onClick={onNavigate}
+                      className={cn(
+                        'group/sub flex items-start justify-between gap-3 rounded-xl px-2.5 py-2 transition-all duration-200',
+                        'hover:bg-surface/90 group-data-[mode=dark]/hdr:hover:bg-canvas/[0.08]',
+                      )}
+                    >
+                      <div className="flex min-w-0 items-start gap-2.5">
+                        {sub.badge ? (
+                          <span className="mt-0.5 inline-flex shrink-0 items-center justify-center rounded border border-accent/30 bg-accent/10 px-1.5 py-0.5 font-mono text-[0.58rem] font-semibold uppercase tracking-wider text-accent group-data-[mode=dark]/hdr:border-[#D9B061]/35 group-data-[mode=dark]/hdr:bg-[#D9B061]/15 group-data-[mode=dark]/hdr:text-[#D9B061]">
+                            {sub.badge}
+                          </span>
+                        ) : null}
+                        <div className="min-w-0">
+                          <p className="truncate text-[0.8rem] font-medium leading-snug text-current transition-colors group-hover/sub:text-accent group-data-[mode=dark]/hdr:group-hover/sub:text-[#D9B061]">
+                            {sub.label}
+                          </p>
+                          {sub.meta ? (
+                            <p className="mt-0.5 truncate text-[0.68rem] leading-relaxed text-muted group-data-[mode=dark]/hdr:text-canvas/60">
+                              {sub.meta}
+                            </p>
+                          ) : null}
+                        </div>
+                      </div>
+                      <ArrowRightIcon className="mt-1 shrink-0 text-xs text-muted/40 transition-all duration-200 group-hover/sub:translate-x-0.5 group-hover/sub:text-accent group-data-[mode=dark]/hdr:text-canvas/35 group-data-[mode=dark]/hdr:group-hover/sub:text-[#D9B061]" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Optional Footer Bar */}
+        {config.footerNote && config.footerActionLabel && config.footerActionHref ? (
+          <div className="mt-4 flex items-center justify-between gap-4 rounded-xl border border-line/60 bg-surface/65 px-3.5 py-2.5 text-xs group-data-[mode=dark]/hdr:border-canvas/10 group-data-[mode=dark]/hdr:bg-canvas/[0.05]">
+            <span className="text-[0.72rem] text-muted group-data-[mode=dark]/hdr:text-canvas/70">
+              {config.footerNote}
+            </span>
+            <Link
+              href={config.footerActionHref}
+              onClick={onNavigate}
+              className="inline-flex shrink-0 items-center gap-1.5 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.12em] text-accent transition-colors hover:text-ink group-data-[mode=dark]/hdr:text-[#D9B061] group-data-[mode=dark]/hdr:hover:text-canvas"
+            >
+              <span>{config.footerActionLabel}</span>
+              <ArrowRightIcon className="text-xs" />
+            </Link>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
+function DesktopNavLink({
+  item,
+  index,
+  total,
+  pathname,
+  openId,
+  onOpen,
+  onScheduleClose,
+  onImmediateClose,
+}: {
+  item: NavItem
+  index: number
+  total: number
+  pathname: string
+  openId: string | null
+  onOpen: (id: string) => void
+  onScheduleClose: () => void
+  onImmediateClose: () => void
+}) {
+  const active = isActive(pathname, item.href)
+  const submenu = resolveSubmenuConfig(item)
+  const isOpen = openId === item.id && submenu !== null
+  const alignRight = index >= total - 3
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => {
+        if (submenu) onOpen(item.id)
+      }}
+      onMouseLeave={() => {
+        if (submenu) onScheduleClose()
+      }}
+    >
+      <Link
+        href={item.href}
+        aria-current={active ? 'page' : undefined}
+        aria-haspopup={submenu ? 'true' : undefined}
+        aria-expanded={submenu ? isOpen : undefined}
+        onClick={onImmediateClose}
+        onFocus={() => {
+          if (submenu) onOpen(item.id)
+        }}
+        className={cn(
+          'group/nav relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.72rem] font-medium uppercase tracking-[0.11em] whitespace-nowrap transition-all duration-300 xl:px-3.5 xl:text-[0.75rem]',
+          active
+            ? 'bg-ink text-canvas shadow-xs group-data-[mode=dark]/hdr:bg-canvas group-data-[mode=dark]/hdr:text-espresso'
+            : isOpen
+              ? 'bg-ink/[0.08] text-current group-data-[mode=dark]/hdr:bg-canvas/15 group-data-[mode=dark]/hdr:text-canvas'
+              : 'text-current/80 hover:bg-ink/[0.06] hover:text-current group-data-[mode=dark]/hdr:text-canvas/85 group-data-[mode=dark]/hdr:hover:bg-canvas/10 group-data-[mode=dark]/hdr:hover:text-canvas',
+        )}
+      >
+        {active ? (
+          <span
+            aria-hidden="true"
+            className="h-1.5 w-1.5 rounded-full bg-accent group-data-[mode=dark]/hdr:bg-accent"
+          />
+        ) : null}
+        <span>{item.label}</span>
+        {submenu ? (
+          <svg
+            viewBox="0 0 10 6"
+            fill="none"
+            aria-hidden="true"
+            className={cn(
+              'h-2 w-2.5 shrink-0 opacity-65 transition-transform duration-300',
+              isOpen && 'rotate-180 opacity-100 text-accent group-data-[mode=dark]/hdr:text-[#D9B061]',
+            )}
+          >
+            <path
+              d="M1 1L5 5L9 1"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        ) : null}
+        {!active ? (
+          <span
+            aria-hidden="true"
+            className={cn(
+              'pointer-events-none absolute inset-x-3.5 bottom-1 h-px origin-left bg-accent transition-transform duration-300 ease-out',
+              isOpen
+                ? 'scale-x-100'
+                : 'scale-x-0 group-hover/nav:scale-x-100 group-focus-visible/nav:scale-x-100',
+            )}
+          />
+        ) : null}
+      </Link>
+
+      {submenu ? (
+        <DesktopSubmenuPanel
+          config={submenu}
+          open={isOpen}
+          alignRight={alignRight}
+          onNavigate={onImmediateClose}
         />
       ) : null}
-      <span>{item.label}</span>
-      {!active ? (
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-3.5 bottom-1 h-px origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover/nav:scale-x-100 group-focus-visible/nav:scale-x-100"
-        />
-      ) : null}
-    </Link>
+    </div>
   )
 }
 
@@ -158,16 +383,60 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
   const headerRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [openSubmenuId, setOpenSubmenuId] = useState<string | null>(null)
+  const closeTimerRef = useRef<number | null>(null)
   const [menuRoute, setMenuRoute] = useState(pathname)
   const menuOpenRef = useRef(false)
   const { openQuoteModal } = useQuickQuote()
 
   const { primary, contact } = normalizeHeaderNav(nav)
 
+  const handleOpenSubmenu = (id: string) => {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+    setOpenSubmenuId(id)
+  }
+
+  const handleScheduleCloseSubmenu = () => {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current)
+    }
+    closeTimerRef.current = window.setTimeout(() => {
+      setOpenSubmenuId(null)
+      closeTimerRef.current = null
+    }, 140)
+  }
+
+  const handleImmediateCloseSubmenu = () => {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+    setOpenSubmenuId(null)
+  }
+
   if (menuRoute !== pathname) {
     setMenuRoute(pathname)
     setMenuOpen(false)
+    setOpenSubmenuId(null)
   }
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpenSubmenuId(null)
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current)
+      }
+    }
+  }, [])
 
   const canHide = useMotionFlag('enabled')
 
@@ -315,8 +584,18 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
               'group-data-[mode=dark]/hdr:border-canvas/15 group-data-[mode=dark]/hdr:bg-espresso/60 group-data-[mode=dark]/hdr:shadow-[0_4px_24px_rgba(0,0,0,0.25)]',
             )}
           >
-            {primary.map((item) => (
-              <DesktopNavLink key={item.id} item={item} pathname={pathname} />
+            {primary.map((item, index) => (
+              <DesktopNavLink
+                key={item.id}
+                item={item}
+                index={index}
+                total={primary.length}
+                pathname={pathname}
+                openId={openSubmenuId}
+                onOpen={handleOpenSubmenu}
+                onScheduleClose={handleScheduleCloseSubmenu}
+                onImmediateClose={handleImmediateCloseSubmenu}
+              />
             ))}
           </nav>
 

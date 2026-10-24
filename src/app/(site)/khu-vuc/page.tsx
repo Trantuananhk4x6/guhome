@@ -155,7 +155,7 @@ export default function SaigonDistrictsPage() {
         </div>
 
         {/* Western Solar Heat Radiation Calculator */}
-        <div className="mt-16">
+        <div id="tinh-buc-xa-nhiet" className="mt-16 scroll-mt-28">
           <WesternSolarHeatCalculator className="rounded-3xl border border-line" />
         </div>
 

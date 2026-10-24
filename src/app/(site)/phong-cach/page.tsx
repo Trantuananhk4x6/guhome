@@ -141,10 +141,14 @@ export default async function StylesPage() {
       </section>
 
       {/* Style Quiz: Tìm Phong Cách Của Bạn */}
-      <StyleQuizSection className="mt-[var(--spacing-section)]" />
+      <div id="trac-nghiem-phong-cach" className="scroll-mt-28">
+        <StyleQuizSection className="mt-[var(--spacing-section)]" />
+      </div>
 
       {/* Tactile Moodboard & Acoustics Studio */}
-      <TactileMoodboardStudio className="mt-[var(--spacing-section)]" />
+      <div id="ban-phoi-vat-lieu" className="scroll-mt-28">
+        <TactileMoodboardStudio className="mt-[var(--spacing-section)]" />
+      </div>
 
       {/* Lookbook Không Gian Cao Cấp 2026 */}
       <BespokeSpatialLookbookShowcase className="mt-[var(--spacing-section)]" />

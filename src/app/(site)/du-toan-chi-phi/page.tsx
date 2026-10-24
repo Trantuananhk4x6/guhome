@@ -48,21 +48,29 @@ export default function DuToanChiPhiPage() {
       </section>
 
       {/* Main Interactive Spatial Budget Calculator */}
-      <SpatialBudgetCalculator />
+      <div id="bang-tinh-du-toan" className="scroll-mt-28">
+        <SpatialBudgetCalculator />
+      </div>
 
       {/* Bespoke Millwork & Cabinetry Studio */}
-      <BespokeCabinetryStudio className="mt-[var(--spacing-section)]" />
+      <div id="xuong-moc-may-do" className="scroll-mt-28">
+        <BespokeCabinetryStudio className="mt-[var(--spacing-section)]" />
+      </div>
 
       {/* Material Exploration */}
-      <div className="mt-[var(--spacing-section)]">
+      <div id="phong-vat-lieu" className="mt-[var(--spacing-section)] scroll-mt-28">
         <TactileMaterialLab />
       </div>
 
       {/* Contractor Capability & Truth Comparison Matrix */}
-      <ContractorComparisonMatrix className="mt-[var(--spacing-section)]" />
+      <div id="doi-chieu-nha-thau" className="scroll-mt-28">
+        <ContractorComparisonMatrix className="mt-[var(--spacing-section)]" />
+      </div>
 
       {/* Cashflow Milestones & 6-Stage Verification Scheduler */}
-      <CashflowMilestoneScheduler className="mt-[var(--spacing-section)]" />
+      <div id="lich-thanh-toan" className="scroll-mt-28">
+        <CashflowMilestoneScheduler className="mt-[var(--spacing-section)]" />
+      </div>
     </div>
   )
 }
