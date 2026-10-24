@@ -154,7 +154,7 @@ export default async function ContactPage() {
       ) : null}
 
       <section className="u-gutter mt-[calc(var(--spacing-section)*0.6)]">
-        <div className="mx-auto grid w-full max-w-[100rem] gap-16 lg:grid-cols-12 lg:gap-24">
+        <div className="mx-auto grid w-full max-w-[100rem] gap-12 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-16 xl:gap-x-12">
           <div className="lg:col-span-5">
             <Reveal variant="revealUp">
               <Label rule>Studio</Label>

@@ -127,24 +127,24 @@ export function MissionVisionSection() {
         </div>
 
         {/* Architectural Diptych: Vision (Daylight Canvas) & Mission (Espresso Night) */}
-        <div className="mt-14 grid gap-0 border border-line lg:grid-cols-2">
+        <div className="mt-10 sm:mt-14 grid gap-0 border border-line lg:grid-cols-2">
           {/* 01. TẦM NHÌN (VISION) — Daylight Canvas */}
           <article
             data-reveal-item
-            className="group relative flex flex-col justify-between border-b border-line bg-canvas p-8 sm:p-12 lg:border-r lg:border-b-0"
+            className="group relative flex flex-col justify-between border-b border-line bg-canvas p-5 sm:p-8 lg:p-12 lg:border-r lg:border-b-0"
           >
             <div>
-              <div className="flex items-center justify-between border-b border-line pb-4">
-                <span className="inline-flex items-center gap-2 border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-[0.75rem] font-medium uppercase tracking-wider text-accent">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line pb-4">
+                <span className="inline-flex items-center gap-2 border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[0.6875rem] sm:text-[0.75rem] font-medium uppercase tracking-wider text-accent">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   01 · Tầm nhìn dài hạn (Vision)
                 </span>
-                <span className="font-mono text-[0.75rem] uppercase tracking-widest text-muted">
+                <span className="font-mono text-[0.6875rem] sm:text-[0.75rem] uppercase tracking-widest text-muted">
                   ARCH-DIPTYCH / 01
                 </span>
               </div>
 
-              <h3 className="mt-7 font-display text-[1.5rem] font-normal leading-[1.35] text-ink sm:text-[1.875rem]">
+              <h3 className="mt-6 sm:mt-7 font-display text-[1.375rem] font-normal leading-[1.35] text-ink sm:text-[1.875rem]">
                 Trở thành studio kiến trúc và nội thất may đo biểu tượng tại Việt Nam.
               </h3>
 
@@ -180,15 +180,15 @@ export function MissionVisionSection() {
           {/* 02. SỨ MỆNH (MISSION) — Espresso Night */}
           <article
             data-reveal-item
-            className="group relative flex flex-col justify-between bg-espresso p-8 text-canvas sm:p-12"
+            className="group relative flex flex-col justify-between bg-espresso p-5 text-canvas sm:p-8 lg:p-12"
           >
             <div>
-              <div className="flex items-center justify-between border-b border-canvas/15 pb-4">
-                <span className="inline-flex items-center gap-2 border border-accent-soft/40 bg-accent/20 px-3 py-1 font-mono text-[0.75rem] font-medium uppercase tracking-wider text-accent-soft">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent-soft" />
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-canvas/15 pb-4">
+                <span className="inline-flex items-center gap-2 border border-accent-soft/40 bg-accent/20 px-2.5 py-1 font-mono text-[0.6875rem] sm:text-[0.75rem] font-medium uppercase tracking-wider text-accent-soft">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-soft" />
                   02 · Sứ mệnh phụng sự (Mission)
                 </span>
-                <span className="font-mono text-[0.75rem] uppercase tracking-widest text-canvas/50">
+                <span className="font-mono text-[0.6875rem] sm:text-[0.75rem] uppercase tracking-widest text-canvas/50">
                   ARCH-DIPTYCH / 02
                 </span>
               </div>

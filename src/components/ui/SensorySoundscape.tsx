@@ -406,7 +406,7 @@ export function SensorySoundscape({ className }: { className?: string }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute bottom-full right-0 mb-2 w-72 bg-surface/98 border border-line/90 rounded-2xl p-3 shadow-2xl backdrop-blur-xl z-50 text-ink"
+            className="absolute bottom-full left-0 sm:right-0 sm:left-auto mb-2 w-[min(18rem,calc(100vw-2rem))] bg-surface/98 border border-line/90 rounded-2xl p-3 shadow-2xl backdrop-blur-xl z-50 text-ink"
           >
             <div className="flex items-center justify-between pb-2 border-b border-line/60">
               <span className="text-[11px] font-mono text-muted uppercase tracking-wider">Không gian âm học Quiet Luxury</span>

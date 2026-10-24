@@ -115,7 +115,7 @@ export function GuHomesBrandMark({
             Homes
           </span>
         </span>
-        <span className="mt-0.5 font-mono text-[0.52rem] font-medium uppercase tracking-[0.22em] text-muted transition-colors duration-300 group-data-[mode=dark]/hdr:text-canvas/65">
+        <span className="mt-0.5 hidden font-mono text-[0.52rem] font-medium uppercase tracking-[0.22em] text-muted transition-colors duration-300 group-data-[mode=dark]/hdr:text-canvas/65 sm:block lg:hidden xl:block">
           Architecture · Interior
         </span>
       </span>
@@ -170,10 +170,10 @@ function DesktopSubmenuPanel({
       className={cn(
         'absolute top-full z-50 pt-3 transition-all duration-250 ease-out',
         isTwoCol
-          ? 'left-1/2 w-[42rem] -translate-x-1/2 xl:w-[46rem]'
+          ? 'left-0 w-[min(37rem,calc(100vw-3rem))] xl:w-[42rem] 2xl:w-[45rem]'
           : alignRight
-            ? 'right-0 w-[24.5rem] xl:w-[26rem]'
-            : 'left-0 w-[24.5rem] xl:w-[26rem]',
+            ? 'right-0 w-[min(22rem,calc(100vw-3rem))] xl:w-[24.5rem]'
+            : 'left-0 w-[min(22rem,calc(100vw-3rem))] xl:w-[24.5rem]',
         open
           ? 'pointer-events-auto translate-y-0 opacity-100'
           : 'pointer-events-none -translate-y-1.5 opacity-0',
@@ -181,7 +181,7 @@ function DesktopSubmenuPanel({
     >
       <div
         className={cn(
-          'overflow-hidden rounded-2xl border p-5 transition-colors duration-300',
+          'max-h-[calc(100vh-5.5rem)] overflow-y-auto overscroll-contain rounded-2xl border p-4 xl:p-5 transition-colors duration-300',
           'border-line/90 bg-canvas/98 text-ink shadow-[0_24px_60px_rgba(24,22,20,0.14)] backdrop-blur-2xl',
           'group-data-[mode=dark]/hdr:border-canvas/15 group-data-[mode=dark]/hdr:bg-espresso/96 group-data-[mode=dark]/hdr:text-canvas group-data-[mode=dark]/hdr:shadow-[0_28px_70px_rgba(0,0,0,0.55)]',
         )}
@@ -298,11 +298,12 @@ function DesktopNavLink({
   const active = isActive(pathname, item.href)
   const submenu = resolveSubmenuConfig(item)
   const isOpen = openId === item.id && submenu !== null
-  const alignRight = index >= total - 3
+  const alignRight = index >= Math.floor(total / 2)
+  const isHomeItem = item.href === '/'
 
   return (
     <div
-      className="relative"
+      className={cn('relative', isHomeItem && 'hidden 2xl:block')}
       onMouseEnter={() => {
         if (submenu) onOpen(item.id)
       }}
@@ -320,7 +321,7 @@ function DesktopNavLink({
           if (submenu) onOpen(item.id)
         }}
         className={cn(
-          'group/nav relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.72rem] font-medium uppercase tracking-[0.11em] whitespace-nowrap transition-all duration-300 xl:px-3.5 xl:text-[0.75rem]',
+          'group/nav relative inline-flex items-center gap-1 rounded-full px-2 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.06em] whitespace-nowrap transition-all duration-300 xl:gap-1.5 xl:px-2.5 xl:text-[0.69rem] xl:tracking-[0.08em] 2xl:px-3.5 2xl:text-[0.74rem] 2xl:tracking-[0.11em]',
           active
             ? 'bg-ink text-canvas shadow-xs group-data-[mode=dark]/hdr:bg-canvas group-data-[mode=dark]/hdr:text-espresso'
             : isOpen
@@ -564,7 +565,7 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
           className="u-scrim-t pointer-events-none absolute inset-x-0 top-0 h-32 opacity-0 transition-opacity duration-500 ease-editorial group-data-[scrim=on]/hdr:opacity-100"
         />
 
-        <div className="u-gutter relative mx-auto flex h-[4.5rem] w-full max-w-[115rem] items-center justify-between gap-4 md:h-20">
+        <div className="u-gutter relative mx-auto flex h-[4.5rem] w-full max-w-[115rem] items-center justify-between gap-2 sm:gap-3 md:h-20 xl:gap-4">
           {/* 1. LEFT: Brand Identity Lockup */}
           <Link
             href="/"
@@ -579,7 +580,7 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
           <nav
             aria-label="Điều hướng chính"
             className={cn(
-              'relative z-10 hidden items-center gap-0.5 rounded-full border px-2 py-1.5 transition-all duration-500 lg:flex xl:gap-1 xl:px-2.5',
+              'relative z-10 hidden items-center gap-0.5 rounded-full border px-1.5 py-1 transition-all duration-500 lg:flex xl:px-2 xl:py-1.5 2xl:gap-1 2xl:px-2.5',
               'border-line/80 bg-surface/75 shadow-[0_2px_20px_rgba(24,22,20,0.04)] backdrop-blur-md',
               'group-data-[mode=dark]/hdr:border-canvas/15 group-data-[mode=dark]/hdr:bg-espresso/60 group-data-[mode=dark]/hdr:shadow-[0_4px_24px_rgba(0,0,0,0.25)]',
             )}
@@ -600,13 +601,13 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
           </nav>
 
           {/* 3. RIGHT: Conversion & Social/QR Cluster */}
-          <div className="relative z-10 flex shrink-0 items-center gap-2 sm:gap-2.5">
+          <div className="relative z-10 flex shrink-0 items-center gap-1.5 sm:gap-2">
             {/* QR & Social Channels Button */}
             <button
               type="button"
               onClick={() => useSocialModalStore.getState().openModal()}
               className={cn(
-                ' hidden items-center gap-1.5 rounded-full border px-3 py-2 text-[0.6875rem] font-medium uppercase tracking-[0.1em] transition-all duration-300 cursor-pointer md:inline-flex',
+                'hidden items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.08em] transition-all duration-300 cursor-pointer sm:inline-flex xl:px-3 xl:py-2 xl:text-[0.6875rem] xl:tracking-[0.1em]',
                 'border-line bg-surface/60 text-ink/85 hover:border-accent hover:text-accent',
                 'group-data-[mode=dark]/hdr:border-canvas/20 group-data-[mode=dark]/hdr:bg-canvas/[0.07] group-data-[mode=dark]/hdr:text-canvas/90 group-data-[mode=dark]/hdr:hover:border-[#D9B061] group-data-[mode=dark]/hdr:hover:text-[#D9B061]',
               )}
@@ -627,12 +628,12 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
               <span className="2xl:hidden">QR</span>
             </button>
 
-            {/* Quick Quote Trigger on Desktop */}
+            {/* Quick Quote Trigger on Large Desktop */}
             <button
               type="button"
               onClick={() => openQuoteModal()}
               className={cn(
-                'hidden items-center gap-1.5 rounded-full border px-3.5 py-2 text-[0.72rem] font-medium uppercase tracking-[0.1em] transition-all duration-300 cursor-pointer xl:inline-flex',
+                'hidden items-center gap-1.5 rounded-full border px-3.5 py-2 text-[0.72rem] font-medium uppercase tracking-[0.1em] transition-all duration-300 cursor-pointer 2xl:inline-flex',
                 'border-accent/45 bg-accent/10 text-ink hover:bg-accent hover:text-canvas',
                 'group-data-[mode=dark]/hdr:border-[#D9B061]/50 group-data-[mode=dark]/hdr:bg-[#D9B061]/15 group-data-[mode=dark]/hdr:text-canvas group-data-[mode=dark]/hdr:hover:bg-[#D9B061] group-data-[mode=dark]/hdr:hover:text-espresso',
               )}
@@ -645,7 +646,7 @@ export function Header({ nav, brand, logo = null }: HeaderProps) {
               href={contact.href}
               aria-current={contactActive ? 'page' : undefined}
               className={cn(
-                'hidden items-center gap-1.5 rounded-full px-4 py-2 text-[0.72rem] font-medium uppercase tracking-[0.11em] transition-all duration-300 md:inline-flex',
+                'hidden items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.09em] transition-all duration-300 md:inline-flex xl:px-4 xl:py-2 xl:text-[0.72rem] xl:tracking-[0.11em]',
                 'bg-ink text-canvas hover:bg-accent',
                 'group-data-[mode=dark]/hdr:bg-canvas group-data-[mode=dark]/hdr:text-espresso group-data-[mode=dark]/hdr:hover:bg-[#D9B061]',
               )}

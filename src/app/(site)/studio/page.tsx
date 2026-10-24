@@ -323,7 +323,7 @@ export default async function StudioPage() {
                   <div
                     key={fact.label}
                     data-reveal-item
-                    className="grid grid-cols-[9rem_1fr] gap-6 border-t border-line py-5"
+                    className="grid grid-cols-1 sm:grid-cols-[9rem_1fr] gap-1.5 sm:gap-6 border-t border-line py-4 sm:py-5"
                   >
                     <dt className="u-label">{fact.label}</dt>
                     <dd className="font-body text-[0.9375rem] text-ink">{fact.value}</dd>
@@ -337,11 +337,11 @@ export default async function StudioPage() {
           {/* Quick Anchor Navigation Bar */}
           <nav
             aria-label="Điều hướng nhanh trang Studio"
-            className="mt-14 border-y border-line bg-surface/70 px-4 py-4 sm:px-6"
+            className="mt-10 sm:mt-14 border-y border-line bg-surface/70 px-4 py-4 sm:px-6"
           >
-            <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-3">
               <span className="u-label text-accent">Mục lục hồ sơ Studio:</span>
-              <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <ul className="grid grid-cols-1 xs:grid-cols-2 sm:flex sm:flex-wrap items-center gap-x-6 gap-y-2.5">
                 {STUDIO_ANCHORS.map((anchor) => (
                   <li key={anchor.code}>
                     <a
@@ -381,7 +381,7 @@ export default async function StudioPage() {
 
       {/* ------------------------------- philosophy ------------------------------ */}
       <section id="cach-nghi" className="u-gutter mt-[var(--spacing-section)] scroll-mt-28">
-        <div className="mx-auto grid w-full max-w-[110rem] gap-16 lg:grid-cols-12 lg:gap-20">
+        <div className="mx-auto grid w-full max-w-[110rem] gap-12 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-16 xl:gap-x-12">
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
               <Reveal>

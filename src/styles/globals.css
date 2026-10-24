@@ -518,6 +518,26 @@
     padding-block: 0.26em 0.16em;
     margin-block: -0.26em -0.16em;
   }
+
+  /*
+   * Responsive 12-column CSS Grid column-gap safeguard:
+   * On 360px–639px phones, `.grid-cols-12` has 11 column gaps. When paired with
+   * `gap-8` or `gap-x-8` (32px), 11 * 32px = 352px of unshrinkable gap space,
+   * overflowing a 320px content box (360px - 2 * 20px gutter) to 372px.
+   * Clamping column-gap on mobile/tablet keeps all 12-column grids strictly
+   * inside the viewport while preserving desktop `gap-8` / `gap-x-8` rhythm.
+   */
+  @media (max-width: 639px) {
+    .grid-cols-12 {
+      column-gap: clamp(0.5rem, 2.2vw, 0.875rem) !important;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .grid-cols-12 {
+      column-gap: clamp(0.75rem, 2vw, 1.25rem) !important;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

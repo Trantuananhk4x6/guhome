@@ -406,21 +406,21 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
     >
       <div className="mx-auto w-full max-w-[110rem]">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pb-10 border-b border-line">
+        <div className="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-6 pb-8 sm:pb-10 border-b border-line">
           <div className="flex flex-col gap-3 max-w-[70ch]">
             <Label rule tone="accent">
               Tuyển Tập Lookbook Không Gian 2026
             </Label>
-            <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-normal text-ink leading-[1.2]">
+            <h2 className="font-display text-[clamp(1.75rem,3.8vw,3.5rem)] font-normal text-ink leading-[1.2]">
               Khám phá giải pháp không gian thực tế tại các tâm điểm bất động sản Sài Gòn.
             </h2>
-            <p className="font-body text-[1rem] text-ink/75 leading-relaxed mt-1">
+            <p className="font-body text-[0.95rem] sm:text-[1rem] text-ink/75 leading-relaxed mt-1">
               Mỗi công trình là một bài toán vi khí hậu đặc thù, được xưởng mộc Thạnh Xuân 1.200m² của GuHomes may đo riêng biệt từng chi tiết mộng gỗ, lớp sơn mài và phiến đá tự nhiên.
             </p>
           </div>
 
           {/* Lookbook Navigation Tabs */}
-          <div className="flex flex-wrap gap-2 shrink-0">
+          <div className="flex flex-wrap gap-2 w-full xl:w-auto">
             {LOOKBOOKS.map((lb) => {
               const isActive = lb.id === selectedId
               return (
@@ -432,14 +432,14 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
                     stopAudio()
                   }}
                   className={cn(
-                    'group relative flex min-h-[44px] items-center gap-2.5 rounded-full border px-5 py-2.5 font-body text-xs sm:text-sm font-medium transition-all duration-300 active:scale-95 cursor-pointer',
+                    'group relative flex min-h-[42px] items-center gap-2 rounded-full border px-4 py-2 sm:px-5 sm:py-2.5 font-body text-xs sm:text-sm font-medium transition-all duration-300 active:scale-95 cursor-pointer',
                     isActive
                       ? 'border-accent bg-espresso text-canvas shadow-md'
                       : 'border-line bg-surface hover:border-accent/50 hover:bg-canvas text-ink/80',
                   )}
                 >
-                  <span className={cn('h-2 w-2 rounded-full', isActive ? 'bg-accent animate-pulse' : 'bg-line')} />
-                  <span>{lb.title.replace('Penthouse ', '').replace('Dinh Thự ', '').replace('Biệt Thự Đảo ', '')}</span>
+                  <span className={cn('h-2 w-2 shrink-0 rounded-full', isActive ? 'bg-accent animate-pulse' : 'bg-line')} />
+                  <span className="text-left">{lb.title.replace('Penthouse ', '').replace('Dinh Thự ', '').replace('Biệt Thự Đảo ', '')}</span>
                 </button>
               )
             })}
@@ -447,13 +447,13 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
         </div>
 
         {/* View Mode Switcher Subtabs */}
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-b border-line/60 pb-4">
-          <div className="flex items-center gap-2 bg-canvas/80 p-1 rounded-xl border border-line">
+        <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-between gap-3 sm:gap-4 border-b border-line/60 pb-4">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 bg-canvas/80 p-1 rounded-xl border border-line w-full sm:w-auto">
             <button
               type="button"
               onClick={() => setActiveTab('overview')}
               className={cn(
-                'min-h-[38px] px-4 py-1.5 rounded-lg text-xs font-mono transition-all',
+                'min-h-[36px] px-3 py-1.5 sm:px-4 rounded-lg text-[11px] sm:text-xs font-mono transition-all',
                 activeTab === 'overview'
                   ? 'bg-espresso text-canvas font-medium shadow-xs'
                   : 'text-muted hover:text-ink',
@@ -465,7 +465,7 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
               type="button"
               onClick={() => setActiveTab('tactile')}
               className={cn(
-                'min-h-[38px] px-4 py-1.5 rounded-lg text-xs font-mono transition-all',
+                'min-h-[36px] px-3 py-1.5 sm:px-4 rounded-lg text-[11px] sm:text-xs font-mono transition-all',
                 activeTab === 'tactile'
                   ? 'bg-espresso text-canvas font-medium shadow-xs'
                   : 'text-muted hover:text-ink',
@@ -477,7 +477,7 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
               type="button"
               onClick={() => setActiveTab('climate')}
               className={cn(
-                'min-h-[38px] px-4 py-1.5 rounded-lg text-xs font-mono transition-all',
+                'min-h-[36px] px-3 py-1.5 sm:px-4 rounded-lg text-[11px] sm:text-xs font-mono transition-all',
                 activeTab === 'climate'
                   ? 'bg-espresso text-canvas font-medium shadow-xs'
                   : 'text-muted hover:text-ink',
@@ -492,15 +492,15 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
             type="button"
             onClick={toggleSoundscape}
             className={cn(
-              'min-h-[40px] px-4 py-2 rounded-full border text-xs font-mono flex items-center gap-2.5 transition-all cursor-pointer',
+              'min-h-[38px] px-3.5 py-2 sm:px-4 rounded-full border text-[11px] sm:text-xs font-mono flex items-center gap-2 transition-all cursor-pointer max-w-full',
               isPlayingAudio
                 ? 'border-accent bg-accent/15 text-accent shadow-sm animate-pulse'
                 : 'border-line bg-canvas hover:border-accent/40 text-muted hover:text-ink',
             )}
             title="Nghe mô phỏng âm học môi trường vi khí hậu"
           >
-            <span className={cn('h-2 w-2 rounded-full', isPlayingAudio ? 'bg-accent' : 'bg-line')} />
-            <span>{isPlayingAudio ? 'Đang phát trường âm: ' : 'Mô phỏng âm học: '} {currentLookbook.soundscapeName} ({currentLookbook.soundscapeFreq}Hz)</span>
+            <span className={cn('h-2 w-2 shrink-0 rounded-full', isPlayingAudio ? 'bg-accent' : 'bg-line')} />
+            <span className="truncate">{isPlayingAudio ? 'Đang phát trường âm: ' : 'Mô phỏng âm học: '} {currentLookbook.soundscapeName} ({currentLookbook.soundscapeFreq}Hz)</span>
           </button>
         </div>
 
@@ -516,7 +516,7 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
           >
             {/* Left 7 Cols: Image & Visual Representation */}
             <div className="lg:col-span-7 flex flex-col gap-6">
-              <div className="relative aspect-[16/10] w-full overflow-hidden border border-line bg-surface shadow-2xl group rounded-2xl">
+              <div className="relative aspect-[4/3] sm:aspect-[16/10] w-full overflow-hidden border border-line bg-surface shadow-2xl group rounded-2xl">
                 <Image
                   src={currentLookbook.image}
                   alt={currentLookbook.imageAlt}
@@ -525,27 +525,27 @@ export function BespokeSpatialLookbookShowcase({ className }: { className?: stri
                   className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-105"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-espresso/85 via-espresso/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/30 to-transparent" />
 
                 {/* Overlaid Badges */}
-                <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-4">
-                  <div className="flex flex-col gap-1 text-canvas">
-                    <span className="font-mono text-xs uppercase tracking-wider text-accent-soft">
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap items-end justify-between gap-2.5 sm:gap-4">
+                  <div className="flex flex-col gap-0.5 sm:gap-1 text-canvas">
+                    <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-accent-soft">
                       {currentLookbook.location}
                     </span>
-                    <h3 className="font-display text-2xl sm:text-3xl text-canvas">
+                    <h3 className="font-display text-lg sm:text-2xl md:text-3xl text-canvas">
                       {currentLookbook.title}
                     </h3>
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <div className="flex flex-col items-center justify-center rounded-lg bg-espresso/85 border border-accent/40 px-3.5 py-1.5 backdrop-blur-md">
-                      <span className="font-mono text-[11px] uppercase text-accent-soft">Hạ nhiệt</span>
-                      <span className="font-display text-lg font-medium text-canvas">{currentLookbook.tempReduction}</span>
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="flex flex-col items-center justify-center rounded-lg bg-espresso/85 border border-accent/40 px-2.5 py-1 sm:px-3.5 sm:py-1.5 backdrop-blur-md">
+                      <span className="font-mono text-[10px] sm:text-[11px] uppercase text-accent-soft">Hạ nhiệt</span>
+                      <span className="font-display text-sm sm:text-lg font-medium text-canvas">{currentLookbook.tempReduction}</span>
                     </div>
-                    <div className="flex flex-col items-center justify-center rounded-lg bg-espresso/85 border border-accent/40 px-3.5 py-1.5 backdrop-blur-md">
-                      <span className="font-mono text-[11px] uppercase text-accent-soft">Cân bằng ẩm</span>
-                      <span className="font-display text-lg font-medium text-canvas">{currentLookbook.humidityControl}</span>
+                    <div className="flex flex-col items-center justify-center rounded-lg bg-espresso/85 border border-accent/40 px-2.5 py-1 sm:px-3.5 sm:py-1.5 backdrop-blur-md">
+                      <span className="font-mono text-[10px] sm:text-[11px] uppercase text-accent-soft">Cân bằng ẩm</span>
+                      <span className="font-display text-sm sm:text-lg font-medium text-canvas">{currentLookbook.humidityControl}</span>
                     </div>
                   </div>
                 </div>

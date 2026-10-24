@@ -49,7 +49,7 @@ export function Footer({ nav, brand }: FooterProps) {
   // palette the same rule reads as the deliberate join it always was.
   return (
     <footer className="border-t border-accent/45 bg-espresso text-canvas">
-      <div className="u-gutter pb-12 pt-section">
+      <div className="u-gutter pb-24 pt-section sm:pb-14">
         <section className="grid gap-10 border-b border-canvas/12 pb-12 md:grid-cols-12 md:gap-10 md:pb-16">
           <div className="flex flex-col gap-6 md:col-span-7">
             <Label rule tone="light">
@@ -71,27 +71,27 @@ export function Footer({ nav, brand }: FooterProps) {
           <div className="flex flex-col justify-end gap-6 md:col-span-5">
             <a
               href={`mailto:${brand.email}`}
-              className="group flex items-end justify-between gap-6 border-b border-canvas/25 pb-4 transition-colors duration-500 hover:border-accent-soft"
+              className="group flex items-end justify-between gap-4 sm:gap-6 border-b border-canvas/25 pb-4 transition-colors duration-500 hover:border-accent-soft"
             >
-              <span className="flex flex-col gap-2">
+              <span className="flex min-w-0 flex-col gap-2">
                 <span className="u-label text-canvas/40">Email</span>
-                <span className="font-display text-2xl leading-none text-canvas transition-colors duration-500 group-hover:text-accent-soft">
+                <span className="break-all font-display text-xl sm:text-2xl leading-none text-canvas transition-colors duration-500 group-hover:text-accent-soft">
                   {brand.email}
                 </span>
               </span>
-              <ArrowUpRightIcon className="text-xl text-canvas/45 transition-all duration-500 ease-editorial group-hover:translate-x-1 group-hover:text-accent-soft" />
+              <ArrowUpRightIcon className="shrink-0 text-xl text-canvas/45 transition-all duration-500 ease-editorial group-hover:translate-x-1 group-hover:text-accent-soft" />
             </a>
             <a
               href={tel}
-              className="group flex items-end justify-between gap-6 border-b border-canvas/25 pb-4 transition-colors duration-500 hover:border-accent-soft"
+              className="group flex items-end justify-between gap-4 sm:gap-6 border-b border-canvas/25 pb-4 transition-colors duration-500 hover:border-accent-soft"
             >
-              <span className="flex flex-col gap-2">
+              <span className="flex min-w-0 flex-col gap-2">
                 <span className="u-label text-canvas/40">Gọi</span>
-                <span className="font-display text-2xl leading-none text-canvas transition-colors duration-500 group-hover:text-accent-soft">
+                <span className="font-display text-xl sm:text-2xl leading-none text-canvas transition-colors duration-500 group-hover:text-accent-soft">
                   {brand.phone}
                 </span>
               </span>
-              <ArrowUpRightIcon className="text-xl text-canvas/45 transition-all duration-500 ease-editorial group-hover:translate-x-1 group-hover:text-accent-soft" />
+              <ArrowUpRightIcon className="shrink-0 text-xl text-canvas/45 transition-all duration-500 ease-editorial group-hover:translate-x-1 group-hover:text-accent-soft" />
             </a>
           </div>
         </section>
@@ -100,8 +100,8 @@ export function Footer({ nav, brand }: FooterProps) {
             below `md` are what turn a queue of four blocks into a mark with a
             spread under it: the page list holds the left column for two rows,
             the address and the social names stack down the right. */}
-        <section className="grid grid-cols-2 gap-x-8 gap-y-10 py-12 md:grid-cols-12 md:gap-10 md:py-16">
-          <div className="col-span-2 flex flex-col gap-6 md:col-span-5">
+        <section className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-10 py-12 md:grid-cols-12 md:gap-10 md:py-16">
+          <div className="sm:col-span-2 flex flex-col gap-6 md:col-span-5">
             <Link
               href={home?.href ?? '/'}
               aria-label={`${brand.companyName} - ${home?.label ?? 'Trang chủ'}`}
@@ -176,7 +176,7 @@ export function Footer({ nav, brand }: FooterProps) {
             </ul>
           </nav>
 
-          <address className="col-span-1 col-start-2 flex flex-col gap-5 not-italic md:col-span-2 md:col-start-auto">
+          <address className="col-span-1 sm:col-start-2 flex flex-col gap-5 not-italic md:col-span-2 md:col-start-auto">
             <Label tone="light">Địa chỉ</Label>
             <p className="text-[0.9375rem] leading-relaxed text-canvas/70">{brand.address}</p>
             <p className="max-w-[24ch] text-[0.8125rem] leading-relaxed text-canvas/50">
@@ -184,7 +184,7 @@ export function Footer({ nav, brand }: FooterProps) {
             </p>
           </address>
 
-          <div className="col-span-1 col-start-2 flex flex-col gap-5 md:col-span-2 md:col-start-auto">
+          <div className="col-span-1 sm:col-start-2 flex flex-col gap-5 md:col-span-2 md:col-start-auto">
             <Label tone="light">Theo dõi (07 kênh)</Label>
             <ul className="flex flex-col gap-2.5">
               {brand.social.map((social) => (
