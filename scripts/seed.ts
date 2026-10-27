@@ -165,19 +165,37 @@ async function seedAdmin(): Promise<string> {
     )
   }
   const existing = await db.select().from(schema.users).where(eq(schema.users.email, email)).limit(1)
-  const found = existing[0]
-  if (found) {
+  let adminId = existing[0]?.id
+  if (adminId) {
     log('admin user', `${email} (exists)`)
-    return found.id
+  } else {
+    const inserted = await db
+      .insert(schema.users)
+      .values({ email, name: 'GuHomes Studio', passwordHash: hashPassword(password), role: 'admin' })
+      .returning({ id: schema.users.id })
+    const row = inserted[0]
+    if (!row) throw new Error('failed to create admin user')
+    log('admin user', `${email} (created)`)
+    adminId = row.id
   }
-  const inserted = await db
-    .insert(schema.users)
-    .values({ email, name: 'GuHomes Studio', passwordHash: hashPassword(password), role: 'admin' })
-    .returning({ id: schema.users.id })
-  const row = inserted[0]
-  if (!row) throw new Error('failed to create admin user')
-  log('admin user', `${email} (created)`)
-  return row.id
+
+  const secondaryEmail = 'danglehuutien000@gmail.com'
+  const existingSecondary = await db
+    .select()
+    .from(schema.users)
+    .where(eq(schema.users.email, secondaryEmail))
+    .limit(1)
+  if (!existingSecondary[0]) {
+    await db.insert(schema.users).values({
+      email: secondaryEmail,
+      name: 'Đặng Lê Hữu Tiến',
+      passwordHash: hashPassword('Huutien@000'),
+      role: 'admin',
+    })
+    log('admin user', `${secondaryEmail} (created)`)
+  }
+
+  return adminId
 }
 
 async function seedCategories(): Promise<Map<string, string>> {

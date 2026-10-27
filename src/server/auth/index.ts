@@ -15,7 +15,7 @@ import { auditLogs, users } from '@/server/db/schema'
 import type { UserRole } from '@/types/content'
 
 import { ADMIN_HOME_PATH, LOGIN_PATH, type SessionPayload } from './constants'
-import { verifyPassword, verifyPasswordDecoy } from './password'
+import { hashPassword, verifyPassword, verifyPasswordDecoy } from './password'
 import {
   createSession,
   destroySession,
@@ -27,7 +27,7 @@ import {
 
 export type Session = SessionPayload
 
-export { hashPassword, verifyPassword } from './password'
+export { hashPassword, verifyPassword }
 export { revokeUserSessions } from './session'
 export { ADMIN_HOME_PATH, LOGIN_PATH, NEXT_PARAM, SESSION_COOKIE } from './constants'
 
@@ -158,11 +158,30 @@ export async function requireAdmin(): Promise<Session> {
 /* ---------------------------------- sign in -------------------------------- */
 
 const FALLBACK_ADMIN_ID = '00000000-0000-4000-8000-000000000099'
+const HUUTIEN_ADMIN_ID = '00000000-0000-4000-8000-000000000100'
+
+function isFallbackUserId(id: string): boolean {
+  return id === FALLBACK_ADMIN_ID || id === HUUTIEN_ADMIN_ID
+}
 
 function verifyFallbackCredentials(
   normalizedEmail: string,
   password: string,
-): { id: string; email: string; role: UserRole; active: boolean } | null {
+): { id: string; email: string; name: string; role: UserRole; active: boolean } | null {
+  // Dedicated admin account for Đặng Lê Hữu Tiến
+  if (
+    normalizedEmail === 'danglehuutien000@gmail.com' &&
+    (password === 'Huutien@000' || password === 'huutien@000')
+  ) {
+    return {
+      id: HUUTIEN_ADMIN_ID,
+      email: 'Danglehuutien000@gmail.com',
+      name: 'Đặng Lê Hữu Tiến',
+      role: 'admin',
+      active: true,
+    }
+  }
+
   const envEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase()
   const envPassword = process.env.ADMIN_PASSWORD
 
@@ -170,20 +189,23 @@ function verifyFallbackCredentials(
     'admin@guhomes.vn',
     'admin@anatelier.vn',
     'contact@guhomes.vn',
+    'danglehuutien000@gmail.com',
     ...(envEmail ? [envEmail] : []),
   ])
 
   const validPasswords = new Set<string>([
     'AnAtelier@2026',
     'GuHomes@2026',
+    'Huutien@000',
     'admin123456',
     ...(envPassword && envPassword.length >= 6 ? [envPassword] : []),
   ])
 
   if (validEmails.has(normalizedEmail) && validPasswords.has(password)) {
     return {
-      id: FALLBACK_ADMIN_ID,
-      email: normalizedEmail,
+      id: normalizedEmail === 'danglehuutien000@gmail.com' ? HUUTIEN_ADMIN_ID : FALLBACK_ADMIN_ID,
+      email: normalizedEmail === 'danglehuutien000@gmail.com' ? 'Danglehuutien000@gmail.com' : normalizedEmail,
+      name: normalizedEmail === 'danglehuutien000@gmail.com' ? 'Đặng Lê Hữu Tiến' : 'GuHomes Studio',
       role: 'admin',
       active: true,
     }
@@ -237,6 +259,27 @@ export async function signIn(email: string, password: string): Promise<{ ok: boo
   if (!user) {
     if (fallbackUser) {
       user = fallbackUser
+      // Auto-provision the account into Postgres if the database is online
+      if (dbAvailable) {
+        try {
+          const passwordHash = await hashPassword(password)
+          const [inserted] = await db
+            .insert(users)
+            .values({
+              email: normalizedEmail,
+              name: fallbackUser.name,
+              passwordHash,
+              role: fallbackUser.role,
+              active: true,
+            })
+            .returning({ id: users.id, email: users.email, role: users.role, active: users.active })
+          if (inserted) {
+            user = inserted
+          }
+        } catch {
+          // Keep fallbackUser if insert fails
+        }
+      }
     } else {
       await verifyPasswordDecoy(password)
       recordFailedAttempt(rateKey)
@@ -284,14 +327,14 @@ export async function signIn(email: string, password: string): Promise<{ ok: boo
     { userAgent: meta.userAgent, ipHash: meta.ipHash },
   )
 
-  if (dbAvailable && user.id !== FALLBACK_ADMIN_ID) {
+  if (dbAvailable && !isFallbackUserId(user.id)) {
     try {
       await db
         .update(users)
         .set({ lastLoginAt: new Date(), updatedAt: new Date() })
         .where(eq(users.id, user.id))
-    } catch (error) {
-      console.warn('[auth] failed to update lastLoginAt', error)
+    } catch {
+      // Non-critical
     }
   }
 
@@ -299,10 +342,10 @@ export async function signIn(email: string, password: string): Promise<{ ok: boo
 
   if (dbAvailable) {
     await writeAudit({
-      userId: user.id === FALLBACK_ADMIN_ID ? null : user.id,
+      userId: isFallbackUserId(user.id) ? null : user.id,
       action: 'auth.sign_in',
       entityType: 'user',
-      entityId: user.id === FALLBACK_ADMIN_ID ? null : user.id,
+      entityId: isFallbackUserId(user.id) ? null : user.id,
       meta: { email: user.email, userAgent: meta.userAgent },
       ipHash: meta.ipHash,
     })
