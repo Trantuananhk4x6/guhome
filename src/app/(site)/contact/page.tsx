@@ -61,8 +61,7 @@ function bandProject(projects: readonly ProjectSummary[]): ProjectSummary | null
 export default async function ContactPage() {
   const [theme, featured] = await Promise.all([
     getThemeSettings(),
-    getPublishedProjects({ featured: true, limit: 8 }).catch((error: unknown) => {
-      console.error('[contact] project query failed - the band will be omitted', error)
+    getPublishedProjects({ featured: true, limit: 8 }).catch(() => {
       return [] as ProjectSummary[]
     }),
   ])

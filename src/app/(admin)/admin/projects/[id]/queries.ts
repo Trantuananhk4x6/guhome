@@ -46,8 +46,7 @@ export async function getAdminProjectRow(id: string): Promise<AdminProjectRow | 
       .where(eq(projects.id, id))
       .limit(1)
     return rows[0] ?? null
-  } catch (error) {
-    console.error('[admin/projects] row read failed', error)
+  } catch {
     return null
   }
 }
@@ -64,8 +63,7 @@ export async function listProjectCategories(): Promise<CategoryOption[]> {
       .where(eq(categories.kind, 'project'))
       .orderBy(asc(categories.order), asc(categories.name))
     return rows
-  } catch (error) {
-    console.error('[admin/projects] categories read failed', error)
+  } catch {
     return []
   }
 }
@@ -77,8 +75,7 @@ export async function listMaterialOptions(): Promise<MaterialOption[]> {
       .from(materials)
       .orderBy(asc(materials.order), asc(materials.name))
     return rows
-  } catch (error) {
-    console.error('[admin/projects] materials read failed', error)
+  } catch {
     return []
   }
 }
@@ -93,8 +90,7 @@ export async function listSiblingProjects(excludeId: string): Promise<SiblingPro
       .orderBy(asc(projects.title))
       .limit(300)
     return rows
-  } catch (error) {
-    console.error('[admin/projects] sibling projects read failed', error)
+  } catch {
     return []
   }
 }
@@ -128,8 +124,7 @@ export async function listSceneOptions(projectId: string): Promise<SceneOption[]
       const mine = Number(b.projectId === projectId) - Number(a.projectId === projectId)
       return mine !== 0 ? mine : a.label.localeCompare(b.label, 'vi')
     })
-  } catch (error) {
-    console.error('[admin/projects] scenes read failed', error)
+  } catch {
     return []
   }
 }
@@ -185,8 +180,8 @@ export async function getEditorMediaIndex(project: ProjectDetail): Promise<Recor
   try {
     const refs = await getMediaByIds([...new Set(missing)])
     for (const ref of refs) index[ref.id] = ref
-  } catch (error) {
-    console.error('[admin/projects] media index read failed', error)
+  } catch {
+    // Fallback silently when database is unreachable
   }
 
   return index

@@ -25,11 +25,10 @@ import { getMediaMap } from './media'
  * migrated but not seeded. A style band that cannot load should leave the page
  * without a band, not without a page.
  */
-async function safeRead<T>(label: string, run: () => Promise<T>, fallback: T): Promise<T> {
+async function safeRead<T>(_label: string, run: () => Promise<T>, fallback: T): Promise<T> {
   try {
     return await run()
-  } catch (error) {
-    console.error(`[queries/styles] ${label} failed — falling back to defaults`, error)
+  } catch {
     return fallback
   }
 }

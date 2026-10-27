@@ -80,8 +80,7 @@ export async function listAdminArticles(query: AdminArticleQuery = {}): Promise<
       updatedAt: article.updatedAt,
       authorName,
     }))
-  } catch (error) {
-    console.error('[admin/articles] listAdminArticles failed; using static fallback', error)
+  } catch {
     if (query.status && query.status !== 'all' && query.status !== 'published') return []
     let fallback = getStaticArticles()
     const term = query.search?.trim().toLowerCase()
@@ -126,8 +125,7 @@ export async function countAdminArticles(): Promise<AdminArticleCounts> {
       out.all += row.value
     }
     return out
-  } catch (error) {
-    console.error('[admin/articles] countAdminArticles failed; using static fallback', error)
+  } catch {
     const count = getStaticArticles().length
     return { all: count, draft: 0, published: count, archived: 0 }
   }
@@ -163,8 +161,7 @@ export async function getAdminArticle(id: string): Promise<AdminArticleDetail | 
       content: article.content,
       seo: article.seo ?? null,
     }
-  } catch (error) {
-    console.error('[admin/articles] getAdminArticle failed; using static fallback', error)
+  } catch {
     const detail = getStaticArticleDetail(id)
     if (!detail) return null
     const now = new Date()
@@ -230,8 +227,7 @@ export async function listJournalCategories(): Promise<ArticleCategoryOption[]> 
       .where(eq(categories.kind, 'journal'))
       .orderBy(asc(categories.order), asc(categories.name))
     return rows
-  } catch (error) {
-    console.error('[admin/articles] listJournalCategories failed', error)
+  } catch {
     return []
   }
 }
@@ -252,8 +248,7 @@ export async function listProjectOptions(): Promise<ArticleProjectOption[]> {
       .orderBy(asc(projects.order), asc(projects.title))
       .limit(200)
     return rows
-  } catch (error) {
-    console.error('[admin/articles] listProjectOptions failed', error)
+  } catch {
     return []
   }
 }

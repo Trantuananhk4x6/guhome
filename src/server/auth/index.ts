@@ -114,9 +114,8 @@ async function writeAudit(entry: {
       meta: entry.meta ?? null,
       ipHash: entry.ipHash ?? null,
     })
-  } catch (error) {
+  } catch {
     // An audit write must never break the flow it observes.
-    console.error('[auth] audit log write failed', error)
   }
 }
 
@@ -137,8 +136,7 @@ export const getSession = cache(async (): Promise<Session | null> => {
     const record = await resolveSession(token)
     if (!record) return null
     return { userId: record.userId, email: record.email, role: record.role }
-  } catch (error) {
-    console.error('[auth] session resolution failed', error)
+  } catch {
     return null
   }
 })
@@ -229,9 +227,8 @@ export async function signIn(email: string, password: string): Promise<{ ok: boo
       .limit(1)
 
     user = rows[0]
-  } catch (error) {
+  } catch {
     dbAvailable = false
-    console.warn('[auth] DB unavailable during signIn; using fallback studio admin credentials', error)
   }
 
   // If DB is offline/quota-exceeded OR the user matches the studio fallback admin credentials
@@ -312,8 +309,8 @@ export async function signIn(email: string, password: string): Promise<{ ok: boo
 
     try {
       await purgeExpiredSessions()
-    } catch (error) {
-      console.error('[auth] expired session purge failed', error)
+    } catch {
+      // Non-critical housekeeping
     }
   }
 

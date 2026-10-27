@@ -37,11 +37,10 @@ import { getStaticMaterials, getStaticServiceBySlug, getStaticServices } from '.
 
 export type NavLocation = 'header' | 'footer'
 
-async function safeRead<T>(label: string, run: () => Promise<T>, fallback: T): Promise<T> {
+async function safeRead<T>(_label: string, run: () => Promise<T>, fallback: T): Promise<T> {
   try {
     return await run()
-  } catch (error) {
-    console.error(`[queries/site] ${label} failed — falling back to defaults`, error)
+  } catch {
     return fallback
   }
 }

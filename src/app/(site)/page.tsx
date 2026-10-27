@@ -50,8 +50,7 @@ export const metadata: Metadata = {
 async function safe<T>(run: () => Promise<T>, fallback: T): Promise<T> {
   try {
     return await run()
-  } catch (error) {
-    console.error('[home] query failed - falling back', error)
+  } catch {
     return fallback
   }
 }

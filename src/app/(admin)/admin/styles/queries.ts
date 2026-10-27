@@ -60,8 +60,7 @@ export async function listAdminStyles(): Promise<AdminStyleRow[]> {
       enabled: row.enabled,
       projectCount: row.projectCount,
     }))
-  } catch (error) {
-    console.error('[admin/styles] listAdminStyles failed; using fallback styles', error)
+  } catch {
     const fallback = await getPublishedStyles()
     return fallback.map((s) => ({
       id: s.id,

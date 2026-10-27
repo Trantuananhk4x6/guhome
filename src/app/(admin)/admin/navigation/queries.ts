@@ -27,8 +27,7 @@ export async function listNavigation(location: NavLocation): Promise<NavDraftIte
       .orderBy(asc(navigation.order), asc(navigation.label))
 
     return rows.map((row) => ({ id: row.id, label: row.label, href: row.href, enabled: row.enabled }))
-  } catch (error) {
-    console.error(`[admin/navigation] listNavigation(${location}) failed; using fallback`, error)
+  } catch {
     const fallbackList = location === 'footer' ? FALLBACK_FOOTER_NAV : FALLBACK_HEADER_NAV
     return fallbackList.map((item) => ({
       id: `${location}-${item.id}`,

@@ -72,8 +72,7 @@ export async function listContactRequests(query: ContactQuery = {}): Promise<Con
       source: row.source,
       createdAt: row.createdAt,
     }))
-  } catch (error) {
-    console.error('[admin/settings] listContactRequests failed', error)
+  } catch {
     return []
   }
 }
@@ -94,8 +93,7 @@ export async function countContactRequests(): Promise<ContactCounts> {
       out.all += row.value
     }
     return out
-  } catch (error) {
-    console.error('[admin/settings] countContactRequests failed', error)
+  } catch {
     return empty
   }
 }

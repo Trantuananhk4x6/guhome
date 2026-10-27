@@ -135,8 +135,7 @@ const loadMediaLibrary = cache(async (key: string): Promise<MediaLibraryItem[]> 
       bytes: row.bytes,
       createdAt: row.createdAt,
     }))
-  } catch (error) {
-    console.warn('[media] loadMediaLibrary DB fallback', error)
+  } catch {
     return []
   }
 })

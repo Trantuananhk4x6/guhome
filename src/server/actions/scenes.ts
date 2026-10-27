@@ -192,8 +192,7 @@ export async function fetchScenes(): Promise<SceneListItem[]> {
       projectSlug: row.projectSlug,
       updatedAt: row.scene.updatedAt,
     }))
-  } catch (error) {
-    console.warn('[actions/scenes] fetchScenes failed; returning empty list', error)
+  } catch {
     return []
   }
 }
@@ -241,8 +240,7 @@ export async function fetchReconJobs(limit = 60): Promise<ReconJobItem[]> {
         finishedAt: row.job.finishedAt,
       }
     })
-  } catch (error) {
-    console.warn('[actions/scenes] fetchReconJobs failed; returning empty list', error)
+  } catch {
     return []
   }
 }

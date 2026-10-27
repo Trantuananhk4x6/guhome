@@ -155,8 +155,7 @@ export async function resolveSession(token: string): Promise<SessionRecord | nul
       role,
       expiresAt: row.expiresAt,
     }
-  } catch (error) {
-    console.warn('[auth] DB unavailable during resolveSession; falling back to verified JWT claims', error)
+  } catch {
     return {
       sessionId: 'jwt-stateless',
       userId: payload.userId,
@@ -185,8 +184,8 @@ export async function createSession(payload: SessionPayload, meta: SessionMeta =
       userAgent: meta.userAgent ?? null,
       ipHash: meta.ipHash ?? null,
     })
-  } catch (error) {
-    console.warn('[auth] DB unavailable during createSession; proceeding with signed JWT cookie', error)
+  } catch {
+    // Proceed with signed stateless JWT cookie when database is offline/quota-exceeded
   }
 
   await writeSessionCookie(token, expiresAt)
@@ -199,8 +198,8 @@ export async function destroySession(): Promise<void> {
   if (token) {
     try {
       await db.delete(sessions).where(eq(sessions.tokenHash, sha256(token)))
-    } catch (error) {
-      console.warn('[auth] DB unavailable during destroySession; clearing cookie anyway', error)
+    } catch {
+      // Clear cookie even when database is offline
     }
   }
   await clearSessionCookie()

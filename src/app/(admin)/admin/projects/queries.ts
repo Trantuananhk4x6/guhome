@@ -149,8 +149,7 @@ export async function listAdminProjects(query: AdminProjectQuery = {}): Promise<
       publishedAt: row.publishedAt,
       updatedAt: row.updatedAt,
     }))
-  } catch (error) {
-    console.error('[admin/projects] listAdminProjects failed; using static fallback', error)
+  } catch {
     let fallback = getStaticPublishedProjects({
       categorySlug: query.categorySlug,
       featured: query.featured,
@@ -201,8 +200,7 @@ export async function countAdminProjects(query: AdminProjectQuery = {}): Promise
       .leftJoin(categories, eq(projects.categoryId, categories.id))
       .where(filters(query))
     return rows[0]?.value ?? 0
-  } catch (error) {
-    console.error('[admin/projects] countAdminProjects failed; using static fallback', error)
+  } catch {
     if (query.status && query.status !== 'all' && query.status !== 'published') return 0
     let fallback = getStaticPublishedProjects({
       categorySlug: query.categorySlug,
@@ -246,8 +244,7 @@ export async function countAdminProjectsByStatus(
       out.all += row.value
     }
     return out
-  } catch (error) {
-    console.error('[admin/projects] countAdminProjectsByStatus failed; using static fallback', error)
+  } catch {
     const count = await countAdminProjects({ ...query, status: 'published' })
     return { all: count, draft: 0, published: count, archived: 0 }
   }
@@ -276,8 +273,7 @@ export async function listProjectCategories(): Promise<ProjectCategoryOption[]> 
       .groupBy(categories.id, categories.slug, categories.name, categories.order)
       .orderBy(asc(categories.order), asc(categories.name))
     return rows
-  } catch (error) {
-    console.error('[admin/projects] listProjectCategories failed; using static fallback', error)
+  } catch {
     const allProjects = getStaticPublishedProjects()
     return CATEGORY_SEEDS.map((c) => ({
       id: c.slug,
@@ -309,8 +305,7 @@ export async function listStyleOptions(): Promise<StyleOption[]> {
 export async function listProjectStyleIds(projectId: string): Promise<string[]> {
   try {
     return await getStyleIdsForProject(projectId)
-  } catch (error) {
-    console.error('[admin/projects] listProjectStyleIds failed', error)
+  } catch {
     return []
   }
 }

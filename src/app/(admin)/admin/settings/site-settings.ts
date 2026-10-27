@@ -79,8 +79,7 @@ export const getSiteSeoDefaults = cache(async (): Promise<SeoDefaults> => {
     const row = rows[0]
     if (!row) return DEFAULT_SEO
     return parse(row.data)
-  } catch (error) {
-    console.error('[settings] getSiteSeoDefaults failed — using defaults', error)
+  } catch {
     return DEFAULT_SEO
   }
 })

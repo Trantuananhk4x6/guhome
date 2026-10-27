@@ -26,11 +26,10 @@ const STATIC_ROUTES: ReadonlyArray<{
  * A sitemap must never be the reason a deploy fails: if the database is
  * unreachable the static routes still ship.
  */
-async function safeSlugs(label: string, read: () => Promise<string[]>): Promise<string[]> {
+async function safeSlugs(_label: string, read: () => Promise<string[]>): Promise<string[]> {
   try {
     return await read()
-  } catch (error) {
-    console.error(`[sitemap] ${label} failed — omitting those entries`, error)
+  } catch {
     return []
   }
 }
