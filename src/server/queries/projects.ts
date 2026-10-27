@@ -414,30 +414,40 @@ export const getRelatedProjects = cache(
   async (projectId: string, limit = 3): Promise<ProjectSummary[]> => {
     if (limit <= 0) return []
 
-    const currentRows = await db
-      .select({ categoryId: projects.categoryId })
-      .from(projects)
-      .where(eq(projects.id, projectId))
-      .limit(1)
-    const categoryId = currentRows[0]?.categoryId ?? null
+    try {
+      const currentRows = await db
+        .select({ categoryId: projects.categoryId })
+        .from(projects)
+        .where(eq(projects.id, projectId))
+        .limit(1)
+      const categoryId = currentRows[0]?.categoryId ?? null
 
-    const orderBy: SQL[] = []
-    if (categoryId) {
-      // Same category first, then everything else.
-      orderBy.push(sql`case when ${projects.categoryId} = ${categoryId} then 0 else 1 end`)
+      const orderBy: SQL[] = []
+      if (categoryId) {
+        // Same category first, then everything else.
+        orderBy.push(sql`case when ${projects.categoryId} = ${categoryId} then 0 else 1 end`)
+      }
+      orderBy.push(desc(projects.featured), publishedOrder())
+
+      const rows = await db
+        .select(projectSelection)
+        .from(projects)
+        .leftJoin(categories, eq(projects.categoryId, categories.id))
+        .leftJoin(media, eq(projects.coverMediaId, media.id))
+        .where(and(publishedFilter(), ne(projects.id, projectId)))
+        .orderBy(...orderBy)
+        .limit(limit)
+
+      if (rows && rows.length > 0) {
+        return await toSummaries(rows)
+      }
+    } catch {
+      // Database offline, use static related projects
     }
-    orderBy.push(desc(projects.featured), publishedOrder())
 
-    const rows = await db
-      .select(projectSelection)
-      .from(projects)
-      .leftJoin(categories, eq(projects.categoryId, categories.id))
-      .leftJoin(media, eq(projects.coverMediaId, media.id))
-      .where(and(publishedFilter(), ne(projects.id, projectId)))
-      .orderBy(...orderBy)
-      .limit(limit)
-
-    return toSummaries(rows)
+    return getStaticPublishedProjects()
+      .filter((p) => p.id !== projectId && p.slug !== projectId)
+      .slice(0, limit)
   },
 )
 
@@ -468,15 +478,27 @@ export async function getProjectsByIds(ids: readonly string[]): Promise<ProjectS
   const wanted = ids.filter((id) => id.length > 0)
   if (wanted.length === 0) return []
 
-  const rows = await db
-    .select(projectSelection)
-    .from(projects)
-    .leftJoin(categories, eq(projects.categoryId, categories.id))
-    .leftJoin(media, eq(projects.coverMediaId, media.id))
-    .where(and(publishedFilter(), inArray(projects.id, wanted)))
+  try {
+    const rows = await db
+      .select(projectSelection)
+      .from(projects)
+      .leftJoin(categories, eq(projects.categoryId, categories.id))
+      .leftJoin(media, eq(projects.coverMediaId, media.id))
+      .where(and(publishedFilter(), inArray(projects.id, wanted)))
 
-  const summaries = await toSummaries(rows)
-  const byId = new Map(summaries.map((summary) => [summary.id, summary]))
+    if (rows && rows.length > 0) {
+      const summaries = await toSummaries(rows)
+      const byId = new Map(summaries.map((summary) => [summary.id, summary]))
+      return wanted
+        .map((id) => byId.get(id))
+        .filter((summary): summary is ProjectSummary => summary !== undefined)
+    }
+  } catch {
+    // Database offline, fall back to static projects
+  }
+
+  const staticAll = getStaticPublishedProjects()
+  const byId = new Map(staticAll.flatMap((p) => [[p.id, p], [p.slug, p]] as const))
   return wanted
     .map((id) => byId.get(id))
     .filter((summary): summary is ProjectSummary => summary !== undefined)

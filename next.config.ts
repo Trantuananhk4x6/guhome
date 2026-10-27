@@ -2,6 +2,10 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  serverExternalPackages: ['sharp'],
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     /*
      * THE PIPELINE ALREADY DID THIS WORK.

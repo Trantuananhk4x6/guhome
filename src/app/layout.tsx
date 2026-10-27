@@ -1,13 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import {
-  Be_Vietnam_Pro,
-  Cormorant_Garamond,
-  Inter,
-  Lora,
-  Manrope,
-  Playfair_Display,
-  Source_Serif_4,
-} from 'next/font/google'
 import type { ReactNode } from 'react'
 
 import '@/styles/globals.css'
@@ -20,98 +11,8 @@ import { resolveAppearance, themeBootScript } from '@/lib/appearance'
 import { DEFAULT_THEME, THEME_STYLE_ID, dualThemeStyleSheet } from '@/lib/theme'
 import { getAppearance, getThemeSettings } from '@/server/queries/site'
 
-/**
- * The type library the theme editor can choose from.
- *
- * next/font only accepts literal arguments, so every family is spelled out here
- * and the `variable` names are repeated verbatim in FONT_LIBRARY in
- * `@/lib/theme` — that is what `--f-display` / `--f-body` resolve to.
- *
- * Every family below carries the `vietnamese` subset. That is not a nicety:
- * Instrument Serif and DM Serif Display, both named in the original brief, ship
- * no Vietnamese range at all, so Vietnamese text in them falls back mid-sentence
- * and the diacritics break. They are deliberately absent.
- *
- * next/font takes literal arguments only, so the subset list is repeated in full
- * for every family rather than shared.
- *
- * The two rendered families keep `latin-ext`, and that is not the obvious call —
- * it looks like European padding on a Vietnamese site. I removed it, measured,
- * and put it back. Google does not split Be Vietnam Pro along the line the
- * subset NAMES imply: `latin-ext` carries đ ư ơ ă ĩ ũ Đ, seven of the most
- * common letters in Vietnamese, while `vietnamese` carries the tone-marked forms
- * at U+1EA0–1EF1. Both files are genuinely required to render one Vietnamese
- * sentence. Dropping `latin-ext` from `subsets` did not stop the download — the
- * @font-face rule is emitted either way, and the browser fetched it the moment
- * it hit the first `đ`. All it removed was the PRELOAD, which moved that fetch
- * from the head to after CSS parse and put a swap on the commonest letters on
- * the page. Eight kilobytes saved for a visible reflow is a bad trade.
- *
- * Weights are 400 and 500 only. This is a static family, so a third weight is
- * three more files across the three subsets; 600 was used in exactly one place
- * (see Header) and had three other signals doing the same job.
- *
- * Only the two defaults are preloaded. The rest still emit their @font-face, so
- * switching the theme picks them up immediately, but a visitor never downloads a
- * face the site is not using.
- */
-const playfair = Playfair_Display({
-  subsets: ['latin', 'latin-ext', 'vietnamese'],
-  weight: ['400', '500'],
-  display: 'swap',
-  variable: '--font-playfair-display',
-})
-
-const bodyFont = Be_Vietnam_Pro({
-  subsets: ['latin', 'latin-ext', 'vietnamese'],
-  weight: ['400', '500'],
-  display: 'swap',
-  variable: '--font-be-vietnam-pro',
-})
-
-const lora = Lora({
-  subsets: ['latin', 'vietnamese'],
-  weight: ['400', '500'],
-  display: 'swap',
-  preload: false,
-  variable: '--font-lora',
-})
-
-const sourceSerif = Source_Serif_4({
-  subsets: ['latin', 'vietnamese'],
-  weight: ['400', '600'],
-  display: 'swap',
-  preload: false,
-  variable: '--font-source-serif-4',
-})
-
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500'],
-  display: 'swap',
-  preload: false,
-  variable: '--font-cormorant-garamond',
-})
-
-const inter = Inter({
-  subsets: ['latin', 'vietnamese'],
-  weight: ['400', '500'],
-  display: 'swap',
-  preload: false,
-  variable: '--font-inter',
-})
-
-const manrope = Manrope({
-  subsets: ['latin', 'vietnamese'],
-  weight: ['400', '500'],
-  display: 'swap',
-  preload: false,
-  variable: '--font-manrope',
-})
-
-const FONT_VARIABLES = [playfair, bodyFont, lora, sourceSerif, cormorant, inter, manrope]
-  .map((font) => font.variable)
-  .join(' ')
+const GOOGLE_FONTS_HREF =
+  'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@400;500&family=Lora:wght@400;500&family=Manrope:wght@400;500&family=Playfair+Display:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap'
 
 export async function generateMetadata(): Promise<Metadata> {
   const { brand } = await getThemeSettings()
@@ -193,12 +94,14 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html
       lang="vi"
-      className={FONT_VARIABLES}
       data-theme={appearance.mode === 'dark' ? 'dark' : 'light'}
       data-ground={appearance.mode === 'dark' ? 'dark' : 'light'}
       suppressHydrationWarning
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="stylesheet" href={GOOGLE_FONTS_HREF} />
         {/*
           Blocking, and deliberately so: on `auto` the palette comes from the
           machine's `prefers-color-scheme`, which the server cannot know, so

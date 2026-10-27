@@ -71,6 +71,14 @@
      overrides it per palette; this is the database-less fallback. */
   --c-on-dark: #f4f1ea;
 
+  --font-playfair-display: 'Playfair Display';
+  --font-be-vietnam-pro: 'Be Vietnam Pro';
+  --font-lora: 'Lora';
+  --font-source-serif-4: 'Source Serif 4';
+  --font-cormorant-garamond: 'Cormorant Garamond';
+  --font-inter: 'Inter';
+  --font-manrope: 'Manrope';
+
   --f-display: 'Playfair Display';
   --f-body: 'Be Vietnam Pro';
 

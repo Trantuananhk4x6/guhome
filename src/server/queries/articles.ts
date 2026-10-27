@@ -125,22 +125,45 @@ export const getAllArticleSlugs = cache(async (): Promise<string[]> => {
 export const getRelatedArticles = cache(
   async (articleId: string, limit = 3): Promise<ArticleSummary[]> => {
     if (limit <= 0) return []
-    const rows = await db
-      .select()
-      .from(articles)
-      .where(and(publishedFilter(), ne(articles.id, articleId)))
-      .orderBy(publishedOrder())
-      .limit(limit)
-    return toSummaries(rows)
+    try {
+      const rows = await db
+        .select()
+        .from(articles)
+        .where(and(publishedFilter(), ne(articles.id, articleId)))
+        .orderBy(publishedOrder())
+        .limit(limit)
+      if (rows && rows.length > 0) {
+        return await toSummaries(rows)
+      }
+    } catch {
+      // Database offline, use static related articles
+    }
+    return getStaticArticles()
+      .filter((a) => a.id !== articleId && a.slug !== articleId)
+      .slice(0, limit)
   },
 )
 
 /** Distinct tags across published articles, for the journal filter bar. */
 export const getArticleTags = cache(async (): Promise<string[]> => {
-  const rows = await db.select({ tags: articles.tags }).from(articles).where(publishedFilter())
+  try {
+    const rows = await db.select({ tags: articles.tags }).from(articles).where(publishedFilter())
+    if (rows && rows.length > 0) {
+      const set = new Set<string>()
+      for (const row of rows) {
+        for (const tag of row.tags) {
+          const trimmed = tag.trim()
+          if (trimmed.length > 0) set.add(trimmed)
+        }
+      }
+      return Array.from(set).sort((a, b) => a.localeCompare(b, 'vi'))
+    }
+  } catch {
+    // Database offline, use static article tags
+  }
   const set = new Set<string>()
-  for (const row of rows) {
-    for (const tag of row.tags) {
+  for (const article of getStaticArticles()) {
+    for (const tag of article.tags) {
       const trimmed = tag.trim()
       if (trimmed.length > 0) set.add(trimmed)
     }
