@@ -44,21 +44,29 @@ async function hydrate(row: SceneRow): Promise<SceneConfig> {
 }
 
 export const getSceneById = cache(async (id: string): Promise<SceneConfig | null> => {
-  const rows = await db.select().from(scenes).where(eq(scenes.id, id)).limit(1)
-  const row = rows[0]
-  return row ? hydrate(row) : null
+  try {
+    const rows = await db.select().from(scenes).where(eq(scenes.id, id)).limit(1)
+    const row = rows[0]
+    return row ? hydrate(row) : null
+  } catch {
+    return null
+  }
 })
 
 /** The project's scene — the oldest row wins when several exist. */
 export const getSceneForProject = cache(async (projectId: string): Promise<SceneConfig | null> => {
-  const rows = await db
-    .select()
-    .from(scenes)
-    .where(eq(scenes.projectId, projectId))
-    .orderBy(asc(scenes.createdAt))
-    .limit(1)
-  const row = rows[0]
-  return row ? hydrate(row) : null
+  try {
+    const rows = await db
+      .select()
+      .from(scenes)
+      .where(eq(scenes.projectId, projectId))
+      .orderBy(asc(scenes.createdAt))
+      .limit(1)
+    const row = rows[0]
+    return row ? hydrate(row) : null
+  } catch {
+    return null
+  }
 })
 
 /**
@@ -78,15 +86,19 @@ export const getSceneForProject = cache(async (projectId: string): Promise<Scene
  * against. First row per project wins, matching `getSceneForProject`.
  */
 export async function readAllSceneModes(): Promise<Map<string, SceneMode>> {
-  const rows = await db
-    .select({ projectId: scenes.projectId, mode: scenes.mode })
-    .from(scenes)
-    .orderBy(asc(scenes.createdAt))
-
   const modes = new Map<string, SceneMode>()
-  for (const row of rows) {
-    if (!row.projectId) continue
-    if (!modes.has(row.projectId)) modes.set(row.projectId, row.mode)
+  try {
+    const rows = await db
+      .select({ projectId: scenes.projectId, mode: scenes.mode })
+      .from(scenes)
+      .orderBy(asc(scenes.createdAt))
+
+    for (const row of rows) {
+      if (!row.projectId) continue
+      if (!modes.has(row.projectId)) modes.set(row.projectId, row.mode)
+    }
+  } catch {
+    // Database offline or quota exceeded
   }
   return modes
 }
@@ -95,17 +107,21 @@ const loadSceneModes = cache(async (key: string): Promise<Map<string, SceneMode>
   const modes = new Map<string, SceneMode>()
   if (key.length === 0) return modes
 
-  const projectIds = key.split(',')
-  const rows = await db
-    .select({ projectId: scenes.projectId, mode: scenes.mode })
-    .from(scenes)
-    .where(inArray(scenes.projectId, projectIds))
-    .orderBy(asc(scenes.createdAt))
+  try {
+    const projectIds = key.split(',')
+    const rows = await db
+      .select({ projectId: scenes.projectId, mode: scenes.mode })
+      .from(scenes)
+      .where(inArray(scenes.projectId, projectIds))
+      .orderBy(asc(scenes.createdAt))
 
-  for (const row of rows) {
-    if (!row.projectId) continue
-    // First row per project wins, matching getSceneForProject().
-    if (!modes.has(row.projectId)) modes.set(row.projectId, row.mode)
+    for (const row of rows) {
+      if (!row.projectId) continue
+      // First row per project wins, matching getSceneForProject().
+      if (!modes.has(row.projectId)) modes.set(row.projectId, row.mode)
+    }
+  } catch {
+    // Database offline or quota exceeded
   }
   return modes
 })
@@ -122,15 +138,19 @@ export function getSceneModesByProject(projectIds: readonly string[]): Promise<M
 
 /** Every scene attached to a project, ordered — used by the admin 3D asset list. */
 export const getScenesForProject = cache(async (projectId: string): Promise<SceneConfig[]> => {
-  const rows = await db
-    .select()
-    .from(scenes)
-    .where(eq(scenes.projectId, projectId))
-    .orderBy(asc(scenes.createdAt))
-  if (rows.length === 0) return []
+  try {
+    const rows = await db
+      .select()
+      .from(scenes)
+      .where(eq(scenes.projectId, projectId))
+      .orderBy(asc(scenes.createdAt))
+    if (rows.length === 0) return []
 
-  const mediaMap = await getMediaMap(
-    rows.flatMap((row) => [row.modelMediaId, row.sourceMediaId, row.depthMediaId]),
-  )
-  return rows.map((row) => toSceneConfig(row, mediaMap))
+    const mediaMap = await getMediaMap(
+      rows.flatMap((row) => [row.modelMediaId, row.sourceMediaId, row.depthMediaId]),
+    )
+    return rows.map((row) => toSceneConfig(row, mediaMap))
+  } catch {
+    return []
+  }
 })

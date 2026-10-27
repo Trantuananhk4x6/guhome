@@ -11,6 +11,7 @@ import { and, asc, desc, eq, ilike, or, sql, type SQL } from 'drizzle-orm'
 import { db } from '@/server/db'
 import { articles, categories, projects, users } from '@/server/db/schema'
 import { getMediaMap } from '@/server/queries/media'
+import { getStaticArticleDetail, getStaticArticles } from '@/server/queries/static-fallback'
 import type { MediaRef, PublishStatus, RichTextDoc, SeoMeta } from '@/types/content'
 
 export interface AdminArticleRow {
@@ -80,8 +81,32 @@ export async function listAdminArticles(query: AdminArticleQuery = {}): Promise<
       authorName,
     }))
   } catch (error) {
-    console.error('[admin/articles] listAdminArticles failed', error)
-    return []
+    console.error('[admin/articles] listAdminArticles failed; using static fallback', error)
+    if (query.status && query.status !== 'all' && query.status !== 'published') return []
+    let fallback = getStaticArticles()
+    const term = query.search?.trim().toLowerCase()
+    if (term) {
+      fallback = fallback.filter(
+        (a) =>
+          a.title.toLowerCase().includes(term) ||
+          a.slug.toLowerCase().includes(term) ||
+          (a.excerpt?.toLowerCase().includes(term) ?? false),
+      )
+    }
+    const now = new Date()
+    return fallback.slice(0, query.limit ?? 200).map((a) => ({
+      id: a.id,
+      title: a.title,
+      slug: a.slug,
+      status: 'published',
+      excerpt: a.excerpt,
+      tags: a.tags,
+      readingMinutes: a.readingMinutes,
+      scheduledAt: null,
+      publishedAt: a.publishedAt ?? now,
+      updatedAt: a.publishedAt ?? now,
+      authorName: 'GuHomes Editorial',
+    }))
   }
 }
 
@@ -102,8 +127,9 @@ export async function countAdminArticles(): Promise<AdminArticleCounts> {
     }
     return out
   } catch (error) {
-    console.error('[admin/articles] countAdminArticles failed', error)
-    return empty
+    console.error('[admin/articles] countAdminArticles failed; using static fallback', error)
+    const count = getStaticArticles().length
+    return { all: count, draft: 0, published: count, archived: 0 }
   }
 }
 
@@ -138,8 +164,27 @@ export async function getAdminArticle(id: string): Promise<AdminArticleDetail | 
       seo: article.seo ?? null,
     }
   } catch (error) {
-    console.error('[admin/articles] getAdminArticle failed', error)
-    return null
+    console.error('[admin/articles] getAdminArticle failed; using static fallback', error)
+    const detail = getStaticArticleDetail(id)
+    if (!detail) return null
+    const now = new Date()
+    return {
+      id: detail.id,
+      title: detail.title,
+      slug: detail.slug,
+      status: 'published',
+      excerpt: detail.excerpt,
+      tags: detail.tags,
+      readingMinutes: detail.readingMinutes,
+      scheduledAt: null,
+      publishedAt: detail.publishedAt ?? now,
+      updatedAt: detail.publishedAt ?? now,
+      authorName: detail.authorName,
+      coverMediaId: detail.cover?.id ?? null,
+      categoryId: 'ghi-chep',
+      content: detail.content,
+      seo: detail.seo ?? null,
+    }
   }
 }
 

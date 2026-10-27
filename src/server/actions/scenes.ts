@@ -174,67 +174,77 @@ function toSceneConfig(row: SceneRow, mediaMap: Map<string, MediaRef>): SceneCon
 export async function fetchScenes(): Promise<SceneListItem[]> {
   await requireUser()
 
-  const rows = await db
-    .select({ scene: scenes, projectTitle: projects.title, projectSlug: projects.slug })
-    .from(scenes)
-    .leftJoin(projects, eq(scenes.projectId, projects.id))
-    .orderBy(asc(projects.title), asc(scenes.createdAt))
+  try {
+    const rows = await db
+      .select({ scene: scenes, projectTitle: projects.title, projectSlug: projects.slug })
+      .from(scenes)
+      .leftJoin(projects, eq(scenes.projectId, projects.id))
+      .orderBy(asc(projects.title), asc(scenes.createdAt))
 
-  const mediaMap = await getMediaMap(
-    rows.flatMap((row) => [row.scene.modelMediaId, row.scene.sourceMediaId, row.scene.depthMediaId]),
-  )
+    const mediaMap = await getMediaMap(
+      rows.flatMap((row) => [row.scene.modelMediaId, row.scene.sourceMediaId, row.scene.depthMediaId]),
+    )
 
-  return rows.map((row) => ({
-    config: toSceneConfig(row.scene, mediaMap),
-    name: row.scene.name,
-    projectTitle: row.projectTitle,
-    projectSlug: row.projectSlug,
-    updatedAt: row.scene.updatedAt,
-  }))
+    return rows.map((row) => ({
+      config: toSceneConfig(row.scene, mediaMap),
+      name: row.scene.name,
+      projectTitle: row.projectTitle,
+      projectSlug: row.projectSlug,
+      updatedAt: row.scene.updatedAt,
+    }))
+  } catch (error) {
+    console.warn('[actions/scenes] fetchScenes failed; returning empty list', error)
+    return []
+  }
 }
 
 /** The reconstruction queue, newest first. Polled by the jobs panel. */
 export async function fetchReconJobs(limit = 60): Promise<ReconJobItem[]> {
   await requireUser()
 
-  const rows = await db
-    .select({ job: reconJobs, projectTitle: projects.title })
-    .from(reconJobs)
-    .leftJoin(projects, eq(reconJobs.projectId, projects.id))
-    .orderBy(desc(reconJobs.createdAt))
-    .limit(Math.min(Math.max(Math.trunc(limit), 1), 200))
+  try {
+    const rows = await db
+      .select({ job: reconJobs, projectTitle: projects.title })
+      .from(reconJobs)
+      .leftJoin(projects, eq(reconJobs.projectId, projects.id))
+      .orderBy(desc(reconJobs.createdAt))
+      .limit(Math.min(Math.max(Math.trunc(limit), 1), 200))
 
-  const mediaMap = await getMediaMap(
-    rows.flatMap((row) => [
-      row.job.sourceMediaId,
-      row.job.result?.depthMediaId ?? null,
-      row.job.result?.modelMediaId ?? null,
-    ]),
-  )
+    const mediaMap = await getMediaMap(
+      rows.flatMap((row) => [
+        row.job.sourceMediaId,
+        row.job.result?.depthMediaId ?? null,
+        row.job.result?.modelMediaId ?? null,
+      ]),
+    )
 
-  return rows.map((row) => {
-    const result = row.job.result ?? null
-    const mode: Exclude<SceneMode, 'NONE' | 'IMAGE'> =
-      row.job.mode === 'NONE' || row.job.mode === 'IMAGE' ? 'DEPTH_2_5D' : row.job.mode
-    return {
-      id: row.job.id,
-      projectId: row.job.projectId,
-      projectTitle: row.projectTitle,
-      sceneId: row.job.sceneId,
-      source: mediaMap.get(row.job.sourceMediaId) ?? null,
-      mode,
-      status: row.job.status,
-      progress: row.job.progress,
-      provider: row.job.provider,
-      error: row.job.error,
-      result,
-      resultDepth: result?.depthMediaId ? (mediaMap.get(result.depthMediaId) ?? null) : null,
-      resultModel: result?.modelMediaId ? (mediaMap.get(result.modelMediaId) ?? null) : null,
-      createdAt: row.job.createdAt,
-      startedAt: row.job.startedAt,
-      finishedAt: row.job.finishedAt,
-    }
-  })
+    return rows.map((row) => {
+      const result = row.job.result ?? null
+      const mode: Exclude<SceneMode, 'NONE' | 'IMAGE'> =
+        row.job.mode === 'NONE' || row.job.mode === 'IMAGE' ? 'DEPTH_2_5D' : row.job.mode
+      return {
+        id: row.job.id,
+        projectId: row.job.projectId,
+        projectTitle: row.projectTitle,
+        sceneId: row.job.sceneId,
+        source: mediaMap.get(row.job.sourceMediaId) ?? null,
+        mode,
+        status: row.job.status,
+        progress: row.job.progress,
+        provider: row.job.provider,
+        error: row.job.error,
+        result,
+        resultDepth: result?.depthMediaId ? (mediaMap.get(result.depthMediaId) ?? null) : null,
+        resultModel: result?.modelMediaId ? (mediaMap.get(result.modelMediaId) ?? null) : null,
+        createdAt: row.job.createdAt,
+        startedAt: row.job.startedAt,
+        finishedAt: row.job.finishedAt,
+      }
+    })
+  } catch (error) {
+    console.warn('[actions/scenes] fetchReconJobs failed; returning empty list', error)
+    return []
+  }
 }
 
 /* --------------------------------- create --------------------------------- */

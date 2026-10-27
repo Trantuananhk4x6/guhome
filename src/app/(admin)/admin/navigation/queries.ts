@@ -8,6 +8,7 @@
 
 import { asc, eq } from 'drizzle-orm'
 
+import { FALLBACK_FOOTER_NAV, FALLBACK_HEADER_NAV } from '@/components/layout/nav-fallback'
 import { db } from '@/server/db'
 import { navigation } from '@/server/db/schema'
 import type { NavDraftItem, NavLocation } from '@/components/admin/site/contracts'
@@ -27,7 +28,13 @@ export async function listNavigation(location: NavLocation): Promise<NavDraftIte
 
     return rows.map((row) => ({ id: row.id, label: row.label, href: row.href, enabled: row.enabled }))
   } catch (error) {
-    console.error(`[admin/navigation] listNavigation(${location}) failed`, error)
-    return []
+    console.error(`[admin/navigation] listNavigation(${location}) failed; using fallback`, error)
+    const fallbackList = location === 'footer' ? FALLBACK_FOOTER_NAV : FALLBACK_HEADER_NAV
+    return fallbackList.map((item) => ({
+      id: `${location}-${item.id}`,
+      label: item.label,
+      href: item.href,
+      enabled: true,
+    }))
   }
 }

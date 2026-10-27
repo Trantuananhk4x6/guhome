@@ -22,6 +22,7 @@ import { requireUser } from '@/server/auth'
 import { db } from '@/server/db'
 import { projects } from '@/server/db/schema'
 import { fetchReconJobs, fetchScenes } from '@/server/actions/scenes'
+import { getStaticPublishedProjects } from '@/server/queries/static-fallback'
 
 import { SceneManager } from './_components/SceneManager'
 
@@ -38,7 +39,15 @@ export default async function AdminSceneAssetsPage() {
     db
       .select({ id: projects.id, title: projects.title, slug: projects.slug, status: projects.status })
       .from(projects)
-      .orderBy(asc(projects.title)),
+      .orderBy(asc(projects.title))
+      .catch(() =>
+        getStaticPublishedProjects().map((p) => ({
+          id: p.id,
+          title: p.title,
+          slug: p.slug,
+          status: 'published' as const,
+        })),
+      ),
   ])
 
   const projectOptions: ProjectOption[] = projectRows

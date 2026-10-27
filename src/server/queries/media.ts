@@ -118,22 +118,27 @@ function mediaFilters(options: MediaListOptions): SQL | undefined {
 
 const loadMediaLibrary = cache(async (key: string): Promise<MediaLibraryItem[]> => {
   const options = JSON.parse(key) as MediaListOptions
-  const rows = await db
-    .select()
-    .from(media)
-    .where(mediaFilters(options))
-    .orderBy(desc(media.createdAt), asc(media.storageKey))
-    .limit(options.limit ?? 200)
-    .offset(options.offset ?? 0)
+  try {
+    const rows = await db
+      .select()
+      .from(media)
+      .where(mediaFilters(options))
+      .orderBy(desc(media.createdAt), asc(media.storageKey))
+      .limit(options.limit ?? 200)
+      .offset(options.offset ?? 0)
 
-  return rows.map((row) => ({
-    ...toMediaRef(row),
-    storageKey: row.storageKey,
-    folder: row.folder,
-    mime: row.mime,
-    bytes: row.bytes,
-    createdAt: row.createdAt,
-  }))
+    return rows.map((row) => ({
+      ...toMediaRef(row),
+      storageKey: row.storageKey,
+      folder: row.folder,
+      mime: row.mime,
+      bytes: row.bytes,
+      createdAt: row.createdAt,
+    }))
+  } catch (error) {
+    console.warn('[media] loadMediaLibrary DB fallback', error)
+    return []
+  }
 })
 
 /** Paged media library listing for the admin. */
@@ -143,8 +148,12 @@ export function listMedia(options: MediaListOptions = {}): Promise<MediaLibraryI
 
 const loadMediaCount = cache(async (key: string): Promise<number> => {
   const options = JSON.parse(key) as MediaListOptions
-  const rows = await db.select({ value: count() }).from(media).where(mediaFilters(options))
-  return rows[0]?.value ?? 0
+  try {
+    const rows = await db.select({ value: count() }).from(media).where(mediaFilters(options))
+    return rows[0]?.value ?? 0
+  } catch {
+    return 0
+  }
 })
 
 export function countMedia(options: MediaListOptions = {}): Promise<number> {
@@ -153,11 +162,15 @@ export function countMedia(options: MediaListOptions = {}): Promise<number> {
 
 /** Distinct, non-empty folder names — the left-hand nav of the media library. */
 export const listMediaFolders = cache(async (): Promise<string[]> => {
-  const rows = await db
-    .selectDistinct({ folder: media.folder })
-    .from(media)
-    .orderBy(asc(media.folder))
-  return rows
-    .map((row) => row.folder)
-    .filter((folder): folder is string => typeof folder === 'string' && folder.length > 0)
+  try {
+    const rows = await db
+      .selectDistinct({ folder: media.folder })
+      .from(media)
+      .orderBy(asc(media.folder))
+    return rows
+      .map((row) => row.folder)
+      .filter((folder): folder is string => typeof folder === 'string' && folder.length > 0)
+  } catch {
+    return []
+  }
 })

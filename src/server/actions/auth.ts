@@ -54,7 +54,17 @@ export async function signInAction(_prev: SignInState, formData: FormData): Prom
     }
   }
 
-  const result = await signIn(parsed.data.email, parsed.data.password)
+  let result: { ok: boolean; error?: string }
+  try {
+    result = await signIn(parsed.data.email, parsed.data.password)
+  } catch (error) {
+    console.error('[auth] signInAction unexpected error', error)
+    return {
+      error: 'Không thể kết nối máy chủ xác thực. Vui lòng thử lại.',
+      email: parsed.data.email,
+    }
+  }
+
   if (!result.ok) {
     return { error: result.error ?? 'Email hoặc mật khẩu không đúng.', email: parsed.data.email }
   }

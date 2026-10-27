@@ -25,14 +25,26 @@ if (LOCAL_DB_HOSTS.has(dbHost)) {
   const proxyPort = process.env.NEON_HTTP_PROXY_PORT ?? '4444'
   neonConfig.fetchEndpoint = `http://${dbHost}:${proxyPort}/sql`
 } else {
-  // Wrap neon HTTP queries with retry logic to withstand high concurrency and transient network hiccups during static site generation
+  // Wrap neon HTTP queries with retry logic to withstand high concurrency and transient network hiccups during static site generation.
+  // If Neon returns HTTP 402 (Quota Exceeded), trip a short circuit breaker (60s) so subsequent queries fail fast in <1ms and hit static fallbacks immediately.
   const nativeFetch = globalThis.fetch
+  let quotaExceededUntil = 0
   if (typeof nativeFetch === 'function') {
     neonConfig.fetchFunction = async (input: RequestInfo | URL, init?: RequestInit) => {
+      if (Date.now() < quotaExceededUntil) {
+        return new Response(
+          JSON.stringify({ message: 'Neon database quota exceeded (cached circuit breaker).' }),
+          { status: 402, headers: { 'content-type': 'application/json' } },
+        )
+      }
       let attempts = 0
       while (true) {
         try {
-          return await nativeFetch(input, init)
+          const res = await nativeFetch(input, init)
+          if (res.status === 402) {
+            quotaExceededUntil = Date.now() + 60_000
+          }
+          return res
         } catch (err) {
           attempts++
           if (attempts >= 4) throw err

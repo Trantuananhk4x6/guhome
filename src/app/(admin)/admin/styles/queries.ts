@@ -17,6 +17,7 @@ import { asc, eq, sql } from 'drizzle-orm'
 import { db } from '@/server/db'
 import { projectStyles, styles } from '@/server/db/schema'
 import { getMediaMap } from '@/server/queries/media'
+import { getPublishedStyles } from '@/server/queries/styles'
 
 import type { AdminStyleRow } from './_components/contracts'
 
@@ -60,7 +61,21 @@ export async function listAdminStyles(): Promise<AdminStyleRow[]> {
       projectCount: row.projectCount,
     }))
   } catch (error) {
-    console.error('[admin/styles] listAdminStyles failed', error)
-    return []
+    console.error('[admin/styles] listAdminStyles failed; using fallback styles', error)
+    const fallback = await getPublishedStyles()
+    return fallback.map((s) => ({
+      id: s.id,
+      slug: s.slug,
+      name: s.name,
+      nameEn: s.nameEn,
+      tagline: s.tagline,
+      description: s.description,
+      cover: s.cover,
+      seoTitle: s.name,
+      seoDescription: s.description ?? '',
+      order: s.order,
+      enabled: true,
+      projectCount: 0,
+    }))
   }
 }

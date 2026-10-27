@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { ProjectEditor } from '@/components/admin/project/ProjectEditor'
-import { isUuid, type ProjectEditorSnapshot } from '@/components/admin/project/contracts'
+import { type ProjectEditorSnapshot } from '@/components/admin/project/contracts'
 import { AdminPageHeader } from '@/components/admin/site/PageHeader'
 import { requireUser } from '@/server/auth'
 import { getProjectByIdUnfiltered } from '@/server/queries/projects'
@@ -25,7 +25,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params
-  if (!isUuid(id)) return { title: 'Dự án' }
+  if (!id) return { title: 'Dự án' }
   const project = await getProjectByIdUnfiltered(id)
   return { title: project?.title ?? 'Dự án' }
 }
@@ -34,7 +34,7 @@ export default async function ProjectEditorPage({ params }: PageProps) {
   await requireUser()
 
   const { id } = await params
-  if (!isUuid(id)) notFound()
+  if (!id) notFound()
 
   const project = await getProjectByIdUnfiltered(id)
   if (!project) notFound()

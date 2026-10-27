@@ -13,9 +13,11 @@
 import { and, asc, eq, ilike, or, sql, type SQL } from 'drizzle-orm'
 
 import type { StyleOption } from '@/components/admin/project/contracts'
+import { CATEGORY_SEEDS } from '@/data/seed-types'
 import { db } from '@/server/db'
 import { categories, projects } from '@/server/db/schema'
 import { getMediaMap } from '@/server/queries/media'
+import { getStaticPublishedProjects } from '@/server/queries/static-fallback'
 import { getPublishedStyles, getStyleIdsForProject } from '@/server/queries/styles'
 import type { MediaRef, PublishStatus } from '@/types/content'
 
@@ -148,8 +150,45 @@ export async function listAdminProjects(query: AdminProjectQuery = {}): Promise<
       updatedAt: row.updatedAt,
     }))
   } catch (error) {
-    console.error('[admin/projects] listAdminProjects failed', error)
-    return []
+    console.error('[admin/projects] listAdminProjects failed; using static fallback', error)
+    let fallback = getStaticPublishedProjects({
+      categorySlug: query.categorySlug,
+      featured: query.featured,
+    })
+    if (query.status && query.status !== 'all' && query.status !== 'published') {
+      fallback = []
+    }
+    const term = query.search?.trim().toLowerCase()
+    if (term) {
+      fallback = fallback.filter(
+        (p) =>
+          p.title.toLowerCase().includes(term) ||
+          p.slug.toLowerCase().includes(term) ||
+          (p.subtitle?.toLowerCase().includes(term) ?? false) ||
+          (p.location?.toLowerCase().includes(term) ?? false),
+      )
+    }
+    const offset = query.offset ?? 0
+    const limit = query.limit ?? 50
+    const now = new Date()
+    return fallback.slice(offset, offset + limit).map((p, idx) => ({
+      id: p.id,
+      slug: p.slug,
+      title: p.title,
+      subtitle: p.subtitle,
+      status: 'published',
+      featured: p.featured,
+      order: idx + 1,
+      year: p.year,
+      location: p.location,
+      area: p.area,
+      categoryId: p.categorySlug,
+      categoryName: p.categoryName,
+      categorySlug: p.categorySlug,
+      cover: p.cover,
+      publishedAt: now,
+      updatedAt: now,
+    }))
   }
 }
 
@@ -163,8 +202,23 @@ export async function countAdminProjects(query: AdminProjectQuery = {}): Promise
       .where(filters(query))
     return rows[0]?.value ?? 0
   } catch (error) {
-    console.error('[admin/projects] countAdminProjects failed', error)
-    return 0
+    console.error('[admin/projects] countAdminProjects failed; using static fallback', error)
+    if (query.status && query.status !== 'all' && query.status !== 'published') return 0
+    let fallback = getStaticPublishedProjects({
+      categorySlug: query.categorySlug,
+      featured: query.featured,
+    })
+    const term = query.search?.trim().toLowerCase()
+    if (term) {
+      fallback = fallback.filter(
+        (p) =>
+          p.title.toLowerCase().includes(term) ||
+          p.slug.toLowerCase().includes(term) ||
+          (p.subtitle?.toLowerCase().includes(term) ?? false) ||
+          (p.location?.toLowerCase().includes(term) ?? false),
+      )
+    }
+    return fallback.length
   }
 }
 
@@ -193,8 +247,9 @@ export async function countAdminProjectsByStatus(
     }
     return out
   } catch (error) {
-    console.error('[admin/projects] countAdminProjectsByStatus failed', error)
-    return empty
+    console.error('[admin/projects] countAdminProjectsByStatus failed; using static fallback', error)
+    const count = await countAdminProjects({ ...query, status: 'published' })
+    return { all: count, draft: 0, published: count, archived: 0 }
   }
 }
 
@@ -222,8 +277,14 @@ export async function listProjectCategories(): Promise<ProjectCategoryOption[]> 
       .orderBy(asc(categories.order), asc(categories.name))
     return rows
   } catch (error) {
-    console.error('[admin/projects] listProjectCategories failed', error)
-    return []
+    console.error('[admin/projects] listProjectCategories failed; using static fallback', error)
+    const allProjects = getStaticPublishedProjects()
+    return CATEGORY_SEEDS.map((c) => ({
+      id: c.slug,
+      slug: c.slug,
+      name: c.name,
+      projectCount: allProjects.filter((p) => p.categorySlug === c.slug).length,
+    }))
   }
 }
 

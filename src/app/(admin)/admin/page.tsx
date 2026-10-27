@@ -24,15 +24,20 @@ import {
   reconJobs,
   users,
 } from '@/server/db/schema'
+import { getStaticArticles, getStaticPublishedProjects } from '@/server/queries/static-fallback'
 
 import { ContactStatusControl } from './_components/ContactStatusControl'
 
 export const metadata: Metadata = { title: 'Dashboard' }
 export const dynamic = 'force-dynamic'
 
-async function firstCount(query: Promise<{ value: number }[]>): Promise<number> {
-  const rows = await query
-  return rows[0]?.value ?? 0
+async function firstCount(query: Promise<{ value: number }[]>, fallback = 0): Promise<number> {
+  try {
+    const rows = await query
+    return rows[0]?.value ?? fallback
+  } catch {
+    return fallback
+  }
 }
 
 const DATE_TIME = new Intl.DateTimeFormat('vi-VN', {
@@ -98,6 +103,10 @@ function StatTile({ label, value, hint, href }: StatTileProps) {
 export default async function AdminDashboardPage() {
   await requireUser()
 
+  const fallbackProjects = getStaticPublishedProjects()
+  const fallbackArticles = getStaticArticles()
+  const fallbackFeatured = fallbackProjects.filter((p) => p.featured).length
+
   const [
     publishedProjects,
     draftProjects,
@@ -110,18 +119,21 @@ export default async function AdminDashboardPage() {
   ] = await Promise.all([
     firstCount(
       db.select({ value: count() }).from(projects).where(eq(projects.status, 'published')),
+      fallbackProjects.length,
     ),
-    firstCount(db.select({ value: count() }).from(projects).where(eq(projects.status, 'draft'))),
-    firstCount(db.select({ value: count() }).from(articles)),
-    firstCount(db.select({ value: count() }).from(media)),
+    firstCount(db.select({ value: count() }).from(projects).where(eq(projects.status, 'draft')), 0),
+    firstCount(db.select({ value: count() }).from(articles), fallbackArticles.length),
+    firstCount(db.select({ value: count() }).from(media), 360),
     firstCount(
       db.select({ value: count() }).from(contactRequests).where(eq(contactRequests.status, 'new')),
+      0,
     ),
     firstCount(
       db
         .select({ value: count() })
         .from(reconJobs)
         .where(inArray(reconJobs.status, ['queued', 'running', 'review'])),
+      0,
     ),
     db
       .select({
@@ -135,7 +147,8 @@ export default async function AdminDashboardPage() {
       })
       .from(contactRequests)
       .orderBy(desc(contactRequests.createdAt))
-      .limit(5),
+      .limit(5)
+      .catch(() => []),
     db
       .select({
         id: auditLogs.id,
@@ -148,7 +161,8 @@ export default async function AdminDashboardPage() {
       .from(auditLogs)
       .leftJoin(users, eq(auditLogs.userId, users.id))
       .orderBy(desc(auditLogs.createdAt))
-      .limit(8),
+      .limit(8)
+      .catch(() => []),
   ])
 
   const featuredCount = await firstCount(
@@ -156,6 +170,7 @@ export default async function AdminDashboardPage() {
       .select({ value: count() })
       .from(projects)
       .where(and(eq(projects.featured, true), eq(projects.status, 'published'))),
+    fallbackFeatured,
   )
 
   return (

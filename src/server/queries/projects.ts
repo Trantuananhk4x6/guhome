@@ -391,16 +391,21 @@ export const getProjectBySlug = cache(async (slug: string): Promise<ProjectDetai
  * editor and draft previews only. Never call this from a public page.
  */
 export const getProjectByIdUnfiltered = cache(async (id: string): Promise<ProjectDetail | null> => {
-  const rows = await db
-    .select(projectSelection)
-    .from(projects)
-    .leftJoin(categories, eq(projects.categoryId, categories.id))
-    .leftJoin(media, eq(projects.coverMediaId, media.id))
-    .where(eq(projects.id, id))
-    .limit(1)
+  try {
+    const rows = await db
+      .select(projectSelection)
+      .from(projects)
+      .leftJoin(categories, eq(projects.categoryId, categories.id))
+      .leftJoin(media, eq(projects.coverMediaId, media.id))
+      .where(eq(projects.id, id))
+      .limit(1)
 
-  const row = rows[0]
-  return row ? toDetail(row) : null
+    const row = rows[0]
+    if (row) return await toDetail(row)
+  } catch {
+    console.warn(`[projects] getProjectByIdUnfiltered failed for "${id}", trying static fallback`)
+  }
+  return getStaticProjectDetail(id)
 })
 
 /* --------------------------------- related --------------------------------- */

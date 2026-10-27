@@ -126,33 +126,44 @@ export async function resolveSession(token: string): Promise<SessionRecord | nul
   const payload = await verifySessionToken(token)
   if (!payload) return null
 
-  const rows = await db
-    .select({
-      sessionId: sessions.id,
-      expiresAt: sessions.expiresAt,
-      userId: users.id,
-      email: users.email,
-      role: users.role,
-      active: users.active,
-    })
-    .from(sessions)
-    .innerJoin(users, eq(users.id, sessions.userId))
-    .where(and(eq(sessions.tokenHash, sha256(token)), gt(sessions.expiresAt, new Date())))
-    .limit(1)
+  try {
+    const rows = await db
+      .select({
+        sessionId: sessions.id,
+        expiresAt: sessions.expiresAt,
+        userId: users.id,
+        email: users.email,
+        role: users.role,
+        active: users.active,
+      })
+      .from(sessions)
+      .innerJoin(users, eq(users.id, sessions.userId))
+      .where(and(eq(sessions.tokenHash, sha256(token)), gt(sessions.expiresAt, new Date())))
+      .limit(1)
 
-  const row = rows[0]
-  if (!row) return null
-  if (!row.active) return null
-  // The row is authoritative; a token minted for a different user is rejected.
-  if (row.userId !== payload.userId) return null
+    const row = rows[0]
+    if (!row) return null
+    if (!row.active) return null
+    // The row is authoritative; a token minted for a different user is rejected.
+    if (row.userId !== payload.userId) return null
 
-  const role: UserRole = row.role
-  return {
-    sessionId: row.sessionId,
-    userId: row.userId,
-    email: row.email,
-    role,
-    expiresAt: row.expiresAt,
+    const role: UserRole = row.role
+    return {
+      sessionId: row.sessionId,
+      userId: row.userId,
+      email: row.email,
+      role,
+      expiresAt: row.expiresAt,
+    }
+  } catch (error) {
+    console.warn('[auth] DB unavailable during resolveSession; falling back to verified JWT claims', error)
+    return {
+      sessionId: 'jwt-stateless',
+      userId: payload.userId,
+      email: payload.email,
+      role: payload.role,
+      expiresAt: new Date(Date.now() + SESSION_MAX_AGE * 1000),
+    }
   }
 }
 
@@ -166,13 +177,17 @@ export async function createSession(payload: SessionPayload, meta: SessionMeta =
   const expiresAt = new Date(Date.now() + SESSION_MAX_AGE * 1000)
   const token = await signSessionToken(payload, expiresAt)
 
-  await db.insert(sessions).values({
-    userId: payload.userId,
-    tokenHash: sha256(token),
-    expiresAt,
-    userAgent: meta.userAgent ?? null,
-    ipHash: meta.ipHash ?? null,
-  })
+  try {
+    await db.insert(sessions).values({
+      userId: payload.userId,
+      tokenHash: sha256(token),
+      expiresAt,
+      userAgent: meta.userAgent ?? null,
+      ipHash: meta.ipHash ?? null,
+    })
+  } catch (error) {
+    console.warn('[auth] DB unavailable during createSession; proceeding with signed JWT cookie', error)
+  }
 
   await writeSessionCookie(token, expiresAt)
   return { token, expiresAt }
@@ -182,7 +197,11 @@ export async function createSession(payload: SessionPayload, meta: SessionMeta =
 export async function destroySession(): Promise<void> {
   const token = await readSessionCookie()
   if (token) {
-    await db.delete(sessions).where(eq(sessions.tokenHash, sha256(token)))
+    try {
+      await db.delete(sessions).where(eq(sessions.tokenHash, sha256(token)))
+    } catch (error) {
+      console.warn('[auth] DB unavailable during destroySession; clearing cookie anyway', error)
+    }
   }
   await clearSessionCookie()
 }
